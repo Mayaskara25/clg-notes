@@ -1,0 +1,14 @@
+# Whitelist: only the site code, the subject configs and the published guides go to GitHub.
+# Drafts, sources, transcripts and scratch files stay in each subject's own folder under ~/clg/<subject>/.
+/*
+!/.gitignore
+!/README.md
+!/AGENTS.md
+!/render.yaml
+!/site/
+!/subjects/
+/subjects/*/*
+!/subjects/*/subject.json
+!/subjects/*/*.html
+/public/
+__pycache__/

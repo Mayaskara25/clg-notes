@@ -1,0 +1,13 @@
+{
+  "code": "ADLD",
+  "order": 3,
+  "title": "ADLD Exam Notes",
+  "course": "Applied Digital Logic Design",
+  "course_code": "CS234AI",
+  "subtitle": "Notes in progress",
+  "accent": "#93316B",
+  "planned": 5,
+  "search_hint": "e.g. K-map, flip-flop, counter",
+  "units": [],
+  "changelog": []
+}

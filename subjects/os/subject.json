@@ -1,0 +1,13 @@
+{
+  "code": "OS",
+  "order": 2,
+  "title": "OS Exam Notes",
+  "course": "Operating Systems",
+  "course_code": "CS235AT",
+  "subtitle": "Notes in progress",
+  "accent": "#12796F",
+  "planned": 5,
+  "search_hint": "e.g. round robin, page replacement, deadlock",
+  "units": [],
+  "changelog": []
+}

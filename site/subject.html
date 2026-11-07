@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+{{STYLE}}
+</style>
+<meta name="color-scheme" content="light dark">
+<script>(function(){var m=false,t=null;try{m=matchMedia("(prefers-color-scheme: dark)").matches}catch(e){}
+try{t=new URLSearchParams(location.search).get("theme")}catch(e){}
+document.documentElement.setAttribute("data-theme",(t==="light"||t==="dark")?t:(m?"dark":"light"))})();</script>
+<title>{{TITLE}}</title>
+</head>
+<body>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode"><span id="themeIco">🌙</span><span id="themeLbl">Dark</span></button>
+<div class="wrap">
+<header>
+  <div class="crumb"><a href="../">← {{SITE_TITLE}} · all subjects</a></div>
+  <div class="eyebrow">{{COURSE}}</div>
+  <h1>{{TITLE}}</h1>
+  <p class="sub">{{SUBTITLE}}</p>
+  <div class="meta">
+    <span>{{UPDATED}}</span>
+    <span>Version <code>{{VERSION}}</code></span>
+    <span><a href="https://github.com/{{REPO}}/issues?q=is%3Aissue+in%3Atitle+%22{{ISSUE_Q}}%22" target="_blank" rel="noopener">Open reports for {{CODE}} ↗</a></span>
+  </div>
+</header>
+
+<div class="search" role="search"{{HIDE_IF_EMPTY}}>
+  <input id="q" type="search" placeholder="Search {{CODE}} — {{SEARCH_HINT}}" autocomplete="off" aria-label="Search this subject">
+  <div class="help">Searches every section of this subject's units. Press Enter to open the top result.</div>
+  <ul id="results" aria-live="polite"></ul>
+</div>
+
+<h2 class="h">Units</h2>
+<div class="units">
+{{UNITS}}
+</div>
+
+<h2 class="h">What changed</h2>
+<ul class="log">
+{{CHANGELOG}}
+</ul>
+
+<h2 class="h">Help</h2>
+<div class="grid2">
+  <div class="box">
+    <h3>Found an error or something missing?</h3>
+    <ol>
+      <li>Open the unit and scroll to the section.</li>
+      <li>Press <b>✎ Suggest / report</b> at the bottom right.</li>
+      <li>Describe it and press <b>Continue</b>. Then press <b>Submit</b> on GitHub.</li>
+    </ol>
+  </div>
+{{LABS_BOX}}
+</div>
+
+<footer>
+  Study notes compiled from course material and standard references, for revision within our class. This is not an official college document, so check anything important against your lecture slides.
+  Source: <a href="https://github.com/{{REPO}}" target="_blank" rel="noopener">github.com/{{REPO}}</a>
+</footer>
+</div>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById("themeToggle"),i=document.getElementById("themeIco"),l=document.getElementById("themeLbl");
+ function paint(){var d=r.getAttribute("data-theme")==="dark";i.textContent=d?"☀️":"🌙";l.textContent=d?"Light":"Dark";b.setAttribute("aria-pressed",d)}
+ b.addEventListener("click",function(){r.setAttribute("data-theme",r.getAttribute("data-theme")==="dark"?"light":"dark");paint()});paint()})();
+{{THEME_LINKS}}
+var SEARCH_BASE="{{SEARCH_BASE}}", SEARCH_SCOPE="{{SEARCH_SCOPE}}";
+{{SEARCH_JS}}
+</script>
+</body>
+</html>
