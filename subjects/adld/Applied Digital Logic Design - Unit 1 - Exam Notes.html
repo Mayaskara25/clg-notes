@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADLD Unit 1 — Exam Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+(function(){
+  var t=null;try{t=localStorage.getItem('adld-theme')}catch(e){}
+  if(t!=='light'&&t!=='dark'){
+    t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  }
+  document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<style>
+:root{
+  --paper:#F6F4EE; --surface:#FFFFFF; --ink:#1C1E21; --ink-soft:#5B6169; --ink-faint:#8A8F96;
+  --line:#E4E0D3; --line-soft:#EDEAE0;
+  --blue:#1D4E89; --blue-soft:#E8EFF8; --indigo:#4C3F91; --indigo-soft:#EEECF7;
+  --teal:#12796F; --teal-soft:#E4F3F0; --plum:#93316B; --plum-soft:#F6E9F0;
+  --amber:#A66A0D; --amber-soft:#F7EEDD;
+  --radius:10px; --shadow:0 1px 2px rgba(28,30,33,.04),0 6px 20px rgba(28,30,33,.05);
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Newsreader',Georgia,serif;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+code,.mono,.formula{font-family:'JetBrains Mono',monospace}
+.shell{display:flex;min-height:100vh}
+.sidebar{width:290px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow-y:auto;padding:22px 18px 40px 22px}
+.sidebar::-webkit-scrollbar{width:6px}.sidebar::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+.brand{display:flex;flex-direction:column;gap:2px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--line-soft)}
+.brand .eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+.brand .title{font-family:'Newsreader',serif;font-size:20px;font-weight:600;line-height:1.25;margin-top:2px}
+.brand .sub{font-size:12.5px;color:var(--ink-soft);margin-top:4px}
+.navgroup{margin-bottom:14px}
+.navgroup .part-label{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);font-weight:700;margin:16px 0 6px 4px}
+.navgroup a.navlink,.navlink{display:flex;align-items:center;gap:8px;font-size:13.6px;color:var(--ink-soft);padding:6px 8px;border-radius:7px;text-decoration:none}
+.navlink:hover{background:var(--paper);color:var(--ink)} .navlink .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--ink-faint)}
+.navlink.top-of-part{font-weight:600;color:var(--ink)}
+.main{flex:1;min-width:0} .page{max-width:900px;margin:0 auto;padding:56px 44px 90px}
+@media(max-width:760px){.sidebar{display:none}.page{padding:34px 20px 70px}}
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:70px 44px;max-width:1000px;margin:0 auto}
+.cover .kicker{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:14px}
+.cover h1{font-size:44px;line-height:1.12;max-width:760px;margin:0 0 16px}
+.cover .desc{font-size:16.5px;color:var(--ink-soft);max-width:620px;margin-bottom:8px}
+.cover .meta{display:flex;gap:22px;flex-wrap:wrap;margin:26px 0 44px;font-size:13px;color:var(--ink-soft)}
+.cover .meta span{display:flex;align-items:center;gap:7px} .cover .meta b{color:var(--ink);font-weight:600}
+.index-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:640px){.index-grid{grid-template-columns:1fr}}
+.index-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;display:block;box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s;border-left:4px solid var(--card-color,var(--blue))}
+.index-card:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(28,30,33,.09);text-decoration:none}
+.index-card .num{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-faint);font-weight:600}
+.index-card h3{font-size:17px;margin:5px 0;color:var(--ink);font-weight:600} .index-card p{font-size:13px;color:var(--ink-soft);margin:0;line-height:1.5}
+.part-divider{margin:34px 0 12px;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint)}
+.section{scroll-margin-top:24px}
+.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;padding-bottom:14px;border-bottom:2px solid var(--accent,var(--blue))}
+.section-head .tag{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent,var(--blue));background:var(--accent-soft,var(--blue-soft));padding:3px 9px;border-radius:6px}
+.section-head h1{font-size:30px;margin:0}
+.section-sub{color:var(--ink-soft);font-size:14.5px;margin:10px 0 28px}
+.section p{margin:0 0 14px;color:var(--ink-body)} .section ul,.section ol{margin:0 0 16px;padding-left:22px;color:var(--ink-body)} .section li{margin-bottom:6px}
+.section h2{font-size:22px;margin:34px 0 12px;padding-top:4px} .section h3{font-size:17.5px;margin:24px 0 10px;color:var(--accent,var(--blue))}
+.section strong{color:var(--ink);font-weight:600}
+.callout{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:8px;padding:14px 18px;margin:18px 0;font-size:14.3px}
+.callout .label{font-weight:700;color:var(--amber);font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;display:block}
+.callout.clarify{border-left-color:var(--plum)}.callout.clarify .label{color:var(--plum)}
+.callout.key{border-left-color:var(--blue)}.callout.key .label{color:var(--blue)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin:18px 0;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.8px;background:var(--surface);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+th{background:var(--paper);text-align:left;padding:10px 13px;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-soft);border-bottom:1px solid var(--line)}
+td{padding:10px 13px;border-bottom:1px solid var(--line-soft);color:var(--ink-body);vertical-align:top} tr:last-child td{border-bottom:none}
+.formula-block{background:#20232A;color:#E8EAED;border-radius:8px;padding:16px 20px;margin:16px 0;font-family:'JetBrains Mono',monospace;font-size:14px;overflow-x:auto;line-height:1.8;white-space:pre-wrap}
+.formula-block .c1{color:#7FB8E8}.formula-block .c2{color:#F2C88F}.formula-block .cm{color:#8A9099}
+.svg-wrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:20px 0;text-align:center;box-shadow:var(--shadow)}
+.svg-wrap .cap{font-size:12.5px;color:var(--ink-soft);margin-top:8px;font-style:italic} .svg-wrap svg{max-width:100%;height:auto}
+.qbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:22px 0 26px;box-shadow:var(--shadow);border-top:3px solid var(--accent,var(--blue))}
+.qbox .qmeta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.qbox .qsrc{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-faint)}
+.qbox .marks{font-size:11.5px;font-weight:700;color:var(--accent,var(--blue));background:var(--accent-soft,var(--blue-soft));padding:2px 9px;border-radius:5px}
+.qbox .qtext{font-weight:600;font-size:15.5px;margin-bottom:14px;color:var(--ink)}
+.qbox .ans-label{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;color:var(--ink-faint);margin:14px 0 6px}
+.steps{counter-reset:step}.steps li{list-style:none;position:relative;padding-left:34px;margin-bottom:12px}
+.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--accent-soft,var(--blue-soft));color:var(--accent,var(--blue));font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.backtotop{display:inline-block;margin-top:44px;font-size:13px;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:16px;width:100%}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.pill{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:20px;background:var(--paper);color:var(--ink-soft);border:1px solid var(--line);margin:2px 4px 2px 0}
+:root{--ink-body:#2A2C2F;color-scheme:light}
+/* ---------- Dark mode ---------- */
+:root{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark;--paper:#14161A;--surface:#1D2025;--ink:#E8EAED;--ink-soft:#A3AAB3;--ink-faint:#7D848D;--line:#343A43;--line-soft:#2A2F37;--ink-body:#D6DAE0;--blue:#8DB8EA;--blue-soft:#1C2B3F;--indigo:#AFA2EE;--indigo-soft:#27233D;--teal:#63CCC0;--teal-soft:#15312E;--plum:#E79BC4;--plum-soft:#3B2432;--amber:#E9B865;--amber-soft:#3A2F1C;--shadow:0 1px 2px rgba(0,0,0,.35),0 6px 20px rgba(0,0,0,.3)}
+body{transition:background-color .2s,color .2s}
+:root[data-theme="dark"] .formula-block{background:#0F1115;color:#E8EAED}
+[data-theme="dark"] [fill="#fff" i]{fill:var(--surface)}
+[data-theme="dark"] [fill="#FFFFFF" i]{fill:var(--surface)}
+[data-theme="dark"] [fill="#1C1E21" i]{fill:var(--ink)}
+[data-theme="dark"] [fill="#2A2C2F" i]{fill:var(--ink-body)}
+[data-theme="dark"] [fill="#5B6169" i]{fill:var(--ink-soft)}
+[data-theme="dark"] [fill="#8A8F96" i]{fill:var(--ink-faint)}
+[data-theme="dark"] [fill="#93316B" i]{fill:var(--plum)}
+[data-theme="dark"] [fill="#1D4E89" i]{fill:var(--blue)}
+[data-theme="dark"] [fill="#12796F" i]{fill:var(--teal)}
+[data-theme="dark"] [fill="#A66A0D" i]{fill:var(--amber)}
+[data-theme="dark"] [fill="#4C3F91" i]{fill:var(--indigo)}
+[data-theme="dark"] [fill="#F7E3EC" i]{fill:var(--plum-soft)}
+[data-theme="dark"] [fill="#F6E9F0" i]{fill:var(--plum-soft)}
+[data-theme="dark"] [fill="#E8EFF8" i]{fill:var(--blue-soft)}
+[data-theme="dark"] [fill="#EEECF7" i]{fill:var(--indigo-soft)}
+[data-theme="dark"] [fill="#F7EEDD" i]{fill:var(--amber-soft)}
+[data-theme="dark"] [fill="#E4F3F0" i]{fill:var(--teal-soft)}
+[data-theme="dark"] [stroke="#1C1E21" i]{stroke:var(--ink)}
+[data-theme="dark"] [stroke="#5B6169" i]{stroke:var(--ink-soft)}
+[data-theme="dark"] [stroke="#93316B" i]{stroke:var(--plum)}
+[data-theme="dark"] [stroke="#1D4E89" i]{stroke:var(--blue)}
+[data-theme="dark"] [stroke="#12796F" i]{stroke:var(--teal)}
+[data-theme="dark"] [stroke="#A66A0D" i]{stroke:var(--amber)}
+[data-theme="dark"] [stroke="#4C3F91" i]{stroke:var(--indigo)}
+[data-theme="dark"] [stroke="#E4E0D3" i]{stroke:var(--line)}
+[data-theme="dark"] svg text:not([fill]){fill:var(--ink)}
+.theme-toggle{position:fixed;right:18px;bottom:18px;z-index:100;display:flex;align-items:center;gap:7px;font:600 13px/1 'Inter',system-ui,sans-serif;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 14px;box-shadow:var(--shadow);cursor:pointer}
+.theme-toggle:hover{border-color:var(--ink-faint)}
+.theme-toggle:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.theme-toggle{display:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+<nav class="sidebar">
+  <div class="brand">
+    <span class="eyebrow">CS234AI · Sem III</span>
+    <span class="title">Applied Digital Logic Design &amp; Computer Organisation</span>
+    <span class="sub">Unit 1 — Arithmetic &amp; Simplification</span>
+  </div>
+
+  <a href="#index" class="navlink top-of-part"><span class="dot"></span>Cover &amp; Index</a>
+  <a href="#syllabus-map" class="navlink top-of-part"><span class="dot"></span>Syllabus Map</a>
+
+  <div class="navgroup">
+    <div class="part-label">Part 1 · Arithmetic</div>
+    <a href="#number-representation" class="navlink"><span class="dot"></span>Number Representation</a>
+    <a href="#signed-add-sub" class="navlink"><span class="dot"></span>Signed Add/Sub &amp; Overflow</a>
+    <a href="#unsigned-multiplication" class="navlink"><span class="dot"></span>Unsigned Multiplication</a>
+    <a href="#booth-algorithm" class="navlink"><span class="dot"></span>Booth's Algorithm</a>
+    <a href="#bit-pair-recoding" class="navlink"><span class="dot"></span>Fast Mult. / Bit-Pair Recoding</a>
+    <a href="#integer-division" class="navlink"><span class="dot"></span>Integer Division</a>
+    <a href="#floating-point" class="navlink"><span class="dot"></span>Floating-Point Numbers</a>
+    <a href="#arithmetic-solved" class="navlink"><span class="dot"></span>Solved Numericals — Arithmetic</a>
+  </div>
+
+  <div class="navgroup">
+    <div class="part-label">Part 2 · Simplification</div>
+    <a href="#boolean-canonical" class="navlink"><span class="dot"></span>Boolean Functions &amp; Canonical Forms</a>
+    <a href="#karnaugh-maps" class="navlink"><span class="dot"></span>Karnaugh Maps</a>
+    <a href="#dont-care-vem" class="navlink"><span class="dot"></span>Don't-Care Conditions &amp; VEM</a>
+    <a href="#quine-mccluskey" class="navlink"><span class="dot"></span>Quine–McCluskey Method</a>
+    <a href="#simplification-solved" class="navlink"><span class="dot"></span>Solved Numericals — Simplification</a>
+  </div>
+
+  <div class="navgroup">
+    <div class="part-label">Reference</div>
+    <a href="#quick-revision" class="navlink"><span class="dot"></span>Quick Revision Sheet</a>
+    <a href="#question-bank" class="navlink"><span class="dot"></span>Question Bank Index</a>
+  </div>
+</nav>
+
+<div class="main">
+
+<section class="cover" id="index">
+  <span class="kicker">CS234AI · Applied Digital Logic Design &amp; Computer Organisation</span>
+  <h1>Unit 1 — Arithmetic and Simplification of Boolean Expressions</h1>
+  <p class="desc">Computer arithmetic for signed/unsigned operands (addition, subtraction, multiplication, division, floating point) and two-level minimisation techniques for Boolean functions (Karnaugh maps and the Quine–McCluskey tabulation method), including handling of incompletely specified functions.</p>
+  <div class="meta">
+    <span>📘 <b>13</b> topics</span>
+    <span>🖩 <b>24</b> verified numericals</span>
+    <span>🖼 <b>13</b> diagrams</span>
+    <span>⏱ <b>9</b> lecture hours</span>
+  </div>
+
+  <div class="part-divider">Part 1 — Arithmetic</div>
+  <div class="index-grid">
+    <a href="#number-representation" class="index-card" style="--card-color:var(--blue)">
+      <span class="num">1.1</span><h3>Number Representation</h3>
+      <p>Sign-magnitude, 1's complement, 2's complement — and why 2's complement wins for hardware.</p>
+    </a>
+    <a href="#signed-add-sub" class="index-card" style="--card-color:var(--blue)">
+      <span class="num">1.2</span><h3>Signed Add/Sub &amp; Overflow</h3>
+      <p>2's-complement addition/subtraction rules, sign extension, and the two overflow conditions.</p>
+    </a>
+    <a href="#unsigned-multiplication" class="index-card" style="--card-color:var(--blue)">
+      <span class="num">1.3</span><h3>Unsigned Multiplication</h3>
+      <p>Manual long multiplication and the add-shift sequential circuit realisation.</p>
+    </a>
+    <a href="#booth-algorithm" class="index-card" style="--card-color:var(--blue)">
+      <span class="num">1.4</span><h3>Booth's Algorithm</h3>
+      <p>Signed multiplication treating both operands uniformly, with full A/Q/Q₋₁ cycle traces.</p>
+    </a>
+    <a href="#bit-pair-recoding" class="index-card" style="--card-color:var(--blue)">
+      <span class="num">1.5</span><h3>Fast Multiplication / Bit-Pair Recoding</h3>
+      <p>Halving the number of summands by recoding multiplier bits two at a time.</p>
+    </a>
+    <a href="#integer-division" class="index-card" style="--card-color:var(--blue)">
+      <span class="num">1.6</span><h3>Integer Division</h3>
+      <p>Restoring and non-restoring division algorithms with full shift/subtract cycle tables.</p>
+    </a>
+    <a href="#floating-point" class="index-card" style="--card-color:var(--blue)">
+      <span class="num">1.7</span><h3>Floating-Point Numbers</h3>
+      <p>IEEE 754 single-precision format: sign, excess-127 exponent, normalised mantissa.</p>
+    </a>
+    <a href="#arithmetic-solved" class="index-card" style="--card-color:var(--blue)">
+      <span class="num">1.8</span><h3>Solved Numericals — Arithmetic</h3>
+      <p>Exam-style worked problems spanning every arithmetic topic above.</p>
+    </a>
+  </div>
+
+  <div class="part-divider">Part 2 — Simplification</div>
+  <div class="index-grid">
+    <a href="#boolean-canonical" class="index-card" style="--card-color:var(--indigo)">
+      <span class="num">2.1</span><h3>Boolean Functions &amp; Canonical Forms</h3>
+      <p>Minterms, maxterms, SOP/POS standard forms, and De Morgan-based complementation.</p>
+    </a>
+    <a href="#karnaugh-maps" class="index-card" style="--card-color:var(--indigo)">
+      <span class="num">2.2</span><h3>Karnaugh Maps</h3>
+      <p>2/3/4-variable maps, adjacency and wraparound, prime and essential prime implicants.</p>
+    </a>
+    <a href="#dont-care-vem" class="index-card" style="--card-color:var(--indigo)">
+      <span class="num">2.3</span><h3>Don't-Care Conditions &amp; VEM</h3>
+      <p>Simplifying incompletely specified functions, plus the Variable Entered Map extension.</p>
+    </a>
+    <a href="#quine-mccluskey" class="index-card" style="--card-color:var(--indigo)">
+      <span class="num">2.4</span><h3>Quine–McCluskey Method</h3>
+      <p>The tabular alternative to K-maps — grouping by number of 1s, combining, and the prime-implicant chart.</p>
+    </a>
+    <a href="#simplification-solved" class="index-card" style="--card-color:var(--indigo)">
+      <span class="num">2.5</span><h3>Solved Numericals — Simplification</h3>
+      <p>K-map, don't-care, and QM problems worked end-to-end and cross-checked against each other.</p>
+    </a>
+  </div>
+
+  <div class="part-divider">Reference</div>
+  <div class="index-grid">
+    <a href="#quick-revision" class="index-card" style="--card-color:var(--ink)">
+      <span class="num">R.1</span><h3>Quick Revision Sheet</h3>
+      <p>One-page formula and rule dump for last-minute review.</p>
+    </a>
+    <a href="#question-bank" class="index-card" style="--card-color:var(--ink)">
+      <span class="num">R.2</span><h3>Question Bank Index</h3>
+      <p>Every Unit-1 question from the question bank and past CIE/SEE papers, linked to its answer.</p>
+    </a>
+  </div>
+</section>
+
+<!--SECTION:cover-->
+
+<section class="page section" id="syllabus-map" style="--accent:var(--ink);--accent-soft:var(--line-soft);">
+  <div class="section-head"><span class="tag">MAP</span><h1>Syllabus Map</h1></div>
+  <p class="section-sub">Official Unit-I syllabus headings mapped to the sections in this guide.</p>
+
+  <table>
+    <tr><th>Official heading</th><th>Sub-topics</th><th>Covered in</th></tr>
+    <tr><td rowspan="7"><strong>Arithmetic</strong></td><td>Addition and Subtraction of Signed Numbers</td><td><a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a></td></tr>
+    <tr><td>Multiplication of Unsigned Numbers</td><td><a href="#unsigned-multiplication">Unsigned Multiplication</a></td></tr>
+    <tr><td>Multiplication of Signed Numbers</td><td><a href="#booth-algorithm">Booth's Algorithm</a></td></tr>
+    <tr><td>Fast Multiplication</td><td rowspan="2"><a href="#bit-pair-recoding">Fast Multiplication / Bit-Pair Recoding</a></td></tr>
+    <tr><td>Bit-Pair Recoding of Multipliers</td></tr>
+    <tr><td>Integer Division</td><td><a href="#integer-division">Integer Division</a></td></tr>
+    <tr><td>Floating-Point Numbers and their single precision representation</td><td><a href="#floating-point">Floating-Point Numbers</a></td></tr>
+    <tr><td rowspan="2"><strong>Simplification</strong></td><td>Karnaugh Maps to obtain minimal Expressions for Complete Boolean Expressions</td><td><a href="#karnaugh-maps">Karnaugh Maps</a></td></tr>
+    <tr><td>Karnaugh Maps &amp; Quine McCluskey method for Incomplete Boolean Expressions (don't-cares)</td><td><a href="#dont-care-vem">Don't-Care Conditions &amp; VEM</a>, <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+  </table>
+
+  <div class="callout clarify">
+    <span class="label">How the sources combine / where this guide fills gaps</span>
+    The two lecture decks (<code>unit 1a.pdf</code> for Arithmetic, <code>unit 1b.pdf</code> for Simplification) cover almost the entire unit directly, in the order above. Two corrections were needed:
+    <ul style="margin-top:8px">
+      <li><strong>Quine–McCluskey tabulation method</strong> is named explicitly in the syllabus but the source deck only defines the term "prime implicant" (crediting W.&nbsp;V. Quine) — it never shows the actual grouping/tabulation algorithm. <a href="#quine-mccluskey">§2.4</a> is written in full from standard method, verified in code, and cross-checked against two real exam papers that ask this exact question.</li>
+      <li>The source's 4-variable K-map row labels are mis-transcribed as <code>00, 01, 01, 01</code> in several figures — the correct Gray-code sequence is <code>00, 01, 11, 10</code>. All K-maps in this guide use the corrected labelling; see the callout in <a href="#karnaugh-maps">§2.2</a>.</li>
+    </ul>
+    Overflow in integer arithmetic is not named as its own syllabus line but is folded into "Addition and Subtraction of Signed Numbers" and is heavily examined, so it gets full treatment in <a href="#signed-add-sub">§1.2</a>. The question bank and past exam papers (question bank has questions spanning multiple units; only Unit-1 items are indexed here — see <a href="#question-bank">Question Bank Index</a>) supplied several of the worked numericals used throughout.
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:syllabus-map-->
+
+<section class="page section" id="number-representation" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
+  <div class="section-head"><span class="tag">1.1</span><h1>Number Representation</h1></div>
+  <p class="section-sub">Part 1 — Arithmetic</p>
+
+  <p>A computer must represent both positive and negative integers using only bit patterns. Three classical schemes exist, and all three agree on one rule: the most significant bit (MSB) is <strong>0 for positive numbers</strong> and <strong>1 for negative numbers</strong>.</p>
+
+  <ul>
+    <li><strong>Sign-and-magnitude:</strong> the MSB is a pure sign flag; the remaining bits hold the magnitude unchanged. A negative value is formed by flipping only the MSB of the positive value. E.g. +5 = 0101, −5 = 1101.</li>
+    <li><strong>1's complement:</strong> a negative value is formed by complementing <em>every</em> bit of the positive value. Equivalently, the 1's complement of an <var>n</var>-bit number <var>N</var> is <span class="mono">(2<sup>n</sup>−1) − N</span>. E.g. −5 is obtained by complementing 0101 → 1010.</li>
+    <li><strong>2's complement:</strong> a negative value is formed by complementing every bit and then adding 1 — i.e. the 2's complement of <var>N</var> is <span class="mono">2<sup>n</sup> − N</span>, or equivalently "1's complement + 1". E.g. −5: complement 0101→1010, add 1 → 1011.</li>
+  </ul>
+
+  <p>2's complement is the representation used almost universally in hardware because it gives the <strong>most efficient addition/subtraction circuitry</strong>: a single adder can add two 2's-complement numbers of either sign with no special-casing, and there is only one representation of zero (unlike sign-magnitude and 1's complement, which both have a +0 and a −0).</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg">
+      <text x="360" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">4-bit signed-integer representations</text>
+      <g font-family="JetBrains Mono, monospace" font-size="12.5">
+        <text x="40" y="55" font-weight="700" fill="#5B6169">Bits</text>
+        <text x="160" y="55" font-weight="700" fill="#5B6169">Sign-magnitude</text>
+        <text x="340" y="55" font-weight="700" fill="#5B6169">1's complement</text>
+        <text x="510" y="55" font-weight="700" fill="#5B6169">2's complement</text>
+        <line x1="30" y1="64" x2="690" y2="64" stroke="#E4E0D3" stroke-width="1.5"/>
+        <!-- rows -->
+        <text x="40" y="86" fill="#2A2C2F">0111</text><text x="160" y="86" fill="#2A2C2F">+7</text><text x="340" y="86" fill="#2A2C2F">+7</text><text x="510" y="86" fill="#2A2C2F">+7</text>
+        <text x="40" y="108" fill="#2A2C2F">0001</text><text x="160" y="108" fill="#2A2C2F">+1</text><text x="340" y="108" fill="#2A2C2F">+1</text><text x="510" y="108" fill="#2A2C2F">+1</text>
+        <text x="40" y="130" fill="#2A2C2F">0000</text><text x="160" y="130" fill="#2A2C2F">+0</text><text x="340" y="130" fill="#2A2C2F">+0</text><text x="510" y="130" fill="#2A2C2F">+0</text>
+        <text x="40" y="152" fill="#93316B" font-weight="600">1000</text><text x="160" y="152" fill="#93316B">−0</text><text x="340" y="152" fill="#93316B">−7</text><text x="510" y="152" fill="#1D4E89" font-weight="600">−8</text>
+        <text x="40" y="174" fill="#2A2C2F">1001</text><text x="160" y="174" fill="#2A2C2F">−1</text><text x="340" y="174" fill="#2A2C2F">−6</text><text x="510" y="174" fill="#2A2C2F">−7</text>
+        <text x="40" y="196" fill="#2A2C2F">1111</text><text x="160" y="196" fill="#93316B">−7</text><text x="340" y="196" fill="#93316B">−0</text><text x="510" y="196" fill="#2A2C2F">−1</text>
+        <line x1="30" y1="210" x2="690" y2="210" stroke="#E4E0D3" stroke-width="1"/>
+        <text x="40" y="232" fill="#5B6169" font-size="12">Range</text>
+        <text x="160" y="232" fill="#5B6169" font-size="12">−7 … +7</text>
+        <text x="340" y="232" fill="#5B6169" font-size="12">−7 … +7</text>
+        <text x="510" y="232" fill="#1D4E89" font-size="12" font-weight="600">−8 … +7</text>
+        <text x="40" y="256" fill="#5B6169" font-size="12">Zeros</text>
+        <text x="160" y="256" fill="#93316B" font-size="12">two (+0, −0)</text>
+        <text x="340" y="256" fill="#93316B" font-size="12">two (+0, −0)</text>
+        <text x="510" y="256" fill="#1D4E89" font-size="12" font-weight="600">one</text>
+      </g>
+    </svg>
+    <div class="cap">Fig 1. 4-bit signed-integer representations — 2's complement gives one extra negative value and a single zero.</div>
+  </div>
+
+  <div class="callout key">
+    <span class="label">Exam tip</span>
+    For an <var>n</var>-bit 2's-complement number the representable range is <span class="mono">−2<sup>n−1</sup> to +2<sup>n−1</sup>−1</span> — note the asymmetry (one extra negative value, since 1000…0 has no positive counterpart).
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:number-representation-->
+
+<section class="page section" id="signed-add-sub" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
+  <div class="section-head"><span class="tag">1.2</span><h1>Signed Addition, Subtraction &amp; Overflow</h1></div>
+  <p class="section-sub">Part 1 — Arithmetic</p>
+
+  <p>All addition and subtraction of signed numbers in 2's complement follows two simple rules, applied uniformly regardless of the operands' signs:</p>
+
+  <ol>
+    <li><strong>Rule 1 (Add):</strong> add the <var>n</var>-bit representations of the two numbers and <strong>discard any carry-out</strong> of the MSB position. The result is algebraically correct provided it lies in the representable range <span class="mono">−2<sup>n−1</sup> to +2<sup>n−1</sup>−1</span>.</li>
+    <li><strong>Rule 2 (Subtract <var>X</var> − <var>Y</var>):</strong> form the 2's complement of <var>Y</var> and add it to <var>X</var> using Rule 1.</li>
+  </ol>
+
+  <p>When representing a signed number using <em>more</em> bits than it was originally stored in, the sign bit is repeated as many times as needed to the left — this is called <strong>sign extension</strong>, and it preserves both the sign and the numeric value.</p>
+
+  <h2>Overflow</h2>
+  <p>When the true result of an addition/subtraction falls outside the representable range, an <strong>arithmetic overflow</strong> occurs and the stored result is wrong. Two facts pin down exactly when this can happen:</p>
+  <ul>
+    <li>Overflow can occur <strong>only when adding two numbers of the same sign</strong> (two positives or two negatives) — adding numbers of opposite sign can never overflow, since the true sum's magnitude is always bounded by the larger operand's magnitude.</li>
+    <li>The carry-out of the sign-bit position is <strong>not</strong> by itself a reliable overflow indicator for signed addition. The standard hardware detection rule is instead: <strong>overflow ⇔ carry into the sign bit ≠ carry out of the sign bit</strong> (equivalently, the sign bits of both operands match each other but differ from the sign bit of the result).</li>
+  </ul>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 680 170" xmlns="http://www.w3.org/2000/svg">
+      <text x="340" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">4-bit representable range: −8 … +7</text>
+      <line x1="60" y1="90" x2="620" y2="90" stroke="#5B6169" stroke-width="2"/>
+      <polygon points="620,90 610,84 610,96" fill="#5B6169"/>
+      <polygon points="60,90 70,84 70,96" fill="#5B6169"/>
+      <g font-family="JetBrains Mono, monospace" font-size="11.5" fill="#2A2C2F">
+        <line x1="100" y1="84" x2="100" y2="96" stroke="#5B6169"/><text x="100" y="112" text-anchor="middle">−8</text>
+        <line x1="340" y1="84" x2="340" y2="96" stroke="#5B6169"/><text x="340" y="112" text-anchor="middle">0</text>
+        <line x1="580" y1="84" x2="580" y2="96" stroke="#5B6169"/><text x="580" y="112" text-anchor="middle">+7</text>
+      </g>
+      <rect x="100" y="76" width="480" height="28" fill="#E8EFF8" opacity="0.6"/>
+      <text x="340" y="46" text-anchor="middle" font-size="12" fill="#1D4E89" font-weight="600">representable — no overflow</text>
+      <text x="30" y="140" font-size="12" fill="#93316B" font-weight="600">overflow →</text>
+      <text x="650" y="140" font-size="12" fill="#93316B" font-weight="600" text-anchor="end">← overflow</text>
+      <line x1="30" y1="150" x2="95" y2="150" stroke="#93316B" stroke-width="2" marker-end="url(#arrow1)"/>
+      <line x1="650" y1="150" x2="585" y2="150" stroke="#93316B" stroke-width="2" marker-end="url(#arrow1)"/>
+      <defs><marker id="arrow1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#93316B"/></marker></defs>
+    </svg>
+    <div class="cap">Fig 2. Adding two same-sign numbers can push the true sum outside the representable window on either side.</div>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">worked example — overflow, 8-bit</span><span class="marks">verified</span></div>
+    <div class="qtext">Add +127 and +1 in 8-bit 2's complement, and show the underflow case 0 − 127.</div>
+    <div class="ans-label">Solution</div>
+    <div class="formula-block"><span class="c1">  01111111</span>   (+127)
+<span class="c1">+ 00000001</span>   (+1)
+-----------
+<span class="c2">  10000000</span>   <span class="cm">bit pattern of −128 → overflow (both operands positive, result negative)</span>
+
+  00000000   (0)
+<span class="c1">− 01111111</span>   (127)  → add 2's complement of 127 (10000001)
+-----------
+<span class="c2">  10000001</span>   <span class="cm">bit pattern of −127 → correct here (0 − 127 = −127 is in range)</span></div>
+    <p style="margin-top:10px">The first case overflows because two positives summed to a value ≥ 2<sup>7</sup>; the carry into the sign bit (1) differs from the carry out of it (0), confirming overflow by the hardware rule.</p>
+  </div>
+
+  <div class="callout">
+    <span class="label">Worked example — 6-bit signed addition/subtraction (unit deck)</span>
+    <table style="margin:8px 0">
+      <tr><th>Operands</th><th>Sum</th><th>Overflow?</th></tr>
+      <tr><td>010110 (+22) + 001001 (+9)</td><td>011111 (+31)</td><td>No — 31 is in range −32…+31</td></tr>
+      <tr><td>101011 (−21) + 100101 (−27)</td><td>010000 (+16)</td><td><strong>Yes</strong> — true sum −48 is out of range; both operands negative, result positive</td></tr>
+      <tr><td>111111 (−1) + 000111 (+7)</td><td>000110 (+6)</td><td>No — opposite signs can never overflow</td></tr>
+    </table>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:signed-add-sub-->
+
+<section class="page section" id="unsigned-multiplication" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
+  <div class="section-head"><span class="tag">1.3</span><h1>Multiplication of Unsigned Numbers</h1></div>
+  <p class="section-sub">Part 1 — Arithmetic</p>
+
+  <p>Manual (paper-and-pencil) multiplication of two <var>n</var>-bit unsigned numbers produces up to <var>n</var> partial products (one per multiplier bit), which are shifted and summed to give a <strong>2<var>n</var>-bit product</strong>. Hardware avoids storing all <var>n</var> partial products simultaneously by accumulating them one at a time into a running partial sum.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg">
+      <text x="310" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">Sequential circuit binary multiplier — register configuration</text>
+      <g font-family="JetBrains Mono, monospace" font-size="12">
+        <rect x="60" y="50" width="34" height="30" fill="#E8EFF8" stroke="#1D4E89"/><text x="77" y="70" text-anchor="middle">C</text>
+        <rect x="94" y="50" width="180" height="30" fill="#FFFFFF" stroke="#1D4E89"/><text x="184" y="70" text-anchor="middle">Register A (init 0)</text>
+        <rect x="274" y="50" width="180" height="30" fill="#FFFFFF" stroke="#1D4E89"/><text x="364" y="70" text-anchor="middle">Multiplier Q</text>
+        <text x="580" y="70" text-anchor="end" fill="#5B6169">shift right →</text>
+        <path d="M94,44 L454,44" stroke="#5B6169" stroke-width="1.5" fill="none" marker-end="url(#arrowsr)"/>
+        <defs><marker id="arrowsr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#5B6169"/></marker></defs>
+
+        <path d="M60,150 L60,65 L60,65" stroke="#1D4E89" fill="none"/>
+        <polygon points="40,120 40,180 95,165 95,135" fill="#EEECF7" stroke="#4C3F91"/>
+        <text x="67" y="148" text-anchor="middle" font-size="9.5">n-bit</text>
+        <text x="67" y="160" text-anchor="middle" font-size="9.5">adder</text>
+
+        <rect x="150" y="130" width="90" height="34" fill="#FFFFFF" stroke="#4C3F91"/><text x="195" y="151" text-anchor="middle">MUX</text>
+
+        <rect x="150" y="210" width="180" height="30" fill="#FFFFFF" stroke="#12796F"/><text x="240" y="230" text-anchor="middle">Multiplicand M</text>
+
+        <ellipse cx="470" cy="160" rx="80" ry="55" fill="#F7EEDD" stroke="#A66A0D"/>
+        <text x="470" y="155" text-anchor="middle" font-size="11.5">Control</text>
+        <text x="470" y="170" text-anchor="middle" font-size="11.5">sequencer</text>
+
+        <path d="M364,80 L364,95 L470,95 L470,105" stroke="#A66A0D" fill="none" marker-end="url(#arrowsr)"/>
+        <text x="410" y="92" font-size="10.5" fill="#A66A0D">Add/Noadd (q0)</text>
+
+        <path d="M240,210 L195,210 L195,164" stroke="#12796F" fill="none" marker-end="url(#arrowsr)"/>
+        <path d="M95,150 L40,150" stroke="#4C3F91" fill="none"/>
+      </g>
+    </svg>
+    <div class="cap">Fig 3. Sequential binary multiplier: A and Q together hold the running partial product; bit q₀ of Q drives the Add/No-add control.</div>
+  </div>
+
+  <p><strong>Procedure:</strong> load the multiplier into Q, the multiplicand into M, and clear C and A to 0. Repeat <var>n</var> times: if q₀ = 1, add M to A (storing the sum back in A, with carry-out into C); then shift C, A, Q right by one bit position (regardless of q₀). After <var>n</var> cycles, the high-order half of the 2<var>n</var>-bit product is in A and the low-order half is in Q.</p>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">unit deck — worked example</span><span class="marks">verified</span></div>
+    <div class="qtext">Multiply M = 1101 (13) by Q = 1011 (11) using the sequential add-shift multiplier.</div>
+    <div class="ans-label">Solution — cycle table</div>
+    <table>
+      <tr><th>Cycle</th><th>q₀</th><th>Operation</th><th>C</th><th>A</th><th>Q</th></tr>
+      <tr><td>Init</td><td>1</td><td>—</td><td>0</td><td>0000</td><td>1011</td></tr>
+      <tr><td>1</td><td>1</td><td>Add, shift</td><td>0</td><td>0110</td><td>1101</td></tr>
+      <tr><td>2</td><td>1</td><td>Add, shift</td><td>1</td><td>0011</td><td>1110</td></tr>
+      <tr><td>3</td><td>0</td><td>No-add, shift</td><td>0</td><td>1001</td><td>0111</td></tr>
+      <tr><td>4</td><td>1</td><td>Add, shift</td><td>0</td><td>1000</td><td>1111</td></tr>
+    </table>
+    <p>Product = A:Q = <span class="mono">10001111</span> = 143 = 13 × 11. ✓</p>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:unsigned-multiplication-->
+
+<section class="page section" id="booth-algorithm" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
+  <div class="section-head"><span class="tag">1.4</span><h1>Booth's Algorithm — Signed Multiplication</h1></div>
+  <p class="section-sub">Part 1 — Arithmetic</p>
+
+  <p>Booth's algorithm multiplies two <var>n</var>-bit 2's-complement numbers <var>M</var> (multiplicand) and <var>Q</var> (multiplier), treating <strong>both positive and negative operands uniformly</strong>, and produces a 2<var>n</var>-bit signed product directly — no separate sign handling is needed.</p>
+
+  <p>Its key idea: a run of 1s in the multiplier (say from bit weight 2<sup>k</sup> down to 2<sup>m</sup>) can be replaced by <span class="mono">2<sup>k+1</sup> − 2<sup>m</sup></span>, turning several additions into one addition and one subtraction. Booth generalises this with an extra flip-flop <var>Q₋₁</var> holding the multiplier bit last shifted out:</p>
+
+  <table>
+    <tr><th>q₀</th><th>q₋₁</th><th>Operation on A</th></tr>
+    <tr><td>0</td><td>0</td><td>none — arithmetic shift right (ASR) of A,Q,Q₋₁</td></tr>
+    <tr><td>0</td><td>1</td><td>A ← A + M, then ASR</td></tr>
+    <tr><td>1</td><td>0</td><td>A ← A − M, then ASR</td></tr>
+    <tr><td>1</td><td>1</td><td>none — ASR only</td></tr>
+  </table>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 560 460" xmlns="http://www.w3.org/2000/svg">
+      <text x="280" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">Fig 4. Booth's algorithm — flowchart</text>
+      <g font-family="Inter, sans-serif" font-size="12.5" fill="#2A2C2F">
+        <rect x="190" y="40" width="180" height="34" rx="17" fill="#E8EFF8" stroke="#1D4E89"/><text x="280" y="61" text-anchor="middle">Start</text>
+        <path d="M280,74 L280,96" stroke="#5B6169" fill="none" marker-end="url(#af)"/>
+        <rect x="150" y="96" width="260" height="40" fill="#FFFFFF" stroke="#1D4E89"/><text x="280" y="120" text-anchor="middle">A←0, Q₋₁←0, count←n</text>
+        <path d="M280,136 L280,158" stroke="#5B6169" fill="none" marker-end="url(#af)"/>
+        <polygon points="280,158 370,196 280,234 190,196" fill="#EEECF7" stroke="#4C3F91"/><text x="280" y="192" text-anchor="middle" font-size="11.5">q₀q₋₁</text><text x="280" y="207" text-anchor="middle" font-size="11.5">= ?</text>
+        <text x="392" y="192" font-size="11">10</text>
+        <text x="150" y="192" font-size="11" text-anchor="end">01</text>
+        <text x="290" y="250" font-size="11">00 / 11</text>
+        <path d="M370,196 L440,196 L440,246" stroke="#5B6169" fill="none" marker-end="url(#af)"/>
+        <rect x="380" y="246" width="120" height="32" fill="#FFFFFF" stroke="#1D4E89"/><text x="440" y="267" text-anchor="middle" font-size="11.5">A←A−M</text>
+        <path d="M190,196 L120,196 L120,246" stroke="#5B6169" fill="none" marker-end="url(#af)"/>
+        <rect x="60" y="246" width="120" height="32" fill="#FFFFFF" stroke="#1D4E89"/><text x="120" y="267" text-anchor="middle" font-size="11.5">A←A+M</text>
+        <path d="M120,278 L120,300 L280,300" stroke="#5B6169" fill="none"/>
+        <path d="M440,278 L440,300 L280,300" stroke="#5B6169" fill="none"/>
+        <path d="M280,234 L280,300" stroke="#5B6169" fill="none" marker-end="url(#af)"/>
+        <path d="M280,300 L280,322" stroke="#5B6169" fill="none" marker-end="url(#af)"/>
+        <rect x="150" y="322" width="260" height="36" fill="#FFFFFF" stroke="#1D4E89"/><text x="280" y="345" text-anchor="middle">Arithmetic-shift-right A,Q,Q₋₁; count−1</text>
+        <path d="M280,358 L280,380" stroke="#5B6169" fill="none" marker-end="url(#af)"/>
+        <polygon points="280,380 350,404 280,428 210,404" fill="#F7EEDD" stroke="#A66A0D"/><text x="280" y="408" text-anchor="middle" font-size="11">count=0?</text>
+        <text x="360" y="400" font-size="11">no</text>
+        <path d="M350,404 L470,404 L470,196 L370,196" stroke="#5B6169" fill="none" marker-end="url(#af)"/>
+        <path d="M280,428 L280,446" stroke="#5B6169" fill="none" marker-end="url(#af)"/>
+        <text x="290" y="440" font-size="11">yes</text>
+        <rect x="200" y="446" width="160" height="10" fill="none"/>
+        <rect x="200" y="440" width="160" height="14" rx="7" fill="#E8EFF8" stroke="#1D4E89"/><text x="280" y="450" text-anchor="middle" font-size="10.5">Product in A,Q</text>
+      </g>
+      <defs><marker id="af" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#5B6169"/></marker></defs>
+    </svg>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">past-paper style — CIE 2024-25</span><span class="marks">4 marks</span></div>
+    <div class="qtext">Using Modified Booth's multiplication algorithm, multiply +14 with −7 (5-bit 2's complement).</div>
+    <div class="ans-label">Solution — full cycle trace (verified in code)</div>
+    <p>M = 01110 (+14), Q = 11001 (−7), n = 5. Initial: A = 00000, Q₋₁ = 0.</p>
+    <table>
+      <tr><th>Cycle</th><th>q₀q₋₁</th><th>Operation</th><th>A</th><th>Q</th><th>Q₋₁</th></tr>
+      <tr><td>Init</td><td>1 0</td><td>—</td><td>00000</td><td>11001</td><td>0</td></tr>
+      <tr><td>1</td><td>1 0</td><td>A−M, shift</td><td>11001</td><td>01100</td><td>1</td></tr>
+      <tr><td>2</td><td>0 1</td><td>A+M, shift</td><td>00011</td><td>10110</td><td>0</td></tr>
+      <tr><td>3</td><td>0 0</td><td>shift only</td><td>00001</td><td>11011</td><td>0</td></tr>
+      <tr><td>4</td><td>1 0</td><td>A−M, shift</td><td>11001</td><td>11101</td><td>1</td></tr>
+      <tr><td>5</td><td>1 1</td><td>shift only</td><td>11100</td><td>11110</td><td>1</td></tr>
+    </table>
+    <p>Product (A:Q) = <span class="mono">1110011110</span> = <strong>−98</strong> = 14 × (−7). ✓</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">unit deck — Problem 4(a)</span><span class="marks">verified</span></div>
+    <div class="qtext">Multiply A = 010111 (2's complement) and B = 110110 using Booth's algorithm (6-bit).</div>
+    <div class="ans-label">Answer</div>
+    <p>M = 23, Q = −10 → product bits <span class="mono">1100011010</span> = <strong>−230</strong> = 23 × (−10). ✓ (five further parts of this problem — (b)–(f) — are tabulated in <a href="#arithmetic-solved">Solved Numericals</a>.)</p>
+  </div>
+
+  <div class="callout key">
+    <span class="label">Exam tip</span>
+    Booth's algorithm is <em>most efficient</em> (fewest add/subtract operations) when the multiplier has long runs of consecutive 1s or 0s — worst case is alternating bits (0101…), which forces an add or subtract almost every cycle.
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:booth-algorithm-->
+
+<section class="page section" id="bit-pair-recoding" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
+  <div class="section-head"><span class="tag">1.5</span><h1>Fast Multiplication &amp; Bit-Pair Recoding</h1></div>
+  <p class="section-sub">Part 1 — Arithmetic</p>
+
+  <div class="callout clarify">
+    <span class="label">Clarifying an ambiguous point in the source</span>
+    The syllabus lists <em>"Fast Multiplication"</em> and <em>"Bit-Pair Recoding of Multipliers"</em> as two separate lines. In the source deck (and standard treatment), fast multiplication in this unit <strong>is</strong> bit-pair recoding — it is not a distinct third technique — so both syllabus lines are covered by this one section.
+  </div>
+
+  <p>Booth's algorithm still requires up to <var>n</var> add/subtract cycles for an <var>n</var>-bit multiplier. <strong>Bit-pair recoding</strong>, derived directly from Booth recoding, halves this to <var>n</var>/2 cycles by examining the multiplier <strong>two bits at a time</strong> (plus the bit immediately to the right) and selecting one combined multiple of <var>M</var> per pair: 0, ±1, or ±2 times M.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg">
+      <text x="280" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">Fig 5. Bit-pair recoding selection table</text>
+      <g font-family="JetBrains Mono, monospace" font-size="12.5" fill="#2A2C2F">
+        <text x="70" y="55" font-weight="700" fill="#5B6169">Pair (i+1,i)</text>
+        <text x="220" y="55" font-weight="700" fill="#5B6169">Bit right (i−1)</text>
+        <text x="400" y="55" font-weight="700" fill="#5B6169">Multiple of M</text>
+        <line x1="30" y1="64" x2="530" y2="64" stroke="#E4E0D3"/>
+        <text x="70" y="86">0 0</text><text x="220" y="86">0</text><text x="400" y="86">0 × M</text>
+        <text x="70" y="106">0 0</text><text x="220" y="106">1</text><text x="400" y="106">+1 × M</text>
+        <text x="70" y="126">0 1</text><text x="220" y="126">0</text><text x="400" y="126">+1 × M</text>
+        <text x="70" y="146">0 1</text><text x="220" y="146">1</text><text x="400" y="146">+2 × M</text>
+        <text x="70" y="166">1 0</text><text x="220" y="166">0</text><text x="400" y="166">−2 × M</text>
+        <text x="70" y="186">1 0</text><text x="220" y="186">1</text><text x="400" y="186">−1 × M</text>
+      </g>
+    </svg>
+    <div class="cap">Fig 5. Each pair of multiplier bits (plus one overlap bit from the pair below) selects a single ±0/±1/±2 multiple of M — halving the number of summands.</div>
+  </div>
+
+  <p><strong>Procedure:</strong> sign-extend the multiplier by one bit at the MSB, and append an implied 0 to the right of the LSB. Working from LSB to MSB, take overlapping 3-bit windows in steps of 2 and look up the multiple of M from the table above; each selected multiple is shifted left by twice its pair-index and summed.</p>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">unit deck — bit-pair recoding figures, cross-checked against CIE 2024-25</span><span class="marks">verified</span></div>
+    <div class="qtext">Multiply M = 13 by Q = −6 (6-bit, Q = 110110) using bit-pair recoding.</div>
+    <div class="ans-label">Solution — recoded digits and summand trace</div>
+    <p>Sign-extended + implied-0 multiplier: <span class="mono">1 110110 0</span>. Reading overlapping 3-bit windows from LSB gives recoded pair-digits (MSB pair → LSB pair): <span class="mono">0, −1, −2</span>.</p>
+    <table>
+      <tr><th>Pair digit</th><th>Summand = digit × M</th><th>Shift</th><th>Contribution</th></tr>
+      <tr><td>0</td><td>0</td><td>&lt;&lt;4</td><td>0</td></tr>
+      <tr><td>−1</td><td>−13</td><td>&lt;&lt;2</td><td>−52</td></tr>
+      <tr><td>−2</td><td>−26</td><td>&lt;&lt;0</td><td>−26</td></tr>
+    </table>
+    <p>Total = 0 − 52 − 26 = <strong>−78</strong> = 13 × (−6). ✓</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE 2023-24 retest — Q2b</span><span class="marks">5 marks</span></div>
+    <div class="qtext">Perform the multiplication of 13 × (−8) using the bit-pair recoding algorithm.</div>
+    <div class="ans-label">Solution</div>
+    <p>Q = −8 = 111000 (6-bit). Recoded pair-digits: <span class="mono">0, −2, 0</span>.</p>
+    <table>
+      <tr><th>Pair digit</th><th>Summand</th><th>Shift</th><th>Contribution</th></tr>
+      <tr><td>0</td><td>0</td><td>&lt;&lt;4</td><td>0</td></tr>
+      <tr><td>−2</td><td>−26</td><td>&lt;&lt;2</td><td>−104</td></tr>
+      <tr><td>0</td><td>0</td><td>&lt;&lt;0</td><td>0</td></tr>
+    </table>
+    <p>Total = <strong>−104</strong> = 13 × (−8). ✓</p>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:bit-pair-recoding-->
+
+<section class="page section" id="integer-division" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
+  <div class="section-head"><span class="tag">1.6</span><h1>Integer Division</h1></div>
+  <p class="section-sub">Part 1 — Arithmetic</p>
+
+  <p>An <var>n</var>-bit positive divisor is loaded into register <var>M</var>, an <var>n</var>-bit positive dividend into register <var>Q</var>, and register <var>A</var> is cleared to 0. After <var>n</var> cycles of shift-and-subtract, the <var>n</var>-bit quotient ends up in <var>Q</var> and the remainder in <var>A</var>. Two variants differ in how they handle a subtraction that goes negative.</p>
+
+  <h2>Restoring division</h2>
+  <p>Repeat <var>n</var> times: shift A,Q left one bit; subtract M from A. If the result is negative (sign bit of A = 1), set q₀ = 0 and <strong>restore</strong> A by adding M back; otherwise set q₀ = 1 and keep the subtracted value.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg">
+      <text x="260" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">Fig 6. Restoring division — flowchart</text>
+      <g font-family="Inter, sans-serif" font-size="12" fill="#2A2C2F">
+        <rect x="160" y="40" width="200" height="34" rx="17" fill="#E8EFF8" stroke="#1D4E89"/><text x="260" y="61" text-anchor="middle">A←0, count←n</text>
+        <path d="M260,74 L260,94" stroke="#5B6169" fill="none" marker-end="url(#af2)"/>
+        <rect x="140" y="94" width="240" height="32" fill="#FFFFFF" stroke="#1D4E89"/><text x="260" y="115" text-anchor="middle">Shift A,Q left 1 bit</text>
+        <path d="M260,126 L260,146" stroke="#5B6169" fill="none" marker-end="url(#af2)"/>
+        <rect x="140" y="146" width="240" height="32" fill="#FFFFFF" stroke="#1D4E89"/><text x="260" y="167" text-anchor="middle">A ← A − M</text>
+        <path d="M260,178 L260,198" stroke="#5B6169" fill="none" marker-end="url(#af2)"/>
+        <polygon points="260,198 330,222 260,246 190,222" fill="#F7EEDD" stroke="#A66A0D"/><text x="260" y="226" text-anchor="middle" font-size="10.5">A &lt; 0 ?</text>
+        <path d="M190,222 L100,222" stroke="#5B6169" fill="none" marker-end="url(#af2)"/><text x="120" y="216" font-size="10.5">no: q0←1</text>
+        <path d="M330,222 L420,222" stroke="#5B6169" fill="none" marker-end="url(#af2)"/><text x="345" y="216" font-size="10.5">yes: q0←0, A←A+M</text>
+        <path d="M100,222 L100,264 L260,264" stroke="#5B6169" fill="none"/>
+        <path d="M420,222 L420,264 L260,264" stroke="#5B6169" fill="none"/>
+        <path d="M260,246 L260,264" stroke="#5B6169" fill="none"/>
+        <path d="M260,264 L260,280" stroke="#5B6169" fill="none" marker-end="url(#af2)"/>
+        <text x="270" y="280" font-size="10.5">count−1; repeat n times</text>
+      </g>
+      <defs><marker id="af2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#5B6169"/></marker></defs>
+    </svg>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">unit deck — Problem 6</span><span class="marks">verified</span></div>
+    <div class="qtext">Given A = 10101 (dividend Q, decimal 21) and B = 00100 (divisor M, decimal 4), perform A/B using restoring division.</div>
+    <div class="ans-label">Solution — full cycle trace</div>
+    <table>
+      <tr><th>Cycle</th><th>Action</th><th>A</th><th>Q</th></tr>
+      <tr><td>Init</td><td>—</td><td>00000</td><td>10101</td></tr>
+      <tr><td>1</td><td>shift, sub M, restore (q₀=0)</td><td>00001</td><td>01010</td></tr>
+      <tr><td>2</td><td>shift, sub M, restore (q₀=0)</td><td>00010</td><td>10100</td></tr>
+      <tr><td>3</td><td>shift, sub M, keep (q₀=1)</td><td>00001</td><td>01001</td></tr>
+      <tr><td>4</td><td>shift, sub M, restore (q₀=0)</td><td>00010</td><td>10010</td></tr>
+      <tr><td>5</td><td>shift, sub M, keep (q₀=1)</td><td>00001</td><td>00101</td></tr>
+    </table>
+    <p>Quotient Q = <span class="mono">00101</span> = 5, Remainder A = <span class="mono">00001</span> = 1. Check: 21 = 4×5 + 1. ✓</p>
+  </div>
+
+  <h2>Non-restoring division</h2>
+  <p>Non-restoring division avoids the extra restoring addition on a negative step by carrying the negative partial remainder forward and choosing add-or-subtract based on the <em>current</em> sign of A on the next cycle:</p>
+  <ol class="steps">
+    <li>Repeat <var>n</var> times: if the sign of A is 0, shift A,Q left and subtract M from A; otherwise shift A,Q left and add M to A.</li>
+    <li>After the shift+add/subtract, if the sign of A is now 0 set q₀ = 1, else set q₀ = 0.</li>
+    <li>After the loop, if the sign of A is 1, perform one final restoring addition: A ← A + M.</li>
+  </ol>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg">
+      <text x="260" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">Fig 7. Non-restoring division — flowchart</text>
+      <g font-family="Inter, sans-serif" font-size="12" fill="#2A2C2F">
+        <rect x="160" y="40" width="200" height="32" rx="16" fill="#E8EFF8" stroke="#1D4E89"/><text x="260" y="60" text-anchor="middle">A←0, count←n</text>
+        <path d="M260,72 L260,92" stroke="#5B6169" fill="none" marker-end="url(#af3)"/>
+        <polygon points="260,92 330,116 260,140 190,116" fill="#F7EEDD" stroke="#A66A0D"/><text x="260" y="120" text-anchor="middle" font-size="10.5">sign(A)?</text>
+        <path d="M190,116 L100,116" stroke="#5B6169" fill="none" marker-end="url(#af3)"/><text x="95" y="110" font-size="10.5" text-anchor="end">0: shift,A−M</text>
+        <path d="M330,116 L420,116" stroke="#5B6169" fill="none" marker-end="url(#af3)"/><text x="425" y="110" font-size="10.5">1: shift,A+M</text>
+        <path d="M100,116 L100,160 L260,160" stroke="#5B6169" fill="none"/>
+        <path d="M420,116 L420,160 L260,160" stroke="#5B6169" fill="none"/>
+        <rect x="150" y="160" width="220" height="30" fill="#FFFFFF" stroke="#1D4E89"/><text x="260" y="180" text-anchor="middle" font-size="11">set q₀ = 1 if sign(A)=0 else 0</text>
+        <path d="M260,190 L260,206" stroke="#5B6169" fill="none" marker-end="url(#af3)"/>
+        <text x="270" y="206" font-size="10.5">count−1; loop n times</text>
+        <path d="M260,140 L260,92" stroke="#5B6169" fill="none" opacity="0"/>
+        <path d="M260,212 L260,226" stroke="#5B6169" fill="none" marker-end="url(#af3)"/>
+        <rect x="130" y="226" width="260" height="28" fill="#EEECF7" stroke="#4C3F91"/><text x="260" y="245" text-anchor="middle" font-size="11">if sign(A)=1: final restore, A←A+M</text>
+      </g>
+      <defs><marker id="af3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#5B6169"/></marker></defs>
+    </svg>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">worked example, 5-bit — verified</span><span class="marks">verified</span></div>
+    <div class="qtext">Given A = 10101 (dividend, 21) and B = 00101 (divisor, 5), perform A/B using non-restoring division.</div>
+    <div class="ans-label">Solution — full cycle trace</div>
+    <table>
+      <tr><th>Cycle</th><th>Action</th><th>A</th><th>Q</th></tr>
+      <tr><td>Init</td><td>—</td><td>00000</td><td>10101</td></tr>
+      <tr><td>1</td><td>sign(A)=0: shift, A−M, q₀=0</td><td>11100</td><td>01010</td></tr>
+      <tr><td>2</td><td>sign(A)=1: shift, A+M, q₀=0</td><td>11101</td><td>10100</td></tr>
+      <tr><td>3</td><td>sign(A)=1: shift, A+M, q₀=1</td><td>00000</td><td>01001</td></tr>
+      <tr><td>4</td><td>sign(A)=0: shift, A−M, q₀=0</td><td>11011</td><td>10010</td></tr>
+      <tr><td>5</td><td>sign(A)=1: shift, A+M, q₀=0</td><td>11100</td><td>00100</td></tr>
+      <tr><td>final</td><td>sign(A)=1 → restore: A+M</td><td>00001</td><td>00100</td></tr>
+    </table>
+    <p>Quotient Q = <span class="mono">00100</span> = 4, Remainder A = <span class="mono">00001</span> = 1. Check: 21 = 5×4 + 1. ✓</p>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:integer-division-->
+
+<section class="page section" id="floating-point" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
+  <div class="section-head"><span class="tag">1.7</span><h1>Floating-Point Numbers — IEEE 754 Single Precision</h1></div>
+  <p class="section-sub">Part 1 — Arithmetic</p>
+
+  <p>IEEE single precision packs a real number into a 32-bit word with three fields: 1 sign bit, an 8-bit biased exponent, and a 23-bit mantissa (fraction). The scale factor spans 2<sup>−126</sup> to 2<sup>+127</sup> (≈ 10<sup>±38</sup>).</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 680 120" xmlns="http://www.w3.org/2000/svg">
+      <text x="340" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">Fig 8. IEEE 754 single-precision field layout (32 bits)</text>
+      <g font-family="JetBrains Mono, monospace" font-size="12">
+        <rect x="40" y="40" width="30" height="34" fill="#F6E9F0" stroke="#93316B"/><text x="55" y="61" text-anchor="middle">S</text>
+        <rect x="70" y="40" width="150" height="34" fill="#E8EFF8" stroke="#1D4E89"/><text x="145" y="61" text-anchor="middle" font-size="11">E' (8 bits)</text>
+        <rect x="220" y="40" width="400" height="34" fill="#E4F3F0" stroke="#12796F"/><text x="420" y="61" text-anchor="middle">M — mantissa fraction (23 bits)</text>
+        <text x="55" y="90" text-anchor="middle" font-size="10.5" fill="#93316B">bit 31</text>
+        <text x="145" y="90" text-anchor="middle" font-size="10.5" fill="#1D4E89">bits 30–23</text>
+        <text x="420" y="90" text-anchor="middle" font-size="10.5" fill="#12796F">bits 22–0</text>
+      </g>
+      <text x="340" y="108" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#2A2C2F">Value = ±1.M × 2^(E' − 127)</text>
+    </svg>
+    <div class="cap">Fig 8. E' = E + 127 (the biased/excess-127 exponent); the leading "1." of a normalised mantissa is implicit and not stored.</div>
+  </div>
+
+  <h2>Conversion procedure</h2>
+  <ol class="steps">
+    <li>Convert the magnitude to binary (integer part and fractional part separately).</li>
+    <li><strong>Normalise:</strong> shift the binary point so exactly one non-zero digit sits to its left, giving the form 1.<var>xxxx</var> × 2<sup><var>e</var></sup>.</li>
+    <li>Bias the exponent: E' = e + 127, written as an 8-bit unsigned binary number.</li>
+    <li>The mantissa field stores the 23 bits <em>after</em> the implicit leading 1.</li>
+    <li>Assemble sign · E' · mantissa into the 32-bit word.</li>
+  </ol>
+
+  <div class="callout">
+    <span class="label">Special values (end codes of E')</span>
+    E'=0, M=0 represents exact <strong>0</strong>. E'=255, M=0 represents <strong>±∞</strong> (the result of dividing a normal number by zero). E'=0, M≠0 represents a <strong>denormal</strong> number (value = M × 2<sup>−126</sup>, no implicit leading 1). E'=255, M≠0 represents <strong>NaN</strong> (not a number — e.g. the result of 0/0).
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE 2024-25 quiz — Q1.7</span><span class="marks">2 marks</span></div>
+    <div class="qtext">Represent +35.25 using 32-bit (single precision) floating-point representation.</div>
+    <div class="ans-label">Solution (verified against IEEE-754 packing)</div>
+    <p>35 = 100011₂; 0.25 = 01₂ (fractional). So 35.25 = <span class="mono">100011.01</span>₂. Normalise: <span class="mono">1.0001101 × 2⁵</span>. Bias: 127+5 = 132 = <span class="mono">10000100</span>₂.</p>
+    <div class="formula-block">Sign     : 0
+Exponent : <span class="c1">10000100</span>  (132)
+Mantissa : <span class="c2">00011010000000000000000</span>
+Full word: 0 10000100 00011010000000000000000</div>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE 2023-24 Test-1 — Q2(iv)</span><span class="marks">verified</span></div>
+    <div class="qtext">Represent −237.5 in 32-bit single-precision floating-point representation.</div>
+    <div class="ans-label">Solution</div>
+    <p>237 = 11101101₂; 0.5 = 1₂. 237.5 = <span class="mono">11101101.1</span>₂ → normalised <span class="mono">1.11011011 × 2⁷</span>. Bias: 127+7 = 134 = <span class="mono">10000110</span>₂.</p>
+    <div class="formula-block">Sign     : 1   <span class="cm">(negative)</span>
+Exponent : <span class="c1">10000110</span>  (134)
+Mantissa : <span class="c2">11011011000000000000000</span></div>
+  </div>
+
+  <p>Two further conversions (+105.625 and 263.3) are worked in <a href="#arithmetic-solved">Solved Numericals</a>.</p>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:floating-point-->
+
+<section class="page section" id="arithmetic-solved" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
+  <div class="section-head"><span class="tag">1.8</span><h1>Solved Numericals — Arithmetic</h1></div>
+  <p class="section-sub">Part 1 — Arithmetic · every value below re-computed and verified in code</p>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">unit deck — Problem 4(b)–(f), Booth's algorithm, 6-bit</span><span class="marks">verified</span></div>
+    <div class="qtext">Perform signed multiplication of the following 2's-complement pairs using Booth's algorithm.</div>
+    <table>
+      <tr><th>Part</th><th>A (M)</th><th>B (Q)</th><th>Decimal</th><th>Product</th></tr>
+      <tr><td>(b)</td><td>110011</td><td>101100</td><td>−13 × −20</td><td><strong>260</strong></td></tr>
+      <tr><td>(c)</td><td>110101</td><td>011011</td><td>−11 × 27</td><td><strong>−297</strong></td></tr>
+      <tr><td>(d)</td><td>001111</td><td>001111</td><td>15 × 15</td><td><strong>225</strong></td></tr>
+      <tr><td>(e)</td><td>10100</td><td>10101</td><td>−12 × −11</td><td><strong>132</strong></td></tr>
+      <tr><td>(f)</td><td>01110</td><td>11000</td><td>14 × −8</td><td><strong>−112</strong></td></tr>
+    </table>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE 2023-24 Test-1 / Retest — Booth's algorithm, 5-bit</span><span class="marks">verified</span></div>
+    <div class="qtext">Using Booth's algorithm multiply: (i) +9 × −6, (ii) +8 × −5.</div>
+    <div class="ans-label">(i) M=01001(+9), Q=11010(−6)</div>
+    <table>
+      <tr><th>Cycle</th><th>q₀q₋₁</th><th>Operation</th><th>A</th><th>Q</th><th>Q₋₁</th></tr>
+      <tr><td>Init</td><td>0 0</td><td>—</td><td>00000</td><td>11010</td><td>0</td></tr>
+      <tr><td>1</td><td>0 0</td><td>shift only</td><td>00000</td><td>01101</td><td>0</td></tr>
+      <tr><td>2</td><td>1 0</td><td>A−M, shift</td><td>11011</td><td>10110</td><td>1</td></tr>
+      <tr><td>3</td><td>0 1</td><td>A+M, shift</td><td>00010</td><td>01011</td><td>0</td></tr>
+      <tr><td>4</td><td>1 0</td><td>A−M, shift</td><td>11100</td><td>10101</td><td>1</td></tr>
+      <tr><td>5</td><td>1 1</td><td>shift only</td><td>11110</td><td>01010</td><td>1</td></tr>
+    </table>
+    <p>Product = <span class="mono">1111001010</span> = <strong>−54</strong> = 9 × (−6). ✓</p>
+    <div class="ans-label">(ii) M=01000(+8), Q=11011(−5) → Product = <strong>−40</strong> = 8 × (−5) ✓ (full trace follows the same method as §1.4)</div>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">qb1.pdf — retest style, Booth's algorithm</span><span class="marks">5 marks</span></div>
+    <div class="qtext">Perform multiplication of 10101 (multiplicand) and 00101 (multiplier) using Booth's algorithm.</div>
+    <div class="ans-label">Solution</div>
+    <p>Here the bit pattern 10101 is read as the <strong>multiplicand</strong> M = −11 (5-bit signed), and 00101 as multiplier Q = +5.</p>
+    <div class="callout clarify" style="margin:10px 0">
+      <span class="label">Watch the collision</span>
+      The bit pattern <span class="mono">10101</span> means different things in different problems: here it is the signed value <strong>−11</strong> (Booth multiplicand); in the division examples above it is the <strong>unsigned dividend 21</strong>. Always re-read which register/role the bits are playing before assigning a value.
+    </div>
+    <p>M = −11, Q = +5 → Product = <strong>−55</strong> = −11 × 5. ✓ (verified via the same cycle-by-cycle method as §1.4)</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE 2024-25 SEE (Feb/Mar 2025) — Part B, Q1(b)</span><span class="marks">5 marks</span></div>
+    <div class="qtext">Give the flow chart for restoring division and perform the division on: Dividend = 8, Divisor = 5.</div>
+    <div class="ans-label">Solution (flowchart in Fig 6)</div>
+    <p>8 = 01000 (Q), 5 = 00101 (M), 5-bit registers.</p>
+    <table>
+      <tr><th>Cycle</th><th>Action</th><th>A</th><th>Q</th></tr>
+      <tr><td>Init</td><td>—</td><td>00000</td><td>01000</td></tr>
+      <tr><td>1</td><td>shift, sub M, restore (q₀=0)</td><td>00000</td><td>10000</td></tr>
+      <tr><td>2</td><td>shift, sub M, restore (q₀=0)</td><td>00001</td><td>00000</td></tr>
+      <tr><td>3</td><td>shift, sub M, restore (q₀=0)</td><td>00010</td><td>00000</td></tr>
+      <tr><td>4</td><td>shift, sub M, restore (q₀=0)</td><td>00100</td><td>00000</td></tr>
+      <tr><td>5</td><td>shift, sub M, keep (q₀=1)</td><td>00011</td><td>00001</td></tr>
+    </table>
+    <p>Quotient = <span class="mono">00001</span> = 1, Remainder = <span class="mono">00011</span> = 3. Check: 8 = 5×1 + 3. ✓</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE 2023-24 Retest — Q2(ii)</span><span class="marks">5 marks</span></div>
+    <div class="qtext">Using the Restoring Division Algorithm, divide +11 by +3.</div>
+    <div class="ans-label">Solution</div>
+    <p>11 = 01011 (Q), 3 = 00011 (M). Result: Quotient = <span class="mono">00011</span> = 3, Remainder = <span class="mono">00010</span> = 2. Check: 11 = 3×3 + 2. ✓</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE 2023-24 Test-1 &amp; CIE 2024-25 SEE — Restoring Division, +13/+7</span><span class="marks">verified</span></div>
+    <div class="qtext">Using the Restoring Division Algorithm, divide +13 by +7.</div>
+    <div class="ans-label">Solution — full cycle trace</div>
+    <table>
+      <tr><th>Cycle</th><th>Action</th><th>A</th><th>Q</th></tr>
+      <tr><td>Init</td><td>—</td><td>00000</td><td>01101</td></tr>
+      <tr><td>1</td><td>shift, sub M, restore (q₀=0)</td><td>00000</td><td>11010</td></tr>
+      <tr><td>2</td><td>shift, sub M, restore (q₀=0)</td><td>00001</td><td>10100</td></tr>
+      <tr><td>3</td><td>shift, sub M, restore (q₀=0)</td><td>00011</td><td>01000</td></tr>
+      <tr><td>4</td><td>shift, sub M, restore (q₀=0)</td><td>00110</td><td>10000</td></tr>
+      <tr><td>5</td><td>shift, sub M, keep (q₀=1)</td><td>00110</td><td>00001</td></tr>
+    </table>
+    <p>Quotient = <span class="mono">00001</span> = 1, Remainder = <span class="mono">00110</span> = 6. Check: 13 = 7×1 + 6. ✓</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE 2024-25 quiz &amp; CIE 2023-24 Test-1 — IEEE 754 conversions</span><span class="marks">verified</span></div>
+    <div class="qtext">Represent (i) +105.625, and (ii) 263.3, in 32-bit single-precision floating point.</div>
+    <div class="ans-label">(i) +105.625</div>
+    <p>105 = 1101001₂; 0.625 = 101₂. 105.625 = <span class="mono">1101001.101</span>₂ → <span class="mono">1.101001101 × 2⁶</span>. Bias: 127+6 = 133 = <span class="mono">10000101</span>₂.</p>
+    <div class="formula-block">Sign 0 | Exponent <span class="c1">10000101</span> | Mantissa <span class="c2">10100110100000000000000</span></div>
+    <div class="ans-label">(ii) 263.3 (non-terminating fraction — truncated to 23 mantissa bits)</div>
+    <p>263 = 100000111₂; 0.3 = 0.0100110011…₂ (repeating). 263.3 = <span class="mono">100000111.0100110011…</span>₂ → <span class="mono">1.000001110100110011…× 2⁸</span>. Bias: 127+8 = 135 = <span class="mono">10000111</span>₂.</p>
+    <div class="formula-block">Sign 0 | Exponent <span class="c1">10000111</span> | Mantissa <span class="c2">00000111010011001100110</span></div>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:arithmetic-solved-->
+
+<section class="page section" id="boolean-canonical" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
+  <div class="section-head"><span class="tag">2.1</span><h1>Boolean Functions &amp; Canonical Forms</h1></div>
+  <p class="section-sub">Part 2 — Simplification</p>
+
+  <p>A Boolean function <var>f</var>(<var>x</var>₁,…,<var>x</var>ₙ) maps each of the 2<sup>n</sup> combinations of <var>n</var> binary inputs to a binary output, using only AND, OR and NOT. Any such function can be written directly from its truth table in two canonical (standard) forms.</p>
+
+  <h2>Minterms and maxterms</h2>
+  <p>A <strong>minterm</strong> is an AND (product) term containing every variable exactly once, primed if its value is 0 in that row and unprimed if 1. A <strong>maxterm</strong> is the dual: an OR (sum) term with every variable once, unprimed if 0 and primed if 1. With <var>n</var> variables there are 2<sup>n</sup> of each, and every maxterm is the complement of its same-indexed minterm.</p>
+
+  <table>
+    <tr><th>X Y Z</th><th>Minterm</th><th>Maxterm</th></tr>
+    <tr><td>0 0 0</td><td>x'y'z' (m₀)</td><td>x+y+z (M₀)</td></tr>
+    <tr><td>0 0 1</td><td>x'y'z (m₁)</td><td>x+y+z' (M₁)</td></tr>
+    <tr><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+    <tr><td>1 1 1</td><td>xyz (m₇)</td><td>x'+y'+z' (M₇)</td></tr>
+  </table>
+
+  <p>A function is written as a <strong>sum of minterms</strong> (OR together the minterm for every row where <var>f</var>=1) or, in shorthand, <span class="mono">F(X,Y,Z) = Σm(1,4,5,6,7)</span>. Equivalently it is the <strong>product of maxterms</strong> for every row where <var>f</var>=0: <span class="mono">F(X,Y,Z) = ΠM(0,2,3)</span>.</p>
+
+  <h2>Standard (SOP / POS) forms</h2>
+  <ul>
+    <li><strong>Sum of Products (SOP):</strong> an OR of AND-terms, each term having one or more literals — e.g. <span class="mono">F = x + xy' + x'yz</span>. Implemented as a 2-level circuit: AND gates feeding one OR gate.</li>
+    <li><strong>Product of Sums (POS):</strong> an AND of OR-terms — e.g. <span class="mono">F = x(x+y')(x'+y+z)</span>. Implemented as OR gates feeding one AND gate.</li>
+  </ul>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 190" xmlns="http://www.w3.org/2000/svg">
+      <text x="300" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">Fig 9. Two-level SOP vs POS implementation</text>
+      <g font-family="Inter, sans-serif" font-size="11.5" fill="#2A2C2F">
+        <text x="150" y="46" text-anchor="middle" font-weight="600" fill="#4C3F91">SOP: AND-OR</text>
+        <rect x="70" y="60" width="60" height="24" fill="#EEECF7" stroke="#4C3F91"/><text x="100" y="76" text-anchor="middle" font-size="10.5">AND</text>
+        <rect x="70" y="94" width="60" height="24" fill="#EEECF7" stroke="#4C3F91"/><text x="100" y="110" text-anchor="middle" font-size="10.5">AND</text>
+        <rect x="70" y="128" width="60" height="24" fill="#EEECF7" stroke="#4C3F91"/><text x="100" y="144" text-anchor="middle" font-size="10.5">AND</text>
+        <rect x="180" y="94" width="60" height="24" fill="#E8EFF8" stroke="#1D4E89"/><text x="210" y="110" text-anchor="middle" font-size="10.5">OR</text>
+        <path d="M130,72 L180,100" stroke="#5B6169" fill="none"/>
+        <path d="M130,106 L180,106" stroke="#5B6169" fill="none"/>
+        <path d="M130,140 L180,112" stroke="#5B6169" fill="none"/>
+        <path d="M240,106 L270,106" stroke="#5B6169" fill="none" marker-end="url(#af4)"/>
+
+        <text x="450" y="46" text-anchor="middle" font-weight="600" fill="#4C3F91">POS: OR-AND</text>
+        <rect x="370" y="60" width="60" height="24" fill="#E8EFF8" stroke="#1D4E89"/><text x="400" y="76" text-anchor="middle" font-size="10.5">OR</text>
+        <rect x="370" y="94" width="60" height="24" fill="#E8EFF8" stroke="#1D4E89"/><text x="400" y="110" text-anchor="middle" font-size="10.5">OR</text>
+        <rect x="370" y="128" width="60" height="24" fill="#E8EFF8" stroke="#1D4E89"/><text x="400" y="144" text-anchor="middle" font-size="10.5">OR</text>
+        <rect x="480" y="94" width="60" height="24" fill="#EEECF7" stroke="#4C3F91"/><text x="510" y="110" text-anchor="middle" font-size="10.5">AND</text>
+        <path d="M430,72 L480,100" stroke="#5B6169" fill="none"/>
+        <path d="M430,106 L480,106" stroke="#5B6169" fill="none"/>
+        <path d="M430,140 L480,112" stroke="#5B6169" fill="none"/>
+        <path d="M540,106 L570,106" stroke="#5B6169" fill="none" marker-end="url(#af4)"/>
+      </g>
+      <defs><marker id="af4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#5B6169"/></marker></defs>
+    </svg>
+    <div class="cap">Fig 9. Both standard forms give a two-gate-level circuit; input inverters (for primed literals) are not counted as a level.</div>
+  </div>
+
+  <h2>Complement of a function (De Morgan)</h2>
+  <p>The generalised De Morgan rule: to complement a function, <strong>interchange AND and OR, and complement every literal</strong>.</p>
+  <div class="formula-block">F  = X'YZ' + X'Y'Z'
+F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND them</span>
+   = (X+Y'+Z) · (X+Y+Z)</div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:boolean-canonical-->
+
+<section class="page section" id="karnaugh-maps" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
+  <div class="section-head"><span class="tag">2.2</span><h1>Karnaugh Maps</h1></div>
+  <p class="section-sub">Part 2 — Simplification</p>
+
+  <p>A Karnaugh map (K-map) is a 2-dimensional rearrangement of the truth table in which <strong>adjacent cells differ in exactly one variable</strong> — row and column headers are ordered in <strong>Gray code</strong> (00, 01, 11, 10, …) rather than binary counting order, specifically so that this single-variable-difference property holds between every pair of physically neighbouring cells, including wraparound from the last column/row back to the first.</p>
+
+  <div class="callout clarify">
+    <span class="label">Correcting an error in the source</span>
+    Several 4-variable K-map figures in the source deck mislabel the CD row headers as <code>00, 01, 01, 01</code> (a transcription slip repeating "01"). The correct Gray-code sequence — used throughout this guide — is <code>00, 01, 11, 10</code>. Every K-map below uses the corrected labelling.
+  </div>
+
+  <h2>Minimisation procedure</h2>
+  <ol class="steps">
+    <li>Plot a 1 in every cell whose minterm is in the function (for don't-cares, mark X — see <a href="#dont-care-vem">§2.3</a>).</li>
+    <li>Circle groups of adjacent 1s, each group sized as a power of 2 (1, 2, 4, 8, 16 cells) — bigger groups give simpler (fewer-literal) terms.</li>
+    <li>Every 1 must be covered by at least one group; a 1 may belong to more than one group.</li>
+    <li>A variable drops out of a group's term if the group spans both its 0 and 1 values; the surviving literals AND together to form that group's product term.</li>
+    <li>OR all the group terms together for the minimal SOP.</li>
+  </ol>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg">
+      <text x="240" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">Fig 10. 4-variable K-map — Q(A,B,C,D)</text>
+      <g font-family="JetBrains Mono, monospace" font-size="12">
+        <text x="280" y="48" text-anchor="middle" fill="#5B6169">AB</text>
+        <text x="175" y="62" text-anchor="middle" fill="#5B6169">00</text>
+        <text x="245" y="62" text-anchor="middle" fill="#5B6169">01</text>
+        <text x="315" y="62" text-anchor="middle" fill="#5B6169">11</text>
+        <text x="385" y="62" text-anchor="middle" fill="#5B6169">10</text>
+        <text x="120" y="150" text-anchor="middle" fill="#5B6169">CD</text>
+        <text x="130" y="90" text-anchor="middle" fill="#5B6169">00</text>
+        <text x="130" y="140" text-anchor="middle" fill="#5B6169">01</text>
+        <text x="130" y="190" text-anchor="middle" fill="#5B6169">11</text>
+        <text x="130" y="240" text-anchor="middle" fill="#5B6169">10</text>
+        <!-- grid lines: cols at 140,210,280,350,420 ; rows at 70,120,170,220,270 -->
+        <g stroke="#1C1E21" stroke-width="1.2" fill="none">
+          <rect x="140" y="70" width="280" height="200"/>
+          <line x1="210" y1="70" x2="210" y2="270"/>
+          <line x1="280" y1="70" x2="280" y2="270"/>
+          <line x1="350" y1="70" x2="350" y2="270"/>
+          <line x1="140" y1="120" x2="420" y2="120"/>
+          <line x1="140" y1="170" x2="420" y2="170"/>
+          <line x1="140" y1="220" x2="420" y2="220"/>
+        </g>
+        <!-- 1s: (col,row)->minterm : col1row1=5,col1row2=7,col2row0=12,col2row1=13,col2row2=15,col2row3=14,col3row2=11,col3row3=10 -->
+        <text x="245" y="145" text-anchor="middle">1</text>
+        <text x="245" y="195" text-anchor="middle">1</text>
+        <text x="315" y="95" text-anchor="middle">1</text>
+        <text x="315" y="145" text-anchor="middle">1</text>
+        <text x="315" y="195" text-anchor="middle">1</text>
+        <text x="315" y="245" text-anchor="middle">1</text>
+        <text x="385" y="195" text-anchor="middle">1</text>
+        <text x="385" y="245" text-anchor="middle">1</text>
+      </g>
+      <!-- group AB: full column 2 (x280-350,y70-270) -->
+      <rect x="284" y="74" width="62" height="192" rx="10" fill="none" stroke="#1D4E89" stroke-width="2.5"/>
+      <!-- group AC: cols2-3,rows2-3 (x280-420,y170-270) -->
+      <rect x="288" y="176" width="128" height="88" rx="10" fill="none" stroke="#12796F" stroke-width="2.5" stroke-dasharray="6 4"/>
+      <!-- group BD: cols1-2,rows1-2 (x210-350,y120-220) -->
+      <rect x="216" y="126" width="128" height="88" rx="10" fill="none" stroke="#93316B" stroke-width="2.5" stroke-dasharray="2 3"/>
+      <text x="60" y="285" font-size="11.5" fill="#1D4E89" font-weight="600">— AB</text>
+      <text x="150" y="285" font-size="11.5" fill="#12796F" font-weight="600">┄ AC</text>
+      <text x="240" y="285" font-size="11.5" fill="#93316B" font-weight="600">⋯ BD</text>
+    </svg>
+    <div class="cap">Fig 10. Unsimplified Q = A′BC′D + A′BCD + ABC′D′ + ABC′D + ABCD + ABCD′ + AB′CD + AB′CD′. Three groups of 4 cover all eight 1s: the whole AB=11 column (term AB), the bottom-right 2×2 block (term AC), and the centre 2×2 block (term BD) — note the AC and BD groups reuse shared cells, which is allowed. Minimal SOP: Q = AB + AC + BD.</div>
+  </div>
+
+  <h2>Prime implicants and essential prime implicants</h2>
+  <p>An <strong>implicant</strong> is any product term that is a "covering" of one or more minterms of the function. A <strong>prime implicant (PI)</strong> is an implicant that cannot be combined with another to drop a further literal — i.e. the largest possible group containing that cell. An <strong>essential prime implicant (EPI)</strong> is a PI that is the <em>only</em> PI covering some particular minterm — it must appear in every minimal SOP, so it is always selected first. Non-essential PIs are only added afterward, if needed, to cover any minterms the EPIs missed.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg">
+      <text x="280" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12.5" font-weight="600" fill="#1C1E21">Fig 11. Prime vs essential-prime implicants (schematic)</text>
+      <g font-family="Inter, sans-serif" font-size="11.5" fill="#2A2C2F">
+        <rect x="40" y="40" width="180" height="120" fill="none" stroke="#E4E0D3"/>
+        <circle cx="90" cy="80" r="4" fill="#1C1E21"/><circle cx="130" cy="80" r="4" fill="#1C1E21"/>
+        <circle cx="90" cy="120" r="4" fill="#1C1E21"/><circle cx="130" cy="120" r="4" fill="#1C1E21"/>
+        <rect x="80" y="70" width="20" height="20" rx="4" fill="none" stroke="#93316B" stroke-width="2"/>
+        <text x="60" y="185" fill="#93316B" font-weight="600" font-size="11">non-prime — can grow to a 2-cell group</text>
+        <rect x="330" y="40" width="180" height="120" fill="none" stroke="#E4E0D3"/>
+        <circle cx="380" cy="80" r="4" fill="#1C1E21"/><circle cx="420" cy="80" r="4" fill="#1C1E21"/>
+        <circle cx="380" cy="120" r="4" fill="#1C1E21"/><circle cx="420" cy="120" r="4" fill="#1C1E21"/>
+        <rect x="370" y="70" width="60" height="60" rx="8" fill="none" stroke="#1D4E89" stroke-width="2.5"/>
+        <text x="350" y="185" fill="#1D4E89" font-weight="600" font-size="11">prime implicant — maximal group, cannot grow further</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">unit deck — majority function</span><span class="marks">verified</span></div>
+    <div class="qtext">Minimise M(a,b,c) = Σm(3,5,6,7) — output 1 whenever at least 2 of the 3 inputs are 1.</div>
+    <div class="ans-label">Solution</div>
+    <p>Algebraic route: <span class="mono">M = a'bc + ab'c + abc' + abc = bc + ac + ab</span> (each pair of adjacent-in-one-variable minterms merges after replicating <span class="mono">abc</span>). K-map grouping gives the identical 3 pairs directly. Verified: <strong>M = ab + ac + bc</strong>.</p>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:karnaugh-maps-->
+
+<section class="page section" id="dont-care-vem" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
+  <div class="section-head"><span class="tag">2.3</span><h1>Don't-Care Conditions &amp; the Variable Entered Map</h1></div>
+  <p class="section-sub">Part 2 — Simplification</p>
+
+  <p>Sometimes a certain input combination can <strong>never occur</strong> in the application, so it does not matter whether the function is defined as 0 or 1 there. These entries are marked <strong>X</strong> (or <var>d</var>) in the truth table and K-map. Because we are free to choose either value, an X is included in a group only when doing so makes the group bigger (and hence the term simpler) — otherwise it is left out. This is exactly the <strong>"Incomplete Boolean Expressions"</strong> case named in the syllabus.</p>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">unit deck — BCD prime-number example</span><span class="marks">verified</span></div>
+    <div class="qtext">A circuit must output 1 for the prime digits (2,3,5,7) of a BCD input, 0 for the other valid digits (0,1,4,6,8,9), and "don't care" for the unused codes 10–15. Minimise.</div>
+    <div class="ans-label">Solution</div>
+    <p>F = Σm(2,3,5,7) + Σd(10,11,12,13,14,15). Grouping the four minterms with the don't-cares (all six are available to extend groups) gives two 4-cell groups:</p>
+    <div class="formula-block"><span class="c1">F = B'C + BD</span>   <span class="cm">down from the unsimplified 4-term, 4-literal SOP Σm(2,3,5,7)</span></div>
+    <p>Without the don't-cares, the same four minterms alone would need a longer expression — the six unused input codes let two of the essential prime implicants absorb neighbours and shrink from 4-literal terms to 2-literal terms.</p>
+  </div>
+
+  <h2>Variable Entered Map (VEM)</h2>
+  <p>A plain K-map becomes unwieldy beyond 5–6 variables. The Variable Entered Map extends a smaller map's effective capacity by writing an <strong>output variable</strong> (rather than just 0/1) inside a cell — e.g. a 3-variable function can be drawn on a 2-variable map if the third variable's value is written into the cells instead of a constant.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg">
+      <text x="210" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#1C1E21">Fig 12. VEM of F(A,B,C)=Σm(0,1,2,5)</text>
+      <g font-family="JetBrains Mono, monospace" font-size="13">
+        <text x="140" y="50" text-anchor="middle" fill="#5B6169">A</text>
+        <text x="110" y="65" text-anchor="middle" fill="#5B6169">0</text>
+        <text x="170" y="65" text-anchor="middle" fill="#5B6169">1</text>
+        <text x="70" y="115" text-anchor="middle" fill="#5B6169">B</text>
+        <text x="85" y="95" text-anchor="middle" fill="#5B6169">0</text>
+        <text x="85" y="150" text-anchor="middle" fill="#5B6169">1</text>
+        <g stroke="#1C1E21" stroke-width="1.2" fill="none">
+          <rect x="100" y="72" width="140" height="100"/>
+          <line x1="170" y1="72" x2="170" y2="172"/>
+          <line x1="100" y1="122" x2="240" y2="122"/>
+        </g>
+        <text x="135" y="102" text-anchor="middle">1</text>
+        <text x="195" y="102" text-anchor="middle">C′</text>
+        <text x="135" y="152" text-anchor="middle">C</text>
+        <text x="195" y="152" text-anchor="middle">0</text>
+      </g>
+    </svg>
+    <div class="cap">Fig 12. Row A=0,B=1 gives C (from minterm 5=101); row A=1,B=0 gives C′ (from minterm 2=010 present, 6=110 absent) — read directly off which minterms are in the on-set.</div>
+  </div>
+
+  <p><strong>Minimisation procedure for a VEM</strong> (X used for don't-care):</p>
+  <ol class="steps">
+    <li>Treat the map's own variables normally; obtain a first SOP term by writing every occurrence of the map-entered variable as 0, leaving 0s/1s/don't-cares as they are.</li>
+    <li>For each map-entered variable in turn: set its own occurrences to 1 and treat its former 1-cells as don't-care; simplify to get an SOP, then multiply that SOP by the variable.</li>
+    <li>Repeat step 2 for the variable's complement.</li>
+    <li>OR all the resulting SOP expressions together.</li>
+  </ol>
+
+  <div class="callout key">
+    <span class="label">Exam tip</span>
+    VEM is most useful for realising a function on a multiplexer — the map-entered variables become the MUX data inputs, and the map's own variables become the select lines.
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:dont-care-vem-->
+
+<section class="page section" id="quine-mccluskey" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
+  <div class="section-head"><span class="tag">2.4</span><h1>Quine–McCluskey Tabulation Method</h1></div>
+  <p class="section-sub">Part 2 — Simplification</p>
+
+  <div class="callout clarify">
+    <span class="label">Not in your materials — added for syllabus completeness</span>
+    The syllabus names the Quine–McCluskey method explicitly, but the source deck only defines the term <em>"prime implicant"</em> in passing (crediting W. V. Quine) — it never demonstrates the tabulation algorithm itself. This entire section is written from the standard method, every grouping and chart step verified in code, and cross-checked against a worked problem that appears — with the identical answer — in two independent past exam papers.
+  </div>
+
+  <p>K-maps become error-prone and hard to draw beyond 4–5 variables, and they rely on the human eye to spot groupings. The Quine–McCluskey (QM) method finds the same prime implicants <strong>algorithmically</strong>, by repeatedly combining minterms that differ in exactly one bit — which makes it suitable for programs and for functions with many variables.</p>
+
+  <h2>Procedure</h2>
+  <ol class="steps">
+    <li>Write every minterm (and don't-care, if any) in binary, and group them by their <strong>number of 1s</strong>.</li>
+    <li>Compare every term in each group only with terms in the <strong>next-higher</strong> group. If two terms differ in exactly one bit position, combine them into a new term with a dash (<span class="mono">-</span>) at that position, and tick off (mark used) both source terms.</li>
+    <li>Repeat step 2 on the newly formed groups until no further combination is possible.</li>
+    <li>Any term that was never ticked off during this process is a <strong>prime implicant</strong>.</li>
+    <li>Build a <strong>prime-implicant chart</strong>: rows = prime implicants, columns = the original minterms. Mark an X where a PI covers a minterm.</li>
+    <li>A column with exactly one X identifies an <strong>essential PI</strong> — select it, and remove every minterm it covers from the chart.</li>
+    <li>For any minterms still uncovered, choose the fewest additional PIs (by inspection, or Petrick's method for larger problems) to cover them. OR all selected PIs together for the minimal SOP.</li>
+  </ol>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE 2023-24 Test-1 Q1(i) &amp; CIE 2024-25 SEE Part B Q2(a)</span><span class="marks">8–10 marks</span></div>
+    <div class="qtext">Simplify F(P,Q,R,S) = Σm(0,1,2,4,5,7,8,9,14,15) using the Quine–McCluskey method. Give the prime implicants and essential prime implicants.</div>
+
+    <div class="ans-label">Step 1 — group by number of 1s</div>
+    <table>
+      <tr><th>Group (# of 1s)</th><th>Minterm</th><th>PQRS</th></tr>
+      <tr><td rowspan="1">0</td><td>0</td><td>0000</td></tr>
+      <tr><td rowspan="4">1</td><td>1</td><td>0001</td></tr>
+      <tr><td>2</td><td>0010</td></tr>
+      <tr><td>4</td><td>0100</td></tr>
+      <tr><td>8</td><td>1000</td></tr>
+      <tr><td rowspan="2">2</td><td>5</td><td>0101</td></tr>
+      <tr><td>9</td><td>1001</td></tr>
+      <tr><td rowspan="2">3</td><td>7</td><td>0111</td></tr>
+      <tr><td>14</td><td>1110</td></tr>
+      <tr><td>4</td><td>15</td><td>1111</td></tr>
+    </table>
+
+    <div class="ans-label">Step 2 — first combination pass (pairs)</div>
+    <div class="svg-wrap" style="margin:14px 0">
+      <svg viewBox="0 0 620 260" xmlns="http://www.w3.org/2000/svg">
+        <text x="310" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12.5" font-weight="600" fill="#1C1E21">Fig 13. QM round 1 — combining across adjacent one-count groups</text>
+        <g font-family="JetBrains Mono, monospace" font-size="12" fill="#2A2C2F">
+          <text x="30" y="55" fill="#5B6169" font-weight="700">Pair</text>
+          <text x="140" y="55" fill="#5B6169" font-weight="700">Result</text>
+          <text x="260" y="55" fill="#5B6169" font-weight="700">Pair</text>
+          <text x="370" y="55" fill="#5B6169" font-weight="700">Result</text>
+          <text x="480" y="55" fill="#5B6169" font-weight="700">Pair</text>
+          <line x1="20" y1="64" x2="600" y2="64" stroke="#E4E0D3"/>
+          <text x="30" y="86">(0,1)</text><text x="140" y="86">000-</text>
+          <text x="260" y="86">(1,5)</text><text x="370" y="86">0-01</text>
+          <text x="480" y="86">(5,7)</text>
+          <text x="30" y="108">(0,2)</text><text x="140" y="108">00-0</text>
+          <text x="260" y="108">(1,9)</text><text x="370" y="108">-001</text>
+          <text x="480" y="108">01-1 →PI</text>
+          <text x="30" y="130">(0,4)</text><text x="140" y="130">0-00</text>
+          <text x="260" y="130">(4,5)</text><text x="370" y="130">010-</text>
+          <text x="480" y="152">(7,15)</text>
+          <text x="30" y="152">(0,8)</text><text x="140" y="152">-000</text>
+          <text x="260" y="152">(8,9)</text><text x="370" y="152">100-</text>
+          <text x="480" y="174">-111 →PI</text>
+          <text x="480" y="196">(14,15)</text>
+          <text x="480" y="218">111- →PI</text>
+        </g>
+      </svg>
+      <div class="cap">Fig 13. Terms in bold groups keep combining into round-2 quads; 01-1, -111 and 111- find no further partner and are already prime implicants.</div>
+    </div>
+
+    <div class="ans-label">Step 3 — second combination pass (quads)</div>
+    <p><span class="mono">000-</span> and <span class="mono">010-</span> agree except bit 1 → <span class="mono">0-0-</span> (covers 0,1,4,5). <span class="mono">000-</span> and <span class="mono">100-</span> agree except bit 0 → <span class="mono">-00-</span> (covers 0,1,8,9). (The same two quads are reached again via <span class="mono">0-00</span>/<span class="mono">0-01</span> and <span class="mono">-000</span>/<span class="mono">-001</span> respectively — duplicates are dropped.) <span class="mono">00-0</span> finds no partner and is prime.</p>
+
+    <div class="ans-label">Step 4 — prime implicants found</div>
+    <table>
+      <tr><th>PI (bits)</th><th>Expression</th><th>Covers minterms</th></tr>
+      <tr><td>00-0</td><td>P′Q′S′</td><td>0, 2</td></tr>
+      <tr><td>0-0-</td><td>P′R′</td><td>0, 1, 4, 5</td></tr>
+      <tr><td>-00-</td><td>Q′R′</td><td>0, 1, 8, 9</td></tr>
+      <tr><td>01-1</td><td>P′QS</td><td>5, 7</td></tr>
+      <tr><td>-111</td><td>QRS</td><td>7, 15</td></tr>
+      <tr><td>111-</td><td>PQR</td><td>14, 15</td></tr>
+    </table>
+
+    <div class="ans-label">Step 5 — prime implicant chart</div>
+    <div style="overflow-x:auto">
+    <table>
+      <tr><th>PI</th><th>0</th><th>1</th><th>2</th><th>4</th><th>5</th><th>7</th><th>8</th><th>9</th><th>14</th><th>15</th></tr>
+      <tr><td>P′Q′S′</td><td>X</td><td></td><td><strong>X</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>P′R′</td><td>X</td><td>X</td><td></td><td><strong>X</strong></td><td><strong>X</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Q′R′</td><td>X</td><td>X</td><td></td><td></td><td></td><td></td><td><strong>X</strong></td><td><strong>X</strong></td><td></td><td></td></tr>
+      <tr><td>P′QS</td><td></td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>QRS</td><td></td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td><td></td><td>X</td></tr>
+      <tr><td>PQR</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><strong>X</strong></td><td>X</td></tr>
+    </table>
+    </div>
+    <p>Columns 2, 4, 8, 9 and 14 each have exactly one X (bold) → the PIs covering them are <strong>essential</strong>: <span class="mono">P′Q′S′, P′R′, Q′R′, PQR</span>. Together these already cover {0,1,2,4,5,8,9,14,15} — only minterm <strong>7</strong> is left, coverable by either P′QS or QRS (both non-essential, either choice gives a valid minimal cover).</p>
+
+    <div class="ans-label">Result</div>
+    <div class="formula-block"><span class="c1">F = P′R′ + Q′R′ + P′Q′S′ + PQR + QRS</span>   <span class="cm">(or replace QRS with P′QS — both are 5-term minimal solutions)</span></div>
+    <p>This matches the K-map solution to the identical function, confirming the two methods agree — as they always must, since both find the true minimal SOP.</p>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:quine-mccluskey-->
+
+<section class="page section" id="simplification-solved" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
+  <div class="section-head"><span class="tag">2.5</span><h1>Solved Numericals — Simplification</h1></div>
+  <p class="section-sub">Part 2 — Simplification · every prime-implicant list and minimal cover brute-force verified</p>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">qb1.pdf — Q1 &amp; Q2</span><span class="marks">verified</span></div>
+    <div class="qtext">Using a K-map (and separately, the Quine–McCluskey method), simplify Y(A,B,C,D) = Σm(0,1,2,3,5,7,8,9,10,12,13). Indicate the essential prime implicants, and realise the result using NAND gates.</div>
+    <div class="ans-label">Solution</div>
+    <p>All three prime implicants found by QM/K-map turn out essential (each covers at least one minterm no other PI reaches):</p>
+    <table>
+      <tr><th>PI</th><th>Covers</th><th>Essential?</th></tr>
+      <tr><td>A′D</td><td>0,1,8,9</td><td>Yes</td></tr>
+      <tr><td>AC′</td><td>8,9,12,13</td><td>Yes</td></tr>
+      <tr><td>B′D′</td><td>0,2,8,10</td><td>Yes</td></tr>
+    </table>
+    <div class="formula-block"><span class="c1">Y = A′D + AC′ + B′D′</span></div>
+    <p><strong>NAND realisation:</strong> apply double-negation, F = ((A′D)′·(AC′)′·(B′D′)′)′ — each AND-term becomes one 2-input NAND, and the final OR becomes one 3-input NAND, giving an all-NAND two-level circuit (De Morgan converts AND-OR directly into NAND-NAND).</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">qb1.pdf — Q3 &amp; Q12</span><span class="marks">verified — brute-force confirmed minimal</span></div>
+    <div class="qtext">Obtain the minimum SOP using the Quine–McCluskey method, and verify using K-map: F = m0+m2+m4+m8+m9+m10+m11+m12+m13.</div>
+    <div class="ans-label">Solution</div>
+    <p>Unlike the previous example, this function's prime implicant chart has <strong>no essential-PI shortcut</strong> for one minterm — all four prime implicants found are essential, so none can be dropped:</p>
+    <table>
+      <tr><th>PI</th><th>Covers</th></tr>
+      <tr><td>AB′</td><td>8,9,10,11</td></tr>
+      <tr><td>AC′</td><td>8,9,12,13</td></tr>
+      <tr><td>B′D′</td><td>0,2,8,10</td></tr>
+      <tr><td>C′D′</td><td>0,4,8,12</td></tr>
+    </table>
+    <div class="formula-block"><span class="c1">F = AB′ + AC′ + B′D′ + C′D′</span>   <span class="cm">all four terms essential — confirmed minimal by exhaustive search</span></div>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE 2024-25 SEE retest — Q3(b)</span><span class="marks">5 marks</span></div>
+    <div class="qtext">Minimize F(A,B,C,D) = Σm(0,1,2,5,7,8,9,10,13,15) using K-map and implement using only NAND gates.</div>
+    <div class="ans-label">Solution</div>
+    <p>Prime implicants: BD (5,7,13,15), B′C′ (0,1,8,9), B′D′ (0,2,8,10), C′D (1,5,9,13). B′D′ and BD are essential (each is the sole cover for minterms 2/10 and 7/15 respectively); together they leave minterms 1 and 9 uncovered, picked up by the non-essential B′C′:</p>
+    <div class="formula-block"><span class="c1">F = B′D′ + BD + B′C′</span></div>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">qb1.pdf — Q5, POS via K-map</span><span class="marks">verified</span></div>
+    <div class="qtext">Simplify using K-map to obtain a minimum POS expression for F = (A′+B′+C+D)(A+B′+C+D)(A+B+C+D′)(A+B+C′+D′)(A′+B+C+D′)(A+B+C′+D).</div>
+    <div class="ans-label">Solution</div>
+    <p>Each sum term is zero for exactly one input combination — reading those off gives the <strong>maxterm list</strong> (the zeros of F): M(1,2,3,4,9,12). Group the <em>zeros</em> on the K-map exactly as you would group 1s, to minimise F′; then apply De Morgan to convert back to POS.</p>
+    <p>Minimal SOP of F′: <span class="mono">F′ = A′B′C + B′C′D + BC′D′</span></p>
+    <div class="formula-block"><span class="c1">F = (B+C+D′)(B′+C+D)(A+B+C′)</span>   <span class="cm">De Morgan on each product term of F′ gives one sum term of F</span></div>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:simplification-solved-->
+
+<section class="page section" id="quick-revision" style="--accent:var(--ink);--accent-soft:var(--line-soft);">
+  <div class="section-head"><span class="tag">R.1</span><h1>Quick Revision Sheet</h1></div>
+  <p class="section-sub">One-page formula and rule dump</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">Number systems &amp; overflow</h3>
+      <ul>
+        <li>2's complement of N (n-bit) = 2<sup>n</sup> − N = (bit-complement) + 1</li>
+        <li>Range: −2<sup>n−1</sup> to +2<sup>n−1</sup>−1</li>
+        <li>Add: sum bits, discard carry-out</li>
+        <li>Subtract X−Y: X + 2's-complement(Y)</li>
+        <li>Overflow only when adding same-sign operands; detect via carry-into-sign ≠ carry-out-of-sign</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Booth's algorithm</h3>
+      <ul>
+        <li>q₀q₋₁ = 10 → A←A−M; = 01 → A←A+M; = 00/11 → no-op</li>
+        <li>Always finish each cycle with an arithmetic shift right of A,Q,Q₋₁</li>
+        <li>n cycles for n-bit operands; product is 2n bits in A:Q</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Bit-pair recoding</h3>
+      <ul>
+        <li>Sign-extend multiplier by 1 bit; append implied 0 at LSB</li>
+        <li>Read overlapping 3-bit windows in pairs → digit ∈ {0,±1,±2}</li>
+        <li>n/2 summands instead of n</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Division</h3>
+      <ul>
+        <li>Restoring: shift, subtract M; if A&lt;0, restore (A+M) and q₀=0, else keep and q₀=1</li>
+        <li>Non-restoring: shift and add-or-subtract based on current sign of A; set q₀ from new sign; one final restore if A&lt;0 at the end</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">IEEE 754 single precision</h3>
+      <ul>
+        <li>1 sign + 8 exponent (excess-127) + 23 mantissa bits</li>
+        <li>Value = ±1.M × 2^(E′−127); normalise so exactly one leading 1</li>
+        <li>E′=0,M=0 → 0; E′=255,M=0 → ∞; E′=0,M≠0 → denormal; E′=255,M≠0 → NaN</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">K-maps</h3>
+      <ul>
+        <li>Headers in Gray code (00,01,11,10) — never binary order</li>
+        <li>Group sizes must be powers of 2; bigger groups → fewer literals</li>
+        <li>Essential PI = sole cover of some minterm; select first, then cover leftovers</li>
+        <li>Don't-cares (X) used only when they enlarge a group</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Quine–McCluskey</h3>
+      <ul>
+        <li>Group minterms by count of 1s; combine only with the next-higher group, one-bit difference</li>
+        <li>Un-ticked terms after all rounds = prime implicants</li>
+        <li>Build PI chart; columns with one X → essential PI; cover remaining columns with fewest extra PIs</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Canonical forms</h3>
+      <ul>
+        <li>Minterm = product of all literals, primed where input bit is 0</li>
+        <li>Maxterm = sum of all literals, primed where input bit is 1; maxterm = complement of same-index minterm</li>
+        <li>F = Σm(on-set) = ΠM(off-set)</li>
+        <li>De Morgan complement: swap AND/OR, complement every literal</li>
+      </ul>
+    </div>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:quick-revision-->
+
+<section class="page section" id="question-bank" style="--accent:var(--ink);--accent-soft:var(--line-soft);">
+  <div class="section-head"><span class="tag">R.2</span><h1>Question Bank Index</h1></div>
+  <p class="section-sub">Every Unit-1 question from the provided question banks and past CIE/SEE papers, linked to where it's answered.</p>
+
+  <div class="callout clarify">
+    <span class="label">Scope — what's excluded</span>
+    <code>qb 2.pdf</code> is titled "ADLDCO unit 4 questions and answers" and is entirely Unit-4 material (instruction sets, addressing modes) — excluded in full. In <code>qb 1.pdf</code>, only Q1–Q14 (K-map/Quine–McCluskey) belong to Unit 1; Q15–Q78 cover adders, comparators, decoders/encoders, flip-flops, registers and counters — Units 2 and 3 — and are excluded. The two CIE scheme/past-paper PDFs span the whole syllabus (CO tags don't align cleanly with units, so rows were filtered by topic instead); only rows testing signed arithmetic, Booth/bit-pair multiplication, division, floating point, K-maps, or Quine–McCluskey are indexed below — rows on adders, comparators, flip-flops, counters, CLA design, instruction sets and memory are excluded as out-of-unit.
+  </div>
+
+  <h2>Arithmetic (§1)</h2>
+  <table>
+    <tr><th>Source</th><th>Question</th><th>Answered</th></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.3</td><td>Subtract 15 from 13 using 2's complement.</td><td>→ <a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.4</td><td>Construct the Booth recoding of a given multiplier bit sequence.</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.6</td><td>With an example, specify the significance of overflow in binary addition/subtraction.</td><td>→ <a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.7</td><td>Represent +35.25 in 32-bit single-precision floating point.</td><td>→ <a href="#floating-point">Floating-Point Numbers</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Part B 2a</td><td>Using Modified Booth's algorithm, multiply +9 with −6.</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 1a</td><td>Multiply 10101 (multiplicand) and 00101 (multiplier) using Booth's algorithm.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 1b</td><td>Restoring division flowchart; divide 8 by 5.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 2b</td><td>Multiply 13 × (−8) using bit-pair recoding.</td><td>→ <a href="#bit-pair-recoding">Fast Multiplication / Bit-Pair Recoding</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 3a</td><td>Represent +105.625 in 32-bit single-precision floating point.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.1</td><td>Perform (+25)+(−18) in 8-bit signed 2's complement.</td><td>→ <a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a> (same method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.2</td><td>Multiply −9 and −7 using Booth's Algorithm (5-bit).</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a> (same method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.3</td><td>Represent −15.375 in IEEE 754 single precision.</td><td>→ <a href="#floating-point">Floating-Point Numbers</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q2</td><td>Represent 40, −32 (8-bit signed mag.), 9, 18 (BCD), 0, 4 (excess-3), −237.5 (FP32).</td><td>→ <a href="#floating-point">Floating-Point Numbers</a> (FP part) <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q3(i)</td><td>Using Booth's algorithm, multiply +14 × −7.</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q3(ii)</td><td>Using Restoring Division, divide +13 / +7.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Retest Q2(i)</td><td>Using Booth's algorithm, multiply +8 × −5.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Retest Q2(ii)</td><td>Using Restoring Division, divide +11 / +3.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part A 1.1</td><td>Represent 263.3 in 32-bit floating point.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part A 1.6</td><td>Multiply +13 with −6 using bit-pair recoding.</td><td>→ <a href="#bit-pair-recoding">Fast Multiplication / Bit-Pair Recoding</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part B 2c</td><td>Using Restoring Division, divide +13 / +7.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a></td></tr>
+  </table>
+
+  <h2>Simplification (§2)</h2>
+  <table>
+    <tr><th>Source</th><th>Question</th><th>Answered</th></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q1</td><td>K-map simplify Y=Σm(0,1,2,3,5,7,8,9,10,12,13); PIs, EPIs; AND-OR-INVERT and NAND realisation.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q2</td><td>Same function via Quine–McCluskey; NAND and NOR implementation.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q3</td><td>Minimum SOP via QM, verify with K-map: F=Σm(0,2,4,8,9,10,11,12,13).</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q4</td><td>Determine prime implicants of F(A,B,C,D)=Σ(3,4,5,7,9,13,14,15); verify with K-map.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> (apply same method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q5</td><td>Minimum POS via K-map for a given product-of-sums expression.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q6</td><td>Simplify in SOP and POS: F=Σm(3,4,9,13,14,15)+Σd(2,5,10,12).</td><td>→ <a href="#dont-care-vem">Don't-Care Conditions &amp; VEM</a> (apply same method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q7</td><td>Simplify F=Σm(4,5,6,7,8)+Σd(11–15) via K-map and tabular method; compare; NAND implementation.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a> + <a href="#quine-mccluskey">Quine–McCluskey Method</a> (apply both methods, compare term counts)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q8</td><td>Minimum SOP via QM for a 5-variable function Σm(0,1,2,8,9,15,17,21,24,25,27,31).</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> (same tabulation method, 5 variables)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q9</td><td>Simplify F(w,x,y,z)=Σm(2,3,12,13,14,15) via tabulation method; implement with gates.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q10</td><td>Simplify F(w,x,y,z)=Σm(1,4,6,7,8,9,10,11,15) via tabulation method; implement.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q11</td><td>Determine PIs and EPIs of F(w,x,y,z)=Σm(1,4,6,7,8,9,10,11,15) via tabulation.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q12</td><td>Minimum SOP via QM and K-map: F=Σm(0,2,4,8,9,10,11,12,13).</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> (same function as Q3)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q13</td><td>Reduce via tabulation: F=Σm(2,3,4,6,7,9,11,13).</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q14</td><td>Find all PIs and minimum SOP via QM: F(a,b,c,d)=Σm(0,4,5,7,8,11,12,15).</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.5</td><td>Fill K-map and simplify a temperature/humidity activation-condition function.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 4</td><td>Simplify F(A,B,C,D)=Σm(0,1,2,5,8,9,10) in SOP/POS; F(w,x,y,z)=Σm(0,1,4,5,8,9,14,15)+Σd(11,12).</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a> (same K-map method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.4–1.6</td><td>Minterms in a 2-variable K-map; significance of edge-wraparound; how QM handles don't-cares.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a>, <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part B 2a</td><td>Explain the Quine–McCluskey method using F(A,B,C,D)=Σm(0,1,2,5,8,9,10,14).</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> (flagship worked example uses the identical method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q1(i)</td><td>Simplify F(P,Q,R,S)=Σm(0,1,2,4,5,7,8,9,14,15) using QM.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> <span class="pill">solved example added</span> (flagship)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q1(ii)</td><td>Simplify F(w,x,y,z)=Σm(0,1,4,5,8,9,14,15)+Σd(11,12) using K-map.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a> (same method as Fig 10 example)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Retest 4</td><td>Simplify f(A,B,C,D)=Σm(0,1,2,5,8,9,10) into SOP and POS.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a>, <a href="#simplification-solved">Solved Numericals — Simplification</a> (POS method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part B (retest) Q5</td><td>Simplify F(A,B,C,D)=Σm(0,1,2,4,6,8,9,11,13,15) using QM; PIs and EPIs.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> (same tabulation method)</td></tr>
+  </table>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</section>
+
+<!--SECTION:question-bank-->
+
+</div>
+</div>
+
+<script>
+const sections=document.querySelectorAll('.section[id]'),navLinks=document.querySelectorAll('.navlink');
+const setActive=()=>{let cur='';const y=window.scrollY+140;
+ sections.forEach(s=>{if(s.offsetTop<=y)cur=s.id});
+ navLinks.forEach(l=>{l.style.color='';l.style.fontWeight='';
+  if(l.getAttribute('href')==='#'+cur){l.style.color='var(--blue)';l.style.fontWeight='600'}})};
+window.addEventListener('scroll',setActive);setActive();
+</script>
+<button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch to dark mode">
+  <span class="ico" aria-hidden="true">🌙</span><span class="lbl">Dark</span>
+</button>
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('themeToggle');
+  function sync(){
+    var dark=root.getAttribute('data-theme')==='dark';
+    btn.querySelector('.ico').textContent=dark?'☀️':'🌙';
+    btn.querySelector('.lbl').textContent=dark?'Light':'Dark';
+    btn.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');
+  }
+  btn.addEventListener('click',function(){
+    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('adld-theme',next)}catch(e){}
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

@@ -4,10 +4,43 @@
   "title": "ADLD Exam Notes",
   "course": "Applied Digital Logic Design",
   "course_code": "CS234AI",
-  "subtitle": "Notes in progress",
+  "subtitle": "Notes in progress · Units 1–3 ready, 4–5 coming",
   "accent": "#93316B",
   "planned": 5,
   "search_hint": "e.g. K-map, flip-flop, counter",
-  "units": [],
-  "changelog": []
+  "units": [
+    {
+      "n": 1,
+      "source": "Applied Digital Logic Design - Unit 1 - Exam Notes.html",
+      "title": "Arithmetic & Simplification of Boolean Expressions",
+      "topics": "signed addition and subtraction, unsigned and signed multiplication, Booth and bit-pair recoding, integer division, floating point, Karnaugh maps, Quine-McCluskey",
+      "updated": "2026-11-07"
+    },
+    {
+      "n": 2,
+      "source": "Applied Digital Logic Design - Unit 2 Complete - Exam Notes.html",
+      "title": "Combinational & Sequential Logic Design",
+      "topics": "parallel adder, carry lookahead, magnitude comparator, decoders, encoders, multiplexers, latches, timing, master-slave, pulse-triggered and edge-triggered flip-flops, characteristic equations, shift registers, universal shift register",
+      "lab": "lab-overview",
+      "updated": "2026-11-07"
+    },
+    {
+      "n": 3,
+      "source": "Applied Digital Logic Design - Unit 3 - Exam Notes.html",
+      "title": "Counters & Synchronous Sequential Networks",
+      "topics": "ripple counters, synchronous counters, ring and Johnson counters, counter design, self-correcting counters, Mealy and Moore models, analysis, state diagrams, sequence detectors, state table reduction, implication table",
+      "updated": "2026-11-07"
+    }
+  ],
+  "changelog": [
+    {
+      "date": "2026-11-07",
+      "units": [
+        1,
+        2,
+        3
+      ],
+      "text": "First ADLD release: Unit 1, Unit 2 (combinational + sequential halves in one guide) and Unit 3, aligned to the new syllabus."
+    }
+  ]
 }
