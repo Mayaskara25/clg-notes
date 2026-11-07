@@ -1,0 +1,1669 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operating Systems — Unit III — Main Memory Management — Exam Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>:root{
+  --body:#2A2C2F; --paper:#F6F4EE; --surface:#FFFFFF; --ink:#1C1E21; --ink-soft:#5B6169; --ink-faint:#8A8F96;
+  --line:#E4E0D3; --line-soft:#EDEAE0;
+  --blue:#1D4E89; --blue-soft:#E8EFF8; --indigo:#4C3F91; --indigo-soft:#EEECF7;
+  --teal:#12796F; --teal-soft:#E4F3F0; --plum:#93316B; --plum-soft:#F6E9F0;
+  --amber:#A66A0D; --amber-soft:#F7EEDD;
+  --radius:10px; --shadow:0 1px 2px rgba(28,30,33,.04),0 6px 20px rgba(28,30,33,.05);
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Newsreader',Georgia,serif;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+code,.mono,.formula{font-family:'JetBrains Mono',monospace}
+/* shell */
+.shell{display:flex;min-height:100vh}
+.sidebar{width:290px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow-y:auto;padding:22px 18px 40px 22px}
+.sidebar::-webkit-scrollbar{width:6px}.sidebar::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+.brand{display:flex;flex-direction:column;gap:2px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--line-soft)}
+.brand .eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+.brand .title{font-family:'Newsreader',serif;font-size:20px;font-weight:600;line-height:1.25;margin-top:2px}
+.brand .sub{font-size:12.5px;color:var(--ink-soft);margin-top:4px}
+.navgroup{margin-bottom:14px}
+.navgroup .part-label{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);font-weight:700;margin:16px 0 6px 4px}
+.navgroup a.navlink,.navlink{display:flex;align-items:center;gap:8px;font-size:13.6px;color:var(--ink-soft);padding:6px 8px;border-radius:7px;text-decoration:none}
+.navlink:hover{background:var(--paper);color:var(--ink)} .navlink .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--ink-faint)}
+.navlink.top-of-part{font-weight:600;color:var(--ink)}
+.main{flex:1;min-width:0} .page{max-width:900px;margin:0 auto;padding:56px 44px 90px}
+@media(max-width:760px){.sidebar{display:none}.page{padding:34px 20px 70px}}
+/* cover */
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:70px 44px;max-width:1000px;margin:0 auto}
+.cover .kicker{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:14px}
+.cover h1{font-size:44px;line-height:1.12;max-width:760px;margin:0 0 16px}
+.cover .desc{font-size:16.5px;color:var(--ink-soft);max-width:620px;margin-bottom:8px}
+.cover .meta{display:flex;gap:22px;flex-wrap:wrap;margin:26px 0 44px;font-size:13px;color:var(--ink-soft)}
+.cover .meta span{display:flex;align-items:center;gap:7px} .cover .meta b{color:var(--ink);font-weight:600}
+.index-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:640px){.index-grid{grid-template-columns:1fr}}
+.index-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;display:block;box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s;border-left:4px solid var(--card-color,var(--blue))}
+.index-card:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(28,30,33,.09);text-decoration:none}
+.index-card .num{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-faint);font-weight:600}
+.index-card h3{font-size:17px;margin:5px 0;color:var(--ink);font-weight:600} .index-card p{font-size:13px;color:var(--ink-soft);margin:0;line-height:1.5}
+.part-divider{margin:34px 0 12px;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint)}
+/* section chrome */
+.section{scroll-margin-top:24px}
+.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;padding-bottom:14px;border-bottom:2px solid var(--accent,var(--blue))}
+.section-head .tag{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent,var(--blue));background:var(--accent-soft,var(--blue-soft));padding:3px 9px;border-radius:6px}
+.section-head h1{font-size:30px;margin:0}
+.section-sub{color:var(--ink-soft);font-size:14.5px;margin:10px 0 28px}
+.section p{margin:0 0 14px;color:var(--body)} .section ul,.section ol{margin:0 0 16px;padding-left:22px;color:var(--body)} .section li{margin-bottom:6px}
+.section h2{font-size:22px;margin:34px 0 12px;padding-top:4px} .section h3{font-size:17.5px;margin:24px 0 10px;color:var(--accent,var(--blue))}
+.section strong{color:var(--ink);font-weight:600}
+/* components */
+.callout{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:8px;padding:14px 18px;margin:18px 0;font-size:14.3px}
+.callout .label{font-weight:700;color:var(--amber);font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;display:block}
+.callout.clarify{border-left-color:var(--plum)}.callout.clarify .label{color:var(--plum)}
+.callout.key{border-left-color:var(--blue)}.callout.key .label{color:var(--blue)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin:18px 0;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.8px;background:var(--surface);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+th{background:var(--paper);text-align:left;padding:10px 13px;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-soft);border-bottom:1px solid var(--line)}
+td{padding:10px 13px;border-bottom:1px solid var(--line-soft);color:var(--body);vertical-align:top} tr:last-child td{border-bottom:none}
+.formula-block{background:#20232A;color:#E8EAED;border-radius:8px;padding:16px 20px;margin:16px 0;font-family:'JetBrains Mono',monospace;font-size:14px;overflow-x:auto;line-height:1.8;white-space:pre-wrap}
+.formula-block .c1{color:#7FB8E8}.formula-block .c2{color:#F2C88F}.formula-block .cm{color:#8A9099}
+.svg-wrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:20px 0;text-align:center;box-shadow:var(--shadow)}
+.svg-wrap .cap{font-size:12.5px;color:var(--ink-soft);margin-top:8px;font-style:italic} .svg-wrap svg{max-width:100%;height:auto}
+.qbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:22px 0 26px;box-shadow:var(--shadow);border-top:3px solid var(--accent,var(--blue))}
+.qbox .qmeta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.qbox .qsrc{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-faint)}
+.qbox .marks{font-size:11.5px;font-weight:700;color:var(--accent,var(--blue));background:var(--accent-soft,var(--blue-soft));padding:2px 9px;border-radius:5px}
+.qbox .qtext{font-weight:600;font-size:15.5px;margin-bottom:14px;color:var(--ink)}
+.qbox .ans-label{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;color:var(--ink-faint);margin:14px 0 6px}
+.steps{counter-reset:step}.steps li{list-style:none;position:relative;padding-left:34px;margin-bottom:12px}
+.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--accent-soft,var(--blue-soft));color:var(--accent,var(--blue));font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.backtotop{display:inline-block;margin-top:44px;font-size:13px;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:16px;width:100%}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.pill{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:20px;background:var(--paper);color:var(--ink-soft);border:1px solid var(--line);margin:2px 4px 2px 0}
+:root[data-theme="dark"]{
+  --body:#D6D4CE; --paper:#14161A; --surface:#1D2025; --ink:#ECEAE4; --ink-soft:#A8ADB5; --ink-faint:#7C828B;
+  --line:#33373E; --line-soft:#2A2D33;
+  --blue:#7FB0E8; --blue-soft:#1C2B3F; --indigo:#A99CEB; --indigo-soft:#2A2642; --teal:#4FC1B3; --teal-soft:#15302D;
+  --plum:#E58BBD; --plum-soft:#3A2230; --amber:#E0A94C; --amber-soft:#3A2F18;
+  --shadow:0 1px 2px rgba(0,0,0,.45),0 6px 20px rgba(0,0,0,.30);
+}
+:root[data-theme="dark"] .formula-block{background:#101216;border:1px solid var(--line)}
+code,pre,.mono,.formula-block{font-variant-ligatures:none;font-feature-settings:'liga' 0,'calt' 0} /* keep -> == != literal */
+body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap{transition:background-color .2s,color .2s,border-color .2s}
+.theme-toggle{position:fixed;top:14px;right:16px;z-index:50;display:flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 12.5px 'Inter',system-ui,sans-serif;cursor:pointer;box-shadow:var(--shadow)}
+.theme-toggle:hover{border-color:var(--blue)} .theme-toggle:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.theme-toggle .ico{font-size:15px;line-height:1}
+/* SVG diagrams: re-map the inline SVG palette (see §9). One pair of rules per hex the diagrams use. */
+:root[data-theme="dark"] svg [fill="#E4F3F0" i]{fill:#15302D}   /* soft fills -> dark tints */
+:root[data-theme="dark"] svg [fill="#FFFFFF" i]{fill:#1D2025}
+:root[data-theme="dark"] svg [fill="#1C1E21" i],:root[data-theme="dark"] svg [fill="#2A2C2F" i]{fill:#ECEAE4} /* text */
+:root[data-theme="dark"] svg [fill="#5B6169" i]{fill:#A8ADB5} :root[data-theme="dark"] svg [stroke="#5B6169" i]{stroke:#A8ADB5}
+:root[data-theme="dark"] svg [fill="#12796F" i]{fill:#4FC1B3} :root[data-theme="dark"] svg [stroke="#12796F" i]{stroke:#4FC1B3}
+/* ...repeat for every other fill/stroke hex found in your SVGs (accents: #1D4E89->#7FB0E8, #4C3F91->#A99CEB,
+   #93316B->#E58BBD, #A66A0D->#E0A94C; soft fills: #E8EFF8->#1C2B3F, #EEECF7->#2A2642, #F6E9F0->#3A2230,
+   #F7EEDD->#3A2F18; rule stroke #E4E0D3->#3C4047). Careful: don't put fill and stroke in one rule unless
+   they should both change, or an arrow's stroke will gain a fill. */
+
+[hidden]{display:none!important}
+.legacy-topic{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin:18px 0;overflow:hidden}
+.legacy-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 18px}
+.legacy-heading-text{min-width:0;flex:1}
+.legacy-heading h1,.legacy-heading h2,.legacy-heading h3{font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.5;margin:0;padding:0;color:var(--ink);font-weight:600}
+.scope-note{display:block;font-size:12px;color:var(--ink-soft);margin-top:3px}
+.extra-toggle{flex-shrink:0;border:1px solid var(--line);background:var(--paper);color:var(--blue);border-radius:999px;padding:7px 16px;font:600 13px 'Inter',system-ui,sans-serif;cursor:pointer;min-width:66px}
+.extra-toggle:hover{border-color:var(--blue)}
+.extra-toggle:focus-visible,.navlink:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.legacy-content{padding:4px 20px 20px;border-top:1px solid var(--line-soft)}
+.legacy-section{padding-top:6px;padding-bottom:6px}
+.legacy-content .legacy-topic{box-shadow:none}
+.source-note{font-size:12.5px;color:var(--ink-soft)!important;margin:18px 0!important}
+.topic-badge{font-size:10px;color:var(--ink-soft);font-weight:400;margin-left:auto}
+.section:target{scroll-margin-top:55px}
+code,pre,.mono,.formula-block{font-variant-ligatures:none;font-feature-settings:'liga' 0,'calt' 0}
+pre.formula-block{white-space:pre;tab-size:4}
+.formula-block .tk,.formula-block .tt,.formula-block .tf,.formula-block .tn,.formula-block .ts,.formula-block .tm{color:inherit}
+.formula-block .tc{color:var(--ink-faint);font-style:italic}
+body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{transition:background-color .2s,color .2s,border-color .2s}
+@media(max-width:640px){.legacy-heading{gap:10px;padding:13px}.legacy-content{padding:4px 13px 15px}.legacy-heading h1,.legacy-heading h2,.legacy-heading h3{font-size:14px}.extra-toggle{padding:6px 12px}}
+
+:root[data-theme="dark"] svg [fill="#E4F3F0" i]{fill:#15302D}
+:root[data-theme="dark"] svg [stroke="#E4F3F0" i]{stroke:#15302D}
+:root[data-theme="dark"] svg [fill="#FFFFFF" i]{fill:#1D2025}
+:root[data-theme="dark"] svg [stroke="#FFFFFF" i]{stroke:#1D2025}
+:root[data-theme="dark"] svg [fill="#fff" i]{fill:#1D2025}
+:root[data-theme="dark"] svg [stroke="#fff" i]{stroke:#1D2025}
+:root[data-theme="dark"] svg [fill="#1C1E21" i]{fill:#ECEAE4}
+:root[data-theme="dark"] svg [stroke="#1C1E21" i]{stroke:#ECEAE4}
+:root[data-theme="dark"] svg [fill="#2A2C2F" i]{fill:#ECEAE4}
+:root[data-theme="dark"] svg [stroke="#2A2C2F" i]{stroke:#ECEAE4}
+:root[data-theme="dark"] svg [fill="#5B6169" i]{fill:#A8ADB5}
+:root[data-theme="dark"] svg [stroke="#5B6169" i]{stroke:#A8ADB5}
+:root[data-theme="dark"] svg [fill="#8A9096" i]{fill:#7C828B}
+:root[data-theme="dark"] svg [stroke="#8A9096" i]{stroke:#7C828B}
+:root[data-theme="dark"] svg [fill="#8A8F96" i]{fill:#7C828B}
+:root[data-theme="dark"] svg [stroke="#8A8F96" i]{stroke:#7C828B}
+:root[data-theme="dark"] svg [fill="#1D4E89" i]{fill:#7FB0E8}
+:root[data-theme="dark"] svg [stroke="#1D4E89" i]{stroke:#7FB0E8}
+:root[data-theme="dark"] svg [fill="#4C3F91" i]{fill:#A99CEB}
+:root[data-theme="dark"] svg [stroke="#4C3F91" i]{stroke:#A99CEB}
+:root[data-theme="dark"] svg [fill="#12796F" i]{fill:#4FC1B3}
+:root[data-theme="dark"] svg [stroke="#12796F" i]{stroke:#4FC1B3}
+:root[data-theme="dark"] svg [fill="#93316B" i]{fill:#E58BBD}
+:root[data-theme="dark"] svg [stroke="#93316B" i]{stroke:#E58BBD}
+:root[data-theme="dark"] svg [fill="#A66A0D" i]{fill:#E0A94C}
+:root[data-theme="dark"] svg [stroke="#A66A0D" i]{stroke:#E0A94C}
+:root[data-theme="dark"] svg [fill="#E8EFF8" i]{fill:#1C2B3F}
+:root[data-theme="dark"] svg [stroke="#E8EFF8" i]{stroke:#1C2B3F}
+:root[data-theme="dark"] svg [fill="#EEECF7" i]{fill:#2A2642}
+:root[data-theme="dark"] svg [stroke="#EEECF7" i]{stroke:#2A2642}
+:root[data-theme="dark"] svg [fill="#F6E9F0" i]{fill:#3A2230}
+:root[data-theme="dark"] svg [stroke="#F6E9F0" i]{stroke:#3A2230}
+:root[data-theme="dark"] svg [fill="#F7EEDD" i]{fill:#3A2F18}
+:root[data-theme="dark"] svg [stroke="#F7EEDD" i]{stroke:#3A2F18}
+:root[data-theme="dark"] svg [fill="#EDEAE0" i]{fill:#2A2D33}
+:root[data-theme="dark"] svg [stroke="#EDEAE0" i]{stroke:#2A2D33}
+:root[data-theme="dark"] svg [fill="#E4E0D3" i]{fill:#33373E}
+:root[data-theme="dark"] svg [stroke="#E4E0D3" i]{stroke:#33373E}
+svg text{font-family:'Inter',system-ui,sans-serif}
+.section-head{flex-wrap:wrap}.section-head .tag{flex-shrink:0}
+.section-head h1{line-height:1.2}
+.source-note a{overflow-wrap:anywhere}
+td,th{overflow-wrap:anywhere}
+@media(max-width:640px){.section-head h1{font-size:26px}.cover h1{font-size:35px}}
+@media print{.sidebar,.theme-toggle,.extra-toggle{display:none}.page{padding:25px}.cover{min-height:auto}}
+</style><meta name="color-scheme" content="light dark">
+<script>(function(){var m=false;try{m=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</script></head><body>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode">🌙 Dark</button>
+<div class="shell"><nav class="sidebar" aria-label="Unit III topics"><div class="brand">
+<span class="eyebrow">CS235AT · Semester III</span><span class="title">Operating Systems<br>Unit III — Exam Notes</span>
+<span class="sub">Main Memory Management</span></div><a class="navlink" href="#index"><span class="dot"></span>Index</a>
+<a class="navlink" href="#syllabus-map"><span class="dot"></span>Syllabus map</a>
+<div class="navgroup"><div class="part-label">Main Memory Management</div><a class="navlink" href="#memory-binding"><span class="dot"></span>3.1 Address binding</a>
+<a class="navlink" href="#memory-addresses"><span class="dot"></span>3.2 Logical versus physical addresses</a>
+<a class="navlink" href="#memory-loading"><span class="dot"></span>3.3 Dynamic loading</a>
+<a class="navlink" href="#memory-linking"><span class="dot"></span>3.4 Dynamic linking and shared libraries</a>
+<a class="navlink" href="#memory-swapping"><span class="dot"></span>3.5 Swapping</a>
+<a class="navlink" href="#memory-contiguous"><span class="dot"></span>3.6 Contiguous allocation</a>
+<a class="navlink" href="#memory-paging"><span class="dot"></span>3.7 Paging</a>
+<a class="navlink" href="#memory-segmentation"><span class="dot"></span>3.8 Segmentation</a>
+<a class="navlink" href="#memory-solved"><span class="dot"></span>Solved numericals</a>
+<a class="navlink" href="#memory-quick-revision"><span class="dot"></span>Main-memory revision</a>
+</div><div class="navgroup"><div class="part-label">Older extras · now Unit II</div><a class="navlink" href="#t3-1"><span class="dot"></span>Background &amp; Race Conditions <span class="topic-badge">extra</span></a>
+<a class="navlink" href="#t3-2"><span class="dot"></span>The Critical Section Problem <span class="topic-badge">extra</span></a>
+<a class="navlink" href="#t3-3"><span class="dot"></span>Peterson&#x27;s Solution <span class="topic-badge">extra</span></a>
+<a class="navlink" href="#t3-4"><span class="dot"></span>Synchronization Hardware <span class="topic-badge">extra</span></a>
+<a class="navlink" href="#t3-5"><span class="dot"></span>Mutex Locks <span class="topic-badge">extra</span></a>
+<a class="navlink" href="#t3-6"><span class="dot"></span>Semaphores <span class="topic-badge">extra</span></a>
+<a class="navlink" href="#t3-7"><span class="dot"></span>Bounded-Buffer Problem <span class="topic-badge">extra</span></a>
+<a class="navlink" href="#t3-8"><span class="dot"></span>Readers-Writers Problem <span class="topic-badge">extra</span></a>
+<a class="navlink" href="#t3-9"><span class="dot"></span>Dining Philosophers Problem <span class="topic-badge">extra</span></a>
+<a class="navlink" href="#t3-10"><span class="dot"></span>Deadlock &amp; Starvation <span class="topic-badge">extra</span></a>
+<a class="navlink" href="#quick-revision"><span class="dot"></span>Quick Revision Sheet <span class="topic-badge">extra</span></a>
+<a class="navlink" href="#question-bank"><span class="dot"></span>Question Bank <span class="topic-badge">extra</span></a>
+</div></nav><div class="main"><section class="page cover" id="index"><span class="kicker">CS235AT · Operating Systems · Semester III</span>
+<h1>Unit III — Main Memory Management</h1>
+<p class="desc">A syllabus-led guide to how programs acquire addresses, enter memory and share it safely. Includes complete explanations, hand-built diagrams and worked memory-allocation and address-translation problems.</p>
+<div class="meta"><span>📘 <b>8</b> core topics</span><span>📊 <b>20</b> diagrams</span><span>🧮 <b>18</b> worked examples</span><span>⏱ <b>9</b> teaching hours</span></div>
+<p class="source-note">The diagram and example totals include retained, collapsed legacy material. The eight open topics below are the current Unit III syllabus.</p>
+<div class="part-divider">Main Memory Management · syllabus order</div><div class="index-grid"><a class="index-card" href="#memory-binding" style="--card-color:var(--blue)"><span class="num">3.1</span><h3>Address binding</h3><p>Compile-time, load-time and execution-time binding.</p></a><a class="index-card" href="#memory-addresses" style="--card-color:var(--blue)"><span class="num">3.2</span><h3>Logical versus physical addresses</h3><p>The MMU, relocation and address protection.</p></a><a class="index-card" href="#memory-loading" style="--card-color:var(--blue)"><span class="num">3.3</span><h3>Dynamic loading</h3><p>Bring a routine into memory only when it is called.</p></a><a class="index-card" href="#memory-linking" style="--card-color:var(--blue)"><span class="num">3.4</span><h3>Dynamic linking and shared libraries</h3><p>Resolve library references and share read-only code.</p></a><a class="index-card" href="#memory-swapping" style="--card-color:var(--blue)"><span class="num">3.5</span><h3>Swapping</h3><p>Move process images between memory and backing store.</p></a><a class="index-card" href="#memory-contiguous" style="--card-color:var(--blue)"><span class="num">3.6</span><h3>Contiguous allocation</h3><p>Partitions, hole selection, fragmentation and compaction.</p></a><a class="index-card" href="#memory-paging" style="--card-color:var(--blue)"><span class="num">3.7</span><h3>Paging</h3><p>Address translation, page tables, TLBs, protection and sharing.</p></a><a class="index-card" href="#memory-segmentation" style="--card-color:var(--blue)"><span class="num">3.8</span><h3>Segmentation</h3><p>Variable-sized logical units, bounds checking and comparison.</p></a></div>
+<p class="source-note"><a href="#memory-solved">Solved-numerical index</a> · <a href="#memory-quick-revision">Quick revision</a> · <a href="#t3-1">Older synchronization extras</a></p></section>
+<section class="page section" id="syllabus-map" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
+<div class="section-head"><span class="tag">MAP</span><h1>Syllabus map</h1></div>
+<p class="section-sub">CS235AT · Unit III · 9 hours. The syllabus image determines the coverage and order.</p>
+<table><tr><th>Official topic</th><th>Where it is taught</th><th>Local Silberschatz, ninth edition</th></tr>
+<tr><td>Address binding</td><td><a href="#memory-binding">3.1 Binding stages and program preparation</a></td><td>§8.1.2, pp.354–355; PDF pp.378–379</td></tr>
+<tr><td>Logical versus physical-address space</td><td><a href="#memory-addresses">3.2 Address spaces, MMU and protection</a></td><td>§8.1.3, pp.355–357; PDF pp.379–381</td></tr>
+<tr><td>Dynamic loading</td><td><a href="#memory-loading">3.3 Routine loading on first use</a></td><td>§8.1.4, p.357; PDF p.381</td></tr>
+<tr><td>Dynamic linking and shared libraries</td><td><a href="#memory-linking">3.4 Link resolution, shared code and private data</a></td><td>§8.1.5, pp.357–358; PDF pp.381–382</td></tr>
+<tr><td>Swapping</td><td><a href="#memory-swapping">3.5 Whole-process swapping and its costs</a></td><td>§8.2, pp.358–360; PDF pp.382–384</td></tr>
+<tr><td>Contiguous allocation</td><td><a href="#memory-contiguous">3.6 Partitions, placement and fragmentation</a></td><td>§8.3, pp.360–364; PDF pp.384–388</td></tr>
+<tr><td>Paging</td><td><a href="#memory-paging">3.7 Pages, frames, translation, TLB, protection and sharing</a></td><td>§8.5, pp.367–377; PDF pp.391–401</td></tr>
+<tr><td>Segmentation</td><td><a href="#memory-segmentation">3.8 Logical segments and segment tables</a></td><td>§8.4, pp.364–367; PDF pp.388–391</td></tr></table>
+<div class="callout clarify"><span class="label">How the sources combine / where this guide fills gaps</span>
+The previous Unit III guide covered synchronization. This new main-memory teaching is drawn from the local textbook, with new practice problems labelled as constructed examples. Paging precedes segmentation to match the syllabus. The textbook is a supplementary source; it is not one of the references printed in the syllabus image. Brief hardware and protection prerequisites support the named topics.</div>
+<div class="callout key"><span class="label">Scope and preserved extras</span>
+Demand paging, replacement algorithms, allocation of frames as a virtual-memory policy, and thrashing belong to Unit IV. Synchronization topics, their old revision sheet and their old question bank remain below under View/Hide controls, in their original relative order. Those historical explanations are labelled and link to corrected Unit II material. The exact original guide and records are also archived.</div>
+<p class="source-note">All diagrams are redrawn as inline SVG. Numbers are recomputed in the accompanying verification record. No new memory question is attributed to an unavailable exam paper.</p>
+<a class="backtotop" href="#index">↑ Back to index</a></section>
+<section class="page section" id="memory-binding" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
+<div class="section-head"><span class="tag">3.1</span><h1>Address binding</h1></div>
+<p class="section-sub">How names and offsets in a program become addresses that memory can use.</p>
+<p><strong>Address binding</strong> is the mapping of instructions and data from one address representation to another. A source program refers to symbolic names such as <code>count</code>. A compiler or assembler can represent a name as an offset relative to a module. A linker combines object modules and resolves references between them; a loader places the resulting executable in memory. Depending on the scheme, physical placement is fixed during compilation, during loading, or during execution.</p>
+<p>Keep the <strong>program-preparation stages</strong> separate from the <strong>time of final address binding</strong>. Compilation, linking and loading can all occur even when the final physical address is determined only on a memory reference. Linkers resolve symbols; memory-management hardware translates running-process addresses. These solve related but different problems.</p>
+<div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 250" role="img" aria-label="Source program passes through compilation, linking, loading and execution">
+<defs><marker id="m-bind" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g font-size="13" text-anchor="middle" fill="#1C1E21">
+<rect x="10" y="65" width="120" height="66" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="70" y="91">Source program</text><text x="70" y="113">symbolic names</text>
+<rect x="155" y="65" width="120" height="66" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="215" y="91">Object modules</text><text x="215" y="113">relative offsets</text>
+<rect x="300" y="65" width="120" height="66" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="360" y="91">Executable</text><text x="360" y="113">linked image</text>
+<rect x="445" y="65" width="120" height="66" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="505" y="91">Loaded process</text><text x="505" y="113">memory image</text>
+<rect x="590" y="65" width="120" height="66" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="650" y="91">Running process</text><text x="650" y="113">MMU translation</text>
+<text x="142" y="48" font-size="11">compile</text><text x="288" y="48" font-size="11">link</text><text x="433" y="48" font-size="11">load</text><text x="578" y="48" font-size="11">execute</text>
+<text x="360" y="181">Final physical binding may occur at compile time, load time or run time.</text>
+<text x="360" y="210" fill="#5B6169" font-size="12">The preparation pipeline does not force a particular binding policy.</text></g>
+<g stroke="#1D4E89" stroke-width="2" marker-end="url(#m-bind)"><path d="M130 98 L153 98" fill="none"/><path d="M275 98 L298 98" fill="none"/><path d="M420 98 L443 98" fill="none"/><path d="M565 98 L588 98" fill="none"/></g></svg><div class="cap">Fig 1. Program preparation and the possible times of final address binding.</div></div>
+<h2>The three binding times</h2>
+<table><tr><th>Binding time</th><th>How it works</th><th>If the physical starting address changes</th></tr>
+<tr><td><strong>Compile time</strong></td><td>The starting location is known in advance. The compiler generates absolute addresses for that location.</td><td>Recompile the absolute code for the new location.</td></tr>
+<tr><td><strong>Load time</strong></td><td>The compiler produces relocatable code. The loader adjusts address references when it selects the physical starting location.</td><td>Reload and perform relocation for the new starting location. Ordinary load-time binding does not support moving an executing image merely by changing a base register.</td></tr>
+<tr><td><strong>Execution time</strong></td><td>The running program uses logical addresses. Hardware maps them to physical addresses when they are used.</td><td>Update the mapping when moving the process; its logical addresses can stay the same. Hardware translation support is required.</td></tr></table>
+<p>Execution-time binding allows a process to resume at a different physical location after being swapped out, and supports the mappings used in paging and segmentation. The mapping must remain correct for every reference. The operating system controls it using privileged operations so a user process cannot redirect its accesses into another process’s memory.</p>
+<div class="qbox" id="memory-ex-binding"><div class="qmeta"><span class="qsrc">Constructed practice using §8.1.2 notation</span><span class="marks">worked example</span></div>
+<div class="qtext">A symbol is at byte offset 14 in a module. The module is placed at physical base 74000, then considered for placement at base 90000. What are the corresponding addresses, and what must change under each binding policy?</div>
+<div class="formula-block">First placement: 74000 + 14 = <span class="c1">74014</span>
+New placement:   90000 + 14 = <span class="c1">90014</span></div>
+<p>The relative offset stays 14. With compile-time absolute code, regenerate the addresses by recompilation. With load-time binding, reload and relocate the image. With execution-time binding, a logical reference to offset 14 can stay unchanged while the hardware mapping is changed to the new base. The numerical addition is the same; the time and mechanism of the addition differ.</p></div>
+<p class="source-note">Source: Silberschatz et al., ninth edition, §8.1.2, printed pp.354–355 (local PDF pp.378–379).</p>
+<a class="backtotop" href="#index">↑ Back to index</a></section>
+<section class="page section" id="memory-addresses" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
+<div class="section-head"><span class="tag">3.2</span><h1>Logical versus physical addresses</h1></div>
+<p class="section-sub">One address identifies a location within a process; another identifies a location in physical memory.</p>
+<p>A <strong>logical address</strong> is generated by the CPU for an instruction or data reference. A <strong>physical address</strong> identifies the actual location presented to main memory. The collection of logical addresses of a program is its logical address space; the corresponding physical locations form its physical address space. In the textbook’s execution-time model, “virtual address” and “logical address” are used interchangeably.</p>
+<p>In the textbook’s simple compile-time and load-time models, the executing instructions use already-bound absolute addresses, so logical and physical addresses coincide. With execution-time binding, they can differ. A <strong>memory-management unit (MMU)</strong> performs the mapping while the program runs. Thus a pointer can continue to denote the same logical location even when that location has a different physical backing.</p>
+<h2>Dynamic relocation with a limit check</h2>
+<p>In a simple contiguous scheme, the <strong>relocation register</strong> stores the process’s starting physical address. The <strong>limit register</strong> stores the length of its logical address range. For a nonnegative logical address, the hardware first checks that the offset is smaller than the limit. If it is legal, the MMU adds the relocation value; otherwise it traps to the operating system.</p>
+<div class="formula-block">Legal logical offset: <span class="c1">0 ≤ LA &lt; limit</span>
+If legal:             <span class="c1">PA = base + LA</span>
+Physical range:       base ≤ PA &lt; base + limit</div>
+<div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 240" role="img" aria-label="MMU checks logical address against limit then adds relocation base">
+<defs><marker id="m-mmu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g fill="#1C1E21" text-anchor="middle" font-size="13"><rect x="15" y="75" width="100" height="60" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="65" y="100">CPU</text><text x="65" y="120">LA = 346</text>
+<rect x="165" y="75" width="160" height="60" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="245" y="101">0 ≤ LA &lt; 1000?</text><text x="245" y="122" font-size="11">limit = 1000</text>
+<rect x="375" y="75" width="130" height="60" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="440" y="100">Add base</text><text x="440" y="120">14000 + 346</text>
+<rect x="555" y="75" width="130" height="60" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="620" y="100">Memory</text><text x="620" y="120">PA = 14346</text>
+<rect x="165" y="185" width="160" height="36" rx="7" fill="#F6E9F0" stroke="#93316B"/><text x="245" y="208">Trap to OS</text><text x="346" y="91" font-size="11">yes</text><text x="265" y="164" font-size="11">no</text>
+<text x="350" y="30" fill="#5B6169" font-size="12">Hardware performs the check and translation on every user reference.</text></g>
+<g stroke="#1D4E89" stroke-width="2" marker-end="url(#m-mmu)"><path d="M115 105 L163 105" fill="none"/><path d="M325 105 L373 105" fill="none"/><path d="M505 105 L553 105" fill="none"/><path d="M245 135 L245 183" fill="none"/></g></svg><div class="cap">Fig 2. Relocation with bounds checking; the limit is a length, so the upper bound is exclusive.</div></div>
+<p>Only the operating system can load the mapping and protection registers. During a context switch, the dispatcher installs the values for the process that is about to run. Otherwise, the new process could use the previous process’s address range. The check is performed by hardware rather than a system call for every load and store.</p>
+<div class="callout clarify"><span class="label">Clarifying two base–limit conventions</span>
+Book §8.1.1 checks an already-physical address against <code>base ≤ address &lt; base + limit</code>. The relocation scheme in §8.3.1 instead checks a logical offset against <code>0 ≤ LA &lt; limit</code> and then adds the base. State which convention you use; comparing a logical offset directly with the physical base mixes the two models.</div>
+<div class="qbox" id="memory-ex-relocation"><div class="qmeta"><span class="qsrc">Book Fig.8.4 base/offset; constructed limit and boundary tests</span><span class="marks">worked example</span></div>
+<div class="qtext">The relocation base is 14000 and the limit is 1000 bytes. Translate offsets 0, 346, 999 and 1000. What happens to offset 346 if the base changes to 20000?</div>
+<table><tr><th>Logical offset</th><th>Check</th><th>Physical result</th></tr><tr><td>0</td><td>0 &lt; 1000</td><td>14000 + 0 = 14000</td></tr><tr><td>346</td><td>346 &lt; 1000</td><td>14000 + 346 = 14346</td></tr><tr><td>999</td><td>999 &lt; 1000</td><td>14000 + 999 = 14999</td></tr><tr><td>1000</td><td>1000 is not smaller than 1000</td><td>Trap; do not perform the memory access</td></tr></table>
+<p>The legal physical range is 14000–14999 inclusive. After relocation, the unchanged logical offset 346 maps to <strong>20000 + 346 = 20346</strong>. The program does not need to replace this logical pointer.</p></div>
+<p class="source-note">Sources: §8.1.3, printed pp.355–357 (PDF pp.379–381); §8.3.1 and Fig.8.6, printed p.361 (PDF p.385).</p>
+<a class="backtotop" href="#index">↑ Back to index</a></section>
+<section class="page section" id="memory-loading" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
+<div class="section-head"><span class="tag">3.3</span><h1>Dynamic loading</h1></div>
+<p class="section-sub">Load a routine only when execution actually needs it.</p>
+<p><strong>Dynamic loading</strong> postpones bringing a routine into memory until the routine is called. The main program is loaded and begins execution, while other routines remain on secondary storage in a relocatable form. Before transferring control to an unloaded routine, the program invokes a loader, which finds space, loads the routine, performs the required relocation, and updates the program’s address information. Subsequent calls can use the resident routine directly.</p>
+<p>This improves memory utilization because code that is never executed need not occupy memory. A program may contain a large diagnostic routine for an unusual error; keeping that routine absent during normal operation leaves memory available for useful work. It is the <em>portion currently needed</em>, rather than every possible routine, that must be loaded under this scheme.</p>
+<div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 285" role="img" aria-label="A call checks for a resident routine; a missing routine is loaded before execution">
+<defs><marker id="m-load" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g fill="#1C1E21" text-anchor="middle" font-size="13">
+<rect x="15" y="45" width="120" height="60" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="75" y="70">Main program</text><text x="75" y="90">calls routine R</text>
+<rect x="190" y="45" width="160" height="60" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="270" y="70">Is R already</text><text x="270" y="90">in memory?</text>
+<rect x="505" y="45" width="180" height="60" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="595" y="70">Transfer control</text><text x="595" y="90">to R</text>
+<rect x="190" y="180" width="160" height="70" rx="8" fill="#EDEAE0" stroke="#5B6169"/><text x="270" y="207">Read relocatable R</text><text x="270" y="230">from secondary storage</text>
+<rect x="445" y="180" width="210" height="70" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="550" y="207">Load and relocate R</text><text x="550" y="230">Update address information</text>
+<text x="425" y="61" font-size="12">yes</text><text x="290" y="146" font-size="12">no</text></g>
+<g stroke="#1D4E89" stroke-width="2" marker-end="url(#m-load)"><path d="M135 75 L188 75" fill="none"/><path d="M350 75 L503 75" fill="none"/><path d="M270 105 L270 178" fill="none"/><path d="M350 215 L443 215" fill="none"/><path d="M595 180 L595 107" fill="none"/></g></svg><div class="cap">Fig 3. First use loads the routine; later calls can take the resident-routine path.</div></div>
+<h2>Operating-system support and limitations</h2>
+<p>Dynamic loading does not inherently require special operating-system support: a program can be designed to manage its own routine loading. Library facilities supplied by an operating system can make this easier. This statement concerns the loading technique; normal memory protection and file access still operate under the system’s rules.</p>
+<p>Its costs include the delay on first use and the complexity of tracking where routines are located and whether they are resident. A routine that has been loaded does not automatically disappear after returning. A complete implementation must decide when its memory can be released and ensure no outstanding reference still needs it. Dynamic loading alone also does not imply that every arbitrary program larger than RAM can run; the needed code, data and loader structures must fit the scheme’s available memory.</p>
+<div class="callout key"><span class="label">Reusable scenario rule</span>
+If the question is about an infrequently called routine taking memory unnecessarily, explain dynamic loading. If it is about resolving references to a library at execution time, explain dynamic linking. If it is about transferring individual pages on an access to a nonresident page, that is demand paging, a Unit IV topic.</div>
+<h2>A conceptual first-call walkthrough</h2>
+<p>Suppose an application’s recovery routine is kept on disk. Normal requests never enter it, so it stays unloaded. On the first error that needs recovery, the caller discovers that the routine has no resident entry point, requests its loading and relocation, and records its entry address. Control then passes to recovery. A later error can use the recorded address while the routine remains loaded. This walkthrough explains the sequence without assuming a particular operating-system API.</p>
+<p class="source-note">Source: §8.1.4, printed p.357 (local PDF p.381). The walkthrough is a constructed illustration of the textbook mechanism.</p>
+<a class="backtotop" href="#index">↑ Back to index</a></section>
+<section class="page section" id="memory-linking" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
+<div class="section-head"><span class="tag">3.4</span><h1>Dynamic linking and shared libraries</h1></div>
+<p class="section-sub">Delay library-reference resolution and let several processes use shared code.</p>
+<p><strong>Static linking</strong> incorporates the required library object code into a program’s executable image. Separate programs can therefore carry separate copies of the same library routines. <strong>Dynamic linking</strong> postpones the resolution of library references until the program is run. The executable retains information that allows a runtime linker to locate the required library routines instead of embedding every routine in the executable.</p>
+<p>The textbook explains this using a small <strong>stub</strong> for a library reference. When the reference is first used, the stub locates the routine or arranges to load its library, resolves the address, and directs execution to it. The resolved target is recorded so later calls avoid repeating the same resolution. This is the conceptual lazy-linking model; a runtime linker can also resolve references when the program starts.</p>
+<h2>What is shared, and what stays private?</h2>
+<p>A <strong>shared library</strong> can have its read-only code mapped into more than one process. Each process uses its own virtual mappings, so the same physical code need not appear at the same logical address in every process. Writable process-specific state remains private unless shared writable memory is deliberately arranged. Shared code must not modify itself, and hardware permissions should enforce its protection.</p>
+<div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 285" role="img" aria-label="Two processes share one physical library code image but have separate private data">
+<defs><marker id="m-share" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g font-size="13" text-anchor="middle" fill="#1C1E21"><text x="105" y="26">Process A mappings</text><text x="595" y="26">Process B mappings</text><text x="350" y="26">Physical memory</text>
+<rect x="20" y="55" width="170" height="70" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="105" y="83">Library code</text><text x="105" y="106" font-size="12">virtual address in A</text>
+<rect x="510" y="55" width="170" height="70" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="595" y="83">Library code</text><text x="595" y="106" font-size="12">virtual address in B</text>
+<rect x="255" y="55" width="190" height="70" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="350" y="83">Shared code frames</text><text x="350" y="106" font-size="12">one read-only copy</text>
+<rect x="20" y="170" width="170" height="55" rx="8" fill="#EDEAE0" stroke="#5B6169"/><text x="105" y="203">A’s writable data</text>
+<rect x="510" y="170" width="170" height="55" rx="8" fill="#EDEAE0" stroke="#5B6169"/><text x="595" y="203">B’s writable data</text>
+<rect x="255" y="160" width="190" height="35" rx="6" fill="#EDEAE0" stroke="#5B6169"/><text x="350" y="183">Private data frames: A</text>
+<rect x="255" y="210" width="190" height="35" rx="6" fill="#EDEAE0" stroke="#5B6169"/><text x="350" y="233">Private data frames: B</text>
+<text x="350" y="275" font-size="12" fill="#5B6169">Sharing physical code does not merge the processes’ address spaces.</text></g>
+<g stroke="#1D4E89" stroke-width="2" marker-end="url(#m-share)"><path d="M190 90 L253 90" fill="none"/><path d="M510 90 L447 90" fill="none"/><path d="M190 197 L253 178" fill="none"/><path d="M510 197 L447 228" fill="none"/></g></svg><div class="cap">Fig 4. Independent process mappings refer to common code and distinct private data.</div></div>
+<p>The operating system supplies protection and the mappings needed to share physical pages safely; the runtime linker resolves library symbols. Dynamic linking and physical sharing are closely related but should not be treated as synonyms. Linking concerns how references are resolved. Sharing concerns which physical memory is used by those mappings.</p>
+<h2>Benefits and compatibility</h2>
+<p>Dynamic linking reduces duplication in executables, and shared mappings can reduce physical-memory use. Programs can use a compatible library repair without all being statically relinked. Compatibility still matters: a changed interface or calling convention can break an old program. Library versioning and compatibility rules allow the intended version to be selected, including keeping incompatible versions side by side. An update should not be assumed to replace code inside every process already running.</p>
+<table><tr><th>Technique</th><th>What is delayed or reused?</th><th>Main purpose</th></tr>
+<tr><td>Dynamic loading</td><td>Bringing a routine’s code into memory</td><td>Avoid loading code that is never called</td></tr>
+<tr><td>Dynamic linking</td><td>Resolving executable references to library routines</td><td>Avoid embedding all required library code in each executable; permit compatible library reuse</td></tr>
+<tr><td>Shared library mappings</td><td>One physical code image is used by several processes</td><td>Reduce physical duplication while preserving isolation</td></tr></table>
+<div class="qbox" id="memory-ex-sharing"><div class="qmeta"><span class="qsrc">Book §8.5.4, printed pp.376–377</span><span class="marks">worked example</span></div>
+<div class="qtext">Forty users run an editor containing 150 units of sharable code and 50 units of private data per user. Compare separate code copies with one shared code copy. Use the same memory unit throughout.</div>
+<div class="formula-block">Separate copies = 40 × (150 + 50) = <span class="c1">8000 units</span>
+Shared code     = 150 + (40 × 50) = <span class="c1">2150 units</span>
+Memory saved    = 8000 − 2150     = <span class="c1">5850 units</span></div>
+<p>The code is counted once in the shared case, while the writable data is still counted for every user. The textbook labels these units KB; the saving does not depend on the byte conversion convention. Mapping and page-table overheads are excluded from this simplified comparison.</p></div>
+<p class="source-note">Sources: §8.1.5, printed pp.357–358 (PDF pp.381–382); shared-code explanation in §8.5.4, pp.376–377 (PDF pp.400–401).</p>
+<a class="backtotop" href="#index">↑ Back to index</a></section>
+<section class="page section" id="memory-swapping" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
+<div class="section-head"><span class="tag">3.5</span><h1>Swapping</h1></div>
+<p class="section-sub">Temporarily remove a process image from RAM, then restore it so execution can continue.</p>
+<p>In <strong>standard swapping</strong>, the operating system transfers an entire process memory image from main memory to a <strong>backing store</strong> and later brings it back. Swapping out frees physical space for another process. Swapping in restores the saved image, after which the process’s saved execution state can be used to resume it. The backing store must have enough capacity and permit access to the saved images.</p>
+<p>A process whose image is on backing store cannot execute its ordinary instructions there. The dispatcher must ensure that the image needed for the selected process is resident before transferring control to it. Moving images makes it possible to keep more process images in the system than fit in RAM simultaneously, but transfer overhead can dominate useful execution.</p>
+<div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 270" role="img" aria-label="Process P1 swaps out of main memory and process P2 swaps in from backing store">
+<defs><marker id="m-swap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g fill="#1C1E21" text-anchor="middle" font-size="13"><text x="135" y="28">Main memory</text><text x="565" y="28">Backing store</text>
+<rect x="30" y="50" width="210" height="190" rx="8" fill="#FFFFFF" stroke="#5B6169"/><rect x="40" y="60" width="190" height="43" rx="6" fill="#EDEAE0" stroke="#5B6169"/><text x="135" y="87">Resident OS</text>
+<rect x="40" y="125" width="190" height="75" rx="6" fill="#E8EFF8" stroke="#1D4E89"/><text x="135" y="151">P1 is removed</text><text x="135" y="176">P2 uses the freed space</text>
+<rect x="460" y="50" width="210" height="190" rx="8" fill="#EDEAE0" stroke="#5B6169"/><text x="565" y="112">Saved process images</text><text x="565" y="143">P1 saved; P2 restored</text>
+<text x="350" y="87" font-size="12">swap out P1</text><text x="350" y="188" font-size="12">swap in P2</text></g>
+<g stroke="#1D4E89" stroke-width="2" marker-end="url(#m-swap)"><path d="M242 106 L458 106" fill="none"/><path d="M458 165 L242 165" fill="none"/></g></svg><div class="cap">Fig 5. Standard swapping exchanges process images between RAM and backing store.</div></div>
+<h2>Relocation and pending I/O</h2>
+<p>Under execution-time binding, the restored process may occupy a different physical location if the operating system updates its mapping. In a simple load-time-bound model, the saved image must normally return to its original physical location unless its addresses are explicitly relocated again. Logical pointers are useful precisely because they can stay unchanged while the physical mapping changes.</p>
+<p>Pending I/O creates another constraint. A device may still be transferring data into a user buffer at a physical address. If the process is swapped out and another process occupies that space, an unchecked transfer could corrupt the replacement process. The textbook gives two remedies: avoid swapping a process with such pending I/O, or perform I/O through operating-system buffers and copy the data to user space only when that space is safely available. Buffering adds copying overhead. Merely saying “the process is waiting” is therefore insufficient to establish that swapping is safe.</p>
+<h2>Cost model</h2>
+<p>The main cost is transferring the image. For an image of size <code>S</code> and a sustained transfer rate <code>R</code>, the transfer-only time in one direction is <code>S/R</code>. Exchanging an outgoing and incoming process requires both transfer times. Seek time, device latency, queueing and execution-state handling add further costs if included in the problem. Use consistent size units and convert seconds to milliseconds only after division.</p>
+<div class="qbox" id="memory-ex-swapping"><div class="qmeta"><span class="qsrc">Book §8.2.1, printed p.359; corrected unit conversion</span><span class="marks">worked example</span></div>
+<div class="qtext">An outgoing and an incoming process each have a 100 MB image. Backing-store transfer speed is 50 MB/s. Ignoring device latency and other overhead, find the exchange time.</div>
+<div class="formula-block">One direction = 100 MB ÷ 50 MB/s = <span class="c1">2 s = 2000 ms</span>
+Out + in      = 2 s + 2 s        = <span class="c1">4 s = 4000 ms</span></div>
+<p>This is the image-transfer component of the switch, not an ordinary register-only context-switch time. If the images have different sizes or the read and write rates differ, calculate each direction separately before adding.</p></div>
+<div class="callout clarify"><span class="label">Correcting a numerical typo in the source</span>
+Printed p.359 (PDF p.383) correctly calculates 2 seconds, then calls the one-way time “200 milliseconds.” That conversion is wrong: it is 2000 milliseconds. The source’s approximately 4000 ms total for both directions is consistent with the corrected value.</div>
+<p>The whole-process model here explains the syllabus term. It should be distinguished from transferring selected pages of a process, which is developed with virtual memory in Unit IV. The ninth edition’s platform-specific descriptions are historical context rather than specifications for current systems.</p>
+<p class="source-note">Source: §8.2, printed pp.358–360 (local PDF pp.382–384).</p>
+<a class="backtotop" href="#index">↑ Back to index</a></section>
+<section class="page section" id="memory-contiguous" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
+<div class="section-head"><span class="tag">3.6</span><h1>Contiguous memory allocation</h1></div>
+<p class="section-sub">Give each process one continuous physical region; manage the holes between occupied regions.</p>
+<p>With <strong>contiguous allocation</strong>, all of a process’s memory lies in one continuous physical block. The operating system occupies a protected region and allocates user regions from the remaining memory. The relocation-and-limit mechanism in <a href="#memory-addresses">3.2</a> both translates process-relative addresses and prevents the process from accessing another region.</p>
+<h2>Fixed and variable partitions</h2>
+<p>In <strong>fixed partitioning</strong>, memory is divided into predetermined partitions, each holding at most one process. The number of partitions limits the number of resident processes, and a process must fit in a suitable partition. If a partition is larger than the process, the unused space inside the assigned partition cannot be used by another process. This is internal fragmentation.</p>
+<p>In <strong>variable partitioning</strong>, the operating system maintains the occupied regions and the free regions, called <strong>holes</strong>. It selects a sufficiently large hole when a process arrives. A larger hole is split into the allocated portion and a remaining free portion. When a process leaves, its region becomes free; adjacent holes are merged, or <strong>coalesced</strong>. Nonadjacent holes cannot be merged merely by changing a list entry because live process memory lies between them.</p>
+<h2>Choosing a hole</h2>
+<table><tr><th>Strategy</th><th>Selection rule</th><th>Tradeoff</th></tr>
+<tr><td><strong>First fit</strong></td><td>Use the first hole large enough, in the specified scan order.</td><td>Can stop the search early. Here each request restarts at the beginning of the address-ordered list.</td></tr>
+<tr><td><strong>Best fit</strong></td><td>Use the smallest hole that is large enough.</td><td>Minimizes the remainder of this allocation, but can create tiny unusable holes. Needs a full search unless suitably indexed.</td></tr>
+<tr><td><strong>Worst fit</strong></td><td>Use the largest available hole.</td><td>Leaves the largest remainder from this allocation, but may consume a large region needed by a future request.</td></tr></table>
+<p>Best fit is a local choice, not a guarantee that the whole workload will fit best. Results depend on the request sizes and order. A numerical must state whether holes are split, whether freed blocks are coalesced, and where first-fit scanning begins. Reusing the remainder of a hole is essential in the variable-partition examples below.</p>
+<h2>Internal versus external fragmentation</h2>
+<p><strong>Internal fragmentation</strong> is unused space inside a block that has already been allocated. For example, assigning a partition of 18,464 bytes to a request for 18,462 bytes leaves <strong>2 bytes</strong> inside the allocation. <strong>External fragmentation</strong> is free space scattered among separate holes: the total may be sufficient for a request even though no individual hole is large enough. First fit, best fit and worst fit do not eliminate this structural problem.</p>
+<div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 235" role="img" aria-label="Scattered free holes combine into one free region only after occupied processes are moved">
+<defs><marker id="m-compact" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g text-anchor="middle" fill="#1C1E21" font-size="12"><text x="350" y="23">Before compaction: total free = 600 KiB; largest hole = 300 KiB</text>
+<rect x="15" y="42" width="100" height="48" fill="#EDEAE0" stroke="#5B6169"/><text x="65" y="71">OS</text>
+<rect x="115" y="42" width="100" height="48" fill="#E8EFF8" stroke="#1D4E89"/><text x="165" y="71">Process A</text>
+<rect x="215" y="42" width="90" height="48" fill="#FFFFFF" stroke="#5B6169"/><text x="260" y="71">100 free</text>
+<rect x="305" y="42" width="100" height="48" fill="#E8EFF8" stroke="#1D4E89"/><text x="355" y="71">Process B</text>
+<rect x="405" y="42" width="90" height="48" fill="#FFFFFF" stroke="#5B6169"/><text x="450" y="71">200 free</text>
+<rect x="495" y="42" width="100" height="48" fill="#E8EFF8" stroke="#1D4E89"/><text x="545" y="71">Process C</text>
+<rect x="595" y="42" width="90" height="48" fill="#FFFFFF" stroke="#5B6169"/><text x="640" y="71">300 free</text>
+<text x="480" y="122" fill="#5B6169">Move live regions; update relocation mappings</text>
+<rect x="15" y="150" width="100" height="48" fill="#EDEAE0" stroke="#5B6169"/><text x="65" y="179">OS</text>
+<rect x="115" y="150" width="100" height="48" fill="#E8EFF8" stroke="#1D4E89"/><text x="165" y="179">Process A</text>
+<rect x="215" y="150" width="100" height="48" fill="#E8EFF8" stroke="#1D4E89"/><text x="265" y="179">Process B</text>
+<rect x="315" y="150" width="100" height="48" fill="#E8EFF8" stroke="#1D4E89"/><text x="365" y="179">Process C</text>
+<rect x="415" y="150" width="270" height="48" fill="#FFFFFF" stroke="#5B6169"/><text x="550" y="179">One 600 KiB free region</text>
+<text x="350" y="226" fill="#5B6169">A 500 KiB request fits after compaction. Diagram is schematic, not to scale.</text></g>
+<path d="M350 95 L350 143" fill="none" stroke="#1D4E89" stroke-width="2" marker-end="url(#m-compact)"/></svg><div class="cap">Fig 6. Compaction changes physical placement; coalescing only joins already-adjacent holes.</div></div>
+<p><strong>Compaction</strong> moves occupied regions so that the holes become one large free region. In the textbook’s simple relocation model, execution-time relocation makes this possible by allowing the mapping to change when a process moves. Compaction costs memory-copy time and must respect outstanding references, including I/O. It reduces external fragmentation, but it does not recover unused bytes inside an allocated partition.</p>
+<div class="qbox" id="memory-ex-allocation"><div class="qmeta"><span class="qsrc">Constructed practice using §8.3.2 rules</span><span class="marks">worked example</span></div>
+<div class="qtext">Holes H1–H5, in address order, have sizes 100, 500, 200, 300 and 600 KiB. Requests arrive as 212, 417, 112 and 426 KiB. Apply first fit, best fit and worst fit separately, splitting holes after each successful allocation.</div>
+<p>Restart each strategy from the original hole list. A failed request is left waiting and does not change the holes. The entries in the last column retain the original H1–H5 labels; a label denotes the remaining free portion of that hole.</p>
+<table><tr><th>Strategy</th><th>Request (KiB)</th><th>Chosen hole</th><th>Remaining H1, H2, H3, H4, H5 (KiB)</th></tr>
+<tr><td>First fit</td><td>212</td><td>H2</td><td>100, 288, 200, 300, 600</td></tr>
+<tr><td>First fit</td><td>417</td><td>H5</td><td>100, 288, 200, 300, 183</td></tr>
+<tr><td>First fit</td><td>112</td><td>H2 remainder</td><td>100, 176, 200, 300, 183</td></tr>
+<tr><td>First fit</td><td>426</td><td>Cannot fit</td><td>100, 176, 200, 300, 183</td></tr>
+<tr><td>Best fit</td><td>212</td><td>H4</td><td>100, 500, 200, 88, 600</td></tr>
+<tr><td>Best fit</td><td>417</td><td>H2</td><td>100, 83, 200, 88, 600</td></tr>
+<tr><td>Best fit</td><td>112</td><td>H3</td><td>100, 83, 88, 88, 600</td></tr>
+<tr><td>Best fit</td><td>426</td><td>H5</td><td>100, 83, 88, 88, 174</td></tr>
+<tr><td>Worst fit</td><td>212</td><td>H5</td><td>100, 500, 200, 300, 388</td></tr>
+<tr><td>Worst fit</td><td>417</td><td>H2</td><td>100, 83, 200, 300, 388</td></tr>
+<tr><td>Worst fit</td><td>112</td><td>H5 remainder</td><td>100, 83, 200, 300, 276</td></tr>
+<tr><td>Worst fit</td><td>426</td><td>Cannot fit</td><td>100, 83, 200, 300, 276</td></tr></table>
+<p>Best fit admits every request in this particular sequence. First fit ends with <strong>959 KiB</strong> free in total but no hole larger than <strong>300 KiB</strong>, so the 426 KiB request still fails. This demonstrates external fragmentation; it does not prove best fit is always superior. The remaining holes are free space, not internal fragmentation in the admitted processes.</p></div>
+<p class="source-note">Source: §8.3, printed pp.360–364 (local PDF pp.384–388). Partition-waste numbers are from printed p.363; the hole-allocation sequence and compaction sizes are constructed practice.</p>
+<a class="backtotop" href="#index">↑ Back to index</a></section>
+<section class="page section" id="memory-paging" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
+<div class="section-head"><span class="tag">3.7</span><h1>Paging</h1></div>
+<p class="section-sub">Divide logical memory into pages and physical memory into equal-sized frames.</p>
+<p><strong>Paging</strong> lets a process occupy noncontiguous physical memory. The process’s logical address space is divided into fixed-sized <strong>pages</strong>, while physical memory is divided into <strong>frames</strong> of the same size. Any available frame can hold a page. The operating system records the mapping in the process’s <strong>page table</strong>, and the MMU consults that mapping when translating addresses.</p>
+<p>A program can still see a continuous logical address range even though consecutive pages lie in distant frames. Pages are units of logical memory; frames are units of physical memory. A page number and a frame number are therefore different quantities, even when they happen to have the same numerical value. In this introductory model, the pages needed for execution are resident; deciding when to fetch a nonresident page is the separate demand-paging topic in Unit IV.</p>
+<h2>Splitting and translating an address</h2>
+<p>For a byte-addressable system with page size <code>P</code>, divide the logical address by <code>P</code>. The quotient is the page number <code>p</code>; the remainder is the offset <code>d</code> within that page. The page table supplies frame number <code>f</code>. Replace the page number by the frame number and retain the offset. If the table stores a frame base address rather than a frame number, add the offset to that base directly.</p>
+<div class="formula-block"><span class="c1">p = floor(LA / P)       d = LA mod P</span>
+f = page_table[p]       <span class="c1">PA = f × P + d</span>
+For an m-bit logical address and P = 2ⁿ bytes:
+page number: m − n high bits; offset: n low bits</div>
+<div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 255" role="img" aria-label="Page number indexes a page table; frame number combines with unchanged offset">
+<defs><marker id="m-page" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g text-anchor="middle" fill="#1C1E21" font-size="13"><text x="110" y="30">Logical address</text><text x="570" y="30">Physical address</text>
+<rect x="20" y="50" width="100" height="55" fill="#E8EFF8" stroke="#1D4E89"/><text x="70" y="83">page p</text><rect x="120" y="50" width="80" height="55" fill="#EDEAE0" stroke="#5B6169"/><text x="160" y="83">offset d</text>
+<rect x="290" y="115" width="170" height="85" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="375" y="143">Page table</text><text x="375" y="166">entry p → frame f</text><text x="375" y="187" font-size="11">check access permissions</text>
+<rect x="480" y="50" width="100" height="55" fill="#E8EFF8" stroke="#1D4E89"/><text x="530" y="83">frame f</text><rect x="580" y="50" width="80" height="55" fill="#EDEAE0" stroke="#5B6169"/><text x="620" y="83">offset d</text>
+<text x="390" y="214" font-size="11" fill="#5B6169">same offset</text><text x="350" y="245" fill="#5B6169">A frame number must be multiplied by page size to obtain its byte base.</text></g>
+<g stroke="#1D4E89" stroke-width="2" marker-end="url(#m-page)"><path d="M70 105 L70 155 L288 155" fill="none"/><path d="M460 155 L530 155 L530 107" fill="none"/><path d="M160 105 L160 225 L620 225 L620 107" fill="none"/></g></svg><div class="cap">Fig 7. Paging replaces the logical page number; the within-page offset is unchanged.</div></div>
+<div class="qbox" id="memory-ex-paging"><div class="qmeta"><span class="qsrc">Book Fig.8.12, printed pp.369–370</span><span class="marks">worked example</span></div>
+<div class="qtext">A process has a 16-byte logical space with 4-byte pages. Physical memory has 32 bytes. Its page table maps pages 0, 1, 2 and 3 to frames 5, 6, 1 and 2. Translate logical addresses 0, 3, 4 and 13.</div>
+<p>The logical address has 4 bits: 2 page-number bits and 2 offset bits. Physical memory has 8 frames. Use division and remainder rather than treating the frame number as a byte address.</p>
+<table><tr><th>LA</th><th>Page p</th><th>Offset d</th><th>Frame f</th><th>PA = f × 4 + d</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>5</td><td>5 × 4 + 0 = 20</td></tr><tr><td>3</td><td>0</td><td>3</td><td>5</td><td>5 × 4 + 3 = 23</td></tr><tr><td>4</td><td>1</td><td>0</td><td>6</td><td>6 × 4 + 0 = 24</td></tr><tr><td>13</td><td>3</td><td>1</td><td>2</td><td>2 × 4 + 1 = 9</td></tr></table>
+<div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" role="img" aria-label="Pages 0 1 2 3 map to physical frames 5 6 1 2 with logical address 13 mapping to physical address 9">
+<defs><marker id="m-toy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g fill="#1C1E21" text-anchor="middle" font-size="12"><text x="100" y="24">Logical pages</text><text x="340" y="24">Page table</text><text x="590" y="24">Physical frames</text>
+<rect x="20" y="55" width="160" height="40" fill="#E8EFF8" stroke="#1D4E89"/><text x="100" y="80">p0 · bytes 0–3</text>
+<rect x="20" y="95" width="160" height="40" fill="#E8EFF8" stroke="#1D4E89"/><text x="100" y="120">p1 · bytes 4–7</text>
+<rect x="20" y="135" width="160" height="40" fill="#E8EFF8" stroke="#1D4E89"/><text x="100" y="160">p2 · bytes 8–11</text>
+<rect x="20" y="175" width="160" height="40" fill="#E8EFF8" stroke="#1D4E89"/><text x="100" y="200">p3 · bytes 12–15</text>
+<rect x="275" y="55" width="130" height="160" fill="#E8EFF8" stroke="#1D4E89"/><text x="340" y="80">0 → 5</text><text x="340" y="120">1 → 6</text><text x="340" y="160">2 → 1</text><text x="340" y="200">3 → 2</text>
+<rect x="510" y="45" width="170" height="256" fill="#FFFFFF" stroke="#5B6169"/>
+<text x="595" y="66">f0 · other/free</text>
+<rect x="510" y="77" width="170" height="32" fill="#E8EFF8" stroke="#1D4E89"/><text x="595" y="98">f1 · p2 · bytes 4–7</text>
+<rect x="510" y="109" width="170" height="32" fill="#E8EFF8" stroke="#1D4E89"/><text x="595" y="130">f2 · p3 · bytes 8–11</text>
+<text x="595" y="162">f3 · other/free</text><text x="595" y="194">f4 · other/free</text>
+<rect x="510" y="205" width="170" height="32" fill="#E8EFF8" stroke="#1D4E89"/><text x="595" y="226">f5 · p0 · bytes 20–23</text>
+<rect x="510" y="237" width="170" height="32" fill="#E8EFF8" stroke="#1D4E89"/><text x="595" y="258">f6 · p1 · bytes 24–27</text>
+<text x="595" y="290">f7 · other/free</text>
+<text x="250" y="275">LA 13: p = 3, d = 1</text><text x="250" y="300">f = 2 → PA = 2 × 4 + 1 = 9</text>
+<text x="350" y="337" fill="#5B6169">Frame labels show physical byte ranges; page labels show logical ranges.</text></g>
+<g stroke="#1D4E89" stroke-width="1.7" marker-end="url(#m-toy)"><path d="M180 195 L273 195" fill="none"/><path d="M405 195 L447 195 L447 125 L508 125" fill="none"/></g></svg><div class="cap">Fig 8. The verified textbook page table; the highlighted path translates logical address 13.</div></div>
+<p>The toy page size is deliberately tiny to expose the arithmetic. It is not a claim about a particular machine’s hardware page size.</p></div>
+<h2>Allocation and internal fragmentation</h2>
+<p>For basic paging, the operating system counts the process’s required pages and obtains that many free frames. The frames need not be adjacent. A <strong>frame table</strong> tracks physical frames and their owners; a <strong>page table</strong> tracks the logical-page mappings for a process. The dispatcher installs the correct page-table state when switching processes.</p>
+<p>At page granularity, paging eliminates external fragmentation: any free frame can satisfy the need for one page. It can still waste space <em>inside</em> the last allocated frame when the process size is not an exact multiple of the page size. Smaller pages can reduce that waste but require more mapping entries for the same logical range. Larger pages reduce page-table entries but can increase unused space.</p>
+<div class="qbox" id="memory-ex-page-waste"><div class="qmeta"><span class="qsrc">Book §8.5.1, printed p.370</span><span class="marks">worked example</span></div>
+<div class="qtext">A process requires 72,766 bytes and the page size is 2048 bytes. Find the required frames and internal fragmentation.</div>
+<div class="formula-block">72766 = 35 × 2048 + 1086
+Frames needed = ceil(72766 / 2048) = <span class="c1">36</span>
+Allocated     = 36 × 2048 = <span class="c1">73728 bytes</span>
+Unused        = 2048 − 1086 = 73728 − 72766 = <span class="c1">962 bytes</span></div>
+<p>There are 35 full pages and one partial page. The unused part of its assigned frame is internal fragmentation. If the process size were an exact page multiple, this particular last-frame waste would be zero; always use the ceiling rather than automatically adding a frame.</p></div>
+<h2>Page-table storage and hardware support</h2>
+<p>A small page table can be held in fast registers. A large page table is usually described in this model as residing in main memory, with a privileged <strong>page-table base register (PTBR)</strong> pointing to it. With one level of page table, no TLB and no other caches, a data reference requires one memory access to obtain the page-table entry and one to obtain the data. The page-table access has a cost even though the referenced data page is already resident.</p>
+<div class="qbox" id="memory-ex-table-size"><div class="qmeta"><span class="qsrc">Book §8.6 motivation, printed p.378; supporting paging calculation</span><span class="marks">worked example</span></div>
+<div class="qtext">For 32-bit byte-addressable logical addresses, 4 KiB pages and 4-byte page-table entries, find the offset bits, page-number bits and size of a full single-level page table.</div>
+<div class="formula-block">4 KiB = 4096 bytes = 2¹² bytes → <span class="c1">12 offset bits</span>
+Page-number bits = 32 − 12 = <span class="c1">20 bits</span>
+Full table entries = 2²⁰ = <span class="c1">1048576</span>
+Full table size = 1048576 × 4 = <span class="c1">4194304 bytes = 4 MiB</span></div>
+<p>This is a full table covering the logical address range, not a count of currently allocated physical frames. It illustrates why table storage can be substantial. KiB and MiB denote binary units. The logical range has 2³² byte locations, equal to 4 GiB; logical address width alone does not specify the physical-memory width.</p></div>
+<div class="callout clarify"><span class="label">Correcting a size-unit typo in the source</span>
+Printed p.371 (PDF p.395) describes 2³² bytes as “4 TB.” The correct binary size is 4 GiB. Do not carry that unit error into address-space or page-table calculations.</div>
+<h2>The translation look-aside buffer (TLB)</h2>
+<p>A <strong>TLB</strong> is a small, fast associative cache of address translations. It is not a cache of the program’s data bytes. On a <strong>TLB hit</strong>, the matching entry supplies the frame number and access information without a main-memory page-table lookup. On a <strong>TLB miss</strong>, the translation must be obtained from the page table, after which it can be inserted into the TLB. The data is then accessed using the translated physical address.</p>
+<div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 290" role="img" aria-label="A TLB hit supplies a frame directly; a miss obtains the mapping from the page table">
+<defs><marker id="m-tlb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g fill="#1C1E21" font-size="13" text-anchor="middle">
+<rect x="15" y="50" width="120" height="60" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="75" y="75">CPU address</text><text x="75" y="96">(p, d)</text>
+<rect x="200" y="50" width="150" height="60" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="275" y="75">TLB lookup</text><text x="275" y="96">page p → frame f</text>
+<rect x="515" y="50" width="170" height="60" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="600" y="75">Data access</text><text x="600" y="96">at physical (f, d)</text>
+<rect x="200" y="185" width="210" height="65" rx="8" fill="#EDEAE0" stroke="#5B6169"/><text x="305" y="211">Page-table memory access</text><text x="305" y="233">obtain f; refill the TLB</text>
+<text x="430" y="64" font-size="12">hit</text><text x="300" y="150" font-size="12">miss</text>
+<text x="350" y="279" fill="#5B6169" font-size="12">A TLB miss means the translation is not cached; the page can still be resident.</text></g>
+<g stroke="#1D4E89" stroke-width="2" marker-end="url(#m-tlb)"><path d="M135 80 L198 80" fill="none"/><path d="M350 80 L513 80" fill="none"/><path d="M275 110 L275 183" fill="none"/><path d="M410 215 L600 215 L600 112" fill="none"/></g></svg><div class="cap">Fig 9. TLB hit and miss paths in a single-level, resident-page model.</div></div>
+<p>Translations belong to address spaces. If entries are not tagged with an address-space identifier (ASID), changing the address space requires invalidating stale translations. ASID tags let translations from different address spaces coexist when the tags are managed correctly. Changing a page mapping or its permissions also requires keeping cached translations consistent with that change.</p>
+<div class="callout key"><span class="label">A TLB miss is not a page fault</span>
+A TLB miss says only that the translation was not found in the cache. A page-table lookup can resolve it without disk access. A fault due to a nonresident page is part of virtual-memory handling in Unit IV. Never attach disk-transfer time to every TLB miss.</div>
+<h3>Effective access time</h3>
+<p>Let <code>h</code> be the hit ratio, <code>m</code> the main-memory access time, and <code>ε</code> a separate serial TLB lookup time. Assume a single-level table, resident pages, no other cache effects and one lookup per reference. A hit costs <code>ε + m</code>; a miss costs <code>ε + 2m</code>. Weight these cases by their probabilities.</p>
+<div class="formula-block">EAT = h(ε + m) + (1 − h)(ε + 2m)
+    = <span class="c1">ε + (2 − h)m</span>
+If TLB lookup overhead is neglected: <span class="c1">EAT = (2 − h)m</span></div>
+<div class="qbox" id="memory-ex-tlb"><div class="qmeta"><span class="qsrc">Book §8.5.2, printed p.374; explicit serial-lookup extension</span><span class="marks">worked example</span></div>
+<div class="qtext">Main-memory access takes 100 ns. Calculate EAT for TLB hit ratios of 80% and 99%, ignoring TLB lookup overhead. Then include a separate serial 10 ns lookup for the 80% case.</div>
+<div class="formula-block">80% hits: 0.80 × 100 + 0.20 × 200 = <span class="c1">120 ns</span>
+99% hits: 0.99 × 100 + 0.01 × 200 = <span class="c1">101 ns</span>
+80% hits, ε = 10 ns:
+0.80 × (10 + 100) + 0.20 × (10 + 200) = <span class="c1">130 ns</span></div>
+<p>Relative to a direct 100 ns memory access, the first two overheads are 20% and 1%. State the lookup assumption: adding 10 ns only to the hit path would be wrong for the stated serial model, because a failed lookup also takes time.</p></div>
+<h2>Protection and page sharing</h2>
+<p>Page-table entries include protection information such as read, write or execute permission. Hardware checks the requested operation and traps on a violation. A <strong>valid–invalid bit</strong> in the textbook’s basic model marks whether a page belongs to the process’s legal logical address space. Do not silently equate this basic validity convention with every architecture’s present/resident bit used for demand paging.</p>
+<p>Page-granularity checks do not necessarily detect the exact end of a program inside its final page. In the textbook example, the program ends at logical byte 10468 with 2048-byte pages. Page 5 contains that byte, so a whole-page validity check can also permit offsets through logical byte 12287. Pages starting at byte 12288 are invalid in that example. Software still has to respect the actual object and program bounds.</p>
+<p>Different page tables can deliberately map the same physical code frames. This provides the shared-library arrangement in <a href="#memory-linking">3.4</a>: common read-only code with distinct writable data frames. The operating system controls the mappings and enforces permissions. The page table provides controlled sharing rather than letting a process access arbitrary frames.</p>
+<div class="callout key"><span class="label">Long-answer structure</span>
+Define pages and frames, draw translation, derive page/offset fields, work one address, explain the TLB, then discuss protection, sharing and fragmentation. Keep the translation mechanism separate from Unit IV’s decisions about loading and replacing pages.</div>
+<p class="source-note">Source: §8.5, printed pp.367–377 (PDF pp.391–401). The full-table size calculation uses §8.6’s opening example, printed p.378 (PDF p.402), as support for the named paging topic.</p>
+<a class="backtotop" href="#index">↑ Back to index</a></section>
+<section class="page section" id="memory-segmentation" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
+<div class="section-head"><span class="tag">3.8</span><h1>Segmentation</h1></div>
+<p class="section-sub">Represent a program as meaningful variable-sized units, each with its own bounds.</p>
+<p><strong>Segmentation</strong> supports the programmer’s view of memory as a collection of logical units: code, data, a stack, a subroutine or a library. These <strong>segments</strong> can have different lengths because their sizes follow their purposes. A logical address is a pair <code>⟨segment number, offset⟩</code>, rather than just an offset in a single undivided region.</p>
+<p>A process’s segments need not be adjacent to one another in physical memory. In pure segmentation, however, <strong>each individual segment is stored contiguously</strong>. This distinction explains why segmentation can scatter a process across memory but still suffer external fragmentation when the operating system must find a large enough hole for one segment.</p>
+<h2>Segment-table translation</h2>
+<p>The <strong>segment table</strong> holds a base and a limit for each segment. The base is the segment’s starting physical address, and the limit is its length. For a logical address <code>⟨s,d⟩</code>, first check that segment number <code>s</code> is a valid table index. Select its entry, check <code>0 ≤ d &lt; limit[s]</code>, and add the offset to the base only if the checks succeed. A bad segment number or an out-of-bounds offset causes a trap.</p>
+<div class="formula-block">Check: segment s exists and <span class="c1">0 ≤ d &lt; limit[s]</span>
+Then:  <span class="c1">PA = base[s] + d</span>
+Otherwise: trap to the operating system</div>
+<div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="Segment number selects base and limit; legal offset is added to the selected base">
+<defs><marker id="m-seg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g fill="#1C1E21" text-anchor="middle" font-size="12"><rect x="15" y="40" width="140" height="65" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="85" y="67">Logical address</text><text x="85" y="90">⟨s = 2, d = 53⟩</text>
+<rect x="215" y="40" width="200" height="65" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="315" y="64">Select segment-table entry 2</text><text x="315" y="88">base = 4300, limit = 400</text>
+<rect x="475" y="40" width="200" height="65" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="575" y="67">Check offset</text><text x="575" y="90">0 ≤ 53 &lt; 400 → yes</text>
+<rect x="475" y="180" width="200" height="60" rx="8" fill="#E8EFF8" stroke="#1D4E89"/><text x="575" y="204">Add base + offset</text><text x="575" y="226">4300 + 53 = 4353</text>
+<rect x="215" y="180" width="180" height="60" rx="8" fill="#F6E9F0" stroke="#93316B"/><text x="305" y="205">Invalid segment or offset</text><text x="305" y="227">Trap to OS</text>
+<text x="85" y="145" fill="#5B6169">Check that s exists</text><text x="595" y="149">yes</text><text x="440" y="134">no</text>
+<text x="360" y="280" fill="#5B6169">A limit of 400 permits offsets 0–399; offset 400 is outside the segment.</text></g>
+<g stroke="#1D4E89" stroke-width="2" marker-end="url(#m-seg)"><path d="M155 72 L213 72" fill="none"/><path d="M415 72 L473 72" fill="none"/><path d="M575 105 L575 178" fill="none"/><path d="M500 105 L500 145 L305 145 L305 178" fill="none"/></g></svg><div class="cap">Fig 10. Segment translation using the book’s segment 2 example, with explicit bounds checks.</div></div>
+<h2>Protection, sharing and allocation</h2>
+<p>Logical units make it natural to assign different protections to code and data. A code segment can be read-only and executable, while a data segment can allow writes. Sharing can be arranged by making entries in different processes refer to the same protected physical segment. Each process can still have its own stack and data. These are conceptual uses of the segment boundary; the precise permission fields depend on the system.</p>
+<p>Segments can grow independently only when the allocation scheme can provide room or relocate them. Because they have variable sizes, their allocation resembles the hole-management problem in contiguous allocation. Pure segmentation does not impose fixed-page rounding waste, but variable-sized free holes can produce external fragmentation. Hardware tables, bookkeeping and alignment can still cost memory; “no fixed-page internal fragmentation” does not mean “zero overhead.”</p>
+<div class="qbox" id="memory-ex-segmentation"><div class="qmeta"><span class="qsrc">Book Fig.8.9, printed pp.366–367; additional boundary tests</span><span class="marks">worked example</span></div>
+<div class="qtext">Use the following segment table to translate ⟨2,53⟩, ⟨3,852⟩, ⟨0,1222⟩, ⟨1,399⟩, ⟨1,400⟩ and ⟨5,0⟩. Segment limits are lengths in bytes.</div>
+<table><tr><th>Segment</th><th>Base</th><th>Limit</th></tr><tr><td>0</td><td>1400</td><td>1000</td></tr><tr><td>1</td><td>6300</td><td>400</td></tr><tr><td>2</td><td>4300</td><td>400</td></tr><tr><td>3</td><td>3200</td><td>1100</td></tr><tr><td>4</td><td>4700</td><td>1000</td></tr></table>
+<table><tr><th>Logical address</th><th>Check</th><th>Result</th></tr>
+<tr><td>⟨2,53⟩</td><td>53 &lt; 400</td><td>4300 + 53 = <strong>4353</strong></td></tr>
+<tr><td>⟨3,852⟩</td><td>852 &lt; 1100</td><td>3200 + 852 = <strong>4052</strong></td></tr>
+<tr><td>⟨0,1222⟩</td><td>1222 is not smaller than 1000</td><td>Trap: offset outside segment</td></tr>
+<tr><td>⟨1,399⟩</td><td>399 &lt; 400</td><td>6300 + 399 = <strong>6699</strong></td></tr>
+<tr><td>⟨1,400⟩</td><td>Offset equals the length</td><td>Trap: upper bound is exclusive</td></tr>
+<tr><td>⟨5,0⟩</td><td>Only segment numbers 0–4 exist</td><td>Trap: invalid segment number</td></tr></table>
+<p>A physical sum alone cannot prove an address legal. For example, an out-of-range offset must trap even if adding it to the base produces a physical address that happens to exist somewhere in memory.</p></div>
+<h2>Paging versus segmentation</h2>
+<table><tr><th>Property</th><th>Paging</th><th>Pure segmentation</th></tr>
+<tr><td>Logical unit</td><td>Fixed-sized page, independent of program meaning</td><td>Variable-sized unit corresponding to program structure</td></tr>
+<tr><td>Logical address</td><td>Page number and within-page offset, extracted from a linear address</td><td>Segment number and within-segment offset</td></tr>
+<tr><td>Mapping entry</td><td>Frame number with status and protection information</td><td>Base and limit, with protection information where supported</td></tr>
+<tr><td>Physical placement</td><td>Pages can occupy arbitrary equal-sized frames</td><td>Segments can be separate, but each segment needs a contiguous region</td></tr>
+<tr><td>Typical fragmentation</td><td>Internal waste in a partially used page; no external fragmentation at frame granularity</td><td>External fragmentation among variable-sized holes</td></tr>
+<tr><td>Protection and sharing</td><td>Per-page mappings and permissions</td><td>Per-segment bounds and permissions aligned with logical units</td></tr>
+<tr><td>Programmer’s view</td><td>Usually hidden behind a linear logical space</td><td>Explicitly expresses logical program divisions</td></tr></table>
+<div class="callout key"><span class="label">Choose the model from the address format</span>
+If given a page size and a linear address, divide into page number and remainder. If given a segment number, offset, base and limit, validate the segment and its bounds before adding. For a contiguous process-relative address, validate against the process limit and add the single relocation base.</div>
+<p class="source-note">Source: §8.4, printed pp.364–367 (PDF pp.388–391); the comparison consolidates §§8.3–8.5. This section follows paging because that is the syllabus order.</p>
+<a class="backtotop" href="#index">↑ Back to index</a></section>
+<section class="page section" id="memory-solved" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
+<div class="section-head"><span class="tag">SOLVED</span><h1>Solved numericals</h1></div>
+<p class="section-sub">All main-memory solutions are indexed here and worked in full beside their topics.</p>
+<table><tr><th>Question type</th><th>What to practise</th><th>Complete solution</th></tr>
+<tr><td>Binding and relocation</td><td>Relative offset versus physical placement; effect of moving the image</td><td><a href="#memory-ex-binding">Binding example</a></td></tr>
+<tr><td>Logical/physical address</td><td>Limit check, exclusive upper bound and base addition</td><td><a href="#memory-ex-relocation">MMU example</a></td></tr>
+<tr><td>Shared code</td><td>Count common code once and private data for every process</td><td><a href="#memory-ex-sharing">Shared editor example</a></td></tr>
+<tr><td>Swapping</td><td>Size divided by rate; add both transfer directions</td><td><a href="#memory-ex-swapping">Swap-time example</a></td></tr>
+<tr><td>Contiguous allocation</td><td>Split hole remainders after every request; restart for each policy</td><td><a href="#memory-ex-allocation">First/best/worst-fit sequence</a></td></tr>
+<tr><td>Paging translation</td><td>Quotient, remainder, table lookup, frame base and offset</td><td><a href="#memory-ex-paging">Toy paging example and diagram</a></td></tr>
+<tr><td>Paging waste</td><td>Ceiling frame count and unused last-frame space</td><td><a href="#memory-ex-page-waste">Internal-fragmentation example</a></td></tr>
+<tr><td>Page-table size</td><td>Offset bits, page-number bits, entry count and bytes</td><td><a href="#memory-ex-table-size">Single-level table example</a></td></tr>
+<tr><td>TLB timing</td><td>Weight hit/miss costs; state whether lookup time is counted</td><td><a href="#memory-ex-tlb">Effective-access-time example</a></td></tr>
+<tr><td>Segmentation</td><td>Valid segment index, strict offset bounds and base addition</td><td><a href="#memory-ex-segmentation">Segment-table example</a></td></tr></table>
+<p>These are textbook examples or explicitly constructed practice, with assumptions shown at each solution. The historical synchronization exam questions retained below are outside the current Unit III scope. No unavailable paper was used to invent a new main-memory question-bank attribution.</p>
+<a class="backtotop" href="#index">↑ Back to index</a></section>
+<section class="page section legacy-section" id="t3-1" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft)">
+ <div class="legacy-topic"><div class="legacy-heading"><div class="legacy-heading-text"><h2>Background &amp; Race Conditions</h2>
+ <span class="scope-note">Older extra — synchronization now belongs to Unit II; historical version</span></div>
+ <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-memory-t3-1" aria-label="View historical Background &amp; Race Conditions">View</button></div>
+ <div class="legacy-content" id="legacy-memory-t3-1" hidden><div class="callout clarify"><span class="label">Historical material — now Unit II</span>
+ This retained section belongs to the former syllabus. Its older explanations and exam labels are preserved for reference.
+ Use the <a href="../unit-2/#sync-t3-1">revised Unit II section</a> for corrected synchronization teaching.</div><div class="callout clarify"><span class="label">Correction to the retained explanation</span>In the shared-B trace below, the sequential orders produce 3 and 4. The retained remark about an “obvious sequential answer B=1” is incorrect. The enumerated final values remain correct.</div>
+  <div class="section-head"><span class="tag">3.1</span><h1>Background &amp; Race Conditions</h1></div>
+  <p class="section-sub">Why cooperating processes need synchronizing at all — and a concrete example of exactly how things go wrong without it.</p>
+
+  <h2>Cooperating processes</h2>
+  <p><strong>Cooperating processes</strong> are processes that can affect, or be affected by, other
+  processes executing in the system — typically because they share data directly or through shared
+  memory. Concurrent access to that shared data can cause <strong>data inconsistency</strong>: if two or
+  more processes try to access and modify the same data at the same time, the result can depend on the
+  precise timing of their execution rather than on the logic of either process alone. Maintaining
+  consistency requires mechanisms that ensure cooperating processes execute in an orderly way — this is
+  <strong>process synchronization</strong>.</p>
+
+  <h2>The motivating example: a shared buffer counter</h2>
+  <p>Consider the classic producer-consumer setup: a bounded buffer of <em>n</em> slots, a
+  <strong>producer</strong> that fills slots, and a <strong>consumer</strong> that empties them. One simple
+  way to track how many slots are full is a shared integer <span class="mono">counter</span>, initially 0,
+  incremented by the producer after each item it adds and decremented by the consumer after each item it
+  removes.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrM1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5B6169"/></marker></defs>
+      <rect x="20" y="70" width="120" height="60" rx="8" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/>
+      <text x="80" y="105" text-anchor="middle" font-size="12" fill="#1C1E21">Producer</text>
+      <path d="M140,100 L250,100" stroke="#1D4E89" stroke-width="1.4" marker-end="url(#arrM1)"/>
+      <text x="195" y="90" text-anchor="middle" font-size="10" fill="#5B6169">counter++</text>
+      <rect x="250" y="55" width="140" height="90" rx="8" fill="#FFFFFF" stroke="#4C3F91" stroke-width="1.5"/>
+      <text x="320" y="80" text-anchor="middle" font-size="11" fill="#1C1E21">shared</text>
+      <text x="320" y="100" text-anchor="middle" font-size="13" font-weight="600" fill="#4C3F91">counter</text>
+      <text x="320" y="122" text-anchor="middle" font-size="10" fill="#5B6169">(buffer of n slots)</text>
+      <path d="M390,100 L500,100" stroke="#93316B" stroke-width="1.4" marker-end="url(#arrM1)"/>
+      <text x="445" y="90" text-anchor="middle" font-size="10" fill="#5B6169">counter--</text>
+      <rect x="500" y="70" width="120" height="60" rx="8" fill="#F6E9F0" stroke="#93316B" stroke-width="1.5"/>
+      <text x="560" y="105" text-anchor="middle" font-size="12" fill="#1C1E21">Consumer</text>
+      <text x="320" y="175" text-anchor="middle" font-size="10.5" fill="#5B6169">Both processes read-modify-write the SAME variable — the exact scenario a race condition needs</text>
+    </svg>
+    <div class="cap">Fig 11. The producer and consumer both update a shared <code>counter</code> — innocuous if they never overlap, dangerous if they do.</div>
+  </div>
+
+  <h2>Race conditions</h2>
+  <p>At the machine level, <span class="mono">counter++</span> is not one operation — it's three:
+  load <span class="mono">counter</span> into a register, increment the register, store the register back.
+  <span class="mono">counter--</span> is the same shape. If the producer's three steps and the consumer's
+  three steps interleave instead of running back-to-back, the final value of <span class="mono">counter</span>
+  depends on the exact interleaving — not just on the fact that one increment and one decrement occurred.
+  A situation where several processes access shared data concurrently and the outcome depends on the
+  particular order of access is called a <strong>race condition</strong>.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 700 290" xmlns="http://www.w3.org/2000/svg">
+      <text x="350" y="20" text-anchor="middle" font-family="Newsreader,serif" font-size="14" font-weight="600" fill="#1C1E21">counter=5 · interleaved producer counter++ / consumer counter--</text>
+      <rect x="20" y="36" width="310" height="24" fill="#E8EFF8" rx="4"/><text x="30" y="52" font-size="11" fill="#1C1E21">Producer (counter++)</text>
+      <rect x="350" y="36" width="330" height="24" fill="#F6E9F0" rx="4"/><text x="360" y="52" font-size="11" fill="#1C1E21">Consumer (counter--)</text>
+
+      <text x="30" y="86" font-size="11" fill="#1C1E21">S0: reg1 = counter</text><text x="210" y="86" font-size="10" fill="#5B6169">reg1=5, counter=5</text>
+      <text x="30" y="110" font-size="11" fill="#1C1E21">S1: reg1 = reg1 + 1</text><text x="210" y="110" font-size="10" fill="#5B6169">reg1=6, counter=5</text>
+      <text x="360" y="134" font-size="11" fill="#1C1E21">S2: reg2 = counter</text><text x="540" y="134" font-size="10" fill="#5B6169">reg2=5, counter=5</text>
+      <text x="360" y="158" font-size="11" fill="#1C1E21">S3: reg2 = reg2 − 1</text><text x="540" y="158" font-size="10" fill="#5B6169">reg2=4, counter=5</text>
+      <text x="30" y="182" font-size="11" fill="#1C1E21">S4: counter = reg1</text><text x="210" y="182" font-size="10" fill="#5B6169">counter=6</text>
+      <text x="360" y="206" font-size="11" fill="#1C1E21">S5: counter = reg2</text><text x="540" y="206" font-size="10" fill="#5B6169">counter=4 (final)</text>
+
+      <rect x="20" y="222" width="660" height="52" rx="6" fill="#F7EEDD" stroke="#A66A0D"/>
+      <text x="350" y="242" text-anchor="middle" font-size="11.5" fill="#1C1E21" font-weight="600">Final counter = 4, not 5 — one increment and one decrement should cancel out,</text>
+      <text x="350" y="260" text-anchor="middle" font-size="11.5" fill="#1C1E21" font-weight="600">but the interleaving lost the producer's update at S4</text>
+    </svg>
+    <div class="cap">Fig 12. A single interleaving of the producer's and consumer's load-modify-store steps — verified by simulating this exact sequence in code — leaves <code>counter</code> at 4, not 5.</div>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">unit 3.pdf, p5–7</span><span class="marks">worked example · verified in code</span></div>
+    <div class="qtext">counter starts at 5. Producer and consumer execute counter++ and counter-- concurrently, interleaved exactly as S0–S5 in Fig 12. What is the final value of counter?</div>
+    <p style="margin:0">Simulating this exact instruction sequence gives <strong>counter = 4</strong>. The only
+    value that would be "correct" from a program-logic standpoint is 5 (one net increment, one net
+    decrement, no change) — 4 is only reachable because the interleaving let the consumer's stale read
+    (S2, before the producer's increment was stored) silently overwrite the producer's work at S4. Different
+    interleavings can just as easily produce 6 instead — the point isn't which wrong answer you get, it's
+    that <em>any</em> answer other than 5 is possible at all.</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">2021-22 CIE-II Q1</span><span class="marks">1 mark · verified by exhaustive interleaving enumeration</span></div>
+    <div class="qtext">P1(){C=B-1; B=2*C;} and P2(){D=2*B; B=D-1;} share a variable B with initial value 2 and execute concurrently. How many distinct values can B possibly take after execution?</div>
+    <div class="ans-label">Solution</div>
+    <p>Treat each process as two atomic steps executed in program order; enumerate every way to interleave
+    P1's 2 steps with P2's 2 steps (C(4,2) = 6 valid interleavings) and compute the resulting B for each:</p>
+    <table>
+      <tr><th>Interleaving</th><th>Final B</th></tr>
+      <tr><td>P1:C=B−1 → P1:B=2C → P2:D=2B → P2:B=D−1</td><td>3</td></tr>
+      <tr><td>P1:C=B−1 → P2:D=2B → P1:B=2C → P2:B=D−1</td><td>3</td></tr>
+      <tr><td>P1:C=B−1 → P2:D=2B → P2:B=D−1 → P1:B=2C</td><td>2</td></tr>
+      <tr><td>P2:D=2B → P1:C=B−1 → P1:B=2C → P2:B=D−1</td><td>3</td></tr>
+      <tr><td>P2:D=2B → P1:C=B−1 → P2:B=D−1 → P1:B=2C</td><td>2</td></tr>
+      <tr><td>P2:D=2B → P2:B=D−1 → P1:C=B−1 → P1:B=2C</td><td>4</td></tr>
+    </table>
+    <p style="margin:0">Distinct final values: <strong>{2, 3, 4} → 3 distinct values.</strong> (This is a
+    well-known GATE-style question — the "obvious" sequential answer B=1 never even appears once the
+    processes interleave, which is exactly the point of the question.)</p>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</div></div></section>
+<section class="page section legacy-section" id="t3-2" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft)">
+ <div class="legacy-topic"><div class="legacy-heading"><div class="legacy-heading-text"><h2>The Critical Section Problem</h2>
+ <span class="scope-note">Older extra — synchronization now belongs to Unit II; historical version</span></div>
+ <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-memory-t3-2" aria-label="View historical The Critical Section Problem">View</button></div>
+ <div class="legacy-content" id="legacy-memory-t3-2" hidden><div class="callout clarify"><span class="label">Historical material — now Unit II</span>
+ This retained section belongs to the former syllabus. Its older explanations and exam labels are preserved for reference.
+ Use the <a href="../unit-2/#sync-t3-2">revised Unit II section</a> for corrected synchronization teaching.</div>
+  <div class="section-head"><span class="tag">3.2</span><h1>The Critical Section Problem</h1></div>
+  <p class="section-sub">A precise name for the danger zone, and the three properties every correct solution must guarantee.</p>
+
+  <h2>Critical, entry, exit, and remainder sections</h2>
+  <p>Consider a system of <em>n</em> processes {P₀, P₁, … Pₙ₋₁}. Each process has a segment of code —
+  its <strong>critical section</strong> — in which it may be changing data in a shared region of memory
+  (updating a common variable, writing a file, modifying a table). The defining rule: <strong>when one
+  process is executing in its critical section, no other process may be executing in its own critical
+  section.</strong> The <strong>critical-section problem</strong> is to design a protocol the processes can
+  use to guarantee this.</p>
+
+  <p>Each process must explicitly ask permission before entering its critical section — that request is
+  the <strong>entry section</strong>. The critical section may be followed by an <strong>exit section</strong>.
+  Everything else is the <strong>remainder section</strong>.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrM2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1D4E89"/></marker></defs>
+      <rect x="130" y="20" width="200" height="46" rx="8" fill="#EDEAE0" stroke="#8A9096"/>
+      <text x="230" y="48" text-anchor="middle" font-size="12" fill="#1C1E21">do { … while(true)</text>
+      <path d="M230,66 L230,90" stroke="#1D4E89" stroke-width="1.4" marker-end="url(#arrM2)"/>
+      <rect x="130" y="90" width="200" height="46" rx="8" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/>
+      <text x="230" y="118" text-anchor="middle" font-size="12" fill="#1C1E21">entry section</text>
+      <path d="M230,136 L230,160" stroke="#1D4E89" stroke-width="1.4" marker-end="url(#arrM2)"/>
+      <rect x="130" y="160" width="200" height="46" rx="8" fill="#4C3F91"/>
+      <text x="230" y="188" text-anchor="middle" font-size="12" fill="#fff">critical section</text>
+      <path d="M230,206 L230,230" stroke="#1D4E89" stroke-width="1.4" marker-end="url(#arrM2)"/>
+      <rect x="130" y="230" width="200" height="46" rx="8" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/>
+      <text x="230" y="258" text-anchor="middle" font-size="12" fill="#1C1E21">exit section</text>
+      <path d="M330,253 Q400,150 330,43" fill="none" stroke="#8A9096" stroke-width="1.3" stroke-dasharray="4,2" marker-end="url(#arrM2)"/>
+      <text x="395" y="150" text-anchor="middle" font-size="10" fill="#5B6169" transform="rotate(90,395,150)">remainder section, loop</text>
+    </svg>
+    <div class="cap">Fig 13. The general structure of process Pᵢ — a loop of entry section, critical section, exit section, remainder section.</div>
+  </div>
+
+  <h2>The three requirements</h2>
+  <p>Any solution to the critical-section problem must satisfy all three of the following:</p>
+  <table>
+    <tr><th>Requirement</th><th>What it guarantees</th></tr>
+    <tr><td><strong>1. Mutual Exclusion</strong></td><td>If process Pᵢ is executing in its critical section, no other process can be executing in its critical section at the same time.</td></tr>
+    <tr><td><strong>2. Progress</strong></td><td>If no process is in its critical section and some processes wish to enter, only processes <em>not</em> in their remainder sections can participate in deciding who goes next — and that decision cannot be postponed indefinitely.</td></tr>
+    <tr><td><strong>3. Bounded Waiting</strong></td><td>There's a bound on how many times other processes are allowed to enter their critical sections after a process has requested entry and before that request is granted.</td></tr>
+  </table>
+
+  <div class="callout key">
+    <span class="label">Exam tip</span>
+    <p style="margin:0">If bounded waiting is not guaranteed, the result is <strong>starvation</strong> — a
+    process can be requested to enter but perpetually skipped. This is exactly the link back to §3.10's
+    "drawbacks of semaphores": violating requirement 3 is <em>how</em> starvation happens, not a separate
+    phenomenon. Always name all three requirements when a question asks you to "identify the requirements
+    of a critical section" — partial answers are a common way to drop marks here.</p>
+  </div>
+
+  <h2>Preemptive vs non-preemptive kernels</h2>
+  <p>Two approaches exist depending on whether the kernel itself is preemptible: a <strong>preemptive
+  kernel</strong> allows a process to be preempted even while running in kernel mode; a
+  <strong>non-preemptive kernel</strong> lets a process run until it exits kernel mode, blocks, or
+  voluntarily yields the CPU. Non-preemptive kernels are essentially free of race conditions on kernel data
+  by construction — since only one process is ever actually running in kernel mode at a time — but
+  preemptive kernels are far better suited to real-time programming, since a high-priority process isn't
+  stuck waiting behind a low-priority one running in the kernel.</p>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</div></div></section>
+<section class="page section legacy-section" id="t3-3" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft)">
+ <div class="legacy-topic"><div class="legacy-heading"><div class="legacy-heading-text"><h2>Peterson&#x27;s Solution</h2>
+ <span class="scope-note">Older extra — synchronization now belongs to Unit II; historical version</span></div>
+ <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-memory-t3-3" aria-label="View historical Peterson&#x27;s Solution">View</button></div>
+ <div class="legacy-content" id="legacy-memory-t3-3" hidden><div class="callout clarify"><span class="label">Historical material — now Unit II</span>
+ This retained section belongs to the former syllabus. Its older explanations and exam labels are preserved for reference.
+ Use the <a href="../unit-2/#sync-t3-3">revised Unit II section</a> for corrected synchronization teaching.</div>
+  <div class="section-head"><span class="tag">3.3</span><h1>Peterson's Solution</h1></div>
+  <p class="section-sub">A purely software two-process solution — and a full proof it satisfies all three critical-section requirements.</p>
+
+  <p><strong>Peterson's solution</strong> is a classic software-only solution to the critical-section
+  problem, restricted to exactly two processes, Pᵢ and Pⱼ, that alternate between their critical and
+  remainder sections. It illustrates just how much care is needed to satisfy mutual exclusion, progress,
+  and bounded waiting all at once. The two processes share two data items:</p>
+  <div class="formula-block"><span class="c1">int</span> turn;         <span class="cm">// whose turn it is: if turn==i, Pi may enter its CS</span>
+<span class="c1">boolean</span> flag[2];  <span class="cm">// flag[i]==true means Pi is ready/wants to enter its CS</span></div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">Process Pᵢ</h3>
+      <div class="formula-block">do {
+  flag[i] = true;
+  turn = j;
+  while (flag[j] && turn == j)
+    ; <span class="cm">// spin</span>
+  <span class="c2">critical section</span>
+  flag[i] = false;
+  remainder section
+} while (true);</div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Process Pⱼ</h3>
+      <div class="formula-block">do {
+  flag[j] = true;
+  turn = i;
+  while (flag[i] && turn == i)
+    ; <span class="cm">// spin</span>
+  <span class="c2">critical section</span>
+  flag[j] = false;
+  remainder section
+} while (true);</div>
+    </div>
+  </div>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrM3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1D4E89"/></marker></defs>
+      <rect x="20" y="20" width="180" height="34" rx="6" fill="#E8EFF8" stroke="#1D4E89"/><text x="110" y="42" text-anchor="middle" font-size="11" fill="#1C1E21">Pi: flag[i]=true</text>
+      <path d="M110,54 L110,74" stroke="#1D4E89" marker-end="url(#arrM3)"/>
+      <rect x="20" y="74" width="180" height="34" rx="6" fill="#E8EFF8" stroke="#1D4E89"/><text x="110" y="96" text-anchor="middle" font-size="11" fill="#1C1E21">Pi: turn=j (courtesy)</text>
+      <path d="M110,108 L110,128" stroke="#1D4E89" marker-end="url(#arrM3)"/>
+      <rect x="20" y="128" width="180" height="34" rx="6" fill="#EEECF7" stroke="#4C3F91"/><text x="110" y="150" text-anchor="middle" font-size="10.5" fill="#1C1E21">while(flag[j] &amp;&amp; turn==j) spin</text>
+
+      <rect x="440" y="20" width="180" height="34" rx="6" fill="#F6E9F0" stroke="#93316B"/><text x="530" y="42" text-anchor="middle" font-size="11" fill="#1C1E21">Pj: flag[j]=true</text>
+      <path d="M530,54 L530,74" stroke="#93316B" marker-end="url(#arrM3)"/>
+      <rect x="440" y="74" width="180" height="34" rx="6" fill="#F6E9F0" stroke="#93316B"/><text x="530" y="96" text-anchor="middle" font-size="11" fill="#1C1E21">Pj: turn=i (courtesy)</text>
+      <path d="M530,108 L530,128" stroke="#93316B" marker-end="url(#arrM3)"/>
+      <rect x="440" y="128" width="180" height="34" rx="6" fill="#EEECF7" stroke="#4C3F91"/><text x="530" y="150" text-anchor="middle" font-size="10.5" fill="#1C1E21">while(flag[i] &amp;&amp; turn==i) spin</text>
+
+      <text x="320" y="90" text-anchor="middle" font-size="11" fill="#5B6169">turn is shared —</text>
+      <text x="320" y="106" text-anchor="middle" font-size="11" fill="#5B6169">whoever set it LAST</text>
+      <text x="320" y="122" text-anchor="middle" font-size="11" fill="#5B6169">politely waits</text>
+      <rect x="270" y="170" width="100" height="0" fill="none"/>
+      <path d="M200,141 L440,141" stroke="#8A9096" stroke-width="1" stroke-dasharray="3,2"/>
+    </svg>
+    <div class="cap">Fig 14. Both processes announce intent (<code>flag</code>) then politely defer (<code>turn</code>) — since each sets <code>turn</code> to the *other* process last, whichever write happens second determines who actually waits.</div>
+  </div>
+
+  <h2>Correctness proof</h2>
+  <ol>
+    <li><strong>Mutual exclusion is preserved.</strong> Pᵢ enters its critical section only if
+    <span class="mono">flag[j]==false</span> or <span class="mono">turn==i</span>. Since both processes set
+    <span class="mono">turn</span> to the <em>other</em> process's index just before spinning, whichever
+    process's <span class="mono">turn</span>-write happened last is the one left spinning — so at most one
+    of the two conditions can simultaneously fail to hold for both processes at once.</li>
+    <li><strong>The progress requirement is satisfied.</strong> If Pⱼ isn't interested (its remainder
+    section), <span class="mono">flag[j]==false</span> and Pᵢ enters immediately. If both want in, exactly
+    one of them "loses" the race to set <span class="mono">turn</span> last, and that determination is made
+    the moment both flags are set — the decision is never postponed.</li>
+    <li><strong>Bounded waiting is met.</strong> The instant one process exits its critical section
+    (<span class="mono">flag[i]=false</span>), the other's <span class="mono">while</span> condition
+    becomes false immediately — so a waiting process is delayed by at most one entry of the other process,
+    never indefinitely.</li>
+  </ol>
+
+  <h2>Disadvantages of Peterson's solution</h2>
+  <p>Despite the clean proof, Peterson's solution has real limits worth naming if a question asks for
+  them: it's restricted to exactly <strong>two processes</strong>; it relies on <strong>busy-waiting</strong>
+  (the spin loop), wasting CPU cycles while blocked rather than yielding the CPU; and — the deeper problem —
+  it isn't guaranteed to work on modern hardware at all, since compilers and CPUs are free to reorder
+  independent-looking memory operations unless the code uses explicit memory barriers, which is exactly why
+  §3.4's hardware-level primitives exist as the practical alternative.</p>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">2024-25 CIE-II Test-2 Q1a</span><span class="marks">7 marks · verified by simulation · why BOTH flag and turn matter</span></div>
+    <div class="qtext">P1 executes: while(S1==S2); Critical Section; S1=S2. P2 executes: while(S1!=S2); Critical Section; S2=!S1. Shared Boolean S1, S2. Case 1: S1=0, S2=0. Case 2: S1=0, S2=1. Is mutual exclusion and progress guaranteed in both cases? Justify.</div>
+    <div class="ans-label">Mutual exclusion: YES, in both cases</div>
+    <p>P1's guard (<span class="mono">S1==S2</span>) and P2's guard (<span class="mono">S1!=S2</span>) are
+    exact logical complements of each other — at any instant, S1 and S2 are either equal or not, so
+    <em>exactly one</em> of "P1 may enter" / "P2 may enter" can be true, never both. This holds regardless
+    of the starting case; simulating both:</p>
+    <div class="formula-block">Case 1 (S1=0,S2=0): P2 enters first (S1==S2) → S1=0,S2=1 → P1 enters → S1=1,S2=1 → P2 enters → …
+Case 2 (S1=0,S2=1): P1 enters first (S1≠S2) → S1=1,S2=1 → P2 enters → S1=1,S2=0 → P1 enters → …</div>
+    <p style="margin:0">Both cases settle into the same clean strict alternation — just starting with a
+    different process going first.</p>
+    <div class="ans-label">Progress: NO — this is the actual weakness the question is testing</div>
+    <p style="margin:0">This scheme forces <strong>strict alternation</strong>: after P2 exits, only P1 can
+    enter next; after P1 exits, only P2 can. Simulating the case where P2 finishes one turn and then has
+    nothing further to do (its remainder section runs long, or forever): P1 gets exactly <em>one</em> more
+    entry using the state P2 already flipped, then is <strong>permanently blocked</strong> waiting for a
+    flag-flip only P2 can perform — even though P2 isn't competing for the critical section at all. That's
+    a textbook Progress violation (§3.2's requirement 2: a process not in its remainder section shouldn't
+    be blocked by one that is). <strong>This is precisely the gap Peterson's solution closes</strong> — its
+    <span class="mono">flag[]</span> array lets a process signal "I'm not interested" so the other never
+    waits on someone who isn't playing, while <span class="mono">turn</span> alone (this scheme's
+    equivalent) only ever encodes "whose turn is it," with no way to say "I don't want a turn right now."</p>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</div></div></section>
+<section class="page section legacy-section" id="t3-4" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft)">
+ <div class="legacy-topic"><div class="legacy-heading"><div class="legacy-heading-text"><h2>Synchronization Hardware</h2>
+ <span class="scope-note">Older extra — synchronization now belongs to Unit II; historical version</span></div>
+ <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-memory-t3-4" aria-label="View historical Synchronization Hardware">View</button></div>
+ <div class="legacy-content" id="legacy-memory-t3-4" hidden><div class="callout clarify"><span class="label">Historical material — now Unit II</span>
+ This retained section belongs to the former syllabus. Its older explanations and exam labels are preserved for reference.
+ Use the <a href="../unit-2/#sync-t3-4">revised Unit II section</a> for corrected synchronization teaching.</div><div class="callout clarify"><span class="label">Correction to the retained explanation</span>Atomic exchange and compare-and-swap are different operations: CAS updates only when its expected value matches. The retained swap-style code is an exchange lock, not CAS. A simple test-and-set lock guarantees mutual exclusion under its assumptions but not bounded waiting. Use the revised Unit II section for corrected code and memory-ordering assumptions.</div>
+  <div class="section-head"><span class="tag">3.4</span><h1>Synchronization Hardware</h1></div>
+  <p class="section-sub">Software solutions like Peterson's aren't guaranteed to work on modern architectures — so the hardware itself offers atomic instructions to build locks from.</p>
+
+  <p>Software-only solutions such as Peterson's aren't guaranteed to work on modern computer architectures
+  (compiler/CPU instruction reordering can break the assumptions they rely on). The alternative is
+  hardware-level atomic instructions — all of the solutions below are built on the idea of
+  <strong>locking</strong>: protecting a critical region with a lock variable that's tested and set in one
+  indivisible step.</p>
+
+  <h2>test_and_set</h2>
+  <div class="formula-block"><span class="c1">boolean</span> test_and_set(<span class="c1">boolean</span> *target) {
+  <span class="c1">boolean</span> rv = *target;
+  *target = <span class="c2">TRUE</span>;
+  <span class="c1">return</span> rv;
+}  <span class="cm">// executes as a single, indivisible machine cycle</span></div>
+  <p>It takes a shared lock variable, unconditionally sets it to <span class="mono">TRUE</span> (locked),
+  and returns whatever the lock's value was <em>before</em> that write. By convention 0 means unlocked and
+  1 means locked.</p>
+  <div class="formula-block">do {
+  while (test_and_set(&lock))
+    ; <span class="cm">// spin while lock was already held</span>
+  <span class="c2">critical section</span>
+  lock = false;
+  remainder section
+} while (true);</div>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrM4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#4C3F91"/></marker></defs>
+      <circle cx="90" cy="90" r="46" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/>
+      <text x="90" y="86" text-anchor="middle" font-size="11" fill="#1C1E21">lock=0</text><text x="90" y="102" text-anchor="middle" font-size="10" fill="#5B6169">unlocked</text>
+      <path d="M136,90 L224,90" stroke="#4C3F91" stroke-width="1.4" marker-end="url(#arrM4)"/>
+      <text x="180" y="78" text-anchor="middle" font-size="9.5" fill="#5B6169">test_and_set: rv=0, lock:=1</text>
+      <circle cx="270" cy="90" r="46" fill="#4C3F91"/>
+      <text x="270" y="86" text-anchor="middle" font-size="11" fill="#fff">lock=1</text><text x="270" y="102" text-anchor="middle" font-size="10" fill="#EEECF7">P holds CS</text>
+      <path d="M240,55 Q220,20 250,10" fill="none" stroke="#93316B" stroke-width="1.2" marker-end="url(#arrM4)"/>
+      <text x="230" y="8" text-anchor="middle" font-size="9" fill="#93316B">other process: rv=1, spins</text>
+      <path d="M316,90 L404,90" stroke="#4C3F91" stroke-width="1.4" marker-end="url(#arrM4)"/>
+      <text x="360" y="78" text-anchor="middle" font-size="9.5" fill="#5B6169">exit CS: lock=false</text>
+      <circle cx="450" cy="90" r="46" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/>
+      <text x="450" y="86" text-anchor="middle" font-size="11" fill="#1C1E21">lock=0</text><text x="450" y="102" text-anchor="middle" font-size="10" fill="#5B6169">unlocked</text>
+      <path d="M496,90 L584,90" stroke="#4C3F91" stroke-width="1.4" marker-end="url(#arrM4)"/>
+      <text x="540" y="78" text-anchor="middle" font-size="9.5" fill="#5B6169">spinning process now gets in</text>
+    </svg>
+    <div class="cap">Fig 15. test_and_set's lock/unlock cycle — the atomic read-and-set means only one caller can ever see <code>rv=0</code> at a time.</div>
+  </div>
+
+  <h2>compare_and_swap</h2>
+  <div class="formula-block"><span class="c1">void</span> swap(<span class="c1">boolean</span> *a, <span class="c1">boolean</span> *b) {
+  <span class="c1">boolean</span> temp = *a;
+  *a = *b;
+  *b = temp;
+}</div>
+
+  <div class="callout clarify">
+    <span class="label">Clarifying a structural bug in the source</span>
+    <p style="margin:0">The slide deck's own "Code for Mutual Exclusion" places the <code>swap(&amp;lock,&amp;key)</code>
+    call <em>after</em> the <code>while</code> loop, with the loop's body empty (a bare semicolon). As
+    printed, <code>key</code> is set to <span class="mono">true</span> once and never changes inside the
+    loop, so <code>while(key==true)</code> would spin forever and the swap — which is what actually has a
+    chance of clearing <code>key</code> — would never run. The swap must be the loop's retry body, not a
+    one-shot call after it:</p>
+  </div>
+  <div class="formula-block">do {
+  key = <span class="c2">TRUE</span>;
+  while (key == <span class="c2">TRUE</span>)
+    swap(&lock, &key);  <span class="cm">// retried on every spin, not called once</span>
+  <span class="c2">critical section</span>
+  lock = <span class="c2">FALSE</span>;
+  remainder section
+} while (true);</div>
+  <p>Walk through it: initially <span class="mono">lock=false</span> (0). A process sets its local
+  <span class="mono">key=true</span>, then repeatedly swaps <span class="mono">lock</span> and
+  <span class="mono">key</span> until the swap hands it back <span class="mono">key=false</span> — which
+  happens exactly when <span class="mono">lock</span> was false going into that swap (so the swap sets
+  <span class="mono">lock=true</span> for this process and <span class="mono">key=false</span>, ending the
+  spin). Once inside, it eventually sets <span class="mono">lock=false</span> on exit, letting the next
+  spinning process's swap succeed.</p>
+
+  <div class="callout key">
+    <span class="label">Exam tip</span>
+    <p style="margin:0">Both test_and_set and compare_and_swap provide <strong>mutual exclusion</strong>,
+    but neither guarantees <strong>bounded waiting</strong> on its own — a spinning process has no
+    guaranteed turn order, so in principle one process could keep "winning" the race indefinitely while
+    another starves. This is a genuinely common written-exam point: "do these hardware instructions satisfy
+    all three CS requirements?" — the answer is mutual exclusion yes, bounded waiting not without extra
+    bookkeeping (e.g. a waiting array plus these primitives, the standard textbook fix).</p>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</div></div></section>
+<section class="page section legacy-section" id="t3-5" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft)">
+ <div class="legacy-topic"><div class="legacy-heading"><div class="legacy-heading-text"><h2>Mutex Locks</h2>
+ <span class="scope-note">Older extra — synchronization now belongs to Unit II; historical version</span></div>
+ <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-memory-t3-5" aria-label="View historical Mutex Locks">View</button></div>
+ <div class="legacy-content" id="legacy-memory-t3-5" hidden><div class="callout clarify"><span class="label">Historical material — now Unit II</span>
+ This retained section belongs to the former syllabus. Its older explanations and exam labels are preserved for reference.
+ Use the <a href="../unit-2/#sync-t3-5">revised Unit II section</a> for corrected synchronization teaching.</div>
+  <div class="section-head"><span class="tag">3.5</span><h1>Mutex Locks</h1></div>
+  <p class="section-sub">The simplest software-visible locking abstraction — acquire, use, release.</p>
+
+  <p>A <strong>mutex lock</strong> (mutual-exclusion lock) is a boolean variable, 0 (unlocked) or 1
+  (locked). A process wanting to enter its critical section must <strong>acquire</strong> the lock first —
+  if it's already 0 (free), the process sets it to 1 and proceeds; once done, it <strong>releases</strong>
+  the lock, setting it back to 0.</p>
+
+  <div class="formula-block">do {
+  acquire lock
+  <span class="c2">critical section</span>
+  release lock
+  remainder section
+} while (true);</div>
+
+  <p>The shared lock variable is often called <span class="mono">available</span>, initially true (free):</p>
+  <div class="formula-block">acquire() {
+  while (!available)
+    ; <span class="cm">// busy wait</span>
+  available = false;
+}
+
+release() {
+  available = true;
+}</div>
+
+  <div class="callout">
+    <span class="label">The cost hiding in "busy wait"</span>
+    <p style="margin:0">A mutex lock implemented this way is a <strong>spinlock</strong> — a waiting
+    process burns CPU cycles continuously re-checking the lock instead of yielding the CPU. That's wasteful
+    on a single-core system (the lock holder can't even run to release it while the waiter spins), but
+    genuinely useful on a multicore system for very short critical sections, since the overhead of a full
+    context switch to sleep-and-wake can exceed the time just spent spinning. This tradeoff — spin vs
+    block — is exactly why semaphores (§3.6) matter: a semaphore's <code>wait()</code> can be implemented
+    to block the calling process instead of spinning, avoiding the wasted cycles.</p>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</div></div></section>
+<section class="page section legacy-section" id="t3-6" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft)">
+ <div class="legacy-topic"><div class="legacy-heading"><div class="legacy-heading-text"><h2>Semaphores</h2>
+ <span class="scope-note">Older extra — synchronization now belongs to Unit II; historical version</span></div>
+ <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-memory-t3-6" aria-label="View historical Semaphores">View</button></div>
+ <div class="legacy-content" id="legacy-memory-t3-6" hidden><div class="callout clarify"><span class="label">Historical material — now Unit II</span>
+ This retained section belongs to the former syllabus. Its older explanations and exam labels are preserved for reference.
+ Use the <a href="../unit-2/#sync-t3-6">revised Unit II section</a> for corrected synchronization teaching.</div><div class="callout clarify"><span class="label">Correction to the retained explanation</span>A spin wait busy-waits; a blocking semaphore queues and suspends its waiter. The retained phrases “blocks, spinning” and “blocks (spins)” refer to busy-waiting. The revised Unit II section distinguishes these models and explains how a blocking implementation avoids lost wakeups.</div>
+  <div class="section-head"><span class="tag">3.6</span><h1>Semaphores</h1></div>
+  <p class="section-sub">A synchronization tool more flexible than a mutex — an integer that can gate access to a whole pool of resources, not just one.</p>
+
+  <p>A <strong>semaphore</strong> S is a non-negative integer variable, shared between processes, that can
+  only be accessed through two indivisible operations: <span class="mono">wait()</span> and
+  <span class="mono">signal()</span> — originally named <span class="mono">P()</span> and
+  <span class="mono">V()</span>.</p>
+
+  <div class="formula-block"><span class="c1">wait</span>(S) {
+  while (S &lt;= 0)
+    ; <span class="cm">// busy wait — resource unavailable</span>
+  S--;
+}
+
+<span class="c1">signal</span>(S) {
+  S++;
+}</div>
+  <p><span class="mono">wait()</span> asks "is the resource available?" — if S≤0 it spins; the moment S
+  becomes positive, it breaks out and claims one unit by decrementing. <span class="mono">signal()</span>
+  returns a unit to the pool. Both operations execute <strong>indivisibly</strong> — once one process starts
+  modifying S, no other process can simultaneously modify it.</p>
+
+  <h2>Binary vs counting semaphores</h2>
+  <table>
+    <tr><th>Type</th><th>Range</th><th>Use</th></tr>
+    <tr><td><strong>Binary semaphore</strong></td><td>0 or 1 only</td><td>Functions exactly like a mutex lock — 0 means a process already holds the resource, 1 means it's free.</td></tr>
+    <tr><td><strong>Counting semaphore</strong></td><td>Unrestricted (0, 1, 2, …)</td><td>Controls access to a resource with <em>multiple</em> interchangeable instances — the count tracks how many are currently free.</td></tr>
+  </table>
+
+  <div class="callout clarify">
+    <span class="label">Clarifying an ambiguous point in the source</span>
+    <p style="margin:0">The slide deck's own "Counting Semaphore" example prints
+    <code>wait(S) { while (S &gt;= 0); S--; }</code> — the comparison is backwards from the deck's own
+    correct <code>wait()</code> definition just two slides earlier (<code>while (S &lt;= 0)</code>), and as
+    printed it would spin forever for any non-negative S, including the S=2 example the same slide walks
+    through. The correct condition, <code>while (S &lt;= 0)</code>, is what's used below and matches the
+    slide's own prose walkthrough.</p>
+  </div>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 210" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrM5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#4C3F91"/></marker></defs>
+      <rect x="230" y="20" width="140" height="60" rx="8" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.5"/>
+      <text x="300" y="45" text-anchor="middle" font-size="11" fill="#1C1E21">Resource pool</text>
+      <text x="300" y="65" text-anchor="middle" font-size="14" font-weight="600" fill="#4C3F91">S = 2 instances</text>
+      <rect x="30" y="130" width="90" height="40" rx="6" fill="#E8EFF8" stroke="#1D4E89"/><text x="75" y="154" text-anchor="middle" font-size="11" fill="#1C1E21">P1: wait(S)</text>
+      <rect x="255" y="130" width="90" height="40" rx="6" fill="#E8EFF8" stroke="#1D4E89"/><text x="300" y="154" text-anchor="middle" font-size="11" fill="#1C1E21">P2: wait(S)</text>
+      <rect x="480" y="130" width="90" height="40" rx="6" fill="#F6E9F0" stroke="#93316B"/><text x="525" y="154" text-anchor="middle" font-size="11" fill="#1C1E21">P3: wait(S)</text>
+      <path d="M120,150 L230,70" stroke="#1D4E89" stroke-width="1.2" marker-end="url(#arrM5)"/>
+      <path d="M345,150 L340,80" stroke="#1D4E89" stroke-width="1.2" marker-end="url(#arrM5)"/>
+      <path d="M480,140 L370,60" stroke="#93316B" stroke-width="1.2" stroke-dasharray="4,2"/>
+      <text x="470" y="190" text-anchor="middle" font-size="10.5" fill="#93316B">S=0 → blocks (spins) until a signal(S)</text>
+      <text x="177" y="190" text-anchor="middle" font-size="10.5" fill="#5B6169">S: 2→1→0 as P1, P2 acquire</text>
+    </svg>
+    <div class="cap">Fig 16. Three processes contend for a 2-instance resource pool — the first two acquire it (S: 2→1→0), the third blocks until one is released.</div>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">unit 3.pdf p24, corrected</span><span class="marks">worked example</span></div>
+    <div class="qtext">Three processes P1, P2, P3 all call wait(S) on a counting semaphore initialized to S=2 (a resource with 2 interchangeable instances). What happens?</div>
+    <p style="margin:0">S starts at 2. P1's <span class="mono">wait(S)</span> sees S=2 &gt; 0, decrements to
+    S=1 — P1 acquires. P2's <span class="mono">wait(S)</span> sees S=1 &gt; 0, decrements to S=0 — P2
+    acquires. P3's <span class="mono">wait(S)</span> sees S=0, so the <span class="mono">while(S&lt;=0)</span>
+    condition holds and P3 <strong>blocks</strong>, spinning until either P1 or P2 calls
+    <span class="mono">signal(S)</span> and returns S to 1.</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">2021-22 CIE-II Q4</span><span class="marks">1 mark</span></div>
+    <div class="qtext">A counting semaphore has value 7. 20 P-operations and 15 V-operations are completed on it. What is the resulting value?</div>
+    <p style="margin:0">S = 7 − 20 + 15 = <strong>2</strong>. (This kind of question tests raw P/V
+    bookkeeping arithmetic, treating the operations as a completed batch — a real semaphore's
+    <code>wait()</code> would actually block once S≤0, so 20 P-ops couldn't literally all fire back-to-back
+    without interleaved V-ops keeping S positive; the question is testing the net-count formula, not
+    execution-order feasibility.)</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">2024-25 SEE Part-A</span><span class="marks">2 marks</span></div>
+    <div class="qtext">A counting semaphore has value 7. 20 P-operations and x V-operations are completed; the new value is 5. Find x.</div>
+    <p style="margin:0">7 − 20 + x = 5  →  <strong>x = 18</strong>.</p>
+  </div>
+
+  <h2>Beyond locking: semaphores as a general coordination tool</h2>
+  <p>Semaphores aren't just locks with extra counting — the same wait/signal primitives can build
+  coordination patterns that have nothing to do with mutual exclusion.</p>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">2024-25 SEE Part-A</span><span class="marks">2 marks · verified with real threads</span></div>
+    <div class="qtext">n processes each run: Code Section P: wait(a); count=count+1; if(count==n) signal(b); signal(a); — Code Section Q: wait(b); signal(b); — with semaphores a=1, b=0, and shared count=0. What does this code achieve?</div>
+    <div class="ans-label">This is a barrier (rendezvous point)</div>
+    <p>Semaphore <span class="mono">a</span> protects the shared counter (only one process increments
+    <span class="mono">count</span> at a time). The <em>last</em> process to reach Section P — the one that
+    sees <span class="mono">count==n</span> — is the only one that calls <span class="mono">signal(b)</span>,
+    releasing a single permit on <span class="mono">b</span>. In Section Q, every process does
+    <span class="mono">wait(b); signal(b);</span> — a "turnstile" pattern where each process that gets
+    through immediately passes the permit along to the next, so that one <span class="mono">signal(b)</span>
+    cascades through and eventually releases all n waiters.</p>
+    <p style="margin:0">Verified with 3 real Python threads and randomized arrival timing — regardless of
+    which process arrives first, second, or third, <strong>no process ever executes Section Q until all 3
+    have completed Section P</strong>:</p>
+    <div class="formula-block">P0 entered section P, count=1
+P2 entered section P, count=2
+P1 entered section P, count=3
+P1 passed the barrier (section Q)
+P2 passed the barrier (section Q)
+P0 passed the barrier (section Q)</div>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</div></div></section>
+<section class="page section legacy-section" id="t3-7" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft)">
+ <div class="legacy-topic"><div class="legacy-heading"><div class="legacy-heading-text"><h2>Bounded-Buffer Problem</h2>
+ <span class="scope-note">Older extra — synchronization now belongs to Unit II; historical version</span></div>
+ <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-memory-t3-7" aria-label="View historical Bounded-Buffer Problem">View</button></div>
+ <div class="legacy-content" id="legacy-memory-t3-7" hidden><div class="callout clarify"><span class="label">Historical material — now Unit II</span>
+ This retained section belongs to the former syllabus. Its older explanations and exam labels are preserved for reference.
+ Use the <a href="../unit-2/#sync-t3-7">revised Unit II section</a> for corrected synchronization teaching.</div>
+  <div class="section-head"><span class="tag">3.7</span><h1>Bounded-Buffer Problem</h1></div>
+  <p class="section-sub">Also called the Producer-Consumer problem — the first of three classical synchronization problems, solved with exactly three semaphores.</p>
+
+  <p>A buffer of <em>n</em> slots sits between a <strong>producer</strong>, which produces data and stores
+  it in the buffer, and a <strong>consumer</strong>, which removes data from the buffer. Three rules must
+  hold:</p>
+  <ol>
+    <li>The producer must not insert data when the buffer is full.</li>
+    <li>The consumer must not retrieve data when the buffer is empty.</li>
+    <li>Producer and consumer must not insert and remove data simultaneously.</li>
+  </ol>
+
+  <h2>Solution using three semaphores</h2>
+  <table>
+    <tr><th>Semaphore</th><th>Type</th><th>Initial value</th><th>Role</th></tr>
+    <tr><td><span class="mono">mutex</span></td><td>Binary</td><td>1</td><td>Acquires/releases the lock around the actual buffer access, guaranteeing rule 3.</td></tr>
+    <tr><td><span class="mono">empty</span></td><td>Counting</td><td>n (buffer size)</td><td>Tracks free slots — starts at n since the buffer starts empty. Guarantees rule 1.</td></tr>
+    <tr><td><span class="mono">full</span></td><td>Counting</td><td>0</td><td>Tracks filled slots — starts at 0. Guarantees rule 2.</td></tr>
+  </table>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrM6" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#4C3F91"/></marker></defs>
+      <rect x="20" y="80" width="110" height="50" rx="8" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/><text x="75" y="110" text-anchor="middle" font-size="12" fill="#1C1E21">Producer</text>
+      <rect x="500" y="80" width="110" height="50" rx="8" fill="#F6E9F0" stroke="#93316B" stroke-width="1.5"/><text x="555" y="110" text-anchor="middle" font-size="12" fill="#1C1E21">Consumer</text>
+      <rect x="230" y="60" width="180" height="90" rx="8" fill="#FFFFFF" stroke="#4C3F91" stroke-width="1.5"/>
+      <text x="320" y="80" text-anchor="middle" font-size="11" font-weight="600" fill="#4C3F91">Bounded buffer</text>
+      <rect x="245" y="90" width="24" height="24" fill="#EDEAE0" stroke="#8A9096"/><rect x="273" y="90" width="24" height="24" fill="#EDEAE0" stroke="#8A9096"/>
+      <rect x="301" y="90" width="24" height="24" fill="#4C3F91"/><rect x="329" y="90" width="24" height="24" fill="#EDEAE0" stroke="#8A9096"/>
+      <rect x="357" y="90" width="24" height="24" fill="#EDEAE0" stroke="#8A9096"/>
+      <text x="320" y="132" text-anchor="middle" font-size="9.5" fill="#5B6169">n slots — filled/empty tracked by full/empty</text>
+      <path d="M130,95 Q180,75 230,90" fill="none" stroke="#1D4E89" stroke-width="1.3" marker-end="url(#arrM6)"/>
+      <text x="180" y="65" text-anchor="middle" font-size="9.5" fill="#5B6169">wait(empty), wait(mutex)…signal(mutex), signal(full)</text>
+      <path d="M500,105 Q450,130 410,110" fill="none" stroke="#93316B" stroke-width="1.3" marker-end="url(#arrM6)"/>
+      <text x="455" y="155" text-anchor="middle" font-size="9.5" fill="#5B6169">wait(full), wait(mutex)…signal(mutex), signal(empty)</text>
+      <text x="320" y="195" text-anchor="middle" font-size="10.5" fill="#5B6169">mutex protects the buffer edit; empty/full gate whether it's safe to produce/consume at all</text>
+    </svg>
+    <div class="cap">Fig 17. The producer waits on <code>empty</code> before adding, the consumer waits on <code>full</code> before removing; <code>mutex</code> serializes the actual buffer access.</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">Producer code</h3>
+      <div class="formula-block">do {
+  wait(empty);
+  wait(mutex);
+    <span class="cm">// add item to buffer</span>
+  signal(mutex);
+  signal(full);
+} while (true);</div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Consumer code</h3>
+      <div class="formula-block">do {
+  wait(full);
+  wait(mutex);
+    <span class="cm">// remove item from buffer</span>
+  signal(mutex);
+  signal(empty);
+} while (true);</div>
+    </div>
+  </div>
+
+  <div class="callout clarify">
+    <span class="label">Clarifying a bug in the source</span>
+    <p style="margin:0">The slide deck's own printed Consumer Code calls <code>signal(empty)</code> twice
+    (once where <code>signal(mutex)</code> should be, and again where <code>signal(full)</code> should be)
+    and never actually releases <code>mutex</code> — meaning after the very first consumer runs, the mutex
+    lock would remain held forever and no producer or consumer could ever enter their critical section
+    again. The corrected sequence above — <code>wait(full) → wait(mutex) → remove item → signal(mutex) →
+    signal(empty)</code> — mirrors the producer's own (correctly printed) structure and is the standard
+    textbook solution.</p>
+  </div>
+
+  <div class="callout key">
+    <span class="label">C semaphore API, in case a question asks for real code</span>
+    <p style="margin:0"><span class="mono">sem_init()</span> initializes a semaphore to a starting value;
+    <span class="mono">sem_wait()</span> / <span class="mono">sem_post()</span> are <span class="mono">wait()</span>
+    / <span class="mono">signal()</span>; <span class="mono">sem_destroy()</span> frees it. The mutex-lock
+    equivalents are <span class="mono">pthread_mutex_init()</span>,
+    <span class="mono">pthread_mutex_lock()</span> / <span class="mono">pthread_mutex_unlock()</span>, and
+    <span class="mono">pthread_mutex_destroy()</span>.</p>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</div></div></section>
+<section class="page section legacy-section" id="t3-8" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft)">
+ <div class="legacy-topic"><div class="legacy-heading"><div class="legacy-heading-text"><h2>Readers-Writers Problem</h2>
+ <span class="scope-note">Older extra — synchronization now belongs to Unit II; historical version</span></div>
+ <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-memory-t3-8" aria-label="View historical Readers-Writers Problem">View</button></div>
+ <div class="legacy-content" id="legacy-memory-t3-8" hidden><div class="callout clarify"><span class="label">Historical material — now Unit II</span>
+ This retained section belongs to the former syllabus. Its older explanations and exam labels are preserved for reference.
+ Use the <a href="../unit-2/#sync-t3-8">revised Unit II section</a> for corrected synchronization teaching.</div>
+  <div class="section-head"><span class="tag">3.8</span><h1>Readers-Writers Problem</h1></div>
+  <p class="section-sub">Some processes only need to look; others need exclusive access. Letting the readers share costs nothing — letting two writers collide costs everything.</p>
+
+  <p>A database is shared among concurrent processes. Some processes only want to <strong>read</strong> it;
+  others — <strong>writers</strong> — want to read <em>and</em> update it. Two readers accessing the data at
+  the same time causes no problem at all. Two writers (or a reader and a writer) accessing it at the same
+  time can cause real chaos. The goal: give writers <strong>exclusive access</strong>, while letting any
+  number of readers share access freely amongst themselves.</p>
+
+  <h2>Solution using two semaphores and a counter</h2>
+  <table>
+    <tr><th>Variable</th><th>Type</th><th>Initial value</th><th>Role</th></tr>
+    <tr><td><span class="mono">mutex</span></td><td>Semaphore</td><td>1</td><td>Protects updates to <code>readcount</code> itself, so two readers incrementing/decrementing it don't race.</td></tr>
+    <tr><td><span class="mono">wrt</span></td><td>Semaphore</td><td>1</td><td>Shared between readers and writers — a writer holds it for the whole write; the <em>first</em> reader to arrive also grabs it (locking out writers), and the <em>last</em> reader to leave releases it.</td></tr>
+    <tr><td><span class="mono">readcount</span></td><td>Integer</td><td>0</td><td>Tracks how many readers are currently active.</td></tr>
+  </table>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrM7" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#4C3F91"/></marker></defs>
+      <rect x="20" y="20" width="90" height="34" rx="6" fill="#E8EFF8" stroke="#1D4E89"/><text x="65" y="42" text-anchor="middle" font-size="10.5" fill="#1C1E21">Reader A</text>
+      <rect x="20" y="66" width="90" height="34" rx="6" fill="#E8EFF8" stroke="#1D4E89"/><text x="65" y="88" text-anchor="middle" font-size="10.5" fill="#1C1E21">Reader B</text>
+      <rect x="20" y="112" width="90" height="34" rx="6" fill="#E8EFF8" stroke="#1D4E89"/><text x="65" y="134" text-anchor="middle" font-size="10.5" fill="#1C1E21">Reader C</text>
+      <text x="65" y="164" text-anchor="middle" font-size="9.5" fill="#5B6169">all share freely</text>
+      <path d="M110,37 L250,60" stroke="#1D4E89" stroke-width="1.1" marker-end="url(#arrM7)"/>
+      <path d="M110,83 L250,80" stroke="#1D4E89" stroke-width="1.1" marker-end="url(#arrM7)"/>
+      <path d="M110,129 L250,100" stroke="#1D4E89" stroke-width="1.1" marker-end="url(#arrM7)"/>
+      <rect x="250" y="55" width="140" height="60" rx="8" fill="#FFFFFF" stroke="#4C3F91" stroke-width="1.5"/>
+      <text x="320" y="80" text-anchor="middle" font-size="11" font-weight="600" fill="#4C3F91">Database</text>
+      <text x="320" y="98" text-anchor="middle" font-size="9.5" fill="#5B6169">(wrt held while any writer active, or first reader in)</text>
+      <rect x="480" y="65" width="110" height="40" rx="6" fill="#F6E9F0" stroke="#93316B" stroke-width="1.5"/>
+      <text x="535" y="90" text-anchor="middle" font-size="11" fill="#1C1E21">Writer</text>
+      <path d="M480,85 L390,85" stroke="#93316B" stroke-width="1.3" stroke-dasharray="4,2" marker-end="url(#arrM7)"/>
+      <text x="435" y="140" text-anchor="middle" font-size="10" fill="#93316B">blocked while ANY reader (or another writer) holds wrt</text>
+    </svg>
+    <div class="cap">Fig 18. Readers share the database freely amongst themselves; a writer needs exclusive access, gated by the shared <code>wrt</code> semaphore.</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">Writer code</h3>
+      <div class="formula-block">do {
+  wait(wrt);
+    <span class="cm">// perform the write —</span>
+    <span class="cm">// no reader or writer allowed in</span>
+  signal(wrt);
+} while (true);</div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Reader code</h3>
+      <div class="formula-block">do {
+  wait(mutex);
+  readcount++;
+  if (readcount == 1)
+    wait(wrt);      <span class="cm">// 1st reader locks out writers</span>
+  signal(mutex);
+    <span class="cm">// perform the read</span>
+  wait(mutex);
+  readcount--;
+  if (readcount == 0)
+    signal(wrt);    <span class="cm">// last reader lets writers back in</span>
+  signal(mutex);
+} while (true);</div>
+    </div>
+  </div>
+
+  <p>Why <span class="mono">if (readcount == 1) wait(wrt)</span> instead of every reader waiting on
+  <span class="mono">wrt</span>? Because only the <em>first</em> reader needs to actually contend for
+  exclusive access — once it holds <span class="mono">wrt</span>, every subsequent reader can proceed freely
+  (protected only by the quick <span class="mono">mutex</span> around the counter update), and only the
+  <em>last</em> reader to leave needs to release <span class="mono">wrt</span> for writers.</p>
+
+  <div class="callout">
+    <span class="label">A known weakness of this particular solution</span>
+    <p style="margin:0">This is the classic "readers-preference" solution: as long as at least one reader
+    is active, a new reader can always join in (readcount never drops to 0), which means a waiting writer
+    can be starved indefinitely by a continuous stream of readers. A "writers-preference" variant (not shown
+    here) fixes this by having a waiting writer block new readers from starting once it's requested access —
+    worth mentioning if a question specifically asks about fairness.</p>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</div></div></section>
+<section class="page section legacy-section" id="t3-9" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft)">
+ <div class="legacy-topic"><div class="legacy-heading"><div class="legacy-heading-text"><h2>Dining Philosophers Problem</h2>
+ <span class="scope-note">Older extra — synchronization now belongs to Unit II; historical version</span></div>
+ <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-memory-t3-9" aria-label="View historical Dining Philosophers Problem">View</button></div>
+ <div class="legacy-content" id="legacy-memory-t3-9" hidden><div class="callout clarify"><span class="label">Historical material — now Unit II</span>
+ This retained section belongs to the former syllabus. Its older explanations and exam labels are preserved for reference.
+ Use the <a href="../unit-2/#sync-t3-9">revised Unit II section</a> for corrected synchronization teaching.</div>
+  <div class="section-head"><span class="tag">3.9</span><h1>Dining Philosophers Problem</h1></div>
+  <p class="section-sub">Five philosophers, five chopsticks — a deceptively simple resource-sharing puzzle that deadlocks if solved naively.</p>
+
+  <p>Five philosophers sit at a round table, alternating between thinking and eating. Between each pair of
+  adjacent philosophers sits one chopstick — five chopsticks in total — and a philosopher needs
+  <strong>both</strong> neighboring chopsticks to eat, picking them up one at a time and releasing both when
+  done.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="190" r="90" fill="#FFFFFF" stroke="#4C3F91" stroke-width="1.5"/>
+      <text x="200" y="195" text-anchor="middle" font-size="11" fill="#5B6169">bowl of rice</text>
+      <!-- philosophers at 5 positions -->
+      <g font-size="10.5">
+        <circle cx="200" cy="50" r="28" fill="#E8EFF8" stroke="#1D4E89"/><text x="200" y="54" text-anchor="middle" fill="#1C1E21">P0</text>
+        <circle cx="322" cy="140" r="28" fill="#E8EFF8" stroke="#1D4E89"/><text x="322" y="144" text-anchor="middle" fill="#1C1E21">P1</text>
+        <circle cx="278" cy="315" r="28" fill="#E8EFF8" stroke="#1D4E89"/><text x="278" y="319" text-anchor="middle" fill="#1C1E21">P2</text>
+        <circle cx="122" cy="315" r="28" fill="#E8EFF8" stroke="#1D4E89"/><text x="122" y="319" text-anchor="middle" fill="#1C1E21">P3</text>
+        <circle cx="78" cy="140" r="28" fill="#E8EFF8" stroke="#1D4E89"/><text x="78" y="144" text-anchor="middle" fill="#1C1E21">P4</text>
+      </g>
+      <!-- chopsticks between them -->
+      <g stroke="#A66A0D" stroke-width="4" stroke-linecap="round">
+        <line x1="253" y1="75" x2="287" y2="105"/>
+        <line x1="307" y1="190" x2="292" y2="235"/>
+        <line x1="200" y1="280" x2="200" y2="320"/>
+        <line x1="108" y1="235" x2="93" y2="190"/>
+        <line x1="113" y1="105" x2="147" y2="75"/>
+      </g>
+      <text x="200" y="390" text-anchor="middle" font-size="10.5" fill="#5B6169">Semaphore chopstick[5], all initialized to 1 —</text>
+      <text x="200" y="406" text-anchor="middle" font-size="10.5" fill="#5B6169">each shared by two adjacent philosophers</text>
+    </svg>
+    <div class="cap">Fig 19. Five philosophers, five shared chopstick semaphores — each philosopher needs both of their two adjacent chopsticks simultaneously.</div>
+  </div>
+
+  <h2>The naive semaphore solution — and why it deadlocks</h2>
+  <div class="formula-block">Semaphore chopstick[5];  <span class="cm">// all initialized to 1</span>
+
+do {
+  wait(chopstick[i]);
+  wait(chopstick[(i+1) % 5]);
+    <span class="c2">eat();</span>
+  signal(chopstick[i]);
+  signal(chopstick[(i+1) % 5]);
+    think();
+} while (true);</div>
+
+  <div class="callout clarify">
+    <span class="label">Not a bug — a deliberately naive first attempt</span>
+    <p style="margin:0">This straightforward solution has a real flaw, and the source material presents it
+    precisely so the fix can be taught: if <strong>all five</strong> philosophers simultaneously pick up
+    their left chopstick, every <span class="mono">chopstick[i]</span> is now held, and every philosopher's
+    second <span class="mono">wait()</span> blocks forever waiting for their right neighbor's chopstick —
+    who is in turn waiting on them. This is a genuine deadlock (a 5-way circular wait, the same underlying
+    failure mode as §3.10's 2-process S/Q example, just with 5 participants instead of 2).</p>
+  </div>
+
+  <h2>Three standard fixes</h2>
+  <ol>
+    <li><strong>Limit concurrent diners.</strong> Allow at most 4 philosophers to sit at the table
+    simultaneously — with only 4 of 5 possibly holding a first chopstick, at least one is guaranteed to get
+    both of theirs.</li>
+    <li><strong>Atomic pickup.</strong> A philosopher may pick up a chopstick only if <em>both</em> are
+    available — done inside a critical section, so "pick up left, then right" can never leave a philosopher
+    holding just one.</li>
+    <li><strong>Asymmetric ordering.</strong> Odd-numbered philosophers pick up their left chopstick first,
+    then their right; even-numbered philosophers pick up right first, then left. This breaks the symmetry
+    that let all five grab "the same side" simultaneously.</li>
+  </ol>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</div></div></section>
+<section class="page section legacy-section" id="t3-10" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft)">
+ <div class="legacy-topic"><div class="legacy-heading"><div class="legacy-heading-text"><h2>Deadlock &amp; Starvation</h2>
+ <span class="scope-note">Older extra — synchronization now belongs to Unit II; historical version</span></div>
+ <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-memory-t3-10" aria-label="View historical Deadlock &amp; Starvation">View</button></div>
+ <div class="legacy-content" id="legacy-memory-t3-10" hidden><div class="callout clarify"><span class="label">Historical material — now Unit II</span>
+ This retained section belongs to the former syllabus. Its older explanations and exam labels are preserved for reference.
+ The displayed diagram’s S/Q arrow endpoints have been repaired to match its labels. Use the <a href="../unit-2/#sync-t3-10">revised Unit II section</a> for corrected synchronization teaching.</div>
+  <div class="section-head"><span class="tag">3.10</span><h1>Deadlock &amp; Starvation</h1></div>
+  <p class="section-sub">Semaphores solve the synchronization problem — but misuse them and they introduce two new failure modes of their own.</p>
+
+  <p><strong>Deadlock:</strong> two or more processes are each waiting indefinitely for an event that only
+  one of the <em>other</em> waiting processes can cause. <strong>Starvation</strong> (indefinite blocking):
+  a process may simply never be removed from the queue of processes suspended on a semaphore, even though
+  the semaphore keeps being signaled to others.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrM8" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#93316B"/></marker></defs>
+      <rect x="40" y="20" width="130" height="40" rx="6" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/><text x="105" y="45" text-anchor="middle" font-size="12" fill="#1C1E21">P0</text>
+      <rect x="390" y="20" width="130" height="40" rx="6" fill="#F6E9F0" stroke="#93316B" stroke-width="1.5"/><text x="455" y="45" text-anchor="middle" font-size="12" fill="#1C1E21">P1</text>
+      <circle cx="280" cy="120" r="30" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.5"/><text x="280" y="116" text-anchor="middle" font-size="11" fill="#1C1E21">S</text><text x="280" y="130" text-anchor="middle" font-size="9" fill="#5B6169">held by P0</text>
+      <circle cx="280" cy="190" r="0"/>
+      <rect x="230" y="170" width="100" height="34" rx="6" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.5"/><text x="280" y="192" text-anchor="middle" font-size="11" fill="#1C1E21">Q — held by P1</text>
+      <path d="M105,60 L280,95" stroke="#1D4E89" stroke-width="1.4" marker-end="url(#arrM8)"/>
+      <text x="170" y="70" text-anchor="middle" font-size="9.5" fill="#5B6169">P0 holds S,</text>
+      <path d="M105,60 Q170,140 230,182" fill="none" stroke="#93316B" stroke-width="1.4" stroke-dasharray="4,2" marker-end="url(#arrM8)"/>
+      <text x="150" y="150" text-anchor="middle" font-size="9.5" fill="#93316B">P0 wants Q — blocked</text>
+      <path d="M455,60 L310,120" fill="none" stroke="#93316B" stroke-width="1.4" stroke-dasharray="4,2" marker-end="url(#arrM8)"/>
+      <text x="420" y="130" text-anchor="middle" font-size="9.5" fill="#93316B">P1 wants S — blocked</text>
+      <path d="M455,60 L330,182" fill="none" stroke="#4C3F91" stroke-width="1.4" marker-end="url(#arrM8)"/>
+      <text x="380" y="70" text-anchor="middle" font-size="9.5" fill="#5B6169">P1 holds Q,</text>
+    </svg>
+    <div class="cap">Fig 20. Circular wait — P0 holds S and wants Q; P1 holds Q and wants S. Neither can ever proceed.</div>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">unit 3.pdf p41, classic example</span><span class="marks">worked example · verified with real threads</span></div>
+    <div class="qtext">Semaphores S and Q are both initialized to 1. P0 executes wait(S) then wait(Q); P1 executes wait(Q) then wait(S). Show that this can deadlock.</div>
+    <p>Consider this interleaving: P0 runs <span class="mono">wait(S)</span> and acquires S. P1 runs
+    <span class="mono">wait(Q)</span> and acquires Q. Now P0 attempts <span class="mono">wait(Q)</span> — but
+    Q is held by P1, so P0 blocks. P1 attempts <span class="mono">wait(S)</span> — but S is held by P0, so
+    P1 blocks too. Each process is waiting for a resource the <em>other</em> holds, and neither will ever
+    signal because neither can finish its critical section to reach the <span class="mono">signal()</span>
+    calls. Reproduced with two real Python threads and a timeout to detect the hang:</p>
+    <div class="formula-block">P0: attempting wait(S) → acquired S
+P1: attempting wait(Q) → acquired Q
+P0: attempting wait(Q) → <span class="c2">TIMED OUT (deadlocked)</span>
+P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
+    <p style="margin:0"><strong>The fix in general:</strong> impose a consistent global ordering on
+    resource acquisition — e.g. every process must acquire S before Q, never the other way round — which
+    makes this particular circular-wait interleaving impossible.</p>
+  </div>
+
+  <h2>Priority inversion</h2>
+  <p><strong>Priority inversion</strong> is a scheduling-adjacent problem: a lower-priority process holds a
+  lock that a higher-priority process needs, but the lower-priority process itself can't run to finish and
+  release the lock because a *medium*-priority process (uninvolved in the lock at all) keeps preempting it.
+  The effective priority of the high-priority process has been "inverted" down to the low-priority
+  process's level. The standard fix is the <strong>priority-inheritance protocol</strong>: temporarily boost
+  the lock-holding process's priority to match the highest-priority process waiting on it, so it can finish
+  and release the lock promptly.</p>
+
+  <div class="callout key">
+    <span class="label">Where this connects back</span>
+    <p style="margin:0">Deadlock here is the same underlying phenomenon as §3.9's naive dining-philosophers
+    solution (circular wait) and, more generally, exactly what bounded waiting (§3.2, requirement 3) exists
+    to prevent. Semaphores are a *tool* for solving the critical-section problem, not an automatic guarantee
+    against all three failure modes — that's the connective thread across this entire unit.</p>
+  </div>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</div></div></section>
+<section class="page section" id="memory-quick-revision" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
+<div class="section-head"><span class="tag">REVISE</span><h1>Main-memory quick revision</h1></div>
+<p class="section-sub">The current Unit III at a glance. The older synchronization revision sheet follows under View/Hide.</p>
+<table><tr><th>Topic</th><th>Exam essentials</th><th>Common mistake</th></tr>
+<tr><td><a href="#memory-binding">Address binding</a></td><td>Compile time: absolute placement. Load time: relocate while loading. Execution time: translate while running.</td><td>Confusing symbol linking with physical-address translation</td></tr>
+<tr><td><a href="#memory-addresses">Logical/physical</a></td><td>Logical addresses are generated by the CPU; physical addresses reach memory. MMU translates them.</td><td>Using the limit as the last legal offset rather than the length</td></tr>
+<tr><td><a href="#memory-loading">Dynamic loading</a></td><td>Load a routine when it is called; unused routines stay unloaded.</td><td>Calling the routine-loading technique demand paging</td></tr>
+<tr><td><a href="#memory-linking">Dynamic linking</a></td><td>Resolve library references at run time; shared code mappings can reduce physical duplication.</td><td>Assuming writable data becomes one common copy</td></tr>
+<tr><td><a href="#memory-swapping">Swapping</a></td><td>Move a process image out and later restore it; account for relocation and pending I/O.</td><td>Calculating one direction when both out and in are needed</td></tr>
+<tr><td><a href="#memory-contiguous">Contiguous allocation</a></td><td>One process region; first/best/worst fit choose holes. Coalescing joins adjacent holes; compaction moves live regions.</td><td>Calling unallocated holes internal fragmentation</td></tr>
+<tr><td><a href="#memory-paging">Paging</a></td><td>Equal pages and frames; page table replaces p with f, leaving d unchanged. TLB caches translations.</td><td>Treating a TLB miss as a disk access, or a frame number as a byte base</td></tr>
+<tr><td><a href="#memory-segmentation">Segmentation</a></td><td>Variable-sized logical units; choose the segment entry, check d against its limit, add base.</td><td>Assuming noncontiguous segments mean each segment can itself be scattered</td></tr></table>
+<div class="formula-block">Contiguous: 0 ≤ LA &lt; limit → PA = base + LA
+Paging:     p = floor(LA/P), d = LA mod P → PA = frame[p] × P + d
+Frames:     ceil(process_bytes / page_bytes)
+Waste:      allocated_bytes − process_bytes
+Table size: number_of_entries × bytes_per_entry
+TLB:        EAT = h(ε + m) + (1 − h)(ε + 2m)
+Segments:   valid s and 0 ≤ d &lt; limit[s] → PA = base[s] + d
+Swapping:   transfer_time = bytes_transferred / bytes_per_second</div>
+<h2>Prepare a complete long answer</h2>
+<p>Start with the definition and the problem solved. Draw the corresponding diagram and explain the steps in order. For an allocation or translation question, state units and assumptions, show intermediate results and check legality before calculating the final address. Finish with the method’s costs, fragmentation and protection properties. For a comparison, use the same properties for both methods.</p>
+<p>The <a href="#memory-solved">solved-numerical index</a> covers the calculations to practise. Page replacement and other Unit IV policies are outside this guide’s main-memory teaching. Historical extras below stay collapsed unless opened directly or reached through a link.</p>
+<a class="backtotop" href="#index">↑ Back to index</a></section>
+<section class="page section legacy-section" id="quick-revision" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft)">
+ <div class="legacy-topic"><div class="legacy-heading"><div class="legacy-heading-text"><h2>Quick Revision Sheet</h2>
+ <span class="scope-note">Older extra — synchronization now belongs to Unit II; historical version</span></div>
+ <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-memory-quick-revision" aria-label="View historical Quick Revision Sheet">View</button></div>
+ <div class="legacy-content" id="legacy-memory-quick-revision" hidden><div class="callout clarify"><span class="label">Historical material — now Unit II</span>
+ This retained section belongs to the former syllabus. Its older explanations and exam labels are preserved for reference.
+ Use the <a href="../unit-2/#quick-revision">revised Unit II section</a> for corrected synchronization teaching.</div><div class="callout clarify"><span class="label">Correction to the retained explanation</span>
+ Atomic exchange and compare-and-swap are different operations: CAS updates only when the expected value matches.
+ A simple test-and-set lock guarantees mutual exclusion under its assumptions but not bounded waiting.
+ A spin wait busy-waits; a blocking semaphore queues and suspends a waiter. The historical phrase “blocks, spinning” describes busy-waiting.
+ In the shared-B trace, the sequential orders produce 3 and 4; the historical remark about an “obvious sequential answer B=1” is incorrect.
+ The revised Unit II guide explains these distinctions.</div>
+  <div class="section-head"><span class="tag">REVISION</span><h1>Quick Revision Sheet</h1></div>
+  <p class="section-sub">Everything on one scroll — definitions, formulas, and the source's own bugs, for the last hour before the exam.</p>
+
+  <h2>Core formulas</h2>
+  <div class="formula-block"><span class="c1">Semaphore net value</span> = initial − (P-operations) + (V-operations)
+<span class="c1">wait(S)</span>   { while (S &lt;= 0) ; S--; }
+<span class="c1">signal(S)</span> { S++; }</div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">The three CS requirements</h3>
+      <table>
+        <tr><td><strong>Mutual Exclusion</strong></td><td>Only one process in its CS at a time</td></tr>
+        <tr><td><strong>Progress</strong></td><td>Entry decision can't be postponed indefinitely</td></tr>
+        <tr><td><strong>Bounded Waiting</strong></td><td>A bound exists on how many times others enter before you do</td></tr>
+      </table>
+      <p style="margin:10px 0 0;font-size:13.5px">test_and_set / compare_and_swap give #1 but not
+      #3 unguarded. Peterson's gives all three, but only for 2 processes.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Three bugs this guide caught in the source</h3>
+      <ul style="margin-bottom:0">
+        <li>Counting-semaphore <code>wait()</code> printed as <code>while(S&gt;=0)</code> — should be
+        <code>while(S&lt;=0)</code> (§3.6).</li>
+        <li>compare_and_swap's <code>swap()</code> printed outside the retry loop — should be the loop's
+        retry body (§3.4).</li>
+        <li>Bounded-buffer Consumer Code printed with <code>signal(empty)</code> twice, no
+        <code>signal(mutex)</code> — leaks the lock forever (§3.7).</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Classic problems, one line each</h2>
+  <table>
+    <tr><td><strong>Bounded-Buffer</strong></td><td>3 semaphores: mutex(1), empty(n), full(0)</td></tr>
+    <tr><td><strong>Readers-Writers</strong></td><td>2 semaphores + counter: mutex(1), wrt(1), readcount(0) — first reader locks writers out, last reader lets them back in</td></tr>
+    <tr><td><strong>Dining Philosophers</strong></td><td>5 chopstick semaphores, all init 1 — naive solution deadlocks if all 5 grab their left chopstick at once; fix via limiting diners, atomic pickup, or asymmetric ordering</td></tr>
+  </table>
+
+  <h2>Hardware primitives at a glance</h2>
+  <p><strong>test_and_set(target)</strong>: atomically reads target, sets it TRUE, returns the old value.
+  <strong>compare_and_swap / swap(a,b)</strong>: atomically exchanges two values. Both give mutual exclusion;
+  neither alone gives bounded waiting.</p>
+
+  <h2>Deadlock vs starvation vs priority inversion</h2>
+  <p><strong>Deadlock</strong>: circular wait, nobody proceeds (e.g. P0 holds S wants Q, P1 holds Q wants
+  S). <strong>Starvation</strong>: a process is never picked from the semaphore's wait queue, even though
+  others keep proceeding. <strong>Priority inversion</strong>: a low-priority lock-holder can't finish
+  because a *medium*-priority process keeps preempting it, indirectly blocking a high-priority waiter — fixed
+  by priority inheritance.</p>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</div></div></section>
+<section class="page section legacy-section" id="question-bank" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft)">
+ <div class="legacy-topic"><div class="legacy-heading"><div class="legacy-heading-text"><h2>Question Bank</h2>
+ <span class="scope-note">Older extra — synchronization now belongs to Unit II; historical version</span></div>
+ <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-memory-question-bank" aria-label="View historical Question Bank">View</button></div>
+ <div class="legacy-content" id="legacy-memory-question-bank" hidden><div class="callout clarify"><span class="label">Historical material — now Unit II</span>
+ This retained section belongs to the former syllabus. Its older explanations and exam labels are preserved for reference.
+ Use the <a href="../unit-2/#question-bank">revised Unit II section</a> for corrected synchronization teaching.</div>
+  <div class="section-head"><span class="tag">Q-BANK</span><h1>Question Bank</h1></div>
+  <p class="section-sub">Every Unit-3 question from both exam papers (2021-22 and 2024-25), indexed to where it's answered above. 20 kept out of ~40+ screened.</p>
+
+  <div class="callout clarify">
+    <span class="label">Scope note</span>
+    <p style="margin:0">Questions on Unit 1 (process concept, fork/exec/wait), Unit 2 (multithreading, CPU
+    scheduling), Unit 4 (memory management, paging) and Unit 5 (file systems, VFS) were screened out by a
+    two-stage extraction pipeline. Full deadlock detection/avoidance/Banker's-algorithm questions were also
+    excluded — those belong to a dedicated later unit, not Unit 3's brief "drawbacks of semaphores"
+    mention. Two general deadlock-concept questions (no Banker's/graphs involved) were kept as
+    light-touch items, since they test genuinely basic understanding this unit's §3.10 already covers. A
+    verification pass over the source PDFs also caught three items the first extraction pass missed or
+    mis-filed — including one question whose Boolean-flag pseudocode was recovered by rendering the exact
+    PDF page and reading it visually, since the raw text extraction had scrambled it beyond use.</p>
+  </div>
+
+  <h2>3.1 Background &amp; Race Conditions</h2>
+  <table>
+    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
+    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II A-Q1, 1M</td><td>P1(){C=B-1;B=2*C;} P2(){D=2*B;B=D-1;} share B=2, execute concurrently. How many distinct values can B take?</td><td>→ <a href="#t3-1">§3.1</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q1, 3M</td><td>What is a race condition? Give an example.</td><td>→ <a href="#t3-1">§3.1</a></td></tr>
+  </table>
+
+  <h2>3.2 The Critical Section Problem</h2>
+  <table>
+    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
+    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II B-2.a, 5M</td><td>Identify the requirements of a critical section and illustrate Peterson's solution.</td><td>→ <a href="#t3-2">§3.2</a> &amp; <a href="#t3-3">§3.3</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q2, 2M</td><td>Why is mutual exclusion important in solving the critical section problem?</td><td>→ <a href="#t3-2">§3.2</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q4, 4M</td><td>Define critical section problem. Give an example. Explain any two of the three solution conditions.</td><td>→ <a href="#t3-2">§3.2</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q1a, 7M</td><td>Boolean-flag S1/S2 mechanism for P1/P2, two initial-value cases — is mutual exclusion and progress guaranteed in both?</td><td>→ <a href="#t3-3">§3.3</a> <span class="pill">solved example added</span></td></tr>
+  </table>
+
+  <h2>3.3 Peterson's Solution</h2>
+  <table>
+    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q5, 4M</td><td>Explain Peterson's solution with algorithm for two-process synchronization.</td><td>→ <a href="#t3-3">§3.3</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q5a, 8M</td><td>Explain Peterson's Solution and the structure of Pi. What are the disadvantages?</td><td>→ <a href="#t3-3">§3.3</a></td></tr>
+  </table>
+
+  <h2>3.4 Synchronization Hardware</h2>
+  <table>
+    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
+    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II A-Q2, 2M</td><td>Enumerate the advantages of spinlocks.</td><td>→ <a href="#t3-4">§3.4</a> &amp; <a href="#t3-5">§3.5</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II B-1.a, 5M</td><td>Illustrate the basic synchronization primitives test_and_set and compare_and_swap.</td><td>→ <a href="#t3-4">§3.4</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q6, 6M</td><td>Explain with an algorithm how test_and_set solves all the CS-problem requirements.</td><td>→ <a href="#t3-4">§3.4</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1.6, 1M</td><td>The hardware implementation which provides mutual exclusion is ____.</td><td>→ <a href="#t3-4">§3.4</a></td></tr>
+  </table>
+
+  <h2>3.5 Mutex Locks</h2>
+  <table>
+    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q5b, 8M</td><td>Write a program using a mutex lock to solve a critical section problem; explain the execution flow.</td><td>→ <a href="#t3-5">§3.5</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q6b, 8M</td><td>Identify the key differences between mutex locks and semaphores.</td><td>→ <a href="#t3-5">§3.5</a> &amp; <a href="#t3-6">§3.6</a></td></tr>
+  </table>
+
+  <h2>3.6 Semaphores</h2>
+  <table>
+    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
+    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II A-Q4, 1M</td><td>Counting semaphore=7; 20 P-ops, 15 V-ops. Resulting value?</td><td>→ <a href="#t3-6">§3.6</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1.7, 2M</td><td>n-process barrier using semaphores a=1, b=0 and a shared counter — what does the code achieve?</td><td>→ <a href="#t3-6">§3.6</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1.8, 2M</td><td>Counting semaphore=7; 20 P-ops, x V-ops; final value=5. Find x.</td><td>→ <a href="#t3-6">§3.6</a> <span class="pill">solved example added</span></td></tr>
+  </table>
+
+  <h2>3.8 Readers-Writers Problem</h2>
+  <table>
+    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q6a, 8M</td><td>Develop a solution for the Readers-Writers problem using semaphores; explain fairness and synchronization.</td><td>→ <a href="#t3-8">§3.8</a></td></tr>
+  </table>
+
+  <h2>3.10 Deadlock &amp; Starvation</h2>
+  <table>
+    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
+    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-III A-Q1.4, 2M <span class="pill">borderline→included</span></td><td>List two examples of deadlocks not related to a computer system.</td><td>→ <a href="#t3-10">§3.10</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-III A-Q1.5, 2M <span class="pill">borderline→included</span></td><td>Is it possible to have a deadlock involving only one single-threaded process? Explain.</td><td>→ <a href="#t3-10">§3.10</a></td></tr>
+  </table>
+
+  <a class="backtotop" href="#index">↑ Back to index</a>
+</div></div></section></div></div><script>
+(()=>{
+ const root=document.documentElement;
+ const themeButton=document.getElementById('themeToggle');
+ function paintTheme(){const dark=root.getAttribute('data-theme')==='dark';themeButton.textContent=dark?'☀️ Light':'🌙 Dark';themeButton.setAttribute('aria-pressed',String(dark))}
+ themeButton.addEventListener('click',()=>{root.setAttribute('data-theme',root.getAttribute('data-theme')==='dark'?'light':'dark');paintTheme()});paintTheme();
+ const buttons=[...document.querySelectorAll('.extra-toggle')];
+ function setPanel(button,open){const panel=document.getElementById(button.getAttribute('aria-controls'));if(!panel)return;panel.hidden=!open;button.setAttribute('aria-expanded',String(open));button.textContent=open?'Hide':'View';const title=button.closest('.legacy-topic').querySelector('.legacy-heading-text').textContent.trim().split('\n')[0];button.setAttribute('aria-label',(open?'Hide ':'View ')+title);setActive()}
+ buttons.forEach(button=>button.addEventListener('click',()=>setPanel(button,button.getAttribute('aria-expanded')!=='true')));
+ function reveal(target){if(!target)return;if(target.classList.contains('legacy-section')){const button=target.querySelector('.extra-toggle');if(button)setPanel(button,true)}let ancestor=target.closest('.legacy-content');while(ancestor){const button=buttons.find(b=>b.getAttribute('aria-controls')===ancestor.id);if(button)setPanel(button,true);ancestor=ancestor.parentElement.closest('.legacy-content')}}
+ function revealHash(){let id;try{id=decodeURIComponent(location.hash.slice(1))}catch(e){return}const target=document.getElementById(id);if(target){reveal(target);setTimeout(()=>target.scrollIntoView({block:'start'}),0)}}
+ document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',()=>{let id;try{id=decodeURIComponent(link.getAttribute('href').slice(1))}catch(e){return}reveal(document.getElementById(id))}));
+ window.addEventListener('hashchange',revealHash);
+ const sections=[...document.querySelectorAll('.section[id]')],links=[...document.querySelectorAll('.navlink')];
+ function setActive(){let current='';const y=window.scrollY+140;sections.forEach(section=>{if(section.getClientRects().length&&section.offsetTop<=y)current=section.id});links.forEach(link=>{const active=link.getAttribute('href')==='#'+current;link.style.color=active?'var(--blue)':'';link.style.fontWeight=active?'600':'';if(active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')})}
+ window.addEventListener('scroll',setActive,{passive:true});window.addEventListener('resize',setActive);revealHash();setActive();
+})();
+</script></body></html>
