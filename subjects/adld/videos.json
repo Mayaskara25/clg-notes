@@ -1,0 +1,1487 @@
+{
+  "subject": "adld",
+  "checked": "2026-11-08",
+  "units": {
+    "1": [
+      {
+        "section": "number-representation",
+        "sub": null,
+        "videos": [
+          {
+            "id": "MuUnffIpX7Y",
+            "title": "1's complement and 2's complement | Signed Binary Numbers Explained",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "16:54",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "signed-add-sub",
+        "sub": null,
+        "videos": [
+          {
+            "id": "brM0tpBAx8U",
+            "title": "Addition and Subtraction using 2's Complement Arithmetic | 2s Complement Addition and Subtraction",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "23:42",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "signed-add-sub",
+        "sub": "Overflow",
+        "videos": [
+          {
+            "id": "7towQUO9aZI",
+            "title": "Overflow in Signed and Unsigned Numbers",
+            "channel": "Neso Academy",
+            "duration": "10:11",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "unsigned-multiplication",
+        "sub": null,
+        "videos": [
+          {
+            "id": "-5N1FY8EC_8",
+            "title": "Serial Binary Multiplier / Sequential Binary Multiplier (using Add and Shift Method)",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "21:34",
+            "kind": "topic",
+            "differs": "Description confirms add-and-shift but does not specify the C:A:Q register order. Follow the notes’ register layout and cycle table.",
+            "note": "",
+            "start": 457
+          }
+        ]
+      },
+      {
+        "section": "booth-algorithm",
+        "sub": null,
+        "videos": [
+          {
+            "id": "meSn0UXmgac",
+            "title": "The Concept of Booth’s Algorithm",
+            "channel": "Neso Academy",
+            "duration": "11:51",
+            "kind": "topic",
+            "differs": "Description does not show the recoding table. In the notes q₀q₋₁ = 01 means add M, 10 means subtract M, then arithmetic right shift.",
+            "note": "In your notes: q0 q-1 = 01 adds M, 10 subtracts M, then arithmetic right shift."
+          },
+          {
+            "id": "tnLKU07b-HA",
+            "title": "The Implementation of Booth’s Algorithm",
+            "channel": "Neso Academy",
+            "duration": "16:34",
+            "kind": "topic",
+            "differs": "Description does not specify the bit-pair order or register widths. Follow the notes’ q₀q₋₁ table and chosen operand width.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "integer-division",
+        "sub": "Restoring division",
+        "videos": [
+          {
+            "id": "kGYA3rvnWdU",
+            "title": "The Concept of Restoring Division",
+            "channel": "Neso Academy",
+            "duration": "19:41",
+            "kind": "topic",
+            "differs": "Description does not specify register widths or the exact cycle order. Follow the notes’ shift-left, subtract, then restore-if-negative flowchart.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "integer-division",
+        "sub": "Non-restoring division",
+        "videos": [
+          {
+            "id": "ge09GjFUmKg",
+            "title": "Non-Restoring Division",
+            "channel": "Neso Academy",
+            "duration": "10:34",
+            "kind": "topic",
+            "differs": "Description does not state quotient-bit timing or final restoration. Follow the notes’ sign-dependent add/subtract and final A←A+M when A<0.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "floating-point",
+        "sub": null,
+        "videos": [
+          {
+            "id": "TaDrBnRS0_Q",
+            "title": "IEEE 754 - Single and Double Precision",
+            "channel": "Neso Academy",
+            "duration": "10:42",
+            "kind": "topic",
+            "differs": "Also covers double precision; this guide requires single precision (1 sign, 8 exponent, 23 fraction bits, bias 127).",
+            "note": "Also covers double precision; focus on single precision for this unit."
+          }
+        ]
+      },
+      {
+        "section": "floating-point",
+        "sub": "Conversion procedure",
+        "videos": [
+          {
+            "id": "e_J9lXnU_vs",
+            "title": "Floating Point Numbers: IEEE 754 Standard | Single Precision and Double Precision Format",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "22:02",
+            "kind": "numerical",
+            "differs": "Description confirms single-precision conversions but does not name the example operands. Double precision begins at 19:33; use the single-precision examples for this guide.",
+            "note": "Also covers double precision from 19:33; use the single-precision examples.",
+            "start": 434
+          }
+        ]
+      },
+      {
+        "section": "arithmetic-solved",
+        "sub": null,
+        "videos": [
+          {
+            "id": "YUHeZ8QWTVo",
+            "title": "Booth's Algorithm for Multiplication Explained (with Examples)",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "21:26",
+            "kind": "numerical",
+            "differs": "Description does not name the example operands. It confirms Q₀/Q₋₁ tests followed by arithmetic right shift but does not print the add/subtract table; keep the notes’ table.",
+            "note": "",
+            "start": 258
+          }
+        ]
+      },
+      {
+        "section": "boolean-canonical",
+        "sub": "Minterms and maxterms",
+        "videos": [
+          {
+            "id": "YmKmS9bpMqM",
+            "title": "Boolean Function Representation: SOP and POS Form | Minterms and Maxterms Explained",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "21:40",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "start": 436
+          }
+        ]
+      },
+      {
+        "section": "boolean-canonical",
+        "sub": "Standard (SOP / POS) forms",
+        "videos": [
+          {
+            "id": "yFEM6uq4jbY",
+            "title": "SOP and POS Form : Non Canonical to Canonical Form Conversion of Boolean Expression",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "17:38",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "boolean-canonical",
+        "sub": "Complement of a function (De Morgan)",
+        "videos": [
+          {
+            "id": "W7YTfLaPWRY",
+            "title": "De Morgan's Law in Boolean Algebra Explained (with Solved Examples)",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "15:55",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "karnaugh-maps",
+        "sub": "Minimisation procedure",
+        "videos": [
+          {
+            "id": "A_LFVBWYZME",
+            "title": "Karnaugh Map (K-map) Rules for Simplification Explained",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "7:38",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          },
+          {
+            "id": "k_gavfON5uA",
+            "title": "4 Variable Karnaugh Map (Part 1)",
+            "channel": "Neso Academy",
+            "duration": "11:17",
+            "kind": "numerical",
+            "differs": "Description does not list the worked function’s minterms; it cannot be confirmed as the notes’ example. Use the same Gray-order grouping method.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "karnaugh-maps",
+        "sub": "Prime implicants and essential prime implicants",
+        "videos": [
+          {
+            "id": "fmAwCosFSRs",
+            "title": "K-map: Prime Implicant and Essential Prime Implicant Explained",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "15:06",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "dont-care-vem",
+        "sub": null,
+        "videos": [
+          {
+            "id": "_F9nAb6m4U4",
+            "title": "Don't Care in Karnaugh Map (K' Map)",
+            "channel": "Neso Academy",
+            "duration": "10:05",
+            "kind": "topic",
+            "differs": "Covers don’t-care conditions only, not the Variable Entered Map procedure in the same section.",
+            "note": "Covers don't-care conditions; use your notes for Variable Entered Maps."
+          }
+        ]
+      },
+      {
+        "section": "quine-mccluskey",
+        "sub": "Procedure",
+        "videos": [
+          {
+            "id": "l1jgq0R5EwQ",
+            "title": "Quine-McCluskey Minimization Technique (Tabular Method)",
+            "channel": "Neso Academy",
+            "duration": "23:43",
+            "kind": "numerical",
+            "differs": "Description confirms a worked tabulation example but does not list its minterms. Use the notes’ function and prime-implicant chart in exams.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "simplification-solved",
+        "sub": null,
+        "videos": [
+          {
+            "id": "lPT9Ltjij1s",
+            "title": "K' Map using Max Terms (Part 2)",
+            "channel": "Neso Academy",
+            "duration": "11:27",
+            "kind": "numerical",
+            "differs": "Description confirms a worked POS/maxterm example but does not list the maxterms. It cannot be confirmed as the notes’ example.",
+            "note": ""
+          },
+          {
+            "id": "a89jQWIGrY4",
+            "title": "4 Variable Karnaugh Map (Part 2)",
+            "channel": "Neso Academy",
+            "duration": "8:21",
+            "kind": "numerical",
+            "differs": "Description confirms a worked four-variable example but does not list its minterms. It cannot be confirmed as the notes’ example.",
+            "note": ""
+          }
+        ]
+      }
+    ],
+    "2": [
+      {
+        "section": "basic-adders",
+        "sub": "Half adder",
+        "videos": [
+          {
+            "id": "aLUY-s7LSns",
+            "title": "Half Adder",
+            "channel": "Neso Academy",
+            "duration": "5:10",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "basic-adders",
+        "sub": "Full adder",
+        "videos": [
+          {
+            "id": "RK3P9L2ZXk4",
+            "title": "Full Adder",
+            "channel": "Neso Academy",
+            "duration": "13:38",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          },
+          {
+            "id": "Z_DYRgtAXfw",
+            "title": "Full Adder using Half Adder",
+            "channel": "Neso Academy",
+            "duration": "7:19",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "ripple-adder",
+        "sub": null,
+        "videos": [
+          {
+            "id": "NO7Gt8IDSGA",
+            "title": "4 Bit Parallel Adder using Full Adders",
+            "channel": "Neso Academy",
+            "duration": "10:27",
+            "kind": "topic",
+            "differs": "Description confirms the four-bit circuit but does not state a delay formula. For exams use the notes’ N×2 gate-delay model.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "adder-subtractor",
+        "sub": null,
+        "videos": [
+          {
+            "id": "J7gPUP0aRug",
+            "title": "4-bit Adder and Subtractor Circuit Explained",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "20:38",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "start": 569
+          }
+        ]
+      },
+      {
+        "section": "alt-realizations",
+        "sub": null,
+        "videos": [
+          {
+            "id": "ai8FpkD5gGo",
+            "title": "1-Bit Full Adder using Multiplexer",
+            "channel": "Neso Academy",
+            "duration": "8:37",
+            "kind": "numerical",
+            "differs": "Description does not specify MUX size or select order. The notes use two 4:1 MUXes with A,B as selects; confirm this before copying data-line assignments.",
+            "note": ""
+          },
+          {
+            "id": "u863cwgdlnA",
+            "title": "Full Adder Implementation using Decoder",
+            "channel": "Neso Academy",
+            "duration": "5:50",
+            "kind": "numerical",
+            "differs": "Description does not specify output polarity. The notes OR active-high decoder minterm lines; active-low outputs require NAND instead.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "cla-adder",
+        "sub": null,
+        "videos": [
+          {
+            "id": "6Z1WikEWxH0",
+            "title": "Carry Lookahead Adder (Part 1) | CLA Generator",
+            "channel": "Neso Academy",
+            "duration": "6:25",
+            "kind": "topic",
+            "differs": "Description does not specify OR versus XOR carry-propagate notation. The notes define Pᵢ=Xᵢ+Yᵢ (OR); do not use Sᵢ=Pᵢ⊕Cᵢ with that definition.",
+            "note": ""
+          },
+          {
+            "id": "9lyqSVKbyz8",
+            "title": "Carry Lookahead Adder (Part 2) | CLA Adder",
+            "channel": "Neso Academy",
+            "duration": "11:19",
+            "kind": "topic",
+            "differs": "Description does not specify OR versus XOR carry-propagate notation. Use the notes’ OR definition of Pᵢ and Sᵢ=Xᵢ⊕Yᵢ⊕Cᵢ.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "decimal-adder",
+        "sub": null,
+        "videos": [
+          {
+            "id": "9O7OJi7RCLQ",
+            "title": "BCD Adder | Simple Explanation",
+            "channel": "Neso Academy",
+            "duration": "15:27",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "subtractors",
+        "sub": "Half subtractor",
+        "videos": [
+          {
+            "id": "SV4VTYWxKV4",
+            "title": "Half Subtractor",
+            "channel": "Neso Academy",
+            "duration": "6:56",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "subtractors",
+        "sub": "Full subtractor",
+        "videos": [
+          {
+            "id": "dBXGGWbtt6U",
+            "title": "Full Subtractor | Easy Explanation",
+            "channel": "Neso Academy",
+            "duration": "7:42",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "nand-ic7483",
+        "sub": "Why NAND? — universal gates",
+        "videos": [
+          {
+            "id": "cNFgilYDxuA",
+            "title": "NAND gate as Universal Gate",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "13:56",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "nand-ic7483",
+        "sub": "Half adder using NAND gates",
+        "videos": [
+          {
+            "id": "S91WnV2wCbA",
+            "title": "Realizing Half Adder using NAND Gates only",
+            "channel": "Neso Academy",
+            "duration": "6:16",
+            "kind": "topic",
+            "differs": "Description does not give the gate count. The notes’ implementation uses five NAND gates, including the carry inverter.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "nand-ic7483",
+        "sub": "Full adder using NAND gates",
+        "videos": [
+          {
+            "id": "ulIRZPFd3Nc",
+            "title": "Realizing Full Adder using NAND Gates only",
+            "channel": "Neso Academy",
+            "duration": "6:12",
+            "kind": "topic",
+            "differs": "Description does not give the gate count. The notes use nine NAND gates with shared complemented carries.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "adders-solved",
+        "sub": null,
+        "videos": [
+          {
+            "id": "b70ZQwci5sY",
+            "title": "Ripple Carry Adder Explained (with Solved Example) | Working and Limitation of Ripple Carry Adder",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "17:40",
+            "kind": "numerical",
+            "differs": "Uses a worked delay example with its own gate delays. The notes use the simplified N×2 delay model; do not mix the assumptions.",
+            "note": "Uses its own gate delays; use your notes' N x 2 delay model in exams.",
+            "start": 601
+          }
+        ]
+      },
+      {
+        "section": "one-bit-comparator",
+        "sub": null,
+        "videos": [
+          {
+            "id": "wgje9eH3TT0",
+            "title": "What is Magnitude Comparator (Digital Comparator) | 1-bit, 2-bit and 4-bit Comparators Explained",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "21:14",
+            "kind": "topic",
+            "differs": "The one-bit explanation starts at 1:02; later sections cover larger direct comparators and 7485 ICs, not the notes’ one-bit iterative cascade.",
+            "note": "",
+            "start": 62
+          }
+        ]
+      },
+      {
+        "section": "two-bit-comparator",
+        "sub": null,
+        "videos": [
+          {
+            "id": "BhUUmbz76P0",
+            "title": "2-Bit Comparator",
+            "channel": "Neso Academy",
+            "duration": "5:31",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "decoders",
+        "sub": "Building larger decoders from smaller ones",
+        "videos": [
+          {
+            "id": "a3wh7xV5PBU",
+            "title": "Decoder Explained | What is Decoder? Applications of Decoder | 5 to 32 Decoder using 3 to 8 Decoders",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "21:50",
+            "kind": "topic",
+            "differs": "Description does not specify enable/output polarity. Notes’ theory examples are active-high; the lab’s 74139 has active-low enables and outputs.",
+            "note": "",
+            "start": 595
+          }
+        ]
+      },
+      {
+        "section": "encoders",
+        "sub": "Definition and idea",
+        "videos": [
+          {
+            "id": "feBvhLFQEDk",
+            "title": "Introduction to Encoders and Decoders",
+            "channel": "Neso Academy",
+            "duration": "6:52",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "encoders",
+        "sub": "4-to-2 encoder",
+        "videos": [
+          {
+            "id": "NWiPVMDh7GE",
+            "title": "Encoder in Digital Electronics | Working, Application and Logic Circuit of Encoder",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "13:54",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "encoders",
+        "sub": "8-to-3 (octal-to-binary) encoder",
+        "videos": [
+          {
+            "id": "IgaTy_Tm2_M",
+            "title": "Octal to Binary Encoder",
+            "channel": "Neso Academy",
+            "duration": "4:56",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "encoders",
+        "sub": "Limitations of the simple encoder → priority encoder",
+        "videos": [
+          {
+            "id": "kEj-m3YuGa4",
+            "title": "Priority Encoder",
+            "channel": "Neso Academy",
+            "duration": "10:50",
+            "kind": "topic",
+            "differs": "Description does not specify the priority direction or valid-output V. The notes use I₃ highest priority and include V; check before copying the truth table.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "multiplexers",
+        "sub": "Definition and idea",
+        "videos": [
+          {
+            "id": "p6yPvw88BJk",
+            "title": "Lec -18: Introduction to Multiplexer | What are Multiplexers | Digital Electronics",
+            "channel": "Gate Smashers",
+            "duration": "5:59",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "multiplexers",
+        "sub": "2-to-1 multiplexer",
+        "videos": [
+          {
+            "id": "FKvnmxte98A",
+            "title": "Introduction to Multiplexers | MUX Basic",
+            "channel": "Neso Academy",
+            "duration": "12:27",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "multiplexers",
+        "sub": "4-to-1 multiplexer (design)",
+        "videos": [
+          {
+            "id": "g1Lfz1XgrH8",
+            "title": "4X1 Multiplexer",
+            "channel": "Neso Academy",
+            "duration": "5:52",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "multiplexers",
+        "sub": "8-to-1 multiplexer",
+        "videos": [
+          {
+            "id": "b0z7YKKCCyY",
+            "title": "8X1 Multiplexer",
+            "channel": "Neso Academy",
+            "duration": "5:51",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "multiplexers",
+        "sub": "Building large multiplexers from small ones",
+        "videos": [
+          {
+            "id": "uoBZZ53Okvo",
+            "title": "Implementing 8X1 MUX using 2X1 MUX",
+            "channel": "Neso Academy",
+            "duration": "5:26",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "multiplexers",
+        "sub": "MUX as a universal logic element",
+        "videos": [
+          {
+            "id": "vDxtIik4vTA",
+            "title": "Logic Gates using Multiplexer | How to implement a logic gate using the multiplexer ?",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "14:25",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "demux",
+        "sub": "Definition and idea",
+        "videos": [
+          {
+            "id": "t3Ed13z9uz8",
+            "title": "Introduction to Demultiplexer | 1:2 DEMUX",
+            "channel": "Neso Academy",
+            "duration": "9:59",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "demux",
+        "sub": "1-to-4 demultiplexer",
+        "videos": [
+          {
+            "id": "4kgPMT9k3bg",
+            "title": "1:4 Demultiplexer",
+            "channel": "Neso Academy",
+            "duration": "6:21",
+            "kind": "topic",
+            "differs": "Description does not specify a separate enable E. The notes include E, with all outputs inactive when E=0.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "demux",
+        "sub": "Decoder ↔ demultiplexer (qb1 Q24)",
+        "videos": [
+          {
+            "id": "vMvvggyriCc",
+            "title": "Demultiplexer as Decoder",
+            "channel": "Neso Academy",
+            "duration": "5:45",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "mux-fn",
+        "sub": "Realising a function with a multiplexer",
+        "videos": [
+          {
+            "id": "vOFeSu6Zr94",
+            "title": "Implementation of Boolean Function using Multiplexers",
+            "channel": "Neso Academy",
+            "duration": "8:34",
+            "kind": "numerical",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "mux-fn",
+        "sub": "Worked examples",
+        "videos": [
+          {
+            "id": "HEluMErB3-s",
+            "title": "Logical Expression from Multiplexer",
+            "channel": "Neso Academy",
+            "duration": "5:46",
+            "kind": "numerical",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "lab-exp4",
+        "sub": "Part B — Decoder IC 7447 (BCD to seven-segment)",
+        "videos": [
+          {
+            "id": "smeUN1Bxj3M",
+            "title": "Seven Segment Display Decoder",
+            "channel": "Neso Academy",
+            "duration": "6:58",
+            "kind": "topic",
+            "differs": "Conceptual display and truth-table explanation only. Description does not establish 7447 pin wiring or polarity; the notes’ 7447 drives common-anode segments active-low.",
+            "note": "Covers display logic; use your notes for IC 7447 wiring."
+          }
+        ]
+      },
+      {
+        "section": "bistable",
+        "sub": "From bistable element to flip-flop",
+        "videos": [
+          {
+            "id": "LTtuYeSmJ2g",
+            "title": "Latch and Flip-Flop Explained | Difference between the Latch and Flip-Flop",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "9:50",
+            "kind": "topic",
+            "differs": "Calls flip-flops edge-sensitive; Givone also classifies pulse-triggered master-slave devices as flip-flops.",
+            "note": "Calls flip-flops edge-sensitive; your notes also include master-slave types."
+          }
+        ]
+      },
+      {
+        "section": "latches",
+        "sub": "5.2.1 The SR (set–reset) latch — two cross-coupled NOR gates",
+        "videos": [
+          {
+            "id": "Jxod1NNXbUg",
+            "title": "Lec -29: SR Latch using NOR Gate | NOR SR Latch | Digital Electronics",
+            "channel": "Gate Smashers",
+            "duration": "8:15",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "latches",
+        "sub": "5.2.3 The SR latch — two cross-coupled NAND gates",
+        "videos": [
+          {
+            "id": "zVjxEIy33Fs",
+            "title": "Lec -27: SR Latch using NAND Gate | NAND SR Latch | Digital Electronics",
+            "channel": "Gate Smashers",
+            "duration": "12:12",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "latches",
+        "sub": "5.2.4 The gated SR latch (SR latch with enable)",
+        "videos": [
+          {
+            "id": "xONsaRVYQmA",
+            "title": "SR Latch and Gated SR Latch Explained | SR Latch using NOR gates and NAND gates",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "28:30",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "start": 1154
+          }
+        ]
+      },
+      {
+        "section": "latches",
+        "sub": "5.2.5 The gated D (data) latch",
+        "videos": [
+          {
+            "id": "EILb-DrYr8A",
+            "title": "D Flip-Flop Explained | Truth Table and Excitation Table of D Flip-Flop",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "11:53",
+            "kind": "topic",
+            "differs": "Use the gated D latch circuit in the circuit discussion starting at 9:17. The video also covers edge-triggered D flip-flops; this subsection requires level-sensitive enable operation.",
+            "note": "Also covers edge-triggered D flip-flops; this section uses a level-sensitive D latch.",
+            "start": 557
+          }
+        ]
+      },
+      {
+        "section": "timing",
+        "sub": "5.3.3 Setup time and hold time",
+        "videos": [
+          {
+            "id": "3t8ndX2hqHA",
+            "title": "Setup Time and Hold Time of Flip Flop Explained | Digital Electronics",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "17:37",
+            "kind": "topic",
+            "differs": "Uses flip-flop clock edges. For the notes’ gated D latch measure setup/hold around the falling enable edge.",
+            "note": "Uses flip-flop clock edges; for a gated D latch, use the falling enable edge."
+          }
+        ]
+      },
+      {
+        "section": "master-slave",
+        "sub": "6.1.2 The master-slave JK flip-flop",
+        "videos": [
+          {
+            "id": "t2LZtaNck_g",
+            "title": "Master Slave JK Flip Flop",
+            "channel": "Neso Academy",
+            "duration": "9:08",
+            "kind": "topic",
+            "differs": "Description does not specify the active master/slave clock phases. The notes enable the master at C=1 and transfer to the slave when C falls.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "master-slave",
+        "sub": "6.1.3 Master-slave D and T flip-flops",
+        "videos": [
+          {
+            "id": "5ykewHgHYBI",
+            "title": "Behaviour of Master Slave D Flip Flop",
+            "channel": "Neso Academy",
+            "duration": "11:48",
+            "kind": "topic",
+            "differs": "Covers the D version only; the notes also derive T. Description does not specify the clock phases, so use the notes’ falling-edge transfer convention.",
+            "note": "Covers master-slave D only; your notes also cover T."
+          }
+        ]
+      },
+      {
+        "section": "master-slave",
+        "sub": "6.1.4 Race-around condition",
+        "videos": [
+          {
+            "id": "trPGhO7MPnw",
+            "title": "Race Around Condition or Racing in JK Flip Flop",
+            "channel": "Neso Academy",
+            "duration": "8:58",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "edge-triggered",
+        "sub": "6.3.3 Asynchronous (preset and clear) inputs",
+        "videos": [
+          {
+            "id": "mXoQ4WAQ0qk",
+            "title": "Preset and Clear Inputs in Flip Flop",
+            "channel": "Neso Academy",
+            "duration": "5:32",
+            "kind": "topic",
+            "differs": "Description does not state input polarity. The notes use active-low PR/CLR; never assume an unmarked input is active-low.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "edge-triggered",
+        "sub": "6.3.5 Level-triggered, pulse-triggered and edge-triggered compared",
+        "videos": [
+          {
+            "id": "Pi_MHyMoenA",
+            "title": "Triggering Methods in Flip Flops",
+            "channel": "Neso Academy",
+            "duration": "4:39",
+            "kind": "topic",
+            "differs": "Description does not confirm Givone’s separate pulse-triggered/data-lockout class. Use the notes’ three-way comparison for that distinction.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "char-eq",
+        "sub": "6.4.1 Function tables and next-state tables",
+        "videos": [
+          {
+            "id": "lnQD2_M9uDI",
+            "title": "Truth Table, Characteristic Table and Excitation Table for JK flip flop",
+            "channel": "Neso Academy",
+            "duration": "9:56",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "char-eq",
+        "sub": "6.4.2 Characteristic equations",
+        "videos": [
+          {
+            "id": "hw2rWOlg9x4",
+            "title": "T Flip-Flop Explained | Circuit Diagram, Excitation Table and Characteristic Equation",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "12:22",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          },
+          {
+            "id": "LOPHyHOMcLI",
+            "title": "JK Flip-Flop Explained | Excitation Table and Characteristic Equation of JK Flip Flop",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "22:58",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "start": 531
+          }
+        ]
+      },
+      {
+        "section": "char-eq",
+        "sub": "6.4.3 Excitation (application) tables and state diagrams",
+        "videos": [
+          {
+            "id": "uiKKRPZbuXA",
+            "title": "Truth Table, Characteristic Table and Excitation Table for SR Flip Flop",
+            "channel": "Neso Academy",
+            "duration": "8:56",
+            "kind": "topic",
+            "differs": "The Q→Q⁺ input-lookup table is called an excitation table here; Givone calls it an application table.",
+            "note": "Calls it an excitation table; your notes call it an application table."
+          },
+          {
+            "id": "4c6z9RKrC8Q",
+            "title": "Truth Table, Characteristic Table and Excitation Table for D Flip Flop",
+            "channel": "Neso Academy",
+            "duration": "4:10",
+            "kind": "topic",
+            "differs": "The Q→Q⁺ input-lookup table is called an excitation table here; Givone calls it an application table.",
+            "note": "Calls it an excitation table; your notes call it an application table."
+          },
+          {
+            "id": "9mh-2QwxmF4",
+            "title": "Truth Table, Characteristic Table and Excitation Table for T flip flop",
+            "channel": "Neso Academy",
+            "duration": "5:25",
+            "kind": "topic",
+            "differs": "The Q→Q⁺ input-lookup table is called an excitation table here; Givone calls it an application table.",
+            "note": "Calls it an excitation table; your notes call it an application table."
+          }
+        ]
+      },
+      {
+        "section": "char-eq",
+        "sub": "6.4.4 Conversion of one flip-flop type into another",
+        "videos": [
+          {
+            "id": "ApJ972OYyXQ",
+            "title": "5 Steps for Flip Flop Conversions | JK to D Flip Flop Conversion",
+            "channel": "Neso Academy",
+            "duration": "6:58",
+            "kind": "numerical",
+            "differs": "",
+            "note": ""
+          },
+          {
+            "id": "NytpDrESCV8",
+            "title": "SR Flip Flop to JK Flip Flop Conversion",
+            "channel": "Neso Academy",
+            "duration": "7:53",
+            "kind": "numerical",
+            "differs": "",
+            "note": ""
+          },
+          {
+            "id": "JGl7dV1UgMI",
+            "title": "T Flip Flop to D Flip Flop Conversion",
+            "channel": "Neso Academy",
+            "duration": "4:00",
+            "kind": "numerical",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "registers",
+        "sub": "7.1.1 Classification",
+        "videos": [
+          {
+            "id": "b43_I4r1R2c",
+            "title": "Data Formats and Classification of Registers",
+            "channel": "Neso Academy",
+            "duration": "7:27",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "registers",
+        "sub": "7.1.2 Serial-in, serial-out (SISO) shift register",
+        "videos": [
+          {
+            "id": "unorn9n-UpE",
+            "title": "Shift Register (SISO Mode)",
+            "channel": "Neso Academy",
+            "duration": "11:30",
+            "kind": "topic",
+            "differs": "Description does not specify stage labels or shift direction. The notes shift right from A toward D and read serial output at Q_D.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "registers",
+        "sub": "7.1.3 Serial-in, parallel-out (SIPO) shift register",
+        "videos": [
+          {
+            "id": "HGFGQ3D3iJ8",
+            "title": "Shift Register (SIPO & PIPO Mode)",
+            "channel": "Neso Academy",
+            "duration": "11:53",
+            "kind": "topic",
+            "differs": "Covers SIPO and PIPO together. Description does not specify stage order; the notes use A at the serial-input end and D at the far end.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "registers",
+        "sub": "7.1.4 Parallel-in registers: PISO and PIPO",
+        "videos": [
+          {
+            "id": "7LmBcGiiYwk",
+            "title": "Shift Register (PISO Mode)",
+            "channel": "Neso Academy",
+            "duration": "7:26",
+            "kind": "topic",
+            "differs": "Covers PISO only; PIPO is in the SIPO/PIPO video. Description does not specify load-control polarity; the notes use 0=load and 1=shift.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "registers",
+        "sub": "7.1.6 Universal shift register",
+        "videos": [
+          {
+            "id": "AEGzpMlOsvc",
+            "title": "Universal Shift Register",
+            "channel": "Neso Academy",
+            "duration": "15:38",
+            "kind": "topic",
+            "differs": "Description does not give the mode coding. The notes use 00=hold, 01=right, 10=left, 11=parallel load; check MUX inputs before copying.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "seq-solved",
+        "sub": "7.2.2 Shift-register traces",
+        "videos": [
+          {
+            "id": "7Sfy1v8gp8Q",
+            "title": "Lec - 49: Practice question on Shift Register | Digital Electronics",
+            "channel": "Gate Smashers",
+            "duration": "4:54",
+            "kind": "numerical",
+            "differs": "Description does not specify the problem’s initial state, feedback taps or stage order; it cannot be confirmed as a Givone trace. Use the notes’ diagrams for their exact sequences.",
+            "note": ""
+          }
+        ]
+      }
+    ],
+    "3": [
+      {
+        "section": "ripple",
+        "sub": "1.1 Binary ripple counters",
+        "videos": [
+          {
+            "id": "eEeBh8jfDjg",
+            "title": "4 Bit Asynchronous Up Counter",
+            "channel": "Neso Academy",
+            "duration": "9:32",
+            "kind": "topic",
+            "differs": "Description does not identify flip-flop type or active edge. The notes use positive-edge T flip-flops clocked from the preceding Q̄; check the video’s convention before copying wiring.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "ripple",
+        "sub": "1.2 Variations: down-counting and other flip-flop types",
+        "videos": [
+          {
+            "id": "noUcCs2zNaI",
+            "title": "3 bit & 4 bit Asynchronous Down Counter",
+            "channel": "Neso Academy",
+            "duration": "10:22",
+            "kind": "topic",
+            "differs": "Includes both three- and four-bit counters. Description does not specify active edges; for the notes’ positive-edge flip-flops, down-counting clocks each stage from preceding Q.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "ripple",
+        "sub": "1.3 Mod-N ripple counters with asynchronous clear",
+        "videos": [
+          {
+            "id": "l20xHDJPHBM",
+            "title": "Modulus of the Counter & Counting up to Particular Value",
+            "channel": "Neso Academy",
+            "duration": "13:30",
+            "kind": "numerical",
+            "differs": "Description does not specify the decoded reset count or clear polarity. The notes’ mod-6 example detects 110 and asynchronously clears active-low.",
+            "note": ""
+          },
+          {
+            "id": "fKVZpupyP_o",
+            "title": "Decade (BCD) Ripple Counter",
+            "channel": "Neso Academy",
+            "duration": "9:20",
+            "kind": "numerical",
+            "differs": "Mod-10 example instead of the notes’ worked mod-6. Description does not specify clear polarity; the notes detect 1010 for a ripple decade counter.",
+            "note": "Mod-10 (decade) example; your notes work a mod-6 counter."
+          }
+        ]
+      },
+      {
+        "section": "sync",
+        "sub": "2.1 The toggle rule and the basic synchronous binary counter",
+        "videos": [
+          {
+            "id": "6e8oV2blkGs",
+            "title": "3-Bit Synchronous Up Counter",
+            "channel": "Neso Academy",
+            "duration": "12:26",
+            "kind": "topic",
+            "differs": "Three-bit example; the notes’ basic circuit is four-bit with T flip-flops and count enable. Flip-flop type and enable convention are not stated in the description.",
+            "note": "3-bit example; your notes use a 4-bit counter with T flip-flops."
+          }
+        ]
+      },
+      {
+        "section": "shift-counters",
+        "sub": "3.1 Ring counter",
+        "videos": [
+          {
+            "id": "yOW-JsJL1Ks",
+            "title": "Ring Counter",
+            "channel": "Neso Academy",
+            "duration": "14:21",
+            "kind": "topic",
+            "differs": "Description does not specify bit order, active edge or initial one-hot position. The notes initialise 1000 and shift right; rotations of the same cycle may be labelled differently.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "shift-counters",
+        "sub": "3.2 Twisted-ring (switch-tail, Johnson) counter",
+        "videos": [
+          {
+            "id": "X4mx7J1ckyU",
+            "title": "Johnson's Counter (Twisted/Switch Tail Ring Counter)",
+            "channel": "Neso Academy",
+            "duration": "7:39",
+            "kind": "topic",
+            "differs": "Description does not specify shift direction or bit order. The notes’ four-stage cycle starts 0000→1000; this does not cover the separate mod-7 feedback variation.",
+            "note": "Covers the standard Johnson counter; use your notes for the mod-7 variation."
+          }
+        ]
+      },
+      {
+        "section": "sync-design",
+        "sub": "4.3 The design steps",
+        "videos": [
+          {
+            "id": "5vkWccb7uO4",
+            "title": "How to Design Synchronous Counters | 2-Bit Synchronous Up Counter",
+            "channel": "Neso Academy",
+            "duration": "12:57",
+            "kind": "numerical",
+            "differs": "Two-bit binary up-counter example; the notes demonstrate the method on the non-binary mod-6 sequence 000→010→011→110→101→001.",
+            "note": "2-bit binary example; your notes use a non-binary mod-6 counting sequence."
+          },
+          {
+            "id": "7XVnPZb8b-I",
+            "title": "Lec - 45: Design Synchronous Counter | How to design Synchronous Counter | Digital Electronics",
+            "channel": "Gate Smashers",
+            "duration": "11:25",
+            "kind": "numerical",
+            "differs": "Uses D flip-flops (description: design from 2:31). The notes’ main worked design uses JK and a particular mod-6 sequence; derive its own input equations.",
+            "note": "Designs with D flip-flops; your notes' main example uses JK."
+          }
+        ]
+      },
+      {
+        "section": "structure",
+        "sub": null,
+        "videos": [
+          {
+            "id": "kb-Ww8HaHuE",
+            "title": "Finite State Machine Explained | Mealy Machine and Moore Machine | What is State Diagram ?",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "15:11",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "structure",
+        "sub": "6.2 Mealy and Moore models",
+        "videos": [
+          {
+            "id": "0_OZKWdCixw",
+            "title": "Mealy and Moore State Machines (Part 1)",
+            "channel": "Neso Academy",
+            "duration": "9:39",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          },
+          {
+            "id": "vdZKehWMJSM",
+            "title": "Mealy and Moore State Machines (Part 2)",
+            "channel": "Neso Academy",
+            "duration": "4:21",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "structure",
+        "sub": "6.3 Mealy versus Moore",
+        "videos": [
+          {
+            "id": "YiQxeuB56i0",
+            "title": "Difference between Mealy Machine and Moore Machine",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "3:05",
+            "kind": "topic",
+            "differs": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "analysis",
+        "sub": "7.5 State table and state diagram",
+        "videos": [
+          {
+            "id": "NNOSWnTHakY",
+            "title": "Introduction to State Table, State Diagram & State Equation",
+            "channel": "Neso Academy",
+            "duration": "10:34",
+            "kind": "topic",
+            "differs": "Description does not confirm Givone’s distinction between a binary transition table and a symbolic state table. Preserve the notes’ labels in exams.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "analysis",
+        "sub": "7.7 The analysis procedure",
+        "videos": [
+          {
+            "id": "ntiv1g7G_C4",
+            "title": "Analysis of Clocked Sequential Circuits (with D Flip Flop)",
+            "channel": "Neso Academy",
+            "duration": "13:30",
+            "kind": "numerical",
+            "differs": "Circuit example is not identified in the description, so it cannot be confirmed as Givone Example 7.1. Use as a procedure demonstration, not a source of the notes’ equations.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "analysis",
+        "sub": "7.8 Worked examples",
+        "videos": [
+          {
+            "id": "6jteVyUcAQU",
+            "title": "Analysis of Clocked Sequential Circuits (with JK Flip Flop)",
+            "channel": "Neso Academy",
+            "duration": "12:50",
+            "kind": "numerical",
+            "differs": "Circuit and inputs are not specified in the description. The worked equations cannot be assumed to match Givone Example 7.2 or P7.1.",
+            "note": ""
+          },
+          {
+            "id": "eu16cf1RFu0",
+            "title": "Analysis of Clocked Sequential Circuits (with T Flip Flop)",
+            "channel": "Neso Academy",
+            "duration": "8:35",
+            "kind": "numerical",
+            "differs": "Covers T-based circuit analysis; the notes’ worked set also uses D and JK. Description does not identify the same T example as the notes.",
+            "note": "Uses T flip-flops; your notes also work through D and JK examples."
+          }
+        ]
+      },
+      {
+        "section": "modelling",
+        "sub": null,
+        "videos": [
+          {
+            "id": "mhHwA_f4qpc",
+            "title": "Serial Adder Explained (Digital Electronics)",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "13:28",
+            "kind": "topic",
+            "differs": "Explains the carry-storage hardware, not Givone’s explicit two-state Mealy construction. Use the notes to derive state names, transition labels and outputs.",
+            "note": "Explains serial-adder hardware; use your notes for the Mealy state diagram."
+          },
+          {
+            "id": "XNAK-L7NlOM",
+            "title": "Sequence or Pattern Detector",
+            "channel": "Neso Academy",
+            "duration": "9:02",
+            "kind": "topic",
+            "differs": "General detector construction only; the description does not establish either of Givone’s specific recognizers. No direct match is claimed for 8.3 or 8.4.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "reduction",
+        "sub": null,
+        "videos": [
+          {
+            "id": "IXORIs1dHs0",
+            "title": "State Reduction and Assignment",
+            "channel": "Neso Academy",
+            "duration": "7:05",
+            "kind": "topic",
+            "differs": "General reduction overview; description does not establish implication tables, equivalence-class construction, or Givone’s 15-to-7-state example.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "reduction",
+        "sub": "9.2 Equivalent states",
+        "videos": [
+          {
+            "id": "qq7moL5ueNQ",
+            "title": "Finite State Machine : State Reduction and State Assignment in the State Diagram",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "11:16",
+            "kind": "topic",
+            "differs": "Uses diagram-based examples. The description does not establish Givone’s implication-table procedure; use it only to understand redundant/equivalent states.",
+            "note": "Uses state diagrams; follow your notes for implication tables."
+          }
+        ]
+      },
+      {
+        "section": "completing",
+        "sub": "10.1 Remaining synthesis steps",
+        "videos": [
+          {
+            "id": "NbON135lf60",
+            "title": "Design Procedure for Clocked Sequential Circuits",
+            "channel": "Neso Academy",
+            "duration": "19:06",
+            "kind": "topic",
+            "differs": "General synthesis procedure; description does not specify the notes’ state-assignment Rules I–III or Moore serial-adder implementation.",
+            "note": ""
+          }
+        ]
+      }
+    ]
+  }
+}

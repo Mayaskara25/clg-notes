@@ -9,6 +9,7 @@
 !/subjects/
 /subjects/*/*
 !/subjects/*/subject.json
+!/subjects/*/videos.json
 !/subjects/*/*.html
 /public/
 __pycache__/
