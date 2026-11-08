@@ -202,6 +202,20 @@
   /* ---------- the menu ---------- */
   var menu, current, lastBtn;
   function close() { if (menu) { menu.remove(); menu = null; } if (lastBtn) { lastBtn.setAttribute('aria-expanded', 'false'); } }
+  function place(btn) {
+    // place it inside the part of the page that is actually on screen (phones may be zoomed or scrolled sideways)
+    var vv = window.visualViewport, VW = vv ? vv.width : window.innerWidth, VH = vv ? vv.height : window.innerHeight,
+      OX = vv ? vv.offsetLeft : 0, OY = vv ? vv.offsetTop : 0;
+    if (VW <= 640) {
+      menu.style.width = (VW - 24) + 'px'; menu.style.maxHeight = Math.round(VH * 0.8) + 'px'; menu.style.overflow = 'auto';
+      menu.style.left = (OX + 12) + 'px'; menu.style.top = Math.max(OY + 12, OY + VH - menu.offsetHeight - 12) + 'px';
+    } else {
+      var r = btn.getBoundingClientRect(), mw = menu.offsetWidth, mh = menu.offsetHeight;
+      var left = Math.min(Math.max(OX + 12, r.right - mw), OX + VW - mw - 12);
+      var top = r.bottom + 6 + mh > OY + VH - 12 ? Math.max(OY + 12, r.top - mh - 6) : r.bottom + 6;
+      menu.style.left = left + 'px'; menu.style.top = top + 'px';
+    }
+  }
   function build(btn) {
     close();
     lastBtn = btn; btn.setAttribute('aria-expanded', 'true');
@@ -220,18 +234,7 @@
     menu.innerHTML = h;
     menu.querySelector('.aa-t').textContent = current.label;
     document.body.appendChild(menu);
-    // place it inside the part of the page that is actually on screen (phones may be zoomed or scrolled sideways)
-    var vv = window.visualViewport, VW = vv ? vv.width : window.innerWidth, VH = vv ? vv.height : window.innerHeight,
-      OX = vv ? vv.offsetLeft : 0, OY = vv ? vv.offsetTop : 0;
-    if (VW <= 640) {
-      menu.style.width = (VW - 24) + 'px'; menu.style.maxHeight = Math.round(VH * 0.8) + 'px'; menu.style.overflow = 'auto';
-      menu.style.left = (OX + 12) + 'px'; menu.style.top = Math.max(OY + 12, OY + VH - menu.offsetHeight - 12) + 'px';
-    } else {
-      var r = btn.getBoundingClientRect(), mw = menu.offsetWidth, mh = menu.offsetHeight;
-      var left = Math.min(Math.max(OX + 12, r.right - mw), OX + VW - mw - 12);
-      var top = r.bottom + 6 + mh > OY + VH - 12 ? Math.max(OY + 12, r.top - mh - 6) : r.bottom + 6;
-      menu.style.left = left + 'px'; menu.style.top = top + 'px';
-    }
+    place(btn);
     var ta = menu.querySelector('textarea');
     menu.addEventListener('click', function (ev) { act(ev, ta.value.trim(), figs); });
     menu.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') { close(); btn.focus(); } });
@@ -286,5 +289,42 @@
   document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && menu) close(); });
   window.addEventListener('resize', close);
 
-  window.AskAI = {open: function (btn) { if (menu && lastBtn === btn) { close(); return; } build(btn); }};
+  /* ---------- the Videos list ---------- */
+  var YT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF0000" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8z"/><path fill="#FFF" d="M9.6 15.6 15.8 12 9.6 8.4z"/></svg>';
+  function esc(x) { return String(x).replace(/[&<>"]/g, function (c) { return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]; }); }
+  function buildVideos(btn) {
+    close();
+    var x = (window.VIDEOS || [])[+btn.dataset.vid]; if (!x) return;
+    lastBtn = btn; btn.setAttribute('aria-expanded', 'true');
+    var sec = document.getElementById(x.s);
+    current = {anchor: x.s, label: x.h || (sec ? sectionLabel(sec) : x.s)};
+    menu = document.createElement('div'); menu.className = 'aa-menu aa-vid'; menu.setAttribute('role', 'dialog'); menu.setAttribute('aria-label', 'Videos on this part');
+    var h = '<p class="aa-h">Videos on</p><p class="aa-t">' + esc(current.label) + '</p>';
+    x.v.forEach(function (v) {
+      var url = 'https://www.youtube.com/watch?v=' + v[0] + (v[6] ? '&t=' + v[6] + 's' : '');
+      var from = v[6] ? ' · from ' + Math.floor(v[6] / 60) + ':' + ('0' + v[6] % 60).slice(-2) : '';
+      h += '<a class="aa-v" href="' + url + '" target="_blank" rel="noopener" data-v="' + v[0] + '">' + YT +
+        '<span class="aa-vt"><b>' + esc(v[1]) + '</b><span class="aa-vm">' + esc(v[2]) + ' · ' + esc(v[3]) + from +
+        (v[4] === 'numerical' ? ' <span class="aa-tag">solved problem</span>' : '') + '</span>' +
+        (v[5] ? '<span class="aa-vn">⚠ ' + esc(v[5]) + '</span>' : '') + '</span></a>';
+    });
+    h += '<p class="aa-f">Videos may use different flip-flops or notation than your notes. In exams, follow the notes.</p>';
+    menu.innerHTML = h;
+    document.body.appendChild(menu);
+    place(btn);
+    menu.addEventListener('click', function (ev) { var a = ev.target.closest('a[data-v]'); if (a) { count('video-' + a.dataset.v); close(); } });
+    menu.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') { close(); btn.focus(); } });
+    setTimeout(function () { var a = menu && menu.querySelector('a'); if (a) a.focus(); }, 20);
+  }
+  css.textContent +=
+    '.aa-menu a.aa-v{align-items:flex-start;padding:9px 10px}' +
+    '.aa-menu a.aa-v svg{width:22px;height:22px;margin-top:1px}' +
+    '.aa-vt{display:flex;flex-direction:column;gap:2px;min-width:0}' +
+    '.aa-vt b{font-weight:600;font-size:13.5px;line-height:1.35}' +
+    '.aa-vm{font-weight:400;font-size:12px;color:var(--ink-faint)}' +
+    '.aa-vn{font-weight:400;font-size:12px;color:var(--ink-soft);line-height:1.4}' +
+    '.aa-tag{display:inline-block;margin-left:4px;padding:0 6px;border-radius:999px;background:var(--paper);border:1px solid var(--line);color:var(--ink-soft);font-size:11px}' +
+    '.aa-menu.aa-vid{width:min(380px,calc(100vw - 24px))}';
+
+  window.AskAI = {open: function (btn) { if (menu && lastBtn === btn) { close(); return; } if (btn.dataset.vid) buildVideos(btn); else build(btn); }};
 })();

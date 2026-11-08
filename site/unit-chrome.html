@@ -104,15 +104,28 @@
 .askai-btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .askai-btn.loading{opacity:.6;cursor:progress}
 .section-head .askai-btn{margin-left:auto;align-self:center}
+.section-head .askai-btn+.askai-btn{margin-left:6px}
+.askai-btn.vid-btn{color:#C4302B}
+:root[data-theme="dark"] .askai-btn.vid-btn{color:#FF7A73}
+.askai-btn.vid-btn:hover,.askai-btn.vid-btn[aria-expanded="true"]{border-color:currentColor;color:#C4302B}
+:root[data-theme="dark"] .askai-btn.vid-btn:hover{color:#FF7A73}
 .qmeta .askai-btn{margin-left:auto;margin-right:10px}
 @media print{.askai-btn{display:none!important}}
 </style>
 <script>
+window.VIDEOS={{VIDEOS_JSON}};
 window.ASKAI_CTX={code:"{{CODE_JS}}",course:"{{COURSE_JS}}",courseCode:"{{COURSE_CODE_JS}}",unit:"{{UNIT_N_JS}}",unitTitle:"{{UNIT_TITLE_JS}}",page:"{{PAGE_URL_JS}}"};
 (function(){
   function mk(){var b=document.createElement('button');b.type='button';b.className='askai-btn';
     b.setAttribute('aria-haspopup','dialog');b.setAttribute('aria-expanded','false');
     b.title='Ask an AI to explain this part a different way';b.textContent='✦ Ask AI';return b;}
+  function vb(i,n){var b=mk();b.classList.add('vid-btn');b.dataset.vid=i;
+    b.title='Short videos on this part (Neso Academy, ALL ABOUT ELECTRONICS, Gate Smashers)';b.textContent='\u25B6 Videos '+n;return b;}
+  // Videos buttons first, so they sit before Ask AI; headings are matched by their text
+  (window.VIDEOS||[]).forEach(function(x,i){var s=document.getElementById(x.s);if(!s)return;var at=null;
+    if(!x.h)at=s.querySelector('.section-head');
+    else [].forEach.call(s.querySelectorAll('h2'),function(h){if(!at&&h.textContent.replace(/\s+/g,' ').trim()===x.h)at=h;});
+    if(at)at.appendChild(vb(i,x.v.length));});
   [].forEach.call(document.querySelectorAll('section.section[id]'),function(s){
     var tag=s.querySelector('.section-head .tag'),t=tag?tag.textContent.trim():'';
     if(/MAP/i.test(t)||s.id==='index')return;

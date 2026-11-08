@@ -124,6 +124,32 @@ def sections(c):
     return out
 
 
+def unit_videos(name, c, entries):
+    """Check videos.json entries against the guide and pack them small for the page."""
+    bodies = {m.group(1): m.group(2) for m in
+              re.finditer(r'<section\b[^>]*\bid="([\w-]+)"[^>]*>(.*?)</section>', c, flags=re.S)}
+    out = []
+    for x in entries:
+        sid, h = x.get("section"), x.get("sub")
+        if sid not in bodies:
+            err(f"{name} videos.json: section #{sid} not in the guide")
+            continue
+        if h is not None and h not in [re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", t))).strip()
+                                       for t in re.findall(r"<h2[^>]*>(.*?)</h2>", bodies[sid], flags=re.S)]:
+            err(f"{name} videos.json: heading not found in #{sid}: {h}")
+            continue
+        vids = []
+        for v in x.get("videos", []):
+            if not re.fullmatch(r"[\w-]{11}", v.get("id", "")):
+                err(f"{name} videos.json: bad video id {v.get('id')!r}")
+                continue
+            vids.append([v["id"], v["title"], v["channel"], v.get("duration", ""),
+                         v.get("kind", "topic"), v.get("note", ""), int(v.get("start") or 0)])
+        if vids:
+            out.append({"s": sid, "h": h or "", "v": vids})
+    return out
+
+
 def unit_slug(n):
     return "unit-" + re.sub(r"[^a-z0-9]+", "-", str(n).lower()).strip("-")
 
@@ -155,6 +181,13 @@ def load_subjects():
             err(f"subjects/{slug}/subject.json: missing fields {missing}")
             continue
         s["slug"], s["dir"] = slug, d
+        s["videos"] = {}
+        vp = os.path.join(d, "videos.json")   # optional: YouTube links per section, shown by "Videos" buttons
+        if os.path.isfile(vp):
+            try:
+                s["videos"] = json.loads(read(vp))["units"]
+            except (ValueError, KeyError) as ex:
+                err(f"subjects/{slug}/videos.json: invalid ({ex})")
         seen = set()
         for u in s["units"]:
             miss = [k for k in REQUIRED_UNIT if k not in u]
@@ -249,7 +282,9 @@ def main():
                 search.append({"s": slug, "c": code, "n": str(n), "g": x["tag"], "t": x["title"],
                                "u": f"{path}#{x['id']}", "x": x["text"][:3000]})
 
+            vids = unit_videos(name, c, s["videos"].get(str(n), []))
             chrome = fill(chrome_t, {
+                "VIDEOS_JSON": json.dumps(vids, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") if vids else "null",
                 "UPDATED_HUMAN": human(u["updated"]), "UPDATED": u["updated"], "VERSION": ver,
                 "ANALYTICS": analytics, "REPO": cfg["repo"], "CODE": e(code), "CODE_JS": js_str(code), "CODE_Q": code.replace(" ", "+"),
                 "UNIT_N": e(str(n)), "UNIT_N_JS": js_str(n), "UNIT_N_Q": str(n).replace(" ", "+"),
