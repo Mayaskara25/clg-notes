@@ -97,3 +97,40 @@
   });
 })();
 </script>
+<!-- Ask AI: only the buttons are added on page load; the menu (ask-ai.js) downloads on the first click -->
+<style>
+.askai-btn{display:inline-flex;align-items:center;gap:4px;margin-left:10px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);font:600 11.5px/1.6 'Inter',system-ui,sans-serif;letter-spacing:0;text-transform:none;cursor:pointer;vertical-align:middle;white-space:nowrap}
+.askai-btn:hover,.askai-btn[aria-expanded="true"]{border-color:var(--blue);color:var(--blue)}
+.askai-btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.askai-btn.loading{opacity:.6;cursor:progress}
+.section-head .askai-btn{margin-left:auto;align-self:center}
+.qmeta .askai-btn{margin-left:auto;margin-right:10px}
+@media print{.askai-btn{display:none!important}}
+</style>
+<script>
+window.ASKAI_CTX={course:"{{COURSE_JS}}",courseCode:"{{COURSE_CODE_JS}}",unit:"{{UNIT_N_JS}}",unitTitle:"{{UNIT_TITLE_JS}}",page:"{{PAGE_URL_JS}}"};
+(function(){
+  function mk(){var b=document.createElement('button');b.type='button';b.className='askai-btn';
+    b.setAttribute('aria-haspopup','dialog');b.setAttribute('aria-expanded','false');
+    b.title='Ask an AI to explain this part a different way';b.textContent='✦ Ask AI';return b;}
+  [].forEach.call(document.querySelectorAll('section.section[id]'),function(s){
+    var tag=s.querySelector('.section-head .tag'),t=tag?tag.textContent.trim():'';
+    if(/MAP/i.test(t)||s.id==='index')return;
+    var head=s.querySelector('.section-head');if(head)head.appendChild(mk());
+    [].forEach.call(s.querySelectorAll('h2'),function(h){if(!h.closest('.qbox'))h.appendChild(mk());});
+    [].forEach.call(s.querySelectorAll('.qbox .qmeta'),function(q){var m=q.querySelector('.marks');q.insertBefore(mk(),m);});
+  });
+  var loading=null;
+  var src=(location.protocol==='file:'?'{{SITE_URL}}':'')+'/ask-ai.js?v={{VERSION}}';
+  document.addEventListener('click',function(ev){
+    var b=ev.target.closest&&ev.target.closest('.askai-btn');if(!b)return;
+    ev.preventDefault();
+    if(window.AskAI){window.AskAI.open(b);return;}
+    b.classList.add('loading');
+    if(!loading)loading=new Promise(function(ok,no){var s=document.createElement('script');s.src=src;s.onload=ok;
+      s.onerror=function(){loading=null;no();};document.head.appendChild(s);});
+    loading.then(function(){b.classList.remove('loading');window.AskAI.open(b);},
+      function(){b.classList.remove('loading');alert('Ask AI needs an internet connection. Try again when you are online.');});
+  });
+})();
+</script>

@@ -249,6 +249,8 @@ def main():
                 "REPO": cfg["repo"], "CODE": e(code), "CODE_JS": js_str(code), "CODE_Q": code.replace(" ", "+"),
                 "UNIT_N": e(str(n)), "UNIT_N_JS": js_str(n), "UNIT_N_Q": str(n).replace(" ", "+"),
                 "UNIT_TITLE_JS": js_str(u["title"]), "DOWNLOAD_NAME": e(u["source"], quote=True),
+                "COURSE_JS": js_str(s["course"]), "COURSE_CODE_JS": js_str(s.get("course_code", "")),
+                "SITE_URL": cfg["url"], "PAGE_URL_JS": js_str(f'{cfg["url"]}/{slug}/{u["slug"]}/'),
             }, name + " toolbar")
             page = c.replace("</head>", '<meta name="robots" content="noindex, nofollow">\n' + theme_head + "</head>", 1)
             i = page.rfind("</body>")
@@ -314,7 +316,12 @@ def main():
     }, "home")
     write(os.path.join(OUT, "index.html"), home)
     write(os.path.join(OUT, "search.json"), json.dumps(search, ensure_ascii=False, separators=(",", ":")))
-    write(os.path.join(OUT, "robots.txt"), "User-agent: *\nDisallow: /\n")
+    write(os.path.join(OUT, "ask-ai.js"), read(os.path.join(SITE, "ask-ai.js")))
+    # search engines and AI training crawlers stay out; the fetchers an AI chat uses when a
+    # student pastes a link are let in, so the "Ask AI" link to the notes can be read
+    write(os.path.join(OUT, "robots.txt"),
+          "User-agent: ChatGPT-User\nUser-agent: Claude-User\nUser-agent: Perplexity-User\nAllow: /\n\n"
+          "User-agent: *\nDisallow: /\n")
     write(os.path.join(OUT, "404.html"),
           '<!DOCTYPE html><meta charset="utf-8"><meta name="robots" content="noindex">'
           '<meta name="viewport" content="width=device-width,initial-scale=1"><title>Not found</title>'
