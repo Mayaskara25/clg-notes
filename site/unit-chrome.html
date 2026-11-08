@@ -108,7 +108,7 @@
 @media print{.askai-btn{display:none!important}}
 </style>
 <script>
-window.ASKAI_CTX={course:"{{COURSE_JS}}",courseCode:"{{COURSE_CODE_JS}}",unit:"{{UNIT_N_JS}}",unitTitle:"{{UNIT_TITLE_JS}}",page:"{{PAGE_URL_JS}}"};
+window.ASKAI_CTX={code:"{{CODE_JS}}",course:"{{COURSE_JS}}",courseCode:"{{COURSE_CODE_JS}}",unit:"{{UNIT_N_JS}}",unitTitle:"{{UNIT_TITLE_JS}}",page:"{{PAGE_URL_JS}}"};
 (function(){
   function mk(){var b=document.createElement('button');b.type='button';b.className='askai-btn';
     b.setAttribute('aria-haspopup','dialog');b.setAttribute('aria-expanded','false');
@@ -134,3 +134,4 @@ window.ASKAI_CTX={course:"{{COURSE_JS}}",courseCode:"{{COURSE_CODE_JS}}",unit:"{
   });
 })();
 </script>
+{{ANALYTICS}}

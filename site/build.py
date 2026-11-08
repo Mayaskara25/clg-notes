@@ -210,6 +210,11 @@ def main():
     theme_head = ("<script>(function(){try{var t=new URLSearchParams(location.search).get('theme');"
                   "if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>\n")
 
+    # visitor counts (GoatCounter: no cookies, no login); skipped for localhost and saved copies
+    gc = cfg.get("goatcounter")
+    analytics = (f'<script data-goatcounter="https://{gc}.goatcounter.com/count" async '
+                 f'src="https://gc.zgo.at/count.js"></script>') if gc else ""
+
     subjects = load_subjects()
 
     if os.path.isdir(OUT):
@@ -246,7 +251,7 @@ def main():
 
             chrome = fill(chrome_t, {
                 "UPDATED_HUMAN": human(u["updated"]), "UPDATED": u["updated"], "VERSION": ver,
-                "REPO": cfg["repo"], "CODE": e(code), "CODE_JS": js_str(code), "CODE_Q": code.replace(" ", "+"),
+                "ANALYTICS": analytics, "REPO": cfg["repo"], "CODE": e(code), "CODE_JS": js_str(code), "CODE_Q": code.replace(" ", "+"),
                 "UNIT_N": e(str(n)), "UNIT_N_JS": js_str(n), "UNIT_N_Q": str(n).replace(" ", "+"),
                 "UNIT_TITLE_JS": js_str(u["title"]), "DOWNLOAD_NAME": e(u["source"], quote=True),
                 "COURSE_JS": js_str(s["course"]), "COURSE_CODE_JS": js_str(s.get("course_code", "")),
@@ -285,7 +290,7 @@ def main():
             "STYLE": style, "TITLE": e(s["title"]), "COURSE": e(s["course"]), "CODE": e(code),
             "SUBTITLE": e(s.get("subtitle", "")), "SITE_TITLE": e(cfg["title"]),
             "UPDATED": f"Last updated <b>{human(latest)}</b>" if latest else "<b>In progress</b>",
-            "VERSION": ver, "REPO": cfg["repo"], "ISSUE_Q": code.replace(" ", "+"),
+            "ANALYTICS": analytics, "VERSION": ver, "REPO": cfg["repo"], "ISSUE_Q": code.replace(" ", "+"),
             "UNITS": "\n".join(cards), "CHANGELOG": "\n".join(log), "LABS_BOX": labs_box,
             "THEME_LINKS": theme_js, "SEARCH_JS": search_js, "SEARCH_BASE": "../", "SEARCH_SCOPE": js_str(slug),
             "SEARCH_HINT": e(s.get("search_hint", "e.g. a topic, algorithm or definition")),
@@ -309,7 +314,7 @@ def main():
         home_log += changelog_items([entry], code=entry["code"], slug=entry["slug"])
     home = fill(home_t, {
         "STYLE": style, "TITLE": e(cfg["title"]), "SUBTITLE": e(cfg["subtitle"]),
-        "UPDATED_HUMAN": human(latest), "VERSION": ver, "REPO": cfg["repo"],
+        "UPDATED_HUMAN": human(latest), "VERSION": ver, "REPO": cfg["repo"], "ANALYTICS": analytics,
         "SUBJECTS": "\n".join(subject_cards),
         "CHANGELOG": "\n".join(home_log) or '<li class="none">Nothing yet.</li>',
         "THEME_LINKS": theme_js, "SEARCH_JS": search_js, "SEARCH_BASE": "", "SEARCH_SCOPE": "",

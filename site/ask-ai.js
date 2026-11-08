@@ -237,8 +237,16 @@
     menu.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') { close(); btn.focus(); } });
     setTimeout(function () { (wide() ? ta : menu.querySelector('a')).focus(); }, 20);
   }
+  function count(what) {   // anonymous tally of which parts people ask about (GoatCounter event; nothing if it isn't loaded)
+    try {
+      if (window.goatcounter && window.goatcounter.count)
+        window.goatcounter.count({path: 'ask-ai/' + (CTX.code || '') + '/unit-' + CTX.unit + '/' + (current.anchor || '') + '/' + what,
+          title: (CTX.code || '') + ' U' + CTX.unit + ' · ' + current.label + ' → ' + what, event: true});
+    } catch (e) {}
+  }
   function act(ev, doubt, figs) {
     var a = ev.target.closest('a[data-ai],button[data-act]'); if (!a) return;
+    count(a.dataset.ai || a.dataset.act);
     var full = prompt(current, doubt, MAX_FULL);
     if (a.dataset.ai) {
       var ai = AIS.filter(function (x) { return x.id === a.dataset.ai; })[0];
