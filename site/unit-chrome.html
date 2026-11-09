@@ -9,6 +9,8 @@
 .sitebar a:focus-visible,.sitebar button:focus-visible,.sd-form :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 @media(max-width:640px){.sitebar .stamp,.sitebar .lbl-long{display:none}.sitebar a,.sitebar button{padding:9px 12px}}
 @media print{.sitebar,.sd{display:none!important}}
+/* every guide's own light/dark toggle sits top-right so it never covers the toolbar */
+.theme-toggle{position:fixed!important;top:14px!important;right:16px!important;bottom:auto!important;left:auto!important;z-index:61!important}
 .sd{border:1px solid var(--line);border-radius:12px;padding:0;background:var(--surface);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.25);width:min(560px,calc(100vw - 32px));max-height:calc(100vh - 32px)}
 .sd::backdrop{background:rgba(20,22,26,.45)}
 .sd-form{padding:22px 24px;display:flex;flex-direction:column;gap:14px;font-family:'Inter',system-ui,sans-serif}

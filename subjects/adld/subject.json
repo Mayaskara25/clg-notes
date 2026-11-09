@@ -14,7 +14,7 @@
       "source": "Applied Digital Logic Design - Unit 1 - Exam Notes.html",
       "title": "Arithmetic & Simplification of Boolean Expressions",
       "topics": "signed addition and subtraction, unsigned and signed multiplication, Booth and bit-pair recoding, integer division, floating point, Karnaugh maps, Quine-McCluskey",
-      "updated": "2026-11-07"
+      "updated": "2026-11-09"
     },
     {
       "n": 2,
@@ -22,7 +22,7 @@
       "title": "Combinational & Sequential Logic Design",
       "topics": "parallel adder, carry lookahead, magnitude comparator, decoders, encoders, multiplexers, latches, timing, master-slave, pulse-triggered and edge-triggered flip-flops, characteristic equations, shift registers, universal shift register",
       "lab": "lab-overview",
-      "updated": "2026-11-07"
+      "updated": "2026-11-09"
     },
     {
       "n": 3,
@@ -33,6 +33,14 @@
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-09",
+      "units": [
+        1,
+        2
+      ],
+      "text": "Light/dark toggle moved to the top-right so it no longer covers the Suggest / report button."
+    },
     {
       "date": "2026-11-08",
       "units": [
