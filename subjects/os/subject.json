@@ -27,11 +27,26 @@
       "n": 3,
       "source": "Operating Systems - Unit 3 - Exam Notes.html",
       "title": "Main Memory Management",
-      "topics": "Address binding, logical and physical addresses, dynamic loading, shared libraries, swapping, contiguous allocation, paging, TLBs, segmentation",
-      "updated": "2026-11-07"
+      "topics": "Address binding, base and limit registers, logical and physical addresses, dynamic loading, shared libraries, swapping, contiguous allocation, first/best/worst fit, fragmentation, paging, TLBs, hierarchical, hashed and inverted page tables, segmentation",
+      "updated": "2026-11-09"
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-09",
+      "units": [
+        2,
+        3
+      ],
+      "text": "Removed duplicate copies of topics that only moved between units (old Unit 2 threads → Unit 1; old Unit 3 synchronization → Unit 2), each replaced by a link to its new home. Topics dropped from the new syllabus stay available behind View/Hide."
+    },
+    {
+      "date": "2026-11-09",
+      "units": [
+        3
+      ],
+      "text": "Unit 3 aligned to the faculty's new-syllabus main-memory slides: memory-hardware background, MFT/MVT, the slides' fixed-partition fit examples, 50-percent rule, modern and mobile swapping, static vs dynamic linking, TLB/PTLR details, and the structure of the page table (hierarchical, hashed, inverted)."
+    },
     {
       "date": "2026-11-09",
       "units": [

@@ -184,15 +184,11 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 <body>
 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode"><span id="themeIcon">🌙</span><span id="themeLabel">Dark</span></button>
 <div class="shell">
-<nav class="sidebar" aria-label="Unit 2 topics"><div class="brand"><span class="eyebrow">CS235AT · Semester III</span><span class="title">Operating Systems<br>Unit 2 — Exam Notes</span><span class="sub">CPU Scheduling · Process Synchronization</span></div><a class="navlink top-of-part" href="#index"><span class="dot"></span>Index</a><a class="navlink" href="#syllabus-map"><span class="dot"></span>New syllabus map</a><div class="navgroup"><div class="part-label">Part A — CPU Scheduling</div><a class="navlink" href="#t2-5"><span class="dot"></span>2.1 Basic concepts</a><a class="navlink" href="#t2-6"><span class="dot"></span>2.2 Scheduling criteria</a><a class="navlink" href="#t2-7"><span class="dot"></span>2.3 FCFS</a><a class="navlink" href="#t2-8"><span class="dot"></span>2.4 SJF / SRTF</a><a class="navlink" href="#t2-10"><span class="dot"></span>2.5 Round Robin</a><a class="navlink" href="#t2-9"><span class="dot"></span>2.6 Priority</a><a class="navlink" href="#t2-11"><span class="dot"></span>2.7 Real-time · RMS · EDF</a><a class="navlink" href="#solved-scheduling"><span class="dot"></span>Solved scheduling examples</a></div><div class="navgroup"><div class="part-label">Part B — Synchronization</div><a class="navlink" href="#sync-t3-1"><span class="dot"></span>2.8 Background and races</a><a class="navlink" href="#sync-t3-2"><span class="dot"></span>2.9 Critical-section problem</a><a class="navlink" href="#sync-t3-3"><span class="dot"></span>2.10 Peterson</a><a class="navlink" href="#sync-t3-4"><span class="dot"></span>2.11 Synchronization hardware</a><a class="navlink" href="#sync-t3-6"><span class="dot"></span>2.12 Semaphores</a><a class="navlink" href="#sync-t3-7"><span class="dot"></span>2.13 Bounded buffer</a><a class="navlink" href="#sync-t3-8"><span class="dot"></span>2.14 Readers–writers</a><a class="navlink" href="#sync-t3-9"><span class="dot"></span>2.15 Dining philosophers</a><a class="navlink" href="#solved-sync"><span class="dot"></span>Solved synchronization examples</a></div><div class="navgroup"><div class="part-label">Old Unit II thread topics — now in I</div><a class="navlink" href="#t2-1"><span class="dot"></span>Thread overview</a><a class="navlink" href="#t2-2"><span class="dot"></span>Multicore programming</a><a class="navlink" href="#t2-3"><span class="dot"></span>Thread models</a><a class="navlink" href="#t2-4"><span class="dot"></span>Pthreads</a></div><div class="navgroup"><div class="part-label">Older extras — collapsed</div><a class="navlink" href="#t2-4a"><span class="dot"></span>Windows and Java threads</a><a class="navlink" href="#t2-4b"><span class="dot"></span>Threading issues</a><a class="navlink" href="#t2-10a"><span class="dot"></span>MLQ / MLFQ</a><a class="navlink" href="#t2-11a"><span class="dot"></span>Multiple-processor scheduling</a><a class="navlink" href="#t2-11b"><span class="dot"></span>Thread scheduling</a><a class="navlink" href="#t2-12"><span class="dot"></span>Monitors</a><a class="navlink" href="#sync-t3-5"><span class="dot"></span>Mutex detail</a><a class="navlink" href="#sync-t3-10"><span class="dot"></span>Deadlock / priority inversion</a></div><div class="navgroup"><div class="part-label">Revision</div><a class="navlink" href="#quick-revision"><span class="dot"></span>Quick revision</a><a class="navlink" href="#question-bank"><span class="dot"></span>Question bank</a></div></nav>
+<nav class="sidebar" aria-label="Unit 2 topics"><div class="brand"><span class="eyebrow">CS235AT · Semester III</span><span class="title">Operating Systems<br>Unit 2 — Exam Notes</span><span class="sub">CPU Scheduling · Process Synchronization</span></div><a class="navlink top-of-part" href="#index"><span class="dot"></span>Index</a><a class="navlink" href="#syllabus-map"><span class="dot"></span>New syllabus map</a><div class="navgroup"><div class="part-label">Part A — CPU Scheduling</div><a class="navlink" href="#t2-5"><span class="dot"></span>2.1 Basic concepts</a><a class="navlink" href="#t2-6"><span class="dot"></span>2.2 Scheduling criteria</a><a class="navlink" href="#t2-7"><span class="dot"></span>2.3 FCFS</a><a class="navlink" href="#t2-8"><span class="dot"></span>2.4 SJF / SRTF</a><a class="navlink" href="#t2-10"><span class="dot"></span>2.5 Round Robin</a><a class="navlink" href="#t2-9"><span class="dot"></span>2.6 Priority</a><a class="navlink" href="#t2-11"><span class="dot"></span>2.7 Real-time · RMS · EDF</a><a class="navlink" href="#solved-scheduling"><span class="dot"></span>Solved scheduling examples</a></div><div class="navgroup"><div class="part-label">Part B — Synchronization</div><a class="navlink" href="#sync-t3-1"><span class="dot"></span>2.8 Background and races</a><a class="navlink" href="#sync-t3-2"><span class="dot"></span>2.9 Critical-section problem</a><a class="navlink" href="#sync-t3-3"><span class="dot"></span>2.10 Peterson</a><a class="navlink" href="#sync-t3-4"><span class="dot"></span>2.11 Synchronization hardware</a><a class="navlink" href="#sync-t3-6"><span class="dot"></span>2.12 Semaphores</a><a class="navlink" href="#sync-t3-7"><span class="dot"></span>2.13 Bounded buffer</a><a class="navlink" href="#sync-t3-8"><span class="dot"></span>2.14 Readers–writers</a><a class="navlink" href="#sync-t3-9"><span class="dot"></span>2.15 Dining philosophers</a><a class="navlink" href="#solved-sync"><span class="dot"></span>Solved synchronization examples</a></div><div class="navgroup"><div class="part-label">Older extras — collapsed</div><a class="navlink" href="#t2-4a"><span class="dot"></span>Windows and Java threads</a><a class="navlink" href="#t2-4b"><span class="dot"></span>Threading issues</a><a class="navlink" href="#t2-10a"><span class="dot"></span>MLQ / MLFQ</a><a class="navlink" href="#t2-11a"><span class="dot"></span>Multiple-processor scheduling</a><a class="navlink" href="#t2-11b"><span class="dot"></span>Thread scheduling</a><a class="navlink" href="#t2-12"><span class="dot"></span>Monitors</a><a class="navlink" href="#sync-t3-5"><span class="dot"></span>Mutex detail</a><a class="navlink" href="#sync-t3-10"><span class="dot"></span>Deadlock / priority inversion</a></div><div class="navgroup"><div class="part-label">Revision</div><a class="navlink" href="#quick-revision"><span class="dot"></span>Quick revision</a><a class="navlink" href="#question-bank"><span class="dot"></span>Question bank</a></div></nav>
 
 <div class="main">
 
-<section class="cover" id="index"><span class="kicker">Operating Systems · CS235AT · Semester III</span><h1>Unit II — CPU Scheduling &amp; Process Synchronization</h1><p class="desc">Aligned with the new syllabus. Read the open core topics first; older extras are preserved at their original positions with a View/Hide button. Textbook references and verified worked examples are included.</p><div class="meta"><span>📘 <b>15</b> core sections</span><span>📊 <b>30</b> diagrams</span><span>🧮 <b>27</b> worked examples</span><span>⏱ <b>9</b> teaching hours</span></div><p class="source-note">Diagram and worked-example totals include retained collapsed material.</p><div class="part-divider">Part A — CPU Scheduling</div><div class="index-grid"><a href="#t2-5" class="index-card" style="--card-color:var(--blue)"><h3>2.1 Basic concepts</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#t2-6" class="index-card" style="--card-color:var(--blue)"><h3>2.2 Scheduling criteria</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#t2-7" class="index-card" style="--card-color:var(--blue)"><h3>2.3 FCFS</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#t2-8" class="index-card" style="--card-color:var(--blue)"><h3>2.4 SJF / SRTF</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#t2-10" class="index-card" style="--card-color:var(--blue)"><h3>2.5 Round Robin</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#t2-9" class="index-card" style="--card-color:var(--blue)"><h3>2.6 Priority</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#t2-11" class="index-card" style="--card-color:var(--blue)"><h3>2.7 Real-time · RMS · EDF</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#solved-scheduling" class="index-card" style="--card-color:var(--blue)"><h3>Solved scheduling examples</h3><p>Open the topic, diagrams and worked answers.</p></a></div><div class="part-divider">Part B — Synchronization</div><div class="index-grid"><a href="#sync-t3-1" class="index-card" style="--card-color:var(--indigo)"><h3>2.8 Background and races</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-2" class="index-card" style="--card-color:var(--indigo)"><h3>2.9 Critical-section problem</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-3" class="index-card" style="--card-color:var(--indigo)"><h3>2.10 Peterson</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-4" class="index-card" style="--card-color:var(--indigo)"><h3>2.11 Synchronization hardware</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-6" class="index-card" style="--card-color:var(--indigo)"><h3>2.12 Semaphores</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-7" class="index-card" style="--card-color:var(--indigo)"><h3>2.13 Bounded buffer</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-8" class="index-card" style="--card-color:var(--indigo)"><h3>2.14 Readers–writers</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-9" class="index-card" style="--card-color:var(--indigo)"><h3>2.15 Dining philosophers</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#solved-sync" class="index-card" style="--card-color:var(--indigo)"><h3>Solved synchronization examples</h3><p>Open the topic, diagrams and worked answers.</p></a></div><div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h2>Old Unit II thread topics — now in I</h2><span class="scope-note">Retained in place; choose a topic to open its content</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1014" aria-label="View Old Unit II thread topics — now in I">View</button></div>
-  <div class="legacy-content" id="legacy-u2-1014" hidden><div class="index-grid"><a href="#t2-1" class="index-card" style="--card-color:var(--blue)"><h3>Thread overview</h3><p>Select to open the retained topic.</p></a><a href="#t2-2" class="index-card" style="--card-color:var(--blue)"><h3>Multicore programming</h3><p>Select to open the retained topic.</p></a><a href="#t2-3" class="index-card" style="--card-color:var(--blue)"><h3>Thread models</h3><p>Select to open the retained topic.</p></a><a href="#t2-4" class="index-card" style="--card-color:var(--blue)"><h3>Pthreads</h3><p>Select to open the retained topic.</p></a></div></div>
-</div><div class="legacy-topic">
+<section class="cover" id="index"><span class="kicker">Operating Systems · CS235AT · Semester III</span><h1>Unit II — CPU Scheduling &amp; Process Synchronization</h1><p class="desc">Aligned with the new syllabus. Read the open core topics first; older topics that are no longer in the syllabus are kept at their original positions behind a View/Hide button. Textbook references and verified worked examples are included.</p><div class="meta"><span>📘 <b>15</b> core sections</span><span>📊 <b>24</b> diagrams</span><span>🧮 <b>24</b> worked examples</span><span>⏱ <b>9</b> teaching hours</span></div><p class="source-note">Diagram and worked-example totals include retained collapsed material.</p><p class="source-note">Threads (old Unit II §2.1–2.4: overview, multicore programming, multithreading models, Pthreads) are now taught in <a href="../unit-1/#threads">Unit I</a>.</p><div class="part-divider">Part A — CPU Scheduling</div><div class="index-grid"><a href="#t2-5" class="index-card" style="--card-color:var(--blue)"><h3>2.1 Basic concepts</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#t2-6" class="index-card" style="--card-color:var(--blue)"><h3>2.2 Scheduling criteria</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#t2-7" class="index-card" style="--card-color:var(--blue)"><h3>2.3 FCFS</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#t2-8" class="index-card" style="--card-color:var(--blue)"><h3>2.4 SJF / SRTF</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#t2-10" class="index-card" style="--card-color:var(--blue)"><h3>2.5 Round Robin</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#t2-9" class="index-card" style="--card-color:var(--blue)"><h3>2.6 Priority</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#t2-11" class="index-card" style="--card-color:var(--blue)"><h3>2.7 Real-time · RMS · EDF</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#solved-scheduling" class="index-card" style="--card-color:var(--blue)"><h3>Solved scheduling examples</h3><p>Open the topic, diagrams and worked answers.</p></a></div><div class="part-divider">Part B — Synchronization</div><div class="index-grid"><a href="#sync-t3-1" class="index-card" style="--card-color:var(--indigo)"><h3>2.8 Background and races</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-2" class="index-card" style="--card-color:var(--indigo)"><h3>2.9 Critical-section problem</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-3" class="index-card" style="--card-color:var(--indigo)"><h3>2.10 Peterson</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-4" class="index-card" style="--card-color:var(--indigo)"><h3>2.11 Synchronization hardware</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-6" class="index-card" style="--card-color:var(--indigo)"><h3>2.12 Semaphores</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-7" class="index-card" style="--card-color:var(--indigo)"><h3>2.13 Bounded buffer</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-8" class="index-card" style="--card-color:var(--indigo)"><h3>2.14 Readers–writers</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#sync-t3-9" class="index-card" style="--card-color:var(--indigo)"><h3>2.15 Dining philosophers</h3><p>Open the topic, diagrams and worked answers.</p></a><a href="#solved-sync" class="index-card" style="--card-color:var(--indigo)"><h3>Solved synchronization examples</h3><p>Open the topic, diagrams and worked answers.</p></a></div><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h2>Older extras — collapsed</h2><span class="scope-note">Retained in place; choose a topic to open its content</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1015" aria-label="View Older extras — collapsed">View</button></div>
   <div class="legacy-content" id="legacy-u2-1015" hidden><div class="index-grid"><a href="#t2-4a" class="index-card" style="--card-color:var(--blue)"><h3>Windows and Java threads</h3><p>Select to open the retained topic.</p></a><a href="#t2-4b" class="index-card" style="--card-color:var(--blue)"><h3>Threading issues</h3><p>Select to open the retained topic.</p></a><a href="#t2-10a" class="index-card" style="--card-color:var(--blue)"><h3>MLQ / MLFQ</h3><p>Select to open the retained topic.</p></a><a href="#t2-11a" class="index-card" style="--card-color:var(--blue)"><h3>Multiple-processor scheduling</h3><p>Select to open the retained topic.</p></a><a href="#t2-11b" class="index-card" style="--card-color:var(--blue)"><h3>Thread scheduling</h3><p>Select to open the retained topic.</p></a><a href="#t2-12" class="index-card" style="--card-color:var(--blue)"><h3>Monitors</h3><p>Select to open the retained topic.</p></a><a href="#sync-t3-5" class="index-card" style="--card-color:var(--blue)"><h3>Mutex detail</h3><p>Select to open the retained topic.</p></a><a href="#sync-t3-10" class="index-card" style="--card-color:var(--blue)"><h3>Deadlock / priority inversion</h3><p>Select to open the retained topic.</p></a></div></div>
@@ -200,413 +196,10 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 
 <section class="page section" id="syllabus-map" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
 <div class="section-head"><span class="tag">MAP</span><h1>New Syllabus Map</h1></div>
-<p class="section-sub">Master checklist: syllabus.png · CS235AT · 9 teaching hours. Only the named new-syllabus topics are listed in this table.</p><table><tr><th>Official syllabus topic</th><th>Study here</th><th>Reference book</th></tr><tr><td>CPU scheduling: basic concepts</td><td><a href="#t2-5">2.1 Basic concepts</a></td><td>§6.1</td></tr><tr><td>Scheduling criteria</td><td><a href="#t2-6">2.2 Criteria</a></td><td>§6.2</td></tr><tr><td>FCFS</td><td><a href="#t2-7">2.3 FCFS</a></td><td>§6.3.1</td></tr><tr><td>SJF</td><td><a href="#t2-8">2.4 SJF / SRTF</a></td><td>§6.3.2</td></tr><tr><td>RR</td><td><a href="#t2-10">2.5 Round Robin</a></td><td>§6.3.4</td></tr><tr><td>Priority</td><td><a href="#t2-9">2.6 Priority scheduling</a></td><td>§6.3.3</td></tr><tr><td>Real-time scheduling</td><td><a href="#t2-11">2.7 Real-time, RMS and EDF</a></td><td>§6.6</td></tr><tr><td>Synchronization: background</td><td><a href="#sync-t3-1">2.8 Background and race conditions</a></td><td>§5.1</td></tr><tr><td>Critical-section problem</td><td><a href="#sync-t3-2">2.9 Critical sections</a></td><td>§5.2</td></tr><tr><td>Peterson’s solution</td><td><a href="#sync-t3-3">2.10 Peterson</a></td><td>§5.3</td></tr><tr><td>Synchronization hardware</td><td><a href="#sync-t3-4">2.11 Interrupts, test-and-set, CAS, bounded waiting</a></td><td>§5.4</td></tr><tr><td>Semaphores</td><td><a href="#sync-t3-6">2.12 Permits, spinning and blocking</a></td><td>§5.6</td></tr><tr><td>Classic problems of synchronization</td><td><a href="#sync-t3-7">2.13 Bounded buffer</a></td><td>§5.7.1</td></tr><tr><td>Classic problems: readers–writers</td><td><a href="#sync-t3-8">2.14 Readers–writers</a></td><td>§5.7.2</td></tr><tr><td>Classic problems: dining philosophers</td><td><a href="#sync-t3-9">2.15 Dining philosophers</a></td><td>§5.7.3</td></tr></table><div class="callout clarify"><span class="label">How the sources combine</span><p>The new syllabus controls scope. Matching teaching content is reused from the existing HTML and course PDFs, with textbook clarifications from the local Silberschatz ninth edition. Required explanations stay open. Older extras remain in their original positions, collapsed behind View/Hide buttons. A topic reassigned to another unit is labelled with its new home, rather than called absent from the whole syllabus.</p><p>References to missing original decks/question papers are historical provenance from the retained notes; the available transcripts and textbook were used for this revision.</p><p><strong>2026-11-09:</strong> sections 2.8–2.15 were checked against the faculty's updated Unit II Process Synchronization slides. The guide now uses the slides' definitions, variable names (<code>rw_mutex</code>, <code>read_count</code>) and code. It adds data-access vs control synchronization, disabling interrupts, the bounded-waiting <code>test_and_set</code> algorithm, unbounded vs bounded buffers and the first/second readers–writers problems.</p></div><p>CPU scheduling is followed by the complete required synchronization material, previously stored as old Unit III. RMS/EDF remain under real-time scheduling. Mutex and brief deadlock concepts support semaphore explanations; their extended standalone treatments are collapsed.</p>
+<p class="section-sub">Master checklist: syllabus.png · CS235AT · 9 teaching hours. Only the named new-syllabus topics are listed in this table.</p><table><tr><th>Official syllabus topic</th><th>Study here</th><th>Reference book</th></tr><tr><td>CPU scheduling: basic concepts</td><td><a href="#t2-5">2.1 Basic concepts</a></td><td>§6.1</td></tr><tr><td>Scheduling criteria</td><td><a href="#t2-6">2.2 Criteria</a></td><td>§6.2</td></tr><tr><td>FCFS</td><td><a href="#t2-7">2.3 FCFS</a></td><td>§6.3.1</td></tr><tr><td>SJF</td><td><a href="#t2-8">2.4 SJF / SRTF</a></td><td>§6.3.2</td></tr><tr><td>RR</td><td><a href="#t2-10">2.5 Round Robin</a></td><td>§6.3.4</td></tr><tr><td>Priority</td><td><a href="#t2-9">2.6 Priority scheduling</a></td><td>§6.3.3</td></tr><tr><td>Real-time scheduling</td><td><a href="#t2-11">2.7 Real-time, RMS and EDF</a></td><td>§6.6</td></tr><tr><td>Synchronization: background</td><td><a href="#sync-t3-1">2.8 Background and race conditions</a></td><td>§5.1</td></tr><tr><td>Critical-section problem</td><td><a href="#sync-t3-2">2.9 Critical sections</a></td><td>§5.2</td></tr><tr><td>Peterson’s solution</td><td><a href="#sync-t3-3">2.10 Peterson</a></td><td>§5.3</td></tr><tr><td>Synchronization hardware</td><td><a href="#sync-t3-4">2.11 Interrupts, test-and-set, CAS, bounded waiting</a></td><td>§5.4</td></tr><tr><td>Semaphores</td><td><a href="#sync-t3-6">2.12 Permits, spinning and blocking</a></td><td>§5.6</td></tr><tr><td>Classic problems of synchronization</td><td><a href="#sync-t3-7">2.13 Bounded buffer</a></td><td>§5.7.1</td></tr><tr><td>Classic problems: readers–writers</td><td><a href="#sync-t3-8">2.14 Readers–writers</a></td><td>§5.7.2</td></tr><tr><td>Classic problems: dining philosophers</td><td><a href="#sync-t3-9">2.15 Dining philosophers</a></td><td>§5.7.3</td></tr></table><div class="callout clarify"><span class="label">How the sources combine</span><p>The new syllabus controls scope. Matching teaching content is reused from the existing HTML and course PDFs, with textbook clarifications from the local Silberschatz ninth edition. Required explanations stay open. Older extras remain in their original positions, collapsed behind View/Hide buttons. A topic that only moved to another unit is taught there and is not repeated here; only topics dropped from the new syllabus are kept collapsed.</p><p>References to missing original decks/question papers are historical provenance from the retained notes; the available transcripts and textbook were used for this revision.</p><p><strong>2026-11-09:</strong> sections 2.8–2.15 were checked against the faculty's updated Unit II Process Synchronization slides. The guide now uses the slides' definitions, variable names (<code>rw_mutex</code>, <code>read_count</code>) and code. It adds data-access vs control synchronization, disabling interrupts, the bounded-waiting <code>test_and_set</code> algorithm, unbounded vs bounded buffers and the first/second readers–writers problems.</p></div><p>CPU scheduling is followed by the complete required synchronization material, previously stored as old Unit III. RMS/EDF remain under real-time scheduling. Mutex and brief deadlock concepts support semaphore explanations; their extended standalone treatments are collapsed.</p>
 <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
-
-<section class="page section legacy-section" id="t2-1" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-  <div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h1>Old 2.1 · Overview of Threads</h1><span class="scope-note">Present in old Unit II; now in new Unit I — retained here for reference</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-t2-1" aria-label="View 2.1 · Overview of Threads">View</button></div>
-  <div class="legacy-content" id="legacy-t2-1" hidden><p class="source-note">The current treatment is in <a href="../unit-1/#threads">Unit I — Threads</a>. This panel retains the earlier Unit II material.</p>
-  <p class="section-sub">What a thread is, why almost every real program uses more than one, and the four benefits examiners expect you to name.</p>
-
-  <h2>Thread vs process</h2>
-  <p>A <strong>thread</strong> is the basic unit of CPU utilization. It comprises a thread ID, a program
-  counter, a register set, and a stack. A thread is not a standalone entity — threads can't exist outside a
-  process, and every thread belongs to exactly one process. A <strong>traditional (heavyweight) process</strong>
-  has a single thread of control and can do exactly one thing at a time. A process with <strong>multiple
-  threads</strong> can perform more than one task at a time, because each thread has its own program counter,
-  register set, and stack, letting them execute independently — while still sharing the process's code
-  section, data section, and OS resources such as open files and signals.</p>
-
-  <div class="svg-wrap">
-    <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg">
-      <defs><marker id="arrM1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5B6169"/></marker></defs>
-      <text x="150" y="24" text-anchor="middle" font-family="Newsreader,serif" font-size="15" font-weight="600" fill="#1C1E21">Single-threaded process</text>
-      <rect x="30" y="40" width="240" height="220" rx="8" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/>
-      <rect x="50" y="56" width="200" height="26" rx="4" fill="#FFFFFF" stroke="#1D4E89"/>
-      <text x="150" y="73" text-anchor="middle" font-size="12" fill="#1C1E21">code</text>
-      <rect x="50" y="88" width="200" height="26" rx="4" fill="#FFFFFF" stroke="#1D4E89"/>
-      <text x="150" y="105" text-anchor="middle" font-size="12" fill="#1C1E21">data</text>
-      <rect x="50" y="120" width="200" height="26" rx="4" fill="#FFFFFF" stroke="#1D4E89"/>
-      <text x="150" y="137" text-anchor="middle" font-size="12" fill="#1C1E21">files</text>
-      <rect x="90" y="164" width="120" height="80" rx="6" fill="#FFFFFF" stroke="#1D4E89" stroke-width="1.5"/>
-      <text x="150" y="182" text-anchor="middle" font-size="11" font-weight="600" fill="#1D4E89">thread</text>
-      <text x="150" y="200" text-anchor="middle" font-size="10" fill="#5B6169">registers</text>
-      <text x="150" y="215" text-anchor="middle" font-size="10" fill="#5B6169">stack</text>
-      <text x="150" y="230" text-anchor="middle" font-size="10" fill="#5B6169">PC</text>
-
-      <text x="510" y="24" text-anchor="middle" font-family="Newsreader,serif" font-size="15" font-weight="600" fill="#1C1E21">Multithreaded process</text>
-      <rect x="390" y="40" width="300" height="220" rx="8" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/>
-      <rect x="410" y="56" width="260" height="26" rx="4" fill="#FFFFFF" stroke="#1D4E89"/>
-      <text x="540" y="73" text-anchor="middle" font-size="12" fill="#1C1E21">code (shared)</text>
-      <rect x="410" y="88" width="260" height="26" rx="4" fill="#FFFFFF" stroke="#1D4E89"/>
-      <text x="540" y="105" text-anchor="middle" font-size="12" fill="#1C1E21">data (shared)</text>
-      <rect x="410" y="120" width="260" height="26" rx="4" fill="#FFFFFF" stroke="#1D4E89"/>
-      <text x="540" y="137" text-anchor="middle" font-size="12" fill="#1C1E21">files (shared)</text>
-      <rect x="405" y="164" width="80" height="80" rx="6" fill="#FFFFFF" stroke="#1D4E89" stroke-width="1.5"/>
-      <text x="445" y="184" text-anchor="middle" font-size="10" font-weight="600" fill="#1D4E89">T1</text>
-      <text x="445" y="200" text-anchor="middle" font-size="9" fill="#5B6169">reg</text>
-      <text x="445" y="213" text-anchor="middle" font-size="9" fill="#5B6169">stack</text>
-      <text x="445" y="226" text-anchor="middle" font-size="9" fill="#5B6169">PC</text>
-      <rect x="500" y="164" width="80" height="80" rx="6" fill="#FFFFFF" stroke="#1D4E89" stroke-width="1.5"/>
-      <text x="540" y="184" text-anchor="middle" font-size="10" font-weight="600" fill="#1D4E89">T2</text>
-      <text x="540" y="200" text-anchor="middle" font-size="9" fill="#5B6169">reg</text>
-      <text x="540" y="213" text-anchor="middle" font-size="9" fill="#5B6169">stack</text>
-      <text x="540" y="226" text-anchor="middle" font-size="9" fill="#5B6169">PC</text>
-      <rect x="595" y="164" width="80" height="80" rx="6" fill="#FFFFFF" stroke="#1D4E89" stroke-width="1.5"/>
-      <text x="635" y="184" text-anchor="middle" font-size="10" font-weight="600" fill="#1D4E89">T3</text>
-      <text x="635" y="200" text-anchor="middle" font-size="9" fill="#5B6169">reg</text>
-      <text x="635" y="213" text-anchor="middle" font-size="9" fill="#5B6169">stack</text>
-      <text x="635" y="226" text-anchor="middle" font-size="9" fill="#5B6169">PC</text>
-    </svg>
-    <div class="cap">Fig 1. A single-threaded process has one program counter/register-set/stack; a multithreaded process has several, each independently schedulable, all sharing the same code, data, and open files.</div>
-  </div>
-
-  <h3>Why threads: the web-server motivation</h3>
-  <p>A busy web server may face thousands of concurrent client requests. A traditional single-threaded server
-  can service only one client at a time — everyone else queues. Two fixes exist: spawn a brand-new
-  <strong>process</strong> per request, or spawn a new <strong>thread</strong> per request within one
-  process. Process creation is slow and resource-heavy; if the new unit of work is going to do the same kind
-  of thing as the parent (listen, read the request, respond), it's far cheaper to hand it off to a thread that
-  shares the server's existing code, data, and open sockets than to duplicate the whole process.</p>
-
-  <div class="svg-wrap">
-    <svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg">
-      <text x="180" y="24" text-anchor="middle" font-family="Newsreader,serif" font-size="14" font-weight="600" fill="#1C1E21">Process-per-request (slow)</text>
-      <rect x="130" y="40" width="100" height="40" rx="6" fill="#FFFFFF" stroke="#93316B" stroke-width="1.5"/>
-      <text x="180" y="64" text-anchor="middle" font-size="11" fill="#1C1E21">Listener</text>
-      <path d="M180,80 Q100,110 60,140" fill="none" stroke="#93316B" stroke-width="1.3" marker-end="url(#arrM1)"/>
-      <path d="M180,80 Q180,110 180,140" fill="none" stroke="#93316B" stroke-width="1.3" marker-end="url(#arrM1)"/>
-      <path d="M180,80 Q260,110 300,140" fill="none" stroke="#93316B" stroke-width="1.3" marker-end="url(#arrM1)"/>
-      <rect x="20" y="140" width="80" height="34" rx="6" fill="#F6E9F0" stroke="#93316B"/><text x="60" y="161" text-anchor="middle" font-size="10" fill="#1C1E21">new process</text>
-      <rect x="140" y="140" width="80" height="34" rx="6" fill="#F6E9F0" stroke="#93316B"/><text x="180" y="161" text-anchor="middle" font-size="10" fill="#1C1E21">new process</text>
-      <rect x="260" y="140" width="80" height="34" rx="6" fill="#F6E9F0" stroke="#93316B"/><text x="300" y="161" text-anchor="middle" font-size="10" fill="#1C1E21">new process</text>
-      <text x="180" y="210" text-anchor="middle" font-size="10.5" fill="#5B6169">each has its own memory space — heavy to create</text>
-
-      <text x="540" y="24" text-anchor="middle" font-family="Newsreader,serif" font-size="14" font-weight="600" fill="#1C1E21">Thread-per-request (efficient)</text>
-      <rect x="490" y="40" width="100" height="40" rx="6" fill="#FFFFFF" stroke="#1D4E89" stroke-width="1.5"/>
-      <text x="540" y="64" text-anchor="middle" font-size="11" fill="#1C1E21">Listener</text>
-      <rect x="410" y="120" width="260" height="80" rx="8" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.3"/>
-      <text x="540" y="136" text-anchor="middle" font-size="9.5" fill="#5B6169">shared code / data / sockets</text>
-      <path d="M540,80 Q480,100 460,150" fill="none" stroke="#1D4E89" stroke-width="1.3" marker-end="url(#arrM1)"/>
-      <path d="M540,80 Q540,100 540,150" fill="none" stroke="#1D4E89" stroke-width="1.3" marker-end="url(#arrM1)"/>
-      <path d="M540,80 Q600,100 620,150" fill="none" stroke="#1D4E89" stroke-width="1.3" marker-end="url(#arrM1)"/>
-      <rect x="425" y="150" width="70" height="30" rx="5" fill="#FFFFFF" stroke="#1D4E89"/><text x="460" y="169" text-anchor="middle" font-size="10" fill="#1C1E21">thread</text>
-      <rect x="505" y="150" width="70" height="30" rx="5" fill="#FFFFFF" stroke="#1D4E89"/><text x="540" y="169" text-anchor="middle" font-size="10" fill="#1C1E21">thread</text>
-      <rect x="585" y="150" width="70" height="30" rx="5" fill="#FFFFFF" stroke="#1D4E89"/><text x="620" y="169" text-anchor="middle" font-size="10" fill="#1C1E21">thread</text>
-      <text x="540" y="210" text-anchor="middle" font-size="10.5" fill="#5B6169">threads share the process's memory — cheap to create</text>
-    </svg>
-    <div class="cap">Fig 2. The same problem (service N concurrent clients) solved with one process per request versus one thread per request inside a single multithreaded server process.</div>
-  </div>
-
-  <h3>The four benefits of multithreading</h3>
-  <table>
-    <tr><th>Benefit</th><th>What it means</th></tr>
-    <tr><td><strong>Responsiveness</strong></td><td>If one thread blocks on a lengthy operation, other threads can keep the application responding to the user — important for UI design.</td></tr>
-    <tr><td><strong>Resource sharing</strong></td><td>Processes must explicitly arrange sharing via shared memory or message passing; threads share the process's memory and resources by default, at no extra coordination cost.</td></tr>
-    <tr><td><strong>Economy</strong></td><td>Allocating memory/resources for a new process is costly; thread creation and context-switching are far cheaper. In Solaris, creating a process is about 30× slower than creating a thread, and context-switching about 5× slower.</td></tr>
-    <tr><td><strong>Scalability</strong></td><td>A single-threaded process can run on only one processor core no matter how many are available; a multithreaded process can spread its threads across multiple cores.</td></tr>
-  </table>
-
-  <div class="callout key">
-    <span class="label">Exam tip</span>
-    <p style="margin:0">"Differentiate a process and a thread" is a recurring exam question (both papers). Anchor
-    your answer on: unit of scheduling (thread) vs unit of resource ownership (process); shared vs private
-    address space; and cost of creation/context-switch. Pair it with the user-thread-vs-kernel-thread
-    distinction from §2.3 — examiners often ask both in the same question.</p>
-  </div>
-
-  <a class="backtotop" href="#index">↑ Back to index</a>
-</div>
-</div></section>
-
-<section class="page section legacy-section" id="t2-2" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-  <div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h1>Old 2.2 · Multicore Programming</h1><span class="scope-note">Present in old Unit II; now in new Unit I — retained here for reference</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-t2-2" aria-label="View 2.2 · Multicore Programming">View</button></div>
-  <div class="legacy-content" id="legacy-t2-2" hidden><p class="source-note">The current treatment is in <a href="../unit-1/#threads">Unit I — Threads</a>. This panel retains the earlier Unit II material.</p>
-  <p class="section-sub">Concurrency vs parallelism, the five real challenges of writing multicore software, and how to quantify the payoff with Amdahl's Law.</p>
-
-  <h2>Concurrency vs parallelism</h2>
-  <p><strong>Concurrency</strong> is the task of running and managing multiple computations that overlap in
-  time. <strong>Parallelism</strong> is the stronger property of actually running multiple computations
-  simultaneously. On a single computing core, concurrency is achieved purely by interleaving — the core
-  switches rapidly between threads, so execution merely looks simultaneous. On a system with multiple cores,
-  concurrency can become true parallelism, because the system assigns a separate thread to each core and they
-  genuinely execute at the same instant.</p>
-
-  <div class="svg-wrap">
-    <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
-      <text x="170" y="22" text-anchor="middle" font-family="Newsreader,serif" font-size="14" font-weight="600" fill="#1C1E21">Single core — concurrency (interleaved)</text>
-      <rect x="40" y="60" width="260" height="34" rx="4" fill="#E8EFF8" stroke="#1D4E89"/>
-      <rect x="40" y="60" width="50" height="34" fill="#1D4E89"/><rect x="120" y="60" width="50" height="34" fill="#1D4E89"/><rect x="220" y="60" width="40" height="34" fill="#1D4E89"/>
-      <text x="65" y="82" text-anchor="middle" font-size="10" fill="#fff">A</text><text x="145" y="82" text-anchor="middle" font-size="10" fill="#fff">A</text><text x="240" y="82" text-anchor="middle" font-size="10" fill="#fff">A</text>
-      <text x="105" y="82" text-anchor="middle" font-size="10" fill="#1D4E89">B</text><text x="195" y="82" text-anchor="middle" font-size="10" fill="#1D4E89">B</text><text x="280" y="82" text-anchor="middle" font-size="10" fill="#1D4E89">B</text>
-      <text x="170" y="112" text-anchor="middle" font-size="10.5" fill="#5B6169">Core 1: A and B slices alternate — never truly at once</text>
-
-      <text x="530" y="22" text-anchor="middle" font-family="Newsreader,serif" font-size="14" font-weight="600" fill="#1C1E21">Multi-core — parallelism (simultaneous)</text>
-      <rect x="400" y="60" width="260" height="30" rx="4" fill="#1D4E89"/>
-      <text x="530" y="80" text-anchor="middle" font-size="11" fill="#fff">Thread A — running on Core 1</text>
-      <rect x="400" y="98" width="260" height="30" rx="4" fill="#4C3F91"/>
-      <text x="530" y="118" text-anchor="middle" font-size="11" fill="#fff">Thread B — running on Core 2</text>
-      <text x="530" y="150" text-anchor="middle" font-size="10.5" fill="#5B6169">Both bars occupy the same time window — genuinely concurrent execution</text>
-    </svg>
-    <div class="cap">Fig 3. Concurrency (time-sliced interleaving on one core) versus parallelism (simultaneous execution across cores).</div>
-  </div>
-
-  <h2>Five programming challenges on multicore systems</h2>
-  <ol>
-    <li><strong>Identifying tasks.</strong> Finding parts of an application that can be divided into
-    separate, independent, concurrent tasks.</li>
-    <li><strong>Balance.</strong> Ensuring the tasks split across cores do roughly equal amounts of useful
-    work — giving a low-value task its own core may not be worth the cost.</li>
-    <li><strong>Data splitting.</strong> The data the tasks touch must be divided to match, so each core
-    works on its own share without stepping on another core's data.</li>
-    <li><strong>Data dependency.</strong> When one task needs data produced by another, execution must be
-    synchronized to respect that dependency.</li>
-    <li><strong>Testing and debugging.</strong> Many possible interleavings are now possible, making
-    concurrent programs inherently harder to test than single-threaded ones.</li>
-  </ol>
-
-  <h2>Types of parallelism</h2>
-  <div class="svg-wrap">
-    <svg viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg">
-      <text x="170" y="22" text-anchor="middle" font-family="Newsreader,serif" font-size="14" font-weight="600" fill="#1C1E21">Data parallelism</text>
-      <rect x="40" y="40" width="260" height="36" rx="4" fill="#E8EFF8" stroke="#1D4E89"/>
-      <text x="170" y="63" text-anchor="middle" font-size="11" fill="#1C1E21">array[0 .. N−1]</text>
-      <path d="M110,76 L80,110" stroke="#1D4E89" marker-end="url(#arrM1)" fill="none"/>
-      <path d="M230,76 L260,110" stroke="#1D4E89" marker-end="url(#arrM1)" fill="none"/>
-      <rect x="40" y="112" width="100" height="40" rx="6" fill="#FFFFFF" stroke="#1D4E89"/><text x="90" y="130" text-anchor="middle" font-size="10" fill="#1C1E21">Core 1:</text><text x="90" y="145" text-anchor="middle" font-size="9.5" fill="#5B6169">sum [0..N/2)</text>
-      <rect x="200" y="112" width="100" height="40" rx="6" fill="#FFFFFF" stroke="#1D4E89"/><text x="250" y="130" text-anchor="middle" font-size="10" fill="#1C1E21">Core 2:</text><text x="250" y="145" text-anchor="middle" font-size="9.5" fill="#5B6169">sum [N/2..N)</text>
-      <text x="170" y="180" text-anchor="middle" font-size="10.5" fill="#5B6169">same operation, different data slices</text>
-
-      <text x="530" y="22" text-anchor="middle" font-family="Newsreader,serif" font-size="14" font-weight="600" fill="#1C1E21">Task parallelism</text>
-      <rect x="400" y="40" width="260" height="30" rx="4" fill="#E8EFF8" stroke="#1D4E89"/>
-      <text x="530" y="60" text-anchor="middle" font-size="11" fill="#1C1E21">shared / same data</text>
-      <path d="M470,70 L440,110" stroke="#1D4E89" marker-end="url(#arrM1)" fill="none"/>
-      <path d="M590,70 L620,110" stroke="#1D4E89" marker-end="url(#arrM1)" fill="none"/>
-      <rect x="400" y="112" width="100" height="40" rx="6" fill="#FFFFFF" stroke="#1D4E89"/><text x="450" y="130" text-anchor="middle" font-size="10" fill="#1C1E21">Core 1:</text><text x="450" y="145" text-anchor="middle" font-size="9.5" fill="#5B6169">render UI</text>
-      <rect x="560" y="112" width="100" height="40" rx="6" fill="#FFFFFF" stroke="#1D4E89"/><text x="610" y="130" text-anchor="middle" font-size="10" fill="#1C1E21">Core 2:</text><text x="610" y="145" text-anchor="middle" font-size="9.5" fill="#5B6169">spell-check</text>
-      <text x="530" y="180" text-anchor="middle" font-size="10.5" fill="#5B6169">different operation, threads may share or differ on data</text>
-    </svg>
-    <div class="cap">Fig 4. Data parallelism distributes the same operation over disjoint data; task parallelism distributes distinct operations across cores.</div>
-  </div>
-
-  <div class="callout clarify">
-    <span class="label">Not in your materials — added for syllabus/exam completeness</span>
-    <p style="margin:0"><strong>Amdahl's Law</strong> does not appear in either <code>unit 2.pdf</code> or the
-    extended textbook excerpt, but a 2024-25 exam question (CIE-I Test-1, Q3) requires it, and it is standard
-    multicore-programming curriculum content, so it's written in fresh below.</p>
-  </div>
-
-  <h2>Amdahl's Law</h2>
-  <p>Amdahl's Law quantifies the theoretical speedup available from parallelizing a program on <em>n</em>
-  processors, given that only a fraction <em>P</em> of the program can actually be parallelized (the
-  remainder, <em>1−P</em>, must run serially no matter how many cores you add):</p>
-  <div class="formula-block"><span class="c1">Speedup</span> = 1 / [ (1−<span class="c2">P</span>) + <span class="c2">P</span>/<span class="c2">n</span> ]<span class="cm">   — P = parallelizable fraction, n = number of processors</span></div>
-  <p>As <em>n</em>→∞, speedup approaches <span class="mono">1/(1−P)</span> — the serial fraction alone caps
-  how much parallelism can ever help, which is exactly why "just add more cores" has diminishing returns.</p>
-
-  <div class="qbox" id="u2-example-01">
-    <div class="qmeta"><span class="qsrc">2024-25 CIE-I Test-1, Q3</span><span class="marks">4 marks</span></div>
-    <div class="qtext">A task has 70% of its code that can be parallelized, and the remaining 30% cannot be parallelized. If you run this task on 5 processors, what is the theoretical maximum speedup according to Amdahl's Law?</div>
-    <div class="ans-label">Solution</div>
-    <ol class="steps">
-      <li>Identify P = 0.7 (parallelizable fraction), 1−P = 0.3 (serial fraction), n = 5 processors.</li>
-      <li>Substitute into Amdahl's Law: Speedup = 1 / [0.3 + 0.7/5] = 1 / [0.3 + 0.14] = 1 / 0.44.</li>
-      <li>Speedup = 25/11 ≈ <strong>2.27×</strong> (verified with exact rational arithmetic, not rounded floats).</li>
-    </ol>
-    <p style="margin-top:10px;font-size:13.5px;color:var(--ink-soft)">Even with 5 processors thrown at it, the untouchable 30% serial portion limits the maximum possible speedup to under 2.3× — nowhere near 5×.</p>
-  </div>
-
-  <a class="backtotop" href="#index">↑ Back to index</a>
-</div>
-</div></section>
-
-<section class="page section legacy-section" id="t2-3" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-  <div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h1>Old 2.3 · Multithreading Models</h1><span class="scope-note">Present in old Unit II; now in new Unit I — retained here for reference</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-t2-3" aria-label="View 2.3 · Multithreading Models">View</button></div>
-  <div class="legacy-content" id="legacy-t2-3" hidden><p class="source-note">The current treatment is in <a href="../unit-1/#threads">Unit I — Threads</a>. This panel retains the earlier Unit II material.</p>
-  <p class="section-sub">How user-level threads get mapped onto kernel-level threads — four models, each with a real tradeoff.</p>
-
-  <p>Support for threads exists at two levels: <strong>user threads</strong>, managed by a thread library
-  above the kernel with no kernel involvement, and <strong>kernel threads</strong>, supported and scheduled
-  directly by the operating system. The mapping between the two defines four models.</p>
-
-  <div class="svg-wrap">
-    <svg viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg">
-      <!-- Many-to-one -->
-      <text x="170" y="24" text-anchor="middle" font-family="Newsreader,serif" font-size="14" font-weight="600" fill="#1C1E21">Many-to-One</text>
-      <circle cx="110" cy="55" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="110" y="59" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <circle cx="170" cy="55" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="170" y="59" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <circle cx="230" cy="55" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="230" y="59" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <path d="M110,69 L165,100" stroke="#5B6169" stroke-width="1.2" fill="none"/><path d="M170,69 L170,100" stroke="#5B6169" stroke-width="1.2" fill="none"/><path d="M230,69 L175,100" stroke="#5B6169" stroke-width="1.2" fill="none"/>
-      <circle cx="170" cy="112" r="15" fill="#4C3F91"/><text x="170" y="117" text-anchor="middle" font-size="10" fill="#fff">K</text>
-      <text x="170" y="145" text-anchor="middle" font-size="9.5" fill="#5B6169">1 thread blocks → all block</text>
-      <text x="170" y="160" text-anchor="middle" font-size="9.5" fill="#5B6169">no true multicore parallelism</text>
-
-      <!-- One-to-one -->
-      <text x="530" y="24" text-anchor="middle" font-family="Newsreader,serif" font-size="14" font-weight="600" fill="#1C1E21">One-to-One</text>
-      <circle cx="470" cy="55" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="470" y="59" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <circle cx="530" cy="55" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="530" y="59" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <circle cx="590" cy="55" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="590" y="59" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <path d="M470,69 L470,100" stroke="#5B6169" stroke-width="1.2" fill="none"/><path d="M530,69 L530,100" stroke="#5B6169" stroke-width="1.2" fill="none"/><path d="M590,69 L590,100" stroke="#5B6169" stroke-width="1.2" fill="none"/>
-      <circle cx="470" cy="112" r="15" fill="#4C3F91"/><text x="470" y="117" text-anchor="middle" font-size="10" fill="#fff">K</text>
-      <circle cx="530" cy="112" r="15" fill="#4C3F91"/><text x="530" y="117" text-anchor="middle" font-size="10" fill="#fff">K</text>
-      <circle cx="590" cy="112" r="15" fill="#4C3F91"/><text x="590" y="117" text-anchor="middle" font-size="10" fill="#fff">K</text>
-      <text x="530" y="145" text-anchor="middle" font-size="9.5" fill="#5B6169">more concurrency; thread count</text>
-      <text x="530" y="160" text-anchor="middle" font-size="9.5" fill="#5B6169">often limited by kernel overhead</text>
-
-      <!-- Many-to-many -->
-      <text x="170" y="234" text-anchor="middle" font-family="Newsreader,serif" font-size="14" font-weight="600" fill="#1C1E21">Many-to-Many</text>
-      <circle cx="110" cy="265" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="110" y="269" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <circle cx="150" cy="265" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="150" y="269" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <circle cx="190" cy="265" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="190" y="269" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <circle cx="230" cy="265" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="230" y="269" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <path d="M110,279 L150,310" stroke="#5B6169" stroke-width="1.2" fill="none"/><path d="M150,279 L150,310" stroke="#5B6169" stroke-width="1.2" fill="none"/>
-      <path d="M190,279 L190,310" stroke="#5B6169" stroke-width="1.2" fill="none"/><path d="M230,279 L190,310" stroke="#5B6169" stroke-width="1.2" fill="none"/>
-      <circle cx="150" cy="322" r="15" fill="#4C3F91"/><text x="150" y="327" text-anchor="middle" font-size="10" fill="#fff">K</text>
-      <circle cx="190" cy="322" r="15" fill="#4C3F91"/><text x="190" y="327" text-anchor="middle" font-size="10" fill="#fff">K</text>
-      <text x="170" y="358" text-anchor="middle" font-size="9.5" fill="#5B6169">unlimited user threads, kernel</text>
-      <text x="170" y="373" text-anchor="middle" font-size="9.5" fill="#5B6169">threads run in parallel too</text>
-
-      <!-- Two-level -->
-      <text x="530" y="234" text-anchor="middle" font-family="Newsreader,serif" font-size="14" font-weight="600" fill="#1C1E21">Two-Level</text>
-      <circle cx="470" cy="265" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="470" y="269" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <circle cx="510" cy="265" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="510" y="269" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <circle cx="550" cy="265" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="550" y="269" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <circle cx="590" cy="265" r="14" fill="#E8EFF8" stroke="#1D4E89"/><text x="590" y="269" text-anchor="middle" font-size="10" fill="#1D4E89">U</text>
-      <path d="M470,279 L510,310" stroke="#5B6169" stroke-width="1.2" fill="none"/><path d="M510,279 L510,310" stroke="#5B6169" stroke-width="1.2" fill="none"/>
-      <path d="M550,279 L550,310" stroke="#5B6169" stroke-width="1.2" fill="none"/><path d="M590,279 L550,310" stroke="#5B6169" stroke-width="1.2" fill="none"/>
-      <path d="M470,279 L470,310" stroke="#93316B" stroke-width="1.4" stroke-dasharray="3,2" fill="none"/>
-      <circle cx="470" cy="322" r="15" fill="#4C3F91"/><text x="470" y="327" text-anchor="middle" font-size="10" fill="#fff">K</text>
-      <circle cx="510" cy="322" r="15" fill="#4C3F91"/><text x="510" y="327" text-anchor="middle" font-size="10" fill="#fff">K</text>
-      <circle cx="550" cy="322" r="15" fill="#4C3F91"/><text x="550" y="327" text-anchor="middle" font-size="10" fill="#fff">K</text>
-      <text x="530" y="358" text-anchor="middle" font-size="9.5" fill="#5B6169">many-to-many, plus one user</text>
-      <text x="530" y="373" text-anchor="middle" font-size="9.5" fill="#5B6169">thread may bind directly (dashed)</text>
-
-      <text x="360" y="415" text-anchor="middle" font-size="10.5" fill="#8A9096">U = user-level thread　K = kernel thread</text>
-      <text x="360" y="435" text-anchor="middle" font-size="10.5" fill="#8A9096">Rows above the kernel line are managed by the thread library; below, by the OS scheduler</text>
-    </svg>
-    <div class="cap">Fig 5. The four multithreading models, distinguished by how many user threads map onto how many kernel threads.</div>
-  </div>
-
-  <table>
-    <tr><th>Model</th><th>Mapping</th><th>Tradeoff</th><th>Examples</th></tr>
-    <tr><td><strong>Many-to-one</strong></td><td>many user threads → 1 kernel thread</td><td>Efficient (managed entirely in user space) but one blocking call blocks the whole process; no true multicore parallelism since only one thread can be in the kernel at a time.</td><td>Solaris Green Threads, GNU Portable Threads</td></tr>
-    <tr><td><strong>One-to-one</strong></td><td>1 user thread → 1 kernel thread</td><td>More concurrency — one thread blocking doesn't stop the others, and true parallelism is possible. Thread count is often restricted since each user thread costs a kernel thread.</td><td>Windows, Linux, Solaris 9+</td></tr>
-    <tr><td><strong>Many-to-many</strong></td><td>many user threads → smaller/equal number of kernel threads</td><td>Best of both: unlimited user threads, and the OS can allocate as many kernel threads as the machine can usefully run in parallel.</td><td>—</td></tr>
-    <tr><td><strong>Two-level</strong></td><td>many-to-many, plus an option to bind a specific user thread directly to a kernel thread</td><td>Same flexibility as many-to-many with an escape hatch for threads that need guaranteed kernel-level scheduling.</td><td>IRIX, HP-UX, Tru64 UNIX, Solaris 8 and earlier</td></tr>
-  </table>
-
-  <a class="backtotop" href="#index">↑ Back to index</a>
-</div>
-</div></section>
-
-<section class="page section legacy-section" id="t2-4" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-  <div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h1>Old 2.4 · Thread Libraries — Pthreads</h1><span class="scope-note">Present in old Unit II; now in new Unit I — retained here for reference</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-t2-4" aria-label="View 2.4 · Thread Libraries — Pthreads">View</button></div>
-  <div class="legacy-content" id="legacy-t2-4" hidden><p class="source-note">The current treatment is in <a href="../unit-1/#threads">Unit I — Threads</a>. This panel retains the earlier Unit II material.</p>
-  <p class="section-sub">How thread libraries are implemented, the POSIX Pthreads API, and two worked pthread programs.</p>
-
-  <h2>Implementing a thread library</h2>
-  <p>A thread library gives the programmer an API for creating and managing threads, implemented one of two
-  ways. A <strong>user-space library</strong> keeps all code and data structures in user space, so invoking a
-  library function is a plain local function call, not a system call. A <strong>kernel-space library</strong>
-  is supported directly by the OS, so invoking a library function typically results in an actual system call.
-  Three libraries dominate in practice: <strong>POSIX Pthreads</strong> (may be user- or kernel-level, common
-  on Linux/Solaris/macOS), the <strong>Windows thread library</strong> (kernel-level), and <strong>Java
-  threads</strong> (implemented on top of whichever native library the host OS provides — Pthreads on
-  UNIX/Linux, the Windows API on Windows).</p>
-
-  <h2>Pthreads API essentials</h2>
-  <p><strong>Pthreads</strong> — the threads extension of the POSIX (IEEE 1003.1c) standard — is a
-  specification for thread behaviour, not an implementation; the API defines behaviour, and the actual
-  implementation is up to the developer/OS vendor.</p>
-  <table>
-    <tr><th>Function</th><th>Role</th></tr>
-    <tr><td><span class="mono">pthread_create()</span></td><td>Spawns a new thread; takes a thread-ID pointer, attributes, the function to run, and its argument (4 arguments total).</td></tr>
-    <tr><td><span class="mono">pthread_join()</span></td><td>Blocks the calling (typically main/parent) thread until the named thread terminates.</td></tr>
-    <tr><td><span class="mono">pthread_exit()</span></td><td>Terminates the calling thread.</td></tr>
-  </table>
-
-  <div class="svg-wrap">
-    <svg viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg">
-      <defs><marker id="arrM2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1D4E89"/></marker></defs>
-      <rect x="10" y="55" width="120" height="50" rx="6" fill="#E8EFF8" stroke="#1D4E89"/><text x="70" y="85" text-anchor="middle" font-size="11" fill="#1C1E21">main() runs</text>
-      <path d="M130,80 L180,80" stroke="#1D4E89" stroke-width="1.4" marker-end="url(#arrM2)" fill="none"/>
-      <rect x="180" y="30" width="140" height="50" rx="6" fill="#FFFFFF" stroke="#1D4E89"/><text x="250" y="60" text-anchor="middle" font-size="11" fill="#1C1E21">pthread_create()</text>
-      <path d="M250,80 L250,110" stroke="#1D4E89" stroke-width="1.4" marker-end="url(#arrM2)" fill="none"/>
-      <rect x="180" y="110" width="140" height="40" rx="6" fill="#EEECF7" stroke="#4C3F91"/><text x="250" y="134" text-anchor="middle" font-size="11" fill="#1C1E21">runner() thread</text>
-      <path d="M320,55 L390,55" stroke="#1D4E89" stroke-width="1.4" marker-end="url(#arrM2)" fill="none"/>
-      <rect x="390" y="30" width="130" height="50" rx="6" fill="#FFFFFF" stroke="#1D4E89"/><text x="455" y="60" text-anchor="middle" font-size="11" fill="#1C1E21">pthread_join()</text>
-      <text x="455" y="20" text-anchor="middle" font-size="10" fill="#5B6169">main blocks here</text>
-      <path d="M320,130 L390,130" stroke="#4C3F91" stroke-width="1.4" marker-end="url(#arrM2)" fill="none"/>
-      <rect x="390" y="110" width="130" height="40" rx="6" fill="#EEECF7" stroke="#4C3F91"/><text x="455" y="134" text-anchor="middle" font-size="11" fill="#1C1E21">pthread_exit()</text>
-      <path d="M455,110 L455,90" stroke="#8A9096" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#arrM2)" fill="none"/>
-      <text x="455" y="100" text-anchor="middle" font-size="9" fill="#8A9096">unblocks join</text>
-      <path d="M520,55 L580,55" stroke="#1D4E89" stroke-width="1.4" marker-end="url(#arrM2)" fill="none"/>
-      <rect x="580" y="30" width="90" height="50" rx="6" fill="#E8EFF8" stroke="#1D4E89"/><text x="625" y="60" text-anchor="middle" font-size="11" fill="#1C1E21">continues</text>
-    </svg>
-    <div class="cap">Fig 6. Pthread lifecycle: <code>pthread_create()</code> spawns the runner thread, which executes concurrently with main; <code>pthread_join()</code> makes main wait until the runner calls <code>pthread_exit()</code>.</div>
-  </div>
-
-  <div class="qbox" id="u2-example-02">
-    <div class="qmeta"><span class="qsrc">2021-22 CIE-I, Q2</span><span class="marks">10 marks</span></div>
-    <div class="qtext">Write a program to create threads to perform the following functions on an array simultaneously: (i) sort the array in ascending order, (ii) sort the array in descending order — and record execution time in milliseconds.</div>
-    <div class="ans-label">Earlier illustrative pseudocode — use the corrected Unit I program for a runnable answer</div>
-    <pre class="formula-block code"><span class="tc">// two threads race the same array with opposite sort orders</span>
-<span class="tk">void</span>* <span class="tf">sort_asc</span>(<span class="tk">void</span>* arg)  { <span class="tc">/* qsort(arr, n, sizeof(int), cmp_asc);  */</span> <span class="tf">pthread_exit</span>(<span class="tm">NULL</span>); }
-<span class="tk">void</span>* <span class="tf">sort_desc</span>(<span class="tk">void</span>* arg) { <span class="tc">/* qsort(arr, n, sizeof(int), cmp_desc); */</span> <span class="tf">pthread_exit</span>(<span class="tm">NULL</span>); }
-
-<span class="tt">int</span> <span class="tf">main</span>() {
-    <span class="tt">pthread_t</span> t1, t2;
-    start = <span class="tf">clock</span>();
-    <span class="tf">pthread_create</span>(&amp;t1, <span class="tm">NULL</span>, sort_asc,  (<span class="tk">void</span>*)arr_copy1);
-    <span class="tf">pthread_create</span>(&amp;t2, <span class="tm">NULL</span>, sort_desc, (<span class="tk">void</span>*)arr_copy2);
-    <span class="tf">pthread_join</span>(t1, <span class="tm">NULL</span>);   <span class="tc">// main waits for both</span>
-    <span class="tf">pthread_join</span>(t2, <span class="tm">NULL</span>);
-    elapsed_ms = (<span class="tf">clock</span>() - start) * <span class="tn">1000</span> / <span class="tm">CLOCKS_PER_SEC</span>;
-}</pre>
-    <p style="margin-top:10px;font-size:13.5px;color:var(--ink-soft)">Key point for marks: each thread gets its <em>own copy</em> (or disjoint region) of the array to avoid a data race between the two sorts, and <code>pthread_join</code> — not a busy-wait — is what makes main() wait correctly for both to finish before reporting the timing.</p>
-  </div>
-
-  <div class="qbox" id="u2-example-03">
-    <div class="qmeta"><span class="qsrc">2024-25 SEE Part-B, Q3 (alt. to Q2)</span><span class="marks">8 marks</span></div>
-    <div class="qtext">Develop a program to perform matrix multiplication using pthreads, where each thread computes one row of the resulting matrix.</div>
-    <div class="ans-label">Earlier illustrative pseudocode — use the corrected Unit I program for a runnable answer</div>
-    <pre class="formula-block code"><span class="tc">// one thread per output row — classic task-decomposition example</span>
-<span class="tk">struct</span> <span class="tt">RowArgs</span> { <span class="tt">int</span> row; <span class="tt">int</span> **A, **B, **C, n; };
-
-<span class="tk">void</span>* <span class="tf">compute_row</span>(<span class="tk">void</span>* arg) {
-    <span class="tt">RowArgs</span>* a = (<span class="tt">RowArgs</span>*)arg;
-    <span class="tk">for</span> (<span class="tt">int</span> j = <span class="tn">0</span>; j &lt; a-&gt;n; j++) {
-        <span class="tt">int</span> sum = <span class="tn">0</span>;
-        <span class="tk">for</span> (<span class="tt">int</span> k = <span class="tn">0</span>; k &lt; a-&gt;n; k++) sum += a-&gt;A[a-&gt;row][k] * a-&gt;B[k][j];
-        a-&gt;C[a-&gt;row][j] = sum;
-    }
-    <span class="tf">pthread_exit</span>(<span class="tm">NULL</span>);
-}
-
-<span class="tt">int</span> <span class="tf">main</span>() {
-    <span class="tt">pthread_t</span> threads[n];
-    <span class="tk">for</span> (<span class="tt">int</span> i = <span class="tn">0</span>; i &lt; n; i++) {
-        args[i] = (<span class="tt">RowArgs</span>){ i, A, B, C, n };
-        <span class="tf">pthread_create</span>(&amp;threads[i], <span class="tm">NULL</span>, compute_row, &amp;args[i]);
-    }
-    <span class="tk">for</span> (<span class="tt">int</span> i = <span class="tn">0</span>; i &lt; n; i++) <span class="tf">pthread_join</span>(threads[i], <span class="tm">NULL</span>);
-}</pre>
-    <p style="margin-top:10px;font-size:13.5px;color:var(--ink-soft)">Key point for marks: A and B are read-only and safely shared without locking; only C is written, and each thread writes a disjoint row of C, so no synchronization is needed between threads — a textbook example of data parallelism (Fig 4) with zero contention by construction.</p>
-  </div>
-
-  <a class="backtotop" href="#index">↑ Back to index</a>
-</div>
-</div></section>
 
 <section class="page section legacy-section" id="t2-4a" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
   <div class="legacy-topic">
@@ -735,7 +328,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
       <rect x="602" y="56" width="62" height="44" rx="8" fill="#F6E9F0" stroke="#93316B"/>
       <text x="633" y="83" text-anchor="middle" font-size="12" font-family="Inter" fill="#1C1E21">Request</text>
     </svg>
-    <div class="cap">Fig 6b. Thread pool — a request is handed to an idle pooled thread, which returns to the pool when the service completes.</div>
+    <div class="cap">Fig 1. Thread pool — a request is handed to an idle pooled thread, which returns to the pool when the service completes.</div>
   </div>
   <p><strong>Advantages:</strong> servicing a request with an existing thread is usually faster than creating a new one; the
   pool <strong>bounds the number of threads</strong> alive at any moment. The pool size can be tuned from the number of
@@ -798,7 +391,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
       <text x="590" y="69" text-anchor="middle" font-size="10.5" fill="#5B6169">exit</text>
       <text x="320" y="110" text-anchor="middle" font-size="10.5" fill="#5B6169">Most processes: many short CPU bursts, occasional long ones (exponential-ish frequency curve)</text>
     </svg>
-    <div class="cap">Fig 7. The CPU–I/O burst cycle — process execution alternates between CPU bursts and I/O waits until termination.</div>
+    <div class="cap">Fig 2. The CPU–I/O burst cycle — process execution alternates between CPU bursts and I/O waits until termination.</div>
   </div>
   <p><strong>Distribution of CPU bursts.</strong> Measured burst durations follow a characteristic curve (the PDF's histogram): the
   frequency peaks sharply at very short bursts of about 2 ms (roughly 150 occurrences), falls to about 30 at 4 ms and is almost zero beyond
@@ -845,7 +438,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
       <text x="580" y="170" text-anchor="middle" font-size="9.5" fill="#5B6169">(4) terminate →</text>
       <text x="580" y="184" text-anchor="middle" font-size="9.5" fill="#5B6169">dispatcher picks next</text>
     </svg>
-    <div class="cap">Fig 8. The four preemption decision points, and the dispatcher — the module that actually hands the CPU to whichever process the scheduler picked.</div>
+    <div class="cap">Fig 3. The four preemption decision points, and the dispatcher — the module that actually hands the CPU to whichever process the scheduler picked.</div>
   </div>
 
   <p>The <strong>dispatcher</strong> is the module that gives control of the CPU to the process the scheduler
@@ -925,7 +518,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
       <text x="140" y="172" font-size="9.5" fill="#8A9096">0</text><text x="170" y="172" font-size="9.5" fill="#8A9096">3</text><text x="200" y="172" font-size="9.5" fill="#8A9096">6</text><text x="670" y="172" font-size="9.5" fill="#8A9096">30</text>
       <text x="330" y="195" text-anchor="middle" font-size="11" fill="#1C1E21" font-weight="600">Waiting: P2=0, P3=3, P1=6 → avg = 3</text>
     </svg>
-    <div class="cap">Fig 9. The convoy effect — when a long process arrives first, every later process waits behind it; average waiting time drops from 17ms to 3ms purely by reordering arrivals.</div>
+    <div class="cap">Fig 4. The convoy effect — when a long process arrives first, every later process waits behind it; average waiting time drops from 17ms to 3ms purely by reordering arrivals.</div>
   </div>
 
   <div class="callout">
@@ -1004,7 +597,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
       <text x="150" y="167" font-size="9" fill="#8A9096">0</text><text x="162" y="167" font-size="9" fill="#8A9096">1</text><text x="210" y="167" font-size="9" fill="#8A9096">5</text><text x="270" y="167" font-size="9" fill="#8A9096">10</text><text x="450" y="167" font-size="9" fill="#8A9096">26</text>
       <text x="330" y="183" text-anchor="middle" font-size="10.5" fill="#1C1E21" font-weight="600">Waiting P1=9,P2=0,P3=15,P4=2 → avg = 6.5</text>
     </svg>
-    <div class="cap">Fig 10. SJF non-preemptive (P4,P1,P3,P2 with all arriving at t=0, bursts 3/6/7/8) versus preemptive SRTF (P1 AT0-BT8, P2 AT1-BT4, P3 AT2-BT9, P4 AT3-BT5) — preemption lets a just-arrived short job cut ahead.</div>
+    <div class="cap">Fig 5. SJF non-preemptive (P4,P1,P3,P2 with all arriving at t=0, bursts 3/6/7/8) versus preemptive SRTF (P1 AT0-BT8, P2 AT1-BT4, P3 AT2-BT9, P4 AT3-BT5) — preemption lets a just-arrived short job cut ahead.</div>
   </div>
 
   <div class="qbox" id="u2-example-06">
@@ -1090,7 +683,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
       <path d="M130,175 Q170,140 215,45" fill="none" stroke="#8A9096" stroke-width="1.2" marker-end="url(#arrM5)"/>
       <text x="250" y="245" text-anchor="middle" font-size="10.5" fill="#5B6169">Unfinished process rejoins the tail of the same circular queue</text>
     </svg>
-    <div class="cap">Fig 11. Round Robin's ready queue is effectively circular — each process gets one quantum, then (if unfinished) rejoins the back of the line.</div>
+    <div class="cap">Fig 6. Round Robin's ready queue is effectively circular — each process gets one quantum, then (if unfinished) rejoins the back of the line.</div>
   </div>
 
   <h2>Quantum-size tradeoffs</h2>
@@ -1219,7 +812,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
       <text x="330" y="115" text-anchor="middle" font-size="10.5" fill="#1C1E21" font-weight="600">P4 (priority 5, the lowest) waits the longest — 18 of its 19ms lifetime</text>
       <text x="330" y="140" text-anchor="middle" font-size="10" fill="#5B6169">Aging fix: bump each waiting process's priority over time so P4 eventually wins the CPU</text>
     </svg>
-    <div class="cap">Fig 12. Priority scheduling in action — the lowest-priority process (P4) is pushed to the very end, illustrating priority-based delay. True starvation requires continued competition that can postpone a ready process indefinitely.</div>
+    <div class="cap">Fig 7. Priority scheduling in action — the lowest-priority process (P4) is pushed to the very end, illustrating priority-based delay. True starvation requires continued competition that can postpone a ready process indefinitely.</div>
   </div>
 
   <div class="qbox" id="u2-example-14">
@@ -1306,7 +899,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
       <circle cx="500" cy="80" r="5" fill="#1D4E89"/><text x="530" y="65" text-anchor="middle" font-size="10" fill="#1C1E21">task runs</text>
       <text x="340" y="130" text-anchor="middle" font-size="10.5" fill="#5B6169">Event latency = interrupt latency + dispatch latency — real-time OSes exist to keep this bounded</text>
     </svg>
-    <div class="cap">Fig 13. Event latency decomposed into interrupt latency (recognizing and routing the interrupt) and dispatch latency (context-switching to the servicing task).</div>
+    <div class="cap">Fig 8. Event latency decomposed into interrupt latency (recognizing and routing the interrupt) and dispatch latency (context-switching to the servicing task).</div>
   </div>
 
   <h2>Priority-based scheduling, and two ways to assign priority</h2>
@@ -1354,7 +947,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
         <text x="20" y="105" font-size="10.5" fill="#5B6169">A[0–1] B[1–3] C[3–4] A[4–5] idle[5–6] B[6–8] A[8–9] C[9–10] idle[10–12]</text>
         <text x="20" y="122" font-size="10.5" fill="#5B6169">A[12–13] B[13–15] idle[15–16] A[16–17] C[17–18] B[18–20] A[20–21] idle[21–24]</text>
       </svg>
-      <div class="cap">Fig 14. Verified EDF schedule over one 24ms hyperperiod — simulated tick-by-tick, ties broken by earliest deadline. All jobs meet their deadlines (idle slots exist because U≈70.83%, not 100%).</div>
+      <div class="cap">Fig 9. Verified EDF schedule over one 24ms hyperperiod — simulated tick-by-tick, ties broken by earliest deadline. All jobs meet their deadlines (idle slots exist because U≈70.83%, not 100%).</div>
     </div>
     <p style="margin:0">Every job releases at its period boundary (0,4,8,12,16,20 for A; 0,6,12,18 for B; 0,8,16
     for C), and at each moment EDF runs whichever ready job has the nearest absolute deadline. The CPU sits
@@ -1422,7 +1015,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
         <line x1="400" y1="145" x2="468" y2="145"/><line x1="400" y1="193" x2="468" y2="193"/><line x1="400" y1="237" x2="468" y2="237"/>
       </g>
     </svg>
-    <div class="cap">Fig 14b. Multilevel queue scheduling — separate queues by process type, strict priority from top to bottom (lowest priority at the bottom).</div>
+    <div class="cap">Fig 10. Multilevel queue scheduling — separate queues by process type, strict priority from top to bottom (lowest priority at the bottom).</div>
   </div>
   <p><strong>Drawback:</strong> a process can never change queue, so lower queues can <strong>starve</strong> under fixed priority,
   and the scheme is inflexible.</p>
@@ -1455,7 +1048,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
       <text x="610" y="48" text-anchor="middle" font-size="12" font-family="Inter" fill="#5B6169">new process</text>
       <line x1="560" y1="40" x2="345" y2="40" stroke="#4C3F91" stroke-width="1.6" marker-end="url(#a12c)"/>
     </svg>
-    <div class="cap">Fig 14c. A three-queue feedback scheduler — new processes enter queue 0; CPU hogs sink downward, starved processes are promoted back up.</div>
+    <div class="cap">Fig 11. A three-queue feedback scheduler — new processes enter queue 0; CPU hogs sink downward, starved processes are promoted back up.</div>
   </div>
   <p>A multilevel feedback queue scheduler is defined by <strong>five parameters</strong>:</p>
   <ol>
@@ -1467,7 +1060,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
   </ol>
   <div class="callout clarify">
     <span class="label">Not in your materials — added for completeness</span>
-    <p style="margin:0">The three-queue configuration in Fig 14c (quanta 8 ms, 16 ms, then FCFS) is the standard textbook illustration (Silberschatz); your PDF only shows the generic figure. Quote the five parameters above in an exam — they are what the PDF lists.</p>
+    <p style="margin:0">The three-queue configuration in Fig 11 (quanta 8 ms, 16 ms, then FCFS) is the standard textbook illustration (Silberschatz); your PDF only shows the generic figure. Quote the five parameters above in an exam — they are what the PDF lists.</p>
   </div>
 
   <div class="qbox" id="u2-example-18">
@@ -1525,7 +1118,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
       </g>
       <text x="510" y="190" text-anchor="middle" font-size="11" font-family="Inter" fill="#5B6169">each CPU schedules itself</text>
     </svg>
-    <div class="cap">Fig 14d. Asymmetric multiprocessing (one master makes all decisions) versus symmetric multiprocessing (every CPU is self-scheduling).</div>
+    <div class="cap">Fig 12. Asymmetric multiprocessing (one master makes all decisions) versus symmetric multiprocessing (every CPU is self-scheduling).</div>
   </div>
   <table>
     <tr><th></th><th>Asymmetric multiprocessing</th><th>Symmetric multiprocessing (SMP)</th></tr>
@@ -1605,7 +1198,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
       <text x="515" y="146" text-anchor="middle" font-size="12" font-family="Inter" fill="#1C1E21">CPU</text>
       <text x="515" y="182" text-anchor="middle" font-size="11" font-family="Inter" fill="#5B6169">all threads in the system compete (one-to-one)</text>
     </svg>
-    <div class="cap">Fig 14e. PCS: threads of one process compete for an LWP chosen by the library. SCS: the kernel picks among all kernel threads in the system.</div>
+    <div class="cap">Fig 13. PCS: threads of one process compete for an LWP chosen by the library. SCS: the kernel picks among all kernel threads in the system.</div>
   </div>
   <table>
     <tr><th></th><th>Process-contention scope (PCS)</th><th>System-contention scope (SCS)</th></tr>
@@ -1698,7 +1291,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
       <text x="340" y="174" text-anchor="middle" font-size="12" font-family="Inter" fill="#1C1E21">P1 — active inside</text>
       <text x="340" y="192" text-anchor="middle" font-size="11" font-family="Inter" fill="#5B6169">running a procedure</text>
     </svg>
-    <div class="cap">Fig 15. A monitor with condition variables — one process active inside; others wait either on the entry queue or on a condition queue.</div>
+    <div class="cap">Fig 14. A monitor with condition variables — one process active inside; others wait either on the entry queue or on a condition queue.</div>
   </div>
   <p><strong>When P calls <code>x.signal()</code> and Q is suspended on <code>x</code>, both cannot be active.</strong> Two options:
   <strong>signal-and-wait</strong> (P waits until Q leaves or waits) or <strong>signal-and-continue</strong> (Q waits until P leaves or waits).
@@ -1789,7 +1382,7 @@ R.<span class="tf">release</span>();</pre>
 }</pre>
   <div class="callout clarify">
     <span class="label">Source note — transcribed from the PDF's figures</span>
-    <p style="margin:0">The monitor syntax, dining-philosophers monitor, semaphore implementation and ResourceAllocator listings above were figures in your CIE-1 PDF; they were transcribed from those page images (and match the standard textbook versions). Only the monitor condition-variable diagram (Fig 15) is redrawn.</p>
+    <p style="margin:0">The monitor syntax, dining-philosophers monitor, semaphore implementation and ResourceAllocator listings above were figures in your CIE-1 PDF; they were transcribed from those page images (and match the standard textbook versions). Only the monitor condition-variable diagram (Fig 14) is redrawn.</p>
   </div>
   <a class="backtotop" href="#index">↑ Back to index</a>
 </div>
@@ -1869,7 +1462,7 @@ R.<span class="tf">release</span>();</pre>
       <text x="560" y="105" text-anchor="middle" font-size="12" fill="#1C1E21">Consumer</text>
       <text x="320" y="175" text-anchor="middle" font-size="10.5" fill="#5B6169">Both processes read-modify-write the SAME variable — the exact scenario a race condition needs</text>
     </svg>
-    <div class="cap">Fig 16. The producer and consumer both update a shared <code>counter</code> — innocuous if they never overlap, dangerous if they do.</div>
+    <div class="cap">Fig 15. The producer and consumer both update a shared <code>counter</code> — innocuous if they never overlap, dangerous if they do.</div>
   </div>
 
   <h2>Race conditions</h2>
@@ -1898,12 +1491,12 @@ R.<span class="tf">release</span>();</pre>
       <text x="350" y="242" text-anchor="middle" font-size="11.5" fill="#1C1E21" font-weight="600">Final counter = 4, not 5 — one increment and one decrement should cancel out,</text>
       <text x="350" y="260" text-anchor="middle" font-size="11.5" fill="#1C1E21" font-weight="600">but the interleaving lost the producer's update at S4</text>
     </svg>
-    <div class="cap">Fig 17. A single interleaving of the producer's and consumer's load-modify-store steps — verified by simulating this exact sequence in code — leaves <code>counter</code> at 4, not 5.</div>
+    <div class="cap">Fig 16. A single interleaving of the producer's and consumer's load-modify-store steps — verified by simulating this exact sequence in code — leaves <code>counter</code> at 4, not 5.</div>
   </div>
 
   <div class="qbox" id="u2-example-20">
     <div class="qmeta"><span class="qsrc">Older course deck, p5–7</span><span class="marks">worked example · verified in code</span></div>
-    <div class="qtext">counter starts at 5. Producer and consumer execute counter++ and counter-- concurrently, interleaved exactly as S0–S5 in Fig 17. What is the final value of counter?</div>
+    <div class="qtext">counter starts at 5. Producer and consumer execute counter++ and counter-- concurrently, interleaved exactly as S0–S5 in Fig 16. What is the final value of counter?</div>
     <p style="margin:0">Simulating this exact instruction sequence gives <strong>counter = 4</strong>. The only
     value that would be "correct" from a program-logic standpoint is 5 (one net increment, one net
     decrement, no change) — 4 is only reachable because the interleaving let the consumer's stale read
@@ -1968,7 +1561,7 @@ R.<span class="tf">release</span>();</pre>
       <path d="M330,253 Q400,150 330,43" fill="none" stroke="#8A9096" stroke-width="1.3" stroke-dasharray="4,2" marker-end="url(#sync-arrM2)"/>
       <text x="395" y="150" text-anchor="middle" font-size="10" fill="#5B6169" transform="rotate(90,395,150)">remainder section, loop</text>
     </svg>
-    <div class="cap">Fig 18. The general structure of process Pᵢ — a loop of entry section, critical section, exit section, remainder section.</div>
+    <div class="cap">Fig 17. The general structure of process Pᵢ — a loop of entry section, critical section, exit section, remainder section.</div>
   </div>
 
   <h2>The three requirements</h2>
@@ -2061,7 +1654,7 @@ R.<span class="tf">release</span>();</pre>
       <rect x="270" y="170" width="100" height="0" fill="none"/>
       <path d="M200,141 L440,141" stroke="#8A9096" stroke-width="1" stroke-dasharray="3,2" fill="none"/>
     </svg>
-    <div class="cap">Fig 19. Both processes announce intent (<code>flag</code>) then politely defer (<code>turn</code>) — since each sets <code>turn</code> to the *other* process last, whichever write happens second determines who actually waits.</div>
+    <div class="cap">Fig 18. Both processes announce intent (<code>flag</code>) then politely defer (<code>turn</code>) — since each sets <code>turn</code> to the *other* process last, whichever write happens second determines who actually waits.</div>
   </div>
 
   <h2>Correctness proof</h2>
@@ -2174,7 +1767,7 @@ Case 2 (S1=0,S2=1): P1 enters first (S1≠S2) → S1=1,S2=1 → P2 enters → S1
 <text x="610" y="106" text-anchor="middle" font-size="12" fill="#1C1E21">lock=0</text><text x="610" y="124" text-anchor="middle" font-size="11" fill="#5B6169">free again</text>
 <text x="360" y="202" text-anchor="middle" font-size="12" fill="#5B6169">A later atomic attempt can acquire the free lock.</text>
 </svg>
-    <div class="cap">Fig 20. test_and_set's lock/unlock cycle — the atomic read-and-set means only one caller can ever see <code>rv=0</code> at a time.</div>
+    <div class="cap">Fig 19. test_and_set's lock/unlock cycle — the atomic read-and-set means only one caller can ever see <code>rv=0</code> at a time.</div>
   </div>
 
   <h2>compare_and_swap — conditional atomic update</h2>
@@ -2394,7 +1987,7 @@ release() {
       <text x="420" y="190" text-anchor="middle" font-size="10.5" fill="#93316B">S=0 → waits for a returned permit</text>
       <text x="177" y="190" text-anchor="middle" font-size="10.5" fill="#5B6169">S: 2→1→0 as P1, P2 acquire</text>
     </svg>
-    <div class="cap">Fig 21. Three processes contend for a 2-instance resource pool — the first two acquire it (S: 2→1→0), the third blocks until one is released.</div>
+    <div class="cap">Fig 20. Three processes contend for a 2-instance resource pool — the first two acquire it (S: 2→1→0), the third blocks until one is released.</div>
   </div>
 
   <div class="qbox" id="u2-example-23">
@@ -2537,7 +2130,7 @@ semaphore full  = 0;</div>
 <path d="M460,120 Q515,170 565,120" fill="none" stroke="#93316B" marker-end="url(#sync-arrM6)"/>
 <text x="510" y="213" text-anchor="middle" font-size="11" fill="#5B6169">wait(full) → wait(mutex)</text><text x="510" y="233" text-anchor="middle" font-size="11" fill="#5B6169">remove → signal(mutex) → signal(empty)</text>
 </svg>
-    <div class="cap">Fig 22. The producer waits on <code>empty</code> before adding, the consumer waits on <code>full</code> before removing; <code>mutex</code> serializes the actual buffer access.</div>
+    <div class="cap">Fig 21. The producer waits on <code>empty</code> before adding, the consumer waits on <code>full</code> before removing; <code>mutex</code> serializes the actual buffer access.</div>
   </div>
 
   <div class="grid2">
@@ -2647,7 +2240,7 @@ int read_count = 0;</div>
       <path d="M480,85 L390,85" stroke="#93316B" stroke-width="1.3" stroke-dasharray="4,2" marker-end="url(#sync-arrM7)" fill="none"/>
       <text x="435" y="143" text-anchor="middle" font-size="10" fill="#93316B">Writer waits while readers</text><text x="435" y="160" text-anchor="middle" font-size="10" fill="#93316B">or another writer hold rw_mutex</text>
     </svg>
-    <div class="cap">Fig 23. Readers share the database freely amongst themselves; a writer needs exclusive access, gated by the shared <code>rw_mutex</code> semaphore.</div>
+    <div class="cap">Fig 22. Readers share the database freely amongst themselves; a writer needs exclusive access, gated by the shared <code>rw_mutex</code> semaphore.</div>
   </div>
 
   <div class="grid2">
@@ -2744,7 +2337,7 @@ int read_count = 0;</div>
       <text x="200" y="390" text-anchor="middle" font-size="10.5" fill="#5B6169">Semaphore chopstick[5], all initialized to 1 —</text>
       <text x="200" y="406" text-anchor="middle" font-size="10.5" fill="#5B6169">each shared by two adjacent philosophers</text>
     </svg>
-    <div class="cap">Fig 24. Five philosophers, five shared chopstick semaphores — each philosopher needs both of their two adjacent chopsticks simultaneously.</div>
+    <div class="cap">Fig 23. Five philosophers, five shared chopstick semaphores — each philosopher needs both of their two adjacent chopsticks simultaneously.</div>
   </div>
 
   <h2>The naive semaphore solution — and why it deadlocks</h2>
@@ -2815,7 +2408,7 @@ do {
       <path d="M455,60 L280,150" stroke="#4C3F91" stroke-width="1.4" marker-end="url(#sync-arrM8)" fill="none"/>
       <text x="380" y="70" text-anchor="middle" font-size="9.5" fill="#5B6169">P1 holds Q,</text>
     </svg>
-    <div class="cap">Fig 25. Circular wait — P0 holds S and wants Q; P1 holds Q and wants S. Neither can ever proceed.</div>
+    <div class="cap">Fig 24. Circular wait — P0 holds S and wants Q; P1 holds Q and wants S. Neither can ever proceed.</div>
   </div>
 
   <div class="qbox" id="u2-example-27">
@@ -2858,7 +2451,7 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
 </div></section>
 <section class="page section" id="solved-sync" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
 <div class="section-head"><span class="tag">PRACTICE</span><h1>Solved Synchronization Examples</h1></div>
-<p>Race-condition interleavings, strict alternation, semaphore arithmetic, resource permits and a one-shot barrier are worked in their topic sections.</p><table><tr><th>Source</th><th>Worked answer</th><th>Scope</th></tr><tr><td>Older course deck, p5–7</td><td><a href="#u2-example-20">counter starts at 5. Producer and consumer execute counter++ and counter-- concurrently, interleaved exactly as S0–S5 in Fig 17. What is the final value of counter?</a></td><td>Core example</td></tr><tr><td>2021-22 CIE-II Q1</td><td><a href="#u2-example-21">P1(){C=B-1; B=2*C;} and P2(){D=2*B; B=D-1;} share a variable B with initial value 2 and execute concurrently. How many distinct values can B possibly take after execution?</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2 Q1a</td><td><a href="#u2-example-22">P1 executes: while(S1==S2); Critical Section; S1=S2. P2 executes: while(S1!=S2); Critical Section; S2=!S1. Shared Boolean S1, S2. Case 1: S1=0, S2=0. Case 2: S1=0, S2=1. Is mutual exclusion and progress guaranteed in both cases? Justify.</a></td><td>Core example</td></tr><tr><td>Course slides — counting semaphore</td><td><a href="#u2-example-23">Three processes P1, P2, P3 all call wait(S) on a counting semaphore initialized to S=2 (a resource with 2 interchangeable instances). What happens?</a></td><td>Core example</td></tr><tr><td>2021-22 CIE-II Q4</td><td><a href="#u2-example-24">A counting semaphore has value 7. 20 P-operations and 15 V-operations are completed on it. What is the resulting value?</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-A</td><td><a href="#u2-example-25">A counting semaphore has value 7. 20 P-operations and x V-operations are completed; the new value is 5. Find x.</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-A</td><td><a href="#u2-example-26">n processes each run: Code Section P: wait(a); count=count+1; if(count==n) signal(b); signal(a); — Code Section Q: wait(b); signal(b); — with semaphores a=1, b=0, and shared count=0. What does this code achieve?</a></td><td>Core example</td></tr><tr><td>Older course deck p41, classic example</td><td><a href="#u2-example-27">Semaphores S and Q are both initialized to 1. P0 executes wait(S) then wait(Q); P1 executes wait(Q) then wait(S). Show that this can deadlock.</a></td><td>Collapsed older/supplementary example</td></tr></table>
+<p>Race-condition interleavings, strict alternation, semaphore arithmetic, resource permits and a one-shot barrier are worked in their topic sections.</p><table><tr><th>Source</th><th>Worked answer</th><th>Scope</th></tr><tr><td>Older course deck, p5–7</td><td><a href="#u2-example-20">counter starts at 5. Producer and consumer execute counter++ and counter-- concurrently, interleaved exactly as S0–S5 in Fig 16. What is the final value of counter?</a></td><td>Core example</td></tr><tr><td>2021-22 CIE-II Q1</td><td><a href="#u2-example-21">P1(){C=B-1; B=2*C;} and P2(){D=2*B; B=D-1;} share a variable B with initial value 2 and execute concurrently. How many distinct values can B possibly take after execution?</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2 Q1a</td><td><a href="#u2-example-22">P1 executes: while(S1==S2); Critical Section; S1=S2. P2 executes: while(S1!=S2); Critical Section; S2=!S1. Shared Boolean S1, S2. Case 1: S1=0, S2=0. Case 2: S1=0, S2=1. Is mutual exclusion and progress guaranteed in both cases? Justify.</a></td><td>Core example</td></tr><tr><td>Course slides — counting semaphore</td><td><a href="#u2-example-23">Three processes P1, P2, P3 all call wait(S) on a counting semaphore initialized to S=2 (a resource with 2 interchangeable instances). What happens?</a></td><td>Core example</td></tr><tr><td>2021-22 CIE-II Q4</td><td><a href="#u2-example-24">A counting semaphore has value 7. 20 P-operations and 15 V-operations are completed on it. What is the resulting value?</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-A</td><td><a href="#u2-example-25">A counting semaphore has value 7. 20 P-operations and x V-operations are completed; the new value is 5. Find x.</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-A</td><td><a href="#u2-example-26">n processes each run: Code Section P: wait(a); count=count+1; if(count==n) signal(b); signal(a); — Code Section Q: wait(b); signal(b); — with semaphores a=1, b=0, and shared count=0. What does this code achieve?</a></td><td>Core example</td></tr><tr><td>Older course deck p41, classic example</td><td><a href="#u2-example-27">Semaphores S and Q are both initialized to 1. P0 executes wait(S) then wait(Q); P1 executes wait(Q) then wait(S). Show that this can deadlock.</a></td><td>Collapsed older/supplementary example</td></tr></table>
 <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="quick-revision" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
@@ -2868,12 +2461,7 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   <h2>Core formulas</h2>
   <div class="formula-block"><span class="c1">Turnaround time</span> = Completion time − Arrival time
 <span class="c1">Waiting time</span>    = Turnaround time − Burst time
-<span class="c1">EDF utilization</span> = Σ (execution_i / period_i)         <span class="cm">U ≤ 1 for independent, preemptible implicit-deadline tasks on one CPU, ignoring overhead</span></div><div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h2>Amdahl&#x27;s law — older revision formula</h2><span class="scope-note">Present in old Unit II; multicore programming is now in Unit I</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1001" aria-label="View Amdahl&#x27;s law — older revision formula">View</button></div>
-  <div class="legacy-content" id="legacy-u2-1001" hidden><div class="formula-block"><span class="c1">Amdahl's Law</span>    = 1 / [ (1−P) + P/n ]              <span class="cm">P=parallel fraction, n=processors</span>
-</div></div>
-</div>
+<span class="c1">EDF utilization</span> = Σ (execution_i / period_i)         <span class="cm">U ≤ 1 for independent, preemptible implicit-deadline tasks on one CPU, ignoring overhead</span></div>
 
   <div class="grid2">
     <div class="card">
@@ -2904,7 +2492,7 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   </div>
 
   <div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h2>Threading issues &amp; scheduling extras (one line each)</h2><span class="scope-note">Retained older Unit II revision material; thread topics now belong to Unit I and scheduling extensions are supplementary</span></div>
+  <div class="legacy-heading"><div class="legacy-heading-text"><h2>Threading issues &amp; scheduling extras (one line each)</h2><span class="scope-note">Present in older notes; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1002" aria-label="View Threading issues &amp; scheduling extras (one line each)">View</button></div>
   <div class="legacy-content" id="legacy-u2-1002" hidden>
   <table>
@@ -2920,26 +2508,6 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
     <tr><td><strong>Affinity / balancing</strong></td><td>soft vs hard affinity; push vs pull migration — balancing hurts affinity</td></tr>
     <tr><td><strong>PCS / SCS</strong></td><td>library picks among a process's threads / kernel picks among all threads; one-to-one = SCS only</td></tr>
     <tr><td><strong>Monitor</strong></td><td>one process active at a time; condition x: wait() suspends, signal() resumes one (no memory if none waiting)</td></tr>
-  </table>
-
-  </div>
-</div><div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h2>The four benefits of threads</h2><span class="scope-note">Retained older Unit II revision material; thread topics now belong to Unit I and scheduling extensions are supplementary</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1003" aria-label="View The four benefits of threads">View</button></div>
-  <div class="legacy-content" id="legacy-u2-1003" hidden>
-  <p><strong>R</strong>esponsiveness · <strong>R</strong>esource sharing · <strong>E</strong>conomy ·
-  <strong>S</strong>calability — "RRES" as a memory hook.</p>
-
-  </div>
-</div><div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h2>Multithreading models, one line each</h2><span class="scope-note">Retained older Unit II revision material; thread topics now belong to Unit I and scheduling extensions are supplementary</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1004" aria-label="View Multithreading models, one line each">View</button></div>
-  <div class="legacy-content" id="legacy-u2-1004" hidden>
-  <table>
-    <tr><td><strong>Many-to-one</strong></td><td>cheap, but one block stalls everyone; no multicore parallelism</td></tr>
-    <tr><td><strong>One-to-one</strong></td><td>true concurrency, but thread count is kernel-limited</td></tr>
-    <tr><td><strong>Many-to-many</strong></td><td>best of both — unlimited user threads, parallel kernel threads</td></tr>
-    <tr><td><strong>Two-level</strong></td><td>many-to-many + optional direct binding for one thread</td></tr>
   </table>
 
   </div>
@@ -2973,58 +2541,9 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   <div class="section-head"><span class="tag">Q-BANK</span><h1>Question Bank</h1></div>
   <p class="section-sub">CPU-scheduling and synchronization questions from the existing question transcripts, mapped to the new Unit II. Older thread questions and unlisted extensions are retained collapsed.</p>
 
-  <div class="callout clarify"><span class="label">New syllabus scope</span><p>Required synchronization questions are included here, with local answers in this guide. Thread questions now belong to Unit I; their earlier Unit II copies remain collapsed in their existing positions. MLQ/MLFQ and monitor questions remain as collapsed older material. Memory management and file systems are outside this guide.</p></div>
+  <div class="callout clarify"><span class="label">New syllabus scope</span><p>Required synchronization questions are included here, with local answers in this guide. Thread questions now belong to Unit I and are answered in the <a href="../unit-1/#threads">Unit I guide</a>. MLQ/MLFQ and monitor questions remain as collapsed older material. Memory management and file systems are outside this guide.</p></div>
 
-  <div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h2>2.1 Overview of Threads</h2><span class="scope-note">Present in old Unit II; now in new Unit I — see the Unit I thread question bank</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1005" aria-label="View 2.1 Overview of Threads">View</button></div>
-  <div class="legacy-content" id="legacy-u2-1005" hidden>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-I Q5b, 5M</td><td>Differentiate (i) a process and a thread, (ii) user thread and kernel thread, with a diagram.</td><td>→ <a href="#t2-1">§2.1</a> &amp; <a href="#t2-3">§2.3</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q2, 1M</td><td>"A thread shares the same ___ space with other threads in the same process." (Ans: code, data, files)</td><td>→ <a href="#t2-1">§2.1</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-1 Q2, 5M</td><td>Two differences between user-level and kernel-level threads; when is one better?</td><td>→ <a href="#t2-1">§2.1</a> &amp; <a href="#t2-3">§2.3</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q1, 8M</td><td>Analyze the benefits of multithreading — responsiveness, resource sharing, performance in a multicore environment, with examples.</td><td>→ <a href="#t2-1">§2.1</a></td></tr>
-  </table>
-
-  </div>
-</div><div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h2>2.2 Multicore Programming</h2><span class="scope-note">Present in old Unit II; now in new Unit I — see the Unit I thread question bank</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1006" aria-label="View 2.2 Multicore Programming">View</button></div>
-  <div class="legacy-content" id="legacy-u2-1006" hidden>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q4, 2M</td><td>Illustrate the distinction between concurrency and parallelism, with a diagram.</td><td>→ <a href="#t2-2">§2.2</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-1 Q1.iv, part of 10M <span class="pill">borderline→included</span></td><td>Matrix multiplication on a uniprocessor: more efficient algorithm, more threads, or more processes — which is viable? Justify.</td><td>→ <a href="#t2-2">§2.2</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-1 Q3, 4M</td><td>Amdahl's Law: 70% parallelizable code, 5 processors — theoretical max speedup?</td><td>→ <a href="#t2-2">§2.2</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1, 2M</td><td>Suggest any four challenges in programming for multicore systems.</td><td>→ <a href="#t2-2">§2.2</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q2, 2M</td><td>Can one have concurrent execution of threads/processes without parallelism? Support with reason.</td><td>→ <a href="#t2-2">§2.2</a> (same idea as Quiz-1 Q4 above, asked as justify-your-answer)</td></tr>
-  </table>
-
-  </div>
-</div><div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h2>2.3 Multithreading Models</h2><span class="scope-note">Present in old Unit II; now in new Unit I — see the Unit I thread question bank</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1007" aria-label="View 2.3 Multithreading Models">View</button></div>
-  <div class="legacy-content" id="legacy-u2-1007" hidden>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q3, 1M</td><td>"The ___ model allows threads to run in parallel, utilizing multiple cores." (Ans: many-to-many)</td><td>→ <a href="#t2-3">§2.3</a> (subsumed by SEE Part-B Q2 below)</td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q2, 8M</td><td>With diagrams, explain the different multithreading models, and the types of parallelism.</td><td>→ <a href="#t2-3">§2.3</a> &amp; <a href="#t2-2">§2.2</a></td></tr>
-  </table>
-
-  </div>
-</div><div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h2>2.4 Thread Libraries — Pthreads</h2><span class="scope-note">Present in old Unit II; now in new Unit I — see the Unit I thread question bank</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1008" aria-label="View 2.4 Thread Libraries — Pthreads">View</button></div>
-  <div class="legacy-content" id="legacy-u2-1008" hidden>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-I Q2, 10M</td><td>Program: threads to sort an array ascending and descending simultaneously, time the execution.</td><td>→ <a href="#t2-4">§2.4</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q3, 8M (alt. to Q2)</td><td>Matrix multiplication using pthreads, one thread per output row.</td><td>→ <a href="#t2-4">§2.4</a> <span class="pill">solved example added</span></td></tr>
-  </table>
-
-  </div>
-</div><h2>2.1 Scheduling — Basic Concepts</h2>
+  <h2>2.1 Scheduling — Basic Concepts</h2>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
     <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q1, 1M</td><td>In timeshare OS, when a time slot completes, the process switches to ___ state. (Ans: Ready)</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
@@ -3070,17 +2589,6 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   </table>
 
   <div class="legacy-topic">
-  <div class="legacy-heading"><div class="legacy-heading-text"><h2>2.1 / 2.4 — Threads: definition, TCB (CIE-1 PDF bank)</h2><span class="scope-note">Present in old Unit II; now in new Unit I — see the Unit I thread question bank</span></div>
-  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1009" aria-label="View 2.1 / 2.4 — Threads: definition, TCB (CIE-1 PDF bank)">View</button></div>
-  <div class="legacy-content" id="legacy-u2-1009" hidden>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q1</td><td>What is a thread? What is TCB?</td><td>→ <a href="#t2-1">§2.1</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q2</td><td>Write a note on multithreading models.</td><td>→ <a href="#t2-3">§2.3</a></td></tr>
-  </table>
-
-  </div>
-</div><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h2>2.4b Threading Issues (CIE-1 PDF bank)</h2><span class="scope-note">Present in older notes; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1010" aria-label="View 2.4b Threading Issues (CIE-1 PDF bank)">View</button></div>
   <div class="legacy-content" id="legacy-u2-1010" hidden>
