@@ -1,0 +1,21 @@
+/* These blocks keep a dark editor surface in both page themes. */
+.formula-block.code{
+  color:#E8EAED;
+  tab-size:4;
+  font-variant-ligatures:none;
+}
+.formula-block.code .syntax-keyword{color:#C792EA}
+.formula-block.code .syntax-type{color:#82C8F0}
+.formula-block.code .syntax-function{color:#82D1A5}
+.formula-block.code .syntax-string{color:#E8D58A}
+.formula-block.code .syntax-number{color:#F2A97F}
+.formula-block.code .syntax-constant{color:#F2C88F}
+.formula-block.code .syntax-directive{color:#C1A7F5}
+.formula-block.code .syntax-operator{color:#B8CCD9}
+.formula-block.code .syntax-comment{color:#A1AAB8;font-style:italic}
+@media print{
+  .formula-block.code{background:#FFF!important;color:#20232A!important}
+  .formula-block.code [class^="syntax-"]{color:#20232A!important}
+  .formula-block.code .syntax-keyword,.formula-block.code .syntax-type{font-weight:700}
+  .formula-block.code .syntax-comment{color:#515966!important}
+}

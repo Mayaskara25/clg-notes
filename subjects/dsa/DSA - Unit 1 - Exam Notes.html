@@ -531,7 +531,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
     <tr><td><code>realloc</code></td><td><code>void* realloc(void* ptr, size_t newsize)</code></td><td>Resizes a previously allocated block to <code>newsize</code> bytes, preserving existing contents up to the smaller of the old/new sizes; may move the block, so the <strong>caller must use the returned pointer</strong>, not the original.</td></tr>
   </table>
 
-  <div class="formula-block"><span class="cm">// malloc: uninitialised</span>
+  <div class="formula-block code"><span class="cm">// malloc: uninitialised</span>
 <span class="c1">int</span> *p = (<span class="c1">int</span>*) malloc(5 * <span class="c1">sizeof</span>(<span class="c1">int</span>));   <span class="cm">// 5 ints, garbage values</span>
 
 <span class="cm">// calloc: zero-initialised</span>
@@ -574,7 +574,7 @@ free(q);</div>
   <p>A <strong>linked list</strong> is a linear data structure in which elements (<strong>nodes</strong>) are not stored contiguously in memory. Instead, each node holds its data plus one or more <strong>pointers</strong> ("links") to other nodes, and the structure is traversed by following those links. This trades away the constant-time random access an array gives you, in exchange for cheap insertion/deletion anywhere in the list without shifting elements — and for growing one node at a time via dynamic memory allocation (§2.2) instead of needing a fixed size up front.</p>
 
   <h2>Node Structure &amp; Terminology</h2>
-  <div class="formula-block"><span class="c1">struct</span> node {
+  <div class="formula-block code"><span class="c1">struct</span> node {
   <span class="c1">int</span> info;              <span class="cm">// the data field</span>
   <span class="c1">struct</span> node *link;    <span class="cm">// pointer to the next node</span>
 };
@@ -657,7 +657,7 @@ free(q);</div>
 
   <h2>Insert at Front</h2>
   <p>The new node becomes the first node: point its <code>link</code> at the old <code>first</code>, then update <code>first</code> to the new node. This is an O(1) operation — no traversal needed.</p>
-  <div class="formula-block">NODE insertfront(NODE first, <span class="c1">int</span> item) {
+  <div class="formula-block code">NODE insertfront(NODE first, <span class="c1">int</span> item) {
   NODE temp = (NODE) malloc(<span class="c1">sizeof</span>(<span class="c1">struct</span> node));
   temp-&gt;info = item;
   temp-&gt;link = first;
@@ -666,7 +666,7 @@ free(q);</div>
 
   <h2>Insert at Rear</h2>
   <p>Traverse to the last node (the one whose <code>link</code> is NULL), then attach the new node there. This needs O(n) time since the whole list must be walked to find the end — unless a separate "last" pointer is maintained.</p>
-  <div class="formula-block">NODE insertrear(NODE first, <span class="c1">int</span> item) {
+  <div class="formula-block code">NODE insertrear(NODE first, <span class="c1">int</span> item) {
   NODE temp = (NODE) malloc(<span class="c1">sizeof</span>(<span class="c1">struct</span> node));
   temp-&gt;info = item;
   temp-&gt;link = NULL;
@@ -715,7 +715,7 @@ free(q);</div>
 
   <h2>Delete by Key (Value)</h2>
   <p>Two cases: the node to delete is the first node (update <code>first</code> directly), or it's somewhere further in — in which case a trailing pointer is needed, since an SLL node has no way to reach its predecessor.</p>
-  <div class="formula-block">NODE deleteinfo(NODE first, <span class="c1">int</span> key) {
+  <div class="formula-block code">NODE deleteinfo(NODE first, <span class="c1">int</span> key) {
   NODE temp, cur, prev;
   <span class="c1">if</span> (key == first-&gt;info) {
     temp = first;
@@ -741,7 +741,7 @@ free(q);</div>
 
   <h2>Delete by Position</h2>
   <p>Same pattern, but the loop counts positions instead of comparing values.</p>
-  <div class="formula-block">NODE deletepos(NODE first, <span class="c1">int</span> pos) {
+  <div class="formula-block code">NODE deletepos(NODE first, <span class="c1">int</span> pos) {
   NODE cur, prev; <span class="c1">int</span> ct = 1;
   <span class="c1">if</span> (first == NULL) { printf(<span class="c2">"empty"</span>); <span class="c1">return</span> first; }
   <span class="c1">if</span> (pos == 1) {
@@ -784,7 +784,7 @@ free(q);</div>
 
   <h2>Insert into an Ordered List</h2>
   <p>If the list is kept sorted (<code>N<sub>i</sub> ≤ N<sub>i+1</sub></code> for all <code>i</code>), a new item is inserted just before the first node whose value exceeds it — keeping the list sorted without a separate sort pass.</p>
-  <div class="formula-block">NODE insertorder(NODE first, <span class="c1">int</span> item) {
+  <div class="formula-block code">NODE insertorder(NODE first, <span class="c1">int</span> item) {
   NODE temp = (NODE) malloc(<span class="c1">sizeof</span>(<span class="c1">struct</span> node));
   temp-&gt;info = item; temp-&gt;link = NULL;
   <span class="c1">if</span> (first == NULL) <span class="c1">return</span> temp;
@@ -801,7 +801,7 @@ free(q);</div>
     <div class="qtext">Develop C functions to perform the following operations on a singly linked list: (1) Replacing all nodes which have the data 'x' by 'y'. (2) Create an ordered list (a list of n nodes such that N<sub>i</sub> ≤ N<sub>i+1</sub> for all 1 ≤ i ≤ n-1).</div>
     <div class="ans-label">Answer</div>
     <p><strong>Part 2</strong> is exactly <code>insertorder</code> above, called once per input value. <strong>Part 1</strong> is a single traversal with no pointer rewiring at all — since only the <em>data</em> field changes, not the list's structure:</p>
-    <div class="formula-block"><span class="c1">void</span> replaceAll(NODE first, <span class="c1">int</span> x, <span class="c1">int</span> y) {
+    <div class="formula-block code"><span class="c1">void</span> replaceAll(NODE first, <span class="c1">int</span> x, <span class="c1">int</span> y) {
   NODE cur = first;
   <span class="c1">while</span> (cur != NULL) {
     <span class="c1">if</span> (cur-&gt;info == x)
@@ -815,7 +815,7 @@ free(q);</div>
     <div class="qmeta"><span class="qsrc">CIE-II 2024-25 · Q4a</span><span class="marks">6 marks</span></div>
     <div class="qtext">Write a program to search a node with value 'K' in a single linked list; if it is not found, then insert the value as a last node.</div>
     <div class="ans-label">Answer — a traversal (search) that falls through into insertrear (§3.2) on failure</div>
-    <div class="formula-block">NODE searchOrInsert(NODE first, <span class="c1">int</span> K) {
+    <div class="formula-block code">NODE searchOrInsert(NODE first, <span class="c1">int</span> K) {
   NODE cur = first;
   <span class="c1">while</span> (cur != NULL) {
     <span class="c1">if</span> (cur-&gt;info == K) {
@@ -833,7 +833,7 @@ free(q);</div>
     <div class="qmeta"><span class="qsrc">Lab program (Part A) · verified</span><span class="marks">4 marks</span></div>
     <div class="qtext">Write a function to search for an element in a singly linked list and report its position.</div>
     <div class="ans-label">Answer — plain linear search (O(n))</div>
-    <pre class="formula-block">/* returns 1-based position of key, or 0 if absent */
+    <pre class="formula-block code">/* returns 1-based position of key, or 0 if absent */
 int search(struct node *head, int key) {
     int pos = 1;
     for (struct node *p = head; p != NULL; p = p-&gt;link, pos++)
@@ -857,7 +857,7 @@ int search(struct node *head, int key) {
 
   <h2>getnode &amp; freenode</h2>
   <p>Wrapping allocation/deallocation in named functions keeps every insert operation from repeating the same <code>malloc</code> boilerplate, and gives one place to add error-checking (e.g. a NULL check) for the whole program.</p>
-  <div class="formula-block">NODE getnode() {
+  <div class="formula-block code">NODE getnode() {
   NODE temp = (NODE) malloc(<span class="c1">sizeof</span>(<span class="c1">struct</span> node));
   <span class="c1">if</span> (temp == NULL) {
     printf(<span class="c2">"Out of memory"</span>);
@@ -870,7 +870,7 @@ int search(struct node *head, int key) {
   free(p);
 }</div>
   <p>With these, <code>insertfront</code> from §3.2 simplifies to:</p>
-  <div class="formula-block">NODE insertfront(NODE first, <span class="c1">int</span> item) {
+  <div class="formula-block code">NODE insertfront(NODE first, <span class="c1">int</span> item) {
   NODE temp = getnode();
   temp-&gt;info = item;
   temp-&gt;link = first;
@@ -952,7 +952,7 @@ int search(struct node *head, int key) {
   <h2>Why use an external pointer to the <em>last</em> node?</h2>
   <p>If <code>last</code> points to the last node, then <code>last-&gt;link</code> is the first node. So both ends are reachable in O(1): insertion at the front, insertion at the rear and deletion from the front all take constant time. With only a <code>first</code> pointer, inserting at the rear costs O(n) because you must walk around the whole list.</p>
 
-  <pre class="formula-block">typedef struct node { int data; struct node *link; } NODE;
+  <pre class="formula-block code">typedef struct node { int data; struct node *link; } NODE;
 
 <span class="cm">/* insert at front — last is the external pointer */</span>
 NODE* insert_front(NODE *last, int x) {
@@ -1014,7 +1014,7 @@ void display(NODE *last) {
 
   <h2>Definition and Node Structure</h2>
   <p>A <strong>doubly linked list</strong> is a collection of nodes, each with three parts: <code>llink</code> (address of the previous node), <code>data</code>, and <code>rlink</code> (address of the next node). The first node's <code>llink</code> and the last node's <code>rlink</code> are NULL. Because every node knows both neighbours, the list can be traversed in either direction.</p>
-  <pre class="formula-block">struct node {
+  <pre class="formula-block code">struct node {
     int data;
     struct node *rlink;   <span class="cm">/* next     */</span>
     struct node *llink;   <span class="cm">/* previous */</span>
@@ -1043,7 +1043,7 @@ void display(NODE *last) {
   </div>
 
   <h2>Insertion at the Front</h2>
-  <pre class="formula-block">NODE* insert_front(NODE *head, int x) {
+  <pre class="formula-block code">NODE* insert_front(NODE *head, int x) {
     NODE *p = (NODE*)malloc(sizeof(NODE));
     p-&gt;data = x;
     p-&gt;llink = NULL;
@@ -1053,7 +1053,7 @@ void display(NODE *last) {
 }</pre>
 
   <h2>Insertion at the Rear</h2>
-  <pre class="formula-block">NODE* insert_rear(NODE *head, int x) {
+  <pre class="formula-block code">NODE* insert_rear(NODE *head, int x) {
     NODE *p = (NODE*)malloc(sizeof(NODE));
     p-&gt;data = x; p-&gt;rlink = NULL;
     if (head == NULL) { p-&gt;llink = NULL; return p; }
@@ -1066,14 +1066,14 @@ void display(NODE *last) {
 
   <h2>Insertion after a Given Node</h2>
   <p>To insert <code>p</code> after node <code>q</code>: four pointers change, and the order matters because you must not lose <code>q-&gt;rlink</code>.</p>
-  <pre class="formula-block">p-&gt;rlink = q-&gt;rlink;
+  <pre class="formula-block code">p-&gt;rlink = q-&gt;rlink;
 p-&gt;llink = q;
 if (q-&gt;rlink != NULL) q-&gt;rlink-&gt;llink = p;
 q-&gt;rlink = p;</pre>
 
   <h2>Deletion</h2>
   <p>Deleting a node needs only the pointer to the node itself, because it already holds its predecessor — no trailing pointer is required, unlike an SLL.</p>
-  <pre class="formula-block">NODE* delete_node(NODE *head, NODE *d) {      <span class="cm">/* d points to node to delete */</span>
+  <pre class="formula-block code">NODE* delete_node(NODE *head, NODE *d) {      <span class="cm">/* d points to node to delete */</span>
     if (head == NULL || d == NULL) return head;
     if (d-&gt;llink != NULL) d-&gt;llink-&gt;rlink = d-&gt;rlink;
     else                  head = d-&gt;rlink;    <span class="cm">/* deleting the first node */</span>
@@ -1142,7 +1142,7 @@ q-&gt;rlink = p;</pre>
   </ol>
 
   <h2>Delete at a Given Position</h2>
-  <pre class="formula-block">NODE* delete_pos(NODE *head, int pos) {
+  <pre class="formula-block code">NODE* delete_pos(NODE *head, int pos) {
     if (head == NULL) { printf("List empty\n"); return head; }
     if (pos == 1)  return delete_begin(head);
     NODE *t = head; int count = 1;
@@ -1206,7 +1206,7 @@ q-&gt;rlink = p;</pre>
   </div>
 
   <h2>Stack via SLL</h2>
-  <div class="formula-block">NODE push(NODE top, <span class="c1">int</span> item) { <span class="c1">return</span> insertfront(top, item); }
+  <div class="formula-block code">NODE push(NODE top, <span class="c1">int</span> item) { <span class="c1">return</span> insertfront(top, item); }
 NODE pop(NODE top, <span class="c1">int</span> *val) {
   *val = top-&gt;info;
   NODE temp = top;
@@ -1217,7 +1217,7 @@ NODE pop(NODE top, <span class="c1">int</span> *val) {
 
   <h2>Queue via SLL</h2>
   <p>Enqueue at the rear (§3.2's <code>insertrear</code>), dequeue from the front — this matches a queue's FIFO contract exactly, and never needs the circular-array trick (Unit III) since there's no fixed array to run out of.</p>
-  <div class="formula-block">NODE enqueue(NODE first, <span class="c1">int</span> item) { <span class="c1">return</span> insertrear(first, item); }
+  <div class="formula-block code">NODE enqueue(NODE first, <span class="c1">int</span> item) { <span class="c1">return</span> insertrear(first, item); }
 NODE dequeue(NODE first, <span class="c1">int</span> *val) {
   *val = first-&gt;info;
   NODE temp = first;
@@ -1294,7 +1294,7 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
     <div class="qtext">You are given two non-empty linked lists, each representing a non-negative integer. The digits are stored in reverse order, one digit per node. Write a program to add the two numbers and return the result as a linked list.<br>Input: (2→4→5) + (5→7→2) &nbsp; Output: (7→1→8)</div>
     <div class="ans-label">Answer — why "reverse order" makes this easy, verified by simulation</div>
     <p>Because the least-significant digit is stored at the <em>head</em> of each list, adding two numbers digit-by-digit from the heads is the same direction as adding them by hand from the ones place — no reversal needed. Traverse both lists together, adding corresponding digits plus any carry from the previous step, and append <code>(sum % 10)</code> to the result while carrying <code>(sum / 10)</code> forward:</p>
-    <div class="formula-block">NODE addTwoNumbers(NODE l1, NODE l2) {
+    <div class="formula-block code">NODE addTwoNumbers(NODE l1, NODE l2) {
   NODE dummy = getnode(); NODE tail = dummy;
   <span class="c1">int</span> carry = 0;
   <span class="c1">while</span> (l1 != NULL || l2 != NULL || carry) {
@@ -1336,7 +1336,7 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
 
   <h2>Iterative: three pointers</h2>
   <p>Walk the list once, turning each node's link to point backwards. You need <code>prev</code> (already-reversed part), <code>cur</code> (node being processed) and <code>next</code> (saved before you overwrite <code>cur-&gt;link</code>, otherwise the rest of the list is lost). Time O(n), extra space O(1).</p>
-  <pre class="formula-block">NODE* reverse(NODE *head) {
+  <pre class="formula-block code">NODE* reverse(NODE *head) {
     NODE *prev = NULL, *cur = head, *next;
     while (cur != NULL) {
         next = cur-&gt;link;     <span class="cm">/* 1. save the rest         */</span>
@@ -1349,7 +1349,7 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
 
   <h2>Recursive</h2>
   <p>Reverse everything after the head, then make the old second node point back to the head, and make the head the new tail. Base case: an empty list or one node is already reversed. Time O(n); extra space O(n) for the call stack (the call-stack behaviour is explained in the Unit II notes, Recursion part).</p>
-  <pre class="formula-block">NODE* reverse_rec(NODE *head) {
+  <pre class="formula-block code">NODE* reverse_rec(NODE *head) {
     if (head == NULL || head-&gt;link == NULL) return head;   <span class="cm">/* base case */</span>
     NODE *rest = reverse_rec(head-&gt;link);   <span class="cm">/* reverse the tail            */</span>
     head-&gt;link-&gt;link = head;                <span class="cm">/* old 2nd node points back    */</span>
@@ -1383,7 +1383,7 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
 
   <h2>Merging two sorted lists</h2>
   <p>Compare the front nodes of both lists, attach the smaller to the result, and advance in that list. When one list runs out, attach the remainder of the other. No new nodes are created — existing nodes are just relinked. Time O(m + n).</p>
-  <pre class="formula-block">NODE* merge(NODE *a, NODE *b) {
+  <pre class="formula-block code">NODE* merge(NODE *a, NODE *b) {
     NODE dummy, *t = &amp;dummy;      <span class="cm">/* dummy head avoids special cases */</span>
     dummy.link = NULL;
     while (a &amp;&amp; b) {
@@ -1401,7 +1401,7 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
     <li><strong>Into front and back halves</strong> — use two pointers: <code>slow</code> moves one node, <code>fast</code> moves two. When <code>fast</code> reaches the end, <code>slow</code> is at the middle; cut after it. For <code>1→2→3→4→5→6→7</code> this gives <code>1→2→3→4</code> and <code>5→6→7</code> (the front gets the extra node).</li>
     <li><strong>Into alternate nodes</strong> — send nodes at positions 1, 3, 5, … to one list and 2, 4, 6, … to the other. For the same list: <code>1→3→5→7</code> and <code>2→4→6</code>.</li>
   </ul>
-  <pre class="formula-block">void split_half(NODE *h, NODE **front, NODE **back) {
+  <pre class="formula-block code">void split_half(NODE *h, NODE **front, NODE **back) {
     NODE *slow = h, *fast = h-&gt;link;      <span class="cm">/* assumes h != NULL */</span>
     while (fast &amp;&amp; fast-&gt;link) { slow = slow-&gt;link; fast = fast-&gt;link-&gt;link; }
     *front = h;
@@ -1417,7 +1417,7 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
 
   <h2>Polynomial as a linked list</h2>
   <p>Store one node per <strong>non-zero term</strong>, kept in decreasing order of exponent. Zero terms take no space, which is why a linked list suits polynomials such as <code>x^1000 + 1</code>.</p>
-  <pre class="formula-block">struct poly { int coef; int exp; struct poly *link; };</pre>
+  <pre class="formula-block code">struct poly { int coef; int exp; struct poly *link; };</pre>
   <p>Example: <code>5x³ + 4x² + 2x + 7</code> is <code>(5,3) → (4,2) → (2,1) → (7,0)</code>.</p>
 
   <h3>Polynomial addition</h3>
@@ -1447,7 +1447,7 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
     <div class="qmeta"><span class="qsrc">Lab program · verified by running in C</span><span class="marks">8 marks</span></div>
     <div class="qtext">Write a C program to add and subtract two polynomials using linked lists. Use P1 = 5x³ + 4x² + 2x + 7 and P2 = 3x³ + 6x² + 9.</div>
     <div class="ans-label">Answer — full program</div>
-    <pre class="formula-block">#include &lt;stdio.h&gt;
+    <pre class="formula-block code">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 typedef struct poly { int coef, exp; struct poly *link; } POLY;
@@ -1518,7 +1518,7 @@ P1-P1 = empty (zero polynomial)</pre>
 
   <h2>Sparse matrix</h2>
   <p>A <strong>sparse matrix</strong> has mostly zero entries. Storing it as a full 2-D array wastes memory, so only the non-zero elements are stored, each as a node <code>(row, col, value, link)</code>. Two common forms are a list of triplets, or one linked list per row.</p>
-  <pre class="formula-block">struct elem { int row, col, val; struct elem *link; };</pre>
+  <pre class="formula-block code">struct elem { int row, col, val; struct elem *link; };</pre>
   <p>Example: the 4×5 matrix with non-zero entries 3 at (0,2), 22 at (1,0), −4 at (2,4) and 9 at (3,1) needs only <strong>4 nodes</strong> instead of 20 cells.</p>
   <table>
     <tr><th>Row</th><th>Col</th><th>Value</th></tr>
@@ -1538,7 +1538,7 @@ P1-P1 = empty (zero polynomial)</pre>
     <div class="qmeta"><span class="qsrc">Lab program · verified by running in C and against dense multiplication</span><span class="marks">8 marks</span></div>
     <div class="qtext">Write a C program to multiply two sparse matrices stored as linked lists. A is the 4×5 matrix above; B is 5×3 with non-zeros 2 at (0,1), 5 at (1,0), 1 at (2,0), 6 at (2,2) and 7 at (4,1).</div>
     <div class="ans-label">Answer — full program</div>
-    <pre class="formula-block">#include &lt;stdio.h&gt;
+    <pre class="formula-block code">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 typedef struct elem {
@@ -1635,7 +1635,7 @@ C: (0,0,3) (0,2,18) (1,1,44) (2,1,-28) (3,0,45)</pre>
 
   <h2>Multilevel (hierarchical) linked lists</h2>
   <p>A multilevel list gives each node a second pointer, <code>child</code>, that may point to a separate list at the next level, in addition to <code>next</code>. It models hierarchies such as a book's chapters → sections, or folders → files.</p>
-  <pre class="formula-block">struct node { int data; struct node *next; struct node *child; };</pre>
+  <pre class="formula-block code">struct node { int data; struct node *next; struct node *child; };</pre>
   <p><strong>Flattening</strong>: traverse the main list; whenever a node has a child list, splice that child list in between the node and its <code>next</code>, then continue. The result is a single-level list.</p>
 
   <h2>Managing dynamic collections</h2>
@@ -1671,7 +1671,7 @@ C: (0,0,3) (0,2,18) (1,1,44) (2,1,-28) (3,0,45)</pre>
     <div class="qmeta"><span class="qsrc">Lab program · verified by running in C</span><span class="marks">8 marks</span></div>
     <div class="qtext">Write a C program to solve the Josephus problem using a circular linked list for n = 7 and k = 3.</div>
     <div class="ans-label">Answer — full program</div>
-    <pre class="formula-block">#include &lt;stdio.h&gt;
+    <pre class="formula-block code">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 typedef struct node { int data; struct node *link; } NODE;
 
@@ -1759,7 +1759,7 @@ Survivor: 4</pre>
     <div class="qmeta"><span class="qsrc">Lab program (Part A) · verified</span><span class="marks">4 marks</span></div>
     <div class="qtext">Write a function to detect the cycle in a linked list.</div>
     <div class="ans-label">Answer</div>
-    <pre class="formula-block">int has_cycle(NODE *head) {
+    <pre class="formula-block code">int has_cycle(NODE *head) {
     NODE *slow = head, *fast = head;
     while (fast &amp;&amp; fast-&gt;link) {          /* fast checked first: it reaches NULL first */
         slow = slow-&gt;link;                /* 1 step  */
@@ -1779,7 +1779,7 @@ Survivor: 4</pre>
     <div class="qmeta"><span class="qsrc">Lab program · verified by running in C</span><span class="marks">8 marks</span></div>
     <div class="qtext">Write a C program to detect a loop in a linked list, find where it begins and remove it. Test on 1→2→3→4→5→6→7 with node 7 linked back to node 4.</div>
     <div class="ans-label">Answer — full program</div>
-    <pre class="formula-block">#include &lt;stdio.h&gt;
+    <pre class="formula-block code">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 typedef struct node { int data; struct node *link; } NODE;
 

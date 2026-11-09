@@ -354,7 +354,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
   <h2>Representing a Stack in C</h2>
   <p>The most common representation uses a fixed-size array along with an integer <code>top</code> that always points to the index of the most recently pushed element. An empty stack is represented by <code>top = -1</code>.</p>
 
-  <div class="formula-block"><span class="cm">// Array-based stack representation</span>
+  <div class="formula-block code"><span class="cm">// Array-based stack representation</span>
 <span class="c1">#define</span> SIZE 5
 <span class="c1">int</span> stack[SIZE];
 <span class="c1">int</span> top = -1;   <span class="cm">// -1 means empty</span></div>
@@ -449,7 +449,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
     <li>If <code>top == SIZE - 1</code>, report overflow.</li>
     <li>Else, increment <code>top</code> and store the new element at <code>stack[top]</code>.</li>
   </ol>
-  <div class="formula-block"><span class="c1">void</span> push(<span class="c1">int</span> s[], <span class="c1">int</span> *top) {
+  <div class="formula-block code"><span class="c1">void</span> push(<span class="c1">int</span> s[], <span class="c1">int</span> *top) {
   <span class="c1">if</span> (*top == SIZE-1) { <span class="cm">// overflow</span>
     printf(<span class="c2">"Stack Overflow"</span>); <span class="c1">return</span>;
   }
@@ -461,7 +461,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
     <li>If <code>top == -1</code>, report underflow.</li>
     <li>Else, read <code>stack[top]</code> and decrement <code>top</code>.</li>
   </ol>
-  <div class="formula-block"><span class="c1">int</span> pop(<span class="c1">int</span> *top) {
+  <div class="formula-block code"><span class="c1">int</span> pop(<span class="c1">int</span> *top) {
   <span class="c1">if</span> (*top == -1) <span class="cm">// underflow</span>
     <span class="c1">return</span> -1;
   <span class="c1">return</span> s[(*top)--];
@@ -479,7 +479,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
 
   <h3>Display</h3>
   <p>Print elements from <code>stack[top]</code> down to <code>stack[0]</code> so the top of the stack is shown first.</p>
-  <div class="formula-block"><span class="c1">void</span> display(<span class="c1">int</span> s[], <span class="c1">int</span> *top) {
+  <div class="formula-block code"><span class="c1">void</span> display(<span class="c1">int</span> s[], <span class="c1">int</span> *top) {
   <span class="c1">if</span> (*top == -1) { printf(<span class="c2">"Stack is empty"</span>); <span class="c1">return</span>; }
   <span class="c1">for</span> (<span class="c1">int</span> i = *top; i &gt;= 0; i--)
     printf(<span class="c2">"%d "</span>, s[i]);
@@ -535,7 +535,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
   <p class="section-sub">Dynamic implementation · push = insert at front · pop = delete from front · array vs linked comparison</p>
 
   <p>In the linked implementation, each stack element is a node <code>{data, link}</code> and <code>top</code> points to the first node. <strong>PUSH inserts a node at the beginning; POP removes the first node</strong>, so both are O(1) with no traversal. The stack grows until memory runs out, so there is no fixed capacity and no "stack full" check (only a failed <code>malloc</code>).</p>
-  <pre class="formula-block">struct node { int data; struct node *link; } *top = NULL;
+  <pre class="formula-block code">struct node { int data; struct node *link; } *top = NULL;
 
 void push(int x) {
     struct node *p = (struct node*)malloc(sizeof(struct node));
@@ -775,7 +775,7 @@ int pop(void) {
     Because the stack is LIFO, the element popped <em>first</em> is the <strong>right-hand</strong> operand. For <code>3 4 -</code>: pop 4 (op2), pop 3 (op1), compute <code>3 − 4 = −1</code> — not <code>4 − 3</code>.
   </div>
 
-  <div class="formula-block"><span class="c1">float</span> eval(<span class="c1">char</span> postfix[]) {
+  <div class="formula-block code"><span class="c1">float</span> eval(<span class="c1">char</span> postfix[]) {
   <span class="c1">float</span> stack[20]; <span class="c1">int</span> top = -1;
   <span class="c1">for</span> (<span class="c1">int</span> i = 0; postfix[i] != <span class="c2">'\0'</span>; i++) {
     <span class="c1">if</span> (isdigit(postfix[i]))
@@ -884,7 +884,7 @@ int pop(void) {
     <div class="qmeta"><span class="qsrc">Lab program · verified by running in C</span><span class="marks">6 marks</span></div>
     <div class="qtext">Write a C program to evaluate a prefix expression using a stack, and trace it for <code>- + 7 * 4 5 + 2 0</code>.</div>
     <div class="ans-label">Answer — full program (single-digit operands; the trace is printed after every token)</div>
-    <pre class="formula-block">#include &lt;stdio.h&gt;
+    <pre class="formula-block code">#include &lt;stdio.h&gt;
 #include &lt;ctype.h&gt;
 #include &lt;string.h&gt;
 
@@ -961,7 +961,7 @@ Result = 25</pre>
     <li>Ignore all other characters.</li>
     <li>After the scan, the expression is balanced <strong>only if the stack is empty</strong> (otherwise there are unmatched openers).</li>
   </ol>
-  <pre class="formula-block">int balanced(char *e) {
+  <pre class="formula-block code">int balanced(char *e) {
     char st[100]; int top = -1;
     for (int i = 0; e[i]; i++) {
         char c = e[i];
@@ -1007,7 +1007,7 @@ Result = 25</pre>
       <li>After the full scan: if the stack is empty, the sequence is <strong>regular</strong>; if it still holds unmatched <code>'('</code>s, it is <strong>not regular</strong>.</li>
     </ol>
 
-    <div class="formula-block"><span class="c1">int</span> isRegular(<span class="c1">char</span> seq[]) {
+    <div class="formula-block code"><span class="c1">int</span> isRegular(<span class="c1">char</span> seq[]) {
   <span class="c1">int</span> stack[50], top = -1;
   <span class="c1">for</span> (<span class="c1">int</span> i = 0; seq[i] != <span class="c2">'\0'</span>; i++) {
     <span class="c1">if</span> (seq[i] == <span class="c2">'('</span>)
@@ -1116,7 +1116,7 @@ Result = 25</pre>
     <li><strong>Base case:</strong> <code>1! = 1</code> (equivalently <code>0! = 1</code>)</li>
   </ul>
 
-  <div class="formula-block"><span class="c1">int</span> factorial(<span class="c1">int</span> n) {
+  <div class="formula-block code"><span class="c1">int</span> factorial(<span class="c1">int</span> n) {
   <span class="c1">int</span> fact;
   <span class="c1">if</span> (n &gt; 1)               <span class="cm">// recursive case (decomposition)</span>
     fact = factorial(n - 1) * n;  <span class="cm">// composition</span>
@@ -1223,7 +1223,7 @@ Result = 25</pre>
     <li><strong>Base case:</strong> <code>arr[mid] == x</code> (found), or the range is empty, i.e. <code>right &lt; left</code> (not found).</li>
   </ul>
 
-  <div class="formula-block"><span class="c1">int</span> binarySearch(<span class="c1">int</span> arr[], <span class="c1">int</span> left, <span class="c1">int</span> right, <span class="c1">int</span> x) {
+  <div class="formula-block code"><span class="c1">int</span> binarySearch(<span class="c1">int</span> arr[], <span class="c1">int</span> left, <span class="c1">int</span> right, <span class="c1">int</span> x) {
   <span class="c1">if</span> (right &gt;= left) {
     <span class="c1">int</span> mid = left + (right - left) / 2;
     <span class="c1">if</span> (arr[mid] == x)
@@ -1296,7 +1296,7 @@ Result = 25</pre>
     <li><strong>Base case:</strong> <code>n == 0</code> — nothing to move.</li>
   </ol>
 
-  <div class="formula-block"><span class="c1">void</span> ToH(<span class="c1">int</span> n, <span class="c1">char</span> src, <span class="c1">char</span> dest, <span class="c1">char</span> temp) {
+  <div class="formula-block code"><span class="c1">void</span> ToH(<span class="c1">int</span> n, <span class="c1">char</span> src, <span class="c1">char</span> dest, <span class="c1">char</span> temp) {
   <span class="c1">if</span> (n &gt; 0) {
     ToH(n - 1, src, temp, dest);              <span class="cm">// decomposition</span>
     printf(<span class="c2">"Move disk %d from %c to %c"</span>, n, src, dest); <span class="cm">// composition</span>
@@ -1432,7 +1432,7 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
     <div class="card">
       <h3 style="margin-top:0">Fibonacci Numbers</h3>
       <p>fibonacci(n) = fibonacci(n−1) + fibonacci(n−2), with base cases fibonacci(1)=0, fibonacci(2)=1 (this deck's indexing starts the sequence 0, 1, 1, 2, 3, 5, 8, 13, …).</p>
-      <div class="formula-block"><span class="c1">int</span> fibonacci(<span class="c1">int</span> n) {
+      <div class="formula-block code"><span class="c1">int</span> fibonacci(<span class="c1">int</span> n) {
   <span class="c1">if</span> (n == 1) <span class="c1">return</span> 0;
   <span class="c1">if</span> (n == 2) <span class="c1">return</span> 1;
   <span class="c1">return</span> fibonacci(n-1) + fibonacci(n-2);
@@ -1443,7 +1443,7 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
     <div class="card">
       <h3 style="margin-top:0">GCD (Euclidean Algorithm)</h3>
       <p>GCD(m,n) = GCD(n, m mod n); base case GCD(m,0) = m.</p>
-      <div class="formula-block"><span class="c1">int</span> GCD(<span class="c1">int</span> m, <span class="c1">int</span> n) {
+      <div class="formula-block code"><span class="c1">int</span> GCD(<span class="c1">int</span> m, <span class="c1">int</span> n) {
   <span class="c1">if</span> (n == 0) <span class="c1">return</span> m;
   <span class="c1">return</span> GCD(n, m % n);
 }</div>
@@ -1453,7 +1453,7 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
     <div class="card">
       <h3 style="margin-top:0">Sum of First N Natural Numbers</h3>
       <p>Sum(n) = Sum(n−1) + n; base case Sum(1) = 1.</p>
-      <div class="formula-block"><span class="c1">int</span> Sum(<span class="c1">int</span> n) {
+      <div class="formula-block code"><span class="c1">int</span> Sum(<span class="c1">int</span> n) {
   <span class="c1">if</span> (n == 1) <span class="c1">return</span> 1;
   <span class="c1">return</span> Sum(n - 1) + n;
 }</div>
@@ -1463,7 +1463,7 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
     <div class="card">
       <h3 style="margin-top:0">Number of Zeros in a Number</h3>
       <p>Decomposition: strip the last digit; if it's 0, add 1. Base case: a single-digit number.</p>
-      <div class="formula-block"><span class="c1">int</span> numberOfZeros(<span class="c1">int</span> n) {
+      <div class="formula-block code"><span class="c1">int</span> numberOfZeros(<span class="c1">int</span> n) {
   <span class="c1">if</span> (n == 0) <span class="c1">return</span> 1;
   <span class="c1">if</span> (n &lt; 10) <span class="c1">return</span> 0;
   <span class="c1">if</span> (n % 10 == 0)
@@ -1486,7 +1486,7 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
     <div class="qtext">Design a Recursive function to implement Binary Search. Explain the role of stack during its execution.</div>
     <div class="ans-label">Part 1 — recursive design (7 marks)</div>
     <p>See §2.4 for the full derivation: decomposition halves the search range by comparing the target against <code>arr[mid]</code>; the base case triggers either on a match (<code>arr[mid]==x</code>) or an empty range (<code>right &lt; left</code>). The C function is:</p>
-    <div class="formula-block"><span class="c1">int</span> binarySearch(<span class="c1">int</span> arr[], <span class="c1">int</span> left, <span class="c1">int</span> right, <span class="c1">int</span> x) {
+    <div class="formula-block code"><span class="c1">int</span> binarySearch(<span class="c1">int</span> arr[], <span class="c1">int</span> left, <span class="c1">int</span> right, <span class="c1">int</span> x) {
   <span class="c1">if</span> (right &gt;= left) {
     <span class="c1">int</span> mid = left + (right - left) / 2;
     <span class="c1">if</span> (arr[mid] == x) <span class="c1">return</span> mid;
@@ -1568,7 +1568,7 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
 
   <h2>Reverse a stack without extra space (using recursion)</h2>
   <p>No second stack or array is used; the recursion's own call stack holds the elements. <code>reverse()</code> pops the top, reverses the rest, then calls <code>insertAtBottom()</code> to place the popped element at the bottom. <code>insertAtBottom(x)</code> pops everything, pushes <code>x</code>, then pushes the elements back. Time O(n²), extra space only the call stack.</p>
-  <pre class="formula-block">void insertAtBottom(int x) {
+  <pre class="formula-block code">void insertAtBottom(int x) {
     if (isEmpty()) { push(x); return; }
     int t = pop();
     insertAtBottom(x);
@@ -1650,7 +1650,7 @@ void reverse(void) {
     <div class="qmeta"><span class="qsrc">Lab program · verified by running in C</span><span class="marks">10 marks</span></div>
     <div class="qtext">Write a C program for the Tower of Hanoi without recursion, using an explicit stack, and show the moves for n = 3.</div>
     <div class="ans-label">Answer — full program (recursive reference, Method 1 and Method 2; <code>./a.out n method</code>, method 0 = recursive, 1 = explicit stack, 2 = parity)</div>
-    <pre class="formula-block">#include &lt;stdio.h&gt;
+    <pre class="formula-block code">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 /* ---------- recursive reference ---------- */

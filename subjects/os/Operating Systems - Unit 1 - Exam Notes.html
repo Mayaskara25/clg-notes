@@ -1175,7 +1175,7 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
   <h2>fork() and exec()</h2>
   <p>In UNIX/Linux, a new process is created with the <code>fork()</code> system call. The new process (the <strong>child</strong>) is an exact duplicate of the address space of the original (the <strong>parent</strong>) — both processes continue execution at the instruction right after the <code>fork()</code> call, with one difference: <code>fork()</code>'s return value is <strong>0</strong> in the child, and the child's (nonzero) process ID in the parent. This single difference is what lets the same piece of code branch into parent-only and child-only behaviour. After forking, one of the two processes typically calls <code>exec()</code> to replace its own memory image — code, data, and stack — with a brand-new program; the process ID does <em>not</em> change across an <code>exec()</code> call. The parent can then create more children, or call <code>wait()</code> to move itself off the ready queue until its child terminates.</p>
 
-  <div class="formula-block"><span class="cm">// classic fork/exec/wait pattern</span>
+  <div class="formula-block code"><span class="cm">// classic fork/exec/wait pattern</span>
 <span class="c1">pid_t</span> pid = fork();
 <span class="c2">if</span> (pid &lt; 0) {                 <span class="cm">// fork failed</span>
     fprintf(stderr, "Fork Failed");
@@ -1268,7 +1268,7 @@ xxxxxxxx   <span class="c1">// 8 processes total (2³) → 7 NEW child processes
     <div class="qmeta"><span class="qsrc">CIE-I Q1b (2021-22) / Test-1 Q5.a (2024-25) · Question Bank #2</span><span class="marks">6 marks</span></div>
     <div class="qtext">Write a program in which a parent process spawns N children, where N is read as a command-line argument. Each child should print "Hi from child PID", where PID is its own process ID; the parent must wait for all children to exit before finishing.</div>
     <div class="ans-label">Answer — verified for N = 4 (produced exactly 4 child prints, 0 from the parent)</div>
-    <div class="formula-block">int main(int argc, char *argv[]) {
+    <div class="formula-block code">int main(int argc, char *argv[]) {
     int n = atoi(argv[1]);
     <span class="cm">// create N children — each executes the if-branch once and exits immediately</span>
     <span class="c2">for</span> (int i = 0; i &lt; n; i++) {
@@ -1350,7 +1350,7 @@ xxxxxxxx   <span class="c1">// 8 processes total (2³) → 7 NEW child processes
     <li><strong>Bounded buffer</strong> — a fixed size. The consumer waits if the buffer is empty, <em>and</em> the producer waits if it is full.</li>
   </ul>
   <p>A bounded buffer can be implemented as a <strong>circular array</strong> with two pointers: <code>in</code> (next free slot) and <code>out</code> (first full slot).</p>
-  <div class="formula-block"><span class="cm">/* shared data */</span>
+  <div class="formula-block code"><span class="cm">/* shared data */</span>
 #define BUFFER_SIZE 10
 item buffer[BUFFER_SIZE];
 int in = 0, out = 0;
@@ -1379,17 +1379,17 @@ while (true) {
 
   <h2>Message-passing systems</h2>
   <p>Message passing lets processes communicate and synchronise their actions <strong>without sharing an address space</strong>, which makes it especially useful in a distributed environment where the processes live on different computers connected by a network (a chat program is a typical example). It provides at least two operations:</p>
-  <div class="formula-block">send(message)        <span class="cm">/* message size fixed or variable */</span>
+  <div class="formula-block code">send(message)        <span class="cm">/* message size fixed or variable */</span>
 receive(message)</div>
   <p>If processes P and Q want to communicate, they must <strong>establish a communication link</strong> between them and then exchange messages using <code>send</code> and <code>receive</code>. The link may be physically a shared memory, a hardware bus, or a network; what matters here is its <em>logical</em> implementation. Message passing is simpler and easier to implement than shared memory and is good for small amounts of data, but it is slower, because every message needs a system call and kernel intervention. Three design issues decide how the link behaves.</p>
 
   <h3>1. Naming — direct vs. indirect communication</h3>
   <p><strong>Direct communication.</strong> Each process that wants to communicate must explicitly name the recipient or sender:</p>
-  <div class="formula-block">send(P, message)       <span class="cm">/* send a message to process P */</span>
+  <div class="formula-block code">send(P, message)       <span class="cm">/* send a message to process P */</span>
 receive(Q, message)    <span class="cm">/* receive a message from process Q */</span></div>
   <p>Properties of the link: it is <strong>established automatically</strong> between every pair of processes that want to communicate (they need only know each other's identity); a link is associated with <strong>exactly two</strong> processes; and between each pair there exists <strong>exactly one</strong> link. This is <em>symmetric</em> addressing. In an <em>asymmetric</em> variant only the sender names the recipient: <code>send(P, message)</code> and <code>receive(id, message)</code>, where <code>id</code> is set to the name of whichever process sent the message. The drawback of both is <strong>limited modularity</strong>: changing a process's identifier means finding every reference to the old one.</p>
   <p><strong>Indirect communication.</strong> Messages are sent to and received from <strong>mailboxes</strong> (also called <strong>ports</strong>), which are objects into which messages can be placed and from which they can be removed. Each mailbox has a unique identifier:</p>
-  <div class="formula-block">send(A, message)       <span class="cm">/* send a message to mailbox A */</span>
+  <div class="formula-block code">send(A, message)       <span class="cm">/* send a message to mailbox A */</span>
 receive(A, message)    <span class="cm">/* receive a message from mailbox A */</span></div>
   <p>Properties of the link: it is established <strong>only if the two processes share a mailbox</strong>; a link may be associated with <strong>more than two</strong> processes; and between a pair of processes there may be <strong>several different links</strong>, each corresponding to one mailbox. A mailbox may be <strong>owned by a process</strong> (it is part of that process's address space; the owner can only receive and other users can only send, and the mailbox disappears when the owner terminates) or <strong>owned by the operating system</strong>, which is independent of any process. In the latter case the OS must provide calls to <strong>create</strong> a new mailbox, <strong>send and receive</strong> through it, and <strong>delete</strong> it, and the creating process may be given ownership and receive privilege initially, which it can pass to others.</p>
   <p>If more than one process tries to receive from the same mailbox, who gets the message depends on the scheme: allow at most one process to receive from a mailbox, allow only one process at a time to execute <code>receive</code>, or let the system choose arbitrarily (the sender may be told which).</p>
@@ -1705,7 +1705,7 @@ N → ∞:  speedup = 1 / 0.25 = <span class="c1">4</span></div>
     <div class="qmeta"><span class="qsrc">Worked example · Pthreads program</span><span class="marks">typical 6 marks</span></div>
     <div class="qtext">Write a multithreaded C program using Pthreads in which a separate thread computes the sum 1 + 2 + … + N, and the main thread prints it.</div>
     <div class="ans-label">Solution</div>
-    <div class="formula-block">#include &lt;pthread.h&gt;
+    <div class="formula-block code">#include &lt;pthread.h&gt;
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 

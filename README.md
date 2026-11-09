@@ -18,6 +18,10 @@ That opens a pre-filled issue here, which you only need to submit. You can also
 - `site/build.py` builds the website into `public/`. It adds the noindex tags, version stamp, suggest popup,
   download links, the subject and landing pages, and the search index. It also validates every guide.
   If validation fails the build exits with code 1, so Render keeps the last good version live.
+- In OS and DSA guides, mark program snippets with `class="formula-block code"` on a
+  `div` or `pre`. The build adds syntax colors using `site/code_highlight.py` and
+  embeds `site/code-highlight.css`; downloaded guides keep their highlighting offline.
+  Leave formulas, traces and sample output as `class="formula-block"`.
 - `render.yaml` defines the Render static site. Every push to `main` redeploys automatically.
 
 ```bash

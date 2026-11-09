@@ -285,7 +285,7 @@ The decks say that <em>rear "marks the position where the next element will be i
 Empty: <code>front &gt; rear</code> (equivalently <code>rear == front - 1</code>). Full: <code>rear == MAX - 1</code>. Enqueue: <code>++rear</code>, then store. Dequeue: read <code>items[front]</code>, then <code>front++</code>. Number of elements: <code>rear - front + 1</code>.</div>
 
 <h3>Complete C program: operations</h3>
-<div class="formula-block"><span class="c1">#define</span> MAX 5
+<div class="formula-block code"><span class="c1">#define</span> MAX 5
 <span class="c1">typedef</span> <span class="c1">int</span> KeyType;
 <span class="c1">typedef</span> <span class="c1">struct</span> {
     KeyType items[MAX];
@@ -323,7 +323,7 @@ Empty: <code>front &gt; rear</code> (equivalently <code>rear == front - 1</code>
 <h2>Limitation of the linear queue</h2>
 <p>In a linear array queue, <code>front</code> and <code>rear</code> only ever move forward. Every dequeued cell is abandoned and never used again (a "virtual deletion"). Over time the free cells accumulate at the beginning of the array while <code>rear</code> reaches the last index, and the queue reports <strong>false overflow</strong>: it says it is full although it may hold few or even zero elements. In the extreme case, after <code>MAX</code> insertions the queue can never accept another element, no matter how many have been deleted.</p>
 <p>The obvious remedy is to <strong>shift</strong> all remaining elements left after every dequeue so that <code>front</code> stays at index 0. That fixes the space problem but turns every dequeue into an <em>O(n)</em> operation. The measured cost of draining a queue of n elements this way (counted by the C program <code>shift.c</code>):</p>
-<div class="formula-block"><span class="cm">/* Linear array queue that keeps front at index 0: delete shifts everything left. */</span>
+<div class="formula-block code"><span class="cm">/* Linear array queue that keeps front at index 0: delete shifts everything left. */</span>
 <span class="c1">#define</span> MAX 1000
 <span class="c1">int</span> a[MAX], n = 0;
 <span class="c1">long</span> moves = 0;
@@ -347,7 +347,7 @@ Empty: <code>front &gt; rear</code> (equivalently <code>rear == front - 1</code>
   <p class="section-sub">Circular queue · both full-condition conventions</p>
 <h2>Idea</h2>
 <p>A <strong>circular queue</strong> treats the array as if its last position were connected back to its first. When <code>rear</code> reaches the last index, the next insertion goes to index 0 provided that cell is free. The wrap-around rule is</p>
-<div class="formula-block"><span class="c1">next</span> = (current + 1) % MAX;     <span class="cm">/* rear = (rear + 1) % MAX;   front = (front + 1) % MAX; */</span></div>
+<div class="formula-block code"><span class="c1">next</span> = (current + 1) % MAX;     <span class="cm">/* rear = (rear + 1) % MAX;   front = (front + 1) % MAX; */</span></div>
 <p>The cells released by earlier dequeues are reused instead of being wasted, so the false overflow of section 1.2 disappears and no element is ever shifted. A circular queue is the natural choice for fixed-size buffers.</p>
 
 <h2>Enqueue and dequeue</h2>
@@ -367,7 +367,7 @@ Empty: <code>front &gt; rear</code> (equivalently <code>rear == front - 1</code>
 </table>
 
 <h2>Convention A: with a count field</h2>
-<div class="formula-block"><span class="cm">/* Convention A: keep a count field. Uses all MAX slots. */</span>
+<div class="formula-block code"><span class="cm">/* Convention A: keep a count field. Uses all MAX slots. */</span>
 <span class="c1">typedef</span> <span class="c1">struct</span> {
     KeyType items[MAX];
     <span class="c1">int</span> front;          <span class="cm">/* index of the element to delete next       */</span>
@@ -404,7 +404,7 @@ Empty: <code>front &gt; rear</code> (equivalently <code>rear == front - 1</code>
 
 <h2>Convention B: one slot left empty (textbook form)</h2>
 <p>Horowitz-Sahni keep <code>front</code> pointing one cell <em>before</em> the first element and never fill the last free cell. Then &ldquo;full&rdquo; (<code>rear</code> is one behind <code>front</code>) can be told apart from &ldquo;empty&rdquo; (<code>rear == front</code>) with no extra variable, at the price of one wasted cell. Notice that dequeue advances <code>front</code> <em>first</em> and reads afterwards.</p>
-<div class="formula-block"><span class="cm">/* Convention B (Horowitz-Sahni): no count; front points ONE SLOT BEFORE the
+<div class="formula-block code"><span class="cm">/* Convention B (Horowitz-Sahni): no count; front points ONE SLOT BEFORE the
    first element and one slot is always left empty.  Holds at most MAX-1.  */</span>
 <span class="c1">typedef</span> <span class="c1">struct</span> {
     KeyType items[MAX];
@@ -451,7 +451,7 @@ If the question says "circular queue" with no further detail, quote the Horowitz
 <h2>Linked-list representation</h2>
 <p>A <strong>linked queue</strong> stores each element in a dynamically allocated node. A node holds a data item and a <code>link</code> to the next node. Two pointers manage the queue: <code>front</code> points to the first node (the next to delete) and <code>rear</code> to the last node (where the next node is attached). An empty queue has <code>front == rear == NULL</code>. Unlike an array, the queue grows and shrinks one node at a time: overflow occurs only if memory allocation fails.</p>
 <div class="svg-wrap"><svg viewBox="0 0 640 176" xmlns="http://www.w3.org/2000/svg" role="img"><defs><marker id="ar3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#12796F"/></marker></defs><rect x="150" y="60" width="55.199999999999996" height="34" fill="#E4F3F0" stroke="#12796F" stroke-width="1.5"/><rect x="205.2" y="60" width="36.800000000000004" height="34" fill="#E4F3F0" stroke="#12796F" stroke-width="1.5"/><text x="177.6" y="82" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#1C1E21">10</text><circle cx="223.60000000000002" cy="77" r="3" fill="#12796F"/><rect x="290" y="60" width="55.199999999999996" height="34" fill="#E4F3F0" stroke="#12796F" stroke-width="1.5"/><rect x="345.2" y="60" width="36.800000000000004" height="34" fill="#E4F3F0" stroke="#12796F" stroke-width="1.5"/><text x="317.6" y="82" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#1C1E21">20</text><circle cx="363.6" cy="77" r="3" fill="#12796F"/><rect x="430" y="60" width="55.199999999999996" height="34" fill="#E4F3F0" stroke="#12796F" stroke-width="1.5"/><rect x="485.2" y="60" width="36.800000000000004" height="34" fill="#E4F3F0" stroke="#12796F" stroke-width="1.5"/><text x="457.6" y="82" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#1C1E21">30</text><circle cx="503.6" cy="77" r="3" fill="#12796F"/><path d="M224,77 L288,77" fill="none" stroke="#12796F" stroke-width="1.6" marker-end="url(#ar3)"/><path d="M364,77 L428,77" fill="none" stroke="#12796F" stroke-width="1.6" marker-end="url(#ar3)"/><path d="M504,77 L548,77" fill="none" stroke="#12796F" stroke-width="1.6"/><text x="568" y="82" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#5B6169">NULL</text><rect x="40" y="62" width="70" height="30" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/><text x="75" y="82" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#1D4E89" font-weight="700">front</text><path d="M110,77 L147,77" fill="none" stroke="#1D4E89" stroke-width="1.6" marker-end="url(#ar3)"/><rect x="450" y="130" width="70" height="30" fill="#F6E9F0" stroke="#93316B" stroke-width="1.5"/><text x="485" y="150" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#93316B" font-weight="700">rear</text><path d="M485,130 L470,96" fill="none" stroke="#93316B" stroke-width="1.6" marker-end="url(#ar3)"/><text x="205" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#5B6169">delete here</text><text x="470" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="11.5" fill="#5B6169">insert here</text></svg><div class="cap">Fig 7. Linked queue holding 10, 20, 30. Each node has a data field and a link field. front points at the first node (the next to delete); rear points at the last node (where the next node is attached).</div></div>
-<div class="formula-block"><span class="c1">typedef</span> <span class="c1">struct</span> node {
+<div class="formula-block code"><span class="c1">typedef</span> <span class="c1">struct</span> node {
     KeyType data;
     <span class="c1">struct</span> node *link;
 } Node;
@@ -541,7 +541,7 @@ If the question says "circular queue" with no further detail, quote the Horowitz
 
 <h2>Array implementation (circular)</h2>
 <p>A circular array suits a deque because positions can be reused at both ends. <code>insertRear</code> and <code>deleteFront</code> behave exactly as in the circular queue. The two new operations move the pointers in the opposite direction: <code>insertFront</code> first steps <code>front</code> <em>backwards</em> (<code>(front - 1 + MAX) % MAX</code>; the <code>+ MAX</code> prevents a negative index in C) and then stores; <code>deleteRear</code> reads at <code>rear</code> and steps <code>rear</code> backwards. A <code>count</code> field distinguishes empty from full. Initially <code>front = 0</code> and <code>rear = MAX-1</code>, i.e. rear sits one step behind front, so that the first <code>insertRear</code> goes to cell 0 and the first <code>insertFront</code> goes to cell MAX-1.</p>
-<div class="formula-block"><span class="c1">typedef</span> <span class="c1">struct</span> {
+<div class="formula-block code"><span class="c1">typedef</span> <span class="c1">struct</span> {
     KeyType items[MAX];
     <span class="c1">int</span> front;          <span class="cm">/* index of the first element */</span>
     <span class="c1">int</span> rear;           <span class="cm">/* index of the last element  */</span>
@@ -585,7 +585,7 @@ If the question says "circular queue" with no further detail, quote the Horowitz
 
 <h2>Linked implementation (doubly linked list)</h2>
 <p>With a singly linked list, <code>deleteRear</code> is O(n) because the node before <code>rear</code> must be found by walking from the front. A <strong>doubly linked list</strong> (each node has <code>prev</code> and <code>next</code>) lets both ends be updated in O(1). Keep <code>front</code> and <code>rear</code> pointers; when the list becomes empty both are NULL.</p>
-<div class="formula-block"><span class="c1">typedef</span> <span class="c1">struct</span> dnode {
+<div class="formula-block code"><span class="c1">typedef</span> <span class="c1">struct</span> dnode {
     <span class="c1">struct</span> dnode *prev;
     KeyType data;
     <span class="c1">struct</span> dnode *next;
@@ -662,7 +662,7 @@ The decks only name the four deque operations and say a circular array or a doub
 </ul>
 
 <h2>Variant 1: unordered array</h2>
-<div class="formula-block"><span class="cm">/* Variant 1: UNORDERED array. Insert O(1); delete must scan, O(n). */</span>
+<div class="formula-block code"><span class="cm">/* Variant 1: UNORDERED array. Insert O(1); delete must scan, O(n). */</span>
 <span class="c1">typedef</span> <span class="c1">struct</span> { Item a[MAX]; <span class="c1">int</span> n; } PQU;
 
 <span class="c1">int</span> puInsert(PQU *q, Item x) {
@@ -684,7 +684,7 @@ The decks only name the four deque operations and say a circular array or a doub
 <p>The strict <code>&lt;</code> in the scan keeps the <em>earliest</em> of equal priorities, which gives FIFO tie-breaking; the shift afterwards preserves arrival order for the remaining elements. Insert is O(1); delete is O(n).</p>
 
 <h2>Variant 2: ordered array</h2>
-<div class="formula-block"><span class="cm">/* Variant 2: ORDERED array. Highest priority kept at the END (index n-1),
+<div class="formula-block code"><span class="cm">/* Variant 2: ORDERED array. Highest priority kept at the END (index n-1),
    so delete is O(1); insert shifts to find its place, O(n).            */</span>
 <span class="c1">typedef</span> <span class="c1">struct</span> { Item a[MAX]; <span class="c1">int</span> n; } PQO;
 
@@ -709,7 +709,7 @@ The decks only name the four deque operations and say a circular array or a doub
 <h2>Variant 3: binary heap (summary)</h2>
 <p>A <strong>binary min-heap</strong> stores the elements in an array so that every parent has a priority no worse than its children; the root (index 0) is always the highest-priority element. For index i the parent is <code>(i-1)/2</code> and the children are <code>2i+1</code>, <code>2i+2</code>. Insertion appends at the end and <em>sifts up</em>; deletion takes the root, moves the last element to the root and <em>sifts down</em>. Both walk one root-to-leaf path, so both are O(log n), and peeking the best is O(1). (Heaps are developed fully in the heaps unit; only the summary is needed here.)</p>
 <div class="svg-wrap"><svg viewBox="0 0 460 276" xmlns="http://www.w3.org/2000/svg" role="img"><defs></defs><path d="M230,52 L130,86" fill="none" stroke="#5B6169" stroke-width="1.4"/><path d="M230,52 L330,86" fill="none" stroke="#5B6169" stroke-width="1.4"/><path d="M130,122 L80,156" fill="none" stroke="#5B6169" stroke-width="1.4"/><circle cx="230" cy="34" r="20" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.6"/><text x="230" y="38.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#1C1E21">B1</text><text x="260" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8A8F96">0</text><circle cx="130" cy="104" r="20" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.6"/><text x="130" y="108.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#1C1E21">D1</text><text x="160" y="92" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8A8F96">1</text><circle cx="330" cy="104" r="20" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.6"/><text x="330" y="108.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#1C1E21">C2</text><text x="360" y="92" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8A8F96">2</text><circle cx="80" cy="174" r="20" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.6"/><text x="80" y="178.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#1C1E21">A3</text><text x="110" y="162" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8A8F96">3</text><rect x="60" y="220" width="64" height="30" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.4"/><text x="92" y="240" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#1C1E21">B1</text><text x="92" y="266" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8A8F96">0</text><rect x="124" y="220" width="64" height="30" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.4"/><text x="156" y="240" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#1C1E21">D1</text><text x="156" y="266" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8A8F96">1</text><rect x="188" y="220" width="64" height="30" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.4"/><text x="220" y="240" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#1C1E21">C2</text><text x="220" y="266" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8A8F96">2</text><rect x="252" y="220" width="64" height="30" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.4"/><text x="284" y="240" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#1C1E21">A3</text><text x="284" y="266" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8A8F96">3</text><text x="14" y="238" text-anchor="start" font-family="Inter, sans-serif" font-size="11.5" fill="#5B6169">array</text></svg><div class="cap">Fig 12. Min-heap after inserting A3, B1, C2, D1 (array form below). Parent of index i is (i-1)/2, children are 2i+1 and 2i+2; the highest-priority job sits at index 0.</div></div>
-<div class="formula-block"><span class="cm">/* Variant 3: binary MIN-HEAP in an array (root = a[0]). Insert and delete O(log n). */</span>
+<div class="formula-block code"><span class="cm">/* Variant 3: binary MIN-HEAP in an array (root = a[0]). Insert and delete O(log n). */</span>
 <span class="c1">typedef</span> <span class="c1">struct</span> { Item a[MAX]; <span class="c1">int</span> n; } PQH;
 
 <span class="c1">int</span> phInsert(PQH *q, Item x) {
@@ -768,7 +768,7 @@ None of the three decks covers this topic; it appears only in the syllabus's sel
 
 <h2>Method 1: two queues, growing towards each other</h2>
 <p>Put Q1 at the left end growing rightwards and Q2 at the right end growing leftwards. Free space is shared in the middle, so either queue can use as much of it as it needs; overflow occurs only when the two rear pointers meet. Q1 occupies <code>a[f1..r1]</code> (empty when <code>r1 == f1-1</code>); Q2 occupies <code>a[r2..f2]</code> (empty when <code>r2 == f2+1</code>).</p>
-<div class="formula-block"><span class="cm">/* Two queues in ONE array: Q1 grows rightwards from index 0,
+<div class="formula-block code"><span class="cm">/* Two queues in ONE array: Q1 grows rightwards from index 0,
    Q2 grows LEFTwards from index N-1.  They only collide in the middle. */</span>
 <span class="c1">#define</span> N 10
 <span class="c1">typedef</span> <span class="c1">struct</span> {
@@ -805,7 +805,7 @@ None of the three decks covers this topic; it appears only in the syllabus's sel
 
 <h2>Method 2: k queues in k equal segments</h2>
 <p>For k queues, cut the array of N cells into k segments of N/k cells and manage each segment as its own circular queue (count convention). Queue i's local index p lives at physical cell <code>i*SEG + p</code>. There are no collisions and no shifting; the price is that a queue overflows at SEG items even if other segments are empty.</p>
-<div class="formula-block"><span class="cm">/* k queues in ONE array: the array is cut into k equal segments and each
+<div class="formula-block code"><span class="cm">/* k queues in ONE array: the array is cut into k equal segments and each
    segment is managed as its own circular queue (count convention).      */</span>
 <span class="c1">#define</span> NK 12
 <span class="c1">#define</span> K  3
@@ -917,7 +917,7 @@ The decks give a short complexity table for the array queue only (all O(1)). The
 
 <h2>Round-robin scheduling with a queue</h2>
 <p>Each process may run for at most one <strong>time quantum</strong> q at a time. The scheduler repeatedly: (1) dequeues the process at the front of the ready queue; (2) runs it for <code>min(q, remaining burst)</code>; (3) if it still has work left, enqueues it at the <em>rear</em>; otherwise it finishes. Because an unfinished process always goes to the back, every process gets a turn before any process gets a second one.</p>
-<div class="formula-block"><span class="cm">/* Round-robin: the ready queue holds process ids.  Each turn: dequeue the front,
+<div class="formula-block code"><span class="cm">/* Round-robin: the ready queue holds process ids.  Each turn: dequeue the front,
    run it for min(quantum, remaining), and if unfinished enqueue it at the rear. */</span>
 <span class="c1">typedef</span> <span class="c1">struct</span> { <span class="c1">int</span> a[MAX]; <span class="c1">int</span> front, rear; } IQ;
 <span class="c1">void</span> iqInit(IQ *q) { q-&gt;front = 0; q-&gt;rear = -1; }
@@ -970,7 +970,7 @@ The decks mention CPU/job scheduling, priority scheduling and print scheduling o
 
 <h2>The ring buffer (circular buffer)</h2>
 <p>A <strong>ring buffer</strong> is a circular queue of fixed size used as a buffer. The producer writes at the <code>tail</code>; the consumer reads at the <code>head</code>; both wrap modulo the capacity. Because nothing is ever moved or allocated, put and get are O(1) and the memory use is constant, which is why ring buffers are used in device drivers, audio streaming, keyboard input and network cards.</p>
-<div class="formula-block"><span class="cm">/* Fixed-size ring buffer = circular queue with a count.  The producer calls
+<div class="formula-block code"><span class="cm">/* Fixed-size ring buffer = circular queue with a count.  The producer calls
    put(), the consumer calls get().  When full, put() refuses (or the producer
    waits); when empty, get() refuses (or the consumer waits).               */</span>
 <span class="c1">#define</span> CAP 4
@@ -1011,7 +1011,7 @@ The decks mention CPU/job scheduling, priority scheduling and print scheduling o
 <li><strong>Overwrite (drop the oldest):</strong> <code>put</code> always succeeds; when the buffer is full the oldest item is discarded to make room. The buffer always holds the <em>latest</em> CAP items. This suits streaming sensor, audio or log data where fresh data matters more than old data and the producer must never block.</li>
 <li><strong>Drop the newest</strong> (a variant of reject, used by network routers when queues fill) discards the arriving item instead.</li>
 </ul>
-<div class="formula-block"><span class="cm">/* Overwrite policy (streaming data, "latest wins"): when full, drop the OLDEST item. */</span>
+<div class="formula-block code"><span class="cm">/* Overwrite policy (streaming data, "latest wins"): when full, drop the OLDEST item. */</span>
 <span class="c1">void</span> putOverwrite(Ring *r, KeyType x) {
     <span class="c1">if</span> (r-&gt;count == CAP) {                       <span class="cm">/* full: discard the oldest */</span>
         r-&gt;head = (r-&gt;head + 1) % CAP;
@@ -1050,7 +1050,7 @@ The decks name I/O, network and circular buffers in a sentence each. The ring-bu
 
 <h2>Single-teller bank simulation</h2>
 <p>Customers arrive at known times and need a known service time. They join the rear of a FIFO queue; whenever the teller is free, the customer at the front is served. At each time tick the simulation (1) enqueues the customers who arrive now, (2) lets the finished customer leave, (3) if the teller is free, dequeues the next customer and records the start time. Waiting time = start time - arrival time.</p>
-<div class="formula-block"><span class="cm">/* One-teller bank: time-stepped simulation with a FIFO waiting line. */</span>
+<div class="formula-block code"><span class="cm">/* One-teller bank: time-stepped simulation with a FIFO waiting line. */</span>
 <span class="c1">typedef</span> <span class="c1">struct</span> { <span class="c1">int</span> a[MAX]; <span class="c1">int</span> front, rear; } IQ;          <span class="cm">/* queue of customer indices */</span>
 <span class="c1">void</span> iqInit(IQ *q) { q-&gt;front = 0; q-&gt;rear = -1; }
 <span class="c1">int</span>  iqEmpty(IQ *q){ <span class="c1">return</span> q-&gt;front &gt; q-&gt;rear; }
@@ -1103,7 +1103,7 @@ The Josephus problem appears only in the syllabus's list of custom queue applica
 
 <h2>Solution with a queue</h2>
 <p>A circular list is a queue whose front element is &ldquo;the person where counting starts&rdquo;. Moving the counter past a person is <em>dequeue then enqueue at the rear</em> (the person goes to the back of the circle). So, in each round: rotate <code>k-1</code> times (dequeue + enqueue), then dequeue the k-th person permanently. When one person remains, that person is the survivor.</p>
-<div class="formula-block"><span class="cm">/* Josephus problem with a circular queue.  People 1..n stand in a circle;
+<div class="formula-block code"><span class="cm">/* Josephus problem with a circular queue.  People 1..n stand in a circle;
    every k-th person is eliminated until one survives.
    Each round: dequeue and re-enqueue (k-1) people, then dequeue the k-th for good. */</span>
 <span class="c1">#define</span> MAXN 100
@@ -1152,7 +1152,7 @@ The syllabus lists &ldquo;combining stack and queue operations for complex probl
 
 <h2>Queue using two stacks</h2>
 <p>Keep an <code>inStack</code> for enqueues and an <code>outStack</code> for dequeues. Enqueue just pushes onto <code>inStack</code>. Dequeue pops from <code>outStack</code>; only when <code>outStack</code> is empty are <em>all</em> elements popped from <code>inStack</code> and pushed onto <code>outStack</code>, which reverses them so that the oldest element ends on top. The transfer must be all-or-nothing and only when <code>outStack</code> is empty, otherwise the order would be corrupted.</p>
-<div class="formula-block"><span class="cm">/* QUEUE using two stacks: 'in' receives enqueues; 'out' serves dequeues.
+<div class="formula-block code"><span class="cm">/* QUEUE using two stacks: 'in' receives enqueues; 'out' serves dequeues.
    When 'out' is empty, pour ALL of 'in' into 'out' (this reverses the order). */</span>
 <span class="c1">typedef</span> <span class="c1">struct</span> { Stack in, out; } StackQueue;
 
@@ -1171,7 +1171,7 @@ The syllabus lists &ldquo;combining stack and queue operations for complex probl
 
 <h2>Stack using queues</h2>
 <p>To make a queue behave LIFO, every push must put the new element at the <em>front</em>. With one queue: enqueue the new item at the rear, then rotate the older n items (dequeue each and enqueue it again) so that the new item comes to the front. Pop is then a plain dequeue. Push is O(n), pop O(1).</p>
-<div class="formula-block"><span class="cm">/* STACK using one queue: after every push, rotate the older n-1 items behind the
+<div class="formula-block code"><span class="cm">/* STACK using one queue: after every push, rotate the older n-1 items behind the
    new one, so the newest item is always at the FRONT of the queue.              */</span>
 <span class="c1">typedef</span> <span class="c1">struct</span> { Q q; } QueueStack;
 
@@ -1189,7 +1189,7 @@ The syllabus lists &ldquo;combining stack and queue operations for complex probl
 <table><tr><th>Operation</th><th>Returned</th><th>Queue (front to rear)</th></tr><tr><td>push(10)</td><td>-</td><td><code>10</code></td></tr><tr><td>push(20)</td><td>-</td><td><code>20 10</code></td></tr><tr><td>push(30)</td><td>-</td><td><code>30 20 10</code></td></tr><tr><td>pop()</td><td>30</td><td><code>20 10</code></td></tr><tr><td>push(40)</td><td>-</td><td><code>40 20 10</code></td></tr><tr><td>push(50)</td><td>-</td><td><code>50 40 20 10</code></td></tr><tr><td>pop()</td><td>50</td><td><code>40 20 10</code></td></tr><tr><td>pop()</td><td>40</td><td><code>20 10</code></td></tr><tr><td>pop()</td><td>20</td><td><code>10</code></td></tr><tr><td>pop()</td><td>10</td><td><code>(empty)</code></td></tr></table>
 <h3>Stack using two queues (&ldquo;multiple queues&rdquo;)</h3>
 <p>The same idea with two queues: put the new item into the empty queue <code>q2</code>, move everything from <code>q1</code> behind it, then swap the names. <code>q1</code> always has the newest item at its front.</p>
-<div class="formula-block"><span class="cm">/* STACK using TWO queues: push into the empty-handed queue q2, then pour all of q1 behind it. */</span>
+<div class="formula-block code"><span class="cm">/* STACK using TWO queues: push into the empty-handed queue q2, then pour all of q1 behind it. */</span>
 <span class="c1">typedef</span> <span class="c1">struct</span> { Q q1, q2; } TwoQStack;
 <span class="c1">void</span> tsInit(TwoQStack *s) { qInit(&amp;s-&gt;q1); qInit(&amp;s-&gt;q2); }
 <span class="c1">void</span> tsPush(TwoQStack *s, <span class="c1">int</span> x) {
@@ -1206,7 +1206,7 @@ The syllabus lists &ldquo;combining stack and queue operations for complex probl
 
 <h2>Reversing a queue with a stack</h2>
 <p>Move the first k elements into a stack, pop them back into the queue (which reverses them and puts them at the rear), then rotate the remaining n-k elements to the rear to restore the original position. With k = n the whole queue is reversed.</p>
-<div class="formula-block"><span class="cm">/* Reverse the first k elements of a queue (k = n reverses the whole queue). */</span>
+<div class="formula-block code"><span class="cm">/* Reverse the first k elements of a queue (k = n reverses the whole queue). */</span>
 <span class="c1">void</span> reverseFirstK(Q *q, <span class="c1">int</span> k) {
     Stack s; sInit(&amp;s);
     <span class="c1">int</span> n = qsize(q);
@@ -1218,7 +1218,7 @@ The syllabus lists &ldquo;combining stack and queue operations for complex probl
 
 <h2>Palindrome check using a stack and a queue</h2>
 <p>Push each character on a stack <em>and</em> enqueue it in a queue during one left-to-right pass. The stack returns characters in reverse, the queue in the original order; the string is a palindrome exactly when every popped character equals the dequeued one.</p>
-<div class="formula-block"><span class="c1">int</span> isPalindrome(<span class="c1">const</span> <span class="c1">char</span> *s) {
+<div class="formula-block code"><span class="c1">int</span> isPalindrome(<span class="c1">const</span> <span class="c1">char</span> *s) {
     <span class="c1">int</span> n = strlen(s);
     <span class="c1">char</span> stack[100]; <span class="c1">int</span> top = -1;
     <span class="c1">char</span> queue[100]; <span class="c1">int</span> front = 0, rear = -1;
@@ -1252,7 +1252,7 @@ The syllabus lists &ldquo;combining stack and queue operations for complex probl
 <li>For every neighbour <code>w</code> of <code>u</code> not yet visited: mark it visited <em>now</em>, record its distance (<code>dist[u]+1</code>) and enqueue it.</li>
 </ol>
 <p>Marking when a vertex is <em>enqueued</em>, not when it is dequeued, guarantees that each vertex enters the queue at most once.</p>
-<div class="formula-block"><span class="c1">#define</span> V 7                               <span class="cm">/* vertices A..G = 0..6 */</span>
+<div class="formula-block code"><span class="c1">#define</span> V 7                               <span class="cm">/* vertices A..G = 0..6 */</span>
 <span class="c1">int</span> adj[V][V];                            <span class="cm">/* adjacency matrix     */</span>
 
 <span class="c1">void</span> addEdge(<span class="c1">int</span> u, <span class="c1">int</span> v) { adj[u][v] = adj[v][u] = 1; }
@@ -1284,7 +1284,7 @@ The syllabus lists &ldquo;combining stack and queue operations for complex probl
 
 <h2>Maze problem: shortest path in a grid</h2>
 <p>A maze on a grid is a graph whose vertices are the open cells and whose edges join cells that touch horizontally or vertically. The shortest way out is therefore a BFS from the start cell, remembering for each cell the cell it was reached from; the first time the exit is dequeued, its distance is minimal, and following the parents backwards gives the path. A stack (DFS) would find <em>a</em> path but not necessarily the shortest.</p>
-<div class="formula-block"><span class="c1">#define</span> R 6
+<div class="formula-block code"><span class="c1">#define</span> R 6
 <span class="c1">#define</span> C 7
 <span class="cm">/* '#' wall, '.' open, 'S' start, 'E' exit */</span>
 <span class="c1">char</span> grid[R][C + 1] = {

@@ -547,7 +547,7 @@ right_child(i) = 2*i + 1</div>
     <div class="cap">Fig 3. Inserting 30 into the max-heap [20,15,12,4,3] (array [20,15,12,4,3,30] before sift-up): 30 starts as the left child of 12, swaps with 12, then with 20, and becomes the root; 12 ends in 30&rsquo;s old slot. Result [30,15,20,4,3,12].</div>
   </div>
 
-  <div class="formula-block"><span class="cm">// 0-indexed array; sift the newly-appended element up</span>
+  <div class="formula-block code"><span class="cm">// 0-indexed array; sift the newly-appended element up</span>
 <span class="c1">void</span> siftUp(<span class="c1">int</span> a[], <span class="c1">int</span> i) {
   <span class="c1">while</span> (i &gt; 0) {
     <span class="c1">int</span> parent = (i - 1) / 2;
@@ -618,7 +618,7 @@ right_child(i) = 2*i + 1</div>
   the out-of-place node with its <strong>larger</strong> child (max-heap) until it's ≥ both children or
   it has no children left — exactly the mirror image of sift-up, comparing down instead of up.</p>
 
-  <div class="formula-block"><span class="cm">// 0-indexed array; n = current heap size</span>
+  <div class="formula-block code"><span class="cm">// 0-indexed array; n = current heap size</span>
 <span class="c1">void</span> siftDown(<span class="c1">int</span> a[], <span class="c1">int</span> i, <span class="c1">int</span> n) {
   <span class="c1">while</span> (1) {
     <span class="c1">int</span> l = 2*i+1, r = 2*i+2, largest = i;
@@ -785,7 +785,7 @@ right_child(i) = 2*i + 1</div>
     asked for below — starts from the array exactly as given and fixes the heap property from the bottom
     up, which is why it runs in O(n) instead of O(n log n).
   </div>
-  <div class="formula-block"><span class="cm">// pseudocode: bottom-up heap construction (build-heap)</span>
+  <div class="formula-block code"><span class="cm">// pseudocode: bottom-up heap construction (build-heap)</span>
 buildHeap(a[0..n-1]):
   <span class="c1">for</span> i <span class="c1">from</span> (n/2 - 1) <span class="c1">downto</span> 0:   <span class="cm">// last non-leaf index down to the root</span>
     siftDown(a, i, n)</div>
@@ -854,7 +854,7 @@ buildHeap(a[0..n-1]):
     <li>Repeat steps 2-4 until only one element remains — the array is now sorted in ascending order.</li>
   </div>
 
-  <div class="formula-block"><span class="cm">// in-place, using the same siftDown from §1.5</span>
+  <div class="formula-block code"><span class="cm">// in-place, using the same siftDown from §1.5</span>
 <span class="c1">void</span> heapSort(<span class="c1">int</span> a[], <span class="c1">int</span> n) {
   <span class="c1">for</span> (<span class="c1">int</span> i = n/2 - 1; i &gt;= 0; i--) siftDown(a, i, n);     <span class="cm">// build-max-heap, O(n)</span>
   <span class="c1">for</span> (<span class="c1">int</span> end = n - 1; end &gt; 0; end--) {
@@ -927,7 +927,7 @@ buildHeap(a[0..n-1]):
   <strong>descending order</strong>. Only the comparison inside sift-down flips (<code>&lt;</code>
   instead of <code>&gt;</code>); the loop is unchanged. (The alternative &mdash; sort ascending, then
   reverse in O(n) &mdash; is equally correct; the min-heap version avoids the extra pass.)</p>
-<div class="formula-block"><span class="c1">void</span> buildMaxHeap(<span class="c1">int</span> a[], <span class="c1">int</span> n) { <span class="c1">for</span> (<span class="c1">int</span> i = n / 2 - 1; i &gt;= 0; i--) siftDown(a, i, n); }
+<div class="formula-block code"><span class="c1">void</span> buildMaxHeap(<span class="c1">int</span> a[], <span class="c1">int</span> n) { <span class="c1">for</span> (<span class="c1">int</span> i = n / 2 - 1; i &gt;= 0; i--) siftDown(a, i, n); }
 
 <span class="cm">/* Variation 1: descending order -&gt; use a MIN-heap, same swap-to-the-end loop */</span>
 <span class="c1">void</span> heapSortDesc(<span class="c1">int</span> a[], <span class="c1">int</span> n) {
@@ -1022,7 +1022,7 @@ buildHeap(a[0..n-1]):
 
   <h2>Lab program &mdash; priority queue using a binary heap (C)</h2>
   <p>A complete max-priority queue on a 0-indexed array heap, with overflow and underflow checks. <code>siftUp</code> is the insertion routine and <code>siftDown</code> the deletion routine of the previous sections, so <code>pq_insert</code> and <code>pq_extractMax</code> are literally those operations under the priority-queue names.</p>
-<div class="formula-block"><span class="cm">/* max-priority queue on a 0-indexed array heap: parent(i)=(i-1)/2, children 2i+1, 2i+2 */</span>
+<div class="formula-block code"><span class="cm">/* max-priority queue on a 0-indexed array heap: parent(i)=(i-1)/2, children 2i+1, 2i+2 */</span>
 <span class="c1">void</span> siftUp(<span class="c1">int</span> a[], <span class="c1">int</span> i) {
     <span class="c1">while</span> (i &gt; 0 &amp;&amp; a[(i - 1) / 2] &lt; a[i]) {      <span class="cm">// child beats parent -&gt; swap upward</span>
         swap(&amp;a[(i - 1) / 2], &amp;a[i]);
@@ -1105,7 +1105,7 @@ extract on empty returns 0</div>
     <li>At the end the heap holds exactly the k largest items; its root is the <strong>k-th largest</strong>.
     Pop repeatedly (or sort the k items) if they must be reported in order.</li>
   </ol>
-<div class="formula-block"><span class="cm">/* Top-K largest of a stream using a MIN-heap of size k: the root is the weakest of the current top k */</span>
+<div class="formula-block code"><span class="cm">/* Top-K largest of a stream using a MIN-heap of size k: the root is the weakest of the current top k */</span>
 <span class="c1">void</span> siftDownMin(<span class="c1">int</span> a[], <span class="c1">int</span> i, <span class="c1">int</span> n) {
     <span class="c1">for</span> (;;) {
         <span class="c1">int</span> l = 2 * i + 1, r = 2 * i + 2, small = i;
@@ -1448,7 +1448,7 @@ extract on empty returns 0</div>
   recomputes its height and balance factor (<code>bf = height(left) &minus; height(right)</code>); the first node with
   |bf| = 2 is repaired by one of the four rotation cases, chosen by where the new key went. The
   program prints which rotation fired.</p>
-<div class="formula-block"><span class="c1">typedef</span> <span class="c1">struct</span> Node { <span class="c1">int</span> key, height; <span class="c1">struct</span> Node *left, *right; } Node;
+<div class="formula-block code"><span class="c1">typedef</span> <span class="c1">struct</span> Node { <span class="c1">int</span> key, height; <span class="c1">struct</span> Node *left, *right; } Node;
 
 <span class="c1">int</span> height(Node *n) { <span class="c1">return</span> n ? n-&gt;height : 0; }          <span class="cm">// height of an empty tree = 0</span>
 <span class="c1">int</span> max(<span class="c1">int</span> a, <span class="c1">int</span> b) { <span class="c1">return</span> a &gt; b ? a : b; }
@@ -1834,7 +1834,7 @@ keys 15,9,12,19,8,17,4
   <h2>Lab program &mdash; B-tree in C (insert, search, level-order display)</h2>
   <p>The node has one spare key slot so that it can temporarily hold <code>M</code> keys; the caller then splits the
   child on the way back up. Change <code>M</code> at compile time (<code>-DM=5</code>) to get any order.</p>
-<div class="formula-block"><span class="c1">typedef</span> <span class="c1">struct</span> BNode {
+<div class="formula-block code"><span class="c1">typedef</span> <span class="c1">struct</span> BNode {
     <span class="c1">int</span> n;                       <span class="cm">// number of keys currently stored</span>
     <span class="c1">int</span> leaf;                    <span class="cm">// 1 if this node is a leaf</span>
     <span class="c1">int</span> key[M];                  <span class="cm">// one spare slot so a node can overflow to M keys before splitting</span>
@@ -2421,7 +2421,7 @@ search 10 -&gt; 1, search 12 -&gt; 0</div>
   <p>All costs depend on the <em>word length</em>, not on how many words are stored &mdash; a trie with a million words finds a
   10-letter word in 10 steps. A hash table is also expected O(L) (it must hash the whole string) but cannot do prefix queries.</p>
   <h2>Lab program &mdash; dictionary using a Trie</h2>
-<div class="formula-block"><span class="c1">typedef</span> <span class="c1">struct</span> TrieNode {
+<div class="formula-block code"><span class="c1">typedef</span> <span class="c1">struct</span> TrieNode {
     <span class="c1">struct</span> TrieNode *next[26];     <span class="cm">// one slot per letter 'a'..'z'</span>
     <span class="c1">int</span> isWord;                    <span class="cm">// 1 if a stored word ends exactly here</span>
 } TrieNode;
@@ -2851,7 +2851,7 @@ G  0  0  0  0  0  1  0</div>
   <h2>Lab program &mdash; matrix, connectivity, components</h2>
   <p><strong>Connectivity test:</strong> a graph is connected iff a traversal from any one vertex reaches all vertices. The program runs a DFS from vertex 0
   and then checks the <code>visited</code> array. Counting how many fresh DFS starts are needed gives the number of components.</p>
-<div class="formula-block"><span class="c1">int</span> adj[MAXV][MAXV];                 <span class="cm">// adj[i][j] = 1 if there is an edge i-j (undirected -&gt; symmetric)</span>
+<div class="formula-block code"><span class="c1">int</span> adj[MAXV][MAXV];                 <span class="cm">// adj[i][j] = 1 if there is an edge i-j (undirected -&gt; symmetric)</span>
 <span class="c1">int</span> V;                               <span class="cm">// number of vertices</span>
 
 <span class="c1">void</span> addEdge(<span class="c1">int</span> u, <span class="c1">int</span> v) { adj[u][v] = adj[v][u] = 1; }
@@ -2938,7 +2938,7 @@ D -&gt; B
 E -&gt; B F
 F -&gt; C E G
 G -&gt; F</div>
-<div class="formula-block"><span class="c1">typedef</span> <span class="c1">struct</span> Edge { <span class="c1">int</span> to; <span class="c1">struct</span> Edge *next; } Edge;
+<div class="formula-block code"><span class="c1">typedef</span> <span class="c1">struct</span> Edge { <span class="c1">int</span> to; <span class="c1">struct</span> Edge *next; } Edge;
 Edge *adj[MAXV];                     <span class="cm">// adj[u] = linked list of u's neighbours</span>
 <span class="c1">int</span> V;
 
@@ -2959,7 +2959,7 @@ Edge *adj[MAXV];                     <span class="cm">// adj[u] = linked list of
     <li>Mark the start vertex discovered (distance 0) and enqueue it.</li>
     <li>While the queue is not empty: dequeue u and visit it; for each neighbour v not yet discovered, mark it, record <code>dist[v] = dist[u] + 1</code> and <code>parent[v] = u</code>, and enqueue it.</li>
   </ol>
-<div class="formula-block"><span class="c1">void</span> bfs(<span class="c1">int</span> s, <span class="c1">int</span> dist[], <span class="c1">int</span> parent[]) {
+<div class="formula-block code"><span class="c1">void</span> bfs(<span class="c1">int</span> s, <span class="c1">int</span> dist[], <span class="c1">int</span> parent[]) {
     <span class="c1">int</span> queue[MAXV], head = 0, tail = 0;
     <span class="c1">for</span> (<span class="c1">int</span> i = 0; i &lt; V; i++) dist[i] = -1, parent[i] = -1;   <span class="cm">// -1 = not yet discovered</span>
     dist[s] = 0; queue[tail++] = s;
@@ -2990,7 +2990,7 @@ Edge *adj[MAXV];                     <span class="cm">// adj[u] = linked list of
     <li>Visit the start vertex and mark it.</li>
     <li>For each neighbour in order: if it is unvisited, recurse into it (go deep); otherwise skip it. When the neighbour list is exhausted, return (backtrack).</li>
   </ol>
-<div class="formula-block"><span class="c1">void</span> dfs(<span class="c1">int</span> u, <span class="c1">int</span> visited[]) {
+<div class="formula-block code"><span class="c1">void</span> dfs(<span class="c1">int</span> u, <span class="c1">int</span> visited[]) {
     visited[u] = 1;
     printf("%c ", 'A' + u);                                     <span class="cm">// "visit" u on the way down</span>
     <span class="c1">for</span> (Edge *e = adj[u]; e; e = e-&gt;next)
@@ -3112,7 +3112,7 @@ shortest path A-&gt;G: A C F G (3 edges)</div>
   <h3>Undirected graph &mdash; DFS with a parent check</h3>
   <p>During DFS, an edge to an already-visited vertex that is <em>not the vertex we just came from</em> closes a cycle. (The parent is excluded because every undirected edge is
   seen once in each direction.) A graph is acyclic (a forest) exactly when no such edge exists, equivalently when |E| = |V| &minus; (number of components).</p>
-<div class="formula-block"><span class="cm">/* Undirected: a visited neighbour that is NOT the parent we came from closes a cycle */</span>
+<div class="formula-block code"><span class="cm">/* Undirected: a visited neighbour that is NOT the parent we came from closes a cycle */</span>
 <span class="c1">int</span> hasCycleU(<span class="c1">int</span> u, <span class="c1">int</span> parent, <span class="c1">int</span> visited[]) {
     visited[u] = 1;
     <span class="c1">for</span> (Edge *e = adj[u]; e; e = e-&gt;next) {
@@ -3170,7 +3170,7 @@ D2 has a directed cycle? 0</div>
   <h2>Connected components</h2>
   <p>Run DFS (or BFS) from each vertex that is still unvisited; every such start discovers exactly one whole component. The number of starts is the number of components, so
   <strong>the graph is connected iff the count is 1</strong>. Time O(V + E).</p>
-<div class="formula-block"><span class="c1">int</span> components(<span class="c1">void</span>) {               <span class="cm">// label every vertex with its component number</span>
+<div class="formula-block code"><span class="c1">int</span> components(<span class="c1">void</span>) {               <span class="cm">// label every vertex with its component number</span>
     <span class="c1">int</span> visited[MAXV] = {0}, count = 0;
     <span class="c1">for</span> (<span class="c1">int</span> s = 0; s &lt; V; s++)
         <span class="c1">if</span> (!visited[s]) { count++; dfs(s, visited); printf("&lt;- component %d\n", count); }
@@ -3300,7 +3300,7 @@ count = 3</div>
   hashes to i. Inserting x means appending it to the list at A[h(x)]; searching or deleting means walking
   that one list.</p>
 
-  <div class="formula-block"><span class="c1">struct</span> Node { <span class="c1">int</span> key; <span class="c1">struct</span> Node* next; };
+  <div class="formula-block code"><span class="c1">struct</span> Node { <span class="c1">int</span> key; <span class="c1">struct</span> Node* next; };
 <span class="c1">struct</span> Node* table[M];   <span class="cm">// M linked-list heads, one per slot</span>
 
 <span class="c1">void</span> insert(<span class="c1">int</span> key) {
@@ -3447,7 +3447,7 @@ count = 3</div>
 
   <h2>Lab program &mdash; double hashing in C</h2>
   <p>m = 11 (prime), h1(k) = k mod 11, h2(k) = 7 &minus; (k mod 7). Insert and search follow the same probe sequence; search stops at the first empty slot.</p>
-<div class="formula-block"><span class="c1">int</span> h1(<span class="c1">int</span> k, <span class="c1">int</span> m) { <span class="c1">return</span> k % m; }
+<div class="formula-block code"><span class="c1">int</span> h1(<span class="c1">int</span> k, <span class="c1">int</span> m) { <span class="c1">return</span> k % m; }
 <span class="c1">int</span> h2(<span class="c1">int</span> k)        { <span class="c1">return</span> 7 - (k % 7); }      <span class="cm">// step size in 1..7, never 0 (7 &lt; m, m prime)</span>
 
 <span class="c1">int</span> dh_insert(<span class="c1">int</span> table[], <span class="c1">int</span> m, <span class="c1">int</span> key) {

@@ -36,6 +36,14 @@
       "date": "2026-11-09",
       "units": [
         1,
+        2
+      ],
+      "text": "Added consistent syntax highlighting to C, Java and pseudocode snippets, with readable colors in light/dark themes and offline downloads."
+    },
+    {
+      "date": "2026-11-09",
+      "units": [
+        1,
         2,
         3
       ],

@@ -398,7 +398,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
   <h2>Representing a tree node</h2>
   <p>Since a node may have any number of children, the most general node representation keeps one
   pointer per possible child:</p>
-  <div class="formula-block"><span class="c1">struct</span> Node {
+  <div class="formula-block code"><span class="c1">struct</span> Node {
   <span class="c1">int</span> data;
   <span class="c1">struct</span> Node* first_child;
   <span class="c1">struct</span> Node* second_child;
@@ -690,7 +690,7 @@ re-interpreted so that nothing about the original tree is lost.</p>
 
 <h2>C node and linking function</h2>
 <div class="callout clarify"><span class="label">Not in your materials — added for syllabus completeness</span>The deck gives the pictorial rules only; the struct and the <code>addChild</code> routine below are standard LCRS code added so the representation can actually be built.</div>
-<div class="formula-block"><span class="c1">struct</span> Node {
+<div class="formula-block code"><span class="c1">struct</span> Node {
     <span class="c1">int</span> data;
     <span class="c1">struct</span> Node *firstChild;     <span class="cm">// LEFT  link: first child</span>
     <span class="c1">struct</span> Node *nextSibling;    <span class="cm">// RIGHT link: next sibling</span>
@@ -871,7 +871,7 @@ of a graph that is not connected.</p>
 </svg>
 <div class="cap">Fig 7. A small file system. Blue = directory, white = file; each file shows its size, each directory the total size of its subtree (computed by postorder).</div>
 </div>
-<div class="formula-block"><span class="c1">struct</span> FNode {
+<div class="formula-block code"><span class="c1">struct</span> FNode {
     <span class="c1">char</span> name[32];
     <span class="c1">int</span>  isDir;                  <span class="cm">// 1 = directory, 0 = file</span>
     <span class="c1">int</span>  size;                   <span class="cm">// meaningful for files only</span>
@@ -1199,7 +1199,7 @@ next-sibling. Need to walk <em>up</em> (full path of a file, manager of an emplo
   <p>The struct, node creation, BST insertion, all three recursive traversals, minimum-finding, search,
   and deletion (handling all three deletion cases) together:</p>
 
-  <div class="formula-block"><span class="cm">// node structure</span>
+  <div class="formula-block code"><span class="cm">// node structure</span>
 <span class="c1">struct</span> BinTree { <span class="c1">int</span> key; <span class="c1">struct</span> BinTree *left, *right; };
 
 <span class="cm">// create a new node</span>
@@ -1319,7 +1319,7 @@ next-sibling. Need to walk <em>up</em> (full path of a file, manager of an emplo
     an explicit stack that mimics the call stack: push the root; repeatedly pop a node, visit it, then
     push its right child <em>before</em> its left child (so the left child is popped — and hence visited
     — first).</p>
-    <div class="formula-block"><span class="c1">void</span> iterativePreorder(<span class="c1">struct</span> BinTree* root) {
+    <div class="formula-block code"><span class="c1">void</span> iterativePreorder(<span class="c1">struct</span> BinTree* root) {
   <span class="c1">if</span> (root == NULL) <span class="c1">return</span>;
   <span class="c1">struct</span> BinTree* stack[100]; <span class="c1">int</span> top = -1;
   stack[++top] = root;
@@ -1484,7 +1484,7 @@ next-sibling. Need to walk <em>up</em> (full path of a file, manager of an emplo
 given order. To insert a key, start at the root; go <em>left</em> if the key is smaller than the current node, <em>right</em>
 if larger, and when a NULL link is reached, hang the new node there. The same key list in a different order can give a
 different tree, because the first key always becomes the root. (Duplicates are not allowed; the code in §2.4 ignores them.)</p>
-<div class="formula-block"><span class="cm">// iterative insert (same result as the recursive insertNode of section 2.4)</span>
+<div class="formula-block code"><span class="cm">// iterative insert (same result as the recursive insertNode of section 2.4)</span>
 <span class="c1">struct</span> BinTree* insertIter(<span class="c1">struct</span> BinTree *root, <span class="c1">int</span> value) {
     <span class="c1">struct</span> BinTree *node = newNodeCreate(value), *cur = root, *parent = NULL;
     <span class="c1">while</span> (cur != NULL) {                    <span class="cm">// walk down to a NULL link</span>
@@ -1772,7 +1772,7 @@ BST of height h each operation takes O(h): O(log n) for a balanced tree, O(n) fo
     <table><tr><th>Delete</th><th>Case</th><th>What happens</th><th>Inorder afterwards</th></tr><tr><td>18</td><td>1 (leaf)</td><td>18 is the left child of 20; 20.left becomes NULL</td><td><span class="mono">1, 3, 5, 7, 8, 9, 11, 12, 13, 14, 15, 17, 20</span></td></tr><tr><td>13</td><td>2 (one child)</td><td>13 has only the right child 14; 15.left now points to 14</td><td><span class="mono">1, 3, 5, 7, 8, 9, 11, 12, 14, 15, 17, 18, 20</span></td></tr><tr><td>15 (successor)</td><td>3</td><td>successor = min of right subtree 17 → 17 is a node with right child 20; 15 is overwritten by 17, then the old 17 is removed (20 takes its place). New right child of 12 is 17 with children 13 and 20</td><td><span class="mono">1, 3, 5, 7, 8, 9, 11, 12, 13, 14, 17, 18, 20</span></td></tr><tr><td>15 (predecessor)</td><td>3</td><td>predecessor = max of left subtree 13(→14) is 14 (a leaf); 15 is overwritten by 14 and the old 14 is removed. New right child of 12 is 14 with children 13 and 17</td><td><span class="mono">1, 3, 5, 7, 8, 9, 11, 12, 13, 14, 17, 18, 20</span></td></tr></table>
     <p>The successor result is exactly the "after deletion" tree on page 33 of the deck (root 12; right subtree 17 with children 13(→14) and 20(→18)).</p>
   </div>
-<div class="formula-block"><span class="cm">// predecessor variant of case 3 (maximum of the LEFT subtree); the successor version is in section 2.4</span>
+<div class="formula-block code"><span class="cm">// predecessor variant of case 3 (maximum of the LEFT subtree); the successor version is in section 2.4</span>
 <span class="c1">struct</span> BinTree* findMax(<span class="c1">struct</span> BinTree *root) {
     <span class="c1">while</span> (root != NULL &amp;&amp; root-&gt;right != NULL) root = root-&gt;right;
     <span class="c1">return</span> root;
@@ -1795,7 +1795,7 @@ BST of height h each operation takes O(h): O(log n) for a balanced tree, O(n) fo
 <h2>Display</h2>
 <p>"Display" a BST in one of four ways. <strong>Inorder</strong> displays the keys in sorted (ascending) order; preorder and postorder display the structure (preorder lists a node before its subtrees — useful for copying a tree; postorder lists children first — useful for deleting a tree); <strong>level-order</strong> is covered in §3.3. A tree-shaped
 display can be obtained by a <em>reverse inorder</em> walk (right subtree, node, left subtree) that indents each key by 4 spaces per level, which prints the tree turned 90° to the left:</p>
-<div class="formula-block"><span class="c1">void</span> displayTree(<span class="c1">struct</span> BinTree *root, <span class="c1">int</span> depth) {
+<div class="formula-block code"><span class="c1">void</span> displayTree(<span class="c1">struct</span> BinTree *root, <span class="c1">int</span> depth) {
     <span class="c1">if</span> (root == NULL) <span class="c1">return</span>;
     displayTree(root-&gt;right, depth + 1);              <span class="cm">// right subtree first (appears on top)</span>
     printf(<span class="c2">"%*s%d\n"</span>, depth * 4, <span class="c2">""</span>, root-&gt;key);       <span class="cm">// indent by 4 spaces per level</span>
@@ -1813,7 +1813,7 @@ display can be obtained by a <em>reverse inorder</em> walk (right subtree, node,
         2</div>
 <p>Rotate the page to the right and the root 6 is at the top, left child 4 on the left, right child 22 on the right.</p>
 
-<div class="formula-block"><span class="cm">// menu-driven driver (lab program): BST with insert / delete / search / traversals</span>
+<div class="formula-block code"><span class="cm">// menu-driven driver (lab program): BST with insert / delete / search / traversals</span>
 <span class="c1">int</span> main() {
     <span class="c1">struct</span> BinTree *root = NULL;  <span class="c1">int</span> ch, x;
     <span class="c1">do</span> {
@@ -1849,7 +1849,7 @@ display can be obtained by a <em>reverse inorder</em> walk (right subtree, node,
 <p>Each node stores a <strong>word</strong> (the key) and its <strong>meaning</strong>. The BST property is the same, but "smaller" now means
 <code>strcmp(a, b) &lt; 0</code> (alphabetical order). Search is O(h), and an <strong>inorder traversal displays the entries in alphabetical order</strong>
 without any separate sorting step.</p>
-<div class="formula-block"><span class="c1">struct</span> Entry {
+<div class="formula-block code"><span class="c1">struct</span> Entry {
     <span class="c1">char</span> word[30], meaning[80];
     <span class="c1">struct</span> Entry *left, *right;
 };
@@ -2009,7 +2009,7 @@ without any separate sorting step.</p>
     <tr><td><strong>Postorder</strong></td><td>left, right, root</td><td>Recurse left → recurse right → visit root</td><td>Deleting a tree (children freed before parent); getting the <strong>postfix</strong> form of an expression tree</td></tr>
   </table>
 
-  <div class="formula-block"><span class="cm">// all three share the same shape — only the position of "visit" moves</span>
+  <div class="formula-block code"><span class="cm">// all three share the same shape — only the position of "visit" moves</span>
 <span class="c1">void</span> preorder(Node* r) { <span class="c1">if</span>(r){ visit(r); preorder(r->left); preorder(r->right); } }
 <span class="c1">void</span> inorder (Node* r) { <span class="c1">if</span>(r){ inorder(r->left); visit(r); inorder(r->right); } }
 <span class="c1">void</span> postorder(Node* r) { <span class="c1">if</span>(r){ postorder(r->left); postorder(r->right); visit(r); } }</div>
@@ -2350,7 +2350,7 @@ then all nodes at depth 1, and so on, each level from left to right. That "oldes
   <li>While the queue is not empty: <strong>dequeue</strong> a node and visit it.</li>
   <li>Enqueue its <strong>left child</strong> (if any), then its <strong>right child</strong> (if any).</li>
 </ol>
-<div class="formula-block">#define MAX 100
+<div class="formula-block code">#define MAX 100
 <span class="c1">struct</span> BinTree { <span class="c1">int</span> key; <span class="c1">struct</span> BinTree *left, *right; };
 
 <span class="c1">void</span> levelOrder(<span class="c1">struct</span> BinTree *root) {
@@ -2439,7 +2439,7 @@ pointer again afterwards, so the tree is left exactly as it was.</p>
   <li><strong>If <code>pred-&gt;right == NULL</code>:</strong> set the thread <code>pred-&gt;right = cur</code>, then go left (<code>cur = cur-&gt;left</code>).</li>
   <li><strong>If <code>pred-&gt;right == cur</code>:</strong> the left subtree is finished. Remove the thread (<code>pred-&gt;right = NULL</code>), visit <code>cur</code>, then go right.</li>
 </ol>
-<div class="formula-block"><span class="c1">void</span> morrisInorder(<span class="c1">struct</span> BinTree *root) {
+<div class="formula-block code"><span class="c1">void</span> morrisInorder(<span class="c1">struct</span> BinTree *root) {
     <span class="c1">struct</span> BinTree *cur = root, *pred;
     <span class="c1">while</span> (cur != NULL) {
         <span class="c1">if</span> (cur-&gt;left == NULL) {
@@ -2716,7 +2716,7 @@ completion to restore every pointer).</p>
   <li>For any binary tree, with n<sub>0</sub> leaves, n<sub>1</sub> nodes with one child and n<sub>2</sub> nodes with two children: <strong>n<sub>0</sub> = n<sub>2</sub> + 1</strong>, and n = n<sub>0</sub> + n<sub>1</sub> + n<sub>2</sub>.</li>
 </ul>
 <h2>Recursive versions</h2>
-<div class="formula-block"><span class="c1">int</span> height(<span class="c1">struct</span> BinTree *t) {                 <span class="cm">// edges; empty tree = -1</span>
+<div class="formula-block code"><span class="c1">int</span> height(<span class="c1">struct</span> BinTree *t) {                 <span class="cm">// edges; empty tree = -1</span>
     <span class="c1">if</span> (t == NULL) <span class="c1">return</span> -1;
     <span class="c1">int</span> hl = height(t-&gt;left), hr = height(t-&gt;right);
     <span class="c1">return</span> 1 + (hl &gt; hr ? hl : hr);
@@ -2741,7 +2741,7 @@ completion to restore every pointer).</p>
 }</div>
 <h2>Iterative versions</h2>
 <p>Height needs level information, so it uses the <strong>level-order queue</strong> of §3.3 and counts how many rounds it takes to drain it. Node, leaf and internal counts only need <em>some</em> traversal order, so a stack (or the same queue) is enough.</p>
-<div class="formula-block"><span class="c1">int</span> heightIter(<span class="c1">struct</span> BinTree *root) {          <span class="cm">// edges; empty tree = -1</span>
+<div class="formula-block code"><span class="c1">int</span> heightIter(<span class="c1">struct</span> BinTree *root) {          <span class="cm">// edges; empty tree = -1</span>
     <span class="c1">struct</span> BinTree *q[MAX];  <span class="c1">int</span> front = 0, rear = 0, h = -1;
     <span class="c1">if</span> (root == NULL) <span class="c1">return</span> -1;
     q[rear++] = root;
@@ -2804,7 +2804,7 @@ completion to restore every pointer).</p>
 <p>The <strong>lowest common ancestor</strong> of nodes <em>a</em> and <em>b</em> in a rooted tree is the deepest node that is an ancestor of both. A node counts as an ancestor of itself, so if <em>a</em> is an ancestor of <em>b</em> then LCA(a, b) = a. (Assumption throughout: both keys are present in the tree.) Equivalently, it is the last node shared by the root-to-a path and the root-to-b path.</p>
 <h2>Version 1 — in a BST: use the ordering</h2>
 <p>Start at the root. If both keys are smaller than the current node, the LCA lies in the left subtree; if both are larger, in the right subtree. The first node at which the keys <em>split</em> (one ≤ node ≤ the other) is the LCA. No recursion and no stack: <strong>O(h)</strong> time, O(1) space.</p>
-<div class="formula-block"><span class="c1">struct</span> BinTree* lcaBST(<span class="c1">struct</span> BinTree *root, <span class="c1">int</span> a, <span class="c1">int</span> b) {
+<div class="formula-block code"><span class="c1">struct</span> BinTree* lcaBST(<span class="c1">struct</span> BinTree *root, <span class="c1">int</span> a, <span class="c1">int</span> b) {
     <span class="c1">while</span> (root != NULL) {
         <span class="c1">if</span> (a &lt; root-&gt;key &amp;&amp; b &lt; root-&gt;key)      root = root-&gt;left;     <span class="cm">// both in left subtree</span>
         <span class="c1">else</span> <span class="c1">if</span> (a &gt; root-&gt;key &amp;&amp; b &gt; root-&gt;key) root = root-&gt;right;    <span class="cm">// both in right subtree</span>
@@ -2865,7 +2865,7 @@ completion to restore every pointer).</p>
 <p>Row (15, 24) shows the ancestor case: 15 is itself an ancestor of 24, so the answer is 15.</p>
 <h2>Version 2 — general binary tree (no ordering)</h2>
 <p>Recurse into both subtrees. If the current node is NULL, or equals <em>a</em> or <em>b</em>, return it. Otherwise ask the left and right subtrees: if <strong>both</strong> return a non-NULL node, the keys were found on different sides, so the current node is the LCA; if only one side returns non-NULL, pass that result up. Time <strong>O(n)</strong> (every node may be visited), O(h) stack.</p>
-<div class="formula-block"><span class="c1">struct</span> Node { <span class="c1">char</span> key; <span class="c1">struct</span> Node *left, *right; };
+<div class="formula-block code"><span class="c1">struct</span> Node { <span class="c1">char</span> key; <span class="c1">struct</span> Node *left, *right; };
 
 <span class="c1">struct</span> Node* lca(<span class="c1">struct</span> Node *root, <span class="c1">char</span> a, <span class="c1">char</span> b) {
     <span class="c1">if</span> (root == NULL || root-&gt;key == a || root-&gt;key == b) <span class="c1">return</span> root;   <span class="cm">// found one of them (or hit NULL)</span>
@@ -2968,7 +2968,7 @@ BST given → <code>lcaBST</code>, O(h), iterative. Not a BST, no parent pointer
     <p>Exactly the three traversal functions from §3.1, applied to a node holding a <code>char</code>
     (operator or operand) instead of an <code>int</code> key — no new algorithm is needed, only the
     observation from the table above that each notation <em>is</em> one of the three traversals:</p>
-    <div class="formula-block"><span class="c1">void</span> prefix(Node* r) { <span class="c1">if</span>(r){ printf(<span class="c2">"%c "</span>,r->data); prefix(r->left); prefix(r->right); } }
+    <div class="formula-block code"><span class="c1">void</span> prefix(Node* r) { <span class="c1">if</span>(r){ printf(<span class="c2">"%c "</span>,r->data); prefix(r->left); prefix(r->right); } }
 <span class="c1">void</span> infix (Node* r) { <span class="c1">if</span>(r){ infix(r->left); printf(<span class="c2">"%c "</span>,r->data); infix(r->right); } }
 <span class="c1">void</span> postfix(Node* r) { <span class="c1">if</span>(r){ postfix(r->left); postfix(r->right); printf(<span class="c2">"%c "</span>,r->data); } }</div>
   </div>
@@ -3318,7 +3318,7 @@ operator to the two results. The tree encodes the precedence and brackets, so no
     <p>Postorder of the tree is <span class="mono">8, 2, -, 3, 1, +, *, 5, 3, -, /</span>; evaluating that postfix string with a stack also gives <strong>12</strong>, so the tree and its postfix form agree.</p>
   </div>
 <h2>Complete C implementation (build from postfix, traverse, evaluate)</h2>
-<div class="formula-block">#include &lt;stdio.h&gt;
+<div class="formula-block code">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;ctype.h&gt;
 
@@ -3379,7 +3379,7 @@ operator to the two results. The tree encodes the precedence and brackets, so no
   <li>Evaluation is again postorder, but with logic instead of arithmetic. <strong>Short-circuit</strong> evaluation may skip a subtree: <code>0 AND x</code> is 0 and <code>1 OR x</code> is 1 without evaluating <code>x</code> — an optimisation preorder-style recursion makes easy.</li>
 </ul>
 <p>The tree for <strong>(A AND B) OR (NOT C)</strong> has postfix <span class="mono">A, B, AND, C, NOT, OR</span> and prefix <span class="mono">OR, AND, A, B, NOT, C</span> — built with the same stack algorithm, where NOT pops one operand.</p>
-<div class="formula-block"><span class="c1">struct</span> BNode { <span class="c1">char</span> op;            <span class="cm">// 'A' = AND, 'O' = OR, 'N' = NOT, 'V' = variable/constant leaf</span>
+<div class="formula-block code"><span class="c1">struct</span> BNode { <span class="c1">char</span> op;            <span class="cm">// 'A' = AND, 'O' = OR, 'N' = NOT, 'V' = variable/constant leaf</span>
                <span class="c1">int</span> val;            <span class="cm">// leaf value 0 or 1</span>
                <span class="c1">struct</span> BNode *left, *right; };
 
@@ -3442,7 +3442,7 @@ O(height) time — so it is the same loop as a BST search, with the test replaci
 </svg>
 <div class="cap">Fig 42. Loan-screening decision tree: 3 internal (decision) nodes, 4 leaves (decisions), height 2.</div>
 </div>
-<div class="formula-block"><span class="c1">struct</span> DNode {
+<div class="formula-block code"><span class="c1">struct</span> DNode {
     <span class="c1">const</span> <span class="c1">char</span> *feature;          <span class="cm">// which test: "income", "score", "guarantor" (NULL at a leaf)</span>
     <span class="c1">double</span> threshold;             <span class="cm">// test is  value &gt;= threshold</span>
     <span class="c1">const</span> <span class="c1">char</span> *label;            <span class="cm">// class label (used at a leaf only)</span>
@@ -3648,7 +3648,7 @@ O(height) time — so it is the same loop as a BST search, with the test replaci
   tree" (and is exactly what a C program to implement a threaded binary tree needs to provide): walk to
   the leftmost node first, then repeatedly follow the thread if the current node has no real right child,
   or descend to the leftmost node of its right subtree otherwise.</p>
-  <div class="formula-block"><span class="cm">// isThread is a tag bit stored per node: true if 'right' is a thread, not a real child</span>
+  <div class="formula-block code"><span class="cm">// isThread is a tag bit stored per node: true if 'right' is a thread, not a real child</span>
 <span class="c1">void</span> inorderThreaded(Node* root) {
   Node* cur = leftMost(root);
   <span class="c1">while</span> (cur != NULL) {
@@ -3717,7 +3717,7 @@ Node* leftMost(Node* n) {
 <p>A double-threaded node needs two extra tag bits so that "real child" and "thread" can be told apart. In the deck's convention
 <strong>lbit = 1 (rbit = 1) means the left (right) pointer is a real child; 0 means it is a thread.</strong> A new node starts with
 both bits 0 and both pointers NULL.</p>
-<div class="formula-block"><span class="c1">struct</span> node {
+<div class="formula-block code"><span class="c1">struct</span> node {
     <span class="c1">int</span> data;
     <span class="c1">struct</span> node *left, *right;
     <span class="c1">int</span> lbit;                    <span class="cm">// 1: left is a child,  0: left is a thread (to inorder predecessor)</span>
@@ -3760,7 +3760,7 @@ Because of this, no pointer in the structure is ever NULL, and a traversal can d
 
 <h2>Construction routine</h2>
 <p>Insertion is the ordinary BST insertion, except that a new node <strong>inherits</strong> the thread that the parent's NULL link used to represent: inserting <code>temp</code> as the left child of <code>root</code> gives it <code>root</code>'s old left thread as its own left pointer and makes <code>root</code> its right thread (its inorder successor); inserting as the right child is the mirror image.</p>
-<div class="formula-block"><span class="c1">struct</span> node *root = NULL, *head;
+<div class="formula-block code"><span class="c1">struct</span> node *root = NULL, *head;
 
 <span class="c1">void</span> insert(<span class="c1">struct</span> node *root, <span class="c1">struct</span> node *temp) {
     <span class="c1">if</span> (temp-&gt;data &lt; root-&gt;data) {
@@ -3807,7 +3807,7 @@ The versions in this guide have those fixed; the logic is otherwise the deck's. 
 <h2>Inorder and preorder traversal of a threaded tree</h2>
 <p>No recursion and no stack. <strong>Inorder:</strong> from the leftmost node (follow real left links), print it; then, while the node's right link is a thread, follow it and print the successor; when the right link is a real child, step to it and again run to <em>its</em> leftmost node. Stop on returning to the header.
 <strong>Preorder:</strong> print each node while descending along real left links; at the end of a left chain follow right threads (those nodes were already printed) until a real right child is found.</p>
-<div class="formula-block"><span class="c1">void</span> inorder(<span class="c1">struct</span> node *head) {
+<div class="formula-block code"><span class="c1">void</span> inorder(<span class="c1">struct</span> node *head) {
     <span class="c1">struct</span> node *ptr = head-&gt;left;
     <span class="c1">do</span> {
         <span class="c1">while</span> (ptr-&gt;lbit != 0) ptr = ptr-&gt;left;      <span class="cm">// run to the leftmost node</span>
@@ -3911,7 +3911,7 @@ The versions in this guide have those fixed; the logic is otherwise the deck's. 
   <p>Scan left to right: operand → push a leaf; operator → pop two (first pop = right child, second pop = left child), build the operator node, push it back. One node remains at the end: the root.</p>
 
   <h2>BST operations, at a glance</h2>
-  <div class="formula-block"><span class="cm">// insert / search: O(height), using the ordering property at every node</span>
+  <div class="formula-block code"><span class="cm">// insert / search: O(height), using the ordering property at every node</span>
 <span class="c1">if</span> (value &lt; node-&gt;key) go left; <span class="c1">else if</span> (value &gt; node-&gt;key) go right;
 
 <span class="cm">// delete: 3 cases</span>

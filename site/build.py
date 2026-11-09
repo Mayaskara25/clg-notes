@@ -19,6 +19,7 @@ Usage (from the repo root):  python3 site/build.py
 """
 import html, json, os, re, shutil, subprocess, sys
 from datetime import date
+from code_highlight import highlight_code_blocks
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -241,6 +242,7 @@ def main():
     theme_js = read(os.path.join(SITE, "theme-links.js"))
     search_js = read(os.path.join(SITE, "search.js"))
     style = read(os.path.join(SITE, "landing.css"))
+    code_style = read(os.path.join(SITE, "code-highlight.css"))
     # runs after each guide's own OS-preference script, so an explicit ?theme= wins before first paint
     theme_head = ("<script>(function(){try{var t=new URLSearchParams(location.search).get('theme');"
                   "if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>\n")
@@ -294,7 +296,11 @@ def main():
                 "COURSE_JS": js_str(s["course"]), "COURSE_CODE_JS": js_str(s.get("course_code", "")),
                 "SITE_URL": cfg["url"], "PAGE_URL_JS": js_str(f'{cfg["url"]}/{slug}/{u["slug"]}/'),
             }, name + " toolbar")
-            page = c.replace("</head>", '<meta name="robots" content="noindex, nofollow">\n' + theme_head + "</head>", 1)
+            page = c
+            if slug in {"os", "dsa"}:
+                page = highlight_code_blocks(page)
+                page = page.replace("</head>", "<style>\n" + code_style + "</style>\n</head>", 1)
+            page = page.replace("</head>", '<meta name="robots" content="noindex, nofollow">\n' + theme_head + "</head>", 1)
             i = page.rfind("</body>")
             page = page[:i] + chrome + "\n<script>" + theme_js + "</script>\n" + page[i:]
             write(os.path.join(OUT, slug, u["slug"], "index.html"), page)

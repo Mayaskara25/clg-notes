@@ -1746,13 +1746,13 @@ R.<span class="tf">release</span>();</pre>
   problem, restricted to exactly two processes, Pᵢ and Pⱼ, that alternate between their critical and
   remainder sections. It illustrates just how much care is needed to satisfy mutual exclusion, progress,
   and bounded waiting all at once. The two processes share two data items:</p>
-  <div class="formula-block"><span class="c1">int</span> turn;         <span class="cm">// whose turn it is: if turn==i, Pi may enter its CS</span>
+  <div class="formula-block code"><span class="c1">int</span> turn;         <span class="cm">// whose turn it is: if turn==i, Pi may enter its CS</span>
 <span class="c1">boolean</span> flag[2];  <span class="cm">// flag[i]==true means Pi is ready/wants to enter its CS</span></div>
 
   <div class="grid2">
     <div class="card">
       <h3 style="margin-top:0">Process Pᵢ</h3>
-      <div class="formula-block">do {
+      <div class="formula-block code">do {
   flag[i] = true;
   turn = j;
   while (flag[j] && turn == j)
@@ -1764,7 +1764,7 @@ R.<span class="tf">release</span>();</pre>
     </div>
     <div class="card">
       <h3 style="margin-top:0">Process Pⱼ</h3>
-      <div class="formula-block">do {
+      <div class="formula-block code">do {
   flag[j] = true;
   turn = i;
   while (flag[i] && turn == i)
@@ -1877,7 +1877,7 @@ Case 2 (S1=0,S2=1): P1 enters first (S1≠S2) → S1=1,S2=1 → P2 enters → S1
   and <span class="mono">compare_and_swap()</span> provide an abstraction of such instructions.</p>
 
   <h2>test_and_set</h2>
-  <div class="formula-block"><span class="c1">boolean</span> test_and_set(<span class="c1">boolean</span> *target) {
+  <div class="formula-block code"><span class="c1">boolean</span> test_and_set(<span class="c1">boolean</span> *target) {
   <span class="c1">boolean</span> rv = *target;
   *target = <span class="c2">TRUE</span>;
   <span class="c1">return</span> rv;
@@ -1885,7 +1885,7 @@ Case 2 (S1=0,S2=1): P1 enters first (S1≠S2) → S1=1,S2=1 → P2 enters → S1
   <p>It takes a shared lock variable, unconditionally sets it to <span class="mono">TRUE</span> (locked),
   and returns whatever the lock's value was <em>before</em> that write. By convention 0 means unlocked and
   1 means locked.</p>
-  <div class="formula-block">do {
+  <div class="formula-block code">do {
   while (test_and_set(&lock))
     ; <span class="cm">// spin while lock was already held</span>
   <span class="c2">critical section</span>
@@ -1915,7 +1915,7 @@ Case 2 (S1=0,S2=1): P1 enters first (S1≠S2) → S1=1,S2=1 → P2 enters → S1
 
   <h2>compare_and_swap — conditional atomic update</h2>
 <p>CAS takes a location, an expected value and a replacement. It reads the old value and writes the replacement only when the old value equals the expected value; the textbook version returns the old value in either case. The entire operation is atomic. This differs from unconditionally exchanging two values.</p>
-<div class="formula-block">/* Specification of ONE atomic hardware primitive, not ordinary concurrent C. */
+<div class="formula-block code">/* Specification of ONE atomic hardware primitive, not ordinary concurrent C. */
 int compare_and_swap(int *value, int expected, int new_value) {
     int old = *value;
     if (old == expected) *value = new_value;
@@ -1935,7 +1935,7 @@ do {
   <div class="legacy-heading"><div class="legacy-heading-text"><h2>Atomic exchange — older hardware example</h2><span class="scope-note">Retained older explanation; optional companion to the corrected CAS definition</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-12" aria-label="View Atomic exchange — older hardware example">View</button></div>
   <div class="legacy-content" id="legacy-u2-12" hidden><p><strong>Atomic-exchange abstraction:</strong> the old swap definition below is a conceptual specification of one indivisible hardware operation. Its ordinary C assignments alone are not atomic and are not a safe concurrent lock implementation. Exchange is distinct from conditional compare-and-swap.</p>
-  <div class="formula-block"><span class="c1">void</span> swap(<span class="c1">boolean</span> *a, <span class="c1">boolean</span> *b) {
+  <div class="formula-block code"><span class="c1">void</span> swap(<span class="c1">boolean</span> *a, <span class="c1">boolean</span> *b) {
   <span class="c1">boolean</span> temp = *a;
   *a = *b;
   *b = temp;
@@ -1950,7 +1950,7 @@ do {
     chance of clearing <code>key</code> — would never run. The swap must be the loop's retry body, not a
     one-shot call after it:</p>
   </div>
-  <div class="formula-block">do {
+  <div class="formula-block code">do {
   key = <span class="c2">TRUE</span>;
   while (key == <span class="c2">TRUE</span>)
     swap(&lock, &key);  <span class="cm">// retried on every spin, not called once</span>
@@ -1981,9 +1981,9 @@ do {
   <p>This algorithm, from the faculty slide "Algorithm to solve issues of bounded waiting", satisfies
   <strong>all three</strong> critical-section requirements for <em>n</em> processes. The shared data,
   all initialised to <span class="mono">false</span>:</p>
-  <div class="formula-block"><span class="c1">boolean</span> waiting[n];   <span class="cm">// waiting[i] = Pi wants to enter</span>
+  <div class="formula-block code"><span class="c1">boolean</span> waiting[n];   <span class="cm">// waiting[i] = Pi wants to enter</span>
 <span class="c1">boolean</span> lock;         <span class="cm">// the test_and_set lock</span></div>
-  <div class="formula-block">do {
+  <div class="formula-block code">do {
   waiting[i] = true;
   key = true;   <span class="cm">// local</span>
   while (waiting[i] &amp;&amp; key)
@@ -2043,7 +2043,7 @@ do {
   if it's already 0 (free), the process sets it to 1 and proceeds; once done, it <strong>releases</strong>
   the lock, setting it back to 0.</p>
 
-  <div class="formula-block">do {
+  <div class="formula-block code">do {
   acquire lock
   <span class="c2">critical section</span>
   release lock
@@ -2051,7 +2051,7 @@ do {
 } while (true);</div>
 
   <p>The shared lock variable is often called <span class="mono">available</span>, initially true (free):</p>
-  <div class="formula-block">acquire() {
+  <div class="formula-block code">acquire() {
   while (!available)
     ; <span class="cm">// busy wait</span>
   available = false;
@@ -2087,7 +2087,7 @@ release() {
     <li><span class="mono">signal()</span> was originally called <strong>V</strong> — from the Dutch <em>verhogen</em>, "to increment".</li>
   </ul>
 
-  <div class="formula-block"><span class="c1">wait</span>(S) {
+  <div class="formula-block code"><span class="c1">wait</span>(S) {
   while (S &lt;= 0)
     ; <span class="cm">// busy wait — resource unavailable</span>
   S--;
@@ -2167,7 +2167,7 @@ release() {
   <li>Control then passes to the <strong>CPU scheduler</strong>, which selects another process to run.</li>
   <li>A process blocked on S is restarted when some other process executes <span class="mono">signal()</span>. The <span class="mono">wakeup()</span> operation changes it from the <strong>waiting state to the ready state</strong> and places it in the <strong>ready queue</strong>.</li>
 </ol>
-<div class="formula-block">typedef struct {
+<div class="formula-block code">typedef struct {
     int value;
     struct process *list;
 } semaphore;
@@ -2217,7 +2217,7 @@ P0 passed the barrier (section Q)</div>
     <div class="qmeta"><span class="qsrc">Nov/Dec 2019 SEE Q1.2 (18CS34)</span><span class="marks">worked example · lock ordering</span></div>
     <div class="qtext">P1 does <span class="mono">X = X + 10; Y = Y − 20;</span> and P2 does <span class="mono">Y = Y + 20; X = X − 10;</span>. Using binary semaphores SX = 1 and SY = 1, write the entry and exit sections so that both updates are consistent and deadlock cannot occur.</div>
     <p><strong>The trap:</strong> the obvious approach is to "lock what you touch first". Then P1 does wait(SX) followed by wait(SY), while P2 does wait(SY) followed by wait(SX). If P1 gets SX and P2 gets SY, each process waits forever for the other's lock. This is the same circular wait as the <a href="#u2-example-27">S/Q deadlock example</a>.</p>
-    <div class="formula-block"><span class="cm">// both processes acquire in the SAME global order: SX, then SY</span>
+    <div class="formula-block code"><span class="cm">// both processes acquire in the SAME global order: SX, then SY</span>
 P1:  wait(SX); wait(SY);  X = X + 10;  Y = Y - 20;  signal(SY); signal(SX);
 P2:  wait(SX); wait(SY);  Y = Y + 20;  X = X - 10;  signal(SY); signal(SX);</div>
     <p style="margin:0"><strong>Why it works:</strong> no process can hold SY while it waits for SX, so a circular wait is impossible. Whoever obtains SX first gets both locks, and the other process blocks on SX while holding nothing. Mutual exclusion holds because both shared variables are updated only while both locks are held. If both processes run (in either order), X and Y return to their original values (+10−10 and −20+20). The rule to quote is: <strong>impose one global lock order</strong>. This is the standard way to break the circular-wait condition.</p>
@@ -2256,7 +2256,7 @@ P2:  wait(SX); wait(SY);  Y = Y + 20;  X = X - 10;  signal(SY); signal(SX);</div
   </ol>
 
   <h2>Solution using three semaphores</h2>
-  <div class="formula-block">int n;
+  <div class="formula-block code">int n;
 semaphore mutex = 1;
 semaphore empty = n;
 semaphore full  = 0;</div>
@@ -2288,7 +2288,7 @@ semaphore full  = 0;</div>
   <div class="grid2">
     <div class="card">
       <h3 style="margin-top:0">Producer code</h3>
-      <div class="formula-block">do {
+      <div class="formula-block code">do {
     . . .
   <span class="cm">/* produce an item</span>
   <span class="cm">   in next_produced */</span>
@@ -2305,7 +2305,7 @@ semaphore full  = 0;</div>
     </div>
     <div class="card">
       <h3 style="margin-top:0">Consumer code</h3>
-      <div class="formula-block">do {
+      <div class="formula-block code">do {
   wait(full);
   wait(mutex);
     . . .
@@ -2364,7 +2364,7 @@ semaphore full  = 0;</div>
   </table>
 
   <h2>Solution to the first readers–writers problem</h2>
-  <div class="formula-block">semaphore rw_mutex = 1;
+  <div class="formula-block code">semaphore rw_mutex = 1;
 semaphore mutex = 1;
 int read_count = 0;</div>
   <table>
@@ -2398,7 +2398,7 @@ int read_count = 0;</div>
   <div class="grid2">
     <div class="card">
       <h3 style="margin-top:0">Writer code</h3>
-      <div class="formula-block">do {
+      <div class="formula-block code">do {
   wait(rw_mutex);
     . . .
   <span class="cm">/* writing */</span>
@@ -2408,7 +2408,7 @@ int read_count = 0;</div>
     </div>
     <div class="card">
       <h3 style="margin-top:0">Reader code</h3>
-      <div class="formula-block">do {
+      <div class="formula-block code">do {
   wait(mutex);
   read_count++;
   <span class="cm">// first reader</span>
@@ -2493,7 +2493,7 @@ int read_count = 0;</div>
   </div>
 
   <h2>The naive semaphore solution — and why it deadlocks</h2>
-  <div class="formula-block">Semaphore chopstick[5];  <span class="cm">// all initialized to 1</span>
+  <div class="formula-block code">Semaphore chopstick[5];  <span class="cm">// all initialized to 1</span>
 
 do {
   wait(chopstick[i]);
