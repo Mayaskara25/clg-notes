@@ -185,13 +185,14 @@ td,th{overflow-wrap:anywhere}
 <a class="navlink" href="#memory-segmentation"><span class="dot"></span>3.8 Segmentation</a>
 <a class="navlink" href="#memory-solved"><span class="dot"></span>Solved numericals</a>
 <a class="navlink" href="#memory-quick-revision"><span class="dot"></span>Main-memory revision</a>
+<a class="navlink" href="#memory-question-bank"><span class="dot"></span>Past-paper questions</a>
 </div></nav><div class="main"><section class="page cover" id="index"><span class="kicker">CS235AT · Operating Systems · Semester III</span>
 <h1>Unit III — Main Memory Management</h1>
 <p class="desc">A syllabus-led guide to how programs acquire addresses, enter memory and share it safely. Includes complete explanations, hand-built diagrams and worked memory-allocation and address-translation problems.</p>
-<div class="meta"><span>📘 <b>8</b> core topics</span><span>📊 <b>14</b> diagrams</span><span>🧮 <b>16</b> worked examples</span><span>⏱ <b>9</b> teaching hours</span></div>
+<div class="meta"><span>📘 <b>8</b> core topics</span><span>📊 <b>14</b> diagrams</span><span>🧮 <b>20</b> worked examples</span><span>⏱ <b>9</b> teaching hours</span></div>
 <p class="source-note">The eight topics below are the current Unit III syllabus. Synchronization, which was Unit III in the old syllabus, is now taught in <a href="../unit-2/#sync-t3-1">Unit II</a>.</p>
 <div class="part-divider">Main Memory Management · syllabus order</div><div class="index-grid"><a class="index-card" href="#memory-binding" style="--card-color:var(--blue)"><span class="num">3.1</span><h3>Address binding</h3><p>Compile-time, load-time and execution-time binding.</p></a><a class="index-card" href="#memory-addresses" style="--card-color:var(--blue)"><span class="num">3.2</span><h3>Logical versus physical addresses</h3><p>The MMU, relocation and address protection.</p></a><a class="index-card" href="#memory-loading" style="--card-color:var(--blue)"><span class="num">3.3</span><h3>Dynamic loading</h3><p>Bring a routine into memory only when it is called.</p></a><a class="index-card" href="#memory-linking" style="--card-color:var(--blue)"><span class="num">3.4</span><h3>Dynamic linking and shared libraries</h3><p>Resolve library references and share read-only code.</p></a><a class="index-card" href="#memory-swapping" style="--card-color:var(--blue)"><span class="num">3.5</span><h3>Swapping</h3><p>Move process images between memory and backing store.</p></a><a class="index-card" href="#memory-contiguous" style="--card-color:var(--blue)"><span class="num">3.6</span><h3>Contiguous allocation</h3><p>Partitions, hole selection, fragmentation and compaction.</p></a><a class="index-card" href="#memory-paging" style="--card-color:var(--blue)"><span class="num">3.7</span><h3>Paging</h3><p>Address translation, TLBs, protection, sharing and hierarchical, hashed and inverted page tables.</p></a><a class="index-card" href="#memory-segmentation" style="--card-color:var(--blue)"><span class="num">3.8</span><h3>Segmentation</h3><p>Variable-sized logical units, bounds checking and comparison.</p></a></div>
-<p class="source-note"><a href="#memory-solved">Solved-numerical index</a> · <a href="#memory-quick-revision">Quick revision</a> · <a href="../unit-2/#sync-t3-1">Synchronization (now in Unit II)</a></p></section>
+<p class="source-note"><a href="#memory-solved">Solved-numerical index</a> · <a href="#memory-quick-revision">Quick revision</a> · <a href="#memory-question-bank">Past-paper questions</a> · <a href="../unit-2/#sync-t3-1">Synchronization (now in Unit II)</a></p></section>
 <section class="page section" id="syllabus-map" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">MAP</span><h1>Syllabus map</h1></div>
 <p class="section-sub">CS235AT · Unit III · 9 hours. The syllabus image determines the coverage and order.</p>
@@ -370,6 +371,11 @@ Dynamic loading needs <strong>no special OS support</strong>. Unlike dynamic loa
 Shared code     = 150 + (40 × 50) = <span class="c1">2150 units</span>
 Memory saved    = 8000 − 2150     = <span class="c1">5850 units</span></div>
 <p>The code is counted once in the shared case, while the writable data is still counted for every user. The textbook labels these units KB; the saving does not depend on the byte conversion convention. Mapping and page-table overheads are excluded from this simplified comparison.</p></div>
+<div class="qbox" id="memory-ex-sharing-see"><div class="qmeta"><span class="qsrc">Mar 2021 SEE Q1.7 (18CS34)</span><span class="marks">2 marks</span></div>
+<div class="qtext">A time-sharing system supports 20 terminals, each running a compiler. The compiler needs 50 kB and each user needs 5 kB of data. Find the total memory required for 20 users.</div>
+<div class="formula-block">No sharing:          20 × (50 + 5) = <span class="c1">1100 kB</span>
+Reentrant (shared):  50 + 20 × 5   = <span class="c1">150 kB</span>   <span class="cm">(saves 950 kB)</span></div>
+<p>Give both figures. The question points at shared, reentrant code: one read-only copy of the compiler is mapped into every process, and only the data is private.</p></div>
 <p class="source-note">Sources: Faculty slides, Unit III Main Memory (2026), pp.22–24; §8.1.5, printed pp.357–358 (PDF pp.381–382); shared-code explanation in §8.5.4, pp.376–377 (PDF pp.400–401).</p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="memory-swapping" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
@@ -508,7 +514,7 @@ The faculty slide illustrates the rule with 100 MB of memory: 50 MB allocated to
 <path d="M350 95 L350 143" fill="none" stroke="#1D4E89" stroke-width="2" marker-end="url(#m-compact)"/></svg><div class="cap">Fig 7. Compaction changes physical placement; coalescing only joins already-adjacent holes.</div></div>
 <p>One solution to external fragmentation is <strong>compaction</strong>: shuffle the memory contents so that all free memory is placed together in one large block. The simplest compaction algorithm moves all processes toward one end of memory. Compaction moves occupied regions so that the holes become one large free region. In the textbook’s simple relocation model, execution-time relocation makes this possible by allowing the mapping to change when a process moves. Compaction costs memory-copy time and must respect outstanding references, including I/O. It reduces external fragmentation, but it does not recover unused bytes inside an allocated partition. Compaction is possible only if relocation is dynamic and done at execution time.</p>
 <p>The other solution is to <strong>permit the logical address space of a process to be noncontiguous</strong>, so that a process can be given physical memory wherever it is available. Two complementary techniques do this: <strong>segmentation</strong> (<a href="#memory-segmentation">3.8</a>) and <strong>paging</strong> (<a href="#memory-paging">3.7</a>).</p>
-<div class="qbox" id="memory-ex-allocation"><div class="qmeta"><span class="qsrc">Constructed practice using §8.3.2 rules</span><span class="marks">worked example</span></div>
+<div class="qbox" id="memory-ex-allocation"><div class="qmeta"><span class="qsrc">2024-25 CIE-III Q4a · Oct 2020 SEE Q5a · Silberschatz exercise; solved with §8.3.2 rules</span><span class="marks">worked example</span></div>
 <div class="qtext">Holes H1–H5, in address order, have sizes 100, 500, 200, 300 and 600 KiB. Requests arrive as 212, 417, 112 and 426 KiB. Apply first fit, best fit and worst fit separately, splitting holes after each successful allocation.</div>
 <p>Restart each strategy from the original hole list. A failed request is left waiting and does not change the holes. The entries in the last column retain the original H1–H5 labels; a label denotes the remaining free portion of that hole.</p>
 <table><tr><th>Strategy</th><th>Request (KiB)</th><th>Chosen hole</th><th>Remaining H1, H2, H3, H4, H5 (KiB)</th></tr>
@@ -525,6 +531,12 @@ The faculty slide illustrates the rule with 100 MB of memory: 50 MB allocated to
 <tr><td>Worst fit</td><td>112</td><td>H5 remainder</td><td>100, 83, 200, 300, 276</td></tr>
 <tr><td>Worst fit</td><td>426</td><td>Cannot fit</td><td>100, 83, 200, 300, 276</td></tr></table>
 <p>Best fit admits every request in this particular sequence. First fit ends with <strong>959 KiB</strong> free in total but no hole larger than <strong>300 KiB</strong>, so the 426 KiB request still fails. This demonstrates external fragmentation; it does not prove best fit is always superior. The remaining holes are free space, not internal fragmentation in the admitted processes.</p></div>
+<div class="qbox" id="memory-ex-single-fit"><div class="qmeta"><span class="qsrc">Apr 2023 SEE Q1.5 · Nov/Dec 2019 SEE Q1.4 · Apr/May 2019 SEE Q1.12</span><span class="marks">2 marks · one request, three policies</span></div>
+<div class="qtext">(a) A process requests 12 KB. Free blocks, in list order: 6, 14, 19, 11, 13 KB. (b) A process requests 10 KB. Free blocks: 6, 15, 20, 11, 16 KB. Which block does each of first fit, best fit and worst fit choose?</div>
+<table><tr><th>Request</th><th>Blocks that fit</th><th>First fit</th><th>Best fit</th><th>Worst fit</th></tr>
+<tr><td>(a) 12 KB</td><td>14, 19, 13</td><td><strong>14 KB</strong> (2 left)</td><td><strong>13 KB</strong> (1 left)</td><td><strong>19 KB</strong> (7 left)</td></tr>
+<tr><td>(b) 10 KB</td><td>15, 20, 11, 16</td><td><strong>15 KB</strong> (5 left)</td><td><strong>11 KB</strong> (1 left)</td><td><strong>20 KB</strong> (10 left)</td></tr></table>
+<p>Method: discard the blocks that are too small (6 KB in both). First fit takes the first remaining block in list order. Best fit takes the smallest block that fits, and worst fit the largest. The leftover becomes a smaller free hole. The 2019 answer key gives the same choices for (b).</p></div>
 <p class="source-note">Sources: Faculty slides, Unit III Main Memory (2026), pp.33–58; §8.3, printed pp.360–364 (local PDF pp.384–388). Partition-waste numbers are from printed p.363; the hole-splitting sequence and compaction sizes are constructed practice. Fixed-partition placements are recomputed in code.</p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="memory-paging" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
@@ -634,6 +646,15 @@ If TLB lookup overhead is neglected: <span class="c1">EAT = (2 − h)m</span></d
 80% hits, ε = 10 ns:
 0.80 × (10 + 100) + 0.20 × (10 + 200) = <span class="c1">130 ns</span></div>
 <p>Relative to a direct 100 ns memory access, the first two overheads are 20% and 1%. State the lookup assumption: adding 10 ns only to the hit path would be wrong for the stated serial model, because a failed lookup also takes time.</p></div>
+<div class="qbox" id="memory-ex-tlb-see"><div class="qmeta"><span class="qsrc">Apr 2023 SEE Q1.8 · Oct 2020 SEE Q1.8 · 2024-25 CIE-III Quiz Q5 · Nov/Dec 2019 SEE Q1.6</span><span class="marks">1–2 marks · EAT including TLB search time</span></div>
+<div class="qtext">A paging system with a TLB takes 20 ns to search the TLB and 100 ns to access memory. Find the effective memory-access time for a 98% hit ratio, and for a 99% hit ratio. Repeat with 10 ns TLB search, 150 ns memory and a 95% hit ratio.</div>
+<div class="formula-block"><span class="cm">hit  = TLB search + 1 memory access (the data)</span>
+<span class="cm">miss = TLB search + 2 memory accesses (page table, then data)</span>
+EAT = h(ε + m) + (1 − h)(ε + 2m)
+98%: 0.98 × 120 + 0.02 × 220 = 117.6 + 4.4 = <span class="c1">122 ns</span>
+99%: 0.99 × 120 + 0.01 × 220 = 118.8 + 2.2 = <span class="c1">121 ns</span>
+95%, ε = 10, m = 150: 0.95 × 160 + 0.05 × 310 = 152 + 15.5 = <span class="c1">167.5 ns</span></div>
+<p>When the question gives a TLB search time, these exam papers expect it to be counted in <em>both</em> cases, since the TLB is searched first every time. The textbook's simpler figure (the box above) ignores ε. If you are unsure, state your assumption in one line.</p></div>
 <h2>Protection and page sharing</h2>
 <p>Memory protection is implemented by associating <strong>protection bits</strong> with each frame, normally kept in the page table, to mark a page read-only or read-write. More bits can mark a page execute-only, and so on. Hardware checks the requested operation and traps on a violation. A <strong>valid–invalid bit</strong> in the textbook’s basic model marks whether a page belongs to the process’s legal logical address space. Do not silently equate this basic validity convention with every architecture’s present/resident bit used for demand paging.</p>
 <p>Page-granularity checks do not necessarily detect the exact end of a program inside its final page. In the textbook example, the program ends at logical byte 10468 with 2048-byte pages. Page 5 contains that byte, so a whole-page validity check can also permit offsets through logical byte 12287. Pages starting at byte 12288 are invalid in that example. Software still has to respect the actual object and program bounds.</p>
@@ -687,6 +708,17 @@ Logical address = | p1 (10) | p2 (10) | d (12) |</div>
 Frame number bits = 29 − 12 = <span class="c1">17 bits</span>
 Number of frames  = 2¹⁷ = <span class="c1">131,072</span>   (written 1,31,072 in Indian grouping)
 Physical address  = | frame number (17) | offset d (12) |</div></div>
+<div class="qbox" id="memory-ex-see-paging"><div class="qmeta"><span class="qsrc">SEE Feb/Mar 2025 Q1.9, Q7b, Q8c · Apr 2023 SEE (set B) Q1.9</span><span class="marks">1–4 marks · paging arithmetic</span></div>
+<div class="qtext">(a) Page size 2 KB; pages 0, 1, 2, 3 are in frames 1, 3, 2, 0. Find the physical address of virtual address 2500. (b) A logical space of 64 pages of 1024 words is mapped onto 32 frames. How many bits are in the logical and physical addresses? Repeat for 8 pages. (c) 32-bit logical addresses, 4 KB pages, 512 MB physical memory: how many entries are in a conventional single-level page table, and in an inverted page table?</div>
+<div class="formula-block">(a) p = ⌊2500 / 2048⌋ = 1,  d = 2500 − 2048 = 452
+    page 1 → frame 3:  PA = 3 × 2048 + 452 = <span class="c1">6596</span>
+(b) offset = log₂1024 = 10 bits
+    64 pages:  logical = log₂64 + 10 = 6 + 10 = <span class="c1">16 bits</span>
+    32 frames: physical = log₂32 + 10 = 5 + 10 = <span class="c1">15 bits</span>
+    8 pages:   logical = 3 + 10 = <span class="c1">13 bits</span>, physical still 15 bits
+(c) single-level: one entry per page  = 2³² / 2¹² = 2²⁰ = <span class="c1">1,048,576</span>
+    inverted:     one entry per frame = 2²⁹ / 2¹² = 2¹⁷ = <span class="c1">131,072</span></div>
+<p>In (b) the unit is a <em>word</em>, so the bit counts address words, not bytes. The logical address can be wider than the physical one: the process may have more pages than memory has frames. In (c) the page-table size follows the logical space, while an inverted table follows physical memory. That is exactly why inverted tables are small.</p></div>
 <h3 id="memory-hashed">Hashed page tables</h3>
 <p>A common approach for handling address spaces <strong>larger than 32 bits</strong> is a <strong>hashed page table</strong>, whose hash value is the virtual page number. Each entry of the hash table holds a <strong>chain (linked list)</strong> of elements that hash to the same location. Each element contains:</p>
 <ol><li>the virtual page number,</li><li>the value of the mapped page frame, and</li><li>a pointer to the next element in the chain.</li></ol>
@@ -820,8 +852,8 @@ If given a page size and a linear address, divide into page number and remainder
 <tr><td>Page-table size</td><td>Offset bits, page-number bits, entry count and bytes</td><td><a href="#memory-ex-table-size">Single-level table example</a></td></tr>
 <tr><td>Address-field bits</td><td>Frame-number bits, frame count, two-level p1/p2/d split</td><td><a href="#memory-ex-frame-bits">512 MB / 4 KB frames</a> · <a href="#memory-ex-two-level">Two-level split</a></td></tr>
 <tr><td>TLB timing</td><td>Weight hit/miss costs; state whether lookup time is counted</td><td><a href="#memory-ex-tlb">Effective-access-time example</a></td></tr>
-<tr><td>Segmentation</td><td>Valid segment index, strict offset bounds and base addition</td><td><a href="#memory-ex-segmentation">Segment-table example</a></td></tr></table>
-<p>These are textbook examples or explicitly constructed practice, with assumptions shown at each solution. No unavailable paper was used to invent a new main-memory question-bank attribution.</p>
+<tr><td>Segmentation</td><td>Valid segment index, strict offset bounds and base addition</td><td><a href="#memory-ex-segmentation">Segment-table example</a></td></tr><tr><td>Single-request fits</td><td>Discard too-small blocks; first in list / smallest / largest</td><td><a href="#memory-ex-single-fit">12 KB and 10 KB requests</a></td></tr><tr><td>EAT with TLB time</td><td>Add ε to both hit and miss paths</td><td><a href="#memory-ex-tlb-see">SEE EAT questions</a></td></tr><tr><td>Paging arithmetic (SEE)</td><td>Address translation, word-addressed bit counts, single-level vs inverted entries</td><td><a href="#memory-ex-see-paging">SEE paging set</a></td></tr><tr><td>Shared compiler</td><td>One shared code copy plus per-user data</td><td><a href="#memory-ex-sharing-see">20-user compiler</a></td></tr></table>
+<p>Solutions are labelled with their source: past RVCE papers, the faculty slides, the textbook, or constructed practice. Every past-paper question is listed in the <a href="#memory-question-bank">question bank</a>.</p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="memory-quick-revision" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">REVISE</span><h1>Main-memory quick revision</h1></div>
@@ -849,6 +881,34 @@ Frames:     frame_bits = physical_bits − offset_bits</div>
 <h2>Prepare a complete long answer</h2>
 <p>Start with the definition and the problem solved. Draw the corresponding diagram and explain the steps in order. For an allocation or translation question, state units and assumptions, show intermediate results and check legality before calculating the final address. Finish with the method’s costs, fragmentation and protection properties. For a comparison, use the same properties for both methods.</p>
 <p>The <a href="#memory-solved">solved-numerical index</a> covers the calculations to practise. Page replacement and other Unit IV policies are outside this guide’s main-memory teaching.</p>
+<a class="backtotop" href="#index">↑ Back to index</a></section>
+<section class="page section" id="memory-question-bank" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
+<div class="section-head"><span class="tag">Q-BANK</span><h1>Past-paper questions</h1></div>
+<p class="section-sub">Main-memory questions from RVCE papers, each linked to where it is answered.</p>
+<div class="callout clarify"><span class="label">Scope note</span><p>Sources: the 2024-25 CIE-III and SEE (Feb/Mar 2025), and older SEEs from Apr/May 2019, Nov/Dec 2019, Oct 2020 (Fast Track), Mar 2021 and two Apr 2023 sets. Page-replacement, demand-paging, frame-allocation and copy-on-write parts belong to Unit IV and are left out. Repeated questions are grouped on one row.</p></div>
+<table><tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
+<tr><td class="mono">SEE 2025 Q7a, 8M</td><td>Explain address binding; diagram of the multistep processing of a user program.</td><td>→ <a href="#memory-binding">§3.1</a></td></tr>
+<tr><td class="mono">Mar-21 Q6a · Oct-20 Q6a · Apr/May-19 Q1.9</td><td>Distinguish logical and physical address space (and how a program can have a larger logical space).</td><td>→ <a href="#memory-addresses">§3.2</a></td></tr>
+<tr><td class="mono">Apr-23 A Q7a · B Q7a, 10M</td><td>Dynamic linking, dynamic loading and memory fragmentation.</td><td>→ <a href="#memory-loading">§3.3</a>, <a href="#memory-linking">§3.4</a>, <a href="#memory-contiguous">§3.6</a></td></tr>
+<tr><td class="mono">CIE-III 24-25 Q4b</td><td>Differentiate static and dynamic linking.</td><td>→ <a href="#memory-linking">§3.4</a></td></tr>
+<tr><td class="mono">Mar-21 Q1.7</td><td>20 users, 50 kB compiler + 5 kB data each: total memory.</td><td>→ <a href="#memory-ex-sharing-see">§3.4</a> <span class="pill">solved example added</span></td></tr>
+<tr><td class="mono">Mar-21 Q5b, 10M · CIE-III 24-25 Q4a (part)</td><td>Contiguous allocation: mapping and protection, allocation, fragmentation; advantages and drawbacks.</td><td>→ <a href="#memory-contiguous">§3.6</a></td></tr>
+<tr><td class="mono">CIE-III 24-25 Q4a, 8M · Oct-20 Q5a, 8M</td><td>Partitions 100, 500, 200, 300, 600 K; processes 212, 417, 112, 426 K — first, best, worst fit; which is most efficient?</td><td>→ <a href="#memory-ex-allocation">§3.6</a></td></tr>
+<tr><td class="mono">Apr-23 A Q1.5 · Nov/Dec-19 Q1.4 · Apr/May-19 Q1.12</td><td>One 12 KB (or 10 KB) request against a free-block list: block chosen by each fit.</td><td>→ <a href="#memory-ex-single-fit">§3.6</a> <span class="pill">solved example added</span></td></tr>
+<tr><td class="mono">Apr-23 B Q1.4</td><td>Allocator places a process in the (first) large-enough block: name the algorithm (first fit).</td><td>→ <a href="#memory-contiguous">§3.6</a></td></tr>
+<tr><td class="mono">SEE 2025 Q7c</td><td>One method that avoids external fragmentation and compaction (paging); hardware and technique with a diagram.</td><td>→ <a href="#memory-paging">§3.7</a></td></tr>
+<tr><td class="mono">Apr-23 A Q8a · B Q8a · Oct-20 Q5b · Nov/Dec-19 Q5a</td><td>Basic paging scheme with a diagram; hardware support for paging.</td><td>→ <a href="#memory-paging">§3.7</a></td></tr>
+<tr><td class="mono">Apr/May-19 Q7a (part)</td><td>Define paging; fragmentation.</td><td>→ <a href="#memory-paging">§3.7</a></td></tr>
+<tr><td class="mono">Mar-21 Q1.8</td><td>Why are page sizes always a power of 2?</td><td>→ <a href="#memory-paging">§3.7</a></td></tr>
+<tr><td class="mono">CIE-III 24-25 Quiz Q1</td><td>Significance of the TLB.</td><td>→ <a href="#memory-ex-tlb">§3.7 TLB</a></td></tr>
+<tr><td class="mono">Apr-23 A Q1.8 · Oct-20 Q1.8 · Nov/Dec-19 Q1.6 · CIE-III Quiz Q5</td><td>EAT with TLB search time (20/100 ns at 98% or 99%; 10/150 ns at 95%).</td><td>→ <a href="#memory-ex-tlb-see">§3.7</a> <span class="pill">solved example added</span></td></tr>
+<tr><td class="mono">SEE 2025 Q1.9</td><td>2 KB pages, pages 0–3 in frames 1, 3, 2, 0: physical address of virtual address 2500.</td><td>→ <a href="#memory-ex-see-paging">§3.7</a> <span class="pill">solved example added</span></td></tr>
+<tr><td class="mono">SEE 2025 Q8c · Apr-23 B Q1.9</td><td>64 (or 8) pages of 1024 words onto 32 frames: logical and physical address bits.</td><td>→ <a href="#memory-ex-see-paging">§3.7</a> <span class="pill">solved example added</span></td></tr>
+<tr><td class="mono">SEE 2025 Q7b, 4M</td><td>32-bit logical address, 4 KB pages, 512 MB memory: entries in a single-level and an inverted page table.</td><td>→ <a href="#memory-ex-see-paging">§3.7</a> <span class="pill">solved example added</span></td></tr>
+<tr><td class="mono">CIE-III 24-25 Q5a, 6M</td><td>Hashed and inverted page tables.</td><td>→ <a href="#memory-hashed">Hashed</a>, <a href="#memory-inverted">Inverted</a></td></tr>
+<tr><td class="mono">Apr-23 A Q1.7</td><td>Two differences between paging and segmentation.</td><td>→ <a href="#memory-segmentation">§3.8</a></td></tr>
+<tr><td class="mono">Apr-23 B Q7b · Mar-21 Q6c · Nov/Dec-19 Q6b</td><td>Segmentation with a diagram: hardware support, merits and demerits.</td><td>→ <a href="#memory-segmentation">§3.8</a></td></tr>
+</table>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 </div></div><script>
 (()=>{

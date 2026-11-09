@@ -182,7 +182,7 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 <div class="main">
 
 <!--COVER_START-->
-<section class="cover" id="index"><span class="kicker">Operating Systems · CS235AT · Semester III</span><h1>Unit I — System Structures, Processes &amp; Threads</h1><p class="desc">Aligned with the new syllabus. Read the open core topics first; older extras are preserved at their original positions with a View/Hide button. Textbook references and verified worked examples are included.</p><div class="meta"><span>📘 <b>8</b> core sections</span><span>📊 <b>22</b> diagrams</span><span>🧮 <b>15</b> worked examples</span><span>⏱ <b>9</b> teaching hours</span></div><p class="source-note">Diagram and worked-example totals include retained collapsed material.</p><div class="legacy-topic">
+<section class="cover" id="index"><span class="kicker">Operating Systems · CS235AT · Semester III</span><h1>Unit I — System Structures, Processes &amp; Threads</h1><p class="desc">Aligned with the new syllabus. Read the open core topics first; older extras are preserved at their original positions with a View/Hide button. Textbook references and verified worked examples are included.</p><div class="meta"><span>📘 <b>8</b> core sections</span><span>📊 <b>22</b> diagrams</span><span>🧮 <b>16</b> worked examples</span><span>⏱ <b>9</b> teaching hours</span></div><p class="source-note">Diagram and worked-example totals include retained collapsed material.</p><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h2>Background from older notes</h2><span class="scope-note">The short prerequisite definition is included in OS services; the earlier full topic is retained collapsed</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u1-3003" aria-label="View Background from older notes">View</button></div>
   <div class="legacy-content" id="legacy-u1-3003" hidden><div class="part-divider">Background</div><div class="index-grid"><a href="#os-intro" class="index-card" style="--card-color:var(--blue)"><h3>OS definition and goals</h3><p>Open the topic, diagrams and worked answers.</p></a></div></div>
@@ -1248,6 +1248,22 @@ xxxxxxxx   <span class="c1">// 8 processes total (2³) → 7 NEW child processes
     </div>
   </div>
 
+  <div class="qbox" id="u1-example-07b">
+    <div class="qmeta"><span class="qsrc">Apr 2023 SEE Q1.3 · Nov/Dec 2019 SEE Q1.1 · Oct 2020 SEE Q1.3 · Oct 2020 Q1.5</span><span class="marks">2 marks · fork() with &amp;&amp; / ||</span></div>
+    <div class="qtext">Write the output: (a) <code>if (fork() || fork()) fork(); printf("1 ");</code> &nbsp;(b) <code>if (fork() &amp;&amp; fork()) fork(); printf("2 ");</code> &nbsp;Also: how does <code>vfork()</code> differ from <code>fork()</code>?</div>
+    <div class="ans-label">Key idea — short-circuit evaluation</div>
+    <p><code>fork()</code> returns a <strong>non-zero</strong> pid (true) in the parent and <strong>0</strong> (false) in the child. With <code>||</code>, the second <code>fork()</code> runs only where the first returned false, which is in the child. With <code>&amp;&amp;</code>, it runs only where the first returned true, which is in the parent. Trace each process and count the ones that reach <code>printf</code>.</p>
+    <table>
+      <tr><th>Program</th><th>Trace</th><th>Processes · output</th></tr>
+      <tr><td>(a) <code>A || B</code></td><td>Parent: A ≠ 0 → condition true → 3rd fork (+1 child).<br>Child of A: A = 0 → runs B, which creates a grandchild. The child gets B ≠ 0 → true → 3rd fork (+1). The grandchild gets B = 0 → false → no fork.</td><td>parent, its fork-3 child, A-child, its fork-3 child, grandchild = <strong>5</strong> → <code>1 1 1 1 1</code></td></tr>
+      <tr><td>(b) <code>A &amp;&amp; B</code></td><td>Parent: A ≠ 0 → runs B (+1 child). The parent gets B ≠ 0 → true → 3rd fork (+1). The B-child gets 0 → false.<br>A-child: A = 0 → false; B and the 3rd fork are skipped.</td><td>parent, A-child, B-child, fork-3 child = <strong>4</strong> → <code>2 2 2 2</code></td></tr>
+    </table>
+    <div class="formula-block"><span class="cm">$ gcc f_or.c &amp;&amp; ./a.out    // compiled and run, counting the prints</span>
+<span class="c1">(a) 5 prints    (b) 4 prints</span></div>
+    <p>The order of the printed values can vary between runs because the scheduler decides which process prints first. Only the count is fixed. The "Oct 2020 Q1.3" print of this program has an unclear operator; it is one of these two forms.</p>
+    <div class="callout key"><span class="label">fork() vs vfork()</span><p style="margin:0"><code>fork()</code> gives the child its own copy of the parent's address space (copy-on-write in modern systems), and the two run concurrently. <code>vfork()</code> creates a child that <strong>shares</strong> the parent's address space, and the parent is <strong>suspended</strong> until the child calls <code>exec()</code> or <code>_exit()</code>. It is cheaper, because no page tables are copied, but the child must not modify data or return from the calling function. It is intended only for "fork then exec straight away".</p></div>
+  </div>
+
   <div class="qbox" id="u1-example-08">
     <div class="qmeta"><span class="qsrc">CIE-I Q1b (2021-22) / Test-1 Q5.a (2024-25) · Question Bank #2</span><span class="marks">6 marks</span></div>
     <div class="qtext">Write a program in which a parent process spawns N children, where N is read as a command-line argument. Each child should print "Hi from child PID", where PID is its own process ID; the parent must wait for all children to exit before finishing.</div>
@@ -2020,7 +2036,33 @@ int main(void) {
 
   
 
-  <a class="backtotop" href="#index">&uarr; Back to index</a>
+  <h2>Older SEE papers (2019–2023)</h2>
+<div class="callout clarify"><span class="label">Scope note</span><p>Unit I questions from RVCE SEEs: Apr/May 2019 (16CS45), Nov/Dec 2019, Oct 2020 Fast Track, Mar 2021 (18CS34) and two Apr 2023 sets (21CS35). Questions answered by the same section are grouped. Linux-specific process management and scheduling, and thread pools and threading issues, are not in the current syllabus.</p></div>
+<table><tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
+<tr><td class="mono">Apr-23 A Q1.3 · Nov/Dec-19 Q1.1 · Oct-20 Q1.3</td><td>Output of <code>if (fork() || fork()) fork();</code> / <code>if (fork() &amp;&amp; fork()) fork();</code>.</td><td>→ <a href="#u1-example-07b">Operations on processes</a> <span class="pill">solved example added</span></td></tr>
+<tr><td class="mono">Oct-20 Q1.5</td><td>Differentiate fork and vfork.</td><td>→ <a href="#u1-example-07b">Operations on processes</a> <span class="pill">added</span></td></tr>
+<tr><td class="mono">Apr-23 A Q1.1</td><td>Differentiate a zombie process and an orphan process.</td><td>→ <a href="#process-operations">Operations on processes</a></td></tr>
+<tr><td class="mono">Apr-23 A Q2b · B Q2a · Oct-20 Q2b</td><td>Programs using fork(), wait() and exec()/execl(); create a child and synchronize with it.</td><td>→ <a href="#process-operations">Operations on processes</a>, <a href="#u1-example-08">N-children program</a></td></tr>
+<tr><td class="mono">Apr-23 A Q4a</td><td>Compare process and thread as units of execution; program creating a child process and a thread.</td><td>→ <a href="#u1-example-13">Process vs thread</a>, <a href="#u1-example-12">Pthreads program</a></td></tr>
+<tr><td class="mono">Apr-23 B Q1.6 · Mar-21 Q1.1 · Apr/May-19 Q2b</td><td>The structure that holds all information about a process (PCB); explain the PCB with a diagram.</td><td>→ <a href="#process-concept">Process concept</a></td></tr>
+<tr><td class="mono">Apr/May-19 Q1.3</td><td>A process waiting to be assigned to a processor is in the ____ state (ready).</td><td>→ <a href="#process-concept">Process concept</a></td></tr>
+<tr><td class="mono">Apr-23 B Q2b · Mar-21 Q2a · Apr-23 A Q1.6</td><td>Long-, medium- and short-term schedulers; which suits time-sharing vs job scheduling.</td><td>→ <a href="#process-scheduling">Process scheduling</a></td></tr>
+<tr><td class="mono">Nov/Dec-19 Q2b, 6M</td><td>The four actions of a context switch, with a diagram.</td><td>→ <a href="#process-concept">Process concept</a>, <a href="#process-scheduling">Process scheduling</a></td></tr>
+<tr><td class="mono">Apr-23 A Q2a · Oct-20 Q2a · Mar-21 Q2c · Oct-20 Q1.10</td><td>Approaches to OS structure: monolithic, layered, microkernel, modular.</td><td>→ <a href="#os-structure-design">OS structure</a></td></tr>
+<tr><td class="mono">Oct-20 Q1.2 · Mar-21 Q1.2</td><td>Design principles / goals of an operating system.</td><td>→ <a href="#os-structure-design">OS structure</a></td></tr>
+<tr><td class="mono">Apr-23 B Q2c</td><td>Benefits of virtual machines, with an example.</td><td>→ <a href="#os-structure-design">OS structure</a></td></tr>
+<tr><td class="mono">Nov/Dec-19 Q2c</td><td>User mode vs kernel mode.</td><td>→ <a href="#os-operations">OS operations</a></td></tr>
+<tr><td class="mono">Apr/May-19 Q1.2</td><td>Purpose of a system call.</td><td>→ <a href="#system-calls">System calls</a></td></tr>
+<tr><td class="mono">Oct-20 Q1.1 · Apr/May-19 Q1.1, Q2a · Oct-20 Q2c · Apr-23 B Q1.1</td><td>Classes of OS (batch, time-sharing/multi-user, real-time…) and how computing evolution shaped them.</td><td>→ <a href="#perspectives">Perspectives</a>, <a href="#os-structure">OS structure</a></td></tr>
+<tr><td class="mono">Apr-23 A Q1.10, Q3b · Oct-20 Q1.4</td><td>Why is a thread a light-weight process? Threading models.</td><td>→ <a href="#threads">Threads</a></td></tr>
+<tr><td class="mono">Apr-23 B Q3b · Apr/May-19 Q2c</td><td>User vs kernel threads; mapping models; single- vs multithreaded process.</td><td>→ <a href="#threads">Threads</a>, <a href="#u1-example-13">Process vs thread</a></td></tr>
+<tr><td class="mono">Mar-21 Q1.3 · Nov/Dec-19 Q2a</td><td>Four benefits of multithreaded programming; threads vs processes, with a thread-sum program.</td><td>→ <a href="#threads">Threads</a>, <a href="#u1-example-12">Pthreads program</a></td></tr>
+<tr><td class="mono">Apr-23 B Q4b · Mar-21 Q2b</td><td>Pthread program to sum N non-negative numbers.</td><td>→ <a href="#u1-example-12">Pthreads program</a></td></tr>
+<tr><td class="mono">Apr/May-19 Q4b</td><td>Threading issues; thread pools.</td><td>Not in the current syllabus</td></tr>
+<tr><td class="mono">Mar-21 Q4c · Nov/Dec-19 Q4c</td><td>Process management / process scheduling in Linux.</td><td>Not in the current syllabus</td></tr>
+</table>
+
+<a class="backtotop" href="#index">&uarr; Back to index</a>
 </section>
 <!--QBANK_END-->
 

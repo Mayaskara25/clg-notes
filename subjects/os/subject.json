@@ -14,7 +14,7 @@
       "source": "Operating Systems - Unit 1 - Exam Notes.html",
       "title": "OS Foundations, Processes & Threads",
       "topics": "OS services, system calls, OS structures, iOS and Android, processes, IPC, threads, multicore programming, Pthreads",
-      "updated": "2026-11-07"
+      "updated": "2026-11-09"
     },
     {
       "n": 2,
@@ -32,6 +32,15 @@
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-09",
+      "units": [
+        1,
+        2,
+        3
+      ],
+      "text": "Added questions from past RVCE SEE papers (2019–2023) and the 2024-25 CIE/SEE. Unit 1: fork() with || / && and fork vs vfork, plus an older-SEE question bank. Unit 2: six more worked SEE problems (LRTF, CPU utilization with I/O, three full scheduling sets, RR q=4 on the flagship set), and earlier examples now name the paper they came from. Unit 3: new past-paper question bank and four worked examples (single-request fits, EAT with TLB time, paging arithmetic, shared compiler)."
+    },
     {
       "date": "2026-11-09",
       "units": [
