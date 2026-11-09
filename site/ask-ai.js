@@ -308,7 +308,7 @@
         (v[4] === 'numerical' ? ' <span class="aa-tag">solved problem</span>' : '') + '</span>' +
         (v[5] ? '<span class="aa-vn">⚠ ' + esc(v[5]) + '</span>' : '') + '</span></a>';
     });
-    h += '<p class="aa-f">Videos may use different flip-flops or notation than your notes. In exams, follow the notes.</p>';
+    h += '<p class="aa-f">Videos may use different notation or conventions than your notes. In exams, follow the notes.</p>';
     menu.innerHTML = h;
     document.body.appendChild(menu);
     place(btn);

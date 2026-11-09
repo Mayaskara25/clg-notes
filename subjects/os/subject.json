@@ -39,6 +39,15 @@
         2,
         3
       ],
+      "text": "Added ▶ Videos buttons: 80 checked YouTube videos (Neso Academy, Gate Smashers, Jenny's Lectures, GATE Wallah and others) linked to the sections and headings they explain, with solved-problem videos tagged and a note where a video differs from the notes."
+    },
+    {
+      "date": "2026-11-09",
+      "units": [
+        1,
+        2,
+        3
+      ],
       "text": "Added questions from past RVCE SEE papers (2019–2023) and the 2024-25 CIE/SEE. Unit 1: fork() with || / && and fork vs vfork, plus an older-SEE question bank. Unit 2: six more worked SEE problems (LRTF, CPU utilization with I/O, three full scheduling sets, RR q=4 on the flagship set), and earlier examples now name the paper they came from. Unit 3: new past-paper question bank and four worked examples (single-request fits, EAT with TLB time, paging arithmetic, shared compiler)."
     },
     {

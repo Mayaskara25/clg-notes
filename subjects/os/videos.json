@@ -1,0 +1,1010 @@
+{
+ "subject": "os",
+ "checked": "2026-11-09",
+ "units": {
+  "1": [
+   {
+    "section": "os-services",
+    "sub": null,
+    "videos": [
+     {
+      "id": "TQWERtMoKbI",
+      "title": "Operating System Services",
+      "channel": "Neso Academy",
+      "duration": "13:17",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "system-calls",
+    "sub": null,
+    "videos": [
+     {
+      "id": "lhToWeuWWfw",
+      "title": "System Calls",
+      "channel": "Neso Academy",
+      "duration": "12:38",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "i1l2n8zjZsA",
+      "title": "Operating System One Shot | MAHA REVISION | CS & IT | GATE 2024 Preparation",
+      "channel": "GATE Wallah CSE & DA",
+      "duration": "2:54:41",
+      "kind": "topic",
+      "note": "Part of a 3-hour one-shot; opens at its System Calls part.",
+      "start": 2226
+     }
+    ]
+   },
+   {
+    "section": "system-calls",
+    "sub": "Types of system calls",
+    "videos": [
+     {
+      "id": "EavqupVh8ls",
+      "title": "Types of System Calls",
+      "channel": "Neso Academy",
+      "duration": "11:22",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "os-structure-design",
+    "sub": "Approaches to designing OS structure",
+    "videos": [
+     {
+      "id": "XXPBl20J22w",
+      "title": "Structures of Operating System",
+      "channel": "Neso Academy",
+      "duration": "19:27",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "os-structure-design",
+    "sub": "Architecture of mobile operating systems: iOS and Android",
+    "videos": [
+     {
+      "id": "y3HravY897E",
+      "title": "Android Architecture",
+      "channel": "TutorialsPoint",
+      "duration": "3:05",
+      "kind": "topic",
+      "note": "Android only. Use your notes for iOS and for ART vs Dalvik."
+     },
+     {
+      "id": "4N9OSIirUec",
+      "title": "ios architecture",
+      "channel": "Tanya Garg",
+      "duration": "5:50",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "process-concept",
+    "sub": "Process vs. program",
+    "videos": [
+     {
+      "id": "OrM7nZcxXZU",
+      "title": "Process Management (Processes and Threads)",
+      "channel": "Neso Academy",
+      "duration": "7:32",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "process-concept",
+    "sub": "Process state",
+    "videos": [
+     {
+      "id": "jZ_6PXoaoxo",
+      "title": "Process State",
+      "channel": "Neso Academy",
+      "duration": "8:52",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "process-concept",
+    "sub": "Process Control Block (PCB)",
+    "videos": [
+     {
+      "id": "4s2MKuVYKV8",
+      "title": "Process Control Block",
+      "channel": "Neso Academy",
+      "duration": "7:01",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "process-concept",
+    "sub": "Context switch",
+    "videos": [
+     {
+      "id": "vTgccrbYHYs",
+      "title": "Context Switch",
+      "channel": "Neso Academy",
+      "duration": "10:33",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "process-scheduling",
+    "sub": null,
+    "videos": [
+     {
+      "id": "2h3eWaPx8SA",
+      "title": "Process Scheduling",
+      "channel": "Neso Academy",
+      "duration": "11:19",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "process-operations",
+    "sub": "Process creation",
+    "videos": [
+     {
+      "id": "pSW9d3Oaie8",
+      "title": "Operation on Processes – Process Creation",
+      "channel": "Neso Academy",
+      "duration": "12:14",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "process-operations",
+    "sub": "fork() and exec()",
+    "videos": [
+     {
+      "id": "IFEFVXvjiHY",
+      "title": "fork() and exec() System Calls",
+      "channel": "Neso Academy",
+      "duration": "20:34",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "ixq5cpdEO2Q",
+      "title": "L-1.8: Fork System call with Example | Fork() system call questions",
+      "channel": "Gate Smashers",
+      "duration": "10:01",
+      "kind": "numerical",
+      "note": "fork() puzzles. Count processes and printed lines separately; they aren't always equal."
+     },
+     {
+      "id": "i1l2n8zjZsA",
+      "title": "Operating System One Shot | MAHA REVISION | CS & IT | GATE 2024 Preparation",
+      "channel": "GATE Wallah CSE & DA",
+      "duration": "2:54:41",
+      "kind": "topic",
+      "note": "Same one-shot, opened at its fork() part. It doesn't cover exec().",
+      "start": 2561
+     }
+    ]
+   },
+   {
+    "section": "process-operations",
+    "sub": "Process termination",
+    "videos": [
+     {
+      "id": "SFc3jt8t5rU",
+      "title": "Operation on Processes – Process Termination",
+      "channel": "Neso Academy",
+      "duration": "9:15",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "process-ipc",
+    "sub": null,
+    "videos": [
+     {
+      "id": "dJuYKfR8vec",
+      "title": "Interprocess Communication",
+      "channel": "Neso Academy",
+      "duration": "12:49",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "process-ipc",
+    "sub": "Shared-memory systems",
+    "videos": [
+     {
+      "id": "uHtzOFwgD74",
+      "title": "Shared Memory Systems",
+      "channel": "Neso Academy",
+      "duration": "14:30",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "process-ipc",
+    "sub": "Message-passing systems",
+    "videos": [
+     {
+      "id": "LuuSXWkDJOo",
+      "title": "Message Passing Systems (Part 1)",
+      "channel": "Neso Academy",
+      "duration": "10:40",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "S3mS8MR7bUY",
+      "title": "Message Passing Systems (Part 2)",
+      "channel": "Neso Academy",
+      "duration": "22:59",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "fViAyFLOYxU",
+      "title": "Message Passing Systems (Part 3)",
+      "channel": "Neso Academy",
+      "duration": "13:59",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "threads",
+    "sub": "Overview",
+    "videos": [
+     {
+      "id": "LOfGJcVnvAk",
+      "title": "Introduction to Threads",
+      "channel": "Neso Academy",
+      "duration": "14:06",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "-NONm-Jq34Y",
+      "title": "L-1.12: User Level Vs Kernel Level Thread in Operating System | All Imp Points",
+      "channel": "Gate Smashers",
+      "duration": "8:28",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "threads",
+    "sub": "Multithreading models",
+    "videos": [
+     {
+      "id": "HW2Wcx-ktsc",
+      "title": "Multithreading Models & Hyperthreading",
+      "channel": "Neso Academy",
+      "duration": "17:57",
+      "kind": "topic",
+      "note": "Also covers hyperthreading, which is hardware, not a thread-mapping model."
+     }
+    ]
+   },
+   {
+    "section": "threads",
+    "sub": "Multicore programming",
+    "videos": [
+     {
+      "id": "5sw9XJokAqw",
+      "title": "Threads On Multicore Systems",
+      "channel": "Core Dumped",
+      "duration": "11:27",
+      "kind": "topic",
+      "note": "Background only; use your notes' list of multicore programming challenges in exams."
+     },
+     {
+      "id": "2DlRDwHS2oU",
+      "title": "L3.21 | Amdahl's law | Overall speedup of system | Amdahl's law example",
+      "channel": "Success GATEway",
+      "duration": "5:58",
+      "kind": "numerical",
+      "note": "Amdahl's law speedup, taught from a computer-architecture angle."
+     }
+    ]
+   },
+   {
+    "section": "threads",
+    "sub": "Pthreads",
+    "videos": [
+     {
+      "id": "uA8X5zNOGw8",
+      "title": "How to create and join threads in C (pthreads).",
+      "channel": "Jacob Sorber",
+      "duration": "5:59",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "threads",
+    "sub": "Additional Pthreads worked programs",
+    "videos": [
+     {
+      "id": "It0OFCbbTJE",
+      "title": "How to pass arguments to and get results from threads. (pthread_create, pthread_join)",
+      "channel": "Jacob Sorber",
+      "duration": "4:12",
+      "kind": "topic",
+      "note": "Basics only; it doesn't do your notes' sorting or matrix programs."
+     }
+    ]
+   }
+  ],
+  "2": [
+   {
+    "section": "t2-5",
+    "sub": null,
+    "videos": [
+     {
+      "id": "EWkQl0n0w5M",
+      "title": "Introduction to CPU Scheduling",
+      "channel": "Neso Academy",
+      "duration": "10:14",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "t2-5",
+    "sub": "The CPU scheduler and preemption",
+    "videos": [
+     {
+      "id": "4DhFmL-6SDA",
+      "title": "Preemptive and Non-Preemptive Scheduling",
+      "channel": "Neso Academy",
+      "duration": "18:56",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "t2-6",
+    "sub": null,
+    "videos": [
+     {
+      "id": "bWHFY8-rL5I",
+      "title": "Scheduling Criteria",
+      "channel": "Neso Academy",
+      "duration": "13:35",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "n7Owxwfr6Ko",
+      "title": "L-2.2: What is Arrival, Burst, Completion, Turnaround, Waiting and Response time in CPU Scheduling",
+      "channel": "Gate Smashers",
+      "duration": "8:58",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "t2-7",
+    "sub": null,
+    "videos": [
+     {
+      "id": "7DoP1L9nAAs",
+      "title": "Scheduling Algorithms - First Come First Served (FCFS)",
+      "channel": "Neso Academy",
+      "duration": "17:00",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "WYo1SpUh9FI",
+      "title": "FCFS(First Come First Serve) CPU Scheduling Algorithm with example | Operating System",
+      "channel": "Jenny's Lectures CS IT",
+      "duration": "17:49",
+      "kind": "numerical",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "t2-8",
+    "sub": null,
+    "videos": [
+     {
+      "id": "VCIVXPoiLpU",
+      "title": "L-2.4: Shortest Job First(SJF) Scheduling  Algorithm with  Example | Operating System",
+      "channel": "Gate Smashers",
+      "duration": "9:13",
+      "kind": "numerical",
+      "note": "Non-preemptive SJF. The next video does SRTF."
+     },
+     {
+      "id": "hoN7_VMzw_g",
+      "title": "L-2.5: Shortest Remaining Time First (SJF With Preemption) Scheduling Algorithm with  Example | OS",
+      "channel": "Gate Smashers",
+      "duration": "13:37",
+      "kind": "numerical",
+      "note": "SRTF. When remaining times tie, follow your notes' rule."
+     }
+    ]
+   },
+   {
+    "section": "t2-10",
+    "sub": null,
+    "videos": [
+     {
+      "id": "YzBBJYfwdi8",
+      "title": "Scheduling Algorithms - Round Robin Scheduling",
+      "channel": "Neso Academy",
+      "duration": "15:16",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "TxjIlNYRZ5M",
+      "title": "L-2.7: Round Robin(RR) CPU Scheduling Algorithm with  Example",
+      "channel": "Gate Smashers",
+      "duration": "16:23",
+      "kind": "numerical",
+      "note": "If an arrival and a quantum expiry happen together, use your notes' queue order."
+     }
+    ]
+   },
+   {
+    "section": "t2-9",
+    "sub": null,
+    "videos": [
+     {
+      "id": "5xYvFN9OrZs",
+      "title": "Non Preemptive Priority Scheduling Algorithm with example | Operating System",
+      "channel": "Jenny's Lectures CS IT",
+      "duration": "15:34",
+      "kind": "numerical",
+      "note": "Check in each question whether a lower number means higher priority."
+     },
+     {
+      "id": "23h3lkHNL_s",
+      "title": "Lec 17: Preemptive Priority Scheduling Algorithm in OS with example | Operating System",
+      "channel": "Jenny's Lectures CS IT",
+      "duration": "17:48",
+      "kind": "numerical",
+      "note": "Check in each question whether a lower number means higher priority."
+     }
+    ]
+   },
+   {
+    "section": "t2-9",
+    "sub": "Starvation and aging",
+    "videos": [
+     {
+      "id": "01DiVzZbRjY",
+      "title": "Lec18 Starvation and Aging in Priority Scheduling | Operating Systems",
+      "channel": "Jenny's Lectures CS IT",
+      "duration": "9:49",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "t2-11",
+    "sub": "Priority-based scheduling, and two ways to assign priority",
+    "videos": [
+     {
+      "id": "xgW8VhEOpFg",
+      "title": "Rate Monotonic Scheduling",
+      "channel": "Manoj MVR",
+      "duration": "8:51",
+      "kind": "numerical",
+      "note": "Rate-monotonic only: shorter period means higher priority."
+     }
+    ]
+   },
+   {
+    "section": "t2-11",
+    "sub": "Earliest-Deadline-First — worked and verified",
+    "videos": [
+     {
+      "id": "ejPXTOcMRPA",
+      "title": "Earliest Deadline First (EDF)",
+      "channel": "Manoj MVR",
+      "duration": "8:25",
+      "kind": "numerical",
+      "note": "Use absolute deadlines and your notes' tie-break rule."
+     }
+    ]
+   },
+   {
+    "section": "sync-t3-1",
+    "sub": null,
+    "videos": [
+     {
+      "id": "3Eaw1SSIqRg",
+      "title": "L-3.1: Process Synchronization | Process Types | Race Condition | Operating System-1",
+      "channel": "Gate Smashers",
+      "duration": "17:01",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "K71pRtq7aB4",
+      "title": "Operating System 03 : Process Synchronization & Semaphores | CS & IT | GATE 2026 Crash Course",
+      "channel": "GATE Wallah CSE & DA",
+      "duration": "1:57:20",
+      "kind": "topic",
+      "note": "Long GATE Wallah session with no chapter marks; also covers semaphores and classic problems."
+     }
+    ]
+   },
+   {
+    "section": "sync-t3-2",
+    "sub": null,
+    "videos": [
+     {
+      "id": "UtEORPakw5Y",
+      "title": "The Critical-Section Problem",
+      "channel": "Neso Academy",
+      "duration": "13:50",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "sync-t3-3",
+    "sub": null,
+    "videos": [
+     {
+      "id": "gYCiTtgGR5Q",
+      "title": "Peterson’s Solution",
+      "channel": "Neso Academy",
+      "duration": "21:31",
+      "kind": "topic",
+      "note": "Write the code with your notes' variable names."
+     }
+    ]
+   },
+   {
+    "section": "sync-t3-4",
+    "sub": "test_and_set",
+    "videos": [
+     {
+      "id": "9hzoO4hBXFw",
+      "title": "L-3.6: Test and Set Instruction in OS | Process Synchronization",
+      "channel": "Gate Smashers",
+      "duration": "9:09",
+      "kind": "topic",
+      "note": "test_and_set only; use your notes for compare_and_swap and bounded waiting."
+     }
+    ]
+   },
+   {
+    "section": "sync-t3-6",
+    "sub": null,
+    "videos": [
+     {
+      "id": "XDIOC2EY5JE",
+      "title": "Semaphores",
+      "channel": "Neso Academy",
+      "duration": "22:50",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "K71pRtq7aB4",
+      "title": "Operating System 03 : Process Synchronization & Semaphores | CS & IT | GATE 2026 Crash Course",
+      "channel": "GATE Wallah CSE & DA",
+      "duration": "1:57:20",
+      "kind": "topic",
+      "note": "Same long session as Background; no chapter marks, so skip ahead to semaphores."
+     }
+    ]
+   },
+   {
+    "section": "sync-t3-6",
+    "sub": "Binary vs counting semaphores",
+    "videos": [
+     {
+      "id": "l5-3mbBV1BQ",
+      "title": "L-3.9: What is Binary Semaphore | Easiest Explanation | Operating system",
+      "channel": "Gate Smashers",
+      "duration": "12:23",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "sync-t3-7",
+    "sub": null,
+    "videos": [
+     {
+      "id": "Qx3P2wazwI0",
+      "title": "The Bounded Buffer Problem",
+      "channel": "Neso Academy",
+      "duration": "15:48",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "sync-t3-7",
+    "sub": "Solution using three semaphores",
+    "videos": [
+     {
+      "id": "hh9g5kKl_aE",
+      "title": "L-3.11: Solution of Producer Consumer Problem using Semaphore | Operating System",
+      "channel": "Gate Smashers",
+      "duration": "17:30",
+      "kind": "topic",
+      "note": "Use your notes' mutex/empty/full names and wait() order in exams."
+     }
+    ]
+   },
+   {
+    "section": "sync-t3-8",
+    "sub": null,
+    "videos": [
+     {
+      "id": "p2XDhW5INOo",
+      "title": "The Readers Writers Problem",
+      "channel": "Neso Academy",
+      "duration": "15:31",
+      "kind": "topic",
+      "note": "Your notes ask for the first readers-writers problem (readers get priority)."
+     }
+    ]
+   },
+   {
+    "section": "sync-t3-9",
+    "sub": null,
+    "videos": [
+     {
+      "id": "FYUi-u7UWgw",
+      "title": "The Dining Philosophers Problem",
+      "channel": "Neso Academy",
+      "duration": "20:16",
+      "kind": "topic",
+      "note": "Explains the problem; the three fixes are in your notes."
+     }
+    ]
+   },
+   {
+    "section": "solved-sync",
+    "sub": null,
+    "videos": [
+     {
+      "id": "WIj06NCxkWE",
+      "title": "Process Synchronization - Problem 1",
+      "channel": "Neso Academy",
+      "duration": "9:57",
+      "kind": "numerical",
+      "note": "Extra practice with its own question."
+     }
+    ]
+   },
+   {
+    "section": "solved-scheduling",
+    "sub": null,
+    "videos": [
+     {
+      "id": "JD9Q8jWW6iM",
+      "title": "Operating System 02 : CPU Scheduling Algorithms | CS & IT | GATE 2026 Crash Course",
+      "channel": "GATE Wallah CSE & DA",
+      "duration": "1:49:22",
+      "kind": "topic",
+      "note": "Long GATE Wallah revision of all the algorithms; no chapter marks."
+     }
+    ]
+   }
+  ],
+  "3": [
+   {
+    "section": "memory-binding",
+    "sub": null,
+    "videos": [
+     {
+      "id": "8U0aZ0TJdwg",
+      "title": "Address Binding in Operating Systems || Memory Management || Compile time || Load time || execution",
+      "channel": "Sudhakar Atchala",
+      "duration": "8:25",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "memory-addresses",
+    "sub": null,
+    "videos": [
+     {
+      "id": "rjkCuBhNEQw",
+      "title": "Memory Management Unit ll Need Of MMU ll Operating System ll Explained in Hindi",
+      "channel": "5 Minutes Engineering",
+      "duration": "7:08",
+      "kind": "topic",
+      "note": "In exams, check the limit first, then add the base, as your notes do."
+     },
+     {
+      "id": "30P73tWmU0s",
+      "title": "L-5.10: Question Explanation on Logical address and Physical address space | Operating System",
+      "channel": "Gate Smashers",
+      "duration": "15:25",
+      "kind": "numerical",
+      "note": "The numerical is set in a paging context."
+     }
+    ]
+   },
+   {
+    "section": "memory-loading",
+    "sub": null,
+    "videos": [
+     {
+      "id": "lWVQsld8hMI",
+      "title": "Dynamic Loading, Linking & Overlay",
+      "channel": "TutorialsPoint",
+      "duration": "8:26",
+      "kind": "topic",
+      "note": "Also covers linking and overlays (overlays are extra)."
+     }
+    ]
+   },
+   {
+    "section": "memory-linking",
+    "sub": null,
+    "videos": [
+     {
+      "id": "lWVQsld8hMI",
+      "title": "Dynamic Loading, Linking & Overlay",
+      "channel": "TutorialsPoint",
+      "duration": "8:26",
+      "kind": "topic",
+      "note": "Same video as dynamic loading. Shared code vs private data is in your notes."
+     }
+    ]
+   },
+   {
+    "section": "memory-swapping",
+    "sub": null,
+    "videos": [
+     {
+      "id": "Qt49Hzh_TDc",
+      "title": "Memory Swapping | OS | Lec-18 | Bhanu Priya",
+      "channel": "Education 4u",
+      "duration": "6:45",
+      "kind": "topic",
+      "note": "Whole-process swapping, not page replacement (that's Unit 4)."
+     }
+    ]
+   },
+   {
+    "section": "memory-contiguous",
+    "sub": "Fixed and variable partitions",
+    "videos": [
+     {
+      "id": "FrTttJLN7Kw",
+      "title": "L-5.2: Memory management  Techniques | Contiguous and non-Contiguous | Operating System",
+      "channel": "Gate Smashers",
+      "duration": "11:45",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "bK-VhQA512c",
+      "title": "L-5.3: Internal Fragmentation | Fixed  size Partitioning | Memory management | Operating System",
+      "channel": "Gate Smashers",
+      "duration": "18:53",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "JdPmsrYqRDY",
+      "title": "L-5.4: Variable size Partitioning |  Memory management | Operating System",
+      "channel": "Gate Smashers",
+      "duration": "15:11",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "memory-contiguous",
+    "sub": "Choosing a hole",
+    "videos": [
+     {
+      "id": "N3rG_1CEQkQ",
+      "title": "L-5.5: First Fit, Next Fit, Best Fit, Worst fit Memory Allocation | Memory Management | OS",
+      "channel": "Gate Smashers",
+      "duration": "16:22",
+      "kind": "numerical",
+      "note": "Also covers next fit."
+     },
+     {
+      "id": "W7wDlABjCQI",
+      "title": "L-5.6: GATE Question Solved on First Fit,Best Fit and Worst fit Memory Allocation | Operating System",
+      "channel": "Gate Smashers",
+      "duration": "14:02",
+      "kind": "numerical",
+      "note": "Extra GATE practice with its own numbers."
+     }
+    ]
+   },
+   {
+    "section": "memory-contiguous",
+    "sub": "Internal versus external fragmentation",
+    "videos": [
+     {
+      "id": "ALahNOwrTvg",
+      "title": "Fragmentation | Internal & External | OS | Lec-17 | Bhanu Priya",
+      "channel": "Education 4u",
+      "duration": "16:03",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "memory-contiguous",
+    "sub": null,
+    "videos": [
+     {
+      "id": "uVzaPlD69Y4",
+      "title": "Operating System 05 : Memory Management & Paging | CS & IT | GATE 2026 Crash Course",
+      "channel": "GATE Wallah CSE & DA",
+      "duration": "1:22:44",
+      "kind": "topic",
+      "note": "Long GATE Wallah session with no chapter marks; also covers paging."
+     }
+    ]
+   },
+   {
+    "section": "memory-paging",
+    "sub": "Splitting and translating an address",
+    "videos": [
+     {
+      "id": "6c-mOFZwP_8",
+      "title": "L-5.9: What is Paging | Memory management |  Operating System",
+      "channel": "Gate Smashers",
+      "duration": "25:53",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "L80DakYu4uw",
+      "title": "L-5.11: Question Explanation on Paging | Memory Management | Operating System",
+      "channel": "Gate Smashers",
+      "duration": "13:52",
+      "kind": "numerical",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "memory-paging",
+    "sub": "Page-table storage and hardware support",
+    "videos": [
+     {
+      "id": "JyPMJnnkNmQ",
+      "title": "L-5.12: Page Table Entries | Format of Page Table | Operating System",
+      "channel": "Gate Smashers",
+      "duration": "10:38",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "memory-paging",
+    "sub": "The translation look-aside buffer (TLB)",
+    "videos": [
+     {
+      "id": "Z2T2vnyZl0o",
+      "title": "L-5.20: Translation Lookaside Buffer(TLB) in Operating System in Hindi",
+      "channel": "Gate Smashers",
+      "duration": "12:23",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "Z4vzWxCcDCY",
+      "title": "L-5.21: Numerical on Translation Lookaside Buffer (TLB) | Operating System",
+      "channel": "Gate Smashers",
+      "duration": "4:31",
+      "kind": "numerical",
+      "note": "Check whether a question charges TLB time on both hit and miss."
+     }
+    ]
+   },
+   {
+    "section": "memory-paging",
+    "sub": "Structure of the page table",
+    "videos": [
+     {
+      "id": "PiEq1CoP0ds",
+      "title": "L-5.13: 2-Level Paging in Operating System | Multilevel Paging",
+      "channel": "Gate Smashers",
+      "duration": "15:45",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "NyWcVoKjDu4",
+      "title": "Hashed Page Table in operating system |  Memory Management | Operating System | Hashed Paging",
+      "channel": "Sudhakar Atchala",
+      "duration": "7:27",
+      "kind": "topic",
+      "note": ""
+     },
+     {
+      "id": "spApKfUa8BI",
+      "title": "L-5.14: Inverted paging | Memory Management | Operating System",
+      "channel": "Gate Smashers",
+      "duration": "10:35",
+      "kind": "topic",
+      "note": ""
+     }
+    ]
+   },
+   {
+    "section": "memory-paging",
+    "sub": null,
+    "videos": [
+     {
+      "id": "uVzaPlD69Y4",
+      "title": "Operating System 05 : Memory Management & Paging | CS & IT | GATE 2026 Crash Course",
+      "channel": "GATE Wallah CSE & DA",
+      "duration": "1:22:44",
+      "kind": "topic",
+      "note": "Same long session as contiguous allocation; no chapter marks."
+     }
+    ]
+   },
+   {
+    "section": "memory-segmentation",
+    "sub": null,
+    "videos": [
+     {
+      "id": "dz9Tk6KCMlQ",
+      "title": "L-5.17: Segmentation Vs Paging | Segmentation Working | Operating system",
+      "channel": "Gate Smashers",
+      "duration": "16:30",
+      "kind": "topic",
+      "note": "Your notes' check is offset < limit."
+     }
+    ]
+   }
+  ]
+ }
+}
