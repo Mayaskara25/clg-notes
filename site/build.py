@@ -147,6 +147,8 @@ def unit_videos(name, c, entries):
                          v.get("kind", "topic"), v.get("note", ""), int(v.get("start") or 0)])
         if vids:
             out.append({"s": sid, "h": h or "", "v": vids})
+            if x.get("label"):   # optional popup title, e.g. for the cover's revision videos
+                out[-1]["l"] = x["label"]
     return out
 
 

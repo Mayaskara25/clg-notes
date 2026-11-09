@@ -119,13 +119,13 @@ window.ASKAI_CTX={code:"{{CODE_JS}}",course:"{{COURSE_JS}}",courseCode:"{{COURSE
   function mk(){var b=document.createElement('button');b.type='button';b.className='askai-btn';
     b.setAttribute('aria-haspopup','dialog');b.setAttribute('aria-expanded','false');
     b.title='Ask an AI to explain this part a different way';b.textContent='✦ Ask AI';return b;}
-  function vb(i,n){var b=mk();b.classList.add('vid-btn');b.dataset.vid=i;
-    b.title='Short YouTube videos on this part';b.textContent='\u25B6 Videos '+n;return b;}
+  function vb(i,n,rev){var b=mk();b.classList.add('vid-btn');b.dataset.vid=i;
+    b.title=rev?'Long revision videos for the whole unit':'Short YouTube videos on this part';b.textContent='\u25B6 '+(rev?'Revision videos ':'Videos ')+n;return b;}
   // Videos buttons first, so they sit before Ask AI; headings are matched by their text
   (window.VIDEOS||[]).forEach(function(x,i){var s=document.getElementById(x.s);if(!s)return;var at=null;
-    if(!x.h)at=s.querySelector('.section-head');
+    if(!x.h)at=s.querySelector('.section-head')||s.querySelector('.meta');
     else [].forEach.call(s.querySelectorAll('h2'),function(h){if(!at&&h.textContent.replace(/\s+/g,' ').trim()===x.h)at=h;});
-    if(at)at.appendChild(vb(i,x.v.length));});
+    if(at)at.appendChild(vb(i,x.v.length,s.id==='index'));});
   [].forEach.call(document.querySelectorAll('section.section[id]'),function(s){
     var tag=s.querySelector('.section-head .tag'),t=tag?tag.textContent.trim():'';
     if(/MAP/i.test(t)||s.id==='index')return;

@@ -297,7 +297,7 @@
     var x = (window.VIDEOS || [])[+btn.dataset.vid]; if (!x) return;
     lastBtn = btn; btn.setAttribute('aria-expanded', 'true');
     var sec = document.getElementById(x.s);
-    current = {anchor: x.s, label: x.h || (sec ? sectionLabel(sec) : x.s)};
+    current = {anchor: x.s, label: x.l || x.h || (sec ? sectionLabel(sec) : x.s)};
     menu = document.createElement('div'); menu.className = 'aa-menu aa-vid'; menu.setAttribute('role', 'dialog'); menu.setAttribute('aria-label', 'Videos on this part');
     var h = '<p class="aa-h">Videos on</p><p class="aa-t">' + esc(current.label) + '</p>';
     x.v.forEach(function (v) {
