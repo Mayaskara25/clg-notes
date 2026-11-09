@@ -21,7 +21,7 @@
       "source": "Operating Systems - Unit 2 - Exam Notes.html",
       "title": "CPU Scheduling & Synchronization",
       "topics": "FCFS, SJF, SRTF, round robin, priority scheduling, real-time scheduling, Peterson's solution, synchronization hardware, semaphores, classic synchronization problems",
-      "updated": "2026-11-07"
+      "updated": "2026-11-09"
     },
     {
       "n": 3,
@@ -32,6 +32,13 @@
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-09",
+      "units": [
+        2
+      ],
+      "text": "Unit 2 synchronization (2.8–2.15) aligned to the faculty's updated slides: data-access vs control synchronization, disabling interrupts, bounded-waiting test_and_set algorithm, unbounded vs bounded buffers, first/second readers–writers problems, slide variable names (rw_mutex, read_count) and code."
+    },
     {
       "date": "2026-11-07",
       "units": [
