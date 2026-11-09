@@ -35,6 +35,13 @@
     {
       "date": "2026-11-09",
       "units": [
+        2
+      ],
+      "text": "Six new worked examples from the CIE-2 solved question bank: fractional-arrival FCFS/SJF/SRTF, priority with an SRTF tie-break, RMS vs EDF above the RMS bound, a combined SRTF/priority/RR set with response time, two GATE-style quick numericals, and two-semaphore lock ordering. Indexed in the question bank."
+    },
+    {
+      "date": "2026-11-09",
+      "units": [
         2,
         3
       ],
