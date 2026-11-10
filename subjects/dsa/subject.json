@@ -58,6 +58,14 @@
     {
       "date": "2026-11-10",
       "units": [
+        3,
+        4
+      ],
+      "text": "Removed citation text that duplicated the source chips."
+    },
+    {
+      "date": "2026-11-10",
+      "units": [
         1,
         2,
         3,

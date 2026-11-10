@@ -226,7 +226,7 @@ Demand paging, replacement algorithms, allocation of frames as a virtual-memory 
 <tr><td><strong>Base register</strong></td><td>The smallest legal physical memory address of the process</td></tr>
 <tr><td><strong>Limit register</strong></td><td>The size of the legal range</td></tr></table>
 <p>The CPU hardware <strong>compares every address generated in user mode</strong> with these registers. A legal address satisfies <code>base ≤ address &lt; base + limit</code>. Any attempt by a user-mode program to access operating-system memory or another user’s memory results in a <strong>trap</strong> to the operating system, which treats it as a fatal error. The base and limit registers can be loaded <strong>only by the operating system</strong>, using a special privileged instruction. User programs therefore cannot change them.</p>
-<div class="qbox" id="memory-ex-base-limit"><div class="qmeta"><span class="qsrc">Faculty slides, Unit III Main Memory (2026), base/limit figure<cite class="src" data-src="D4"></cite></span><span class="marks">worked example</span></div>
+<div class="qbox" id="memory-ex-base-limit"><div class="qmeta"><span class="qsrc">base/limit figure<cite class="src" data-src="D4"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">A process has base register 300040 and limit register 120900. Which physical addresses may it access? Are 300040, 420939 and 420940 legal?</div>
 <div class="formula-block">Legal range: 300040 ≤ address &lt; 300040 + 120900 = <span class="c1">420940</span>
 300040 → legal (the base itself)
@@ -265,7 +265,7 @@ Demand paging, replacement algorithms, allocation of frames as a virtual-memory 
 <div class="formula-block">First placement: 74000 + 14 = <span class="c1">74014</span>
 New placement:   90000 + 14 = <span class="c1">90014</span></div>
 <p>The relative offset stays 14. With compile-time absolute code, regenerate the addresses by recompilation. With load-time binding, reload and relocate the image. With execution-time binding, a logical reference to offset 14 can stay unchanged while the hardware mapping is changed to the new base. The numerical addition is the same; the time and mechanism of the addition differ.</p></div>
-<p class="source-note">Sources: Faculty slides, Unit III Main Memory (2026), pp.4–13; Silberschatz et al., ninth edition, §8.1.1–8.1.2, printed pp.351–355 (local PDF pp.375–379). The base/limit numbers are the textbook’s Fig.8.1 values.<cite class="src" data-src="B1" data-p="§8.1.1-8.1.2"></cite><cite class="src" data-src="D4" data-p="4-13"></cite></p>
+<p class="source-note">Sources: Silberschatz et al., ninth edition, §8.1.1–8.1.2, printed pp.351–355 (local PDF pp.375–379). The base/limit numbers are the textbook’s Fig.8.1 values.<cite class="src" data-src="B1" data-p="§8.1.1-8.1.2"></cite><cite class="src" data-src="D4" data-p="4-13"></cite></p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="memory-addresses" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">3.2</span><h1>Logical versus physical addresses</h1></div>
@@ -296,7 +296,7 @@ Book §8.1.1 checks an already-physical address against <code>base ≤ address &
 <div class="qtext">The relocation base is 14000 and the limit is 1000 bytes. Translate offsets 0, 346, 999 and 1000. What happens to offset 346 if the base changes to 20000?</div>
 <table><tr><th>Logical offset</th><th>Check</th><th>Physical result</th></tr><tr><td>0</td><td>0 &lt; 1000</td><td>14000 + 0 = 14000</td></tr><tr><td>346</td><td>346 &lt; 1000</td><td>14000 + 346 = 14346</td></tr><tr><td>999</td><td>999 &lt; 1000</td><td>14000 + 999 = 14999</td></tr><tr><td>1000</td><td>1000 is not smaller than 1000</td><td>Trap; do not perform the memory access</td></tr></table>
 <p>The legal physical range is 14000–14999 inclusive. After relocation, the unchanged logical offset 346 maps to <strong>20000 + 346 = 20346</strong>. The program does not need to replace this logical pointer.</p></div>
-<p class="source-note">Sources: Faculty slides, Unit III Main Memory (2026), pp.14–20; §8.1.3, printed pp.355–357 (PDF pp.379–381); §8.3.1 and Fig.8.6, printed p.361 (PDF p.385).<cite class="src" data-src="B1" data-p="§8.1.3"></cite><cite class="src" data-src="B1" data-p="§8.3.1"></cite><cite class="src" data-src="D4" data-p="14-20"></cite></p>
+<p class="source-note">Sources: §8.1.3, printed pp.355–357 (PDF pp.379–381); §8.3.1 and Fig.8.6, printed p.361 (PDF p.385).<cite class="src" data-src="B1" data-p="§8.1.3"></cite><cite class="src" data-src="B1" data-p="§8.3.1"></cite><cite class="src" data-src="D4" data-p="14-20"></cite></p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="memory-loading" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">3.3</span><h1>Dynamic loading</h1></div>
@@ -328,7 +328,7 @@ Book §8.1.1 checks an already-physical address against <code>base ≤ address &
 If the question is about an infrequently called routine taking memory unnecessarily, explain dynamic loading. If it is about resolving references to a library at execution time, explain dynamic linking. If it is about transferring individual pages on an access to a nonresident page, that is demand paging, a Unit IV topic.</div>
 <h2>A conceptual first-call walkthrough</h2>
 <p>Suppose an application’s recovery routine is kept on disk. Normal requests never enter it, so it stays unloaded. On the first error that needs recovery, the caller discovers that the routine has no resident entry point, requests its loading and relocation, and records its entry address. Control then passes to recovery. A later error can use the recorded address while the routine remains loaded. This walkthrough explains the sequence without assuming a particular operating-system API.</p>
-<p class="source-note">Sources: Faculty slides, Unit III Main Memory (2026), p.21; §8.1.4, printed p.357 (local PDF p.381). The walkthrough is a constructed illustration of the textbook mechanism.<cite class="src" data-src="B1" data-p="§8.1.4"></cite><cite class="src" data-src="D4" data-p="21"></cite></p>
+<p class="source-note">Sources: §8.1.4, printed p.357 (local PDF p.381). The walkthrough is a constructed illustration of the textbook mechanism.<cite class="src" data-src="B1" data-p="§8.1.4"></cite><cite class="src" data-src="D4" data-p="21"></cite></p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="memory-linking" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">3.4</span><h1>Dynamic linking and shared libraries</h1></div>
@@ -365,7 +365,7 @@ Dynamic loading needs <strong>no special OS support</strong>. Unlike dynamic loa
 <tr><td>Performed during compilation/linking of the source program.</td><td>Run-time linking.</td></tr>
 <tr><td>Every program generated must contain copies of exactly the same common system library functions.</td><td>Memory requirements of the program are reduced; one library copy can be shared.</td></tr>
 <tr><td>A library change requires recompilation (relinking) of every program.</td><td>Changes can be made without recompilation: programs pick up a compatible updated library.</td></tr></table>
-<div class="qbox" id="memory-ex-sharing"><div class="qmeta"><span class="qsrc">Book §8.5.4, printed pp.376–377<cite class="src" data-src="B1" data-p="§8.5.4"></cite></span><span class="marks">worked example</span></div>
+<div class="qbox" id="memory-ex-sharing"><div class="qmeta"><span class="qsrc">Book, printed pp.376–377<cite class="src" data-src="B1" data-p="§8.5.4"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">Forty users run an editor containing 150 units of sharable code and 50 units of private data per user. Compare separate code copies with one shared code copy. Use the same memory unit throughout.</div>
 <div class="formula-block">Separate copies = 40 × (150 + 50) = <span class="c1">8000 units</span>
 Shared code     = 150 + (40 × 50) = <span class="c1">2150 units</span>
@@ -376,7 +376,7 @@ Memory saved    = 8000 − 2150     = <span class="c1">5850 units</span></div>
 <div class="formula-block">No sharing:          20 × (50 + 5) = <span class="c1">1100 kB</span>
 Reentrant (shared):  50 + 20 × 5   = <span class="c1">150 kB</span>   <span class="cm">(saves 950 kB)</span></div>
 <p>Give both figures. The question points at shared, reentrant code: one read-only copy of the compiler is mapped into every process, and only the data is private.</p></div>
-<p class="source-note">Sources: Faculty slides, Unit III Main Memory (2026), pp.22–24; §8.1.5, printed pp.357–358 (PDF pp.381–382); shared-code explanation in §8.5.4, pp.376–377 (PDF pp.400–401).<cite class="src" data-src="B1" data-p="§8.1.5"></cite><cite class="src" data-src="B1" data-p="§8.5.4"></cite><cite class="src" data-src="D4" data-p="22-24"></cite></p>
+<p class="source-note">Sources: §8.1.5, printed pp.357–358 (PDF pp.381–382); shared-code explanation in §8.5.4, pp.376–377 (PDF pp.400–401).<cite class="src" data-src="B1" data-p="§8.1.5"></cite><cite class="src" data-src="B1" data-p="§8.5.4"></cite><cite class="src" data-src="D4" data-p="22-24"></cite></p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="memory-swapping" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">3.5</span><h1>Swapping</h1></div>
@@ -398,14 +398,14 @@ Reentrant (shared):  50 + 20 × 5   = <span class="c1">150 kB</span>   <span cla
 <p>A process to be swapped must be <strong>completely idle</strong>. Pending I/O creates another constraint. A device may still be transferring data into a user buffer at a physical address. If the process is swapped out and another process occupies that space, an unchecked transfer could corrupt the replacement process. The textbook gives two remedies: avoid swapping a process with such pending I/O, or perform I/O through operating-system buffers and copy the data to user space only when that space is safely available. Buffering adds copying overhead. Merely saying “the process is waiting” is therefore insufficient to establish that swapping is safe.</p>
 <h2>Cost model</h2>
 <p>The main cost is transferring the image. For an image of size <code>S</code> and a sustained transfer rate <code>R</code>, the transfer-only time in one direction is <code>S/R</code>. Exchanging an outgoing and incoming process requires both transfer times. Seek time, device latency, queueing and execution-state handling add further costs if included in the problem. Use consistent size units and convert seconds to milliseconds only after division.</p>
-<div class="qbox" id="memory-ex-swapping"><div class="qmeta"><span class="qsrc">Book §8.2.1, printed p.359; corrected unit conversion<cite class="src" data-src="B1" data-p="§8.2.1"></cite></span><span class="marks">worked example</span></div>
+<div class="qbox" id="memory-ex-swapping"><div class="qmeta"><span class="qsrc">Book, printed p.359; corrected unit conversion<cite class="src" data-src="B1" data-p="§8.2.1"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">An outgoing and an incoming process each have a 100 MB image. Backing-store transfer speed is 50 MB/s. Ignoring device latency and other overhead, find the exchange time.</div>
 <div class="formula-block">One direction = 100 MB ÷ 50 MB/s = <span class="c1">2 s = 2000 ms</span>
 Out + in      = 2 s + 2 s        = <span class="c1">4 s = 4000 ms</span></div>
 <p>This is the image-transfer component of the switch, not an ordinary register-only context-switch time. If the images have different sizes or the read and write rates differ, calculate each direction separately before adding.</p></div>
 <div class="callout clarify"><span class="label">Correcting a numerical typo in the source</span>
 The textbook (printed p.359, PDF p.383) and the faculty slide (p.28) both compute 100 MB ÷ 50 MB/s, then call the one-way time “200 milliseconds.” That conversion is wrong: 2 seconds is <strong>2000 milliseconds</strong>. Their total of about 4000 ms for both directions is consistent with the corrected value.</div>
-<div class="qbox" id="memory-ex-swap-size"><div class="qmeta"><span class="qsrc">Faculty slides, Unit III Main Memory (2026), p.29<cite class="src" data-src="D4" data-p="29"></cite></span><span class="marks">worked example</span></div>
+<div class="qbox" id="memory-ex-swap-size"><div class="qmeta"><span class="qsrc"><cite class="src" data-src="D4" data-p="29"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">A system has 4 GB of main memory and the resident operating system takes 1 GB. What is the largest user process? Compare the time to swap out a 100 MB process with a 3 GB process at 50 MB/s.</div>
 <div class="formula-block">Largest user process = 4 GB − 1 GB = <span class="c1">3 GB</span>
 100 MB ÷ 50 MB/s = <span class="c1">2 s</span>
@@ -422,7 +422,7 @@ The textbook (printed p.359, PDF p.383) and the faculty slide (p.28) both comput
 <tr><td><strong>Apple iOS</strong></td><td>Asks applications to <strong>voluntarily relinquish</strong> allocated memory. Read-only data such as code can be removed and reloaded from flash later; an app that fails to free enough memory may be terminated.</td></tr>
 <tr><td><strong>Android</strong></td><td>May <strong>terminate a process</strong> if insufficient free memory is available, first writing its application state to flash so it can be restarted quickly.</td></tr></table>
 <p>The whole-process model here explains the syllabus term. It should be distinguished from transferring selected pages of a process, which is developed with virtual memory in Unit IV.</p>
-<p class="source-note">Sources: Faculty slides, Unit III Main Memory (2026), pp.25–32; §8.2, printed pp.358–360 (local PDF pp.382–384).<cite class="src" data-src="B1" data-p="§8.2"></cite><cite class="src" data-src="D4" data-p="25-32"></cite></p>
+<p class="source-note">Sources: §8.2, printed pp.358–360 (local PDF pp.382–384).<cite class="src" data-src="B1" data-p="§8.2"></cite><cite class="src" data-src="D4" data-p="25-32"></cite></p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="memory-contiguous" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">3.6</span><h1>Contiguous memory allocation</h1></div>
@@ -439,7 +439,7 @@ The textbook (printed p.359, PDF p.383) and the faculty slide (p.28) both comput
 <tr><td><strong>Best fit</strong></td><td>Use the smallest hole that is large enough.</td><td>Produces the <strong>smallest leftover hole</strong>, but can create tiny unusable holes. Must search the entire list unless it is ordered by size.</td></tr>
 <tr><td><strong>Worst fit</strong></td><td>Use the largest available hole.</td><td>Produces the <strong>largest leftover hole</strong>, which may be more useful than best fit’s small leftover. Must also search the entire list unless it is sorted by size, and may consume a large region needed by a future request.</td></tr></table>
 <p>Best fit is a local choice, not a guarantee that the whole workload will fit best. Results depend on the request sizes and order. A numerical must state whether holes are split, whether freed blocks are coalesced, and where first-fit scanning begins. Reusing the remainder of a hole is essential in the variable-partition examples below.</p>
-<div class="qbox" id="memory-ex-fixed-fit"><div class="qmeta"><span class="qsrc">Faculty slides, Unit III Main Memory (2026), pp.40–48 · verified in code<cite class="src" data-src="D4" data-p="40-48"></cite></span><span class="marks">worked example</span></div>
+<div class="qbox" id="memory-ex-fixed-fit"><div class="qmeta"><span class="qsrc">verified in code<cite class="src" data-src="D4" data-p="40-48"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">Fixed-partition placement, as in the faculty slides: each block holds <strong>at most one process</strong>, and the unused part of a block is wasted (it is not split off as a new hole). Blocks B1–B5 are 100, 50, 30, 120 and 35 K. Processes P1–P4 of 40, 10, 30 and 60 K arrive in that order. Apply first fit, best fit and worst fit.</div>
 <table><tr><th>Process</th><th>First fit</th><th>Best fit</th><th>Worst fit</th></tr>
 <tr><td>P1 = 40</td><td>B1 (100) · waste 60</td><td>B2 (50) · waste 10</td><td>B4 (120) · waste 80</td></tr>
@@ -537,7 +537,7 @@ The faculty slide illustrates the rule with 100 MB of memory: 50 MB allocated to
 <tr><td>(a) 12 KB</td><td>14, 19, 13</td><td><strong>14 KB</strong> (2 left)</td><td><strong>13 KB</strong> (1 left)</td><td><strong>19 KB</strong> (7 left)</td></tr>
 <tr><td>(b) 10 KB</td><td>15, 20, 11, 16</td><td><strong>15 KB</strong> (5 left)</td><td><strong>11 KB</strong> (1 left)</td><td><strong>20 KB</strong> (10 left)</td></tr></table>
 <p>Method: discard the blocks that are too small (6 KB in both). First fit takes the first remaining block in list order. Best fit takes the smallest block that fits, and worst fit the largest. The leftover becomes a smaller free hole. The 2019 answer key gives the same choices for (b).</p></div>
-<p class="source-note">Sources: Faculty slides, Unit III Main Memory (2026), pp.33–58; §8.3, printed pp.360–364 (local PDF pp.384–388). Partition-waste numbers are from printed p.363; the hole-splitting sequence and compaction sizes are constructed practice. Fixed-partition placements are recomputed in code.<cite class="src" data-src="B1" data-p="§8.3"></cite><cite class="src" data-src="D4" data-p="33-58"></cite></p>
+<p class="source-note">Sources: §8.3, printed pp.360–364 (local PDF pp.384–388). Partition-waste numbers are from printed p.363; the hole-splitting sequence and compaction sizes are constructed practice. Fixed-partition placements are recomputed in code.<cite class="src" data-src="B1" data-p="§8.3"></cite><cite class="src" data-src="D4" data-p="33-58"></cite></p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="memory-paging" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">3.7</span><h1>Paging</h1></div>
@@ -583,7 +583,7 @@ page number: m − n high bits; offset: n low bits</div>
 <text x="350" y="337" fill="#5B6169">Frame labels show physical byte ranges; page labels show logical ranges.</text></g>
 <g stroke="#1D4E89" stroke-width="1.7" marker-end="url(#m-toy)"><path d="M180 195 L273 195" fill="none"/><path d="M405 195 L447 195 L447 125 L508 125" fill="none"/></g></svg><div class="cap">Fig 9. The verified textbook page table; the highlighted path translates logical address 13.</div></div>
 <p>The toy page size is deliberately tiny to expose the arithmetic. It is not a claim about a particular machine’s hardware page size.</p></div>
-<div class="qbox" id="memory-ex-paging-model"><div class="qmeta"><span class="qsrc">Faculty slides, Unit III Main Memory (2026), p.70 paging model · verified in code<cite class="src" data-src="D4" data-p="70"></cite></span><span class="marks">worked example</span></div>
+<div class="qbox" id="memory-ex-paging-model"><div class="qmeta"><span class="qsrc">paging model · verified in code<cite class="src" data-src="D4" data-p="70"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">Page size 4 bytes, physical memory 32 bytes (8 frames). The page table maps pages 0, 1, 2, 3 to frames 1, 4, 3, 7. Translate logical addresses 0, 5, 10 and 15.</div>
 <table><tr><th>LA</th><th>p = LA ÷ 4</th><th>d = LA mod 4</th><th>Frame f</th><th>PA = f × 4 + d</th></tr>
 <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>4</td></tr>
@@ -594,7 +594,7 @@ page number: m − n high bits; offset: n low bits</div>
 <h2>Allocation and internal fragmentation</h2>
 <p>For basic paging, the operating system counts the process’s required pages and obtains that many free frames. The frames need not be adjacent. A <strong>frame table</strong> tracks physical frames and their owners; a <strong>page table</strong> tracks the logical-page mappings for a process. The dispatcher installs the correct page-table state when switching processes.</p>
 <p>At page granularity, paging eliminates external fragmentation: any free frame can satisfy the need for one page. It can still waste space <em>inside</em> the last allocated frame when the process size is not an exact multiple of the page size. Smaller pages can reduce that waste but require more mapping entries for the same logical range. Larger pages reduce page-table entries but can increase unused space.</p>
-<div class="qbox" id="memory-ex-page-waste"><div class="qmeta"><span class="qsrc">Book §8.5.1, printed p.370<cite class="src" data-src="B1" data-p="§8.5.1"></cite></span><span class="marks">worked example</span></div>
+<div class="qbox" id="memory-ex-page-waste"><div class="qmeta"><span class="qsrc">Book, printed p.370<cite class="src" data-src="B1" data-p="§8.5.1"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">A process requires 72,766 bytes and the page size is 2048 bytes. Find the required frames and internal fragmentation.</div>
 <div class="formula-block">72766 = 35 × 2048 + 1086
 Frames needed = ceil(72766 / 2048) = <span class="c1">36</span>
@@ -639,7 +639,7 @@ TLB_miss_time = TLB_search_time + memory_access_time + memory_access_time
 <div class="formula-block">EAT = h(ε + m) + (1 − h)(ε + 2m)
     = <span class="c1">ε + (2 − h)m</span>
 If TLB lookup overhead is neglected: <span class="c1">EAT = (2 − h)m</span></div>
-<div class="qbox" id="memory-ex-tlb"><div class="qmeta"><span class="qsrc">Book §8.5.2, printed p.374; explicit serial-lookup extension<cite class="src" data-src="B1" data-p="§8.5.2"></cite></span><span class="marks">worked example</span></div>
+<div class="qbox" id="memory-ex-tlb"><div class="qmeta"><span class="qsrc">Book, printed p.374; explicit serial-lookup extension<cite class="src" data-src="B1" data-p="§8.5.2"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">Main-memory access takes 100 ns. Calculate EAT for TLB hit ratios of 80% and 99%, ignoring TLB lookup overhead. Then include a separate serial 10 ns lookup for the 80% case.</div>
 <div class="formula-block">80% hits: 0.80 × 100 + 0.20 × 200 = <span class="c1">120 ns</span>
 99% hits: 0.99 × 100 + 0.01 × 200 = <span class="c1">101 ns</span>
@@ -701,7 +701,7 @@ One inner table fits in one page: 4096 ÷ 4 = 1024 = 2¹⁰ entries → p2 = <sp
 p1           = 20 − 10   = <span class="c1">10 bits</span>
 Logical address = | p1 (10) | p2 (10) | d (12) |</div>
 <p>Only the outer table, plus the inner pages actually in use, need be in memory. This avoids allocating the full 4 MiB linear table.</p></div>
-<div class="qbox" id="memory-ex-frame-bits"><div class="qmeta"><span class="qsrc">Faculty slides, Unit III Main Memory (2026), pp.90–92 · verified in code<cite class="src" data-src="D4" data-p="90-92"></cite></span><span class="marks">worked example</span></div>
+<div class="qbox" id="memory-ex-frame-bits"><div class="qmeta"><span class="qsrc">verified in code<cite class="src" data-src="D4" data-p="90-92"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">Physical memory is 512 MB and each frame is 4 KB. How many bits form the physical address, the frame number and the offset? How many frames are there?</div>
 <div class="formula-block">512 MB = 2²⁹ bytes → physical address = <span class="c1">29 bits</span>
 4 KB   = 2¹² bytes → offset d         = <span class="c1">12 bits</span>
@@ -782,7 +782,7 @@ Physical address  = | frame number (17) | offset d (12) |</div></div>
 <tr><td>Main cost</td><td>Extra memory accesses per level</td><td>Chain search on collisions</td><td>Longer search; sharing is difficult</td></tr></table>
 <div class="callout key"><span class="label">Long-answer structure</span>
 Define pages and frames, draw translation, derive page/offset fields, work one address, explain the TLB, then discuss protection, sharing, fragmentation and the page-table structures. Keep the translation mechanism separate from Unit IV’s decisions about loading and replacing pages.</div>
-<p class="source-note">Sources: Faculty slides, Unit III Main Memory (2026), pp.64–98; §8.5–8.6, printed pp.367–383 (PDF pp.391–407). The full-table size calculation uses §8.6’s opening example, printed p.378 (PDF p.402).<cite class="src" data-src="B1" data-p="§8.5-8.6"></cite><cite class="src" data-src="B1" data-p="§8.6"></cite><cite class="src" data-src="D4" data-p="64-98"></cite></p>
+<p class="source-note">Sources: §8.5–8.6, printed pp.367–383 (PDF pp.391–407). The full-table size calculation uses §8.6’s opening example, printed p.378 (PDF p.402).<cite class="src" data-src="B1" data-p="§8.5-8.6"></cite><cite class="src" data-src="B1" data-p="§8.6"></cite><cite class="src" data-src="D4" data-p="64-98"></cite></p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="memory-segmentation" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">3.8</span><h1>Segmentation</h1></div>
@@ -834,7 +834,7 @@ Otherwise: trap to the operating system</div>
 The faculty slide’s comparison says paging “divides physical memory into blocks (pages).” More precisely, paging divides <strong>logical</strong> memory into pages and <strong>physical</strong> memory into equal-sized frames. Use page for the logical unit and frame for the physical unit in an exam answer.</div>
 <div class="callout key"><span class="label">Choose the model from the address format</span>
 If given a page size and a linear address, divide into page number and remainder. If given a segment number, offset, base and limit, validate the segment and its bounds before adding. For a contiguous process-relative address, validate against the process limit and add the single relocation base.</div>
-<p class="source-note">Sources: Faculty slides, Unit III Main Memory (2026), pp.59–63 and 73; §8.4, printed pp.364–367 (PDF pp.388–391). The segment table is the same in the slides and the textbook. This section follows paging because that is the syllabus order.<cite class="src" data-src="B1" data-p="§8.4"></cite><cite class="src" data-src="D4" data-p="59-63"></cite></p>
+<p class="source-note">Sources: §8.4, printed pp.364–367 (PDF pp.388–391). The segment table is the same in the slides and the textbook. This section follows paging because that is the syllabus order.<cite class="src" data-src="B1" data-p="§8.4"></cite><cite class="src" data-src="D4" data-p="59-63"></cite><cite class="src" data-src="D4" data-p="73"></cite></p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="memory-solved" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">SOLVED</span><h1>Solved numericals</h1></div>

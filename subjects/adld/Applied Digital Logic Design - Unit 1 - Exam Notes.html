@@ -351,7 +351,7 @@ body{transition:background-color .2s,color .2s}
   <p>Dr K.B. Ramesh's notes<cite class="src" data-src="D6"></cite> open the unit by splitting binary arithmetic into two kinds. <strong>Fixed-point</strong> arithmetic keeps the radix point in a fixed position of the computer word; for integers it is assumed to be just right of the least significant digit. <strong>Floating-point</strong> arithmetic is "an automatic way to keep track of the radix point": the point's position is variable (it "floats"), which lets a computer represent very large and very small numbers. Most processors follow the IEEE 754 standard for floating point (see <a href="#floating-point">§1.7</a>). For both kinds, the unit studies (1) how numbers are represented in binary and (2) the algorithms for add, subtract, multiply and divide.</p>
   <p><strong>Sign extension.</strong> If a number has fewer bits than the register or memory location that holds it, the vacant MSBs are filled with copies of the sign bit: <strong>0s for a positive number (S = 0), 1s for a negative number (S = 1)</strong>. This keeps both the sign and the value unchanged.</p>
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;1<cite class="src" data-src="D6" data-p="1"></cite></span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc"><cite class="src" data-src="D6" data-p="1"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Show how the 5-bit signed numbers a) 00111, b) 11001, c) 00000 are stored in 8-bit registers.</div>
     <table>
       <tr><th>5-bit</th><th>Value</th><th>8-bit (sign-extended)</th></tr>
@@ -440,7 +440,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, pp.&nbsp;17–21, 30–31: every example, recomputed<cite class="src" data-src="D6" data-p="17-21"></cite><cite class="src" data-src="D6" data-p="30-31"></cite></span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">every example, recomputed<cite class="src" data-src="D6" data-p="17-21"></cite><cite class="src" data-src="D6" data-p="30-31"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Signed 2's-complement addition and subtraction: the teacher's examples.</div>
     <table>
       <tr><th>Problem</th><th>Bits</th><th>Added (subtrahend already 2's-complemented)</th><th>Result</th><th>Overflow?</th></tr>
@@ -593,7 +593,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, pp.&nbsp;25–27<cite class="src" data-src="D6" data-p="25-27"></cite></span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc"><cite class="src" data-src="D6" data-p="25-27"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Booth's algorithm, 4-bit: 7 × 3, 7 × (−3), (−5) × 4.</div>
     <div class="ans-label">7 × 3 (p.&nbsp;25): M = <span class="mono">0111</span>, Q = <span class="mono">0011</span></div>
     <table>
@@ -652,7 +652,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">unit deck — Problem 4(a)<cite class="src" data-src="D1"></cite></span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">Problem 4(a)<cite class="src" data-src="D1"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Multiply A = 010111 (2's complement) and B = 110110 using Booth's algorithm (6-bit).</div>
     <div class="ans-label">Answer</div>
     <p>M = 23, Q = −10 → product bits <span class="mono">1100011010</span> = <strong>−230</strong> = 23 × (−10). ✓ (five further parts of this problem — (b)–(f) — are tabulated in <a href="#arithmetic-solved">Solved Numericals</a>.)</p>
@@ -799,7 +799,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">unit deck — Problem 6<cite class="src" data-src="D2"></cite></span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">Problem 6<cite class="src" data-src="D2"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Given A = 10101 (dividend Q, decimal 21) and B = 00100 (divisor M, decimal 4), perform A/B using restoring division.</div>
     <div class="ans-label">Solution — full cycle trace</div>
     <table>
@@ -815,10 +815,10 @@ body{transition:background-color .2s,color .2s}
   </div>
 
 <h3>The teacher's layout for restoring division</h3>
-  <p>Dr K.B. Ramesh's notes<cite class="src" data-src="D6"></cite> (pp.&nbsp;28, 43–47) put the <strong>divisor in M</strong>, the <strong>dividend in Q</strong>, and clear A to 0. At each step, A and Q together are shifted left 1 bit and M is subtracted from A. If A becomes negative, the teacher writes <em>Restore</em>: A gets its old value back and Q₀ stays 0. Otherwise the teacher writes <em>Set Q₀ = 1</em>. After n steps the quotient is in Q and the remainder in A. Each shift, subtract and restore/set gets its own row.</p>
+  <p>Dr K.B. Ramesh's notes<cite class="src" data-src="D6" data-p="28"></cite><cite class="src" data-src="D6" data-p="43-47"></cite> put the <strong>divisor in M</strong>, the <strong>dividend in Q</strong>, and clear A to 0. At each step, A and Q together are shifted left 1 bit and M is subtracted from A. If A becomes negative, the teacher writes <em>Restore</em>: A gets its old value back and Q₀ stays 0. Otherwise the teacher writes <em>Set Q₀ = 1</em>. After n steps the quotient is in Q and the remainder in A. Each shift, subtract and restore/set gets its own row.</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;28<cite class="src" data-src="D6" data-p="28"></cite></span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc"><cite class="src" data-src="D6" data-p="28"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Divide 7 by 3 using restoring division (4-bit).</div>
     <table>
       <tr><th>A</th><th>Q</th><th>Operation (M = 0011)</th></tr>
@@ -1041,7 +1041,7 @@ Mantissa : <span class="c2">11011011000000000000000</span></div>
   </table>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, pp.&nbsp;8–14: every final pattern checked against <code>struct.pack</code><cite class="src" data-src="D6" data-p="8-14"></cite></span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">every final pattern checked against <code>struct.pack</code><cite class="src" data-src="D6" data-p="8-14"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Represent 1259.125, −307.1875 and 0.0625 in single and double precision.</div>
     <p>The teacher uses four steps: <strong>Step 1</strong> convert to binary, <strong>Step 2</strong> normalise to 1.xxx × 2<sup>e</sup>, <strong>Step 3</strong> write the sign S and the biased exponent E′, <strong>Step 4</strong> assemble S | E′ | M (mantissa padded with 0s on the right).</p>
     <table>
@@ -1082,7 +1082,7 @@ Full word: 1 10000011 00101010000000000000000  = 0xC1950000</div>
   <p class="section-sub">Part 1 — Arithmetic · every value below re-computed and verified in code</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">unit deck — Problem 4(b)–(f), Booth's algorithm, 6-bit<cite class="src" data-src="D1"></cite></span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">Problem 4(b)–(f), Booth's algorithm, 6-bit<cite class="src" data-src="D1"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Perform signed multiplication of the following 2's-complement pairs using Booth's algorithm.</div>
     <table>
       <tr><th>Part</th><th>A (M)</th><th>B (Q)</th><th>Decimal</th><th>Product</th></tr>
@@ -1333,7 +1333,7 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">unit deck — majority function<cite class="src" data-src="D2"></cite></span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">majority function<cite class="src" data-src="D2"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Minimise M(a,b,c) = Σm(3,5,6,7) — output 1 whenever at least 2 of the 3 inputs are 1.</div>
     <div class="ans-label">Solution</div>
     <p>Algebraic route: <span class="mono">M = a'bc + ab'c + abc' + abc = bc + ac + ab</span> (each pair of adjacent-in-one-variable minterms merges after replicating <span class="mono">abc</span>). K-map grouping gives the identical 3 pairs directly. Verified: <strong>M = ab + ac + bc</strong>.</p>
@@ -1351,7 +1351,7 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
   <p>Sometimes a certain input combination can <strong>never occur</strong> in the application, so it does not matter whether the function is defined as 0 or 1 there. These entries are marked <strong>X</strong> (or <var>d</var>) in the truth table and K-map. Because we are free to choose either value, an X is included in a group only when doing so makes the group bigger (and hence the term simpler) — otherwise it is left out. This is exactly the <strong>"Incomplete Boolean Expressions"</strong> case named in the syllabus.</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">unit deck — BCD prime-number example<cite class="src" data-src="D2"></cite></span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">BCD prime-number example<cite class="src" data-src="D2"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">A circuit must output 1 for the prime digits (2,3,5,7) of a BCD input, 0 for the other valid digits (0,1,4,6,8,9), and "don't care" for the unused codes 10–15. Minimise.</div>
     <div class="ans-label">Solution</div>
     <p>F = Σm(2,3,5,7) + Σd(10,11,12,13,14,15). Grouping the four minterms with the don't-cares (all six are available to extend groups) gives two 4-cell groups:</p>

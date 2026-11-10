@@ -276,7 +276,7 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 
   </div>
 </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §1.1 — definition prerequisite (PDF p. 28)<cite class="src" data-src="B1" data-p="§1.1"></cite></span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne — definition prerequisite (PDF p. 28)<cite class="src" data-src="B1" data-p="§1.1"></cite></span>.</p>
 <a class="backtotop" href="#index">&uarr; Back to index</a>
 </div>
 </div></section>
@@ -681,7 +681,7 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
     </svg>
     <div class="cap">Fig 6. User-facing services (top half of the services layer) and system-facing services (bottom half), all reached through system calls.</div>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §2.1 — OS services (PDF p. 79)<cite class="src" data-src="B1" data-p="§2.1"></cite></span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne — OS services (PDF p. 79)<cite class="src" data-src="B1" data-p="§2.1"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">&uarr; Back to index</a>
@@ -792,7 +792,7 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
     </ol>
     <p style="margin-top:10px;font-size:13.5px;color:var(--ink-soft)">Every one of the numbered actions above — reading input, opening/creating/reading/writing/closing a file, writing to the screen — is itself a system call or a short sequence of them; this is why "reading and writing files," "creating/deleting files," "process creation," and "sending/receiving network packets" are the standard textbook examples of why programs need system calls at all.</p>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §§2.3–2.4 — calls and categories (PDF p. 86)<cite class="src" data-src="B1" data-p="§2.3-2.4"></cite></span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne — calls and categories (PDF p. 86)<cite class="src" data-src="B1" data-p="§2.3-2.4"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">&uarr; Back to index</a>
@@ -803,7 +803,7 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
   <p class="section-sub">The standard ways of structuring an operating system, followed by iOS and Android as real-world layered/hybrid examples.</p>
 
   <h2>Approaches to designing OS structure</h2>
-  <div class="callout clarify"><span class="label">Source coverage clarified</span><p>The earlier core slide deck did not teach these design approaches in depth. The available CIE-1 Unit 1 handout covers structures on PDF pages 36–38, and Silberschatz §2.7<cite class="src" data-src="B1" data-p="§2.7"></cite> supplies the detailed theory. This is now required Unit I material.</p></div>
+  <div class="callout clarify"><span class="label">Source coverage clarified</span><p>The earlier core slide deck did not teach these design approaches in depth. The available CIE-1 Unit 1 handout covers structures on PDF pages 36–38, and Silberschatz<cite class="src" data-src="B1" data-p="§2.7"></cite> supplies the detailed theory. This is now required Unit I material.</p></div>
   <ul>
     <li><strong>Simple/monolithic structure</strong> — the whole OS runs as one program in kernel mode, with no enforced internal boundaries between components (e.g. original MS-DOS, early UNIX). Fast, since there's no overhead crossing internal boundaries, but hard to maintain or extend safely, since a bug anywhere can corrupt the whole kernel.</li>
     <li><strong>Layered approach</strong> — the OS is broken into a stack of layers, each built only on the services of the layer strictly below it (bottom layer = hardware, top layer = user interface). Easier to design, debug and verify one layer at a time, but layer boundaries add overhead and rigid layering can make some features awkward to implement.</li>
@@ -837,7 +837,7 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
   <p>Apps in iOS are normally restricted to Apple's own frameworks and run natively compiled for the ARM CPU; there is no separate virtual machine.</p>
 
   <div class="callout clarify"><span class="label">Textbook architecture versus the retained diagram</span>
-<p>Silberschatz ninth edition §2.7.5.3<cite class="src" data-src="B1" data-p="§2.7.5.3"></cite>, Fig 2.18, uses the historical stack: applications → application framework → native libraries alongside core libraries/Dalvik → Linux kernel. Fig 7b below retains the ART/HAL variant from the earlier notes. Do not label Dalvik as ART in a textbook-era answer: identify which stack you are drawing, explain each layer, and use your lecturer's convention.</p>
+<p>Silberschatz ninth edition<cite class="src" data-src="B1" data-p="§2.7.5.3"></cite>, Fig 2.18, uses the historical stack: applications → application framework → native libraries alongside core libraries/Dalvik → Linux kernel. Fig 7b below retains the ART/HAL variant from the earlier notes. Do not label Dalvik as ART in a textbook-era answer: identify which stack you are drawing, explain each layer, and use your lecturer's convention.</p>
 <p>The Android project describes ART as the successor to Dalvik and distinguishes the framework, runtime, native services/libraries, HAL and kernel. <a href="https://source.android.com/docs/core/architecture">AOSP architecture</a>; <a href="https://source.android.com/docs/core/runtime">ART and Dalvik</a>.</p></div>
 <h3>Android (Google / Open Handset Alliance)</h3>
   <p>Android is an <strong>open-source</strong> platform from Google and the Open Handset Alliance, so it runs on hardware from many vendors. Its layers, top down:</p>
@@ -903,7 +903,7 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 
   </div>
 </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §2.7; §§2.7.5.2–2.7.5.3 — structures and mobile OSes (PDF p. 102)<cite class="src" data-src="B1" data-p="§2.7"></cite><cite class="src" data-src="B1" data-p="§2.7.5.2-2.7.5.3"></cite></span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne — structures and mobile OSes (PDF p. 102)<cite class="src" data-src="B1" data-p="§2.7"></cite><cite class="src" data-src="B1" data-p="§2.7.5.2-2.7.5.3"></cite></span>.</p>
 <a class="backtotop" href="#index">&uarr; Back to index</a>
 </section>
 
@@ -1013,7 +1013,7 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 
   </div>
 </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §3.1 — process concept (PDF p. 129)<cite class="src" data-src="B1" data-p="§3.1"></cite></span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne — process concept (PDF p. 129)<cite class="src" data-src="B1" data-p="§3.1"></cite></span>.</p>
 <div class="qbox" id="u1-example-02">
     <div class="qmeta"><span class="qsrc">CIE-I Q4a, 2021-22 · Question Bank #3</span><span class="marks">7 marks</span></div>
     <div class="qtext">With a neat diagram, explain the memory map of a process. Given a C program that declares a global variable, a static variable, a local variable, and a heap-allocated variable (via <code>malloc</code>), identify which memory region each is stored in.</div>
@@ -1126,7 +1126,7 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
     <div class="ans-label">Answer</div>
     <p>A running process can be interrupted at any point the OS chooses to reclaim the CPU — most commonly when its time slice (quantum) expires, when a higher-priority process becomes ready, or when an I/O or hardware interrupt occurs — moving it from <em>running</em> back to <em>ready</em> (see the state diagram, Fig 9). This is what distinguishes preemptive scheduling from non-preemptive scheduling, where a process keeps the CPU until it voluntarily yields (blocks for I/O or terminates). <strong>CPU utilization</strong> is the fraction of time the CPU is actively executing a process rather than sitting idle; its goal, shared by both multiprogramming and timesharing, is to keep utilization as close to 100% as possible by always having some ready process available to run whenever the current one blocks or is preempted.</p>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §3.2 — process scheduling (PDF p. 134)<cite class="src" data-src="B1" data-p="§3.2"></cite></span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne — process scheduling (PDF p. 134)<cite class="src" data-src="B1" data-p="§3.2"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">&uarr; Back to index</a>
@@ -1285,7 +1285,7 @@ xxxxxxxx   <span class="c1">// 8 processes total (2³) → 7 NEW child processes
 }</div>
     <p style="font-size:13.5px;color:var(--ink-soft)">The critical detail that separates this from the tracing questions above: each child calls <code>exit(0)</code> immediately after printing, so it never loops back and forks further children of its own — this is exactly why the population here grows <em>linearly</em> (N children, one per loop iteration) rather than <em>exponentially</em> (2<sup>N</sup>, as in the unconditional-fork tracing questions). The near-identical "write a C program to illustrate fork()" question from the other year's paper follows the same fork/if(pid==0)/exec-or-exit/wait skeleton shown in the formula block under §1.6's fork()/exec() discussion above.</p>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §3.3 — process operations (PDF p. 139)<cite class="src" data-src="B1" data-p="§3.3"></cite></span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne — process operations (PDF p. 139)<cite class="src" data-src="B1" data-p="§3.3"></cite></span>.</p>
 <div class="callout key"><span class="label">Fork counting assumptions</span><p>These counts assume every fork succeeds and every child continues through the remaining loop. For the three-iteration hello example there are 14 printf calls, but redirected buffered stdout can duplicate earlier unflushed text across later forks. Use an unbuffered stream or flush before forking when checking the call-count result against displayed text. wait() changes execution order, not this process-tree count.</p></div>
 
 
@@ -1442,7 +1442,7 @@ receive(A, message)    <span class="cm">/* receive a message from mailbox A */</
       <li>Conclude with the comparison table (modularity is the main advantage of indirect communication) and, if marks allow, synchronization and buffering.</li>
     </ol>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §3.4 — interprocess communication (PDF p. 146)<cite class="src" data-src="B1" data-p="§3.4"></cite></span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne — interprocess communication (PDF p. 146)<cite class="src" data-src="B1" data-p="§3.4"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">&uarr; Back to index</a>
@@ -1857,7 +1857,7 @@ int main(void) {
 </pre>
     <p>A and B are read-only, and each worker writes a different output row. Joining all workers before printing makes their results available to main. The argument array remains alive throughout. The compiled program produces <code>19 22</code> and <code>43 50</code> as its two output rows; these entries were independently recomputed.</p>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §§4.1–4.3; §4.4.1 — threads, multicore, models, Pthreads (PDF p. 187)<cite class="src" data-src="B1" data-p="§4.1-4.3"></cite><cite class="src" data-src="B1" data-p="§4.4.1"></cite></span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne — threads, multicore, models, Pthreads (PDF p. 187)<cite class="src" data-src="B1" data-p="§4.1-4.3"></cite><cite class="src" data-src="B1" data-p="§4.4.1"></cite></span>.</p>
 <div class="callout key"><span class="label">Two useful exam distinctions</span><p>Both one-to-one and many-to-many mappings can support multicore parallelism. “Runs on multiple cores” alone does not uniquely identify many-to-many; use the complete mapping described in the question. On a uniprocessor, extra CPU-bound threads do not create CPU parallelism: a better matrix-multiplication algorithm can reduce work, while threads may still improve responsiveness or overlap I/O.</p></div>
 
 

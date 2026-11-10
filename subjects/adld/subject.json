@@ -40,6 +40,15 @@
         2,
         3
       ],
+      "text": "Removed citation text that duplicated the source chips."
+    },
+    {
+      "date": "2026-11-10",
+      "units": [
+        1,
+        2,
+        3
+      ],
       "text": "Added source chips to topic sections and sourced worked questions; derived examples remain labelled in the audit."
     },
     {
