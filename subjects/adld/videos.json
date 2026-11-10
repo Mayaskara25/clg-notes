@@ -1,6 +1,6 @@
 {
   "subject": "adld",
-  "checked": "2026-11-08",
+  "checked": "2026-11-10",
   "units": {
     "1": [
       {
@@ -1092,7 +1092,7 @@
       },
       {
         "section": "registers",
-        "sub": "7.1.1 Classification",
+        "sub": "7.1.1 Registers and shift registers",
         "videos": [
           {
             "id": "b43_I4r1R2c",
@@ -1107,7 +1107,37 @@
       },
       {
         "section": "registers",
-        "sub": "7.1.2 Serial-in, serial-out (SISO) shift register",
+        "sub": "7.1.2 Applications of registers and shift registers",
+        "videos": [
+          {
+            "id": "xwafUfsqHGA",
+            "title": "Applications of Shift Register | Ring Counter and Johnson Counter, PRBS Generator",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "23:21",
+            "kind": "topic",
+            "differs": "Shift-register applications only (delay, S↔P conversion, sequence generation, ring/Johnson counters, PRBS, multiply/divide); the register applications (IR, MAR, accumulator…) are only in the notes. 23 min, longer than usual.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "registers",
+        "sub": "7.1.3 The four basic modes",
+        "videos": [
+          {
+            "id": "NjMX4hohyRI",
+            "title": "Lec - 48: Shift Registers | SISO, SIPO, PISO, PIPO",
+            "channel": "Gate Smashers",
+            "duration": "8:32",
+            "kind": "topic",
+            "differs": "Short overview of SISO, SIPO, PISO and PIPO. Check the flip-flop numbering on screen; write answers in the faculty notation (Q3 left/MSB … Q0 right/LSB).",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "section": "registers",
+        "sub": "7.1.4 Serial-in, serial-out (SISO) shift register",
         "videos": [
           {
             "id": "unorn9n-UpE",
@@ -1115,14 +1145,23 @@
             "channel": "Neso Academy",
             "duration": "11:30",
             "kind": "topic",
-            "differs": "Description does not specify stage labels or shift direction. The notes shift right from A toward D and read serial output at Q_D.",
+            "differs": "Neso explains only shift right in detail and leaves shift left as an exercise; for shift left (Fig 57b) use the ALL ABOUT ELECTRONICS video from 12:09. Write answers in the faculty notation (Q3 … Q0).",
+            "note": ""
+          },
+          {
+            "id": "r4bfEqZNSyo",
+            "title": "Shift Register : Serial In Serial Out (SISO) Register Explained | Bidirectional Shift Register",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "15:21",
+            "kind": "topic",
+            "differs": "Covers shift right, then shift left (12:09) and the bidirectional register (13:05) — matches both SISO directions in the faculty notes.",
             "note": ""
           }
         ]
       },
       {
         "section": "registers",
-        "sub": "7.1.3 Serial-in, parallel-out (SIPO) shift register",
+        "sub": "7.1.5 Serial-in, parallel-out (SIPO) shift register",
         "videos": [
           {
             "id": "HGFGQ3D3iJ8",
@@ -1130,29 +1169,39 @@
             "channel": "Neso Academy",
             "duration": "11:53",
             "kind": "topic",
-            "differs": "Covers SIPO and PIPO together. Description does not specify stage order; the notes use A at the serial-input end and D at the far end.",
+            "differs": "Covers SIPO and PIPO together. Description does not specify stage order; the notes use Q3 at the serial-input end and Q0 at the far end.",
             "note": ""
           }
         ]
       },
       {
         "section": "registers",
-        "sub": "7.1.4 Parallel-in registers: PISO and PIPO",
+        "sub": "7.1.6 Parallel-in registers: PISO and PIPO",
         "videos": [
+          {
+            "id": "JbtqyvLu67c",
+            "title": "Shift Register: SIPO, PISO and PIPO Shift Registers | What is Universal Shift Register?",
+            "channel": "ALL ABOUT ELECTRONICS",
+            "duration": "17:41",
+            "kind": "topic",
+            "differs": "Matches the faculty notes: a 2:1 MUX before each flip-flop, control = 1 loads and 0 shifts. PISO starts at 5:44 and PIPO at 10:58; the universal shift register at 11:50 uses the same S1S0 table as §7.1.9.",
+            "note": "",
+            "start": 344
+          },
           {
             "id": "7LmBcGiiYwk",
             "title": "Shift Register (PISO Mode)",
             "channel": "Neso Academy",
             "duration": "7:26",
             "kind": "topic",
-            "differs": "Covers PISO only; PIPO is in the SIPO/PIPO video. Description does not specify load-control polarity; the notes use 0=load and 1=shift.",
+            "differs": "OPPOSITE convention: Neso uses an active-low Shift/L̄oad (load when 0, shift when 1), numbers FF0 at the input end and takes the serial output from Q3. The faculty notes use Load/Shift 0 = shift, 1 = load, with Q3 left and serial output Q0. Follow the notes in exams.",
             "note": ""
           }
         ]
       },
       {
         "section": "registers",
-        "sub": "7.1.6 Universal shift register",
+        "sub": "7.1.9 Universal shift register",
         "videos": [
           {
             "id": "AEGzpMlOsvc",

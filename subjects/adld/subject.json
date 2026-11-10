@@ -22,7 +22,7 @@
       "title": "Combinational & Sequential Logic Design",
       "topics": "parallel adder, carry lookahead, magnitude comparator, decoders, encoders, multiplexers, latches, timing, master-slave, pulse-triggered and edge-triggered flip-flops, characteristic equations, shift registers, universal shift register",
       "lab": "lab-overview",
-      "updated": "2026-11-09"
+      "updated": "2026-11-10"
     },
     {
       "n": 3,
@@ -33,6 +33,13 @@
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-10",
+      "units": [
+        2
+      ],
+      "text": "Shift registers (§7.1) aligned to the 2026 faculty notes: Q3–Q0 / P3–P0 notation, Load/Shift 0 = shift, applications, shift-left SISO, circular SR, USR operation + worked example, and the CIE-II 2024/2025 register designs (§7.2.1)."
+    },
     {
       "date": "2026-11-09",
       "units": [
