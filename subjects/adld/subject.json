@@ -13,8 +13,8 @@
       "n": 1,
       "source": "Applied Digital Logic Design - Unit 1 - Exam Notes.html",
       "title": "Arithmetic & Simplification of Boolean Expressions",
-      "topics": "signed addition and subtraction, unsigned and signed multiplication, Booth and bit-pair recoding, integer division, floating point, Karnaugh maps, Quine-McCluskey",
-      "updated": "2026-11-09"
+      "topics": "signed addition and subtraction, unsigned and signed multiplication, Booth and radix-4 modified Booth (bit-pair recoding), integer division, IEEE 754 single and double precision, Karnaugh maps, Quine-McCluskey",
+      "updated": "2026-11-10"
     },
     {
       "n": 2,
@@ -33,6 +33,13 @@
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-10",
+      "units": [
+        1
+      ],
+      "text": "Unit 1 aligned to Dr K.B. Ramesh's Computer Arithmetic notes: teacher's trace layouts and worked examples (unsigned multiplication, Booth, restoring division), overflow rule, sign extension, IEEE 754 double precision, Radix-4 Modified Booth naming, and all five Unit-1 questions from CIE-I 2026 solved."
+    },
     {
       "date": "2026-11-10",
       "units": [

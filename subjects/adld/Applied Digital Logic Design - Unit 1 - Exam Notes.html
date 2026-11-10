@@ -143,7 +143,7 @@ body{transition:background-color .2s,color .2s}
     <a href="#signed-add-sub" class="navlink"><span class="dot"></span>Signed Add/Sub &amp; Overflow</a>
     <a href="#unsigned-multiplication" class="navlink"><span class="dot"></span>Unsigned Multiplication</a>
     <a href="#booth-algorithm" class="navlink"><span class="dot"></span>Booth's Algorithm</a>
-    <a href="#bit-pair-recoding" class="navlink"><span class="dot"></span>Fast Mult. / Bit-Pair Recoding</a>
+    <a href="#bit-pair-recoding" class="navlink"><span class="dot"></span>Radix-4 Booth / Bit-Pair</a>
     <a href="#integer-division" class="navlink"><span class="dot"></span>Integer Division</a>
     <a href="#floating-point" class="navlink"><span class="dot"></span>Floating-Point Numbers</a>
     <a href="#arithmetic-solved" class="navlink"><span class="dot"></span>Solved Numericals — Arithmetic</a>
@@ -173,8 +173,8 @@ body{transition:background-color .2s,color .2s}
   <p class="desc">Computer arithmetic for signed/unsigned operands (addition, subtraction, multiplication, division, floating point) and two-level minimisation techniques for Boolean functions (Karnaugh maps and the Quine–McCluskey tabulation method), including handling of incompletely specified functions.</p>
   <div class="meta">
     <span>📘 <b>13</b> topics</span>
-    <span>🖩 <b>24</b> verified numericals</span>
-    <span>🖼 <b>13</b> diagrams</span>
+    <span>🖩 <b>34</b> verified numericals</span>
+    <span>🖼 <b>15</b> diagrams</span>
     <span>⏱ <b>9</b> lecture hours</span>
   </div>
 
@@ -197,8 +197,8 @@ body{transition:background-color .2s,color .2s}
       <p>Signed multiplication treating both operands uniformly, with full A/Q/Q₋₁ cycle traces.</p>
     </a>
     <a href="#bit-pair-recoding" class="index-card" style="--card-color:var(--blue)">
-      <span class="num">1.5</span><h3>Fast Multiplication / Bit-Pair Recoding</h3>
-      <p>Halving the number of summands by recoding multiplier bits two at a time.</p>
+      <span class="num">1.5</span><h3>Radix-4 Modified Booth / Bit-Pair Recoding</h3>
+      <p>Halving the number of partial products by recoding multiplier bits two at a time. Includes CIE-I 2026 (−13) × 10.</p>
     </a>
     <a href="#integer-division" class="index-card" style="--card-color:var(--blue)">
       <span class="num">1.6</span><h3>Integer Division</h3>
@@ -206,7 +206,7 @@ body{transition:background-color .2s,color .2s}
     </a>
     <a href="#floating-point" class="index-card" style="--card-color:var(--blue)">
       <span class="num">1.7</span><h3>Floating-Point Numbers</h3>
-      <p>IEEE 754 single-precision format: sign, excess-127 exponent, normalised mantissa.</p>
+      <p>IEEE 754 single-precision format (sign, excess-127 exponent, normalised mantissa), plus double precision as taught in the faculty notes.</p>
     </a>
     <a href="#arithmetic-solved" class="index-card" style="--card-color:var(--blue)">
       <span class="num">1.8</span><h3>Solved Numericals — Arithmetic</h3>
@@ -262,10 +262,10 @@ body{transition:background-color .2s,color .2s}
     <tr><td rowspan="7"><strong>Arithmetic</strong></td><td>Addition and Subtraction of Signed Numbers</td><td><a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a></td></tr>
     <tr><td>Multiplication of Unsigned Numbers</td><td><a href="#unsigned-multiplication">Unsigned Multiplication</a></td></tr>
     <tr><td>Multiplication of Signed Numbers</td><td><a href="#booth-algorithm">Booth's Algorithm</a></td></tr>
-    <tr><td>Fast Multiplication</td><td rowspan="2"><a href="#bit-pair-recoding">Fast Multiplication / Bit-Pair Recoding</a></td></tr>
+    <tr><td>Fast Multiplication</td><td rowspan="2"><a href="#bit-pair-recoding">Radix-4 Modified Booth / Bit-Pair Recoding</a></td></tr>
     <tr><td>Bit-Pair Recoding of Multipliers</td></tr>
     <tr><td>Integer Division</td><td><a href="#integer-division">Integer Division</a></td></tr>
-    <tr><td>Floating-Point Numbers and their single precision representation</td><td><a href="#floating-point">Floating-Point Numbers</a></td></tr>
+    <tr><td>Floating-Point Numbers and their single precision representation</td><td><a href="#floating-point">Floating-Point Numbers</a> (+ double precision from the faculty notes)</td></tr>
     <tr><td rowspan="2"><strong>Simplification</strong></td><td>Karnaugh Maps to obtain minimal Expressions for Complete Boolean Expressions</td><td><a href="#karnaugh-maps">Karnaugh Maps</a></td></tr>
     <tr><td>Karnaugh Maps &amp; Quine McCluskey method for Incomplete Boolean Expressions (don't-cares)</td><td><a href="#dont-care-vem">Don't-Care Conditions &amp; VEM</a>, <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
   </table>
@@ -278,6 +278,19 @@ body{transition:background-color .2s,color .2s}
       <li>The source's 4-variable K-map row labels are mis-transcribed as <code>00, 01, 01, 01</code> in several figures — the correct Gray-code sequence is <code>00, 01, 11, 10</code>. All K-maps in this guide use the corrected labelling; see the callout in <a href="#karnaugh-maps">§2.2</a>.</li>
     </ul>
     Overflow in integer arithmetic is not named as its own syllabus line but is folded into "Addition and Subtraction of Signed Numbers" and is heavily examined, so it gets full treatment in <a href="#signed-add-sub">§1.2</a>. The question bank and past exam papers (question bank has questions spanning multiple units; only Unit-1 items are indexed here — see <a href="#question-bank">Question Bank Index</a>) supplied several of the worked numericals used throughout.
+  </div>
+
+  <div class="callout key">
+    <span class="label">2026 update: aligned to the faculty notes</span>
+    The arithmetic sections are now checked against Dr K.B. Ramesh's handwritten <em>Computer Arithmetic</em> notes (49 pages) and the CIE-I 2026 paper. The changes:
+    <ul style="margin-top:8px">
+      <li>the teacher's register layouts and worked examples for multiplication, Booth and restoring division</li>
+      <li>the teacher's overflow rule and sign extension</li>
+      <li>IEEE 754 <strong>double precision</strong></li>
+      <li>"Radix-4 Modified Booth" as the exam's name for bit-pair recoding</li>
+      <li>all five Unit-1 questions from CIE-I 2026, solved</li>
+    </ul>
+    The faculty notes also contain Hamming code and instruction-set pages (shift/rotate, 0–3-address instructions). Those belong to other units and are left out here.
   </div>
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -332,6 +345,20 @@ body{transition:background-color .2s,color .2s}
   <div class="callout key">
     <span class="label">Exam tip</span>
     For an <var>n</var>-bit 2's-complement number the representable range is <span class="mono">−2<sup>n−1</sup> to +2<sup>n−1</sup>−1</span> — note the asymmetry (one extra negative value, since 1000…0 has no positive counterpart).
+  </div>
+
+  <h2>Fixed point, floating point and sign extension (faculty notes)</h2>
+  <p>Dr K.B. Ramesh's notes open the unit by splitting binary arithmetic into two kinds. <strong>Fixed-point</strong> arithmetic keeps the radix point in a fixed position of the computer word; for integers it is assumed to be just right of the least significant digit. <strong>Floating-point</strong> arithmetic is "an automatic way to keep track of the radix point": the point's position is variable (it "floats"), which lets a computer represent very large and very small numbers. Most processors follow the IEEE 754 standard for floating point (see <a href="#floating-point">§1.7</a>). For both kinds, the unit studies (1) how numbers are represented in binary and (2) the algorithms for add, subtract, multiply and divide.</p>
+  <p><strong>Sign extension.</strong> If a number has fewer bits than the register or memory location that holds it, the vacant MSBs are filled with copies of the sign bit: <strong>0s for a positive number (S = 0), 1s for a negative number (S = 1)</strong>. This keeps both the sign and the value unchanged.</p>
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;1</span><span class="marks">verified</span></div>
+    <div class="qtext">Show how the 5-bit signed numbers a) 00111, b) 11001, c) 00000 are stored in 8-bit registers.</div>
+    <table>
+      <tr><th>5-bit</th><th>Value</th><th>8-bit (sign-extended)</th></tr>
+      <tr><td class="mono">00111</td><td>+7</td><td class="mono">00000111</td></tr>
+      <tr><td class="mono">11001</td><td>−7</td><td class="mono">11111001</td></tr>
+      <tr><td class="mono">00000</td><td>0</td><td class="mono">00000000</td></tr>
+    </table>
   </div>
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -407,6 +434,38 @@ body{transition:background-color .2s,color .2s}
     </table>
   </div>
 
+<div class="callout key">
+    <span class="label">The rule for overflow, in the teacher's words</span>
+    "If two numbers are added, and they are both positive or both negative, then overflow occurs if and only if the result has the opposite sign." Subtraction M − S is done as M + (2's complement of S), so it follows the same rule.
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, pp.&nbsp;17–21, 30–31: every example, recomputed</span><span class="marks">verified</span></div>
+    <div class="qtext">Signed 2's-complement addition and subtraction: the teacher's examples.</div>
+    <table>
+      <tr><th>Problem</th><th>Bits</th><th>Added (subtrahend already 2's-complemented)</th><th>Result</th><th>Overflow?</th></tr>
+            <tr><td>7 + (−3)</td><td>5</td><td><span class="mono">00111</span> + <span class="mono">11101</span></td><td><span class="mono">00100</span> (carry 1 discarded)</td><td>No → 4</td></tr>
+      <tr><td>−6 + 5</td><td>5</td><td><span class="mono">11010</span> + <span class="mono">00101</span></td><td><span class="mono">11111</span></td><td>No → −1</td></tr>
+      <tr><td>9 + 8</td><td>5</td><td><span class="mono">01001</span> + <span class="mono">01000</span></td><td><span class="mono">10001</span></td><td><strong>Yes</strong> — true answer 17 is outside the 5-bit range</td></tr>
+      <tr><td>−9 + (−3)</td><td>5</td><td><span class="mono">10111</span> + <span class="mono">11101</span></td><td><span class="mono">10100</span> (carry 1 discarded)</td><td>No → −12</td></tr>
+      <tr><td>−9 + (−8)</td><td>5</td><td><span class="mono">10111</span> + <span class="mono">11000</span></td><td><span class="mono">01111</span> (carry 1 discarded)</td><td><strong>Yes</strong> — true answer −17 is outside the 5-bit range</td></tr>
+      <tr><td>−9 + 9</td><td>5</td><td><span class="mono">10111</span> + <span class="mono">01001</span></td><td><span class="mono">00000</span> (carry 1 discarded)</td><td>No → 0</td></tr>
+      <tr><td>3 + (−4)</td><td>4</td><td><span class="mono">0011</span> + <span class="mono">1100</span></td><td><span class="mono">1111</span></td><td>No → −1</td></tr>
+      <tr><td>−3 − 4</td><td>4</td><td><span class="mono">1101</span> + <span class="mono">1100</span></td><td><span class="mono">1001</span> (carry 1 discarded)</td><td>No → −7</td></tr>
+      <tr><td>2 − 7</td><td>4</td><td><span class="mono">0010</span> + <span class="mono">1001</span></td><td><span class="mono">1011</span></td><td>No → −5</td></tr>
+      <tr><td>5 − 2</td><td>4</td><td><span class="mono">0101</span> + <span class="mono">1110</span></td><td><span class="mono">0011</span> (carry 1 discarded)</td><td>No → 3</td></tr>
+      <tr><td>−5 − 2</td><td>4</td><td><span class="mono">1011</span> + <span class="mono">1110</span></td><td><span class="mono">1001</span> (carry 1 discarded)</td><td>No → −7</td></tr>
+      <tr><td>5 − (−2)</td><td>4</td><td><span class="mono">0101</span> + <span class="mono">0010</span></td><td><span class="mono">0111</span></td><td>No → 7</td></tr>
+      <tr><td>7 − 7</td><td>4</td><td><span class="mono">0111</span> + <span class="mono">1001</span></td><td><span class="mono">0000</span> (carry 1 discarded)</td><td>No → 0</td></tr>
+      <tr><td>7 − (−7)</td><td>4</td><td><span class="mono">0111</span> + <span class="mono">0111</span></td><td><span class="mono">1110</span></td><td><strong>Yes</strong> — true answer 14 is outside the 4-bit range</td></tr>
+      <tr><td>−6 − 4</td><td>4</td><td><span class="mono">1010</span> + <span class="mono">1100</span></td><td><span class="mono">0110</span> (carry 1 discarded)</td><td><strong>Yes</strong> — true answer −10 is outside the 4-bit range</td></tr>
+      <tr><td>19 − (−4)</td><td>8</td><td><span class="mono">00010011</span> + <span class="mono">00000100</span></td><td><span class="mono">00010111</span></td><td>No → 23</td></tr>
+      <tr><td>18 − 16</td><td>8</td><td><span class="mono">00010010</span> + <span class="mono">11110000</span></td><td><span class="mono">00000010</span> (carry 1 discarded)</td><td>No → 2</td></tr>
+      <tr><td>−35 + (−11)</td><td>8</td><td><span class="mono">11011101</span> + <span class="mono">11110101</span></td><td><span class="mono">11010010</span> (carry 1 discarded)</td><td>No → −46</td></tr>
+    </table>
+    <p><strong>Reading a negative answer.</strong> The notes convert a negative result back to sign-magnitude: keep the sign bit, then take the 2's complement of the remaining bits. For example, 1011 → sign 1, 011 → 100 + 1 = 101, so the answer is 1101 = −5. That's the same as taking the 2's complement of the whole word (0101 = 5) and writing a minus sign.</p>
+  </div>
+
   <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
@@ -454,19 +513,23 @@ body{transition:background-color .2s,color .2s}
 
   <p><strong>Procedure:</strong> load the multiplier into Q, the multiplicand into M, and clear C and A to 0. Repeat <var>n</var> times: if q₀ = 1, add M to A (storing the sum back in A, with carry-out into C); then shift C, A, Q right by one bit position (regardless of q₀). After <var>n</var> cycles, the high-order half of the 2<var>n</var>-bit product is in A and the low-order half is in Q.</p>
 
-  <div class="qbox">
-    <div class="qmeta"><span class="qsrc">unit deck — worked example</span><span class="marks">verified</span></div>
-    <div class="qtext">Multiply M = 1101 (13) by Q = 1011 (11) using the sequential add-shift multiplier.</div>
-    <div class="ans-label">Solution — cycle table</div>
+<div class="qbox">
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;23 (p.&nbsp;22 does 11 × 13 with the same product)</span><span class="marks">verified</span></div>
+    <div class="qtext">Multiply 13 × 11 using the hardware for unsigned binary multiplication. Multiplicand M = 1101 (13), multiplier Q = 1011 (11).</div>
+    <div class="ans-label">Solution in the teacher's layout: one row for each Add and each Shift</div>
     <table>
-      <tr><th>Cycle</th><th>q₀</th><th>Operation</th><th>C</th><th>A</th><th>Q</th></tr>
-      <tr><td>Init</td><td>1</td><td>—</td><td>0</td><td>0000</td><td>1011</td></tr>
-      <tr><td>1</td><td>1</td><td>Add, shift</td><td>0</td><td>0110</td><td>1101</td></tr>
-      <tr><td>2</td><td>1</td><td>Add, shift</td><td>1</td><td>0011</td><td>1110</td></tr>
-      <tr><td>3</td><td>0</td><td>No-add, shift</td><td>0</td><td>1001</td><td>0111</td></tr>
-      <tr><td>4</td><td>1</td><td>Add, shift</td><td>0</td><td>1000</td><td>1111</td></tr>
+      <tr><th>Cycle</th><th>C</th><th>A</th><th>Q (multiplier)</th><th>M (multiplicand)</th><th>Operation</th></tr>
+            <tr><td>Initial</td><td>0</td><td><span class="mono">0000</span></td><td><span class="mono">1011</span></td><td><span class="mono">1101</span></td><td>Initial values</td></tr>
+      <tr><td>I</td><td>0</td><td><span class="mono">1101</span></td><td><span class="mono">1011</span></td><td><span class="mono">1101</span></td><td>Add (A ← A + M)</td></tr>
+      <tr><td>I</td><td>0</td><td><span class="mono">0110</span></td><td><span class="mono">1101</span></td><td><span class="mono">1101</span></td><td>Shift right C, A, Q</td></tr>
+      <tr><td>II</td><td>1</td><td><span class="mono">0011</span></td><td><span class="mono">1101</span></td><td><span class="mono">1101</span></td><td>Add (A ← A + M)</td></tr>
+      <tr><td>II</td><td>0</td><td><span class="mono">1001</span></td><td><span class="mono">1110</span></td><td><span class="mono">1101</span></td><td>Shift right C, A, Q</td></tr>
+      <tr><td>III</td><td>0</td><td><span class="mono">0100</span></td><td><span class="mono">1111</span></td><td><span class="mono">1101</span></td><td>Shift right C, A, Q</td></tr>
+      <tr><td>IV</td><td>1</td><td><span class="mono">0001</span></td><td><span class="mono">1111</span></td><td><span class="mono">1101</span></td><td>Add (A ← A + M)</td></tr>
+      <tr><td>IV</td><td>0</td><td><span class="mono">1000</span></td><td><span class="mono">1111</span></td><td><span class="mono">1101</span></td><td>Shift right C, A, Q</td></tr>
     </table>
-    <p>Product = A:Q = <span class="mono">10001111</span> = 143 = 13 × 11. ✓</p>
+    <p>Cycle III has Q₀ = 0, so there is <strong>no add</strong>, only a shift. Result = A Q = <span class="mono">1000 1111</span> = 128 + 8 + 4 + 2 + 1 = <strong>143</strong> = 13 × 11. ✓</p>
+    <p style="margin-bottom:0"><strong>Write the steps like the teacher does:</strong> (1) Load the multiplier into Q and the multiplicand into M, and clear C and A to 0. (2) If Q₀ = 1, the add signal adds M to A using the n-bit adder, and any carry goes into C. (3) After Add or No Add, shift C, A and Q one bit to the right; this completes one cycle. (4) Repeat for n cycles. (5) The result is in A and Q.</p>
   </div>
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -524,6 +587,53 @@ body{transition:background-color .2s,color .2s}
     </svg>
   </div>
 
+<div class="callout key">
+    <span class="label">Teacher's notation (use it in the exam)</span>
+    The multiplier goes in <strong>Q</strong> and the multiplicand in <strong>M</strong>. A starts at 0000 and Q₋₁ at 0. The teacher writes "(A) − (M) → (A); then right shift" for Q₀Q₋₁ = 10, "(A) + (M) → (A); then right shift" for 01, and "only shift right" for 00 and 11. Each add or subtract gets its own row, followed by a separate shift row.
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, pp.&nbsp;25–27</span><span class="marks">verified</span></div>
+    <div class="qtext">Booth's algorithm, 4-bit: 7 × 3, 7 × (−3), (−5) × 4.</div>
+    <div class="ans-label">7 × 3 (p.&nbsp;25): M = <span class="mono">0111</span>, Q = <span class="mono">0011</span></div>
+    <table>
+      <tr><th>A</th><th>Q (multiplier)</th><th>Q₋₁</th><th>M (multiplicand)</th><th>Operation</th></tr>
+      <tr><td><span class="mono">0000</span></td><td><span class="mono">0011</span></td><td>0</td><td><span class="mono">0111</span></td><td>Initial values</td></tr>
+      <tr><td><span class="mono">1001</span></td><td><span class="mono">0011</span></td><td>0</td><td><span class="mono">0111</span></td><td>(A) ← (A) − (M)</td></tr>
+      <tr><td><span class="mono">1100</span></td><td><span class="mono">1001</span></td><td>1</td><td><span class="mono">0111</span></td><td>Arithmetic shift right</td></tr>
+      <tr><td><span class="mono">1110</span></td><td><span class="mono">0100</span></td><td>1</td><td><span class="mono">0111</span></td><td>Arithmetic shift right</td></tr>
+      <tr><td><span class="mono">0101</span></td><td><span class="mono">0100</span></td><td>1</td><td><span class="mono">0111</span></td><td>(A) ← (A) + (M)</td></tr>
+      <tr><td><span class="mono">0010</span></td><td><span class="mono">1010</span></td><td>0</td><td><span class="mono">0111</span></td><td>Arithmetic shift right</td></tr>
+      <tr><td><span class="mono">0001</span></td><td><span class="mono">0101</span></td><td>0</td><td><span class="mono">0111</span></td><td>Arithmetic shift right</td></tr>
+    </table>
+    <p>Product A Q = <span class="mono">0001 0101</span> = <strong>21</strong> ✓</p>
+    <div class="ans-label">7 × (−3) (p.&nbsp;26): M = <span class="mono">0111</span>, Q = <span class="mono">1101</span></div>
+    <table>
+      <tr><th>A</th><th>Q (multiplier)</th><th>Q₋₁</th><th>M (multiplicand)</th><th>Operation</th></tr>
+      <tr><td><span class="mono">0000</span></td><td><span class="mono">1101</span></td><td>0</td><td><span class="mono">0111</span></td><td>Initial values</td></tr>
+      <tr><td><span class="mono">1001</span></td><td><span class="mono">1101</span></td><td>0</td><td><span class="mono">0111</span></td><td>(A) ← (A) − (M)</td></tr>
+      <tr><td><span class="mono">1100</span></td><td><span class="mono">1110</span></td><td>1</td><td><span class="mono">0111</span></td><td>Arithmetic shift right</td></tr>
+      <tr><td><span class="mono">0011</span></td><td><span class="mono">1110</span></td><td>1</td><td><span class="mono">0111</span></td><td>(A) ← (A) + (M)</td></tr>
+      <tr><td><span class="mono">0001</span></td><td><span class="mono">1111</span></td><td>0</td><td><span class="mono">0111</span></td><td>Arithmetic shift right</td></tr>
+      <tr><td><span class="mono">1010</span></td><td><span class="mono">1111</span></td><td>0</td><td><span class="mono">0111</span></td><td>(A) ← (A) − (M)</td></tr>
+      <tr><td><span class="mono">1101</span></td><td><span class="mono">0111</span></td><td>1</td><td><span class="mono">0111</span></td><td>Arithmetic shift right</td></tr>
+      <tr><td><span class="mono">1110</span></td><td><span class="mono">1011</span></td><td>1</td><td><span class="mono">0111</span></td><td>Arithmetic shift right</td></tr>
+    </table>
+    <p>Product A Q = <span class="mono">1110 1011</span> = <strong>−21</strong> ✓</p>
+    <div class="ans-label">−5 × 4 (p.&nbsp;27): M = <span class="mono">1011</span>, Q = <span class="mono">0100</span></div>
+    <table>
+      <tr><th>A</th><th>Q (multiplier)</th><th>Q₋₁</th><th>M (multiplicand)</th><th>Operation</th></tr>
+      <tr><td><span class="mono">0000</span></td><td><span class="mono">0100</span></td><td>0</td><td><span class="mono">1011</span></td><td>Initial values</td></tr>
+      <tr><td><span class="mono">0000</span></td><td><span class="mono">0010</span></td><td>0</td><td><span class="mono">1011</span></td><td>Arithmetic shift right</td></tr>
+      <tr><td><span class="mono">0000</span></td><td><span class="mono">0001</span></td><td>0</td><td><span class="mono">1011</span></td><td>Arithmetic shift right</td></tr>
+      <tr><td><span class="mono">0101</span></td><td><span class="mono">0001</span></td><td>0</td><td><span class="mono">1011</span></td><td>(A) ← (A) − (M)</td></tr>
+      <tr><td><span class="mono">0010</span></td><td><span class="mono">1000</span></td><td>1</td><td><span class="mono">1011</span></td><td>Arithmetic shift right</td></tr>
+      <tr><td><span class="mono">1101</span></td><td><span class="mono">1000</span></td><td>1</td><td><span class="mono">1011</span></td><td>(A) ← (A) + (M)</td></tr>
+      <tr><td><span class="mono">1110</span></td><td><span class="mono">1100</span></td><td>0</td><td><span class="mono">1011</span></td><td>Arithmetic shift right</td></tr>
+    </table>
+    <p>Product A Q = <span class="mono">1110 1100</span> = <strong>−20</strong> ✓</p>
+  </div>
+
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">past-paper style — CIE 2024-25</span><span class="marks">4 marks</span></div>
     <div class="qtext">Using Modified Booth's multiplication algorithm, multiply +14 with −7 (5-bit 2's complement).</div>
@@ -559,7 +669,7 @@ body{transition:background-color .2s,color .2s}
 <!--SECTION:booth-algorithm-->
 
 <section class="page section" id="bit-pair-recoding" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-  <div class="section-head"><span class="tag">1.5</span><h1>Fast Multiplication &amp; Bit-Pair Recoding</h1></div>
+  <div class="section-head"><span class="tag">1.5</span><h1>Fast Multiplication: Radix-4 Modified Booth (Bit-Pair Recoding)</h1></div>
   <p class="section-sub">Part 1 — Arithmetic</p>
 
   <div class="callout clarify">
@@ -567,11 +677,16 @@ body{transition:background-color .2s,color .2s}
     The syllabus lists <em>"Fast Multiplication"</em> and <em>"Bit-Pair Recoding of Multipliers"</em> as two separate lines. In the source deck (and standard treatment), fast multiplication in this unit <strong>is</strong> bit-pair recoding — it is not a distinct third technique — so both syllabus lines are covered by this one section.
   </div>
 
+  <div class="callout key">
+    <span class="label">Same method, two names</span>
+    The textbook calls this <strong>bit-pair recoding</strong>. The CIE-I 2026 paper calls it <strong>Radix-4 Modified Booth's algorithm</strong>, and asks for the answer in four parts: binary representation, formation of groups, modified Booth encoding of each group, and partial products with the final product. Use that four-part layout (worked below) whichever name the question uses.
+  </div>
+
   <p>Booth's algorithm still requires up to <var>n</var> add/subtract cycles for an <var>n</var>-bit multiplier. <strong>Bit-pair recoding</strong>, derived directly from Booth recoding, halves this to <var>n</var>/2 cycles by examining the multiplier <strong>two bits at a time</strong> (plus the bit immediately to the right) and selecting one combined multiple of <var>M</var> per pair: 0, ±1, or ±2 times M.</p>
 
   <div class="svg-wrap">
-    <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg">
-      <text x="280" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">Fig 5. Bit-pair recoding selection table</text>
+    <svg viewBox="0 0 560 250" xmlns="http://www.w3.org/2000/svg">
+      <text x="280" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">Fig 5. Bit-pair (radix-4 Booth) recoding table: all 8 groups</text>
       <g font-family="JetBrains Mono, monospace" font-size="12.5" fill="#2A2C2F">
         <text x="70" y="55" font-weight="700" fill="#5B6169">Pair (i+1,i)</text>
         <text x="220" y="55" font-weight="700" fill="#5B6169">Bit right (i−1)</text>
@@ -583,6 +698,8 @@ body{transition:background-color .2s,color .2s}
         <text x="70" y="146">0 1</text><text x="220" y="146">1</text><text x="400" y="146">+2 × M</text>
         <text x="70" y="166">1 0</text><text x="220" y="166">0</text><text x="400" y="166">−2 × M</text>
         <text x="70" y="186">1 0</text><text x="220" y="186">1</text><text x="400" y="186">−1 × M</text>
+        <text x="70" y="206">1 1</text><text x="220" y="206">0</text><text x="400" y="206">−1 × M</text>
+        <text x="70" y="226">1 1</text><text x="220" y="226">1</text><text x="400" y="226">0 × M</text>
       </g>
     </svg>
     <div class="cap">Fig 5. Each pair of multiplier bits (plus one overlap bit from the pair below) selects a single ±0/±1/±2 multiple of M — halving the number of summands.</div>
@@ -616,6 +733,32 @@ body{transition:background-color .2s,color .2s}
       <tr><td>0</td><td>0</td><td>&lt;&lt;0</td><td>0</td></tr>
     </table>
     <p>Total = <strong>−104</strong> = 13 × (−8). ✓</p>
+  </div>
+
+<div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q1a</span><span class="marks">5 marks</span></div>
+    <div class="qtext">Using Radix-4 Modified Booth's algorithm, multiply (−13) by 10. Show clearly: a) binary representation, b) formation of groups, c) modified Booth encoding for each group, d) generation of partial products and the final product.</div>
+    <div class="ans-label">a) Binary representation (6-bit 2's complement, an even number of bits so the groups come out even)</div>
+    <p>Multiplicand M = −13: 13 = 001101 → 1's complement 110010 → +1 → <span class="mono">110011</span>. Multiplier Q = +10 = <span class="mono">001010</span>. Also needed: −M = +13 = <span class="mono">001101</span>, 2M = −26, −2M = +26.</p>
+    <div class="ans-label">b) Formation of groups</div>
+    <p>Append Q₋₁ = 0 to the right of Q: <span class="mono">001010 <u>0</u></span>. Starting from the LSB, take overlapping groups of 3 bits in steps of 2: <span class="mono">001</span> | <span class="mono">101</span> | <span class="mono">100</span> (MSB group to LSB group). Each group shares its last bit with the group to its right.</p>
+    <div class="ans-label">c) Modified Booth encoding of each group</div>
+    <table>
+      <tr><th>Group</th><th>Bits</th><th>Booth digit</th><th>Selects</th></tr>
+      <tr><td>Group 1 (Q<sub>1</sub> Q<sub>0</sub> Q₋₁)</td><td><span class="mono">100</span></td><td>−2</td><td>−2 × M</td></tr>
+      <tr><td>Group 2 (Q<sub>3</sub> Q<sub>2</sub> Q<sub>1</sub>)</td><td><span class="mono">101</span></td><td>−1</td><td>−1 × M</td></tr>
+      <tr><td>Group 3 (Q<sub>5</sub> Q<sub>4</sub> Q<sub>3</sub>)</td><td><span class="mono">001</span></td><td>+1</td><td>+1 × M</td></tr>
+    </table>
+    <p>Check: (+1)·4² + (−1)·4¹ + (−2)·4⁰ = 16 − 4 − 2 = 10 = Q ✓. There are 3 partial products, not 6.</p>
+    <div class="ans-label">d) Partial products (sign-extended to 12 bits) and final product</div>
+    <table>
+      <tr><th>Digit × M</th><th>Weight</th><th>12-bit partial product</th><th>Value</th></tr>
+      <tr><td>−2 × M = 26</td><td>× 4<sup>0</sup> (shift left 0)</td><td><span class="mono">000000011010</span></td><td>26</td></tr>
+      <tr><td>−1 × M = 13</td><td>× 4<sup>1</sup> (shift left 2)</td><td><span class="mono">000000110100</span></td><td>52</td></tr>
+      <tr><td>+1 × M = −13</td><td>× 4<sup>2</sup> (shift left 4)</td><td><span class="mono">111100110000</span></td><td>−208</td></tr>
+      <tr><td><strong>Sum</strong></td><td></td><td><span class="mono"><strong>111101111110</strong></span></td><td><strong>−130</strong></td></tr>
+    </table>
+    <p style="margin-bottom:0">Product = <span class="mono">111101111110</span> = −130 = (−13) × 10 ✓. Discard any carry beyond 12 bits when adding the rows.</p>
   </div>
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -671,6 +814,91 @@ body{transition:background-color .2s,color .2s}
     <p>Quotient Q = <span class="mono">00101</span> = 5, Remainder A = <span class="mono">00001</span> = 1. Check: 21 = 4×5 + 1. ✓</p>
   </div>
 
+<h3>The teacher's layout for restoring division</h3>
+  <p>Dr K.B. Ramesh's notes (pp.&nbsp;28, 43–47) put the <strong>divisor in M</strong>, the <strong>dividend in Q</strong>, and clear A to 0. At each step, A and Q together are shifted left 1 bit and M is subtracted from A. If A becomes negative, the teacher writes <em>Restore</em>: A gets its old value back and Q₀ stays 0. Otherwise the teacher writes <em>Set Q₀ = 1</em>. After n steps the quotient is in Q and the remainder in A. Each shift, subtract and restore/set gets its own row.</p>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;28</span><span class="marks">verified</span></div>
+    <div class="qtext">Divide 7 by 3 using restoring division (4-bit).</div>
+    <table>
+      <tr><th>A</th><th>Q</th><th>Operation (M = 0011)</th></tr>
+      <tr><td><span class="mono">0000</span></td><td><span class="mono">0111</span></td><td>Initial values</td></tr>
+      <tr><td><span class="mono">0000</span></td><td><span class="mono">1110</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">1101</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">0000</span></td><td><span class="mono">1110</span></td><td>A negative → Restore (Q₀ = 0)</td></tr>
+      <tr><td><span class="mono">0001</span></td><td><span class="mono">1100</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">1110</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">0001</span></td><td><span class="mono">1100</span></td><td>A negative → Restore (Q₀ = 0)</td></tr>
+      <tr><td><span class="mono">0011</span></td><td><span class="mono">1000</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">0000</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">0000</span></td><td><span class="mono">1001</span></td><td>A positive → Set Q₀ = 1</td></tr>
+      <tr><td><span class="mono">0001</span></td><td><span class="mono">0010</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">1110</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">0001</span></td><td><span class="mono">0010</span></td><td>A negative → Restore (Q₀ = 0)</td></tr>
+    </table>
+    <p>Quotient Q = <span class="mono">0010</span> = <strong>2</strong>, Remainder A = <span class="mono">0001</span> = <strong>1</strong>. Check: 7 = 3 × 2 + 1 ✓</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;45 (pp.&nbsp;43–44 do 10 ÷ 2 = 5 r 0 and 10 ÷ 3 = 3 r 1 the same way)</span><span class="marks">verified</span></div>
+    <div class="qtext">Divide 17 by 3 using restoring division (5-bit: 17 = 10001, 3 = 00011).</div>
+    <table>
+      <tr><th>A</th><th>Q</th><th>Operation (M = 00011)</th></tr>
+      <tr><td><span class="mono">00000</span></td><td><span class="mono">10001</span></td><td>Initial values</td></tr>
+      <tr><td><span class="mono">00001</span></td><td><span class="mono">00010</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">11110</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">00001</span></td><td><span class="mono">00010</span></td><td>A negative → Restore (Q₀ = 0)</td></tr>
+      <tr><td><span class="mono">00010</span></td><td><span class="mono">00100</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">11111</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">00010</span></td><td><span class="mono">00100</span></td><td>A negative → Restore (Q₀ = 0)</td></tr>
+      <tr><td><span class="mono">00100</span></td><td><span class="mono">01000</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">00001</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">00001</span></td><td><span class="mono">01001</span></td><td>A positive → Set Q₀ = 1</td></tr>
+      <tr><td><span class="mono">00010</span></td><td><span class="mono">10010</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">11111</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">00010</span></td><td><span class="mono">10010</span></td><td>A negative → Restore (Q₀ = 0)</td></tr>
+      <tr><td><span class="mono">00101</span></td><td><span class="mono">00100</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">00010</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">00010</span></td><td><span class="mono">00101</span></td><td>A positive → Set Q₀ = 1</td></tr>
+    </table>
+    <p>Quotient Q = <span class="mono">00101</span> = <strong>5</strong>, Remainder A = <span class="mono">00010</span> = <strong>2</strong>. Check: 17 = 3 × 5 + 2 ✓</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q1b</span><span class="marks">5 marks</span></div>
+    <div class="qtext">Perform the division 18 ÷ 2 using the Restoring Division Algorithm. Show all the intermediate steps clearly and determine the final quotient and remainder.</div>
+    <div class="ans-label">Solution: 18 needs 5 bits, so use 5-bit registers. Q = 10010, M = 00010, A = 00000</div>
+    <table>
+      <tr><th>A</th><th>Q</th><th>Operation (M = 00010)</th></tr>
+      <tr><td><span class="mono">00000</span></td><td><span class="mono">10010</span></td><td>Initial values</td></tr>
+      <tr><td><span class="mono">00001</span></td><td><span class="mono">00100</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">11111</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">00001</span></td><td><span class="mono">00100</span></td><td>A negative → Restore (Q₀ = 0)</td></tr>
+      <tr><td><span class="mono">00010</span></td><td><span class="mono">01000</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">00000</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">00000</span></td><td><span class="mono">01001</span></td><td>A positive → Set Q₀ = 1</td></tr>
+      <tr><td><span class="mono">00000</span></td><td><span class="mono">10010</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">11110</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">00000</span></td><td><span class="mono">10010</span></td><td>A negative → Restore (Q₀ = 0)</td></tr>
+      <tr><td><span class="mono">00001</span></td><td><span class="mono">00100</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">11111</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">00001</span></td><td><span class="mono">00100</span></td><td>A negative → Restore (Q₀ = 0)</td></tr>
+      <tr><td><span class="mono">00010</span></td><td><span class="mono">01000</span></td><td>Shift left A, Q</td></tr>
+      <tr><td><span class="mono">00000</span></td><td></td><td>Subtract (A ← A − M)</td></tr>
+      <tr><td><span class="mono">00000</span></td><td><span class="mono">01001</span></td><td>A positive → Set Q₀ = 1</td></tr>
+    </table>
+    <p>Quotient Q = <span class="mono">01001</span> = <strong>9</strong>, Remainder A = <span class="mono">00000</span> = <strong>0</strong>. Check: 18 = 2 × 9 + 0 ✓</p>
+  </div>
+
+  <div class="callout clarify">
+    <span class="label">Two things in the notes that can confuse you</span>
+    <ul style="margin:6px 0 0">
+      <li><strong>p.&nbsp;41 has a signed version.</strong> It is copied from Stallings: the dividend is extended to a 2n-bit 2's-complement number in A, Q (e.g. 0111 → 00000111, 1001 → 11111001), and M is subtracted if M and A have the same sign, otherwise added. For two positive numbers this is exactly the method above. Use the method above unless a question gives negative operands.</li>
+      <li><strong>p.&nbsp;42 (10 ÷ 3) is an erased rough draft.</strong> Its A starts at 1111, as if 1010 were sign-extended as −6. Don't copy it; p.&nbsp;44 redoes 10 ÷ 3 correctly (quotient 0011, remainder 0001).</li>
+      <li>The faculty notes have <strong>no non-restoring division</strong>. That method below comes from the syllabus deck.</li>
+    </ul>
+  </div>
+
   <h2>Non-restoring division</h2>
   <p>Non-restoring division avoids the extra restoring addition on a negative step by carrying the negative partial remainder forward and choosing add-or-subtract based on the <em>current</em> sign of A on the next cycle:</p>
   <ol class="steps">
@@ -724,7 +952,7 @@ body{transition:background-color .2s,color .2s}
 <!--SECTION:integer-division-->
 
 <section class="page section" id="floating-point" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-  <div class="section-head"><span class="tag">1.7</span><h1>Floating-Point Numbers — IEEE 754 Single Precision</h1></div>
+  <div class="section-head"><span class="tag">1.7</span><h1>Floating-Point Numbers — IEEE 754 Single (and Double) Precision</h1></div>
   <p class="section-sub">Part 1 — Arithmetic</p>
 
   <p>IEEE single precision packs a real number into a 32-bit word with three fields: 1 sign bit, an 8-bit biased exponent, and a 23-bit mantissa (fraction). The scale factor spans 2<sup>−126</sup> to 2<sup>+127</sup> (≈ 10<sup>±38</sup>).</p>
@@ -778,6 +1006,68 @@ Full word: 0 10000100 00011010000000000000000</div>
     <div class="formula-block">Sign     : 1   <span class="cm">(negative)</span>
 Exponent : <span class="c1">10000110</span>  (134)
 Mantissa : <span class="c2">11011011000000000000000</span></div>
+  </div>
+
+<h2>Double precision (64-bit): taught in the faculty notes</h2>
+  <div class="callout clarify">
+    <span class="label">Syllabus vs. faculty notes</span>
+    The syllabus line says "single precision representation", and CIE-I 2026 asked only for single precision. But Dr K.B. Ramesh's notes work every example in <strong>both</strong> single and double precision, so learn the double-precision layout too. The steps are the same; only the field widths and the bias change.
+  </div>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 680 150" xmlns="http://www.w3.org/2000/svg">
+      <text x="340" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#1C1E21">IEEE 754 double-precision field layout (64 bits)</text>
+      <g font-family="JetBrains Mono, monospace" font-size="12">
+        <rect x="40" y="40" width="30" height="34" fill="#F6E9F0" stroke="#93316B"/><text x="55" y="61" text-anchor="middle">S</text>
+        <rect x="70" y="40" width="170" height="34" fill="#E8EFF8" stroke="#1D4E89"/><text x="155" y="61" text-anchor="middle" font-size="11">E' (11 bits)</text>
+        <rect x="240" y="40" width="400" height="34" fill="#E4F3F0" stroke="#12796F"/><text x="440" y="61" text-anchor="middle">M — mantissa fraction (52 bits)</text>
+        <text x="55" y="90" text-anchor="middle" font-size="10.5" fill="#93316B">bit 63</text>
+        <text x="155" y="90" text-anchor="middle" font-size="10.5" fill="#1D4E89">bits 62–52</text>
+        <text x="440" y="90" text-anchor="middle" font-size="10.5" fill="#12796F">bits 51–0</text>
+      </g>
+      <text x="340" y="118" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#2A2C2F">Value = ±1.M × 2^(E' − 1023)</text>
+      <text x="340" y="138" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#5B6169">E' = e + 1023 (excess-1023); E' = 0 and 2047 are reserved, as 0 and 255 are in single precision</text>
+    </svg>
+    <div class="cap">Fig 8b. Double precision has the same three fields as single precision, but they are wider: 1 + 11 + 52 bits, with bias 1023.</div>
+  </div>
+
+  <table>
+    <tr><th></th><th>Single precision</th><th>Double precision</th></tr>
+    <tr><td>Total bits</td><td>32</td><td>64</td></tr>
+    <tr><td>Sign</td><td>1 bit (bit 31)</td><td>1 bit (bit 63)</td></tr>
+    <tr><td>Biased exponent E′</td><td>8 bits, bias 127</td><td>11 bits, bias 1023</td></tr>
+    <tr><td>Mantissa (fraction)</td><td>23 bits</td><td>52 bits</td></tr>
+    <tr><td>Value</td><td>±1.M × 2<sup>E′−127</sup></td><td>±1.M × 2<sup>E′−1023</sup></td></tr>
+  </table>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, pp.&nbsp;8–14: every final pattern checked against <code>struct.pack</code></span><span class="marks">verified</span></div>
+    <div class="qtext">Represent 1259.125, −307.1875 and 0.0625 in single and double precision.</div>
+    <p>The teacher uses four steps: <strong>Step 1</strong> convert to binary, <strong>Step 2</strong> normalise to 1.xxx × 2<sup>e</sup>, <strong>Step 3</strong> write the sign S and the biased exponent E′, <strong>Step 4</strong> assemble S | E′ | M (mantissa padded with 0s on the right).</p>
+    <table>
+      <tr><th>Number</th><th>Step 1: binary</th><th>Step 2: normalised</th><th>Single: S | E′ | M</th><th>Double: S | E′ | M</th></tr>
+            <tr><td>1259.125<br><span style='font-size:11.5px;color:var(--ink-soft)'>pp.&nbsp;8–10</span></td><td><span class="mono">10011101011.001</span></td><td><span class="mono">1.0011101011001 × 2<sup>10</sup></span></td><td>0 | <span class="mono">10001001</span> (10 + 127 = 137) | <span class="mono">0011101011001</span>…0</td><td>0 | <span class="mono">10000001001</span> (10 + 1023 = 1033) | <span class="mono">0011101011001</span>…0</td></tr>
+      <tr><td>−307.1875<br><span style='font-size:11.5px;color:var(--ink-soft)'>pp.&nbsp;11–12</span></td><td><span class="mono">−100110011.0011</span></td><td><span class="mono">1.001100110011 × 2<sup>8</sup></span></td><td>1 | <span class="mono">10000111</span> (8 + 127 = 135) | <span class="mono">001100110011</span>…0</td><td>1 | <span class="mono">10000000111</span> (8 + 1023 = 1031) | <span class="mono">001100110011</span>…0</td></tr>
+      <tr><td>0.0625<br><span style='font-size:11.5px;color:var(--ink-soft)'>pp.&nbsp;13–14</span></td><td><span class="mono">0.0001</span></td><td><span class="mono">1.0 × 2<sup>−4</sup></span></td><td>0 | <span class="mono">01111011</span> (−4 + 127 = 123) | <span class="mono">0</span>…0</td><td>0 | <span class="mono">01111111011</span> (−4 + 1023 = 1019) | <span class="mono">0</span>…0</td></tr>
+    </table>
+    <p style="margin-bottom:0">0.0625 = 0.0001₂ has nothing after the leading 1, so its mantissa is all zeros. Its exponent is negative (e = −4), giving E′ = 123 in single precision and 1019 in double. (The notes write the double-precision weight sum as "1024" on p.&nbsp;14; the correct value is 1019 = <span class="mono">01111111011</span>.)</p>
+  </div>
+
+  <div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q2b</span><span class="marks">5 marks</span></div>
+    <div class="qtext">Consider the decimal number −18.625. a) Convert it into binary. b) Normalise the binary number. c) Determine the sign bit and biased exponent. d) Write the complete 32-bit IEEE 754 single-precision representation.</div>
+    <div class="ans-label">Solution</div>
+    <ol class="steps">
+      <li><strong>Binary:</strong> 18 = 10010₂; 0.625 → 0.625×2 = 1.25 (1), 0.25×2 = 0.5 (0), 0.5×2 = 1.0 (1) → .101. So 18.625 = <span class="mono">10010.101</span>₂.</li>
+      <li><strong>Normalise:</strong> move the binary point 4 places left: <span class="mono">1.0010101 × 2⁴</span>.</li>
+      <li><strong>Sign and biased exponent:</strong> the number is negative, so S = <strong>1</strong>. E′ = 4 + 127 = 131 = <span class="mono">10000011</span>₂.</li>
+      <li><strong>Mantissa:</strong> the bits after the leading 1, padded to 23 bits: <span class="mono">00101010000000000000000</span>.</li>
+    </ol>
+    <div class="formula-block">Sign     : <span class="c2">1</span>
+Exponent : <span class="c1">10000011</span>  (131)
+Mantissa : <span class="c2">00101010000000000000000</span>
+Full word: 1 10000011 00101010000000000000000  = 0xC1950000</div>
+    <p style="margin-bottom:0">If the question asked for double precision: S = 1, E′ = 4 + 1023 = 1027 = <span class="mono">10000000011</span>, mantissa = <span class="mono">0010101</span> followed by 45 zeros.</p>
   </div>
 
   <p>Two further conversions (+105.625 and 263.3) are worked in <a href="#arithmetic-solved">Solved Numericals</a>.</p>
@@ -1274,6 +1564,93 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
     <div class="formula-block"><span class="c1">F = (B+C+D′)(B′+C+D)(A+B+C′)</span>   <span class="cm">De Morgan on each product term of F′ gives one sum term of F</span></div>
   </div>
 
+<div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q2a</span><span class="marks">5 marks</span></div>
+    <div class="qtext">The combinational circuit shown in the question paper is a function of four variables A, B, C, D. a) Find its Boolean expression. b) Minimise it using a Karnaugh map. c) Draw the resultant circuit.</div>
+    <div class="ans-label">a) Read off each AND gate. The paper's circuit has 5 AND gates feeding one 5-input OR gate.</div>
+    <table>
+      <tr><th>AND gate</th><th>Inputs (tracing the wires)</th><th>Term</th></tr>
+      <tr><td>1</td><td>A; B through an inverter</td><td>AB′</td></tr>
+      <tr><td>2</td><td>C through an inverter; D</td><td>C′D</td></tr>
+      <tr><td>3</td><td>C through an inverter; D (separate taps of the same lines)</td><td>C′D</td></tr>
+      <tr><td>4</td><td>A through an inverter; B; C</td><td>A′BC</td></tr>
+      <tr><td>5</td><td>A (two taps of the same line); C</td><td>AC</td></tr>
+    </table>
+    <div class="formula-block"><span class="c1">Y = AB′ + C′D + C′D + A′BC + AC</span>
+  = AB′ + C′D + A′BC + AC      <span class="cm">(X + X = X)</span></div>
+    <p>Y = 1 on <span class="mono">Σm(1, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15)</span>.</p>
+    <div class="ans-label">b) K-map (rows AB, columns CD, both in Gray order; small numbers are minterm indices)</div>
+    <table style="max-width:440px">
+      <tr><th>AB \ CD</th><th>00</th><th>01</th><th>11</th><th>10</th></tr>
+      <tr><td><strong>00</strong></td><td>0<sub style='color:var(--ink-faint)'>0</sub></td><td>1<sub style='color:var(--ink-faint)'>1</sub></td><td>0<sub style='color:var(--ink-faint)'>3</sub></td><td>0<sub style='color:var(--ink-faint)'>2</sub></td></tr>
+      <tr><td><strong>01</strong></td><td>0<sub style='color:var(--ink-faint)'>4</sub></td><td>1<sub style='color:var(--ink-faint)'>5</sub></td><td>1<sub style='color:var(--ink-faint)'>7</sub></td><td>1<sub style='color:var(--ink-faint)'>6</sub></td></tr>
+      <tr><td><strong>11</strong></td><td>0<sub style='color:var(--ink-faint)'>12</sub></td><td>1<sub style='color:var(--ink-faint)'>13</sub></td><td>1<sub style='color:var(--ink-faint)'>15</sub></td><td>1<sub style='color:var(--ink-faint)'>14</sub></td></tr>
+      <tr><td><strong>10</strong></td><td>1<sub style='color:var(--ink-faint)'>8</sub></td><td>1<sub style='color:var(--ink-faint)'>9</sub></td><td>1<sub style='color:var(--ink-faint)'>11</sub></td><td>1<sub style='color:var(--ink-faint)'>10</sub></td></tr>
+    </table>
+    <ul>
+      <li><strong>C′D</strong>: the whole CD = 01 column (m1, 5, 9, 13).</li>
+      <li><strong>BC</strong>: the 2×2 block where rows AB = 01, 11 meet columns CD = 11, 10 (m6, 7, 14, 15).</li>
+      <li><strong>AB′</strong>: the whole AB = 10 row (m8, 9, 10, 11).</li>
+    </ul>
+    <p>All three groups are essential: m1 is covered only by C′D, m6 only by BC and m8 only by AB′. Together they cover all 11 minterms, and a code check confirms no two-term cover exists.</p>
+    <div class="formula-block"><span class="c1">Y = AB′ + BC + C′D</span>   <span class="cm">5 AND gates + 5-input OR  →  3 two-input ANDs + 3-input OR</span></div>
+    <p>A′BC + AC became BC: A′BC + AC = C(A′B + A) = C(A + B) = AC + BC, and AC is then redundant because it is the consensus of AB′ and BC.</p>
+    <div class="ans-label">c) Resultant circuit</div>
+    <div class="svg-wrap">
+      <svg viewBox="0 0 520 250" xmlns="http://www.w3.org/2000/svg">
+        <g font-family="JetBrains Mono, monospace" font-size="12" fill="#2A2C2F">
+          <text x="20" y="54">A</text><text x="20" y="78">B′</text>
+          <text x="20" y="124">B</text><text x="20" y="148">C</text>
+          <text x="20" y="194">C′</text><text x="20" y="218">D</text>
+          <path d="M42,50 L180,50 M42,74 L180,74 M42,120 L180,120 M42,144 L180,144 M42,190 L180,190 M42,214 L180,214" stroke="#5B6169" stroke-width="1.5" fill="none"/>
+          <path d="M180,38 L215,38 A24,24 0 0 1 215,86 L180,86 Z" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/>
+          <path d="M180,108 L215,108 A24,24 0 0 1 215,156 L180,156 Z" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/>
+          <path d="M180,178 L215,178 A24,24 0 0 1 215,226 L180,226 Z" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/>
+          <text x="248" y="56" font-size="11" fill="#1D4E89">AB′</text><text x="248" y="126" font-size="11" fill="#1D4E89">BC</text><text x="248" y="196" font-size="11" fill="#1D4E89">C′D</text>
+          <path d="M239,62 L300,62 L300,108 L345,108 M239,132 L345,132 M239,202 L300,202 L300,156 L345,156" stroke="#5B6169" stroke-width="1.5" fill="none"/>
+          <path d="M335,96 Q350,132 335,168 Q395,168 425,132 Q395,96 335,96 Z" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.5"/>
+          <path d="M425,132 L480,132" stroke="#5B6169" stroke-width="1.5" fill="none"/>
+          <text x="486" y="136" font-weight="600">Y</text>
+        </g>
+      </svg>
+      <div class="cap">Fig 14. CIE-I 2026 Q2a after minimisation: Y = AB′ + BC + C′D (B′ and C′ come from inverters on B and C).</div>
+    </div>
+  </div>
+
+<div class="qbox">
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q5</span><span class="marks">10 marks</span></div>
+    <div class="qtext">Minimise the given Boolean function using the Quine–McCluskey tabular method and verify the result with a K-map: f(a, b, c, d) = Σm(0, 5, 7, 8, 9, 10, 11, 14, 15) + d(1, 6).</div>
+    <div class="ans-label">Step 1: list minterms and don't-cares together, grouped by number of 1s (✓ = combined into a larger term)</div>
+    <p style="font-size:14px"><strong>0</strong>: 0 <span class="mono">0000</span> ✓<br><strong>1</strong>: 1 <span class="mono">0001</span> ✓, 8 <span class="mono">1000</span> ✓<br><strong>2</strong>: 5 <span class="mono">0101</span> ✓, 6 <span class="mono">0110</span> ✓, 9 <span class="mono">1001</span> ✓, 10 <span class="mono">1010</span> ✓<br><strong>3</strong>: 7 <span class="mono">0111</span> ✓, 11 <span class="mono">1011</span> ✓, 14 <span class="mono">1110</span> ✓<br><strong>4</strong>: 15 <span class="mono">1111</span> ✓</p>
+    <div class="ans-label">Step 2: combine terms in adjacent groups that differ in exactly one bit (pairs)</div>
+    <p style="font-size:14px"><strong>0</strong>: (0,8) <span class="mono">-000</span> ✓, (0,1) <span class="mono">000-</span> ✓<br><strong>1</strong>: (1,9) <span class="mono">-001</span> ✓, (1,5) <span class="mono">0-01</span>, (8,10) <span class="mono">10-0</span> ✓, (8,9) <span class="mono">100-</span> ✓<br><strong>2</strong>: (6,14) <span class="mono">-110</span> ✓, (5,7) <span class="mono">01-1</span>, (6,7) <span class="mono">011-</span> ✓, (10,14) <span class="mono">1-10</span> ✓, (9,11) <span class="mono">10-1</span> ✓, (10,11) <span class="mono">101-</span> ✓<br><strong>3</strong>: (7,15) <span class="mono">-111</span> ✓, (11,15) <span class="mono">1-11</span> ✓, (14,15) <span class="mono">111-</span> ✓</p>
+    <div class="ans-label">Step 3: combine pairs that have the dash in the same place (quads)</div>
+    <p style="font-size:14px"><strong>0</strong>: (0,1,8,9) <span class="mono">-00-</span><br><strong>1</strong>: (8,9,10,11) <span class="mono">10--</span><br><strong>2</strong>: (6,7,14,15) <span class="mono">-11-</span>, (10,11,14,15) <span class="mono">1-1-</span></p>
+    <p>Terms without a ✓ are the prime implicants (a = A, b = B, c = C, d = D below):</p>
+    <div class="ans-label">Step 4: prime-implicant chart. Columns are the required minterms only; don't-cares 1 and 6 are left out.</div>
+    <table>
+      <tr><th>PI</th><th>Pattern</th><th>Covers</th><th>0</th><th>5</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>14</th><th>15</th><th></th></tr>
+      <tr><td>B′C′</td><td><span class="mono">-00-</span></td><td>0, 1, 8, 9</td><td>✕</td><td></td><td></td><td>✕</td><td>✕</td><td></td><td></td><td></td><td></td><td><strong>EPI</strong></td></tr>
+      <tr><td>BC</td><td><span class="mono">-11-</span></td><td>6, 7, 14, 15</td><td></td><td></td><td>✕</td><td></td><td></td><td></td><td></td><td>✕</td><td>✕</td><td></td></tr>
+      <tr><td>AC</td><td><span class="mono">1-1-</span></td><td>10, 11, 14, 15</td><td></td><td></td><td></td><td></td><td></td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td></td></tr>
+      <tr><td>AB′</td><td><span class="mono">10--</span></td><td>8, 9, 10, 11</td><td></td><td></td><td></td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td></td><td></td><td></td></tr>
+      <tr><td>A′C′D</td><td><span class="mono">0-01</span></td><td>1, 5</td><td></td><td>✕</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>A′BD</td><td><span class="mono">01-1</span></td><td>5, 7</td><td></td><td>✕</td><td>✕</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+    <p>Essential PI: <strong>B′C′</strong> (m0 has only one ✕ in its column). B′C′ covers 0, 8 and 9. That leaves 5, 7, 10, 11, 14 and 15. <strong>AC</strong> covers 10, 11, 14 and 15 in one quad, and <strong>A′BD</strong> covers both 5 and 7. Any other choice needs 4 terms.</p>
+    <div class="formula-block"><span class="c1">f = AC + B′C′ + A′BD</span></div>
+    <p>This is the unique minimal cover. A code search over every implicant confirms that no cover has fewer terms or literals.</p>
+    <div class="ans-label">Step 5: verify with a K-map (rows ab, columns cd; X = don't-care)</div>
+    <table style="max-width:440px">
+      <tr><th>ab \ cd</th><th>00</th><th>01</th><th>11</th><th>10</th></tr>
+      <tr><td><strong>00</strong></td><td>1<sub style='color:var(--ink-faint)'>0</sub></td><td>X<sub style='color:var(--ink-faint)'>1</sub></td><td>0<sub style='color:var(--ink-faint)'>3</sub></td><td>0<sub style='color:var(--ink-faint)'>2</sub></td></tr>
+      <tr><td><strong>01</strong></td><td>0<sub style='color:var(--ink-faint)'>4</sub></td><td>1<sub style='color:var(--ink-faint)'>5</sub></td><td>1<sub style='color:var(--ink-faint)'>7</sub></td><td>X<sub style='color:var(--ink-faint)'>6</sub></td></tr>
+      <tr><td><strong>11</strong></td><td>0<sub style='color:var(--ink-faint)'>12</sub></td><td>0<sub style='color:var(--ink-faint)'>13</sub></td><td>1<sub style='color:var(--ink-faint)'>15</sub></td><td>1<sub style='color:var(--ink-faint)'>14</sub></td></tr>
+      <tr><td><strong>10</strong></td><td>1<sub style='color:var(--ink-faint)'>8</sub></td><td>1<sub style='color:var(--ink-faint)'>9</sub></td><td>1<sub style='color:var(--ink-faint)'>11</sub></td><td>1<sub style='color:var(--ink-faint)'>10</sub></td></tr>
+    </table>
+    <p style="margin-bottom:0">Group the 1s with the same prime implicants on the map. Both don't-cares are used only where they make a group bigger, and you get the same expression as the tabular method ✓.</p>
+  </div>
+
   <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
@@ -1308,20 +1685,23 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
         <li>Sign-extend multiplier by 1 bit; append implied 0 at LSB</li>
         <li>Read overlapping 3-bit windows in pairs → digit ∈ {0,±1,±2}</li>
         <li>n/2 summands instead of n</li>
+        <li>Exam name: <strong>Radix-4 Modified Booth</strong>. Groups 000/111 → 0, 001/010 → +M, 011 → +2M, 100 → −2M, 101/110 → −M</li>
       </ul>
     </div>
     <div class="card">
       <h3 style="margin-top:0">Division</h3>
       <ul>
         <li>Restoring: shift, subtract M; if A&lt;0, restore (A+M) and q₀=0, else keep and q₀=1</li>
+        <li>Teacher's rows: Shift → Subtract → Restore <em>or</em> Set Q₀ = 1; divisor in M, dividend in Q</li>
         <li>Non-restoring: shift and add-or-subtract based on current sign of A; set q₀ from new sign; one final restore if A&lt;0 at the end</li>
       </ul>
     </div>
     <div class="card">
-      <h3 style="margin-top:0">IEEE 754 single precision</h3>
+      <h3 style="margin-top:0">IEEE 754 single &amp; double precision</h3>
       <ul>
         <li>1 sign + 8 exponent (excess-127) + 23 mantissa bits</li>
         <li>Value = ±1.M × 2^(E′−127); normalise so exactly one leading 1</li>
+        <li>Double: 1 + 11 (excess-1023) + 52 bits; value = ±1.M × 2^(E′−1023)</li>
         <li>E′=0,M=0 → 0; E′=255,M=0 → ∞; E′=0,M≠0 → denormal; E′=255,M≠0 → NaN</li>
       </ul>
     </div>
@@ -1370,6 +1750,9 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
   <h2>Arithmetic (§1)</h2>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered</th></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q1a</td><td>Radix-4 Modified Booth: multiply (−13) by 10 (binary, groups, encoding, partial products).</td><td>→ <a href="#bit-pair-recoding">Radix-4 Modified Booth / Bit-Pair Recoding</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q1b</td><td>Restoring division 18 ÷ 2 with all intermediate steps.</td><td>→ <a href="#integer-division">Integer Division</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q2b</td><td>−18.625: binary, normalise, sign and biased exponent, 32-bit IEEE 754.</td><td>→ <a href="#floating-point">Floating-Point Numbers</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.3</td><td>Subtract 15 from 13 using 2's complement.</td><td>→ <a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a></td></tr>
     <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.4</td><td>Construct the Booth recoding of a given multiplier bit sequence.</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a></td></tr>
     <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.6</td><td>With an example, specify the significance of overflow in binary addition/subtraction.</td><td>→ <a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a></td></tr>
@@ -1377,7 +1760,7 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
     <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Part B 2a</td><td>Using Modified Booth's algorithm, multiply +9 with −6.</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 1a</td><td>Multiply 10101 (multiplicand) and 00101 (multiplier) using Booth's algorithm.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 1b</td><td>Restoring division flowchart; divide 8 by 5.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 2b</td><td>Multiply 13 × (−8) using bit-pair recoding.</td><td>→ <a href="#bit-pair-recoding">Fast Multiplication / Bit-Pair Recoding</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 2b</td><td>Multiply 13 × (−8) using bit-pair recoding.</td><td>→ <a href="#bit-pair-recoding">Radix-4 Modified Booth / Bit-Pair Recoding</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 3a</td><td>Represent +105.625 in 32-bit single-precision floating point.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.1</td><td>Perform (+25)+(−18) in 8-bit signed 2's complement.</td><td>→ <a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a> (same method)</td></tr>
     <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.2</td><td>Multiply −9 and −7 using Booth's Algorithm (5-bit).</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a> (same method)</td></tr>
@@ -1388,13 +1771,15 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
     <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Retest Q2(i)</td><td>Using Booth's algorithm, multiply +8 × −5.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Retest Q2(ii)</td><td>Using Restoring Division, divide +11 / +3.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part A 1.1</td><td>Represent 263.3 in 32-bit floating point.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part A 1.6</td><td>Multiply +13 with −6 using bit-pair recoding.</td><td>→ <a href="#bit-pair-recoding">Fast Multiplication / Bit-Pair Recoding</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part A 1.6</td><td>Multiply +13 with −6 using bit-pair recoding.</td><td>→ <a href="#bit-pair-recoding">Radix-4 Modified Booth / Bit-Pair Recoding</a></td></tr>
     <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part B 2c</td><td>Using Restoring Division, divide +13 / +7.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a></td></tr>
   </table>
 
   <h2>Simplification (§2)</h2>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered</th></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q2a</td><td>4-variable gate circuit → Boolean expression → K-map minimisation → redraw.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q5</td><td>QM: f = Σm(0,5,7,8,9,10,11,14,15) + d(1,6); verify with K-map.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q1</td><td>K-map simplify Y=Σm(0,1,2,3,5,7,8,9,10,12,13); PIs, EPIs; AND-OR-INVERT and NAND realisation.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q2</td><td>Same function via Quine–McCluskey; NAND and NOR implementation.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q3</td><td>Minimum SOP via QM, verify with K-map: F=Σm(0,2,4,8,9,10,11,12,13).</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
