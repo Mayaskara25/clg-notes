@@ -399,7 +399,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
     <tr><td>Underflow</td><td>Attempting to pop from a stack that is already empty (<code>top == -1</code>)</td></tr>
   </table>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D6"></cite> <cite class="src" data-src="D7"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <section class="page section" id="sec-2-2" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
@@ -560,7 +560,7 @@ int pop(void) {
     <tr><td>Push/pop O(1)</td><td>Push/pop O(1)</td></tr>
   </table>
   <p>The same idea, with the queue as well, is developed in §3.8 of the Unit I notes (Stack &amp; Queue via SLL).</p>
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D6"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 
@@ -854,7 +854,7 @@ int pop(void) {
   </div>
 
   <div class="callout clarify">
-    <span class="label">Related but different — QP1 Q5b</span>
+    <span class="label">Related but different — QP1 Q5b<cite class="src" data-src="Q1"></cite></span>
     "Write an algorithm using stack to evaluate a given valid <strong>prefix</strong> expression" (CIE 21-22, 5 marks) asks for the same idea in reverse: scan the prefix expression <strong>right to left</strong>; push operands; on an operator, pop <code>op1</code> then <code>op2</code> (in that order, since the scan is reversed) and push <code>op1 &lt;operator&gt; op2</code>. The single remaining value is the result — the roles of "which operand comes off first" flip relative to postfix evaluation because the scan direction is reversed. The full algorithm, C code and a traced example are in <a href="#stack-prefix-eval">§1.7</a>.
   </div>
 
@@ -976,7 +976,7 @@ Result = 25</pre>
     return top == -1;                                   <span class="cm">/* none left over */</span>
 }</pre>
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">Your Unit II deck · verified</span><span class="marks">3 marks</span></div>
+    <div class="qmeta"><span class="qsrc">Your Unit II deck · verified<cite class="src" data-src="D6"></cite></span><span class="marks">3 marks</span></div>
     <div class="qtext">Classify each expression.</div>
     <table>
       <tr><th>Expression</th><th>Result</th><th>Reason</th></tr>
@@ -987,7 +987,7 @@ Result = 25</pre>
       <tr><td><code>A + B)</code></td><td>Not balanced</td><td><code>)</code> arrives on an empty stack</td></tr>
     </table>
   </div>
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D6"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 
@@ -1173,7 +1173,7 @@ Result = 25</pre>
   </table>
   <p class="section-sub" style="margin-top:-8px">Verified by direct computation: factorial(4) = 4×3×2×1 = <strong>24</strong>; and more generally factorial(5) = 5×4×3×2×1 = <strong>120</strong>.</p>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D8"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <section class="page section" id="sec-3-3" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">

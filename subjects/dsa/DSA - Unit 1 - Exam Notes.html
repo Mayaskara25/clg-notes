@@ -475,7 +475,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
     <span class="label">Exam tip</span>
     "Primitive vs non-primitive" and "linear vs non-linear" are the standard 2-mark theory questions. Always give one example each and say whether the structure is static (array) or dynamic (linked list).
   </div>
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D4"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 
@@ -506,7 +506,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
     <span class="label">Link to linked lists</span>
     A linked list allocates each node separately with <code>malloc</code> when needed, which is why it can grow and shrink at run time. The functions are covered next in §2.2.
   </div>
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D4"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 
@@ -706,7 +706,7 @@ free(q);</div>
     <div class="cap">Fig 3. Insert-front rewires one link and moves <code>first</code>; insert-rear walks to the current last node before rewiring its (previously NULL) link.</div>
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D5"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <section class="page section" id="sec-3-3" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
@@ -907,7 +907,7 @@ int search(struct node *head, int key) {
     Without one, inserting or deleting the very first real node is a special case (it changes what the external <code>first</code> pointer refers to). With a header node, the external pointer always refers to the header, which never moves — every real insertion/deletion becomes a "modify some node's <code>link</code>" operation, with no special-casing for "am I at the front?" A header list is empty when <code>header-&gt;link == NULL</code>.
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D5"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <section class="page section" id="sec-cll" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
@@ -917,7 +917,7 @@ int search(struct node *head, int key) {
   <div class="callout clarify">
     <span class="label">Not in your earlier materials — written from the new Unit I deck</span>
     The deck's circular-list algorithm slides are images; the algorithms below are the standard ones, written out in full and tested in C.
-  </div>
+  <cite class="src" data-src="D4"></cite></div>
 
   <h2>Definition</h2>
   <p>A <strong>circular linked list</strong> is a singly linked list in which the <code>link</code> of the last node points to the <strong>first node</strong> instead of NULL. It therefore has neither a beginning nor an end: starting from any node, you can reach every other node. Because there is no NULL to stop at, traversal ends when the pointer returns to the starting node.</p>
@@ -1004,7 +1004,7 @@ void display(NODE *last) {
     <tr><td>Rear insert O(n) with only <code>first</code></td><td>Rear insert O(1) with a <code>last</code> pointer</td></tr>
     <tr><td>Suits one-pass processing</td><td>Suits repeated cycling: round-robin scheduling, buffers</td></tr>
   </table>
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D4"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 
@@ -1169,7 +1169,7 @@ q-&gt;rlink = p;</pre>
     <tr><td>Doubly (DLL)</td><td>2</td><td>Yes</td><td>Browser history, undo/redo, editors</td></tr>
     <tr><td>Circular doubly (CDLL)</td><td>2</td><td>No</td><td>Playlists, O(1) access to both ends</td></tr>
   </table>
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D4"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 

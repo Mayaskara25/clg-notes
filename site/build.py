@@ -188,7 +188,7 @@ def validate_sources(s):
         if sid in ids:
             err(f"{name}: duplicate source ID")
         ids.add(sid)
-        if x.get("kind") not in SOURCE_KINDS:
+        if not isinstance(x.get("kind"), str) or x["kind"] not in SOURCE_KINDS:
             err(f"{name}: invalid source kind")
         if not isinstance(x.get("title"), str) or not x["title"].strip():
             err(f"{name}: missing title")

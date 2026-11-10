@@ -388,7 +388,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 
 <div class="callout key"><span class="label">Why trees? Linear vs hierarchical data (UNIT4 deck, p2–4)</span>Arrays, lists, stacks and queues keep data in a <strong>sequence</strong> (A → B → C → D). Real-world data often has <strong>parent → child</strong> relationships — a university has departments (CSE, ECE, ME, CI, CD, CY), each with its own classes and staff — and a sequence cannot show that structure. A tree is the <strong>non-linear</strong> structure that can: nodes joined by edges, with one topmost node called the root, growing downward. In the deck's example tree A is the root; B, C, D are its children and siblings of one another; A is their parent; E and F are leaves.</div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D9"></cite> <cite class="src" data-src="D12"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <section class="page section" id="fund-types" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
@@ -478,7 +478,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <table><tr><th>Application</th><th>Why an N-ary tree fits</th></tr><tr><td>File and folder systems</td><td>a folder holds many files and sub-folders</td></tr><tr><td>Menus and navigation</td><td>a menu item branches into several options</td></tr><tr><td>DOM / HTML structure</td><td>a parent element may have many child elements</td></tr><tr><td>AI search and game trees</td><td>a state can lead to several possible next states</td></tr><tr><td>Organisation hierarchies</td><td>one manager or unit has many direct subordinates</td></tr><tr><td>Tries and prefix structures</td><td>a node branches on many possible symbols</td></tr></table>
 <p>The designing of such trees for real data is worked out in §1.6.</p>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D9"></cite> <cite class="src" data-src="D12"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <section class="page section" id="fund-properties" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
@@ -689,7 +689,7 @@ re-interpreted so that nothing about the original tree is lost.</p>
 </ul>
 
 <h2>C node and linking function</h2>
-<div class="callout clarify"><span class="label">Not in your materials — added for syllabus completeness</span>The deck gives the pictorial rules only; the struct and the <code>addChild</code> routine below are standard LCRS code added so the representation can actually be built.</div>
+<div class="callout clarify"><span class="label">Not in your materials — added for syllabus completeness</span>The deck gives the pictorial rules only; the struct and the <code>addChild</code> routine below are standard LCRS code added so the representation can actually be built.<cite class="src" data-src="D9"></cite></div>
 <div class="formula-block code"><span class="c1">struct</span> Node {
     <span class="c1">int</span> data;
     <span class="c1">struct</span> Node *firstChild;     <span class="cm">// LEFT  link: first child</span>
@@ -1015,7 +1015,7 @@ next-sibling. Need to walk <em>up</em> (full path of a file, manager of an emplo
 
 <div class="callout key"><span class="label">Left child ≠ right child (UNIT4 deck, p9–11)</span>In a binary tree <strong>position matters</strong>: a node has at most two children, called the <em>left</em> and <em>right</em> child, and each child can itself be the root of another binary tree. A root A with left child B and right child C is a <strong>different tree</strong> from A with left child C and right child B, although the two have the same parent-child pairs. (This is what separates a binary tree from a general tree with two unordered children.)</div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D12"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <section class="page section" id="bt-completion" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
@@ -1097,7 +1097,7 @@ next-sibling. Need to walk <em>up</em> (full path of a file, manager of an emplo
     <tr><td>Relationship</td><td colspan="2">Every Perfect binary tree is Complete; the converse is not true.</td></tr>
   </table>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D12"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <section class="page section" id="bt-balanced" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
@@ -1159,7 +1159,7 @@ next-sibling. Need to walk <em>up</em> (full path of a file, manager of an emplo
     by direct computation, matching the depth values in the source figure exactly.
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D12"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <section class="page section" id="bst" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
@@ -1355,7 +1355,7 @@ next-sibling. Need to walk <em>up</em> (full path of a file, manager of an emplo
       <code>delete(root, 50)</code> — but 50 was never inserted, so its "After Delete" inorder print is
       silently unchanged. Tracing that verbatim looks like a mistake. This guide uses <strong>60</strong>
       instead, which is actually present, so the deletion has a visible effect to trace.
-    </div>
+    <cite class="src" data-src="D10"></cite></div>
     <div class="ans-label">(b) Deleting a node with two children — 10, from the Fig 13 BST</div>
     <p>Inorder before: <span class="mono">2, 3, 4, 6, 8, 10, 11, 14, 22</span>. Node 10 has two children
     (8 and 14) — case 3 applies. Its inorder successor is <code>findMin(10-&gt;right)</code>: starting at
@@ -1834,7 +1834,7 @@ display can be obtained by a <em>reverse inorder</em> walk (right subtree, node,
 
 <h2>Complexity summary</h2>
 <table><tr><th>Operation</th><th>Balanced BST</th><th>Skewed BST (e.g. sorted input)</th></tr><tr><td>Search / insert / delete</td><td>O(log n)</td><td>O(n)</td></tr><tr><td>Find min / max</td><td>O(log n)</td><td>O(n)</td></tr><tr><td>Inorder / preorder / postorder display</td><td>O(n)</td><td>O(n)</td></tr><tr><td>Create from n keys</td><td>O(n log n)</td><td>O(n²)</td></tr></table>
-<div class="callout clarify"><span class="label">Not in your materials — added for syllabus completeness (code and display)</span>The deck shows the three deletion cases with pictures only. The C code for the predecessor variant, the iterative insert, the sideways display and the menu-driven driver are added here; the successor-based <code>delete</code> is in §2.4.</div>
+<div class="callout clarify"><span class="label">Not in your materials — added for syllabus completeness (code and display)</span>The deck shows the three deletion cases with pictures only. The C code for the predecessor variant, the iterative insert, the sideways display and the menu-driven driver are added here; the successor-based <code>delete</code> is in §2.4.<cite class="src" data-src="D10"></cite></div>
 
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -2022,14 +2022,14 @@ without any separate sorting step.</p>
     questions often ask for "all traversals."
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D12"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <section class="page section" id="traversal-examples" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
   <div class="section-head"><span class="tag">3.2</span><h1>Worked Traversal Examples</h1></div>
   <p class="section-sub">Three trees, all four traversal orders each, every output confirmed by simulation.</p>
 
-  <div class="qbox">
+  <div class="qbox"><cite class="src" data-src="D10"></cite>
     <div class="qtext">Example 1 — a 9-node tree.</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 740 300" xmlns="http://www.w3.org/2000/svg">
@@ -2071,7 +2071,7 @@ without any separate sorting step.</p>
     </div>
   </div>
 
-  <div class="qbox">
+  <div class="qbox"><cite class="src" data-src="D10"></cite>
     <div class="qtext">Example 2 — a simple 7-node tree.</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
@@ -2100,7 +2100,7 @@ without any separate sorting step.</p>
     </table>
   </div>
 
-  <div class="qbox">
+  <div class="qbox"><cite class="src" data-src="D10"></cite>
     <div class="qtext">Example 3 — a 15-node BST rooted at 25.</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 780 260" xmlns="http://www.w3.org/2000/svg">
@@ -2708,7 +2708,7 @@ completion to restore every pointer).</p>
   <p class="section-sub">Recursive and iterative C code for every basic tree measurement, with all values computed on the Fig 13 tree.</p>
 
 
-<div class="callout clarify"><span class="label">Not in your materials — added for syllabus completeness</span>The decks define these terms (§1.3) but give no code for measuring them; both the recursive and the iterative versions are written here.</div>
+<div class="callout clarify"><span class="label">Not in your materials — added for syllabus completeness</span>The decks define these terms (§1.3) but give no code for measuring them; both the recursive and the iterative versions are written here.<cite class="src" data-src="D12"></cite></div>
 <h2>Definitions used (same conventions as §1.3)</h2>
 <ul>
   <li><strong>Depth</strong> of a node = number of edges from the root to it (root depth 0). <strong>Height</strong> of a node = number of edges on the longest downward path to a leaf (leaf height 0). Height of the tree = height of the root. (Some books count nodes instead of edges, adding 1 — state your convention in the exam.) Height of an empty tree is defined as −1.</li>
@@ -3404,7 +3404,7 @@ operator to the two results. The tree encodes the precedence and brackets, so no
   </div>
 
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D12"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <section class="page section" id="decision-tree" style="--accent:var(--amber);--accent-soft:var(--amber-soft);">
@@ -3554,7 +3554,7 @@ O(height) time — so it is the same loop as a BST search, with the test replaci
     stack-free traversal — valuable whenever traversal happens far more often than insertion/deletion.
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D11"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <section class="page section" id="threaded-worked" style="--accent:var(--ink);--accent-soft:var(--line-soft);">
@@ -3802,7 +3802,7 @@ Because of this, no pointer in the structure is ever NULL, and a traversal can d
 <div class="callout clarify"><span class="label">Clarifying an ambiguous point in the source</span>
 The deck's printed code (pp. 16–22) has small slips that would not compile or run: <code>scanf(" %c", ch)</code> must pass the address <code>&amp;ch</code>;
 <code>printf("%d", ptr-data)</code> must be <code>ptr-&gt;data</code>; <code>create</code> and <code>insert</code> lack a return type (<code>void</code>); and <code>root</code>/<code>head</code> must be declared globally for <code>create</code> to share them.
-The versions in this guide have those fixed; the logic is otherwise the deck's. The deck's own program was ported and run, and it produces the table above.</div>
+The versions in this guide have those fixed; the logic is otherwise the deck's. The deck's own program was ported and run, and it produces the table above.<cite class="src" data-src="D11"></cite></div>
 
 <h2>Inorder and preorder traversal of a threaded tree</h2>
 <p>No recursion and no stack. <strong>Inorder:</strong> from the leftmost node (follow real left links), print it; then, while the node's right link is a thread, follow it and print the successor; when the right link is a real child, step to it and again run to <em>its</em> leftmost node. Stop on returning to the header.
@@ -3837,7 +3837,7 @@ The versions in this guide have those fixed; the logic is otherwise the deck's. 
     <div class="qmeta"><span class="qsrc">THREADED binary tree.pdf · p9–13, p21–22 · trace<cite class="src" data-src="D11" data-p="9-13"></cite></span><span class="marks">6 marks</span></div>
     <div class="qtext">For the tree built by inserting 65, 40, 72, 30, 50, 69, 80, 60, give the inorder and preorder output of the threaded traversals.</div>
     
-    <div class="ans-label">Solution (the deck's code was ported and executed)</div>
+    <div class="ans-label">Solution (the deck's code was ported and executed)<cite class="src" data-src="D11"></cite></div>
     <p><strong>Inorder (threaded):</strong> <span class="mono">30, 40, 50, 60, 65, 69, 72, 80</span> — start at head→left = 65, run left to 30, print; 30's right is a thread to 40: print; 40's right is a real child 50 whose left is a thread, so print 50; 50's right is a child 60 (left thread): print 60; 60's right is a thread to 65: print; 65's right is a real child 72: run left to 69, print; 69's right is a thread to 72: print; 72's right is a real child 80: print; 80's right thread is the header: stop.</p>
     <p><strong>Preorder (threaded):</strong> <span class="mono">65, 40, 30, 50, 60, 72, 69, 80</span>. Both agree with the ordinary recursive traversals of the same BST (checked in code).</p>
   </div>

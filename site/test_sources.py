@@ -1,5 +1,6 @@
 """Source-register and citation validation. Run with unittest discovery in site/."""
-import json
+import contextlib
+import io
 from pathlib import Path
 import tempfile
 import unittest
@@ -77,6 +78,20 @@ class SourcesTests(unittest.TestCase):
             build.validate_sources(subject)
             self.assertTrue(any('book must have no file' in x for x in build.errors))
 
+    def test_register_rejects_invalid_ids_duplicate_ids_and_non_string_kinds(self):
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory) / 'sources'
+            folder.mkdir()
+            (folder / 'queue.pdf').write_bytes(b'%PDF-1.4')
+            valid = self.subject['sources'][0]
+            for entries, message in [([valid, valid], 'duplicate source ID'),
+                                     ([dict(valid, id='not-an-id')], 'invalid source ID'),
+                                     ([dict(valid, kind=[])], 'invalid source kind')]:
+                with self.subTest(message=message):
+                    build.errors.clear()
+                    build.validate_sources(dict(self.subject, dir=directory, sources=entries))
+                    self.assertTrue(any(message in x for x in build.errors))
+
     def test_build_rejects_any_pdf_in_public(self):
         with tempfile.TemporaryDirectory() as directory:
             original = build.write
@@ -84,7 +99,7 @@ class SourcesTests(unittest.TestCase):
                 original(path, text)
                 (Path(directory) / 'accidental.PDF').write_bytes(b'%PDF-1.4')
             with patch.object(build, 'OUT', directory), patch.object(build, 'write', write_and_leak_pdf):
-                with self.assertRaises(SystemExit) as raised:
+                with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as raised:
                     build.main()
             self.assertEqual(raised.exception.code, 1)
             self.assertTrue(any('public must contain no PDFs' in x for x in build.errors))

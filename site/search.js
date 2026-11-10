@@ -30,7 +30,7 @@
     if(!res.length){out.innerHTML='<li class="none">No section matches “'+esc(v)+'”.</li>';return}
     res.slice(0,12).forEach(function(p){var d=p[1],li=document.createElement('li');
       li.innerHTML='<a href="'+SEARCH_BASE+d.u+'"><div>'+(SEARCH_SCOPE?'':'<span class="rc">'+esc(d.c)+'</span>')+
-        '<span class="ru">U'+esc(d.n)+(d.g?' · '+esc(d.g):'')+'</span><span class="rt">'+hl(d.t,words)+'</span></div><div class="rs">'+hl(snippet(d,words),words)+'</div></a>';
+        '<span class="ru">'+(d.n?'U'+esc(d.n)+(d.g?' · ':''):'')+esc(d.g||'')+'</span><span class="rt">'+hl(d.t,words)+'</span></div><div class="rs">'+hl(snippet(d,words),words)+'</div></a>';
       out.appendChild(li)});
   }
   q.addEventListener('focus',function(){revealed=false;load(function(){})});

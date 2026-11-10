@@ -652,7 +652,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">unit deck — Problem 4(a)</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">unit deck — Problem 4(a)<cite class="src" data-src="D1"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Multiply A = 010111 (2's complement) and B = 110110 using Booth's algorithm (6-bit).</div>
     <div class="ans-label">Answer</div>
     <p>M = 23, Q = −10 → product bits <span class="mono">1100011010</span> = <strong>−230</strong> = 23 × (−10). ✓ (five further parts of this problem — (b)–(f) — are tabulated in <a href="#arithmetic-solved">Solved Numericals</a>.)</p>
@@ -799,7 +799,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">unit deck — Problem 6</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">unit deck — Problem 6<cite class="src" data-src="D2"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Given A = 10101 (dividend Q, decimal 21) and B = 00100 (divisor M, decimal 4), perform A/B using restoring division.</div>
     <div class="ans-label">Solution — full cycle trace</div>
     <table>
@@ -1082,7 +1082,7 @@ Full word: 1 10000011 00101010000000000000000  = 0xC1950000</div>
   <p class="section-sub">Part 1 — Arithmetic · every value below re-computed and verified in code</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">unit deck — Problem 4(b)–(f), Booth's algorithm, 6-bit</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">unit deck — Problem 4(b)–(f), Booth's algorithm, 6-bit<cite class="src" data-src="D1"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Perform signed multiplication of the following 2's-complement pairs using Booth's algorithm.</div>
     <table>
       <tr><th>Part</th><th>A (M)</th><th>B (Q)</th><th>Decimal</th><th>Product</th></tr>
@@ -1239,7 +1239,7 @@ Full word: 1 10000011 00101010000000000000000  = 0xC1950000</div>
 F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND them</span>
    = (X+Y'+Z) · (X+Y+Z)</div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D2" data-p="6"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <!--SECTION:boolean-canonical-->
@@ -1333,13 +1333,13 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">unit deck — majority function</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">unit deck — majority function<cite class="src" data-src="D2"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Minimise M(a,b,c) = Σm(3,5,6,7) — output 1 whenever at least 2 of the 3 inputs are 1.</div>
     <div class="ans-label">Solution</div>
     <p>Algebraic route: <span class="mono">M = a'bc + ab'c + abc' + abc = bc + ac + ab</span> (each pair of adjacent-in-one-variable minterms merges after replicating <span class="mono">abc</span>). K-map grouping gives the identical 3 pairs directly. Verified: <strong>M = ab + ac + bc</strong>.</p>
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D2"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <!--SECTION:karnaugh-maps-->
@@ -1351,7 +1351,7 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
   <p>Sometimes a certain input combination can <strong>never occur</strong> in the application, so it does not matter whether the function is defined as 0 or 1 there. These entries are marked <strong>X</strong> (or <var>d</var>) in the truth table and K-map. Because we are free to choose either value, an X is included in a group only when doing so makes the group bigger (and hence the term simpler) — otherwise it is left out. This is exactly the <strong>"Incomplete Boolean Expressions"</strong> case named in the syllabus.</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">unit deck — BCD prime-number example</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">unit deck — BCD prime-number example<cite class="src" data-src="D2"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">A circuit must output 1 for the prime digits (2,3,5,7) of a BCD input, 0 for the other valid digits (0,1,4,6,8,9), and "don't care" for the unused codes 10–15. Minimise.</div>
     <div class="ans-label">Solution</div>
     <p>F = Σm(2,3,5,7) + Σd(10,11,12,13,14,15). Grouping the four minterms with the don't-cares (all six are available to extend groups) gives two 4-cell groups:</p>
@@ -1399,7 +1399,7 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
     VEM is most useful for realising a function on a multiplexer — the map-entered variables become the MUX data inputs, and the map's own variables become the select lines.
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D2" data-p="18"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
 <!--SECTION:dont-care-vem-->

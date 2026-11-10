@@ -788,7 +788,7 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
   </div>
 
   <div class="qbox" id="u2-example-13">
-    <div class="qmeta"><span class="qsrc">21-22 CIE-I Q3 — FLAGSHIP dataset, 3rd algorithm</span><span class="marks">worked example · TQ=2ms</span></div>
+    <div class="qmeta"><span class="qsrc">21-22 CIE-I Q3 — FLAGSHIP dataset, 3rd algorithm<cite class="src" data-src="D2" data-p="42"></cite></span><span class="marks">worked example · TQ=2ms</span></div>
     <div class="qtext">Same dataset as §2.6's flagship box: P1(AT0,BT11), P2(AT5,BT28), P3(AT12,BT2), P4(AT2,BT10), P5(AT9,BT16). Apply RR with quantum = 2ms.</div>
     <p>With five processes and bursts up to 28ms against a 2ms quantum, this schedule runs to <strong>28 context
     switches</strong> before completion at t=67 — too long to usefully hand-trace segment by segment, but the
@@ -1638,7 +1638,7 @@ R.<span class="tf">release</span>();</pre>
   </div>
 
   <div class="qbox" id="u2-example-20">
-    <div class="qmeta"><span class="qsrc">Older course deck, p5–7</span><span class="marks">worked example · verified in code</span></div>
+    <div class="qmeta"><span class="qsrc">Older course deck, p5–7<cite class="src" data-src="D7" data-p="5-7"></cite></span><span class="marks">worked example · verified in code</span></div>
     <div class="qtext">counter starts at 5. Producer and consumer execute counter++ and counter-- concurrently, interleaved exactly as S0–S5 in Fig 16. What is the final value of counter?</div>
     <p style="margin:0">Simulating this exact instruction sequence gives <strong>counter = 4</strong>. The only
     value that would be "correct" from a program-logic standpoint is 5 (one net increment, one net
@@ -2134,7 +2134,7 @@ release() {
   </div>
 
   <div class="qbox" id="u2-example-23">
-    <div class="qmeta"><span class="qsrc">Course slides — counting semaphore</span><span class="marks">worked example</span></div>
+    <div class="qmeta"><span class="qsrc">Course slides — counting semaphore<cite class="src" data-src="D3"></cite></span><span class="marks">worked example</span></div>
     <div class="qtext">Three processes P1, P2, P3 all call wait(S) on a counting semaphore initialized to S=2 (a resource with 2 interchangeable instances). What happens?</div>
     <p style="margin:0">S starts at 2. P1's <span class="mono">wait(S)</span> sees S=2 &gt; 0, decrements to
     S=1 — P1 acquires. P2's <span class="mono">wait(S)</span> sees S=1 &gt; 0, decrements to S=0 — P2
@@ -2564,7 +2564,7 @@ do {
   </div>
 
   <div class="qbox" id="u2-example-27">
-    <div class="qmeta"><span class="qsrc">Older course deck p41, classic example</span><span class="marks">worked example · verified with real threads</span></div>
+    <div class="qmeta"><span class="qsrc">Older course deck p41, classic example<cite class="src" data-src="D7" data-p="41"></cite></span><span class="marks">worked example · verified with real threads</span></div>
     <div class="qtext">Semaphores S and Q are both initialized to 1. P0 executes wait(S) then wait(Q); P1 executes wait(Q) then wait(S). Show that this can deadlock.</div>
     <p>Consider this interleaving: P0 runs <span class="mono">wait(S)</span> and acquires S. P1 runs
     <span class="mono">wait(Q)</span> and acquires Q. Now P0 attempts <span class="mono">wait(Q)</span> — but

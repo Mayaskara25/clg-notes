@@ -348,7 +348,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
   are the standard priority-queue implementation. This connects directly to §1.9, where the heap
   operations built up in Part 2 are shown to <em>be</em> the priority queue's insert and remove-best.</p>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D13" data-p="2"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="heap-def" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
   <div class="section-head"><span class="tag">1.2</span><h1>Min-Heap / Max-Heap: Definition &amp; Properties</h1></div>
@@ -420,7 +420,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
     </ul>
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D13"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="array-rep" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
   <div class="section-head"><span class="tag">1.3</span><h1>Array Representation of a Heap</h1></div>
@@ -494,7 +494,7 @@ right_child(i) = 2*i + 1</div>
   which hold 8 and 7, exactly its two children in the tree. Node 10 is at index 3, so its children are at
   indices 6 and 7 — holding 9 and 3, again matching. No pointers were needed anywhere.</p>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D13"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="heap-insert" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
   <div class="section-head"><span class="tag">1.4</span><h1>Insertion (Sift-Up)</h1></div>
@@ -561,7 +561,7 @@ right_child(i) = 2*i + 1</div>
   (*n)++;
 }</div>
 
-  <div class="qbox">
+  <div class="qbox"><cite class="src" data-src="D13"></cite>
     <div class="qtext">Worked example — Insert 95 into the max-heap [90,89,70,36,75,63,65,21,18,15].</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 620 260" xmlns="http://www.w3.org/2000/svg">
@@ -598,7 +598,7 @@ right_child(i) = 2*i + 1</div>
     verified by simulating the sift-up in code.</p>
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D13"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="heap-delete" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
   <div class="section-head"><span class="tag">1.5</span><h1>Deletion (Sift-Down)</h1></div>
@@ -635,7 +635,7 @@ right_child(i) = 2*i + 1</div>
   <span class="c1">return</span> maxVal;
 }</div>
 
-  <div class="qbox">
+  <div class="qbox"><cite class="src" data-src="D13"></cite>
     <div class="qtext">Worked example — delete the root (90) from an 11-node max-heap.</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <div class="grid2">
@@ -701,10 +701,10 @@ right_child(i) = 2*i + 1</div>
     are 36 and 85 — 85 is larger and &gt;75, so swap again; 75 moves once more. Its new children are 15
     and nothing (no right child) — 15 &lt; 75, so it stops. Final array:
     <span class="mono">[89,85,70,36,75,63,65,21,18,15]</span> — verified by simulating swap-with-last
-    plus sift-down in code, exact match to the source deck's own 10-step diagram trace.</p>
+    plus sift-down in code, exact match to the source deck's own 10-step diagram trace.<cite class="src" data-src="D13"></cite></p>
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D13"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="heap-construct" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
   <div class="section-head"><span class="tag">1.6</span><h1>Building a Heap: Top-Down vs Bottom-Up Construction</h1></div>
@@ -784,7 +784,7 @@ right_child(i) = 2*i + 1</div>
     <strong>bottom-up</strong> method — the more standard "build a heap" algorithm, and the one directly
     asked for below — starts from the array exactly as given and fixes the heap property from the bottom
     up, which is why it runs in O(n) instead of O(n log n).
-  </div>
+  <cite class="src" data-src="D13"></cite></div>
   <div class="formula-block code"><span class="cm">// pseudocode: bottom-up heap construction (build-heap)</span>
 buildHeap(a[0..n-1]):
   <span class="c1">for</span> i <span class="c1">from</span> (n/2 - 1) <span class="c1">downto</span> 0:   <span class="cm">// last non-leaf index down to the root</span>
@@ -1011,7 +1011,7 @@ buildHeap(a[0..n-1]):
     <span class="label">Not in your materials — added for syllabus completeness</span>
     The source deck names the priority queue and compares its linked-list vs heap complexity (§1.1), but
     never shows the ADT's operations as code. They are identical to §1.4/§1.5, just renamed.
-  </div>
+  <cite class="src" data-src="D13"></cite></div>
 
   <table>
     <tr><th>Priority Queue operation</th><th>Implemented as</th><th>Cost</th></tr>
@@ -1304,7 +1304,7 @@ extract on empty returns 0</div>
     <tr><td>RL</td><td>right-heavy, right child left-heavy</td><td>right-rotate right child, then left-rotate node</td></tr>
   </table>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D14"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="avl-construction" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
   <div class="section-head"><span class="tag">2.2</span><h1>AVL Construction — Worked Examples</h1></div>
@@ -1346,7 +1346,7 @@ extract on empty returns 0</div>
     </div>
   </div>
 
-  <div class="qbox">
+  <div class="qbox"><cite class="src" data-src="D14"></cite>
     <div class="qtext">A second construction (from the course notebook) — insert 10, 20, 30, 25, 27, 7, 4, 23 one at a time.</div>
     <div class="ans-label">Solution (verified in code)</div>
     <table>
@@ -1939,7 +1939,7 @@ search 10 -&gt; 1, search 12 -&gt; 0</div>
   leaf is found.</p>
 
   <div class="callout key">
-    <span class="label">Appraisal — why B+ trees, as a tree-based data structure (QP1 Q3.a)</span>
+    <span class="label">Appraisal — why B+ trees, as a tree-based data structure (QP1 Q3.a)<cite class="src" data-src="Q1"></cite></span>
     <ul style="margin:6px 0 0">
       <li><strong>High fan-out</strong>: each internal node can have many children (order n), so the tree stays shallow even for millions of records — minimizing the number of (slow) disk reads needed per search, which is the entire reason B+ trees dominate in databases and filesystems over binary structures.</li>
       <li><strong>Uniform leaf depth</strong>: every search, successful or not, touches exactly the same number of levels — predictable worst-case performance, unlike a BST.</li>
@@ -2161,7 +2161,7 @@ search 10 -&gt; 1, search 12 -&gt; 0</div>
     <div class="cap">Fig 21. Zig — the simplest splay move, used when the target is a direct child of the root.</div>
   </div>
 
-  <div class="qbox">
+  <div class="qbox"><cite class="src" data-src="D14"></cite>
     <div class="qtext">Worked example — construct a splay tree by inserting 2, 1, 4, 5, 9, 3 (each newly-inserted node splays to the root).</div>
     <div class="ans-label">Solution (verified in code — standard BST-insert-then-splay-to-root)</div>
     <table>
@@ -2193,7 +2193,7 @@ search 10 -&gt; 1, search 12 -&gt; 0</div>
     Zag-Zig rotation" (RVCE CIE-III Q1.3): inserting 3 above is exactly that case.</p>
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D14"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="splay-cache" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
   <div class="section-head"><span class="tag">2.9</span><h1>Splay Trees as a Cache (Simulation)</h1></div>
@@ -3241,9 +3241,9 @@ count = 3</div>
     <em>any</em> input, defeating adversarial worst-case inputs). These formalize <em>why</em> hashing
     works well on average — useful background, but not the focus of the worked exam questions in this
     unit, so kept brief here rather than derived in full.
-  </div>
+  <cite class="src" data-src="D15"></cite></div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D15"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="hash-functions" style="--accent:var(--plum);--accent-soft:var(--plum-soft);">
   <div class="section-head"><span class="tag">4.2</span><h1>Hash Functions: Division &amp; Multiplication Methods</h1></div>
@@ -3328,7 +3328,7 @@ count = 3</div>
     chaining's O(1+α) search bound close to O(1) in practice.
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D15"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="closed-hashing" style="--accent:var(--plum);--accent-soft:var(--plum-soft);">
   <div class="section-head"><span class="tag">4.4</span><h1>Closed Hashing (Linear, Quadratic &amp; Double Hashing)</h1></div>
@@ -3400,7 +3400,7 @@ count = 3</div>
     its own as an exam point.
   </div>
 
-  <div class="qbox">
+  <div class="qbox"><cite class="src" data-src="D14"></cite>
     <div class="qtext">Worked example — h1(x) = x mod 10, h2(x) = (x+5) mod 10, insert 12, 22, 37, 44, 19 into a size-10 table.</div>
     <table>
       <tr><th>Key</th><th>h1</th><th>h2</th><th>Probing</th><th>Final index</th></tr>
@@ -3512,7 +3512,7 @@ search 14 -&gt; slot 9, search 25 -&gt; -1</div>
     Mark it as <strong>deleted</strong> (a tombstone): search continues past it, insert may reuse it. Keep the load factor &alpha; = n/m below about 0.5&ndash;0.7; at &alpha; = 1 the table is full and insertion fails.
   </div>
 
-  <a class="backtotop" href="#index">↑ Back to index</a>
+  <p class="source-note">Sources: <cite class="src" data-src="D14"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="hash-numericals" style="--accent:var(--plum);--accent-soft:var(--plum-soft);">
   <div class="section-head"><span class="tag">4.6</span><h1>Solved Numericals — Hashing</h1></div>
