@@ -11,5 +11,6 @@
 !/subjects/*/subject.json
 !/subjects/*/videos.json
 !/subjects/*/*.html
+!/subjects/*/sources/
 /public/
 __pycache__/

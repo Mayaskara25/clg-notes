@@ -8,10 +8,13 @@ Layout it reads:
   site/site.json                     global title / subtitle / repo
   subjects/<slug>/subject.json       one per subject: units, changelog
   subjects/<slug>/<guide>.html       the published guides (only files listed in subject.json)
+  subjects/<slug>/sources/*.pdf      registered faculty sources (served by GitHub only)
+  site/sources.html                  source-register page template
 
 Layout it writes:
   public/index.html                  all subjects
   public/<slug>/index.html           one subject's units
+  public/<slug>/sources/index.html   source register with GitHub Open / Download links
   public/<slug>/unit-<n>/index.html  one guide, with the site toolbar injected
   public/search.json                 search index for every section of every guide
 
@@ -19,6 +22,7 @@ Usage (from the repo root):  python3 site/build.py
 """
 import html, json, os, re, shutil, subprocess, sys
 from datetime import date
+from urllib.parse import quote
 from code_highlight import highlight_code_blocks
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -160,6 +164,85 @@ def unit_slug(n):
 # ---------- loading ----------
 REQUIRED_SUBJECT = ["code", "title", "course", "accent", "units", "changelog"]
 REQUIRED_UNIT = ["n", "source", "title", "topics", "updated"]
+SOURCE_KINDS = {"deck", "notes", "papers", "qbank", "lab", "book"}
+
+
+def validate_sources(s):
+    folder = os.path.join(s["dir"], "sources")
+    listed, ids = set(), set()
+    sources = s.get("sources", [])
+    if not isinstance(sources, list):
+        err(f"{s['slug']}: sources must be a list")
+        s["sources"] = []
+        return
+    for x in sources:
+        if not isinstance(x, dict):
+            err(f"{s['slug']}: each source must be an object")
+            continue
+        sid = x.get("id", "")
+        name = f"{s['slug']} source {sid}"
+        if not isinstance(sid, str) or not re.fullmatch(r"[A-Z]\d+", sid):
+            err(f"{name}: invalid source ID")
+            continue
+        if sid in ids:
+            err(f"{name}: duplicate source ID")
+        ids.add(sid)
+        if x.get("kind") not in SOURCE_KINDS:
+            err(f"{name}: invalid source kind")
+        if not isinstance(x.get("title"), str) or not x["title"].strip():
+            err(f"{name}: missing title")
+        if x.get("kind") == "book":
+            if "file" in x:
+                err(f"{name}: a book must have no file")
+            continue
+        f = x.get("file", "")
+        if not isinstance(f, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*\.pdf", f):
+            err(f"{name}: file must be a clean lowercase ASCII PDF name")
+            continue
+        listed.add(f)
+        p = os.path.join(folder, f)
+        if not os.path.isfile(p):
+            err(f"{name}: missing PDF {f}")
+        elif os.path.getsize(p) > 20_000_000:
+            err(f"{name}: PDF exceeds 20 MB: {f}")
+    actual = {os.path.relpath(os.path.join(d, f), folder) for d, _, fs in os.walk(folder)
+              for f in fs if f.lower().endswith(".pdf")}
+    for f in sorted(actual - listed):
+        err(f"{s['slug']}: unlisted source PDF {f}")
+
+
+def source_url(cfg, s, x, download=False):
+    mode = "raw" if download else "blob"
+    return f"https://github.com/{cfg['repo']}/{mode}/main/subjects/{s['slug']}/sources/{quote(x['file'])}"
+
+
+def source_groups(cfg, s):
+    groups = [("Lecture decks & notes", {"deck", "notes"}), ("Question papers", {"papers"}),
+              ("Question banks", {"qbank"}), ("Lab", {"lab"}), ("Textbooks", {"book"})]
+    out = []
+    for title, kinds in groups:
+        rows = []
+        for x in s.get("sources", []):
+            if x["kind"] not in kinds:
+                continue
+            detail = " · ".join(filter(None, [x.get("by"), x.get("edition"),
+                               "Units " + ", ".join(str(n) for n in x.get("units", []))]))
+            links = ""
+            if x.get("file"):
+                size = os.path.getsize(os.path.join(s["dir"], "sources", x["file"])) / 1_000_000
+                detail += f" · {size:.2f} MB"
+                links = (f'<a class="btn" href="{e(source_url(cfg, s, x))}" target="_blank" rel="noopener">Open</a>'
+                         f'<a class="btn" href="{e(source_url(cfg, s, x, True))}">Download</a>')
+            elif x.get("url"):
+                links = f'<a class="btn" href="{e(x["url"])}" target="_blank" rel="noopener">Read online ↗</a>'
+            note = f'<p class="source-note">{e(x["note"])}</p>' if x.get("note") else ""
+            rows.append(f'<article class="source-row" id="src-{e(x["id"])}">'
+                        f'<span class="source-id">{e(x["id"])}</span><div class="source-info">'
+                        f'<h3>{e(x["title"])}</h3><p>{e(detail)}</p>{note}</div>'
+                        f'<div class="source-actions">{links}</div></article>')
+        if rows:
+            out.append(f'<section><h2 class="h">{e(title)}</h2>' + "\n".join(rows) + '</section>')
+    return "\n".join(out)
 
 
 def load_subjects():
@@ -184,6 +267,7 @@ def load_subjects():
             err(f"subjects/{slug}/subject.json: missing fields {missing}")
             continue
         s["slug"], s["dir"] = slug, d
+        validate_sources(s)
         s["videos"] = {}
         vp = os.path.join(d, "videos.json")   # optional: YouTube links per section, shown by "Videos" buttons
         if os.path.isfile(vp):
@@ -239,6 +323,7 @@ def main():
     chrome_t = read(os.path.join(SITE, "unit-chrome.html"))
     home_t = read(os.path.join(SITE, "home.html"))
     subject_t = read(os.path.join(SITE, "subject.html"))
+    sources_t = read(os.path.join(SITE, "sources.html"))
     theme_js = read(os.path.join(SITE, "theme-links.js"))
     search_js = read(os.path.join(SITE, "search.js"))
     style = read(os.path.join(SITE, "landing.css"))
@@ -253,6 +338,9 @@ def main():
                  f'src="https://gc.zgo.at/count.js"></script>') if gc else ""
 
     subjects = load_subjects()
+    if errors:
+        print("BUILD FAILED — nothing was deployed:\n  - " + "\n  - ".join(errors), file=sys.stderr)
+        sys.exit(1)
 
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
@@ -295,6 +383,7 @@ def main():
                 "UNIT_TITLE_JS": js_str(u["title"]), "DOWNLOAD_NAME": e(u["source"], quote=True),
                 "COURSE_JS": js_str(s["course"]), "COURSE_CODE_JS": js_str(s.get("course_code", "")),
                 "SITE_URL": cfg["url"], "PAGE_URL_JS": js_str(f'{cfg["url"]}/{slug}/{u["slug"]}/'),
+                "SUBJECT_SLUG": slug,
             }, name + " toolbar")
             page = c
             if slug in {"os", "dsa"}:
@@ -341,6 +430,20 @@ def main():
         }, f"{code} landing")
         write(os.path.join(OUT, slug, "index.html"), page)
 
+        source_page = fill(sources_t, {
+            "STYLE": style, "TITLE": e(s["title"]), "CODE": e(code), "SITE_TITLE": e(cfg["title"]),
+            "SOURCES": source_groups(cfg, s), "THEME_LINKS": theme_js, "ANALYTICS": analytics,
+        }, f"{code} sources")
+        write(os.path.join(OUT, slug, "sources", "index.html"), source_page)
+        source_path = f"{slug}/sources/"
+        built[source_path] = set(re.findall(r'id="([\w-]+)"', source_page))
+        kind_labels = {"deck": "Lecture deck", "notes": "Faculty notes", "papers": "Question papers",
+                       "qbank": "Question bank", "lab": "Lab manual", "book": "Textbook"}
+        for x in s.get("sources", []):
+            search.append({"s": slug, "c": code, "n": "", "g": "Source " + x["id"],
+                           "t": x["title"], "u": source_path + "#src-" + x["id"],
+                           "x": " ".join([kind_labels[x["kind"]], x["title"], x.get("by", ""), x.get("note", "")])})
+
         e_course = e(s["course"]) + (f' <span class="cc">{e(s["course_code"])}</span>' if s.get("course_code") else "")
         ready = "ready" if s["units"] else "wip"
         subject_cards.append(
@@ -381,6 +484,11 @@ def main():
         p, _, anchor = x["u"].partition("#")
         if anchor not in built.get(p, set()):
             err(f"search link broken: {x['u']}")
+
+    for d, _, fs in os.walk(OUT):
+        for f in fs:
+            if f.lower().endswith(".pdf"):
+                err(f"public must contain no PDFs: {os.path.relpath(os.path.join(d, f), OUT)}")
 
     size = sum(os.path.getsize(os.path.join(d, f)) for d, _, fs in os.walk(OUT) for f in fs)
     if errors:

@@ -99,5 +99,195 @@
       ],
       "text": "Units 1–2 re-aligned to the new syllabus (linked lists moved to Unit 1, stacks to Unit 2)."
     }
+  ],
+  "sources": [
+    {
+      "id": "D1",
+      "kind": "deck",
+      "title": "Queues: concepts, array operations and types (deck 1)",
+      "by": "Dept. lecture material",
+      "file": "queues-kcg.pdf",
+      "units": [
+        3
+      ]
+    },
+    {
+      "id": "D2",
+      "kind": "deck",
+      "title": "Queues: types, implementation and applications (deck 2)",
+      "by": "Dept. lecture material",
+      "file": "queues-types-applications.pdf",
+      "units": [
+        3
+      ]
+    },
+    {
+      "id": "D3",
+      "kind": "deck",
+      "title": "Queues: array and linked-list implementations (deck 3)",
+      "by": "Dept. lecture material",
+      "file": "queues-array-linked-list.pdf",
+      "units": [
+        3
+      ]
+    },
+    {
+      "id": "D4",
+      "kind": "deck",
+      "title": "Introduction, data structures and linked lists",
+      "by": "Dept. lecture material",
+      "file": "unit1-introduction-linked-lists.pdf",
+      "units": [
+        1
+      ]
+    },
+    {
+      "id": "D5",
+      "kind": "notes",
+      "title": "Linked lists: faculty handwritten notes",
+      "by": "Dept. lecture material",
+      "file": "linked-lists-handwritten.pdf",
+      "units": [
+        1
+      ]
+    },
+    {
+      "id": "D6",
+      "kind": "deck",
+      "title": "Stacks: operations and applications",
+      "by": "Dept. lecture material",
+      "file": "unit2-stacks.pdf",
+      "units": [
+        2
+      ]
+    },
+    {
+      "id": "D7",
+      "kind": "deck",
+      "title": "Stacks: original algorithms and expression examples",
+      "by": "Dept. lecture material",
+      "file": "stacks-original.pdf",
+      "units": [
+        2
+      ]
+    },
+    {
+      "id": "D8",
+      "kind": "deck",
+      "title": "Recursion, binary search and Towers of Hanoi",
+      "by": "Dept. lecture material",
+      "file": "recursion.pdf",
+      "units": [
+        2
+      ]
+    },
+    {
+      "id": "D9",
+      "kind": "deck",
+      "title": "Trees: terminology, binary trees, forests and conversions",
+      "by": "Dept. lecture material",
+      "file": "unit4-trees.pdf",
+      "units": [
+        4
+      ]
+    },
+    {
+      "id": "D10",
+      "kind": "deck",
+      "title": "Tree traversals and binary search tree operations",
+      "by": "Dept. lecture material",
+      "file": "tree-traversal-bst.pdf",
+      "units": [
+        4
+      ]
+    },
+    {
+      "id": "D11",
+      "kind": "deck",
+      "title": "Threaded binary trees",
+      "by": "Dept. lecture material",
+      "file": "threaded-binary-trees.pdf",
+      "units": [
+        4
+      ]
+    },
+    {
+      "id": "D12",
+      "kind": "deck",
+      "title": "Trees: original binary tree and traversal material",
+      "by": "Dept. lecture material",
+      "file": "trees-original.pdf",
+      "units": [
+        4
+      ]
+    },
+    {
+      "id": "D13",
+      "kind": "deck",
+      "title": "Binary heaps and priority queues",
+      "by": "Dept. lecture material",
+      "file": "binary-heaps.pdf",
+      "units": [
+        5
+      ]
+    },
+    {
+      "id": "D14",
+      "kind": "deck",
+      "title": "Trees, advanced trees and graphs: complete faculty deck",
+      "by": "Dept. lecture material",
+      "file": "advanced-trees-graphs.pdf",
+      "units": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "D15",
+      "kind": "deck",
+      "title": "Hash functions and collision resolution",
+      "by": "Dept. lecture material",
+      "file": "hashing.pdf",
+      "units": [
+        5
+      ]
+    },
+    {
+      "id": "D16",
+      "kind": "deck",
+      "title": "Queues: original array, circular and message queue algorithms",
+      "by": "Dept. lecture material",
+      "file": "queues-original.pdf",
+      "units": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "Q1",
+      "kind": "papers",
+      "title": "CIE question papers, 2021–22",
+      "by": "Dept. lecture material",
+      "file": "cie-2021-22.pdf",
+      "units": [
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "Q2",
+      "kind": "papers",
+      "title": "CIE, quizzes and SEE question papers, 2024–25",
+      "by": "Dept. lecture material",
+      "file": "cie-see-2024-25.pdf",
+      "units": [
+        1,
+        2,
+        4,
+        5
+      ]
+    }
   ]
 }

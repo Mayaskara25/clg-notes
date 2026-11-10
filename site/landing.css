@@ -69,3 +69,13 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
 :root[data-theme="dark"] .log .s{color:#14161A}
 .log li.none{display:block;color:var(--ink-faint)}
 #results .rc{font:700 11px 'JetBrains Mono',monospace;color:var(--blue);margin-right:6px}
+
+/* Source register: share landing-page colors and keep rows readable on phones. */
+.source-row{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:start;padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;scroll-margin-top:70px}
+.source-id{font:600 12px 'JetBrains Mono',monospace;color:var(--ink-soft);border:1px solid var(--line);border-radius:6px;padding:3px 6px;text-align:center}
+.source-info h3{font-size:18px;line-height:1.4;margin:0;overflow-wrap:anywhere}
+.source-info p{font-size:13px;color:var(--ink-soft);margin:5px 0 0;overflow-wrap:anywhere}
+.source-actions{display:flex;gap:6px;flex-wrap:wrap}
+.source-row:target{outline:2px solid var(--blue);outline-offset:2px}
+@media(max-width:620px){.source-row{grid-template-columns:42px minmax(0,1fr);padding:14px;gap:10px}.source-actions{grid-column:2}}
+@media(max-width:520px){.wrap{padding-left:16px;padding-right:16px}}

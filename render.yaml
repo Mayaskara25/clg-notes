@@ -4,6 +4,9 @@ services:
     name: clg-notes
     buildCommand: python3 site/build.py
     staticPublishPath: public
+    buildFilter:
+      ignoredPaths:
+        - subjects/*/sources/**
     headers:
       - path: /*
         name: X-Robots-Tag

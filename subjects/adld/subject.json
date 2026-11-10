@@ -80,5 +80,160 @@
       ],
       "text": "First ADLD release: Unit 1, Unit 2 (combinational + sequential halves in one guide) and Unit 3, aligned to the new syllabus."
     }
+  ],
+  "sources": [
+    {
+      "id": "D1",
+      "kind": "deck",
+      "title": "Computer arithmetic: lecture deck",
+      "by": "Dept. lecture deck",
+      "file": "unit1a-computer-arithmetic.pdf",
+      "units": [
+        1
+      ]
+    },
+    {
+      "id": "D2",
+      "kind": "deck",
+      "title": "Boolean simplification and combinational building blocks",
+      "by": "Dept. lecture deck",
+      "file": "unit1b-boolean-combinational.pdf",
+      "units": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "D3",
+      "kind": "deck",
+      "title": "Adders, carry lookahead and comparators",
+      "by": "Dept. lecture deck",
+      "file": "unit2a-adders-comparators.pdf",
+      "units": [
+        2
+      ]
+    },
+    {
+      "id": "D4",
+      "kind": "deck",
+      "title": "Clocked synchronous sequential networks",
+      "by": "Dept. lecture deck",
+      "file": "sequential-networks.pdf",
+      "units": [
+        3
+      ]
+    },
+    {
+      "id": "D5",
+      "kind": "deck",
+      "title": "Latches, flip-flops, registers and counters",
+      "by": "Dept. lecture deck",
+      "file": "flip-flops-registers-counters.pdf",
+      "units": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "D6",
+      "kind": "notes",
+      "title": "Computer Arithmetic: handwritten faculty notes",
+      "by": "Dr K. B. Ramesh",
+      "file": "kb-ramesh-computer-arithmetic.pdf",
+      "units": [
+        1
+      ]
+    },
+    {
+      "id": "D7",
+      "kind": "notes",
+      "title": "Adders, subtractors, decoders and multiplexers: handwritten notes",
+      "by": "Dr K. B. Ramesh",
+      "file": "kb-ramesh-adders-decoder-mux.pdf",
+      "units": [
+        2
+      ]
+    },
+    {
+      "id": "D8",
+      "kind": "notes",
+      "title": "Shift registers: faculty notes, 2026",
+      "by": "Dr K. B. Ramesh",
+      "file": "kb-shift-registers-2026.pdf",
+      "units": [
+        2
+      ]
+    },
+    {
+      "id": "Q1",
+      "kind": "papers",
+      "title": "CIE, retest, SEE and supplementary papers and schemes, 2023–24",
+      "by": "Dept. lecture material",
+      "file": "cie-see-schemes-2023-24.pdf",
+      "units": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "Q2",
+      "kind": "papers",
+      "title": "CIE, retest and SEE papers and schemes, 2024–25",
+      "by": "Dept. lecture material",
+      "file": "cie-see-schemes-2024-25.pdf",
+      "units": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "Q3",
+      "kind": "qbank",
+      "title": "Question bank 1: arithmetic, combinational and sequential logic",
+      "by": "Dept. lecture material",
+      "file": "question-bank-1.pdf",
+      "units": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "L1",
+      "kind": "lab",
+      "title": "ADLDCO lab manual, 2025–2026 (Experiments 1–4 used)",
+      "by": "Dept. lecture material",
+      "file": "lab-manual-2025-2026.pdf",
+      "units": [
+        2
+      ]
+    },
+    {
+      "id": "Q4",
+      "kind": "papers",
+      "title": "CIE 1 question paper, 12 October 2026",
+      "by": "Dept. of CSE, RVCE",
+      "file": "cie1-2026.pdf",
+      "units": [
+        1,
+        2
+      ],
+      "note": "Two original faculty question-paper photographs combined into a PDF."
+    },
+    {
+      "id": "B1",
+      "kind": "book",
+      "title": "Digital Principles and Design",
+      "by": "Donald D. Givone",
+      "edition": "1st ed.",
+      "units": [
+        1,
+        2,
+        3
+      ],
+      "note": "Standard textbook. Not hosted; use your own copy."
+    }
   ]
 }
