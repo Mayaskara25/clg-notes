@@ -300,7 +300,7 @@ def source_groups(cfg, s):
             if x["kind"] not in kinds:
                 continue
             detail = " · ".join(filter(None, [x.get("by"), x.get("edition"),
-                               "Units " + ", ".join(str(n) for n in x.get("units", []))]))
+                               ("Unit " if len(x.get("units", [])) == 1 else "Units ") + ", ".join(str(n) for n in x.get("units", []))]))
             links = ""
             if x.get("file"):
                 size = os.path.getsize(os.path.join(s["dir"], "sources", x["file"])) / 1_000_000
