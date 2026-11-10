@@ -245,8 +245,8 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
   <p class="desc">The whole of Unit II in one guide: the combinational half &mdash; adders and subtractors, carry look-ahead and decimal adders, comparators, decoders, encoders, multiplexers and the four lab experiments &mdash; followed by the sequential half in the order of the new syllabus: bistable element, latches, timing, master-slave, pulse-triggered and edge-triggered flip-flops, characteristic equations and shift registers.</p>
   <div class="meta">
     <span>📘 <b>34</b> topics</span>
-    <span>🖩 <b>61</b> worked-answer boxes (plus completed lab tables)</span>
-    <span>🖼 <b>71</b> diagrams</span>
+    <span>🖩 <b>64</b> worked-answer boxes (plus completed lab tables)</span>
+    <span>🖼 <b>73</b> diagrams</span>
     <span>⏱ Unit II: combinational + sequential + lab Exp 1&ndash;4</span>
   </div>
 
@@ -3224,6 +3224,189 @@ Y<sub>2</sub> = E·I·S<sub>1</sub>S<sub>0</sub>′     Y<sub>3</sub> = E·I·S<
     <p>Connect A to the select line, B to D<sub>0</sub> and B′ (one inverter) to D<sub>1</sub>: Y = A′B + AB′ = A ⊕ B. (Swap D<sub>0</sub>/D<sub>1</sub> to get XNOR.)</p>
   </div>
 
+<!-- cie1-2026-u2 -->
+  <h2>CIE-I 2026 questions (12-10-2026)</h2>
+  <div class="qbox" id="cie26-q3a">
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026) Q3a</span><span class="marks">5 marks</span></div>
+    <div class="qtext">Realise the following Boolean function using a 4:1 multiplexer. Show the selection lines, determine the required multiplexer inputs, and draw the corresponding logic diagram. f(a, b, c, d) = Σm(1, 3, 4, 6, 10, 12, 13, 14).</div>
+    <div class="ans-label">Answer</div>
+    <p><strong>Selection lines:</strong> a = S<sub>1</sub>, b = S<sub>0</sub>. A 4:1 MUX has only two selects, so each data input must be a function of the other two variables, c and d (Method C above).</p>
+    <p><strong>Mapping:</strong> minterm m = 4·(ab) + (cd), so minterms 4s to 4s+3 go to data input I<sub>s</sub>. For each group, read f over cd = 00, 01, 10, 11:</p>
+    <table>
+      <tr><th>ab</th><th>minterms present</th><th>f over cd = 00 01 10 11</th><th>Data input</th></tr>
+      <tr><td>00</td><td>1, 3</td><td class="mono">0 1 0 1</td><td>I<sub>0</sub> = d</td></tr>
+      <tr><td>01</td><td>4, 6</td><td class="mono">1 0 1 0</td><td>I<sub>1</sub> = d′</td></tr>
+      <tr><td>10</td><td>10</td><td class="mono">0 0 1 0</td><td>I<sub>2</sub> = c·d′</td></tr>
+      <tr><td>11</td><td>12, 13, 14</td><td class="mono">1 1 1 0</td><td>I<sub>3</sub> = (c·d)′ = c′ + d′</td></tr>
+    </table>
+    <p><strong>Multiplexer inputs:</strong> I<sub>0</sub> = d, I<sub>1</sub> = d′, I<sub>2</sub> = cd′, I<sub>3</sub> = (cd)′. Extra gates: one NOT (d′, which is also used by the AND), one 2-input AND and one 2-input NAND.</p>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 620 280" xmlns="http://www.w3.org/2000/svg" role="img">
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<line x1="40" y1="50" x2="100" y2="50" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="134" y1="50" x2="200" y2="50" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="40" y1="112" x2="110" y2="112" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="40" y1="132" x2="110" y2="132" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="150" y1="122" x2="200" y2="122" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="40" y1="184" x2="110" y2="184" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="40" y1="204" x2="110" y2="204" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="158" y1="194" x2="200" y2="194" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="300" y1="60" x2="390" y2="60" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="300" y1="100" x2="390" y2="100" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="300" y1="140" x2="390" y2="140" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="300" y1="180" x2="390" y2="180" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="480" y1="120" x2="560" y2="120" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="425" y1="206" x2="425" y2="236" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="445" y1="200" x2="445" y2="236" stroke="#1C1E21" stroke-width="1.6"/>
+</g>
+<path d="M100,38.0 L126,50 L100,62.0 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/><circle cx="130" cy="50" r="4" fill="#fff" stroke="#1C1E21" stroke-width="1.5"/>
+<text x="32" y="54" font-size="12" text-anchor="end" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">d</text>
+<text x="206" y="54" font-size="11" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">d′</text>
+<path d="M110,102.0 L130.0,102.0 A20.0,20.0 0 0 1 130.0,142.0 L110,142.0 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
+<text x="32" y="116" font-size="12" text-anchor="end" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">c</text>
+<text x="32" y="136" font-size="12" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">d′</text>
+<text x="206" y="126" font-size="11" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">c·d′</text>
+<path d="M110,174.0 L130.0,174.0 A20.0,20.0 0 0 1 130.0,214.0 L110,214.0 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/><circle cx="154" cy="194" r="4" fill="#fff" stroke="#1C1E21" stroke-width="1.5"/>
+<text x="32" y="188" font-size="12" text-anchor="end" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">c</text>
+<text x="32" y="208" font-size="12" text-anchor="end" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">d</text>
+<text x="206" y="198" font-size="11" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">(c·d)′</text>
+<text x="120" y="250" font-size="9.5" text-anchor="middle" fill="#5B6169" font-weight="500" font-style="italic" font-family="JetBrains Mono, monospace">same-named nets are connected</text>
+<path d="M390,24 L480,50 L480,190 L390,216 Z" fill="#fff" stroke="#12796F" stroke-width="1.8"/>
+<polygon points="399,60 390,55.5 390,64.5" fill="#1C1E21"/>
+<text x="296" y="64" font-size="11" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">d</text>
+<text x="404" y="64" font-size="10" text-anchor="start" fill="#5B6169" font-weight="600" font-family="JetBrains Mono, monospace">I<tspan dy="3" font-size="0.72em">0</tspan><tspan dy="-3">​</tspan></text>
+<polygon points="399,100 390,95.5 390,104.5" fill="#1C1E21"/>
+<text x="296" y="104" font-size="11" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">d′</text>
+<text x="404" y="104" font-size="10" text-anchor="start" fill="#5B6169" font-weight="600" font-family="JetBrains Mono, monospace">I<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan></text>
+<polygon points="399,140 390,135.5 390,144.5" fill="#1C1E21"/>
+<text x="296" y="144" font-size="11" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">c·d′</text>
+<text x="404" y="144" font-size="10" text-anchor="start" fill="#5B6169" font-weight="600" font-family="JetBrains Mono, monospace">I<tspan dy="3" font-size="0.72em">2</tspan><tspan dy="-3">​</tspan></text>
+<polygon points="399,180 390,175.5 390,184.5" fill="#1C1E21"/>
+<text x="296" y="184" font-size="11" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">(c·d)′</text>
+<text x="404" y="184" font-size="10" text-anchor="start" fill="#5B6169" font-weight="600" font-family="JetBrains Mono, monospace">I<tspan dy="3" font-size="0.72em">3</tspan><tspan dy="-3">​</tspan></text>
+<text x="440" y="124" font-size="12" text-anchor="middle" fill="#12796F" font-weight="600" font-family="JetBrains Mono, monospace">4 : 1 MUX</text>
+<polygon points="569,120 560,115.5 560,124.5" fill="#1C1E21"/>
+<text x="574" y="124" font-size="14" text-anchor="start" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">f</text>
+<text x="425" y="250" font-size="12" text-anchor="middle" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">a</text>
+<text x="445" y="250" font-size="12" text-anchor="middle" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">b</text>
+<text x="435" y="268" font-size="10" text-anchor="middle" fill="#5B6169" font-weight="600" font-family="JetBrains Mono, monospace">S<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan> S<tspan dy="3" font-size="0.72em">0</tspan><tspan dy="-3">​</tspan></text>
+</svg>
+    <div class="cap">Fig 23b. CIE-I 2026 Q3a: f(a,b,c,d) = Σm(1,3,4,6,10,12,13,14) on a 4:1 MUX with a = S<sub>1</sub>, b = S<sub>0</sub>. Data inputs: I<sub>0</sub> = d, I<sub>1</sub> = d′, I<sub>2</sub> = c·d′, I<sub>3</sub> = (c·d)′, made by one NOT, one AND and one NAND (nets with the same name are connected).</div>
+  </div>
+
+    <p>Check: f = a′b′·d + a′b·d′ + ab′·cd′ + ab·(cd)′ expands to exactly the eight listed minterms. Verified for all 16 input rows in code.</p>
+    <div class="callout key"><span class="label">Why a, b on the selects</span>
+    Any two variables can go on the selects; a, b (MSB first) is the usual choice and lets you read each data input straight from four consecutive minterms. Here it needs gates on two inputs (I<sub>2</sub>, I<sub>3</sub>). Checked in code: no other pair needs fewer (data inputs that need a gate: ac → 2, ad → 2, bc → 3, bd → 2, cd → 3).</div>
+  </div>
+
+  <div class="qbox" id="cie26-q3b">
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026) Q3b</span><span class="marks">5 marks</span></div>
+    <div class="qtext">A 4:1 MUX has data inputs I<sub>0</sub> = 0, I<sub>1</sub> = 1, I<sub>2</sub> = C, I<sub>3</sub> = C̄ and select lines S<sub>1</sub>S<sub>0</sub> = AB. (a) Derive the Boolean expression for F. (b) Construct the truth table and identify the sum of products.</div>
+    <div class="ans-label">Answer</div>
+    <p><strong>(a) Expression.</strong> A 4:1 MUX gives F = S<sub>1</sub>′S<sub>0</sub>′I<sub>0</sub> + S<sub>1</sub>′S<sub>0</sub>I<sub>1</sub> + S<sub>1</sub>S<sub>0</sub>′I<sub>2</sub> + S<sub>1</sub>S<sub>0</sub>I<sub>3</sub>. With S<sub>1</sub> = A, S<sub>0</sub> = B:</p>
+    <div class="formula-block">F = A′B′·0 + A′B·1 + AB′·C + AB·C′
+  = <span class="c2">A′B + AB′C + ABC′</span>          <span class="cm">— or A′B + A(B ⊕ C)</span></div>
+    <p><strong>(b) Truth table.</strong></p>
+    <table>
+      <tr><th>A</th><th>B</th><th>C</th><th>Selected input</th><th>F</th><th>minterm</th></tr>
+      <tr><td>0</td><td>0</td><td>0</td><td>I<sub>0</sub> = 0</td><td><strong>0</strong></td><td>0</td></tr>
+      <tr><td>0</td><td>0</td><td>1</td><td>I<sub>0</sub> = 0</td><td><strong>0</strong></td><td>1</td></tr>
+      <tr><td>0</td><td>1</td><td>0</td><td>I<sub>1</sub> = 1</td><td><strong>1</strong></td><td>2</td></tr>
+      <tr><td>0</td><td>1</td><td>1</td><td>I<sub>1</sub> = 1</td><td><strong>1</strong></td><td>3</td></tr>
+      <tr><td>1</td><td>0</td><td>0</td><td>I<sub>2</sub> = C</td><td><strong>0</strong></td><td>4</td></tr>
+      <tr><td>1</td><td>0</td><td>1</td><td>I<sub>2</sub> = C</td><td><strong>1</strong></td><td>5</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>I<sub>3</sub> = C′</td><td><strong>1</strong></td><td>6</td></tr>
+      <tr><td>1</td><td>1</td><td>1</td><td>I<sub>3</sub> = C′</td><td><strong>0</strong></td><td>7</td></tr>
+    </table>
+    <p><strong>Sum of products:</strong> canonical F = A′BC′ + A′BC + AB′C + ABC′ = <strong>Σm(2, 3, 5, 6)</strong>. On a 3-variable K-map, m2–m3 pair to A′B and m2–m6 pair to BC′, while m5 has no neighbour that is 1 and stays as AB′C:</p>
+    <div class="formula-block">F<sub>min</sub> = <span class="c2">A′B + BC′ + AB′C</span>          <span class="cm">— 3 terms, 7 literals</span></div>
+    <p>Checked in code: the expression matches the MUX for all 8 rows, no SOP with 1 or 2 product terms works, and A′B + BC′ + AB′C is the only 3-term SOP with 7 literals.</p>
+  </div>
+
+  <div class="qbox" id="cie26-q4b">
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026) Q4b</span><span class="marks">5 marks</span></div>
+    <div class="qtext">Three sensors S<sub>2</sub>, S<sub>1</sub>, S<sub>0</sub> generate a 3-bit status code. Design a circuit using a 3-to-8 decoder such that Y<sub>0</sub> = 1 when exactly one sensor is active, Y<sub>1</sub> = 1 when exactly two sensors are active, and Y<sub>2</sub> = 1 when all three sensors are active. Y<sub>0</sub>, Y<sub>1</sub> and Y<sub>2</sub> are multiple outputs. Determine how the decoder outputs can be combined to realise the required functions.</div>
+    <div class="ans-label">Answer</div>
+    <p>Feed S<sub>2</sub>S<sub>1</sub>S<sub>0</sub> to the decoder inputs (S<sub>2</sub> = MSB). Decoder output D<sub>k</sub> is 1 only when the code equals k, so each D<sub>k</sub> is one minterm. (The decoder outputs are called D<sub>0</sub>–D<sub>7</sub> here so they are not confused with the required outputs Y<sub>0</sub>–Y<sub>2</sub>.) Count the active sensors in each code:</p>
+    <table>
+      <tr><th>S<sub>2</sub></th><th>S<sub>1</sub></th><th>S<sub>0</sub></th><th>Decoder line</th><th>Y<sub>0</sub> (one)</th><th>Y<sub>1</sub> (two)</th><th>Y<sub>2</sub> (three)</th></tr>
+      <tr><td>0</td><td>0</td><td>0</td><td>D<sub>0</sub></td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>0</td><td>0</td><td>1</td><td>D<sub>1</sub></td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>0</td><td>1</td><td>0</td><td>D<sub>2</sub></td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>0</td><td>1</td><td>1</td><td>D<sub>3</sub></td><td>0</td><td>1</td><td>0</td></tr>
+      <tr><td>1</td><td>0</td><td>0</td><td>D<sub>4</sub></td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>1</td><td>0</td><td>1</td><td>D<sub>5</sub></td><td>0</td><td>1</td><td>0</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>D<sub>6</sub></td><td>0</td><td>1</td><td>0</td></tr>
+      <tr><td>1</td><td>1</td><td>1</td><td>D<sub>7</sub></td><td>0</td><td>0</td><td>1</td></tr>
+    </table>
+    <div class="formula-block">Y<sub>0</sub> = Σm(1, 2, 4) = <span class="c2">D<sub>1</sub> + D<sub>2</sub> + D<sub>4</sub></span>     <span class="cm">— 3-input OR</span>
+Y<sub>1</sub> = Σm(3, 5, 6) = <span class="c2">D<sub>3</sub> + D<sub>5</sub> + D<sub>6</sub></span>     <span class="cm">— 3-input OR</span>
+Y<sub>2</sub> = Σm(7)       = <span class="c2">D<sub>7</sub></span>               <span class="cm">— a wire, no gate</span></div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 700 310" xmlns="http://www.w3.org/2000/svg" role="img">
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<line x1="40" y1="60" x2="120" y2="60" stroke="#1D4E89" stroke-width="1.6"/>
+<line x1="40" y1="100" x2="120" y2="100" stroke="#12796F" stroke-width="1.6"/>
+<line x1="40" y1="140" x2="120" y2="140" stroke="#93316B" stroke-width="1.6"/>
+<line x1="240" y1="38" x2="274" y2="38" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="240" y1="67" x2="274" y2="67" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="240" y1="96" x2="274" y2="96" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="240" y1="125" x2="274" y2="125" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="240" y1="154" x2="274" y2="154" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="240" y1="183" x2="274" y2="183" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="240" y1="212" x2="274" y2="212" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="240" y1="241" x2="274" y2="241" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="397.2" y1="64" x2="435.2" y2="64" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="398.9" y1="80" x2="436.9" y2="80" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="397.2" y1="96" x2="435.2" y2="96" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="476" y1="80" x2="546" y2="80" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="397.2" y1="174" x2="435.2" y2="174" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="398.9" y1="190" x2="436.9" y2="190" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="397.2" y1="206" x2="435.2" y2="206" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="476" y1="190" x2="546" y2="190" stroke="#1C1E21" stroke-width="1.6"/>
+<line x1="400" y1="262" x2="546" y2="262" stroke="#1C1E21" stroke-width="1.6"/>
+</g>
+<rect x="120" y="20" width="120" height="250" rx="4" fill="#fff" stroke="#12796F" stroke-width="1.8"/>
+<text x="180" y="140" font-size="12" text-anchor="middle" fill="#12796F" font-weight="600" font-family="JetBrains Mono, monospace">3 : 8</text>
+<text x="180" y="156" font-size="12" text-anchor="middle" fill="#12796F" font-weight="600" font-family="JetBrains Mono, monospace">DECODER</text>
+<polygon points="129,60 120,55.5 120,64.5" fill="#1D4E89"/>
+<text x="34" y="64" font-size="12" text-anchor="end" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">S<tspan dy="3" font-size="0.72em">2</tspan><tspan dy="-3">​</tspan></text>
+<polygon points="129,100 120,95.5 120,104.5" fill="#12796F"/>
+<text x="34" y="104" font-size="12" text-anchor="end" fill="#12796F" font-weight="600" font-family="JetBrains Mono, monospace">S<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan></text>
+<polygon points="129,140 120,135.5 120,144.5" fill="#93316B"/>
+<text x="34" y="144" font-size="12" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">S<tspan dy="3" font-size="0.72em">0</tspan><tspan dy="-3">​</tspan></text>
+<text x="280" y="42" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">0</tspan><tspan dy="-3">​</tspan></text>
+<text x="280" y="71" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan></text>
+<text x="280" y="100" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">2</tspan><tspan dy="-3">​</tspan></text>
+<text x="280" y="129" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">3</tspan><tspan dy="-3">​</tspan></text>
+<text x="280" y="158" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">4</tspan><tspan dy="-3">​</tspan></text>
+<text x="280" y="187" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">5</tspan><tspan dy="-3">​</tspan></text>
+<text x="280" y="216" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">6</tspan><tspan dy="-3">​</tspan></text>
+<text x="280" y="245" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">7</tspan><tspan dy="-3">​</tspan></text>
+<text x="312" y="42" font-size="9" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">(unused)</text>
+<text x="393.2" y="68" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan></text>
+<text x="394.9" y="84" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">2</tspan><tspan dy="-3">​</tspan></text>
+<text x="393.2" y="100" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">4</tspan><tspan dy="-3">​</tspan></text>
+<path d="M430,48.0 Q455.3,48.0 476,80 Q455.3,112.0 430,112.0 Q443.8,80 430,48.0 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
+<polygon points="555,80 546,75.5 546,84.5" fill="#1C1E21"/>
+<text x="558" y="84" font-size="12.5" text-anchor="start" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">Y<tspan dy="3" font-size="0.72em">0</tspan><tspan dy="-3">​</tspan> exactly one</text>
+<text x="393.2" y="178" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">3</tspan><tspan dy="-3">​</tspan></text>
+<text x="394.9" y="194" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">5</tspan><tspan dy="-3">​</tspan></text>
+<text x="393.2" y="210" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">6</tspan><tspan dy="-3">​</tspan></text>
+<path d="M430,158.0 Q455.3,158.0 476,190 Q455.3,222.0 430,222.0 Q443.8,190 430,158.0 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
+<polygon points="555,190 546,185.5 546,194.5" fill="#1C1E21"/>
+<text x="558" y="194" font-size="12.5" text-anchor="start" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">Y<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan> exactly two</text>
+<text x="396" y="266" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D<tspan dy="3" font-size="0.72em">7</tspan><tspan dy="-3">​</tspan></text>
+<polygon points="555,262 546,257.5 546,266.5" fill="#1C1E21"/>
+<text x="558" y="266" font-size="12.5" text-anchor="start" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">Y<tspan dy="3" font-size="0.72em">2</tspan><tspan dy="-3">​</tspan> all three</text>
+<text x="470" y="296" font-size="9.5" text-anchor="middle" fill="#5B6169" font-weight="500" font-style="italic" font-family="JetBrains Mono, monospace">same-named nets are connected</text>
+</svg>
+    <div class="cap">Fig 23c. CIE-I 2026 Q4b: sensors S<sub>2</sub>S<sub>1</sub>S<sub>0</sub> drive a 3:8 decoder. Y<sub>0</sub> = D<sub>1</sub> + D<sub>2</sub> + D<sub>4</sub> (exactly one active), Y<sub>1</sub> = D<sub>3</sub> + D<sub>5</sub> + D<sub>6</sub> (exactly two), Y<sub>2</sub> = D<sub>7</sub> (all three, no gate). D<sub>0</sub> is not used. With an active-low decoder (74138), use 3-input NANDs and an inverter on D<sub>7</sub>′.</div>
+  </div>
+
+    <p>Each decoder output is used at most once, and D<sub>0</sub> (no sensor active) is left unconnected. The whole design needs one 3:8 decoder and two 3-input OR gates. Verified for all 8 codes in code.</p>
+  </div>
+
   <p><strong>Also in this guide:</strong> full adder with MUX/decoder (<a href="#alt-realizations">§1.4</a>), full adder/subtractor on a 74153 (<a href="#lab-exp2">Exp 2</a>), binary-to-Gray with a decoder (<a href="#lab-exp4">Exp 4A</a>).</p>
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -4519,6 +4702,7 @@ A&lt;B = A<sub>1</sub>′B<sub>1</sub> + A<sub>0</sub>′B<sub>1</sub>B<sub>0</s
     <tr><td class="mono">CIE 2024-25 CIE-I — Q1(b)</td><td>Design a single circuit for BCD⇄Excess-3 conversion using a 4-bit parallel adder.</td><td>→ <a href="#excess3-bcd">Application: BCD ⇄ Excess-3</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono">CIE 2024-25 CIE-I — Q1(c)</td><td>Illustrate the design of a single-decade BCD (decimal) adder and show the truth table.</td><td>→ <a href="#decimal-adder">Decimal (BCD) Adder</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono">CIE 2024-25 CIE-I — Q3</td><td>Explain carry calculation in a CLA adder; design a 4-bit CLA (derive equations); compare propagation delay to a parallel adder.</td><td>→ <a href="#cla-adder">Carry Look-Ahead Adder</a></td></tr>
+    <tr><td class="mono">CIE-I 2026 (12-10-2026) — Q4(a)</td><td>Design and explain a 4-bit CLA adder: derive the carry equations from generate and propagate, obtain all carry outputs and sum bits, and draw the logic circuit.</td><td>→ <a href="#cla-adder">Carry Look-Ahead Adder</a> (G<sub>i</sub>, P<sub>i</sub>, C<sub>1</sub>–C<sub>4</sub>, S<sub>i</sub> = P<sub>i</sub> ⊕ C<sub>i</sub>, Fig 7)</td></tr>
     <tr><td class="mono">CIE 2024-25 SEE (Feb/Mar 25) — Part A Q1.6</td><td>Show the steps to add two 4-bit binary numbers using a binary parallel adder (A=1010, B=0111).</td><td>→ <a href="#adders-solved">Solved Numericals — Adders</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono">CIE 2024-25 SEE (Feb/Mar 25) — Part B Q4(a, OR)</td><td>With a neat diagram, explain the 4-bit parallel adder; provide the truth table.</td><td>→ <a href="#ripple-adder">4-bit Ripple Adder &amp; Delay</a>, <a href="#basic-adders">Half &amp; Full Adder</a></td></tr>
   </table>
@@ -4540,6 +4724,7 @@ A&lt;B = A<sub>1</sub>′B<sub>1</sub> + A<sub>0</sub>′B<sub>1</sub>B<sub>0</s
     <tr><td class="mono">CIE 2024-25 CIE-II quiz — Q1.7</td><td>Draw the circuit diagram of a 4:16 decoder using 3:8 decoders.</td><td>→ <a href="#decoders">Decoders — Fig 15</a></td></tr>
     <tr><td class="mono">CIE 2024-25 CIE-II — Q2(a)</td><td>Implement F<sub>1</sub> = ΠM(0,3,5,6,7), F<sub>2</sub> = ΠM(2,3,4,5,7) using a 3-to-8 decoder with minimal gate inputs.</td><td>→ <a href="#mux-fn">Functions with MUX &amp; Decoder</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono">qb1.pdf Q26, Q30(ii)</td><td>Realise the function given in (i) [Q25's function] using a decoder and external gates; design F = Σm(0,1,3,5,6,8,10,13,14) using a multiplexer and a decoder.</td><td>→ <a href="#mux-fn">Functions with MUX &amp; Decoder</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono">CIE-I 2026 (12-10-2026) — Q4(b)</td><td>Three sensors S<sub>2</sub>S<sub>1</sub>S<sub>0</sub> into a 3-to-8 decoder: Y<sub>0</sub> = exactly one active, Y<sub>1</sub> = exactly two, Y<sub>2</sub> = all three; combine the decoder outputs.</td><td>→ <a href="#cie26-q4b">CIE-I 2026 Q4b</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono">SEE Feb/Mar 25 — Part B (OR-paired with the accumulator/adder question)</td><td>What is a priority encoder? Design a 4:2 priority encoder with the necessary diagram.</td><td>→ <a href="#encoders">Encoders &amp; Priority Encoder</a> <span class="pill">solved example added</span></td></tr>
   </table>
 
@@ -4559,6 +4744,8 @@ A&lt;B = A<sub>1</sub>′B<sub>1</sub> + A<sub>0</sub>′B<sub>1</sub>B<sub>0</s
     <tr><td class="mono">CIE 2024-25 CIE-II — Q2(b)</td><td>Design f(A,B,C,D) = Σm(0,1,2,4,6,9,12,14) using a 4-to-1 multiplexer; explain the mapping.</td><td>→ <a href="#mux-fn">Functions with MUX &amp; Decoder</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono">CIE 2024-25 CIE-II — Q3(b)</td><td>Working of a 1:4 demultiplexer; design a 1:8 demultiplexer from two 1:4 demultiplexers.</td><td>→ <a href="#demux">Demultiplexers</a></td></tr>
     <tr><td class="mono">SEE Feb/Mar 25 — Part B</td><td>What is a multiplexer? Write the logic diagram of an 8:1 multiplexer using 4-input AND and OR gates.</td><td>→ <a href="#multiplexers">Multiplexers — 8:1</a></td></tr>
+    <tr><td class="mono">CIE-I 2026 (12-10-2026) — Q3(a)</td><td>Realise f(a,b,c,d) = Σm(1,3,4,6,10,12,13,14) using a 4:1 multiplexer; show the selection lines, the MUX inputs and the logic diagram.</td><td>→ <a href="#cie26-q3a">CIE-I 2026 Q3a</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono">CIE-I 2026 (12-10-2026) — Q3(b)</td><td>4:1 MUX with I<sub>0</sub> = 0, I<sub>1</sub> = 1, I<sub>2</sub> = C, I<sub>3</sub> = C̄, S<sub>1</sub>S<sub>0</sub> = AB: derive F, its truth table and SOP.</td><td>→ <a href="#cie26-q3b">CIE-I 2026 Q3b</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono">qb1.pdf Q23 / CIE 2023-24 Test-2 Q1(b)</td><td>Full adder using a decoder / multiplexer (74153).</td><td>→ <a href="#alt-realizations">Full Adder via MUX/Decoder</a>, <a href="#lab-exp2">Exp 2</a></td></tr>
   </table>
 

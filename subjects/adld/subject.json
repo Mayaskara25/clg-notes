@@ -36,6 +36,13 @@
     {
       "date": "2026-11-10",
       "units": [
+        2
+      ],
+      "text": "Solved the CIE-I 2026 (12-10-2026) Unit 2 questions: Q3a 4:1 MUX realisation of Σm(1,3,4,6,10,12,13,14), Q3b analysis of the given MUX (F = A′B + BC′ + AB′C), Q4b three-sensor 3:8 decoder (Y0 = D1+D2+D4, Y1 = D3+D5+D6, Y2 = D7), with two new figures; Q4a (4-bit CLA) linked in the question bank."
+    },
+    {
+      "date": "2026-11-10",
+      "units": [
         1
       ],
       "text": "Unit 1 aligned to Dr K.B. Ramesh's Computer Arithmetic notes: teacher's trace layouts and worked examples (unsigned multiplication, Booth, restoring division), overflow rule, sign extension, IEEE 754 double precision, Radix-4 Modified Booth naming, and all five Unit-1 questions from CIE-I 2026 solved."
