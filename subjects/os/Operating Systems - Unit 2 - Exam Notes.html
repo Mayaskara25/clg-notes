@@ -196,7 +196,7 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 
 <section class="page section" id="syllabus-map" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
 <div class="section-head"><span class="tag">MAP</span><h1>New Syllabus Map</h1></div>
-<p class="section-sub">Master checklist: syllabus.png · CS235AT · 9 teaching hours. Only the named new-syllabus topics are listed in this table.</p><table><tr><th>Official syllabus topic</th><th>Study here</th><th>Reference book</th></tr><tr><td>CPU scheduling: basic concepts</td><td><a href="#t2-5">2.1 Basic concepts</a></td><td>§6.1</td></tr><tr><td>Scheduling criteria</td><td><a href="#t2-6">2.2 Criteria</a></td><td>§6.2</td></tr><tr><td>FCFS</td><td><a href="#t2-7">2.3 FCFS</a></td><td>§6.3.1</td></tr><tr><td>SJF</td><td><a href="#t2-8">2.4 SJF / SRTF</a></td><td>§6.3.2</td></tr><tr><td>RR</td><td><a href="#t2-10">2.5 Round Robin</a></td><td>§6.3.4</td></tr><tr><td>Priority</td><td><a href="#t2-9">2.6 Priority scheduling</a></td><td>§6.3.3</td></tr><tr><td>Real-time scheduling</td><td><a href="#t2-11">2.7 Real-time, RMS and EDF</a></td><td>§6.6</td></tr><tr><td>Synchronization: background</td><td><a href="#sync-t3-1">2.8 Background and race conditions</a></td><td>§5.1</td></tr><tr><td>Critical-section problem</td><td><a href="#sync-t3-2">2.9 Critical sections</a></td><td>§5.2</td></tr><tr><td>Peterson’s solution</td><td><a href="#sync-t3-3">2.10 Peterson</a></td><td>§5.3</td></tr><tr><td>Synchronization hardware</td><td><a href="#sync-t3-4">2.11 Interrupts, test-and-set, CAS, bounded waiting</a></td><td>§5.4</td></tr><tr><td>Semaphores</td><td><a href="#sync-t3-6">2.12 Permits, spinning and blocking</a></td><td>§5.6</td></tr><tr><td>Classic problems of synchronization</td><td><a href="#sync-t3-7">2.13 Bounded buffer</a></td><td>§5.7.1</td></tr><tr><td>Classic problems: readers–writers</td><td><a href="#sync-t3-8">2.14 Readers–writers</a></td><td>§5.7.2</td></tr><tr><td>Classic problems: dining philosophers</td><td><a href="#sync-t3-9">2.15 Dining philosophers</a></td><td>§5.7.3</td></tr></table><div class="callout clarify"><span class="label">How the sources combine</span><p>The new syllabus controls scope. Matching teaching content is reused from the existing HTML and course PDFs, with textbook clarifications from the local Silberschatz ninth edition. Required explanations stay open. Older extras remain in their original positions, collapsed behind View/Hide buttons. A topic that only moved to another unit is taught there and is not repeated here; only topics dropped from the new syllabus are kept collapsed.</p><p>References to missing original decks/question papers are historical provenance from the retained notes; the available transcripts and textbook were used for this revision.</p><p><strong>2026-11-09:</strong> sections 2.8–2.15 were checked against the faculty's updated Unit II Process Synchronization slides. The guide now uses the slides' definitions, variable names (<code>rw_mutex</code>, <code>read_count</code>) and code. It adds data-access vs control synchronization, disabling interrupts, the bounded-waiting <code>test_and_set</code> algorithm, unbounded vs bounded buffers and the first/second readers–writers problems.</p></div><p>CPU scheduling is followed by the complete required synchronization material, previously stored as old Unit III. RMS/EDF remain under real-time scheduling. Mutex and brief deadlock concepts support semaphore explanations; their extended standalone treatments are collapsed.</p>
+<p class="section-sub">Master checklist: syllabus.png · CS235AT · 9 teaching hours. Only the named new-syllabus topics are listed in this table.</p><table><tr><th>Official syllabus topic</th><th>Study here</th><th>Reference book</th></tr><tr><td>CPU scheduling: basic concepts</td><td><a href="#t2-5">2.1 Basic concepts</a></td><td>§6.1</td></tr><tr><td>Scheduling criteria</td><td><a href="#t2-6">2.2 Criteria</a></td><td>§6.2</td></tr><tr><td>FCFS</td><td><a href="#t2-7">2.3 FCFS</a></td><td>§6.3.1</td></tr><tr><td>SJF</td><td><a href="#t2-8">2.4 SJF / SRTF</a></td><td>§6.3.2</td></tr><tr><td>RR</td><td><a href="#t2-10">2.5 Round Robin</a></td><td>§6.3.4</td></tr><tr><td>Priority</td><td><a href="#t2-9">2.6 Priority scheduling</a></td><td>§6.3.3</td></tr><tr><td>Real-time scheduling</td><td><a href="#t2-11">2.7 Real-time, RMS and EDF</a></td><td>§6.6</td></tr><tr><td>Synchronization: background</td><td><a href="#sync-t3-1">2.8 Background and race conditions</a></td><td>§5.1</td></tr><tr><td>Critical-section problem</td><td><a href="#sync-t3-2">2.9 Critical sections</a></td><td>§5.2</td></tr><tr><td>Peterson’s solution</td><td><a href="#sync-t3-3">2.10 Peterson</a></td><td>§5.3</td></tr><tr><td>Synchronization hardware</td><td><a href="#sync-t3-4">2.11 Interrupts, test-and-set, CAS, bounded waiting</a></td><td>§5.4</td></tr><tr><td>Semaphores</td><td><a href="#sync-t3-6">2.12 Permits, spinning and blocking</a></td><td>§5.6</td></tr><tr><td>Classic problems of synchronization</td><td><a href="#sync-t3-7">2.13 Bounded buffer</a></td><td>§5.7.1</td></tr><tr><td>Classic problems: readers–writers</td><td><a href="#sync-t3-8">2.14 Readers–writers</a></td><td>§5.7.2</td></tr><tr><td>Classic problems: dining philosophers</td><td><a href="#sync-t3-9">2.15 Dining philosophers</a></td><td>§5.7.3</td></tr></table><div class="callout clarify"><span class="label">How the sources combine</span><p>The new syllabus controls scope. Matching teaching content is reused from the existing HTML and course PDFs, with textbook clarifications from the local Silberschatz<cite class="src" data-src="B1"></cite> ninth edition. Required explanations stay open. Older extras remain in their original positions, collapsed behind View/Hide buttons. A topic that only moved to another unit is taught there and is not repeated here; only topics dropped from the new syllabus are kept collapsed.</p><p>References to missing original decks/question papers are historical provenance from the retained notes; the available transcripts and textbook were used for this revision.</p><p><strong>2026-11-09:</strong> sections 2.8–2.15 were checked against the faculty's updated Unit II Process Synchronization slides. The guide now uses the slides' definitions, variable names (<code>rw_mutex</code>, <code>read_count</code>) and code. It adds data-access vs control synchronization, disabling interrupts, the bounded-waiting <code>test_and_set</code> algorithm, unbounded vs bounded buffers and the first/second readers–writers problems.</p></div><p>CPU scheduling is followed by the complete required synchronization material, previously stored as old Unit III. RMS/EDF remain under real-time scheduling. Mutex and brief deadlock concepts support semaphore explanations; their extended standalone treatments are collapsed.</p>
 <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
@@ -445,7 +445,7 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
   selected: it switches context, switches to user mode, and jumps to the correct location in the user program.
   The time this takes is the <strong>dispatch latency</strong> — it should be as fast as possible, since it
   runs on every single process switch.</p>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.1 — CPU scheduling</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.1 — CPU scheduling<cite class="src" data-src="B1" data-p="§6.1"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -475,13 +475,13 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
     turnaround time minus burst time, i.e. only the ready-queue portion. Mixing these two up is the single
     most common mistake in scheduling numericals.</p>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.2 — CPU scheduling</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.2 — CPU scheduling<cite class="src" data-src="B1" data-p="§6.2"></cite></span>.</p>
 <div class="callout key"><span class="label">Assumptions for these scheduling calculations</span><p>The worked tables assume one CPU burst per process, no I/O during that burst and no scheduling overhead unless stated. Then turnaround = completion − arrival and waiting = turnaround − burst. For a process that also waits for I/O, that I/O time is not time spent in the ready queue and must be accounted for separately.</p></div>
 
 
 
     <div class="qbox" id="u2-example-util">
-    <div class="qmeta"><span class="qsrc">SEE Feb/Mar 2025 Part-B Q2b</span><span class="marks">8 marks · CPU utilization with I/O</span></div>
+    <div class="qmeta"><span class="qsrc">SEE Feb/Mar 2025 Part-B Q2b<cite class="src" data-src="Q1"></cite></span><span class="marks">8 marks · CPU utilization with I/O</span></div>
     <div class="qtext">A uniprocessor has three processes, each alternating 20 ms CPU bursts with 80 ms I/O bursts. All three are created at nearly the same time, and their I/O can proceed in parallel. What is the CPU utilization over a long period under FCFS, and under Round Robin with a 10 ms quantum?</div>
     <div class="ans-label">FCFS</div>
     <div class="formula-block">P1 CPU 0–20 → I/O 20–100
@@ -548,7 +548,7 @@ Utilization (first cycle) = 60 / 120 = <span class="c1">50%</span></div>
   </div>
 
   <div class="qbox" id="u2-example-04">
-    <div class="qmeta"><span class="qsrc">unit 2.pdf, "FCFS Problem"</span><span class="marks">worked example</span></div>
+    <div class="qmeta"><span class="qsrc">unit 2.pdf, "FCFS Problem"<cite class="src" data-src="D2"></cite></span><span class="marks">worked example</span></div>
     <div class="qtext">Five processes arrive as below. Calculate the average waiting time and average turnaround time using FCFS. (Tie-break: if two processes share an arrival time, the lower process ID is served first.)</div>
     <table>
       <tr><th>Process</th><th>Arrival</th><th>Burst</th><th>Completion</th><th>Turnaround</th><th>Waiting</th></tr>
@@ -564,7 +564,7 @@ Utilization (first cycle) = 60 / 120 = <span class="c1">50%</span></div>
   </div>
 
   <div class="qbox" id="u2-example-05">
-    <div class="qmeta"><span class="qsrc">2024-25 CIE-II Test-2, Q6</span><span class="marks">6 marks · convoy effect, before/after</span></div>
+    <div class="qmeta"><span class="qsrc">2024-25 CIE-II Test-2, Q6<cite class="src" data-src="Q1"></cite></span><span class="marks">6 marks · convoy effect, before/after</span></div>
     <div class="qtext">Given P1(AT=1,BT=1), P2(AT=1,BT=3), P3(AT=0,BT=40): apply FCFS, compute average waiting/turnaround time. Then, if P3's arrival changes to 1 and P1, P2 change to 0, what's the variation? Does the convoy effect appear?</div>
     <div class="ans-label">Original — P3 arrives first (burst 40)</div>
     <p>Gantt: P3[0–40] → P1[40–41] → P2[41–44]. Turnaround: P3=40, P1=40, P2=43 → avg = <strong>41</strong>. Waiting: P3=0, P1=39, P2=40 → avg = <strong>26.33</strong>.</p>
@@ -577,7 +577,7 @@ Utilization (first cycle) = 60 / 120 = <span class="c1">50%</span></div>
       starkest form: P1 and P2 are barely delayed at all once they're not stuck behind P3, while P3 waits 0ms in the original order and 3ms in the modified order. Yes — the convoy effect clearly appears in the original ordering and is eliminated in the modified one.</p>
     </div>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.3.1 — CPU scheduling</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.3.1 — CPU scheduling<cite class="src" data-src="B1" data-p="§6.3.1"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -619,14 +619,14 @@ Utilization (first cycle) = 60 / 120 = <span class="c1">50%</span></div>
   </div>
 
   <div class="qbox" id="u2-example-06">
-    <div class="qmeta"><span class="qsrc">unit 2.pdf p34 — non-preemptive</span><span class="marks">worked example</span></div>
+    <div class="qmeta"><span class="qsrc">unit 2.pdf p34 — non-preemptive<cite class="src" data-src="D2" data-p="34"></cite></span><span class="marks">worked example</span></div>
     <div class="qtext">Processes P1(6), P2(8), P3(7), P4(3) — burst times only, all arrive at t=0. Apply non-preemptive SJF; find average waiting time.</div>
     <p><strong>Gantt:</strong> P4[0–3] → P1[3–9] → P3[9–16] → P2[16–24] (ascending burst order, since everything's already in the queue at t=0).</p>
     <p><strong>Waiting:</strong> P4=0, P1=3, P3=9, P2=16 → <strong>avg = 7ms</strong>. Compare to FCFS on the same set (order P1,P2,P3,P4): avg would be (0+6+14+21)/4 = 10.25ms — SJF wins by exploiting knowledge of burst length.</p>
   </div>
 
   <div class="qbox" id="u2-example-07">
-    <div class="qmeta"><span class="qsrc">unit 2.pdf p37 — preemptive (SRTF)</span><span class="marks">worked example · source labelling error corrected</span></div>
+    <div class="qmeta"><span class="qsrc">unit 2.pdf p37 — preemptive (SRTF)<cite class="src" data-src="D2" data-p="37"></cite></span><span class="marks">worked example · source labelling error corrected</span></div>
     <div class="qtext">P1(AT0,BT10), P2(AT3,BT6), P3(AT7,BT1), P4(AT8,BT3). Apply preemptive SJF; calculate average turnaround time.</div>
     <p><strong>Gantt:</strong> P1[0–3] → P2[3–7] → P3[7–8] → P2[8–10] → P4[10–13] → P1[13–20].</p>
     <p><strong>Turnaround:</strong> P1=20, P2=7, P3=1, P4=5 → sum=33 → <strong>avg turnaround = 8.25ms</strong>.</p>
@@ -641,21 +641,21 @@ Utilization (first cycle) = 60 / 120 = <span class="c1">50%</span></div>
   </div>
 
   <div class="qbox" id="u2-example-08">
-    <div class="qmeta"><span class="qsrc">unit 2.pdf p38 — preemptive (SRTF), gap-fill</span><span class="marks">worked example · no answer in source, solved here</span></div>
+    <div class="qmeta"><span class="qsrc">unit 2.pdf p38 — preemptive (SRTF), gap-fill<cite class="src" data-src="D2" data-p="38"></cite></span><span class="marks">worked example · no answer in source, solved here</span></div>
     <div class="qtext">P1(AT0,BT12), P2(AT2,BT4), P3(AT3,BT6), P4(AT8,BT5). Apply preemptive SJF; find average waiting and turnaround time.</div>
     <p><strong>Gantt:</strong> P1[0–2] → P2[2–6] → P3[6–12] → P4[12–17] → P1[17–27].</p>
     <p><strong>Turnaround:</strong> P1=27, P2=4, P3=9, P4=9 → <strong>avg = 12.25ms</strong>. <strong>Waiting:</strong> P1=15, P2=0, P3=3, P4=4 → <strong>avg = 5.5ms</strong>. (The slide shows this Gantt shape but never prints numeric answers — verified fresh here by simulation.)</p>
   </div>
 
   <div class="qbox" id="u2-example-09">
-    <div class="qmeta"><span class="qsrc">2024-25 CIE-II Test-2, Q2</span><span class="marks">4 marks · non-preemptive</span></div>
+    <div class="qmeta"><span class="qsrc">2024-25 CIE-II Test-2, Q2<cite class="src" data-src="Q1"></cite></span><span class="marks">4 marks · non-preemptive</span></div>
     <div class="qtext">P1(AT3,BT1), P2(AT1,BT4), P3(AT4,BT2), P4(AT0,BT6), P5(AT2,BT3). Draw the Gantt chart for non-preemptive SJF; find average waiting and turnaround time.</div>
     <p><strong>Gantt:</strong> P4[0–6] → P1[6–7] → P3[7–9] → P5[9–12] → P2[12–16].</p>
     <p><strong>Turnaround:</strong> P4=6, P1=4, P3=5, P5=10, P2=15 → <strong>avg = 8ms</strong>. <strong>Waiting:</strong> P4=0, P1=3, P3=3, P5=7, P2=11 → <strong>avg = 4.8ms</strong>. Note P4 goes first purely by arrival — at t=0 it's the only process in the ready queue, so SJF has nothing to compare it against yet.</p>
   </div>
 
   <div class="qbox" id="u2-example-10">
-    <div class="qmeta"><span class="qsrc">2024-25 SEE Part-B, Q4</span><span class="marks">8 marks · FCFS vs SJF comparison</span></div>
+    <div class="qmeta"><span class="qsrc">2024-25 SEE Part-B, Q4<cite class="src" data-src="Q1"></cite></span><span class="marks">8 marks · FCFS vs SJF comparison</span></div>
     <div class="qtext">P1(AT0,BT10), P2(AT2,BT5), P3(AT4,BT8), P4(AT6,BT2). Compute average waiting/turnaround time using FCFS and SJF; analyze the results.</div>
     <table>
       <tr><th>Algorithm</th><th>Gantt order</th><th>Avg turnaround</th><th>Avg waiting</th></tr>
@@ -668,7 +668,7 @@ Utilization (first cycle) = 60 / 120 = <span class="c1">50%</span></div>
     first — it's the only ready process at t=0 either way.</p>
   </div>
   <div class="qbox" id="u2-example-10b">
-    <div class="qmeta"><span class="qsrc">Mar 2021 SEE Q4a (18CS34) · Silberschatz exercise</span><span class="marks">worked example · fractional arrivals</span></div>
+    <div class="qmeta"><span class="qsrc">Mar 2021 SEE Q4a (18CS34) · Silberschatz exercise<cite class="src" data-src="Q2"></cite></span><span class="marks">worked example · fractional arrivals</span></div>
     <div class="qtext">P1(AT0, BT8), P2(AT0.4, BT4), P3(AT1, BT1). Find the average turnaround time under FCFS, non-preemptive SJF and SRTF. Then: what if the CPU were deliberately left idle for the first 1 unit and SJF were used (scheduling with "future knowledge")?</div>
     <table>
       <tr><th>Algorithm</th><th>Gantt</th><th>TAT (P1, P2, P3)</th><th>Avg TAT</th><th>Avg WT</th></tr>
@@ -680,7 +680,7 @@ Utilization (first cycle) = 60 / 120 = <span class="c1">50%</span></div>
     <p style="margin:0"><strong>Why non-preemptive SJF barely helps:</strong> at t=0 P1 is the <em>only</em> ready process, so SJF has to start it, and then it cannot take the CPU back for 8 units. The only change SJF makes is to swap P2 and P3 at t=8. Idling the CPU for one unit lets all three jobs arrive first, so SJF can order them properly (6.87). This needs knowledge of future arrivals, and the idle time counts in every turnaround. SRTF gets an even better result (6.33) without knowing the future: preemption lets each shorter job take over the moment it arrives. Turnaround is always measured from each job's own arrival (e.g. P2: 12 − 0.4 = 11.6).</p>
   </div>
   <div class="qbox" id="u2-example-10c">
-    <div class="qmeta"><span class="qsrc">Apr 2023 SEE Q1.9 · Oct 2020 SEE Q1.6</span><span class="marks">2 marks · LRTF (the reverse of SRTF)</span></div>
+    <div class="qmeta"><span class="qsrc">Apr 2023 SEE Q1.9 · Oct 2020 SEE Q1.6<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks · LRTF (the reverse of SRTF)</span></div>
     <div class="qtext">Three processes P0, P1, P2 with bursts 2, 4 and 8 all arrive at t=0. Under <strong>Longest Remaining Time First</strong> (preemptive, ties go to the lowest process id), find the average turnaround time.</div>
     <p><strong>Rule:</strong> at every time unit, run the process with the <em>largest</em> remaining time. P2 runs alone until its remaining time falls to P1's level. After that the remaining times keep catching up with each other, so the CPU rotates among the processes.</p>
     <div class="formula-block">t 0–4   : P2 P2 P2 P2            <span class="cm">remaining (2, 4, 4)</span>
@@ -691,7 +691,7 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
     <p style="margin:0">All three processes finish at the very end, which is the worst possible average for this set. LRTF is not used in practice. It is examined only to show that the "shortest first" rule is what makes SJF optimal. The tie-break matters: P1 runs at t=4 because it has the lower id when P1 and P2 both have 4 left.</p>
   </div>
 <div class="callout key"><span class="label">State the SJF assumptions</span><p>Non-preemptive SJF minimises average waiting time when the jobs are available together and their burst lengths are known. With different arrival times, choosing the shortest currently ready job is the scheduling rule, not a blanket global-optimality proof. SRTF is the preemptive shortest-remaining rule under the usual known-processing-time model. Real systems estimate upcoming CPU bursts.</p></div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.3.2 — CPU scheduling</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.3.2 — CPU scheduling<cite class="src" data-src="B1" data-p="§6.3.2"></cite></span>.</p>
 
 
 
@@ -753,7 +753,7 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
   better, and too large degenerates to FCFS.</p>
 
   <div class="qbox" id="u2-example-11">
-    <div class="qmeta"><span class="qsrc">unit 2.pdf p46 — classic example</span><span class="marks">worked example · TQ=4</span></div>
+    <div class="qmeta"><span class="qsrc">unit 2.pdf p46 — classic example<cite class="src" data-src="D2" data-p="46"></cite></span><span class="marks">worked example · TQ=4</span></div>
     <div class="qtext">P1(24), P2(3), P3(3), all arriving at t=0. Apply RR with time quantum = 4.</div>
     <p><strong>Gantt:</strong> P1[0–4] → P2[4–7] → P3[7–10] → P1[10–30] (P2 and P3 finish inside their first
     quantum since their bursts are ≤4; P1 needs six quanta total but the last five run back-to-back once it's
@@ -762,7 +762,7 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
   </div>
 
   <div class="qbox" id="u2-example-12">
-    <div class="qmeta"><span class="qsrc">unit 2.pdf p49–52, "GATE 2019" — TQ=2ms</span><span class="marks">worked example · common mistake, caught &amp; fixed</span></div>
+    <div class="qmeta"><span class="qsrc">unit 2.pdf p49–52, "GATE 2019" — TQ=2ms<cite class="src" data-src="D2" data-p="49-52"></cite></span><span class="marks">worked example · common mistake, caught &amp; fixed</span></div>
     <div class="qtext">P1(AT0,BT5), P2(AT1,BT3), P3(AT2,BT1), P4(AT3,BT2), P5(AT4,BT3). Apply RR with quantum = 2ms; find average waiting and turnaround time.</div>
 
     <div class="callout clarify">
@@ -807,7 +807,7 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
     "highest priority" — it just cycles.</p>
   </div>
 <div class="callout clarify"><span class="label">Timer boundaries versus process switches</span><p>A single ready process can continue after its quantum expires. The small single-process table counts quantum expirations, sometimes called “context switches” by the handout; it does not prove that a different process runs at every boundary. In the five-process RR example, 28 switches means 28 changes between different process IDs, excluding the initial dispatch.</p></div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.3.4 — CPU scheduling</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.3.4 — CPU scheduling<cite class="src" data-src="B1" data-p="§6.3.4"></cite></span>.</p>
 
 
 
@@ -857,20 +857,20 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
   </div>
 
   <div class="qbox" id="u2-example-14">
-    <div class="qmeta"><span class="qsrc">unit 2.pdf p40 — non-preemptive</span><span class="marks">worked example · standard convention</span></div>
+    <div class="qmeta"><span class="qsrc">unit 2.pdf p40 — non-preemptive<cite class="src" data-src="D2" data-p="40"></cite></span><span class="marks">worked example · standard convention</span></div>
     <div class="qtext">All arrive at t=0: P1(BT10,Pri3), P2(BT1,Pri1), P3(BT2,Pri4), P4(BT1,Pri5), P5(BT5,Pri2). Smallest number = highest priority. Draw the Gantt chart.</div>
     <p><strong>Gantt:</strong> P2[0–1] → P5[1–6] → P1[6–16] → P3[16–18] → P4[18–19] (strictly by ascending priority number, since all arrived together).</p>
   </div>
 
   <div class="qbox" id="u2-example-15">
-    <div class="qmeta"><span class="qsrc">unit 2.pdf p43-44, "Solved Pbm-2"</span><span class="marks">worked example · inverted convention</span></div>
+    <div class="qmeta"><span class="qsrc">unit 2.pdf p43-44, "Solved Pbm-2"<cite class="src" data-src="D2" data-p="43-44"></cite></span><span class="marks">worked example · inverted convention</span></div>
     <div class="qtext">P1(AT0,BT4,Pri2), P2(AT1,BT3,Pri3), P3(AT2,BT1,Pri4), P4(AT3,BT5,Pri5), P5(AT4,BT2,Pri5). <strong>Higher number = higher priority</strong> here. Apply non-preemptive priority scheduling.</div>
     <p><strong>Gantt:</strong> P1[0–4] → P4[4–9] → P5[9–11] → P3[11–12] → P2[12–15]. (P4 and P5 tie on priority 5; P4 arrived earlier so it goes first — FCFS tie-break.)</p>
     <p><strong>Turnaround:</strong> P1=4, P2=14, P3=10, P4=6, P5=7. <strong>Waiting:</strong> P1=0, P2=11, P3=9, P4=1, P5=5.</p>
   </div>
 
   <div class="qbox" id="u2-example-16">
-    <div class="qmeta"><span class="qsrc">21-22 CIE-I Q3 &amp; unit2.pdf p42, "GATE-2017" — FLAGSHIP</span><span class="marks">preemptive priority</span></div>
+    <div class="qmeta"><span class="qsrc">21-22 CIE-I Q3 &amp; unit2.pdf p42, "GATE-2017" — FLAGSHIP<cite class="src" data-src="D2" data-p="42"></cite><cite class="src" data-src="Q2"></cite></span><span class="marks">preemptive priority</span></div>
     <div class="qtext">P1(AT0,BT11,Pri2), P2(AT5,BT28,Pri0), P3(AT12,BT2,Pri3), P4(AT2,BT10,Pri1), P5(AT9,BT16,Pri4). Smallest number = highest priority. Apply <strong>preemptive</strong> priority scheduling; find average waiting time.</div>
     <p><strong>Gantt:</strong> P1[0–2] → P4[2–5] → P2[5–33] → P4[33–40] → P1[40–49] → P3[49–51] → P5[51–67].</p>
     <p><strong>Waiting:</strong> P1=38, P2=0, P3=37, P4=28, P5=42 → sum=145 → <strong>avg = 29ms</strong>.</p>
@@ -881,7 +881,7 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
       <strong>and</strong> the dataset behind 2021-22 CIE-I Q3, which asks for this same table solved three
       ways: preemptive SJF, preemptive priority (this box — confirmed to the millisecond against the slide
       deck's own answer), and Round Robin with quantum 2ms. See §2.5 for the RR solution and §2.4's
-      preemptive-SJF technique applied to this table below.</p>
+      preemptive-SJF technique applied to this table below.<cite class="src" data-src="Q2"></cite></p>
     </div>
     <div class="ans-label">Same table, preemptive SJF / SRTF (the other third of CIE-I Q3)</div>
     <p><strong>Gantt:</strong> P1[0–11] → P4[11–12] → P3[12–14] → P4[14–23] → P5[23–39] → P2[39–67].</p>
@@ -898,7 +898,7 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
   </div>
 
   <div class="qbox" id="u2-example-16b">
-    <div class="qmeta"><span class="qsrc">Nov/Dec 2019 SEE Q4a (18CS34)</span><span class="marks">worked example · priority + SRTF tie-break</span></div>
+    <div class="qmeta"><span class="qsrc">Nov/Dec 2019 SEE Q4a (18CS34)<cite class="src" data-src="Q2"></cite></span><span class="marks">worked example · priority + SRTF tie-break</span></div>
     <div class="qtext">P1(AT7, BT5, Pri1), P2(AT3, BT7, Pri2), P3(AT10, BT8, Pri1), P4(AT0, BT15, Pri2), P5(AT20, BT3, Pri1). Smaller number = higher priority. Schedule by preemptive priority; among processes of <em>equal</em> priority use preemptive SJF (SRTF). Find the average turnaround time.</div>
     <p><strong>Gantt:</strong> P4[0–3] → P2[3–7] → P1[7–12] → P3[12–20] → P5[20–23] → P2[23–26] → P4[26–38].</p>
     <ul>
@@ -909,7 +909,7 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
     </ul>
     <p style="margin:0"><strong>Turnaround:</strong> P1=5, P2=23, P3=10, P4=38, P5=3 → <strong>avg = 79/5 = 15.8</strong>. <strong>Waiting:</strong> 0, 16, 2, 23, 0 → avg = 8.2. There are 6 context switches. Always write the tie-break rule at the top of your answer. With plain FCFS among equal priorities, P4 would keep the CPU at t=3 and the chart would change.</p>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.3.3 — CPU scheduling</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.3.3 — CPU scheduling<cite class="src" data-src="B1" data-p="§6.3.3"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -971,7 +971,7 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
 
   <h2>Earliest-Deadline-First — worked and verified</h2>
   <div class="qbox" id="u2-example-17">
-    <div class="qmeta"><span class="qsrc">2024-25 CIE-II Test-2, Q1</span><span class="marks">7 marks</span></div>
+    <div class="qmeta"><span class="qsrc">2024-25 CIE-II Test-2, Q1<cite class="src" data-src="Q1"></cite></span><span class="marks">7 marks</span></div>
     <div class="qtext">Task A(period=4, execution=1, deadline=4), Task B(period=6, execution=2, deadline=6), Task C(period=8, execution=1, deadline=8). Compute the processor utilization and show the schedule using EDF.</div>
     <div class="ans-label">Step 1 — Processor utilization</div>
     <div class="formula-block">U = Σ (C<span class="cm">ᵢ</span>/T<span class="cm">ᵢ</span>) = 1/4 + 2/6 + 1/8
@@ -1010,7 +1010,7 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
   </div>
 
   <div class="qbox" id="u2-example-17b">
-    <div class="qmeta"><span class="qsrc">CIE-2 solved bank RT-Q3 — variant of Test-2 Q1 with C<sub>C</sub>=2</span><span class="marks">worked example · RMS vs EDF</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-2 solved bank RT-Q3 — variant of Test-2 Q1 with C<sub>C</sub>=2<cite class="src" data-src="Q3"></cite></span><span class="marks">worked example · RMS vs EDF</span></div>
     <div class="qtext">Same tasks as above but Task C needs <strong>2</strong> units: A(T=4, C=1), B(T=6, C=2), C(T=8, C=2), deadlines = periods. Compute the utilization. Is the set schedulable under RMS? Under EDF?</div>
     <div class="formula-block">U = 1/4 + 2/6 + 2/8 = 3/12 + 4/12 + 3/12 = 10/12 = <span class="c1">0.833</span>
 RMS (Liu–Layland) bound, n = 3:  3(2<sup>1/3</sup> − 1) = <span class="c2">0.780</span>
@@ -1043,7 +1043,7 @@ RMS (Liu–Layland) bound, n = 3:  3(2<sup>1/3</sup> − 1) = <span class="c2">0
 
   </div>
 </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.6 — CPU scheduling</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §6.6 — CPU scheduling<cite class="src" data-src="B1" data-p="§6.6"></cite></span>.</p>
 <div class="callout clarify"><span class="label">Verified real-time assumptions and correction</span><p>The periodic EDF example has deadlines equal to periods, independent preemptible jobs on one processor, and no scheduling overhead. Its utilisation is 17/24 and idle time is 7/24 of the hyperperiod. The earlier prose said 6ms idle; the actual schedule contains 7ms. For this model U ≤ 1 is the EDF feasibility test; do not apply it unchanged to arbitrary deadlines, blocking or overhead. RMS uses fixed priorities by period; its standard utilisation bound is sufficient, not necessary.</p></div>
 
 <a class="backtotop" href="#index">↑ Back to index</a>
@@ -1131,11 +1131,11 @@ RMS (Liu–Layland) bound, n = 3:  3(2<sup>1/3</sup> − 1) = <span class="c2">0
   </ol>
   <div class="callout clarify">
     <span class="label">Not in your materials — added for completeness</span>
-    <p style="margin:0">The three-queue configuration in Fig 11 (quanta 8 ms, 16 ms, then FCFS) is the standard textbook illustration (Silberschatz); your PDF only shows the generic figure. Quote the five parameters above in an exam — they are what the PDF lists.</p>
+    <p style="margin:0">The three-queue configuration in Fig 11 (quanta 8 ms, 16 ms, then FCFS) is the standard textbook illustration (Silberschatz<cite class="src" data-src="B1"></cite>); your PDF only shows the generic figure. Quote the five parameters above in an exam — they are what the PDF lists.</p>
   </div>
 
   <div class="qbox" id="u2-example-18">
-    <div class="qmeta"><span class="qsrc">CIE question bank Q11, 10M</span><span class="marks">FCFS · SJF · RR</span></div>
+    <div class="qmeta"><span class="qsrc">CIE question bank Q11, 10M<cite class="src" data-src="D6"></cite></span><span class="marks">FCFS · SJF · RR</span></div>
     <div class="qtext">P1(AT 0, BT 4), P2(AT 1, BT 2), P3(AT 2, BT 5), P4(AT 3, BT 4). Find average waiting and turnaround time, with Gantt charts, for (a) FCFS, (b) SJF non-preemptive and preemptive, (c) RR with quantum = 4.</div>
     <div class="ans-label">Gantt charts (verified by simulation; SRTF hand-checked)</div>
     <table>
@@ -1462,9 +1462,9 @@ R.<span class="tf">release</span>();</pre>
 
 <section class="page section" id="solved-scheduling" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
 <div class="section-head"><span class="tag">PRACTICE</span><h1>Solved CPU Scheduling Examples</h1></div>
-<p>Use these links for the full worked solutions in the relevant topics. The comparison below was previously buried inside the optional MLFQ section; it tests required FCFS, SJF/SRTF and RR.</p><table><tr><th>Source</th><th>Worked answer</th><th>Scope</th></tr><tr><td>unit 2.pdf, &quot;FCFS Problem&quot;</td><td><a href="#u2-example-04">Five processes arrive as below. Calculate the average waiting time and average turnaround time using FCFS. (Tie-break: if two processes share an arrival time, the lower process ID is served first.)</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2, Q6</td><td><a href="#u2-example-05">Given P1(AT=1,BT=1), P2(AT=1,BT=3), P3(AT=0,BT=40): apply FCFS, compute average waiting/turnaround time. Then, if P3&#x27;s arrival changes to 1 and P1, P2 change to 0, what&#x27;s the variation? Does the convoy effect appear?</a></td><td>Core example</td></tr><tr><td>unit 2.pdf p34 — non-preemptive</td><td><a href="#u2-example-06">Processes P1(6), P2(8), P3(7), P4(3) — burst times only, all arrive at t=0. Apply non-preemptive SJF; find average waiting time.</a></td><td>Core example</td></tr><tr><td>unit 2.pdf p37 — preemptive (SRTF)</td><td><a href="#u2-example-07">P1(AT0,BT10), P2(AT3,BT6), P3(AT7,BT1), P4(AT8,BT3). Apply preemptive SJF; calculate average turnaround time.</a></td><td>Core example</td></tr><tr><td>unit 2.pdf p38 — preemptive (SRTF), gap-fill</td><td><a href="#u2-example-08">P1(AT0,BT12), P2(AT2,BT4), P3(AT3,BT6), P4(AT8,BT5). Apply preemptive SJF; find average waiting and turnaround time.</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2, Q2</td><td><a href="#u2-example-09">P1(AT3,BT1), P2(AT1,BT4), P3(AT4,BT2), P4(AT0,BT6), P5(AT2,BT3). Draw the Gantt chart for non-preemptive SJF; find average waiting and turnaround time.</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-B, Q4</td><td><a href="#u2-example-10">P1(AT0,BT10), P2(AT2,BT5), P3(AT4,BT8), P4(AT6,BT2). Compute average waiting/turnaround time using FCFS and SJF; analyze the results.</a></td><td>Core example</td></tr><tr><td>unit 2.pdf p46 — classic example</td><td><a href="#u2-example-11">P1(24), P2(3), P3(3), all arriving at t=0. Apply RR with time quantum = 4.</a></td><td>Core example</td></tr><tr><td>unit 2.pdf p49–52, &quot;GATE 2019&quot; — TQ=2ms</td><td><a href="#u2-example-12">P1(AT0,BT5), P2(AT1,BT3), P3(AT2,BT1), P4(AT3,BT2), P5(AT4,BT3). Apply RR with quantum = 2ms; find average waiting and turnaround time.</a></td><td>Core example</td></tr><tr><td>21-22 CIE-I Q3 — FLAGSHIP dataset, 3rd algorithm</td><td><a href="#u2-example-13">Same dataset as §2.6&#x27;s flagship box: P1(AT0,BT11), P2(AT5,BT28), P3(AT12,BT2), P4(AT2,BT10), P5(AT9,BT16). Apply RR with quantum = 2ms.</a></td><td>Core example</td></tr><tr><td>unit 2.pdf p40 — non-preemptive</td><td><a href="#u2-example-14">All arrive at t=0: P1(BT10,Pri3), P2(BT1,Pri1), P3(BT2,Pri4), P4(BT1,Pri5), P5(BT5,Pri2). Smallest number = highest priority. Draw the Gantt chart.</a></td><td>Core example</td></tr><tr><td>unit 2.pdf p43-44, &quot;Solved Pbm-2&quot;</td><td><a href="#u2-example-15">P1(AT0,BT4,Pri2), P2(AT1,BT3,Pri3), P3(AT2,BT1,Pri4), P4(AT3,BT5,Pri5), P5(AT4,BT2,Pri5).  Higher number = higher priority  here. Apply non-preemptive priority scheduling.</a></td><td>Core example</td></tr><tr><td>21-22 CIE-I Q3 &amp; unit2.pdf p42, &quot;GATE-2017&quot; — FLAGSHIP</td><td><a href="#u2-example-16">P1(AT0,BT11,Pri2), P2(AT5,BT28,Pri0), P3(AT12,BT2,Pri3), P4(AT2,BT10,Pri1), P5(AT9,BT16,Pri4). Smallest number = highest priority. Apply  preemptive  priority scheduling; find average waiting time.</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2, Q1</td><td><a href="#u2-example-17">Task A(period=4, execution=1, deadline=4), Task B(period=6, execution=2, deadline=6), Task C(period=8, execution=1, deadline=8). Compute the processor utilization and show the schedule using EDF.</a></td><td>Core example</td></tr><tr><td>CIE question bank Q11, 10M</td><td><a href="#cie-cpu-comparison">P1(AT 0, BT 4), P2(AT 1, BT 2), P3(AT 2, BT 5), P4(AT 3, BT 4). Find average waiting and turnaround time, with Gantt charts, for (a) FCFS, (b) SJF non-preemptive and preemptive, (c) RR with quantum = 4.</a></td><td>Core example</td></tr><tr><td>Mar 2021 SEE Q4a</td><td><a href="#u2-example-10b">P1(0,8), P2(0.4,4), P3(1,1): FCFS vs SJF vs SRTF vs idle-first SJF</a></td><td>Core example</td></tr><tr><td>Nov/Dec 2019 SEE Q4a</td><td><a href="#u2-example-16b">Preemptive priority with SRTF among equal priorities</a></td><td>Core example</td></tr><tr><td>CIE-2 solved bank RT-Q3</td><td><a href="#u2-example-17b">RMS vs EDF when U = 0.833 exceeds the RMS bound</a></td><td>Core example</td></tr><tr><td>Oct 2020 SEE Q4a · Apr 2023 Q3a</td><td><a href="#cie2-combined">SRTF, preemptive priority and RR q=2 with response time and context switches</a></td><td>Core example</td></tr><tr><td>Nov/Dec 2019 SEE Q1.5 · GATE-style</td><td><a href="#cie2-gate-shorts">GATE-style: RR completion time; SRTF context-switch count</a></td><td>Core example</td></tr><tr><td>Apr 2023 SEE Q1.9 · Oct 2020 Q1.6</td><td><a href="#u2-example-10c">LRTF with bursts 2, 4, 8</a></td><td>Core example</td></tr><tr><td>SEE 2025 Q2b</td><td><a href="#u2-example-util">CPU utilization: 20 ms CPU / 80 ms I/O, FCFS vs RR q=10</a></td><td>Core example</td></tr><tr><td>Apr 2023 SEE Q4a</td><td><a href="#see-apr23-b4a">SRTF, preemptive priority, RR q=1 with context switches</a></td><td>Core example</td></tr><tr><td>Mar 2021 SEE Q3a · Apr/May 2019 Q3b</td><td><a href="#see-all-zero">All arrive at 0: FCFS, SJF, priority, RR q=1</a></td><td>Core example</td></tr><tr><td>Apr 2023 · Apr/May 2019 SEE</td><td><a href="#see-four-proc">Three 4-process FCFS vs SRTF sets</a></td><td>Core example</td></tr><tr><td>Nov/Dec 2019 SEE Q3a</td><td><a href="#see-flagship-rr4">Flagship set, RR q=4 with all arrivals at 0</a></td><td>Core example</td></tr></table>
+<p>Use these links for the full worked solutions in the relevant topics. The comparison below was previously buried inside the optional MLFQ section; it tests required FCFS, SJF/SRTF and RR.</p><table><tr><th>Source</th><th>Worked answer</th><th>Scope</th></tr><tr><td>unit 2.pdf<cite class="src" data-src="D2"></cite>, &quot;FCFS Problem&quot;</td><td><a href="#u2-example-04">Five processes arrive as below. Calculate the average waiting time and average turnaround time using FCFS. (Tie-break: if two processes share an arrival time, the lower process ID is served first.)</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2, Q6<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-05">Given P1(AT=1,BT=1), P2(AT=1,BT=3), P3(AT=0,BT=40): apply FCFS, compute average waiting/turnaround time. Then, if P3&#x27;s arrival changes to 1 and P1, P2 change to 0, what&#x27;s the variation? Does the convoy effect appear?</a></td><td>Core example</td></tr><tr><td>unit 2.pdf<cite class="src" data-src="D2"></cite> p34 — non-preemptive</td><td><a href="#u2-example-06">Processes P1(6), P2(8), P3(7), P4(3) — burst times only, all arrive at t=0. Apply non-preemptive SJF; find average waiting time.</a></td><td>Core example</td></tr><tr><td>unit 2.pdf<cite class="src" data-src="D2"></cite> p37 — preemptive (SRTF)</td><td><a href="#u2-example-07">P1(AT0,BT10), P2(AT3,BT6), P3(AT7,BT1), P4(AT8,BT3). Apply preemptive SJF; calculate average turnaround time.</a></td><td>Core example</td></tr><tr><td>unit 2.pdf<cite class="src" data-src="D2"></cite> p38 — preemptive (SRTF), gap-fill</td><td><a href="#u2-example-08">P1(AT0,BT12), P2(AT2,BT4), P3(AT3,BT6), P4(AT8,BT5). Apply preemptive SJF; find average waiting and turnaround time.</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2, Q2<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-09">P1(AT3,BT1), P2(AT1,BT4), P3(AT4,BT2), P4(AT0,BT6), P5(AT2,BT3). Draw the Gantt chart for non-preemptive SJF; find average waiting and turnaround time.</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-B, Q4<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-10">P1(AT0,BT10), P2(AT2,BT5), P3(AT4,BT8), P4(AT6,BT2). Compute average waiting/turnaround time using FCFS and SJF; analyze the results.</a></td><td>Core example</td></tr><tr><td>unit 2.pdf<cite class="src" data-src="D2"></cite> p46 — classic example</td><td><a href="#u2-example-11">P1(24), P2(3), P3(3), all arriving at t=0. Apply RR with time quantum = 4.</a></td><td>Core example</td></tr><tr><td>unit 2.pdf<cite class="src" data-src="D2"></cite> p49–52, &quot;GATE 2019&quot; — TQ=2ms</td><td><a href="#u2-example-12">P1(AT0,BT5), P2(AT1,BT3), P3(AT2,BT1), P4(AT3,BT2), P5(AT4,BT3). Apply RR with quantum = 2ms; find average waiting and turnaround time.</a></td><td>Core example</td></tr><tr><td>21-22 CIE-I Q3 — FLAGSHIP dataset, 3rd algorithm</td><td><a href="#u2-example-13">Same dataset as §2.6&#x27;s flagship box: P1(AT0,BT11), P2(AT5,BT28), P3(AT12,BT2), P4(AT2,BT10), P5(AT9,BT16). Apply RR with quantum = 2ms.</a></td><td>Core example</td></tr><tr><td>unit 2.pdf<cite class="src" data-src="D2"></cite> p40 — non-preemptive</td><td><a href="#u2-example-14">All arrive at t=0: P1(BT10,Pri3), P2(BT1,Pri1), P3(BT2,Pri4), P4(BT1,Pri5), P5(BT5,Pri2). Smallest number = highest priority. Draw the Gantt chart.</a></td><td>Core example</td></tr><tr><td>unit 2.pdf<cite class="src" data-src="D2"></cite> p43-44, &quot;Solved Pbm-2&quot;</td><td><a href="#u2-example-15">P1(AT0,BT4,Pri2), P2(AT1,BT3,Pri3), P3(AT2,BT1,Pri4), P4(AT3,BT5,Pri5), P5(AT4,BT2,Pri5).  Higher number = higher priority  here. Apply non-preemptive priority scheduling.</a></td><td>Core example</td></tr><tr><td>21-22 CIE-I Q3 &amp; unit2.pdf p42, &quot;GATE-2017&quot; — FLAGSHIP<cite class="src" data-src="D2" data-p="42"></cite><cite class="src" data-src="Q2"></cite></td><td><a href="#u2-example-16">P1(AT0,BT11,Pri2), P2(AT5,BT28,Pri0), P3(AT12,BT2,Pri3), P4(AT2,BT10,Pri1), P5(AT9,BT16,Pri4). Smallest number = highest priority. Apply  preemptive  priority scheduling; find average waiting time.</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2, Q1<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-17">Task A(period=4, execution=1, deadline=4), Task B(period=6, execution=2, deadline=6), Task C(period=8, execution=1, deadline=8). Compute the processor utilization and show the schedule using EDF.</a></td><td>Core example</td></tr><tr><td>CIE question bank Q11, 10M<cite class="src" data-src="D6"></cite></td><td><a href="#cie-cpu-comparison">P1(AT 0, BT 4), P2(AT 1, BT 2), P3(AT 2, BT 5), P4(AT 3, BT 4). Find average waiting and turnaround time, with Gantt charts, for (a) FCFS, (b) SJF non-preemptive and preemptive, (c) RR with quantum = 4.</a></td><td>Core example</td></tr><tr><td>Mar 2021 SEE Q4a<cite class="src" data-src="Q2"></cite></td><td><a href="#u2-example-10b">P1(0,8), P2(0.4,4), P3(1,1): FCFS vs SJF vs SRTF vs idle-first SJF</a></td><td>Core example</td></tr><tr><td>Nov/Dec 2019 SEE Q4a<cite class="src" data-src="Q2"></cite></td><td><a href="#u2-example-16b">Preemptive priority with SRTF among equal priorities</a></td><td>Core example</td></tr><tr><td>CIE-2 solved bank RT-Q3<cite class="src" data-src="Q3"></cite></td><td><a href="#u2-example-17b">RMS vs EDF when U = 0.833 exceeds the RMS bound</a></td><td>Core example</td></tr><tr><td>Oct 2020 SEE Q4a · Apr 2023 Q3a<cite class="src" data-src="Q2"></cite></td><td><a href="#cie2-combined">SRTF, preemptive priority and RR q=2 with response time and context switches</a></td><td>Core example</td></tr><tr><td>Nov/Dec 2019 SEE Q1.5 · GATE-style<cite class="src" data-src="Q2"></cite></td><td><a href="#cie2-gate-shorts">GATE-style: RR completion time; SRTF context-switch count</a></td><td>Core example</td></tr><tr><td>Apr 2023 SEE Q1.9 · Oct 2020 Q1.6<cite class="src" data-src="Q2"></cite></td><td><a href="#u2-example-10c">LRTF with bursts 2, 4, 8</a></td><td>Core example</td></tr><tr><td>SEE 2025 Q2b<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-util">CPU utilization: 20 ms CPU / 80 ms I/O, FCFS vs RR q=10</a></td><td>Core example</td></tr><tr><td>Apr 2023 SEE Q4a<cite class="src" data-src="Q2"></cite></td><td><a href="#see-apr23-b4a">SRTF, preemptive priority, RR q=1 with context switches</a></td><td>Core example</td></tr><tr><td>Mar 2021 SEE Q3a · Apr/May 2019 Q3b<cite class="src" data-src="Q2"></cite></td><td><a href="#see-all-zero">All arrive at 0: FCFS, SJF, priority, RR q=1</a></td><td>Core example</td></tr><tr><td>Apr 2023 · Apr/May 2019 SEE<cite class="src" data-src="Q2"></cite></td><td><a href="#see-four-proc">Three 4-process FCFS vs SRTF sets</a></td><td>Core example</td></tr><tr><td>Nov/Dec 2019 SEE Q3a<cite class="src" data-src="Q2"></cite></td><td><a href="#see-flagship-rr4">Flagship set, RR q=4 with all arrivals at 0</a></td><td>Core example</td></tr></table>
 <div class="qbox" id="cie-cpu-comparison">
-    <div class="qmeta"><span class="qsrc">CIE question bank Q11, 10M</span><span class="marks">FCFS · SJF · RR</span></div>
+    <div class="qmeta"><span class="qsrc">CIE question bank Q11, 10M<cite class="src" data-src="D6"></cite></span><span class="marks">FCFS · SJF · RR</span></div>
     <div class="qtext">P1(AT 0, BT 4), P2(AT 1, BT 2), P3(AT 2, BT 5), P4(AT 3, BT 4). Find average waiting and turnaround time, with Gantt charts, for (a) FCFS, (b) SJF non-preemptive and preemptive, (c) RR with quantum = 4.</div>
     <div class="ans-label">Gantt charts (verified by simulation; SRTF hand-checked)</div>
     <table>
@@ -1477,7 +1477,7 @@ R.<span class="tf">release</span>();</pre>
     <p style="margin:0">Waiting = turnaround − burst; turnaround = completion − arrival. SRTF preempts P1 at t = 1 because P2 (2 ms) is shorter than P1's remaining 3 ms; at t = 3 P1 (remaining 3) beats P4 (4). In RR, P3 arrives at t = 2 and P4 at t = 3 (before P3's second turn), so P4 queues ahead of P3's leftover 1 ms. SRTF gives the best averages here; RR the worst, as expected for a fair-share policy.</p>
   </div>
 <div class="qbox" id="cie2-combined">
-    <div class="qmeta"><span class="qsrc">Oct 2020 SEE Q4a (18CS34) · Apr 2023 SEE Q3a</span><span class="marks">SRTF · preemptive priority · RR q=2 · response time</span></div>
+    <div class="qmeta"><span class="qsrc">Oct 2020 SEE Q4a (18CS34) · Apr 2023 SEE Q3a<cite class="src" data-src="Q2"></cite></span><span class="marks">SRTF · preemptive priority · RR q=2 · response time</span></div>
     <div class="qtext">P1(AT0, BT7, Pri3), P2(AT3, BT2, Pri2), P3(AT4, BT3, Pri1), P4(AT4, BT1, Pri1), P5(AT5, BT3, Pri3). Smaller number = higher priority. Draw Gantt charts for SRTF, preemptive priority and RR (q=2). Find the average waiting, turnaround and response time, and the number of context switches.</div>
     <table>
       <tr><th>Algorithm</th><th>Gantt</th><th>TAT P1–P5 · avg</th><th>WT · avg</th><th>RT · avg</th><th>CS</th></tr>
@@ -1498,14 +1498,14 @@ R.<span class="tf">release</span>();</pre>
   </div>
 
   <div class="qbox" id="cie2-gate-shorts">
-    <div class="qmeta"><span class="qsrc">(i) Nov/Dec 2019 SEE Q1.5 · (ii) GATE-style, CIE-2 bank Q18</span><span class="marks">1–2 mark quick numericals</span></div>
+    <div class="qmeta"><span class="qsrc">(i) Nov/Dec 2019 SEE Q1.5 · (ii) GATE-style, CIE-2 bank Q18<cite class="src" data-src="Q3"></cite></span><span class="marks">1–2 mark quick numericals</span></div>
     <div class="qtext">(i) A=4, B=1, C=8, D=1 all arrive at t=0 (in that order). RR, q=1: when does A complete? &nbsp;(ii) P1(AT0, BT10), P2(AT2, BT20), P3(AT6, BT30) under SRTF: how many context switches happen, not counting the first dispatch and the final exit?</div>
     <p><strong>(i)</strong> A[0–1] B[1–2] C[2–3] D[3–4] A[4–5] C[5–6] A[6–7] C[7–8] A[8–9] C[9–14]. B and D drop out after one turn each, so from t=4 the CPU alternates between A and C. A gets its 4th unit in slot 8–9, so <strong>A completes at t = 9</strong>.</p>
     <p style="margin:0"><strong>(ii)</strong> P2 arrives at t=2 needing 20, while P1 has only 8 left. P3 arrives at t=6 needing 30, while P1 has 4 left. Neither arrival preempts, so the schedule is P1[0–10] P2[10–30] P3[30–60] and there are <strong>2 context switches</strong> (at 10 and 30). The trap is counting every arrival as a preemption. SRTF preempts only when the newcomer's burst is <em>shorter</em> than the running job's remaining time.</p>
   </div>
 
   <div class="qbox" id="see-apr23-b4a">
-    <div class="qmeta"><span class="qsrc">Apr 2023 SEE Q4a (21CS35)</span><span class="marks">10 marks · SRTF · preemptive priority · RR q=1</span></div>
+    <div class="qmeta"><span class="qsrc">Apr 2023 SEE Q4a (21CS35)<cite class="src" data-src="Q2"></cite></span><span class="marks">10 marks · SRTF · preemptive priority · RR q=1</span></div>
     <div class="qtext">P1(AT0, BT10, Pri3), P2(AT3, BT5, Pri2), P3(AT4, BT8, Pri1), P4(AT4, BT2, Pri1), P5(AT5, BT12, Pri2). Smaller number = higher priority. Draw Gantt charts for preemptive SJF, priority and RR (time slice 1 ms). Compute the average waiting time, average turnaround time and number of context switches for each.</div>
     <table>
       <tr><th>Algorithm</th><th>Gantt</th><th>TAT P1–P5 · avg</th><th>WT · avg</th><th>CS</th></tr>
@@ -1517,7 +1517,7 @@ R.<span class="tf">release</span>();</pre>
   </div>
 
   <div class="qbox" id="see-all-zero">
-    <div class="qmeta"><span class="qsrc">Mar 2021 SEE Q3a (18CS34) · Apr/May 2019 SEE Q3b</span><span class="marks">10 marks · all arrive at t=0</span></div>
+    <div class="qmeta"><span class="qsrc">Mar 2021 SEE Q3a (18CS34) · Apr/May 2019 SEE Q3b<cite class="src" data-src="Q2"></cite></span><span class="marks">10 marks · all arrive at t=0</span></div>
     <div class="qtext">(a) P1(BT10, Pri3), P2(1, 1), P3(2, 3), P4(1, 4), P5(5, 2), arriving in order P1…P5 at t=0. Draw Gantt charts for FCFS, SJF, non-preemptive priority and RR (q=1), and give each process's turnaround and waiting time. &nbsp;(b) P1(6, Pri3), P2(8, 1), P3(7, 4), P4(3, 2): SJF and priority.</div>
     <table>
       <tr><th>(a) Algorithm</th><th>Gantt</th><th>TAT P1–P5 · avg</th><th>WT P1–P5 · avg</th></tr>
@@ -1531,7 +1531,7 @@ R.<span class="tf">release</span>();</pre>
   </div>
 
   <div class="qbox" id="see-four-proc">
-    <div class="qmeta"><span class="qsrc">Apr 2023 SEE Q3a (set B) · Apr 2023 SEE Q4b (set A) · Apr/May 2019 SEE Q4a</span><span class="marks">6–8 marks · FCFS vs preemptive SJF</span></div>
+    <div class="qmeta"><span class="qsrc">Apr 2023 SEE Q3a (set B) · Apr 2023 SEE Q4b (set A) · Apr/May 2019 SEE Q4a<cite class="src" data-src="Q2"></cite></span><span class="marks">6–8 marks · FCFS vs preemptive SJF</span></div>
     <div class="qtext">For each set, draw Gantt charts and find the average waiting time under FCFS and preemptive SJF. &nbsp;(i) P1(0, 6), P2(4, 2), P3(3, 7), P4(3, 1). &nbsp;(ii) P1(0, 1.5), P2(1.5, 3), P3(3, 1), P4(3, 7.5). &nbsp;(iii) P1(0, 2), P2(1, 3), P3(3, 1), P4(3, 7). Format: (arrival, burst).</div>
     <table>
       <tr><th>Set</th><th>FCFS Gantt · avg WT</th><th>SRTF Gantt · avg WT</th></tr>
@@ -1543,7 +1543,7 @@ R.<span class="tf">release</span>();</pre>
   </div>
 
   <div class="qbox" id="see-flagship-rr4">
-    <div class="qmeta"><span class="qsrc">Nov/Dec 2019 SEE Q3a (18CS34)</span><span class="marks">flagship set · RR q=4 with all arrivals at 0</span></div>
+    <div class="qmeta"><span class="qsrc">Nov/Dec 2019 SEE Q3a (18CS34)<cite class="src" data-src="Q2"></cite></span><span class="marks">flagship set · RR q=4 with all arrivals at 0</span></div>
     <div class="qtext">The §2.6 flagship table (bursts P1 11, P2 28, P3 2, P4 10, P5 16), but for Round Robin the paper says to "consider arrival time as 0 for all processes", time slice 4 ms. Find the average waiting and turnaround times.</div>
     <p><strong>Gantt:</strong> P1[0–4] P2[4–8] P3[8–10] P4[10–14] P5[14–18] P1[18–22] P2[22–26] P4[26–30] P5[30–34] P1[34–37] P2[37–41] P4[41–43] P5[43–47] P2[47–51] P5[51–55] P2[55–67].</p>
     <p style="margin:0"><strong>Turnaround</strong> = completion: P1=37, P2=67, P3=10, P4=43, P5=55, so the <strong>average is 42.4 ms</strong>. <strong>Waiting</strong> = TAT − burst: 26, 39, 8, 33, 39, so the <strong>average is 29 ms</strong>, with 15 context switches. The same paper asks for SRTF and preemptive priority with the real arrival times. Those are the <a href="#u2-example-16">flagship priority and SRTF answers</a> in §2.6.</p>
@@ -1666,7 +1666,7 @@ R.<span class="tf">release</span>();</pre>
     <p style="margin:0">Distinct final values: <strong>{2, 3, 4} → 3 distinct values.</strong> (This is a
     well-known GATE-style question — the two sequential orders give B=3 and B=4; interleaving also permits B=2. The result depends on the order of the atomic statements.)</p>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.1 — synchronization</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.1 — synchronization<cite class="src" data-src="B1" data-p="§5.1"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -1733,7 +1733,7 @@ R.<span class="tf">release</span>();</pre>
   by construction — since only one process is ever actually running in kernel mode at a time — but
   preemptive kernels are far better suited to real-time programming, since a high-priority process isn't
   stuck waiting behind a low-priority one running in the kernel.</p>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.2 — synchronization</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.2 — synchronization<cite class="src" data-src="B1" data-p="§5.2"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -1823,7 +1823,7 @@ R.<span class="tf">release</span>();</pre>
   §2.11's hardware-level primitives exist as the practical alternative.</p>
 
   <div class="qbox" id="u2-example-22">
-    <div class="qmeta"><span class="qsrc">2024-25 CIE-II Test-2 Q1a</span><span class="marks">7 marks · verified by simulation · why BOTH flag and turn matter</span></div>
+    <div class="qmeta"><span class="qsrc">2024-25 CIE-II Test-2 Q1a<cite class="src" data-src="Q1"></cite></span><span class="marks">7 marks · verified by simulation · why BOTH flag and turn matter</span></div>
     <div class="qtext">P1 executes: while(S1==S2); Critical Section; S1=S2. P2 executes: while(S1!=S2); Critical Section; S2=!S1. Shared Boolean S1, S2. Case 1: S1=0, S2=0. Case 2: S1=0, S2=1. Is mutual exclusion and progress guaranteed in both cases? Justify.</div>
     <div class="ans-label">Mutual exclusion: YES, in both cases</div>
     <p>P1's guard (<span class="mono">S1==S2</span>) and P2's guard (<span class="mono">S1!=S2</span>) are
@@ -1847,7 +1847,7 @@ Case 2 (S1=0,S2=1): P1 enters first (S1≠S2) → S1=1,S2=1 → P2 enters → S1
     equivalent) only ever encodes "whose turn is it," with no way to say "I don't want a turn right now."</p>
   </div>
 <div class="callout clarify"><span class="label">Assumptions behind Peterson’s proof</span><p>The textbook proof assumes atomic shared-variable reads/writes and sequentially consistent ordering. These are algorithmic pseudocode listings, not portable C implementations using ordinary shared variables. Unsynchronised C/Pthreads accesses can be data races; real implementations need appropriate atomic operations and ordering guarantees.</p></div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.3 — synchronization</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.3 — synchronization<cite class="src" data-src="B1" data-p="§5.3"></cite></span>.</p>
 
 
 
@@ -1931,7 +1931,7 @@ do {
     /* remainder section */
 } while (true);</div>
 <p>The first contender reads 0, writes 1 and enters. A competitor reads 1, leaves it unchanged and retries. Releasing the lock allows a later attempt to succeed. This gives mutual exclusion but does not itself guarantee bounded waiting. In real code, the acquire and release operations need the language/platform’s atomic and memory-ordering facilities.</p>
-<div class="callout clarify"><span class="label">Correcting the older notes using the reference book</span><p>The former CAS subsection actually described an exchange operation and treated a normal C swap as atomic. Silberschatz §5.4, Figs 5.5–5.6, defines CAS with three operands and a conditional write. The distinct older exchange discussion is preserved below with its atomicity assumption made explicit.</p></div><div class="legacy-topic">
+<div class="callout clarify"><span class="label">Correcting the older notes using the reference book</span><p>The former CAS subsection actually described an exchange operation and treated a normal C swap as atomic. Silberschatz §5.4<cite class="src" data-src="B1" data-p="§5.4"></cite>, Figs 5.5–5.6, defines CAS with three operands and a conditional write. The distinct older exchange discussion is preserved below with its atomicity assumption made explicit.</p></div><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h2>Atomic exchange — older hardware example</h2><span class="scope-note">Retained older explanation; optional companion to the corrected CAS definition</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-12" aria-label="View Atomic exchange — older hardware example">View</button></div>
   <div class="legacy-content" id="legacy-u2-12" hidden><p><strong>Atomic-exchange abstraction:</strong> the old swap definition below is a conceptual specification of one indivisible hardware operation. Its ordinary C assignments alone are not atomic and are not a safe concurrent lock implementation. Exchange is distinct from conditional compare-and-swap.</p>
@@ -2026,7 +2026,7 @@ do {
     as one atomic step, ran 200 schedules of 20 000 steps each for n = 2, 3, 4 and 5. Mutual exclusion never failed, and while
     one process waited, the others entered at most n − 1 times (1, 2, 3, 4).</p>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.4 — synchronization</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.4 — synchronization<cite class="src" data-src="B1" data-p="§5.4"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -2154,7 +2154,7 @@ release() {
   </div>
 
   <div class="qbox" id="u2-example-25">
-    <div class="qmeta"><span class="qsrc">2024-25 SEE Part-A</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">2024-25 SEE Part-A<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">A counting semaphore has value 7. 20 P-operations and x V-operations are completed; the new value is 5. Find x.</div>
     <p style="margin:0">7 − 20 + x = 5  →  <strong>x = 18</strong>.</p>
   </div>
@@ -2193,7 +2193,7 @@ signal(semaphore *S) {
   coordination patterns that have nothing to do with mutual exclusion.</p>
 
   <div class="qbox" id="u2-example-26">
-    <div class="qmeta"><span class="qsrc">2024-25 SEE Part-A</span><span class="marks">2 marks · rechecked by state simulation</span></div>
+    <div class="qmeta"><span class="qsrc">2024-25 SEE Part-A<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks · rechecked by state simulation</span></div>
     <div class="qtext">n processes each run: Code Section P: wait(a); count=count+1; if(count==n) signal(b); signal(a); — Code Section Q: wait(b); signal(b); — with semaphores a=1, b=0, and shared count=0. What does this code achieve?</div>
     <div class="ans-label">This is a one-shot barrier (rendezvous point)</div>
     <p>Semaphore <span class="mono">a</span> protects the shared counter (only one process increments
@@ -2214,7 +2214,7 @@ P2 passed the barrier (section Q)
 P0 passed the barrier (section Q)</div>
   </div>
   <div class="qbox" id="u2-example-26b">
-    <div class="qmeta"><span class="qsrc">Nov/Dec 2019 SEE Q1.2 (18CS34)</span><span class="marks">worked example · lock ordering</span></div>
+    <div class="qmeta"><span class="qsrc">Nov/Dec 2019 SEE Q1.2 (18CS34)<cite class="src" data-src="Q2"></cite></span><span class="marks">worked example · lock ordering</span></div>
     <div class="qtext">P1 does <span class="mono">X = X + 10; Y = Y − 20;</span> and P2 does <span class="mono">Y = Y + 20; X = X − 10;</span>. Using binary semaphores SX = 1 and SY = 1, write the entry and exit sections so that both updates are consistent and deadlock cannot occur.</div>
     <p><strong>The trap:</strong> the obvious approach is to "lock what you touch first". Then P1 does wait(SX) followed by wait(SY), while P2 does wait(SY) followed by wait(SX). If P1 gets SX and P2 gets SY, each process waits forever for the other's lock. This is the same circular wait as the <a href="#u2-example-27">S/Q deadlock example</a>.</p>
     <div class="formula-block code"><span class="cm">// both processes acquire in the SAME global order: SX, then SY</span>
@@ -2222,7 +2222,7 @@ P1:  wait(SX); wait(SY);  X = X + 10;  Y = Y - 20;  signal(SY); signal(SX);
 P2:  wait(SX); wait(SY);  Y = Y + 20;  X = X - 10;  signal(SY); signal(SX);</div>
     <p style="margin:0"><strong>Why it works:</strong> no process can hold SY while it waits for SX, so a circular wait is impossible. Whoever obtains SX first gets both locks, and the other process blocks on SX while holding nothing. Mutual exclusion holds because both shared variables are updated only while both locks are held. If both processes run (in either order), X and Y return to their original values (+10−10 and −20+20). The rule to quote is: <strong>impose one global lock order</strong>. This is the standard way to break the circular-wait condition.</p>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.6 — synchronization</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.6 — synchronization<cite class="src" data-src="B1" data-p="§5.6"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -2341,7 +2341,7 @@ semaphore full  = 0;</div>
     <span class="mono">pthread_mutex_lock()</span> / <span class="mono">pthread_mutex_unlock()</span>, and
     <span class="mono">pthread_mutex_destroy()</span>.</p>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.7.1 — synchronization</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.7.1 — synchronization<cite class="src" data-src="B1" data-p="§5.7.1"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -2442,7 +2442,7 @@ int read_count = 0;</div>
     to the <strong>second</strong> problem (writers' preference, not shown here) stops new readers from starting
     once a writer is waiting. That avoids writer starvation, but readers can then starve instead.</p>
   </div>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.7.2 — synchronization</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.7.2 — synchronization<cite class="src" data-src="B1" data-p="§5.7.2"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -2526,7 +2526,7 @@ do {
     then their right; even-numbered philosophers pick up right first, then left. This breaks the symmetry
     that let all five grab "the same side" simultaneously.</li>
   </ol>
-<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.7.3 — synchronization</span>.</p>
+<p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne, ninth edition — §5.7.3 — synchronization<cite class="src" data-src="B1" data-p="§5.7.3"></cite></span>.</p>
 
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -2603,7 +2603,7 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
 </div></section>
 <section class="page section" id="solved-sync" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
 <div class="section-head"><span class="tag">PRACTICE</span><h1>Solved Synchronization Examples</h1></div>
-<p>Race-condition interleavings, strict alternation, semaphore arithmetic, resource permits, lock ordering and a one-shot barrier are worked in their topic sections.</p><table><tr><th>Source</th><th>Worked answer</th><th>Scope</th></tr><tr><td>Older course deck, p5–7</td><td><a href="#u2-example-20">counter starts at 5. Producer and consumer execute counter++ and counter-- concurrently, interleaved exactly as S0–S5 in Fig 16. What is the final value of counter?</a></td><td>Core example</td></tr><tr><td>2021-22 CIE-II Q1</td><td><a href="#u2-example-21">P1(){C=B-1; B=2*C;} and P2(){D=2*B; B=D-1;} share a variable B with initial value 2 and execute concurrently. How many distinct values can B possibly take after execution?</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2 Q1a</td><td><a href="#u2-example-22">P1 executes: while(S1==S2); Critical Section; S1=S2. P2 executes: while(S1!=S2); Critical Section; S2=!S1. Shared Boolean S1, S2. Case 1: S1=0, S2=0. Case 2: S1=0, S2=1. Is mutual exclusion and progress guaranteed in both cases? Justify.</a></td><td>Core example</td></tr><tr><td>Course slides — counting semaphore</td><td><a href="#u2-example-23">Three processes P1, P2, P3 all call wait(S) on a counting semaphore initialized to S=2 (a resource with 2 interchangeable instances). What happens?</a></td><td>Core example</td></tr><tr><td>2021-22 CIE-II Q4</td><td><a href="#u2-example-24">A counting semaphore has value 7. 20 P-operations and 15 V-operations are completed on it. What is the resulting value?</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-A</td><td><a href="#u2-example-25">A counting semaphore has value 7. 20 P-operations and x V-operations are completed; the new value is 5. Find x.</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-A</td><td><a href="#u2-example-26">n processes each run: Code Section P: wait(a); count=count+1; if(count==n) signal(b); signal(a); — Code Section Q: wait(b); signal(b); — with semaphores a=1, b=0, and shared count=0. What does this code achieve?</a></td><td>Core example</td></tr><tr><td>Older course deck p41, classic example</td><td><a href="#u2-example-27">Semaphores S and Q are both initialized to 1. P0 executes wait(S) then wait(Q); P1 executes wait(Q) then wait(S). Show that this can deadlock.</a></td><td>Collapsed older/supplementary example</td></tr><tr><td>Nov/Dec 2019 SEE Q1.2</td><td><a href="#u2-example-26b">Two semaphores SX, SY — entry/exit sections without deadlock (lock ordering)</a></td><td>Core example</td></tr></table>
+<p>Race-condition interleavings, strict alternation, semaphore arithmetic, resource permits, lock ordering and a one-shot barrier are worked in their topic sections.</p><table><tr><th>Source</th><th>Worked answer</th><th>Scope</th></tr><tr><td>Older course deck, p5–7</td><td><a href="#u2-example-20">counter starts at 5. Producer and consumer execute counter++ and counter-- concurrently, interleaved exactly as S0–S5 in Fig 16. What is the final value of counter?</a></td><td>Core example</td></tr><tr><td>2021-22 CIE-II Q1</td><td><a href="#u2-example-21">P1(){C=B-1; B=2*C;} and P2(){D=2*B; B=D-1;} share a variable B with initial value 2 and execute concurrently. How many distinct values can B possibly take after execution?</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2 Q1a<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-22">P1 executes: while(S1==S2); Critical Section; S1=S2. P2 executes: while(S1!=S2); Critical Section; S2=!S1. Shared Boolean S1, S2. Case 1: S1=0, S2=0. Case 2: S1=0, S2=1. Is mutual exclusion and progress guaranteed in both cases? Justify.</a></td><td>Core example</td></tr><tr><td>Course slides — counting semaphore</td><td><a href="#u2-example-23">Three processes P1, P2, P3 all call wait(S) on a counting semaphore initialized to S=2 (a resource with 2 interchangeable instances). What happens?</a></td><td>Core example</td></tr><tr><td>2021-22 CIE-II Q4</td><td><a href="#u2-example-24">A counting semaphore has value 7. 20 P-operations and 15 V-operations are completed on it. What is the resulting value?</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-A<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-25">A counting semaphore has value 7. 20 P-operations and x V-operations are completed; the new value is 5. Find x.</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-A<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-26">n processes each run: Code Section P: wait(a); count=count+1; if(count==n) signal(b); signal(a); — Code Section Q: wait(b); signal(b); — with semaphores a=1, b=0, and shared count=0. What does this code achieve?</a></td><td>Core example</td></tr><tr><td>Older course deck p41, classic example</td><td><a href="#u2-example-27">Semaphores S and Q are both initialized to 1. P0 executes wait(S) then wait(Q); P1 executes wait(Q) then wait(S). Show that this can deadlock.</a></td><td>Collapsed older/supplementary example</td></tr><tr><td>Nov/Dec 2019 SEE Q1.2<cite class="src" data-src="Q2"></cite></td><td><a href="#u2-example-26b">Two semaphores SX, SY — entry/exit sections without deadlock (lock ordering)</a></td><td>Core example</td></tr></table>
 <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="quick-revision" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
@@ -2698,16 +2698,16 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   <h2>2.1 Scheduling — Basic Concepts</h2>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q1, 1M</td><td>In timeshare OS, when a time slot completes, the process switches to ___ state. (Ans: Ready)</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q1, 1M<cite class="src" data-src="Q1"></cite></td><td>In timeshare OS, when a time slot completes, the process switches to ___ state. (Ans: Ready)</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
     <tr><td class="mono" style="white-space:nowrap">24-25 Test-1 Q1.i, part of 10M</td><td>T/F: timesharing = multiprogramming when time slice exceeds every program's CPU burst. Justify. (Ans: False)</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q2, 2M</td><td>In preemptive scheduling, when can a running process be interrupted?</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q3, 3M</td><td>List two types of schedulers with one example each.</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q2, 2M<cite class="src" data-src="Q1"></cite></td><td>In preemptive scheduling, when can a running process be interrupted?</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q3, 3M<cite class="src" data-src="Q1"></cite></td><td>List two types of schedulers with one example each.</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
   </table>
 
   <h2>2.2 Scheduling Criteria</h2>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q4, 2M</td><td>Define CPU utilization and its goal.</td><td>→ <a href="#t2-6">§2.2</a> (subsumed by Test-2 Q4 below)</td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q4, 2M<cite class="src" data-src="Q1"></cite></td><td>Define CPU utilization and its goal.</td><td>→ <a href="#t2-6">§2.2</a> (subsumed by Test-2 Q4 below)</td></tr>
     <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q4, 5M</td><td>Discuss the scheduling criteria for scheduling algorithms.</td><td>→ <a href="#t2-6">§2.2</a></td></tr>
   </table>
 
@@ -2716,7 +2716,7 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
     <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q6, 6M</td><td>FCFS convoy effect: P1(AT1,BT1), P2(AT1,BT3), P3(AT0,BT40) — original vs modified arrival order.</td><td>→ <a href="#t2-7">§2.3</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q2, 4M</td><td>SJF non-preemptive: P1(AT3,BT1) P2(AT1,BT4) P3(AT4,BT2) P4(AT0,BT6) P5(AT2,BT3) — Gantt + avg times.</td><td>→ <a href="#t2-8">§2.4</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q4, 8M</td><td>FCFS vs SJF comparison: P1(AT0,BT10) P2(AT2,BT5) P3(AT4,BT8) P4(AT6,BT2).</td><td>→ <a href="#t2-7">§2.3</a> &amp; <a href="#t2-8">§2.4</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q4, 8M<cite class="src" data-src="Q1"></cite></td><td>FCFS vs SJF comparison: P1(AT0,BT10) P2(AT2,BT5) P3(AT4,BT8) P4(AT6,BT2).</td><td>→ <a href="#t2-7">§2.3</a> &amp; <a href="#t2-8">§2.4</a> <span class="pill">solved example added</span></td></tr>
   </table>
 
   <h2>2.6 Priority Scheduling</h2>
@@ -2728,14 +2728,14 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   <h2>2.4 / 2.5 / 2.6 — Flagship dataset (all three algorithms)</h2>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-I Q3, 4M <span class="pill">flagship</span></td><td>5-process Gantt chart: preemptive SJF, preemptive priority, and Round Robin (q=2ms) — average waiting/turnaround time and context switches for each. Same dataset as unit2.pdf's own "GATE-2017" priority example.</td><td>→ <a href="#t2-8">§2.4</a>, <a href="#t2-9">§2.6</a>, <a href="#t2-10">§2.5</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q1, 3M</td><td>Which scheduling algorithm is most suitable for a time-sharing system?</td><td>→ <a href="#t2-10">§2.5</a> (Round Robin — see quantum-tradeoff discussion)</td></tr>
+    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-I Q3, 4M <span class="pill">flagship</span></td><td>5-process Gantt chart: preemptive SJF, preemptive priority, and Round Robin (q=2ms) — average waiting/turnaround time and context switches for each. Same dataset as unit2.pdf<cite class="src" data-src="D2"></cite>'s own "GATE-2017" priority example.</td><td>→ <a href="#t2-8">§2.4</a>, <a href="#t2-9">§2.6</a>, <a href="#t2-10">§2.5</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q1, 3M<cite class="src" data-src="Q1"></cite></td><td>Which scheduling algorithm is most suitable for a time-sharing system?</td><td>→ <a href="#t2-10">§2.5</a> (Round Robin — see quantum-tradeoff discussion)</td></tr>
   </table>
 
   <h2>2.7 Real-Time CPU Scheduling</h2>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q5, 1M <span class="pill">borderline→included</span></td><td>Which type of OS reads and reacts in terms of actual time? (Ans: Real-Time OS)</td><td>→ <a href="#t2-11">§2.7</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q5, 1M <span class="pill">borderline→included</span><cite class="src" data-src="Q1"></cite></td><td>Which type of OS reads and reacts in terms of actual time? (Ans: Real-Time OS)</td><td>→ <a href="#t2-11">§2.7</a></td></tr>
     <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q1, 7M</td><td>EDF: Task A(period4,exec1,deadline4), B(period6,exec2,deadline6), C(period8,exec1,deadline8) — utilization + schedule.</td><td>→ <a href="#t2-11">§2.7</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q3, 4M</td><td>Compare Rate-Monotonic scheduling and Earliest-Deadline-First scheduling.</td><td>→ <a href="#t2-11">§2.7</a></td></tr>
   </table>
@@ -2786,14 +2786,14 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
     <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II A-Q1, 1M</td><td>P1(){C=B-1;B=2*C;} P2(){D=2*B;B=D-1;} share B=2, execute concurrently. How many distinct values can B take?</td><td>→ <a href="#sync-t3-1">§2.8</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q1, 3M</td><td>What is a race condition? Give an example.</td><td>→ <a href="#sync-t3-1">§2.8</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q1, 3M<cite class="src" data-src="Q1"></cite></td><td>What is a race condition? Give an example.</td><td>→ <a href="#sync-t3-1">§2.8</a></td></tr>
   </table>
 
   <h2>2.9 The Critical Section Problem</h2>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
     <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II B-2.a, 5M</td><td>Identify the requirements of a critical section and illustrate Peterson's solution.</td><td>→ <a href="#sync-t3-2">§2.9</a> &amp; <a href="#sync-t3-3">§2.10</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q2, 2M</td><td>Why is mutual exclusion important in solving the critical section problem?</td><td>→ <a href="#sync-t3-2">§2.9</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q2, 2M<cite class="src" data-src="Q1"></cite></td><td>Why is mutual exclusion important in solving the critical section problem?</td><td>→ <a href="#sync-t3-2">§2.9</a></td></tr>
     <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q4, 4M</td><td>Define critical section problem. Give an example. Explain any two of the three solution conditions.</td><td>→ <a href="#sync-t3-2">§2.9</a></td></tr>
     <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q1a, 7M</td><td>Boolean-flag S1/S2 mechanism for P1/P2, two initial-value cases — is mutual exclusion and progress guaranteed in both?</td><td>→ <a href="#sync-t3-3">§2.10</a> <span class="pill">solved example added</span></td></tr>
   </table>
@@ -2802,7 +2802,7 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
     <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q5, 4M</td><td>Explain Peterson's solution with algorithm for two-process synchronization.</td><td>→ <a href="#sync-t3-3">§2.10</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q5a, 8M</td><td>Explain Peterson's Solution and the structure of Pi. What are the disadvantages?</td><td>→ <a href="#sync-t3-3">§2.10</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q5a, 8M<cite class="src" data-src="Q1"></cite></td><td>Explain Peterson's Solution and the structure of Pi. What are the disadvantages?</td><td>→ <a href="#sync-t3-3">§2.10</a></td></tr>
   </table>
 
   <h2>2.11 Synchronization Hardware</h2>
@@ -2811,7 +2811,7 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
     <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II A-Q2, 2M</td><td>Enumerate the advantages of spinlocks.</td><td>→ <a href="#sync-t3-4">§2.11</a> &amp; <a href="#sync-t3-5">§Supporting mutex detail</a></td></tr>
     <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II B-1.a, 5M</td><td>Illustrate the basic synchronization primitives test_and_set and compare_and_swap.</td><td>→ <a href="#sync-t3-4">§2.11</a></td></tr>
     <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q6, 6M</td><td>Explain with an algorithm how test_and_set solves all the CS-problem requirements.</td><td>→ <a href="#sync-t3-4">§2.11</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1.6, 1M</td><td>The hardware implementation which provides mutual exclusion is ____.</td><td>→ <a href="#sync-t3-4">§2.11</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1.6, 1M<cite class="src" data-src="Q1"></cite></td><td>The hardware implementation which provides mutual exclusion is ____.</td><td>→ <a href="#sync-t3-4">§2.11</a></td></tr>
   </table>
 
   <div class="legacy-topic">
@@ -2820,8 +2820,8 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   <div class="legacy-content" id="legacy-u2-2001" hidden>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q5b, 8M</td><td>Write a program using a mutex lock to solve a critical section problem; explain the execution flow.</td><td>→ <a href="#sync-t3-5">§Supporting mutex detail</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q6b, 8M</td><td>Identify the key differences between mutex locks and semaphores.</td><td>→ <a href="#sync-t3-5">§Supporting mutex detail</a> &amp; <a href="#sync-t3-6">§2.12</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q5b, 8M<cite class="src" data-src="Q1"></cite></td><td>Write a program using a mutex lock to solve a critical section problem; explain the execution flow.</td><td>→ <a href="#sync-t3-5">§Supporting mutex detail</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q6b, 8M<cite class="src" data-src="Q1"></cite></td><td>Identify the key differences between mutex locks and semaphores.</td><td>→ <a href="#sync-t3-5">§Supporting mutex detail</a> &amp; <a href="#sync-t3-6">§2.12</a></td></tr>
   </table>
 
   </div>
@@ -2829,14 +2829,14 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
     <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II A-Q4, 1M</td><td>Counting semaphore=7; 20 P-ops, 15 V-ops. Resulting value?</td><td>→ <a href="#sync-t3-6">§2.12</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1.7, 2M</td><td>n-process barrier using semaphores a=1, b=0 and a shared counter — what does the code achieve?</td><td>→ <a href="#sync-t3-6">§2.12</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1.8, 2M</td><td>Counting semaphore=7; 20 P-ops, x V-ops; final value=5. Find x.</td><td>→ <a href="#sync-t3-6">§2.12</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1.7, 2M<cite class="src" data-src="Q1"></cite></td><td>n-process barrier using semaphores a=1, b=0 and a shared counter — what does the code achieve?</td><td>→ <a href="#sync-t3-6">§2.12</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1.8, 2M<cite class="src" data-src="Q1"></cite></td><td>Counting semaphore=7; 20 P-ops, x V-ops; final value=5. Find x.</td><td>→ <a href="#sync-t3-6">§2.12</a> <span class="pill">solved example added</span></td></tr>
   </table>
 
   <h2>2.14 Readers-Writers Problem</h2>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q6a, 8M</td><td>Develop a solution for the Readers-Writers problem using semaphores; explain fairness and synchronization.</td><td>→ <a href="#sync-t3-8">§2.14</a></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q6a, 8M<cite class="src" data-src="Q1"></cite></td><td>Develop a solution for the Readers-Writers problem using semaphores; explain fairness and synchronization.</td><td>→ <a href="#sync-t3-8">§2.14</a></td></tr>
   </table>
 
   <h2>Supporting deadlock detail Deadlock &amp; Starvation</h2>
@@ -2853,19 +2853,19 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   <div class="callout clarify"><span class="label">How this bank was merged</span><p>This bank has 88 questions. Its "Units II and III" use the old numbering; both are now Unit II. Most of the 88 repeat theory or examples already in this guide, so they are not listed again. Only the problems that add something new are listed below. Its RR answer to the long-run CPU-utilization question (Q19) assumes a repeating 120 ms cycle that does not actually occur, so that question is left out.</p></div>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q9</td><td>Arrivals 0, 0.4, 1 with bursts 8, 4, 1: compare FCFS, SJF and SRTF.</td><td>→ <a href="#u2-example-10b">§2.4</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q11</td><td>Priority scheduling, using preemptive SJF only between equal priorities; average TAT.</td><td>→ <a href="#u2-example-16b">§2.6</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank RT-Q3</td><td>A(4,1), B(6,2), C(8,2): utilization and EDF schedule.</td><td>→ <a href="#u2-example-17b">§2.7</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q4, Q12</td><td>SRTF, preemptive priority, RR (q=2): WT, TAT, RT and context switches.</td><td>→ <a href="#cie2-combined">Solved examples</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q17, Q18</td><td>RR (q=1) completion time of A; SRTF context-switch count.</td><td>→ <a href="#cie2-gate-shorts">Solved examples</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q13</td><td>Entry/exit sections for updates to X and Y under SX and SY, without deadlock.</td><td>→ <a href="#u2-example-26b">§2.12</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q9<cite class="src" data-src="Q3"></cite></td><td>Arrivals 0, 0.4, 1 with bursts 8, 4, 1: compare FCFS, SJF and SRTF.</td><td>→ <a href="#u2-example-10b">§2.4</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q11<cite class="src" data-src="Q3"></cite></td><td>Priority scheduling, using preemptive SJF only between equal priorities; average TAT.</td><td>→ <a href="#u2-example-16b">§2.6</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank RT-Q3<cite class="src" data-src="Q3"></cite></td><td>A(4,1), B(6,2), C(8,2): utilization and EDF schedule.</td><td>→ <a href="#u2-example-17b">§2.7</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q4, Q12<cite class="src" data-src="Q3"></cite></td><td>SRTF, preemptive priority, RR (q=2): WT, TAT, RT and context switches.</td><td>→ <a href="#cie2-combined">Solved examples</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q17, Q18<cite class="src" data-src="Q3"></cite></td><td>RR (q=1) completion time of A; SRTF context-switch count.</td><td>→ <a href="#cie2-gate-shorts">Solved examples</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q13<cite class="src" data-src="Q3"></cite></td><td>Entry/exit sections for updates to X and Y under SX and SY, without deadlock.</td><td>→ <a href="#u2-example-26b">§2.12</a> <span class="pill">solved example added</span></td></tr>
   </table>
 
   <h2>Older SEE papers (2019–2023) and SEE 2025</h2>
-  <div class="callout clarify"><span class="label">Scope note</span><p>Transcribed from RVCE SEE papers: Apr/May 2019 (16CS45), Nov/Dec 2019, Oct 2020 Fast Track, Mar 2021 (18CS34), and two Apr 2023 sets (21CS35). Only questions in the current Unit II syllabus are listed. Monitor and Linux-scheduling questions are kept as retained extras, and deadlock and disk questions are left out. Repeated questions are grouped on one row.</p></div>
+  <div class="callout clarify"><span class="label">Scope note</span><p>Transcribed from RVCE SEE papers: Apr/May 2019 (16CS45), Nov/Dec 2019, Oct 2020 Fast Track, Mar 2021 (18CS34), and two Apr 2023 sets (21CS35). Only questions in the current Unit II syllabus are listed. Monitor and Linux-scheduling questions are kept as retained extras, and deadlock and disk questions are left out. Repeated questions are grouped on one row.<cite class="src" data-src="Q2"></cite></p></div>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono">SEE 2025 Q2b, 8M</td><td>Three processes alternate 20 ms CPU / 80 ms I/O: long-run CPU utilization under FCFS and RR (q=10).</td><td>→ <a href="#u2-example-util">§2.2</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono">SEE 2025 Q2b, 8M<cite class="src" data-src="Q1"></cite></td><td>Three processes alternate 20 ms CPU / 80 ms I/O: long-run CPU utilization under FCFS and RR (q=10).</td><td>→ <a href="#u2-example-util">§2.2</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono">Apr/May-19 Q3a</td><td>Define CPU scheduling and the circumstances under which scheduling decisions take place.</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
     <tr><td class="mono">Mar-21 Q1.4</td><td>Time taken by the dispatcher to stop one process and start another is the ____.</td><td>→ <a href="#t2-5">§2.1</a> (dispatch latency)</td></tr>
     <tr><td class="mono">Apr-23 B Q1.2 · Nov/Dec-19 Q1.7 · Apr/May-19 Q1.4</td><td>Disadvantage of SJF / priority; starvation and aging; convoy effect and its consequence.</td><td>→ <a href="#t2-7">§2.3</a>, <a href="#t2-8">§2.4</a>, <a href="#t2-9">§2.6</a></td></tr>

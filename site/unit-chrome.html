@@ -1,5 +1,10 @@
 <!-- site chrome: injected by site/build.py, not part of the source notes -->
 <style>
+.src-chip{display:inline-block;margin:0 3px;padding:1px 6px;border:1px solid var(--line);border-radius:999px;color:var(--ink-soft);font:500 11px/1.65 'JetBrains Mono',monospace;white-space:nowrap;text-decoration:none;vertical-align:baseline}
+.src-chip:hover{border-color:var(--blue);color:var(--blue)}
+.src-chip:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.source-note{font-size:12.5px;color:var(--ink-soft);margin:18px 0}
+@media print{.src-chip{border:0;padding:0;color:inherit}.src-chip::after{content:none!important}}
 .sitebar{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;max-width:calc(100vw - 32px)}
 .sitebar a,.sitebar button{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 12.5px 'Inter',system-ui,sans-serif;cursor:pointer;box-shadow:var(--shadow);text-decoration:none}
 .sitebar a:hover,.sitebar button:hover{border-color:var(--blue);text-decoration:none}

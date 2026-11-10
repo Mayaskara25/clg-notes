@@ -486,14 +486,14 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
 }</div>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q1</span><span class="marks">10 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q1<cite class="src" data-src="Q2"></cite></span><span class="marks">10 marks</span></div>
     <div class="qtext">Implement functions to demonstrate the following operations on stack — Push, Pop and Display.</div>
     <div class="ans-label">Answer</div>
     <p>Use the array representation from §1.1 (<code>int stack[SIZE], top = -1</code>) together with the three functions above (<code>push</code>, <code>pop</code>, <code>display</code>), driven from a menu loop in <code>main()</code> that reads a choice and calls the corresponding function. Always check overflow inside <code>push</code> and underflow inside <code>pop</code> before touching the array.</p>
   </div>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q7</span><span class="marks">1 mark</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q7<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
     <div class="qtext">Consider the following operations performed on a stack of size 5: Push(1); Pop(); Push(2); Push(3); Pop(); Push(4); Pop(); Pop(); Push(5); After completion of all operations, the number of elements present in the stack is?</div>
     <div class="ans-label">Answer — traced step by step</div>
     <table>
@@ -512,14 +512,14 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
   </div>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q1</span><span class="marks">1 mark</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q1<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
     <div class="qtext">Pushing an element into a stack with five elements, when its size limit is 5, will make the stack ____.</div>
     <div class="ans-label">Answer</div>
     <p><strong>Overflow.</strong> The stack is already full (<code>top == SIZE-1 == 4</code>), so any further push must be rejected — this is exactly the check performed at the top of the <code>push</code> function above.</p>
   </div>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q9</span><span class="marks">1 mark</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q9<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
     <div class="qtext">Consider the following algorithm — declare a stack of characters; while there are more characters to read: read a character, push it on the stack; while the stack is not empty: pop a character off the stack, write it to the screen. What is the output for input "Bengaluru"?</div>
     <div class="ans-label">Answer</div>
     <p>Every character is pushed in order, then popped — and pop always returns the most-recently-pushed character first (LIFO), so the whole string comes back out <strong>reversed</strong>:</p>
@@ -581,7 +581,7 @@ int pop(void) {
   </ul>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q3</span><span class="marks">1 mark</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q3<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
     <div class="qtext">The minimum number of stacks needed to implement a queue is: ____</div>
     <div class="ans-label">Answer</div>
     <p><strong>2.</strong> One stack is used to accept incoming (enqueue) elements; when a dequeue is requested and the second (output) stack is empty, every element is popped from the input stack and pushed onto the output stack, reversing their order so the oldest element ends up on top — restoring FIFO behaviour from two LIFO stacks.</p>
@@ -650,7 +650,7 @@ int pop(void) {
   <p class="section-sub" style="margin-top:-8px">Verified: <code>(A+B)*C/D-E</code> → <code>AB+C*D/E-</code>.</p>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q2</span><span class="marks">10 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q2<cite class="src" data-src="Q1"></cite></span><span class="marks">10 marks</span></div>
     <div class="qtext">Design an algorithm using stack to convert a given infix expression (without parenthesis) into a postfix expression. Using the same, convert the following infix to postfix, showing each step: <code>A+B/C*D-A^F^H</code></div>
     <div class="ans-label">Answer — algorithm as above; trace below (verified by code simulation)</div>
     <table>
@@ -674,7 +674,7 @@ int pop(void) {
   </div>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q1.5</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q1.5<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">Write the postfix and prefix forms of the given expression: <code>A + B * (C − D) / (P − R)</code></div>
     <div class="ans-label">Answer (verified: both forms evaluate identically to the infix, at A=2,B=3,C=7,D=4,P=9,R=6 → 5.0)</div>
     <p><strong>Postfix:</strong> <code>ABCD-*PR-/+</code> &nbsp;&nbsp; <strong>Prefix:</strong> <code>+A/*B-CD-PR</code> (prefix method in §1.5)</p>
@@ -713,10 +713,10 @@ int pop(void) {
     <tr><td>6</td><td>D</td><td>−</td><td>+A*BC D</td></tr>
     <tr><td>7</td><td>end</td><td>—</td><td><strong>−+A*BCD</strong></td></tr>
   </table>
-  <p class="section-sub" style="margin-top:-8px">Matches the source deck's own worked example exactly, and independently verified by code: <code>A+B*C-D</code> → prefix <code>-+A*BCD</code>.</p>
+  <p class="section-sub" style="margin-top:-8px">Matches the source deck's own worked example exactly, and independently verified by code: <code>A+B*C-D</code> → prefix <code>-+A*BCD</code>.<cite class="src" data-src="D7"></cite></p>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q3</span><span class="marks">5+5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q3<cite class="src" data-src="Q2"></cite></span><span class="marks">5+5 marks</span></div>
     <div class="qtext">Write a function to perform infix to prefix conversion. Convert the given infix expression to prefix and show the contents of the stack at each step: <code>K+L-M*N+(O^P)*W/U/V*T+Q</code></div>
     <div class="ans-label">Answer — reverse-and-swap, then convert to postfix</div>
     <p>Step 1–2: reverse and swap parentheses gives: <code class="mono">Q+T*V/U/W*(P^O)+N*M-L+K</code></p>
@@ -795,7 +795,7 @@ int pop(void) {
 }</div>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q5a</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q5a<cite class="src" data-src="Q2"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Write an algorithm to evaluate given postfix expression. Evaluate the given postfix expression showing the contents of the stack: <code>3, 4, *, 2, 5, *, +</code></div>
     <div class="ans-label">Answer — traced (verified by code)</div>
     <table>
@@ -812,7 +812,7 @@ int pop(void) {
   </div>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q6</span><span class="marks">1 mark</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q6<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
     <div class="qtext">The result of evaluating the postfix expression <code>5, 4, 6, +, *, 4, 9, 3, /, +, *</code> is?</div>
     <div class="ans-label">Answer — traced (verified by code)</div>
     <table>
@@ -833,7 +833,7 @@ int pop(void) {
   </div>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q1.2</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q1.2<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">Naveen got the postfix expression <code>5 3 + 6 2 / * 3 5 * +</code> to evaluate. Help him with the answer.</div>
     <div class="ans-label">Answer — traced (verified by code)</div>
     <table>
@@ -996,7 +996,7 @@ Result = 25</pre>
   <p class="section-sub">Full exam-style stack questions worked end to end</p>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q1a</span><span class="marks">10 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q1a<cite class="src" data-src="Q1"></cite></span><span class="marks">10 marks</span></div>
     <div class="qtext">Considering only the characters '(' and ')', a sequence of parentheses is called <strong>regular</strong> if: an empty sequence is regular; if S is regular, then (S) is regular; if A and B are regular, their concatenation AB is regular. Write a C function/algorithm using stack to find if the sequence is regular or not. Trace your algorithm for the input sequences <code>((()))()</code> and <code>(())))()</code>.</div>
 
     <div class="ans-label">Algorithm (using a stack)</div>
@@ -1080,14 +1080,14 @@ Result = 25</pre>
   </table>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q4b</span><span class="marks">4 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q4b<cite class="src" data-src="Q2"></cite></span><span class="marks">4 marks</span></div>
     <div class="qtext">Define Recursion. How does recursion differ from iteration?</div>
     <div class="ans-label">Answer</div>
     <p>Recursion is a technique in which a function solves a problem by calling itself on smaller instances of the same problem until a base case is reached. See the comparison table above for the key differences — mechanism, termination, memory overhead, and speed are the four points worth naming explicitly.</p>
   </div>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q2</span><span class="marks">1 mark</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q2<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
     <div class="qtext">What is the output of the following recursion when n = 2?<br><code>int fun(int n) { if (n == 4) return n; else return 2*fun(n+1); }</code></div>
     <div class="ans-label">Answer — traced (verified by code)</div>
     <table>
@@ -1202,7 +1202,7 @@ Result = 25</pre>
   </div>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q2 (role-of-stack part)</span><span class="marks">3 of 10 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q2 (role-of-stack part)<cite class="src" data-src="Q2"></cite></span><span class="marks">3 of 10 marks</span></div>
     <div class="qtext">Design a Recursive function to implement Binary Search. Explain the role of stack during its execution.</div>
     <div class="ans-label">Answer (binary search implementation in §2.4)</div>
     <p>Each recursive call to <code>binarySearch(arr, left, right, x)</code> pushes a new stack frame holding that call's own <code>left</code>, <code>right</code>, and computed <code>mid</code>. The recursion halves the search range on every call (decomposition), so the maximum stack depth is only <strong>⌈log₂ n⌉ + 1</strong> frames for an array of size n — far shallower than, say, factorial's n frames. The base case (<code>right &lt; left</code>, i.e. element not found, or <code>arr[mid] == x</code>, i.e. found) returns a value with no further call, and that value propagates back up through each waiting frame as the stack unwinds, becoming the final return value of the outermost call.</p>
@@ -1271,7 +1271,7 @@ Result = 25</pre>
   <p>Verified by running the algorithm: <code>binarySearch({1,4,7,9,26,55,87,90}, 0, 7, 26)</code> returns index <strong>4</strong> after exactly 3 recursive calls.</p>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-    <div class="qmeta"><span class="qsrc">Deck's own example (unit 1 stacks.pdf, verified)</span><span class="marks">reference</span></div>
+    <div class="qmeta"><span class="qsrc">Deck's own example (unit 1 stacks.pdf, verified)<cite class="src" data-src="D7"></cite></span><span class="marks">reference</span></div>
     <div class="qtext">Search for 70 in <code>{1, 4, 7, 9, 26, 55, 87, 90}</code>.</div>
     <div class="ans-label">Answer</div>
     <p>Trace: mid=3 → arr[3]=9 &lt; 70 → right half; mid=5 → arr[5]=55 &lt; 70 → right half (left=6,right=7); mid=6 → arr[6]=87 &gt; 70 → left half (left=6,right=5, i.e. <code>right &lt; left</code>) → base case triggers → <strong>returns −1 (not found)</strong>, since 70 is not actually present in the array. Verified by running the function.</p>
@@ -1346,7 +1346,7 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
   <p>For <code>n=3</code>: T(3) = 2³−1 = <strong>7</strong> moves. For <code>n=4</code>: T(4) = 2⁴−1 = <strong>15</strong> moves. (Both confirmed by running the recursive algorithm and counting the printed moves.)</p>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q2a (Part B)</span><span class="marks">8 marks</span></div>
+    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q2a (Part B)<cite class="src" data-src="Q2"></cite></span><span class="marks">8 marks</span></div>
     <div class="qtext">Write the recursive call tree to explain the recursion to solve Tower of Hanoi problem (number of disks = 3).</div>
     <div class="ans-label">Answer — call tree for ToH(3, A, C, B)</div>
     <div class="formula-block">ToH(3,A,C,B)
@@ -1371,11 +1371,11 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
         ├─ ToH(0,A,B,C)
         ├─ <span class="c2">Move disk 1: A→C</span>
         └─ ToH(0,B,C,A)</div>
-    <p>Reading the highlighted moves top to bottom gives the move sequence (matches the deck's own worked trace and the run below): disk1 A→C, disk2 A→B, disk1 C→B, disk3 A→C, disk1 B→A, disk2 B→C, disk1 A→C — <strong>7 moves</strong> total.</p>
+    <p>Reading the highlighted moves top to bottom gives the move sequence (matches the deck's own worked trace and the run below): disk1 A→C, disk2 A→B, disk1 C→B, disk3 A→C, disk1 B→A, disk2 B→C, disk1 A→C — <strong>7 moves</strong> total.<cite class="src" data-src="D8"></cite></p>
   </div>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q8</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q8<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">Minimum number of moves required to solve a tower of Hanoi problem with 3 disks is ____. Also provide the moves from Tower 'A' (source) to Tower 'C' (destination) making use of Tower 'B' (temporary).</div>
     <div class="ans-label">Answer — verified by running ToH(3,'A','C','B')</div>
     <p><strong>Minimum moves = 2³ − 1 = 7</strong></p>
@@ -1392,7 +1392,7 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
   </div>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-    <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q3 &amp; CIE-1 2024-25 · Q4a</span><span class="marks">10 marks / 6 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q3 &amp; CIE-1 2024-25 · Q4a<cite class="src" data-src="Q1"></cite><cite class="src" data-src="Q2"></cite></span><span class="marks">10 marks / 6 marks</span></div>
     <div class="qtext">Implement a C program to solve the Tower of Hanoi puzzle recursively. The program should print all the moves and the total number of moves taken. Trace your strategy for n = 4 disks.</div>
     <div class="ans-label">Answer — C code as in the box above; trace for n=4, verified by running ToH(4,'A','C','B')</div>
     <table>
@@ -1425,7 +1425,7 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
 
   <div class="callout clarify">
     <span class="label">Not explicitly named in the syllabus wording — kept as reinforcement</span>
-    The syllabus names only factorial, binary search, and Towers of Hanoi under "Recursion." The examples below come from the source deck (<code>unit 1 recursion.pdf</code>) and are kept because they reinforce the same decomposition/composition/base-case pattern with very short, exam-friendly functions.
+    The syllabus names only factorial, binary search, and Towers of Hanoi under "Recursion." The examples below come from the source deck (<code>unit 1 recursion.pdf</code><cite class="src" data-src="D8"></cite>) and are kept because they reinforce the same decomposition/composition/base-case pattern with very short, exam-friendly functions.
   </div>
 
   <div class="grid2">
@@ -1482,7 +1482,7 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
   <p class="section-sub">The full multi-part recursion question from CIE-1, answered end to end</p>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q2 (full)</span><span class="marks">7+3 = 10 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q2 (full)<cite class="src" data-src="Q2"></cite></span><span class="marks">7+3 = 10 marks</span></div>
     <div class="qtext">Design a Recursive function to implement Binary Search. Explain the role of stack during its execution.</div>
     <div class="ans-label">Part 1 — recursive design (7 marks)</div>
     <p>See §2.4 for the full derivation: decomposition halves the search range by comparing the target against <code>arr[mid]</code>; the base case triggers either on a match (<code>arr[mid]==x</code>) or an empty range (<code>right &lt; left</code>). The C function is:</p>
@@ -1784,37 +1784,37 @@ Prefix eval:      scan RIGHT→LEFT; operand→push; operator→ pop op1 (left),
 
   <table>
     <tr><th>Source · Marks</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Q1 · 10M</td><td>Implement functions to demonstrate Push, Pop and Display on a stack.</td><td>→ <a href="#sec-2-2">§1.2 Operations on a Stack</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Quiz Q1 · 1M</td><td>Pushing into a full stack of size 5 will make the stack ____.</td><td>→ <a href="#sec-2-2">§1.2</a></td></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Quiz Q7 · 1M</td><td>Trace a sequence of push/pop operations on a stack of size 5 — final element count?</td><td>→ <a href="#sec-2-2">§1.2</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Quiz Q9 · 1M</td><td>Output of a stack-based character-reversal algorithm for input "Bengaluru"?</td><td>→ <a href="#sec-2-2">§1.2</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Quiz Q3 · 1M</td><td>Minimum number of stacks needed to implement a queue.</td><td>→ <a href="#sec-2-3">§1.4 Applications of Stack</a></td></tr>
-    <tr><td class="mono">CIE 21-22 Test-I · Q1a · 10M</td><td>Write a C function/algorithm using a stack to check if a parenthesis sequence is "regular"; trace for two given sequences.</td><td>→ <a href="#sec-2-6">§1.9 Solved Numericals — Stacks</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Q1 · 10M<cite class="src" data-src="Q2"></cite></td><td>Implement functions to demonstrate Push, Pop and Display on a stack.</td><td>→ <a href="#sec-2-2">§1.2 Operations on a Stack</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Quiz Q1 · 1M<cite class="src" data-src="Q2"></cite></td><td>Pushing into a full stack of size 5 will make the stack ____.</td><td>→ <a href="#sec-2-2">§1.2</a></td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Quiz Q7 · 1M<cite class="src" data-src="Q2"></cite></td><td>Trace a sequence of push/pop operations on a stack of size 5 — final element count?</td><td>→ <a href="#sec-2-2">§1.2</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Quiz Q9 · 1M<cite class="src" data-src="Q2"></cite></td><td>Output of a stack-based character-reversal algorithm for input "Bengaluru"?</td><td>→ <a href="#sec-2-2">§1.2</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Quiz Q3 · 1M<cite class="src" data-src="Q2"></cite></td><td>Minimum number of stacks needed to implement a queue.</td><td>→ <a href="#sec-2-3">§1.4 Applications of Stack</a></td></tr>
+    <tr><td class="mono">CIE 21-22 Test-I · Q1a · 10M<cite class="src" data-src="Q1"></cite></td><td>Write a C function/algorithm using a stack to check if a parenthesis sequence is "regular"; trace for two given sequences.</td><td>→ <a href="#sec-2-6">§1.9 Solved Numericals — Stacks</a> <span class="pill">solved example added</span></td></tr>
       <tr><td class="mono">Unit II deck · practice</td><td>Classify the five bracket expressions (balanced / not balanced).</td><td>→ <a href="#stack-paren">§1.8 Parenthesis Balancing</a></td></tr>
   </table>
   <h2>Infix ↔ Postfix ↔ Prefix &amp; Evaluation</h2>
 
   <table>
     <tr><th>Source · Marks</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono">CIE 21-22 Test-I · Q2 · 10M</td><td>Design the infix→postfix algorithm; convert <code>A+B/C*D-A^F^H</code> showing each step.</td><td>→ <a href="#sec-2-3">§1.4 Applications &amp; Infix→Postfix</a></td></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Q3 · 5+5M</td><td>Write the infix→prefix function; convert <code>K+L-M*N+(O^P)*W/U/V*T+Q</code> showing stack contents at each step.</td><td>→ <a href="#sec-2-4">§1.5 Infix→Prefix Conversion</a></td></tr>
-    <tr><td class="mono">SEE Jan/Feb 2025 · Q1.5 · 2M</td><td>Write the postfix and prefix forms of <code>A+B*(C-D)/(P-R)</code>.</td><td>→ <a href="#sec-2-3">§1.4</a> / <a href="#sec-2-4">§1.5</a></td></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Q5a · 5M</td><td>Write the postfix-evaluation algorithm; evaluate <code>3,4,*,2,5,*,+</code> showing stack contents.</td><td>→ <a href="#sec-2-5">§1.6 Postfix Expression Evaluation</a></td></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Quiz Q6 · 1M</td><td>Evaluate the postfix expression <code>5,4,6,+,*,4,9,3,/,+,*</code>.</td><td>→ <a href="#sec-2-5">§1.6</a></td></tr>
-    <tr><td class="mono">SEE Jan/Feb 2025 · Q1.2 · 2M</td><td>Evaluate the postfix expression <code>5 3 + 6 2 / * 3 5 * +</code>.</td><td>→ <a href="#sec-2-5">§1.6</a></td></tr>
-    <tr><td class="mono">CIE 21-22 Test-I · Q5b · 5M</td><td>Write an algorithm using a stack to evaluate a valid prefix expression.</td><td>→ <a href="#stack-prefix-eval">§1.7 Prefix Expression Evaluation</a> <span class="pill">full section added</span></td></tr>
+    <tr><td class="mono">CIE 21-22 Test-I · Q2 · 10M<cite class="src" data-src="Q1"></cite></td><td>Design the infix→postfix algorithm; convert <code>A+B/C*D-A^F^H</code> showing each step.</td><td>→ <a href="#sec-2-3">§1.4 Applications &amp; Infix→Postfix</a></td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Q3 · 5+5M<cite class="src" data-src="Q2"></cite></td><td>Write the infix→prefix function; convert <code>K+L-M*N+(O^P)*W/U/V*T+Q</code> showing stack contents at each step.</td><td>→ <a href="#sec-2-4">§1.5 Infix→Prefix Conversion</a></td></tr>
+    <tr><td class="mono">SEE Jan/Feb 2025 · Q1.5 · 2M<cite class="src" data-src="Q2"></cite></td><td>Write the postfix and prefix forms of <code>A+B*(C-D)/(P-R)</code>.</td><td>→ <a href="#sec-2-3">§1.4</a> / <a href="#sec-2-4">§1.5</a></td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Q5a · 5M<cite class="src" data-src="Q2"></cite></td><td>Write the postfix-evaluation algorithm; evaluate <code>3,4,*,2,5,*,+</code> showing stack contents.</td><td>→ <a href="#sec-2-5">§1.6 Postfix Expression Evaluation</a></td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Quiz Q6 · 1M<cite class="src" data-src="Q2"></cite></td><td>Evaluate the postfix expression <code>5,4,6,+,*,4,9,3,/,+,*</code>.</td><td>→ <a href="#sec-2-5">§1.6</a></td></tr>
+    <tr><td class="mono">SEE Jan/Feb 2025 · Q1.2 · 2M<cite class="src" data-src="Q2"></cite></td><td>Evaluate the postfix expression <code>5 3 + 6 2 / * 3 5 * +</code>.</td><td>→ <a href="#sec-2-5">§1.6</a></td></tr>
+    <tr><td class="mono">CIE 21-22 Test-I · Q5b · 5M<cite class="src" data-src="Q1"></cite></td><td>Write an algorithm using a stack to evaluate a valid prefix expression.</td><td>→ <a href="#stack-prefix-eval">§1.7 Prefix Expression Evaluation</a> <span class="pill">full section added</span></td></tr>
   </table>
   <h2>Recursion &amp; Tower of Hanoi</h2>
 
   <table>
     <tr><th>Source · Marks</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Q4b · 4M</td><td>Define Recursion. How does recursion differ from iteration?</td><td>→ <a href="#sec-3-1">§2.1 Introduction to Recursion</a></td></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Quiz Q2 · 1M</td><td>Trace <code>fun(n)</code> for n=2, base case n==4, else <code>2*fun(n+1)</code>.</td><td>→ <a href="#sec-3-1">§2.1</a></td></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Q2 · 7+3M</td><td>Design a recursive Binary Search function; explain the role of stack during its execution.</td><td>→ <a href="#sec-3-7">§2.7 Solved Numericals — Recursion</a> (full answer, links §3.3 + §3.4)</td></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Q4a · 6M</td><td>Write a recursive program to solve the Tower of Hanoi problem.</td><td>→ <a href="#sec-3-5">§2.5 Towers of Hanoi Problem</a></td></tr>
-    <tr><td class="mono">CIE 21-22 Test-I · Q3 · 10M</td><td>C program to solve Tower of Hanoi recursively, printing all moves and the total count; trace for n=4.</td><td>→ <a href="#sec-3-5">§2.5</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Quiz Q8 · 2M</td><td>Minimum moves for Tower of Hanoi with 3 disks; list the moves A→C via B.</td><td>→ <a href="#sec-3-5">§2.5</a></td></tr>
-    <tr><td class="mono">SEE Jan/Feb 2025 · Q2a (Part B) · 8M</td><td>Write the recursive call tree explaining recursion for Tower of Hanoi (3 disks).</td><td>→ <a href="#sec-3-5">§2.5</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Q4b · 4M<cite class="src" data-src="Q2"></cite></td><td>Define Recursion. How does recursion differ from iteration?</td><td>→ <a href="#sec-3-1">§2.1 Introduction to Recursion</a></td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Quiz Q2 · 1M<cite class="src" data-src="Q2"></cite></td><td>Trace <code>fun(n)</code> for n=2, base case n==4, else <code>2*fun(n+1)</code>.</td><td>→ <a href="#sec-3-1">§2.1</a></td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Q2 · 7+3M<cite class="src" data-src="Q2"></cite></td><td>Design a recursive Binary Search function; explain the role of stack during its execution.</td><td>→ <a href="#sec-3-7">§2.7 Solved Numericals — Recursion</a> (full answer, links §3.3 + §3.4)</td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Q4a · 6M<cite class="src" data-src="Q2"></cite></td><td>Write a recursive program to solve the Tower of Hanoi problem.</td><td>→ <a href="#sec-3-5">§2.5 Towers of Hanoi Problem</a></td></tr>
+    <tr><td class="mono">CIE 21-22 Test-I · Q3 · 10M<cite class="src" data-src="Q1"></cite></td><td>C program to solve Tower of Hanoi recursively, printing all moves and the total count; trace for n=4.</td><td>→ <a href="#sec-3-5">§2.5</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Quiz Q8 · 2M<cite class="src" data-src="Q2"></cite></td><td>Minimum moves for Tower of Hanoi with 3 disks; list the moves A→C via B.</td><td>→ <a href="#sec-3-5">§2.5</a></td></tr>
+    <tr><td class="mono">SEE Jan/Feb 2025 · Q2a (Part B) · 8M<cite class="src" data-src="Q2"></cite></td><td>Write the recursive call tree explaining recursion for Tower of Hanoi (3 disks).</td><td>→ <a href="#sec-3-5">§2.5</a> <span class="pill">solved example added</span></td></tr>
   </table>
   <h2>Likely questions — self-learning topics</h2>
   <table>

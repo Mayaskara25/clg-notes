@@ -29,10 +29,19 @@
       "source": "Applied Digital Logic Design - Unit 3 - Exam Notes.html",
       "title": "Counters & Synchronous Sequential Networks",
       "topics": "ripple counters, synchronous counters, ring and Johnson counters, counter design, self-correcting counters, Mealy and Moore models, analysis, state diagrams, sequence detectors, state table reduction, implication table",
-      "updated": "2026-11-07"
+      "updated": "2026-11-10"
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-10",
+      "units": [
+        1,
+        2,
+        3
+      ],
+      "text": "Existing source citations now link to the original PDFs and textbook entries on the Sources page."
+    },
     {
       "date": "2026-11-10",
       "units": [

@@ -272,7 +272,7 @@ body{transition:background-color .2s,color .2s}
 
   <div class="callout clarify">
     <span class="label">How the sources combine / where this guide fills gaps</span>
-    The two lecture decks (<code>unit 1a.pdf</code> for Arithmetic, <code>unit 1b.pdf</code> for Simplification) cover almost the entire unit directly, in the order above. Two corrections were needed:
+    The two lecture decks (<code>unit 1a.pdf</code><cite class="src" data-src="D1"></cite> for Arithmetic, <code>unit 1b.pdf</code><cite class="src" data-src="D2"></cite> for Simplification) cover almost the entire unit directly, in the order above. Two corrections were needed:
     <ul style="margin-top:8px">
       <li><strong>Quine–McCluskey tabulation method</strong> is named explicitly in the syllabus but the source deck only defines the term "prime implicant" (crediting W.&nbsp;V. Quine) — it never shows the actual grouping/tabulation algorithm. <a href="#quine-mccluskey">§2.4</a> is written in full from standard method, verified in code, and cross-checked against two real exam papers that ask this exact question.</li>
       <li>The source's 4-variable K-map row labels are mis-transcribed as <code>00, 01, 01, 01</code> in several figures — the correct Gray-code sequence is <code>00, 01, 11, 10</code>. All K-maps in this guide use the corrected labelling; see the callout in <a href="#karnaugh-maps">§2.2</a>.</li>
@@ -282,13 +282,13 @@ body{transition:background-color .2s,color .2s}
 
   <div class="callout key">
     <span class="label">2026 update: aligned to the faculty notes</span>
-    The arithmetic sections are now checked against Dr K.B. Ramesh's handwritten <em>Computer Arithmetic</em> notes (49 pages) and the CIE-I 2026 paper. The changes:
+    The arithmetic sections are now checked against Dr K.B. Ramesh's<cite class="src" data-src="D6"></cite> handwritten <em>Computer Arithmetic</em> notes (49 pages) and the CIE-I 2026 paper. The changes:
     <ul style="margin-top:8px">
       <li>the teacher's register layouts and worked examples for multiplication, Booth and restoring division</li>
       <li>the teacher's overflow rule and sign extension</li>
       <li>IEEE 754 <strong>double precision</strong></li>
       <li>"Radix-4 Modified Booth" as the exam's name for bit-pair recoding</li>
-      <li>all five Unit-1 questions from CIE-I 2026, solved</li>
+      <li>all five Unit-1 questions from CIE-I 2026, solved<cite class="src" data-src="Q4"></cite></li>
     </ul>
     The faculty notes also contain Hamming code and instruction-set pages (shift/rotate, 0–3-address instructions). Those belong to other units and are left out here.
   </div>
@@ -348,10 +348,10 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <h2>Fixed point, floating point and sign extension (faculty notes)</h2>
-  <p>Dr K.B. Ramesh's notes open the unit by splitting binary arithmetic into two kinds. <strong>Fixed-point</strong> arithmetic keeps the radix point in a fixed position of the computer word; for integers it is assumed to be just right of the least significant digit. <strong>Floating-point</strong> arithmetic is "an automatic way to keep track of the radix point": the point's position is variable (it "floats"), which lets a computer represent very large and very small numbers. Most processors follow the IEEE 754 standard for floating point (see <a href="#floating-point">§1.7</a>). For both kinds, the unit studies (1) how numbers are represented in binary and (2) the algorithms for add, subtract, multiply and divide.</p>
+  <p>Dr K.B. Ramesh's notes<cite class="src" data-src="D6"></cite> open the unit by splitting binary arithmetic into two kinds. <strong>Fixed-point</strong> arithmetic keeps the radix point in a fixed position of the computer word; for integers it is assumed to be just right of the least significant digit. <strong>Floating-point</strong> arithmetic is "an automatic way to keep track of the radix point": the point's position is variable (it "floats"), which lets a computer represent very large and very small numbers. Most processors follow the IEEE 754 standard for floating point (see <a href="#floating-point">§1.7</a>). For both kinds, the unit studies (1) how numbers are represented in binary and (2) the algorithms for add, subtract, multiply and divide.</p>
   <p><strong>Sign extension.</strong> If a number has fewer bits than the register or memory location that holds it, the vacant MSBs are filled with copies of the sign bit: <strong>0s for a positive number (S = 0), 1s for a negative number (S = 1)</strong>. This keeps both the sign and the value unchanged.</p>
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;1</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;1<cite class="src" data-src="D6" data-p="1"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Show how the 5-bit signed numbers a) 00111, b) 11001, c) 00000 are stored in 8-bit registers.</div>
     <table>
       <tr><th>5-bit</th><th>Value</th><th>8-bit (sign-extended)</th></tr>
@@ -440,7 +440,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, pp.&nbsp;17–21, 30–31: every example, recomputed</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, pp.&nbsp;17–21, 30–31: every example, recomputed<cite class="src" data-src="D6" data-p="17-21"></cite><cite class="src" data-src="D6" data-p="30-31"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Signed 2's-complement addition and subtraction: the teacher's examples.</div>
     <table>
       <tr><th>Problem</th><th>Bits</th><th>Added (subtrahend already 2's-complemented)</th><th>Result</th><th>Overflow?</th></tr>
@@ -514,7 +514,7 @@ body{transition:background-color .2s,color .2s}
   <p><strong>Procedure:</strong> load the multiplier into Q, the multiplicand into M, and clear C and A to 0. Repeat <var>n</var> times: if q₀ = 1, add M to A (storing the sum back in A, with carry-out into C); then shift C, A, Q right by one bit position (regardless of q₀). After <var>n</var> cycles, the high-order half of the 2<var>n</var>-bit product is in A and the low-order half is in Q.</p>
 
 <div class="qbox">
-    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;23 (p.&nbsp;22 does 11 × 13 with the same product)</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;23 (p.&nbsp;22 does 11 × 13 with the same product)<cite class="src" data-src="D6" data-p="23"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Multiply 13 × 11 using the hardware for unsigned binary multiplication. Multiplicand M = 1101 (13), multiplier Q = 1011 (11).</div>
     <div class="ans-label">Solution in the teacher's layout: one row for each Add and each Shift</div>
     <table>
@@ -593,7 +593,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, pp.&nbsp;25–27</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, pp.&nbsp;25–27<cite class="src" data-src="D6" data-p="25-27"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Booth's algorithm, 4-bit: 7 × 3, 7 × (−3), (−5) × 4.</div>
     <div class="ans-label">7 × 3 (p.&nbsp;25): M = <span class="mono">0111</span>, Q = <span class="mono">0011</span></div>
     <table>
@@ -635,7 +635,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">past-paper style — CIE 2024-25</span><span class="marks">4 marks</span></div>
+    <div class="qmeta"><span class="qsrc">past-paper style — CIE 2024-25<cite class="src" data-src="Q2"></cite></span><span class="marks">4 marks</span></div>
     <div class="qtext">Using Modified Booth's multiplication algorithm, multiply +14 with −7 (5-bit 2's complement).</div>
     <div class="ans-label">Solution — full cycle trace (verified in code)</div>
     <p>M = 01110 (+14), Q = 11001 (−7), n = 5. Initial: A = 00000, Q₋₁ = 0.</p>
@@ -708,7 +708,7 @@ body{transition:background-color .2s,color .2s}
   <p><strong>Procedure:</strong> sign-extend the multiplier by one bit at the MSB, and append an implied 0 to the right of the LSB. Working from LSB to MSB, take overlapping 3-bit windows in steps of 2 and look up the multiple of M from the table above; each selected multiple is shifted left by twice its pair-index and summed.</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">unit deck — bit-pair recoding figures, cross-checked against CIE 2024-25</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">unit deck — bit-pair recoding figures, cross-checked against CIE 2024-25<cite class="src" data-src="Q2"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Multiply M = 13 by Q = −6 (6-bit, Q = 110110) using bit-pair recoding.</div>
     <div class="ans-label">Solution — recoded digits and summand trace</div>
     <p>Sign-extended + implied-0 multiplier: <span class="mono">1 110110 0</span>. Reading overlapping 3-bit windows from LSB gives recoded pair-digits (MSB pair → LSB pair): <span class="mono">0, −1, −2</span>.</p>
@@ -722,7 +722,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE 2023-24 retest — Q2b</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 2023-24 retest — Q2b<cite class="src" data-src="Q1"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Perform the multiplication of 13 × (−8) using the bit-pair recoding algorithm.</div>
     <div class="ans-label">Solution</div>
     <p>Q = −8 = 111000 (6-bit). Recoded pair-digits: <span class="mono">0, −2, 0</span>.</p>
@@ -736,7 +736,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
 <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q1a</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q1a<cite class="src" data-src="Q4"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Using Radix-4 Modified Booth's algorithm, multiply (−13) by 10. Show clearly: a) binary representation, b) formation of groups, c) modified Booth encoding for each group, d) generation of partial products and the final product.</div>
     <div class="ans-label">a) Binary representation (6-bit 2's complement, an even number of bits so the groups come out even)</div>
     <p>Multiplicand M = −13: 13 = 001101 → 1's complement 110010 → +1 → <span class="mono">110011</span>. Multiplier Q = +10 = <span class="mono">001010</span>. Also needed: −M = +13 = <span class="mono">001101</span>, 2M = −26, −2M = +26.</p>
@@ -815,10 +815,10 @@ body{transition:background-color .2s,color .2s}
   </div>
 
 <h3>The teacher's layout for restoring division</h3>
-  <p>Dr K.B. Ramesh's notes (pp.&nbsp;28, 43–47) put the <strong>divisor in M</strong>, the <strong>dividend in Q</strong>, and clear A to 0. At each step, A and Q together are shifted left 1 bit and M is subtracted from A. If A becomes negative, the teacher writes <em>Restore</em>: A gets its old value back and Q₀ stays 0. Otherwise the teacher writes <em>Set Q₀ = 1</em>. After n steps the quotient is in Q and the remainder in A. Each shift, subtract and restore/set gets its own row.</p>
+  <p>Dr K.B. Ramesh's notes<cite class="src" data-src="D6"></cite> (pp.&nbsp;28, 43–47) put the <strong>divisor in M</strong>, the <strong>dividend in Q</strong>, and clear A to 0. At each step, A and Q together are shifted left 1 bit and M is subtracted from A. If A becomes negative, the teacher writes <em>Restore</em>: A gets its old value back and Q₀ stays 0. Otherwise the teacher writes <em>Set Q₀ = 1</em>. After n steps the quotient is in Q and the remainder in A. Each shift, subtract and restore/set gets its own row.</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;28</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;28<cite class="src" data-src="D6" data-p="28"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Divide 7 by 3 using restoring division (4-bit).</div>
     <table>
       <tr><th>A</th><th>Q</th><th>Operation (M = 0011)</th></tr>
@@ -840,7 +840,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;45 (pp.&nbsp;43–44 do 10 ÷ 2 = 5 r 0 and 10 ÷ 3 = 3 r 1 the same way)</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, p.&nbsp;45 (pp.&nbsp;43–44 do 10 ÷ 2 = 5 r 0 and 10 ÷ 3 = 3 r 1 the same way)<cite class="src" data-src="D6" data-p="45"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Divide 17 by 3 using restoring division (5-bit: 17 = 10001, 3 = 00011).</div>
     <table>
       <tr><th>A</th><th>Q</th><th>Operation (M = 00011)</th></tr>
@@ -865,7 +865,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q1b</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q1b<cite class="src" data-src="Q4"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Perform the division 18 ÷ 2 using the Restoring Division Algorithm. Show all the intermediate steps clearly and determine the final quotient and remainder.</div>
     <div class="ans-label">Solution: 18 needs 5 bits, so use 5-bit registers. Q = 10010, M = 00010, A = 00000</div>
     <table>
@@ -988,7 +988,7 @@ body{transition:background-color .2s,color .2s}
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE 2024-25 quiz — Q1.7</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 2024-25 quiz — Q1.7<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">Represent +35.25 using 32-bit (single precision) floating-point representation.</div>
     <div class="ans-label">Solution (verified against IEEE-754 packing)</div>
     <p>35 = 100011₂; 0.25 = 01₂ (fractional). So 35.25 = <span class="mono">100011.01</span>₂. Normalise: <span class="mono">1.0001101 × 2⁵</span>. Bias: 127+5 = 132 = <span class="mono">10000100</span>₂.</p>
@@ -999,7 +999,7 @@ Full word: 0 10000100 00011010000000000000000</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE 2023-24 Test-1 — Q2(iv)</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 2023-24 Test-1 — Q2(iv)<cite class="src" data-src="Q1"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Represent −237.5 in 32-bit single-precision floating-point representation.</div>
     <div class="ans-label">Solution</div>
     <p>237 = 11101101₂; 0.5 = 1₂. 237.5 = <span class="mono">11101101.1</span>₂ → normalised <span class="mono">1.11011011 × 2⁷</span>. Bias: 127+7 = 134 = <span class="mono">10000110</span>₂.</p>
@@ -1011,7 +1011,7 @@ Mantissa : <span class="c2">11011011000000000000000</span></div>
 <h2>Double precision (64-bit): taught in the faculty notes</h2>
   <div class="callout clarify">
     <span class="label">Syllabus vs. faculty notes</span>
-    The syllabus line says "single precision representation", and CIE-I 2026 asked only for single precision. But Dr K.B. Ramesh's notes work every example in <strong>both</strong> single and double precision, so learn the double-precision layout too. The steps are the same; only the field widths and the bias change.
+    The syllabus line says "single precision representation", and CIE-I 2026 asked only for single precision. But Dr K.B. Ramesh's notes<cite class="src" data-src="D6"></cite> work every example in <strong>both</strong> single and double precision, so learn the double-precision layout too. The steps are the same; only the field widths and the bias change.
   </div>
 
   <div class="svg-wrap">
@@ -1041,7 +1041,7 @@ Mantissa : <span class="c2">11011011000000000000000</span></div>
   </table>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, pp.&nbsp;8–14: every final pattern checked against <code>struct.pack</code></span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">Dr K.B. Ramesh's notes, pp.&nbsp;8–14: every final pattern checked against <code>struct.pack</code><cite class="src" data-src="D6" data-p="8-14"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Represent 1259.125, −307.1875 and 0.0625 in single and double precision.</div>
     <p>The teacher uses four steps: <strong>Step 1</strong> convert to binary, <strong>Step 2</strong> normalise to 1.xxx × 2<sup>e</sup>, <strong>Step 3</strong> write the sign S and the biased exponent E′, <strong>Step 4</strong> assemble S | E′ | M (mantissa padded with 0s on the right).</p>
     <table>
@@ -1054,7 +1054,7 @@ Mantissa : <span class="c2">11011011000000000000000</span></div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q2b</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q2b<cite class="src" data-src="Q4"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Consider the decimal number −18.625. a) Convert it into binary. b) Normalise the binary number. c) Determine the sign bit and biased exponent. d) Write the complete 32-bit IEEE 754 single-precision representation.</div>
     <div class="ans-label">Solution</div>
     <ol class="steps">
@@ -1095,7 +1095,7 @@ Full word: 1 10000011 00101010000000000000000  = 0xC1950000</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE 2023-24 Test-1 / Retest — Booth's algorithm, 5-bit</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 2023-24 Test-1 / Retest — Booth's algorithm, 5-bit<cite class="src" data-src="Q1"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Using Booth's algorithm multiply: (i) +9 × −6, (ii) +8 × −5.</div>
     <div class="ans-label">(i) M=01001(+9), Q=11010(−6)</div>
     <table>
@@ -1112,7 +1112,7 @@ Full word: 1 10000011 00101010000000000000000  = 0xC1950000</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">qb1.pdf — retest style, Booth's algorithm</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">qb1.pdf — retest style, Booth's algorithm<cite class="src" data-src="Q3"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Perform multiplication of 10101 (multiplicand) and 00101 (multiplier) using Booth's algorithm.</div>
     <div class="ans-label">Solution</div>
     <p>Here the bit pattern 10101 is read as the <strong>multiplicand</strong> M = −11 (5-bit signed), and 00101 as multiplier Q = +5.</p>
@@ -1124,7 +1124,7 @@ Full word: 1 10000011 00101010000000000000000  = 0xC1950000</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE 2024-25 SEE (Feb/Mar 2025) — Part B, Q1(b)</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 2024-25 SEE (Feb/Mar 2025) — Part B, Q1(b)<cite class="src" data-src="Q2"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Give the flow chart for restoring division and perform the division on: Dividend = 8, Divisor = 5.</div>
     <div class="ans-label">Solution (flowchart in Fig 6)</div>
     <p>8 = 01000 (Q), 5 = 00101 (M), 5-bit registers.</p>
@@ -1141,14 +1141,14 @@ Full word: 1 10000011 00101010000000000000000  = 0xC1950000</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE 2023-24 Retest — Q2(ii)</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 2023-24 Retest — Q2(ii)<cite class="src" data-src="Q1"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Using the Restoring Division Algorithm, divide +11 by +3.</div>
     <div class="ans-label">Solution</div>
     <p>11 = 01011 (Q), 3 = 00011 (M). Result: Quotient = <span class="mono">00011</span> = 3, Remainder = <span class="mono">00010</span> = 2. Check: 11 = 3×3 + 2. ✓</p>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE 2023-24 Test-1 &amp; CIE 2024-25 SEE — Restoring Division, +13/+7</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 2023-24 Test-1 &amp; CIE 2024-25 SEE — Restoring Division, +13/+7<cite class="src" data-src="Q1"></cite><cite class="src" data-src="Q2"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Using the Restoring Division Algorithm, divide +13 by +7.</div>
     <div class="ans-label">Solution — full cycle trace</div>
     <table>
@@ -1164,7 +1164,7 @@ Full word: 1 10000011 00101010000000000000000  = 0xC1950000</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE 2024-25 quiz &amp; CIE 2023-24 Test-1 — IEEE 754 conversions</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 2024-25 quiz &amp; CIE 2023-24 Test-1 — IEEE 754 conversions<cite class="src" data-src="Q1"></cite><cite class="src" data-src="Q2"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Represent (i) +105.625, and (ii) 263.3, in 32-bit single-precision floating point.</div>
     <div class="ans-label">(i) +105.625</div>
     <p>105 = 1101001₂; 0.625 = 101₂. 105.625 = <span class="mono">1101001.101</span>₂ → <span class="mono">1.101001101 × 2⁶</span>. Bias: 127+6 = 133 = <span class="mono">10000101</span>₂.</p>
@@ -1427,7 +1427,7 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
   </ol>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE 2023-24 Test-1 Q1(i) &amp; CIE 2024-25 SEE Part B Q2(a)</span><span class="marks">8–10 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 2023-24 Test-1 Q1(i) &amp; CIE 2024-25 SEE Part B Q2(a)<cite class="src" data-src="Q1"></cite><cite class="src" data-src="Q2"></cite></span><span class="marks">8–10 marks</span></div>
     <div class="qtext">Simplify F(P,Q,R,S) = Σm(0,1,2,4,5,7,8,9,14,15) using the Quine–McCluskey method. Give the prime implicants and essential prime implicants.</div>
 
     <div class="ans-label">Step 1 — group by number of 1s</div>
@@ -1518,7 +1518,7 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
   <p class="section-sub">Part 2 — Simplification · every prime-implicant list and minimal cover brute-force verified</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">qb1.pdf — Q1 &amp; Q2</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">qb1.pdf — Q1 &amp; Q2<cite class="src" data-src="Q3"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Using a K-map (and separately, the Quine–McCluskey method), simplify Y(A,B,C,D) = Σm(0,1,2,3,5,7,8,9,10,12,13). Indicate the essential prime implicants, and realise the result using NAND gates.</div>
     <div class="ans-label">Solution</div>
     <p>All three prime implicants found by QM/K-map turn out essential (each covers at least one minterm no other PI reaches):</p>
@@ -1533,7 +1533,7 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">qb1.pdf — Q3 &amp; Q12</span><span class="marks">verified — brute-force confirmed minimal</span></div>
+    <div class="qmeta"><span class="qsrc">qb1.pdf — Q3 &amp; Q12<cite class="src" data-src="Q3"></cite></span><span class="marks">verified — brute-force confirmed minimal</span></div>
     <div class="qtext">Obtain the minimum SOP using the Quine–McCluskey method, and verify using K-map: F = m0+m2+m4+m8+m9+m10+m11+m12+m13.</div>
     <div class="ans-label">Solution</div>
     <p>Unlike the previous example, this function's prime implicant chart has <strong>no essential-PI shortcut</strong> for one minterm — all four prime implicants found are essential, so none can be dropped:</p>
@@ -1548,7 +1548,7 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE 2024-25 SEE retest — Q3(b)</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 2024-25 SEE retest — Q3(b)<cite class="src" data-src="Q2"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Minimize F(A,B,C,D) = Σm(0,1,2,5,7,8,9,10,13,15) using K-map and implement using only NAND gates.</div>
     <div class="ans-label">Solution</div>
     <p>Prime implicants: BD (5,7,13,15), B′C′ (0,1,8,9), B′D′ (0,2,8,10), C′D (1,5,9,13). B′D′ and BD are essential (each is the sole cover for minterms 2/10 and 7/15 respectively); together they leave minterms 1 and 9 uncovered, picked up by the non-essential B′C′:</p>
@@ -1556,7 +1556,7 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">qb1.pdf — Q5, POS via K-map</span><span class="marks">verified</span></div>
+    <div class="qmeta"><span class="qsrc">qb1.pdf — Q5, POS via K-map<cite class="src" data-src="Q3"></cite></span><span class="marks">verified</span></div>
     <div class="qtext">Simplify using K-map to obtain a minimum POS expression for F = (A′+B′+C+D)(A+B′+C+D)(A+B+C+D′)(A+B+C′+D′)(A′+B+C+D′)(A+B+C′+D).</div>
     <div class="ans-label">Solution</div>
     <p>Each sum term is zero for exactly one input combination — reading those off gives the <strong>maxterm list</strong> (the zeros of F): M(1,2,3,4,9,12). Group the <em>zeros</em> on the K-map exactly as you would group 1s, to minimise F′; then apply De Morgan to convert back to POS.</p>
@@ -1565,7 +1565,7 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
   </div>
 
 <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q2a</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q2a<cite class="src" data-src="Q4"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">The combinational circuit shown in the question paper is a function of four variables A, B, C, D. a) Find its Boolean expression. b) Minimise it using a Karnaugh map. c) Draw the resultant circuit.</div>
     <div class="ans-label">a) Read off each AND gate. The paper's circuit has 5 AND gates feeding one 5-input OR gate.</div>
     <table>
@@ -1618,7 +1618,7 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
   </div>
 
 <div class="qbox">
-    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q5</span><span class="marks">10 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q5<cite class="src" data-src="Q4"></cite></span><span class="marks">10 marks</span></div>
     <div class="qtext">Minimise the given Boolean function using the Quine–McCluskey tabular method and verify the result with a K-map: f(a, b, c, d) = Σm(0, 5, 7, 8, 9, 10, 11, 14, 15) + d(1, 6).</div>
     <div class="ans-label">Step 1: list minterms and don't-cares together, grouped by number of 1s (✓ = combined into a larger term)</div>
     <p style="font-size:14px"><strong>0</strong>: 0 <span class="mono">0000</span> ✓<br><strong>1</strong>: 1 <span class="mono">0001</span> ✓, 8 <span class="mono">1000</span> ✓<br><strong>2</strong>: 5 <span class="mono">0101</span> ✓, 6 <span class="mono">0110</span> ✓, 9 <span class="mono">1001</span> ✓, 10 <span class="mono">1010</span> ✓<br><strong>3</strong>: 7 <span class="mono">0111</span> ✓, 11 <span class="mono">1011</span> ✓, 14 <span class="mono">1110</span> ✓<br><strong>4</strong>: 15 <span class="mono">1111</span> ✓</p>
@@ -1744,64 +1744,64 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
 
   <div class="callout clarify">
     <span class="label">Scope — what's excluded</span>
-    <code>qb 2.pdf</code> is titled "ADLDCO unit 4 questions and answers" and is entirely Unit-4 material (instruction sets, addressing modes) — excluded in full. In <code>qb 1.pdf</code>, only Q1–Q14 (K-map/Quine–McCluskey) belong to Unit 1; Q15–Q78 cover adders, comparators, decoders/encoders, flip-flops, registers and counters — Units 2 and 3 — and are excluded. The two CIE scheme/past-paper PDFs span the whole syllabus (CO tags don't align cleanly with units, so rows were filtered by topic instead); only rows testing signed arithmetic, Booth/bit-pair multiplication, division, floating point, K-maps, or Quine–McCluskey are indexed below — rows on adders, comparators, flip-flops, counters, CLA design, instruction sets and memory are excluded as out-of-unit.
+    <code>qb 2.pdf</code> is titled "ADLDCO unit 4 questions and answers" and is entirely Unit-4 material (instruction sets, addressing modes) — excluded in full. In <code>qb 1.pdf</code><cite class="src" data-src="Q3"></cite>, only Q1–Q14 (K-map/Quine–McCluskey) belong to Unit 1; Q15–Q78 cover adders, comparators, decoders/encoders, flip-flops, registers and counters — Units 2 and 3 — and are excluded. The two CIE scheme/past-paper PDFs span the whole syllabus (CO tags don't align cleanly with units, so rows were filtered by topic instead); only rows testing signed arithmetic, Booth/bit-pair multiplication, division, floating point, K-maps, or Quine–McCluskey are indexed below — rows on adders, comparators, flip-flops, counters, CLA design, instruction sets and memory are excluded as out-of-unit.
   </div>
 
   <h2>Arithmetic (§1)</h2>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered</th></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q1a</td><td>Radix-4 Modified Booth: multiply (−13) by 10 (binary, groups, encoding, partial products).</td><td>→ <a href="#bit-pair-recoding">Radix-4 Modified Booth / Bit-Pair Recoding</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q1b</td><td>Restoring division 18 ÷ 2 with all intermediate steps.</td><td>→ <a href="#integer-division">Integer Division</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q2b</td><td>−18.625: binary, normalise, sign and biased exponent, 32-bit IEEE 754.</td><td>→ <a href="#floating-point">Floating-Point Numbers</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.3</td><td>Subtract 15 from 13 using 2's complement.</td><td>→ <a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.4</td><td>Construct the Booth recoding of a given multiplier bit sequence.</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.6</td><td>With an example, specify the significance of overflow in binary addition/subtraction.</td><td>→ <a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.7</td><td>Represent +35.25 in 32-bit single-precision floating point.</td><td>→ <a href="#floating-point">Floating-Point Numbers</a></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Part B 2a</td><td>Using Modified Booth's algorithm, multiply +9 with −6.</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 1a</td><td>Multiply 10101 (multiplicand) and 00101 (multiplier) using Booth's algorithm.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 1b</td><td>Restoring division flowchart; divide 8 by 5.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 2b</td><td>Multiply 13 × (−8) using bit-pair recoding.</td><td>→ <a href="#bit-pair-recoding">Radix-4 Modified Booth / Bit-Pair Recoding</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 3a</td><td>Represent +105.625 in 32-bit single-precision floating point.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.1</td><td>Perform (+25)+(−18) in 8-bit signed 2's complement.</td><td>→ <a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a> (same method)</td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.2</td><td>Multiply −9 and −7 using Booth's Algorithm (5-bit).</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a> (same method)</td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.3</td><td>Represent −15.375 in IEEE 754 single precision.</td><td>→ <a href="#floating-point">Floating-Point Numbers</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q2</td><td>Represent 40, −32 (8-bit signed mag.), 9, 18 (BCD), 0, 4 (excess-3), −237.5 (FP32).</td><td>→ <a href="#floating-point">Floating-Point Numbers</a> (FP part) <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q3(i)</td><td>Using Booth's algorithm, multiply +14 × −7.</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q3(ii)</td><td>Using Restoring Division, divide +13 / +7.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Retest Q2(i)</td><td>Using Booth's algorithm, multiply +8 × −5.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Retest Q2(ii)</td><td>Using Restoring Division, divide +11 / +3.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part A 1.1</td><td>Represent 263.3 in 32-bit floating point.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part A 1.6</td><td>Multiply +13 with −6 using bit-pair recoding.</td><td>→ <a href="#bit-pair-recoding">Radix-4 Modified Booth / Bit-Pair Recoding</a></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part B 2c</td><td>Using Restoring Division, divide +13 / +7.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q1a<cite class="src" data-src="Q4"></cite></td><td>Radix-4 Modified Booth: multiply (−13) by 10 (binary, groups, encoding, partial products).</td><td>→ <a href="#bit-pair-recoding">Radix-4 Modified Booth / Bit-Pair Recoding</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q1b<cite class="src" data-src="Q4"></cite></td><td>Restoring division 18 ÷ 2 with all intermediate steps.</td><td>→ <a href="#integer-division">Integer Division</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q2b<cite class="src" data-src="Q4"></cite></td><td>−18.625: binary, normalise, sign and biased exponent, 32-bit IEEE 754.</td><td>→ <a href="#floating-point">Floating-Point Numbers</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.3<cite class="src" data-src="Q2"></cite></td><td>Subtract 15 from 13 using 2's complement.</td><td>→ <a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.4<cite class="src" data-src="Q2"></cite></td><td>Construct the Booth recoding of a given multiplier bit sequence.</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.6<cite class="src" data-src="Q2"></cite></td><td>With an example, specify the significance of overflow in binary addition/subtraction.</td><td>→ <a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.7<cite class="src" data-src="Q2"></cite></td><td>Represent +35.25 in 32-bit single-precision floating point.</td><td>→ <a href="#floating-point">Floating-Point Numbers</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Part B 2a<cite class="src" data-src="Q2"></cite></td><td>Using Modified Booth's algorithm, multiply +9 with −6.</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 1a<cite class="src" data-src="Q2"></cite></td><td>Multiply 10101 (multiplicand) and 00101 (multiplier) using Booth's algorithm.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 1b<cite class="src" data-src="Q2"></cite></td><td>Restoring division flowchart; divide 8 by 5.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 2b<cite class="src" data-src="Q2"></cite></td><td>Multiply 13 × (−8) using bit-pair recoding.</td><td>→ <a href="#bit-pair-recoding">Radix-4 Modified Booth / Bit-Pair Recoding</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 3a<cite class="src" data-src="Q2"></cite></td><td>Represent +105.625 in 32-bit single-precision floating point.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.1<cite class="src" data-src="Q2"></cite></td><td>Perform (+25)+(−18) in 8-bit signed 2's complement.</td><td>→ <a href="#signed-add-sub">Signed Add/Sub &amp; Overflow</a> (same method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.2<cite class="src" data-src="Q2"></cite></td><td>Multiply −9 and −7 using Booth's Algorithm (5-bit).</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a> (same method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.3<cite class="src" data-src="Q2"></cite></td><td>Represent −15.375 in IEEE 754 single precision.</td><td>→ <a href="#floating-point">Floating-Point Numbers</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q2<cite class="src" data-src="Q1"></cite></td><td>Represent 40, −32 (8-bit signed mag.), 9, 18 (BCD), 0, 4 (excess-3), −237.5 (FP32).</td><td>→ <a href="#floating-point">Floating-Point Numbers</a> (FP part) <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q3(i)<cite class="src" data-src="Q1"></cite></td><td>Using Booth's algorithm, multiply +14 × −7.</td><td>→ <a href="#booth-algorithm">Booth's Algorithm</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q3(ii)<cite class="src" data-src="Q1"></cite></td><td>Using Restoring Division, divide +13 / +7.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Retest Q2(i)<cite class="src" data-src="Q1"></cite></td><td>Using Booth's algorithm, multiply +8 × −5.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Retest Q2(ii)<cite class="src" data-src="Q1"></cite></td><td>Using Restoring Division, divide +11 / +3.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part A 1.1<cite class="src" data-src="Q1"></cite></td><td>Represent 263.3 in 32-bit floating point.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part A 1.6<cite class="src" data-src="Q1"></cite></td><td>Multiply +13 with −6 using bit-pair recoding.</td><td>→ <a href="#bit-pair-recoding">Radix-4 Modified Booth / Bit-Pair Recoding</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part B 2c<cite class="src" data-src="Q1"></cite></td><td>Using Restoring Division, divide +13 / +7.</td><td>→ <a href="#arithmetic-solved">Solved Numericals — Arithmetic</a></td></tr>
   </table>
 
   <h2>Simplification (§2)</h2>
   <table>
     <tr><th>Source</th><th>Question</th><th>Answered</th></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q2a</td><td>4-variable gate circuit → Boolean expression → K-map minimisation → redraw.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q5</td><td>QM: f = Σm(0,5,7,8,9,10,11,14,15) + d(1,6); verify with K-map.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q1</td><td>K-map simplify Y=Σm(0,1,2,3,5,7,8,9,10,12,13); PIs, EPIs; AND-OR-INVERT and NAND realisation.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q2</td><td>Same function via Quine–McCluskey; NAND and NOR implementation.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q3</td><td>Minimum SOP via QM, verify with K-map: F=Σm(0,2,4,8,9,10,11,12,13).</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q4</td><td>Determine prime implicants of F(A,B,C,D)=Σ(3,4,5,7,9,13,14,15); verify with K-map.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> (apply same method)</td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q5</td><td>Minimum POS via K-map for a given product-of-sums expression.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q6</td><td>Simplify in SOP and POS: F=Σm(3,4,9,13,14,15)+Σd(2,5,10,12).</td><td>→ <a href="#dont-care-vem">Don't-Care Conditions &amp; VEM</a> (apply same method)</td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q7</td><td>Simplify F=Σm(4,5,6,7,8)+Σd(11–15) via K-map and tabular method; compare; NAND implementation.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a> + <a href="#quine-mccluskey">Quine–McCluskey Method</a> (apply both methods, compare term counts)</td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q8</td><td>Minimum SOP via QM for a 5-variable function Σm(0,1,2,8,9,15,17,21,24,25,27,31).</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> (same tabulation method, 5 variables)</td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q9</td><td>Simplify F(w,x,y,z)=Σm(2,3,12,13,14,15) via tabulation method; implement with gates.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q10</td><td>Simplify F(w,x,y,z)=Σm(1,4,6,7,8,9,10,11,15) via tabulation method; implement.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q11</td><td>Determine PIs and EPIs of F(w,x,y,z)=Σm(1,4,6,7,8,9,10,11,15) via tabulation.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q12</td><td>Minimum SOP via QM and K-map: F=Σm(0,2,4,8,9,10,11,12,13).</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> (same function as Q3)</td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q13</td><td>Reduce via tabulation: F=Σm(2,3,4,6,7,9,11,13).</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q14</td><td>Find all PIs and minimum SOP via QM: F(a,b,c,d)=Σm(0,4,5,7,8,11,12,15).</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.5</td><td>Fill K-map and simplify a temperature/humidity activation-condition function.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 4</td><td>Simplify F(A,B,C,D)=Σm(0,1,2,5,8,9,10) in SOP/POS; F(w,x,y,z)=Σm(0,1,4,5,8,9,14,15)+Σd(11,12).</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a> (same K-map method)</td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.4–1.6</td><td>Minterms in a 2-variable K-map; significance of edge-wraparound; how QM handles don't-cares.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a>, <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part B 2a</td><td>Explain the Quine–McCluskey method using F(A,B,C,D)=Σm(0,1,2,5,8,9,10,14).</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> (flagship worked example uses the identical method)</td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q1(i)</td><td>Simplify F(P,Q,R,S)=Σm(0,1,2,4,5,7,8,9,14,15) using QM.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> <span class="pill">solved example added</span> (flagship)</td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q1(ii)</td><td>Simplify F(w,x,y,z)=Σm(0,1,4,5,8,9,14,15)+Σd(11,12) using K-map.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a> (same method as Fig 10 example)</td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Retest 4</td><td>Simplify f(A,B,C,D)=Σm(0,1,2,5,8,9,10) into SOP and POS.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a>, <a href="#simplification-solved">Solved Numericals — Simplification</a> (POS method)</td></tr>
-    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part B (retest) Q5</td><td>Simplify F(A,B,C,D)=Σm(0,1,2,4,6,8,9,11,13,15) using QM; PIs and EPIs.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> (same tabulation method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q2a<cite class="src" data-src="Q4"></cite></td><td>4-variable gate circuit → Boolean expression → K-map minimisation → redraw.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE-I 2026 Q5<cite class="src" data-src="Q4"></cite></td><td>QM: f = Σm(0,5,7,8,9,10,11,14,15) + d(1,6); verify with K-map.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q1<cite class="src" data-src="Q3"></cite></td><td>K-map simplify Y=Σm(0,1,2,3,5,7,8,9,10,12,13); PIs, EPIs; AND-OR-INVERT and NAND realisation.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q2<cite class="src" data-src="Q3"></cite></td><td>Same function via Quine–McCluskey; NAND and NOR implementation.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q3<cite class="src" data-src="Q3"></cite></td><td>Minimum SOP via QM, verify with K-map: F=Σm(0,2,4,8,9,10,11,12,13).</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q4<cite class="src" data-src="Q3"></cite></td><td>Determine prime implicants of F(A,B,C,D)=Σ(3,4,5,7,9,13,14,15); verify with K-map.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> (apply same method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q5<cite class="src" data-src="Q3"></cite></td><td>Minimum POS via K-map for a given product-of-sums expression.</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q6<cite class="src" data-src="Q3"></cite></td><td>Simplify in SOP and POS: F=Σm(3,4,9,13,14,15)+Σd(2,5,10,12).</td><td>→ <a href="#dont-care-vem">Don't-Care Conditions &amp; VEM</a> (apply same method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q7<cite class="src" data-src="Q3"></cite></td><td>Simplify F=Σm(4,5,6,7,8)+Σd(11–15) via K-map and tabular method; compare; NAND implementation.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a> + <a href="#quine-mccluskey">Quine–McCluskey Method</a> (apply both methods, compare term counts)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q8<cite class="src" data-src="Q3"></cite></td><td>Minimum SOP via QM for a 5-variable function Σm(0,1,2,8,9,15,17,21,24,25,27,31).</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> (same tabulation method, 5 variables)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q9<cite class="src" data-src="Q3"></cite></td><td>Simplify F(w,x,y,z)=Σm(2,3,12,13,14,15) via tabulation method; implement with gates.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q10<cite class="src" data-src="Q3"></cite></td><td>Simplify F(w,x,y,z)=Σm(1,4,6,7,8,9,10,11,15) via tabulation method; implement.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q11<cite class="src" data-src="Q3"></cite></td><td>Determine PIs and EPIs of F(w,x,y,z)=Σm(1,4,6,7,8,9,10,11,15) via tabulation.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q12<cite class="src" data-src="Q3"></cite></td><td>Minimum SOP via QM and K-map: F=Σm(0,2,4,8,9,10,11,12,13).</td><td>→ <a href="#simplification-solved">Solved Numericals — Simplification</a> (same function as Q3)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q13<cite class="src" data-src="Q3"></cite></td><td>Reduce via tabulation: F=Σm(2,3,4,6,7,9,11,13).</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">qb1.pdf Q14<cite class="src" data-src="Q3"></cite></td><td>Find all PIs and minimum SOP via QM: F(a,b,c,d)=Σm(0,4,5,7,8,11,12,15).</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 quiz 1.5<cite class="src" data-src="Q2"></cite></td><td>Fill K-map and simplify a temperature/humidity activation-condition function.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 Retest 4<cite class="src" data-src="Q2"></cite></td><td>Simplify F(A,B,C,D)=Σm(0,1,2,5,8,9,10) in SOP/POS; F(w,x,y,z)=Σm(0,1,4,5,8,9,14,15)+Σd(11,12).</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a> (same K-map method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part A 1.4–1.6<cite class="src" data-src="Q2"></cite></td><td>Minterms in a 2-variable K-map; significance of edge-wraparound; how QM handles don't-cares.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a>, <a href="#quine-mccluskey">Quine–McCluskey Method</a></td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 24-25 SEE Part B 2a<cite class="src" data-src="Q2"></cite></td><td>Explain the Quine–McCluskey method using F(A,B,C,D)=Σm(0,1,2,5,8,9,10,14).</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> (flagship worked example uses the identical method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q1(i)<cite class="src" data-src="Q1"></cite></td><td>Simplify F(P,Q,R,S)=Σm(0,1,2,4,5,7,8,9,14,15) using QM.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> <span class="pill">solved example added</span> (flagship)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Test-1 Q1(ii)<cite class="src" data-src="Q1"></cite></td><td>Simplify F(w,x,y,z)=Σm(0,1,4,5,8,9,14,15)+Σd(11,12) using K-map.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a> (same method as Fig 10 example)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 Retest 4<cite class="src" data-src="Q1"></cite></td><td>Simplify f(A,B,C,D)=Σm(0,1,2,5,8,9,10) into SOP and POS.</td><td>→ <a href="#karnaugh-maps">Karnaugh Maps</a>, <a href="#simplification-solved">Solved Numericals — Simplification</a> (POS method)</td></tr>
+    <tr><td class="mono" style="font-size:11.5px">CIE 23-24 SEE Part B (retest) Q5<cite class="src" data-src="Q1"></cite></td><td>Simplify F(A,B,C,D)=Σm(0,1,2,4,6,8,9,11,13,15) using QM; PIs and EPIs.</td><td>→ <a href="#quine-mccluskey">Quine–McCluskey Method</a> (same tabulation method)</td></tr>
   </table>
 
   <a class="backtotop" href="#index">↑ Back to index</a>

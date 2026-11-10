@@ -22,6 +22,7 @@ Usage (from the repo root):  python3 site/build.py
 """
 import html, json, os, re, shutil, subprocess, sys
 from datetime import date
+from html.parser import HTMLParser
 from urllib.parse import quote
 from code_highlight import highlight_code_blocks
 
@@ -216,6 +217,79 @@ def source_url(cfg, s, x, download=False):
     return f"https://github.com/{cfg['repo']}/{mode}/main/subjects/{s['slug']}/sources/{quote(x['file'])}"
 
 
+def render_citations(name, content, s, cfg):
+    """Replace only explicit, empty citation elements; preserve the rest byte for byte."""
+    sources = {x['id']: x for x in s.get('sources', [])}
+
+    class Citations(HTMLParser):
+        def __init__(self):
+            super().__init__(convert_charrefs=False)
+            self.starts = [0]
+            self.starts += [m.end() for m in re.finditer('\n', content)]
+            self.opened = None
+            self.edits = []
+
+        def citation_position(self):
+            line, col = self.getpos()
+            return self.starts[line - 1] + col
+
+        def handle_starttag(self, tag, attrs):
+            if self.opened is not None:
+                err(f'{name}: citation must be empty')
+            if tag != 'cite':
+                return
+            a = dict(attrs)
+            if self.opened is not None:
+                err(f'{name}: nested citation')
+                return
+            self.opened = (self.citation_position(), a)
+            if 'src' not in (a.get('class') or '').split():
+                err(f'{name}: contains chat-formatting artifacts (unrecognized cite)')
+            if len(a) != len(attrs) or set(a) - {'class', 'data-src', 'data-p'}:
+                err(f'{name}: invalid citation attributes')
+            if a.get('data-src') not in sources:
+                err(f"{name}: unknown citation source {a.get('data-src')!r}")
+            if 'data-p' in a and not re.fullmatch(r'§?[\d.]+(-[\d.]+)?', a['data-p'] or ''):
+                err(f"{name}: invalid citation page {a['data-p']!r}")
+
+        def handle_startendtag(self, tag, attrs):
+            if tag == 'cite':
+                err(f'{name}: citation needs an explicit closing tag')
+
+        def handle_endtag(self, tag):
+            if tag != 'cite':
+                return
+            if self.opened is None:
+                err(f'{name}: citation closing tag without opening tag')
+                return
+            start, a = self.opened
+            end = self.citation_position() + len('</cite>')
+            inner = content[content.index('>', start) + 1:self.citation_position()]
+            if inner:
+                err(f'{name}: citation must be empty')
+            self.opened = None
+            x = sources.get(a.get('data-src'))
+            if x is None:
+                return
+            page = a.get('data-p') or ''
+            detail = page if page.startswith('§') else ('p.' + page if page else '')
+            label = x['id'] + (' · ' + detail if detail else '')
+            title = x['title'] + (', ' + detail if detail else '')
+            href = (source_url(cfg, s, x) if x.get('file') else
+                    f"{cfg['url']}/{s['slug']}/sources/#src-{x['id']}")
+            external = ' target="_blank" rel="noopener"' if x.get('file') else ''
+            self.edits.append((start, end, f'<a class="src-chip" href="{e(href)}" title="{e(title)}"{external}>{e(label)}</a>'))
+
+    parser = Citations()
+    parser.feed(content)
+    parser.close()
+    if parser.opened is not None:
+        err(f'{name}: unclosed citation')
+    for start, end, replacement in reversed(parser.edits):
+        content = content[:start] + replacement + content[end:]
+    return content
+
+
 def source_groups(cfg, s):
     groups = [("Lecture decks & notes", {"deck", "notes"}), ("Question papers", {"papers"}),
               ("Question banks", {"qbank"}), ("Lab", {"lab"}), ("Textbooks", {"book"})]
@@ -357,6 +431,7 @@ def main():
                 err(f"{name}: source file missing: subjects/{slug}/{u['source']}")
                 continue
             c = read(src)
+            c = render_citations(name, c, s, cfg)
             validate_unit(name, c)
             secs = sections(c)
             if not secs:

@@ -414,7 +414,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
   </table>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
-    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q1.3</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q1.3<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">List the differences between Linear and Non-Linear data structures.</div>
     <div class="ans-label">Answer</div>
     <p>See the comparison table above — cite at least: arrangement (sequential vs. hierarchical/interconnected), traversal (single pass vs. multiple strategies), and one example each (Array/Stack/Queue vs. Tree/Graph).</p>
@@ -550,14 +550,14 @@ free(q);</div>
   </div>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-    <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q2b &amp; CIE-II 2024-25 · Q1b</span><span class="marks">3 marks / 4 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q2b &amp; CIE-II 2024-25 · Q1b<cite class="src" data-src="Q1"></cite><cite class="src" data-src="Q2"></cite></span><span class="marks">3 marks / 4 marks</span></div>
     <div class="qtext">Explain with syntax any two dynamic memory allocation functions. / Differentiate between arrays and dynamic memory allocation.</div>
     <div class="ans-label">Answer</div>
     <p>Pick any two rows from the table above and state syntax + behaviour (e.g. <code>malloc</code> vs <code>calloc</code>, contrasting "uninitialised" vs "zero-initialised" — that contrast is usually the mark). For the arrays comparison: arrays are fixed-size, allocated at compile time (usually on the stack), with no manual release needed; dynamically allocated memory is variable-size, requested at run time from the heap, and must be explicitly released with <code>free</code> or it leaks for the remainder of the program.</p>
   </div>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q1.9</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q1.9<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">Predict the output of the following C code:<br><code>char *p = calloc(100,1); p = "welcome"; printf("%s\n", p);</code></div>
     <div class="ans-label">Answer</div>
     <p><strong>Output: <code>welcome</code></strong>. The teaching point is what <em>doesn't</em> happen: <code>p = "welcome"</code> does not copy the string into the 100-byte calloc'd block — it <strong>rebinds the pointer variable <code>p</code></strong> to point at the string literal <code>"welcome"</code> instead. The original 100-byte block is now unreachable (no pointer references it anymore) and can never be freed — a classic <strong>memory leak</strong> triggered by pointer reassignment instead of content copy (which would have needed <code>strcpy(p, "welcome")</code>).</p>
@@ -629,14 +629,14 @@ free(q);</div>
   </div>
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-II 2024-25 · Q1a</span><span class="marks">6 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-II 2024-25 · Q1a<cite class="src" data-src="Q2"></cite></span><span class="marks">6 marks</span></div>
     <div class="qtext">With an example, explain the difference between singly linked list, doubly linked list and circular linked list.</div>
     <div class="ans-label">Answer</div>
     <p>Use the table above: SLL has one forward-only link ending in NULL (Fig 2); DLL adds a backward link for two-way traversal; a circular list (singly or doubly) replaces the terminating NULL with a link back to the first node, so traversal can continue indefinitely without hitting an end. Draw the 3-node SLL from Fig 2 as the example, and contrast it with the same 3 nodes wired circularly (last node's link → first node instead of NULL).</p>
   </div>
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
-    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q1.6</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q1.6<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">List any 4 differences between a Singly-linked list and a Doubly linked list.</div>
     <div class="ans-label">Answer</div>
     <table>
@@ -797,7 +797,7 @@ free(q);</div>
 }</div>
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
-    <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q2a</span><span class="marks">7 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q2a<cite class="src" data-src="Q1"></cite></span><span class="marks">7 marks</span></div>
     <div class="qtext">Develop C functions to perform the following operations on a singly linked list: (1) Replacing all nodes which have the data 'x' by 'y'. (2) Create an ordered list (a list of n nodes such that N<sub>i</sub> ≤ N<sub>i+1</sub> for all 1 ≤ i ≤ n-1).</div>
     <div class="ans-label">Answer</div>
     <p><strong>Part 2</strong> is exactly <code>insertorder</code> above, called once per input value. <strong>Part 1</strong> is a single traversal with no pointer rewiring at all — since only the <em>data</em> field changes, not the list's structure:</p>
@@ -812,7 +812,7 @@ free(q);</div>
   </div>
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-II 2024-25 · Q4a</span><span class="marks">6 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-II 2024-25 · Q4a<cite class="src" data-src="Q2"></cite></span><span class="marks">6 marks</span></div>
     <div class="qtext">Write a program to search a node with value 'K' in a single linked list; if it is not found, then insert the value as a last node.</div>
     <div class="ans-label">Answer — a traversal (search) that falls through into insertrear (§3.2) on failure</div>
     <div class="formula-block code">NODE searchOrInsert(NODE first, <span class="c1">int</span> K) {
@@ -1093,7 +1093,7 @@ q-&gt;rlink = p;</pre>
   </table>
 
   <div class="callout key">
-    <span class="label">Scenario in your deck — browser history</span>
+    <span class="label">Scenario in your deck — browser history<cite class="src" data-src="D4"></cite></span>
     Each node stores a URL and a visit time. <strong>Add a URL</strong>: insert at the rear (or after the current page). <strong>Back/forward</strong>: move a <code>current</code> pointer along <code>llink</code>/<code>rlink</code> — this is exactly why a doubly list is used. <strong>Delete history older than a date</strong>: walk from the head while <code>time &lt; cutoff</code> and delete each front node.
   </div>
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -1227,7 +1227,7 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
 }</div>
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
-    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Part B Q5a</span><span class="marks">8 marks</span></div>
+    <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Part B Q5a<cite class="src" data-src="Q2"></cite></span><span class="marks">8 marks</span></div>
     <div class="qtext">Write a program to implement Queue data structure using linked list.</div>
     <div class="ans-label">Answer</div>
     <p>The <code>enqueue</code>/<code>dequeue</code> pair above, driven from a menu-loop <code>main()</code> the same way as the array-based version — the only change is that <code>first</code> (an SLL head pointer) replaces the array + <code>front</code>/<code>rear</code> indices, and every operation is O(1) at whichever end it targets, with no size limit and no false-overflow case of the linear queue.</p>
@@ -1241,7 +1241,7 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
   <p class="section-sub">Full exam-style SLL questions worked end to end</p>
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-II 2021-22 · Q1.1</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-II 2021-22 · Q1.1<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">What does the function "fun" print for a given singly linked list with contents (1, 3, 5, 7, 9, 11, 13, 15, 17, 19), first node pointed to by "head"?<br><code>void fun(struct node *head){ if(head!=NULL){ struct node *q=head; while(q-&gt;next-&gt;next!=NULL) q=q-&gt;next; printf("%d",q-&gt;data); } }</code></div>
     <div class="ans-label">Answer — traced (verified by code)</div>
     <p>The loop advances <code>q</code> only while <code>q-&gt;next-&gt;next</code> is non-NULL — so it stops exactly when <code>q</code> is the <strong>second-to-last</strong> node (at that point, <code>q-&gt;next</code> is the last node and <code>q-&gt;next-&gt;next</code> is NULL). For the 10-node list, the second-to-last node holds <strong>17</strong>.</p>
@@ -1249,7 +1249,7 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
   </div>
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-II 2021-22 · Q1.2</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-II 2021-22 · Q1.2<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">Given <code>struct node { int *num; struct node *next; };</code>, what is the number of bytes allocated after executing:<br><code>p = (struct node *)malloc(sizeof(struct node *));</code></div>
     <div class="ans-label">Answer — read the statement literally</div>
     <div class="callout clarify">
@@ -1260,7 +1260,7 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
   </div>
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
-    <div class="qmeta"><span class="qsrc">Quiz-II 2024-25 · Q1.1</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">Quiz-II 2024-25 · Q1.1<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">What is the output of the following code snippet for the list 1→2→3→4→5→6?<br><code>void FUN(struct node* start){ if(start==NULL) return; printf("%d ",start-&gt;data); if(start-&gt;next!=NULL) FUN(start-&gt;next-&gt;next); printf("%d ",start-&gt;data); }</code></div>
     <div class="ans-label">Answer — traced (verified by code)</div>
     <table>
@@ -1274,7 +1274,7 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
   </div>
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
-    <div class="qmeta"><span class="qsrc">Quiz-II 2024-25 · Q1.5</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">Quiz-II 2024-25 · Q1.5<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">What does the following code snippet do?<br><code>ListNode* fun(ListNode* head, int x){ ListNode* front=head; int count=1; while(front!=NULL){ if(count&lt;=x){ front=front-&gt;next; } else { head=head-&gt;next; front=front-&gt;next; } count++; } return head; }</code></div>
     <div class="ans-label">Answer — traced with list [10,20,30,40,50,60,70], x=3 (verified by code)</div>
     <p>For the first <code>x</code> iterations, only <code>front</code> advances — <code>head</code> stays put. After that, <code>head</code> and <code>front</code> advance together until <code>front</code> falls off the end. Since <code>front</code> is <code>x</code> nodes ahead of <code>head</code> throughout the second phase, by the time <code>front</code> becomes NULL, <code>head</code> has advanced exactly <code>(length − x)</code> steps from the original head — landing on the node that is <code>x</code> nodes from the end.</p>
@@ -1283,14 +1283,14 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
   </div>
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
-    <div class="qmeta"><span class="qsrc">Quiz-II 2024-25 · Q1.6</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">Quiz-II 2024-25 · Q1.6<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">What will be the value of "sum" after the following code snippet terminates, for the list 1→2→3→4→5?<br><code>int sum=0; while(root!=NULL){ sum+=root-&gt;val; root=root-&gt;next; } printf("%d",sum);</code></div>
     <div class="ans-label">Answer</div>
     <p>A plain traversal-accumulate over the list: 1+2+3+4+5 = <strong>15</strong>.</p>
   </div>
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
-    <div class="qmeta"><span class="qsrc">CIE-II 2024-25 · Q2a</span><span class="marks">10 marks</span></div>
+    <div class="qmeta"><span class="qsrc">CIE-II 2024-25 · Q2a<cite class="src" data-src="Q2"></cite></span><span class="marks">10 marks</span></div>
     <div class="qtext">You are given two non-empty linked lists, each representing a non-negative integer. The digits are stored in reverse order, one digit per node. Write a program to add the two numbers and return the result as a linked list.<br>Input: (2→4→5) + (5→7→2) &nbsp; Output: (7→1→8)</div>
     <div class="ans-label">Answer — why "reverse order" makes this easy, verified by simulation</div>
     <p>Because the least-significant digit is stored at the <em>head</em> of each list, adding two numbers digit-by-digit from the heads is the same direction as adding them by hand from the ones place — no reversal needed. Traverse both lists together, adding corresponding digits plus any carry from the previous step, and append <code>(sum % 10)</code> to the result while carrying <code>(sum / 10)</code> forward:</p>
@@ -1938,31 +1938,31 @@ free(ptr); ptr = NULL; → release</div>
 
   <table>
     <tr><th>Source · Marks</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono">SEE Jan/Feb 2025 · Q1.3 · 2M</td><td>List the differences between Linear and Non-Linear data structures.</td><td>→ <a href="#sec-1-1">§1.1 Concepts &amp; Types of DS</a></td></tr>
+    <tr><td class="mono">SEE Jan/Feb 2025 · Q1.3 · 2M<cite class="src" data-src="Q2"></cite></td><td>List the differences between Linear and Non-Linear data structures.</td><td>→ <a href="#sec-1-1">§1.1 Concepts &amp; Types of DS</a></td></tr>
   </table>
   <h2>Memory Allocation</h2>
 
   <table>
     <tr><th>Source · Marks</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono">CIE 21-22 Test-I · Q2b · 3M</td><td>Explain with syntax any two dynamic memory allocation functions.</td><td>→ <a href="#sec-2-1">§2.2 malloc, calloc, free, realloc</a></td></tr>
-    <tr><td class="mono">CIE-II 2024-25 · Q1b · 4M</td><td>Differentiate between arrays and dynamic memory allocation.</td><td>→ <a href="#sec-2-1">§2.2</a></td></tr>
-    <tr><td class="mono">SEE Jan/Feb 2025 · Q1.9 · 2M</td><td>Predict the output: <code>calloc</code> then pointer reassignment to a string literal.</td><td>→ <a href="#sec-2-1">§2.2</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono">CIE 21-22 Test-I · Q2b · 3M<cite class="src" data-src="Q1"></cite></td><td>Explain with syntax any two dynamic memory allocation functions.</td><td>→ <a href="#sec-2-1">§2.2 malloc, calloc, free, realloc</a></td></tr>
+    <tr><td class="mono">CIE-II 2024-25 · Q1b · 4M<cite class="src" data-src="Q2"></cite></td><td>Differentiate between arrays and dynamic memory allocation.</td><td>→ <a href="#sec-2-1">§2.2</a></td></tr>
+    <tr><td class="mono">SEE Jan/Feb 2025 · Q1.9 · 2M<cite class="src" data-src="Q2"></cite></td><td>Predict the output: <code>calloc</code> then pointer reassignment to a string literal.</td><td>→ <a href="#sec-2-1">§2.2</a> <span class="pill">solved example added</span></td></tr>
   </table>
   <h2>Linked Lists</h2>
 
   <table>
     <tr><th>Source · Marks</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono">CIE-II 2021-22 · Q1.1 · 2M</td><td>What does FUN() print for a 10-node SLL (loop stops when q-&gt;next-&gt;next==NULL)?</td><td>→ <a href="#sec-3-6">§3.9 Solved Numericals — Linked Lists</a></td></tr>
-    <tr><td class="mono">CIE-II 2021-22 · Q1.2 · 2M</td><td>Bytes allocated by <code>malloc(sizeof(struct node *))</code>.</td><td>→ <a href="#sec-3-6">§3.9</a></td></tr>
-    <tr><td class="mono">CIE-II 2021-22 · Q2a · 7M</td><td>SLL functions: replace all nodes with data x by y; create an ordered list.</td><td>→ <a href="#sec-3-3">§3.3 SLL: Deletion &amp; Ordered Insert</a></td></tr>
-    <tr><td class="mono">Quiz-II 2024-25 · Q1.1 · 2M</td><td>Recursive FUN() output for list 1→2→3→4→5→6.</td><td>→ <a href="#sec-3-6">§3.9</a></td></tr>
-    <tr><td class="mono">Quiz-II 2024-25 · Q1.5 · 2M</td><td>What does <code>ListNode* fun(head, x)</code> do?</td><td>→ <a href="#sec-3-6">§3.9</a></td></tr>
-    <tr><td class="mono">Quiz-II 2024-25 · Q1.6 · 2M</td><td>Value of "sum" after traversing 1→2→3→4→5.</td><td>→ <a href="#sec-3-6">§3.9</a></td></tr>
-    <tr><td class="mono">CIE-II 2024-25 · Q1a · 6M</td><td>With an example, explain differences between SLL, DLL, and circular linked list.</td><td>→ <a href="#sec-3-1">§3.1 Definition, Terminology &amp; Types</a>, <a href="#sec-cll">§3.5</a>, <a href="#sec-dll">§3.6</a></td></tr>
-    <tr><td class="mono">CIE-II 2024-25 · Q2a · 10M</td><td>Add two numbers represented as reversed-digit linked lists.</td><td>→ <a href="#sec-3-6">§3.9</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">CIE-II 2024-25 · Q4a · 6M</td><td>Search node with value K in an SLL; insert as last node if not found.</td><td>→ <a href="#sec-3-3">§3.3</a></td></tr>
-    <tr><td class="mono">SEE Jan/Feb 2025 · Q1.6 · 2M</td><td>List any 4 differences between a Singly-linked list and a Doubly linked list.</td><td>→ <a href="#sec-dll">§3.6</a></td></tr>
-      <tr><td class="mono">SEE Jan/Feb 2025 · Part B Q5a · 8M</td><td>Program to implement the Queue data structure using a linked list.</td><td>→ <a href="#sec-3-5">§3.8 Stack &amp; Queue via SLL</a></td></tr>
+    <tr><td class="mono">CIE-II 2021-22 · Q1.1 · 2M<cite class="src" data-src="Q1"></cite></td><td>What does FUN() print for a 10-node SLL (loop stops when q-&gt;next-&gt;next==NULL)?</td><td>→ <a href="#sec-3-6">§3.9 Solved Numericals — Linked Lists</a></td></tr>
+    <tr><td class="mono">CIE-II 2021-22 · Q1.2 · 2M<cite class="src" data-src="Q1"></cite></td><td>Bytes allocated by <code>malloc(sizeof(struct node *))</code>.</td><td>→ <a href="#sec-3-6">§3.9</a></td></tr>
+    <tr><td class="mono">CIE-II 2021-22 · Q2a · 7M<cite class="src" data-src="Q1"></cite></td><td>SLL functions: replace all nodes with data x by y; create an ordered list.</td><td>→ <a href="#sec-3-3">§3.3 SLL: Deletion &amp; Ordered Insert</a></td></tr>
+    <tr><td class="mono">Quiz-II 2024-25 · Q1.1 · 2M<cite class="src" data-src="Q2"></cite></td><td>Recursive FUN() output for list 1→2→3→4→5→6.</td><td>→ <a href="#sec-3-6">§3.9</a></td></tr>
+    <tr><td class="mono">Quiz-II 2024-25 · Q1.5 · 2M<cite class="src" data-src="Q2"></cite></td><td>What does <code>ListNode* fun(head, x)</code> do?</td><td>→ <a href="#sec-3-6">§3.9</a></td></tr>
+    <tr><td class="mono">Quiz-II 2024-25 · Q1.6 · 2M<cite class="src" data-src="Q2"></cite></td><td>Value of "sum" after traversing 1→2→3→4→5.</td><td>→ <a href="#sec-3-6">§3.9</a></td></tr>
+    <tr><td class="mono">CIE-II 2024-25 · Q1a · 6M<cite class="src" data-src="Q2"></cite></td><td>With an example, explain differences between SLL, DLL, and circular linked list.</td><td>→ <a href="#sec-3-1">§3.1 Definition, Terminology &amp; Types</a>, <a href="#sec-cll">§3.5</a>, <a href="#sec-dll">§3.6</a></td></tr>
+    <tr><td class="mono">CIE-II 2024-25 · Q2a · 10M<cite class="src" data-src="Q2"></cite></td><td>Add two numbers represented as reversed-digit linked lists.</td><td>→ <a href="#sec-3-6">§3.9</a> <span class="pill">solved example added</span></td></tr>
+    <tr><td class="mono">CIE-II 2024-25 · Q4a · 6M<cite class="src" data-src="Q2"></cite></td><td>Search node with value K in an SLL; insert as last node if not found.</td><td>→ <a href="#sec-3-3">§3.3</a></td></tr>
+    <tr><td class="mono">SEE Jan/Feb 2025 · Q1.6 · 2M<cite class="src" data-src="Q2"></cite></td><td>List any 4 differences between a Singly-linked list and a Doubly linked list.</td><td>→ <a href="#sec-dll">§3.6</a></td></tr>
+      <tr><td class="mono">SEE Jan/Feb 2025 · Part B Q5a · 8M<cite class="src" data-src="Q2"></cite></td><td>Program to implement the Queue data structure using a linked list.</td><td>→ <a href="#sec-3-5">§3.8 Stack &amp; Queue via SLL</a></td></tr>
   </table>
   <h2>Likely questions — self-learning topics</h2>
   <table>

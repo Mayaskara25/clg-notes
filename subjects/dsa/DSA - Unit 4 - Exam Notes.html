@@ -279,9 +279,9 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
   <div class="callout clarify">
     <span class="label">How the sources combine, and where this guide fills gaps</span>
     The guide keeps the verified tree material from the earlier Trees guide (terminology, binary-tree types, BSTs with C code, traversals, reconstruction from two
-    traversals, expression trees, the CIE/SEE question bank) and slots in the new material <strong>additively</strong>: from <code>UNIT4-Trees ppt.pdf</code> the N-ary definition,
-    N-ary → binary and forest → binary conversion rules and worked examples (§1.4, §1.5) and the expression-tree exercises (§5.1); from <code>tree_traversal.pdf</code> the BST creation
-    exercise, the traversal practice trees and the BST deletion cases with predecessor and successor (§2.5, §3.2); from <code>THREADED binary tree.pdf</code> the header node, the node struct,
+    traversals, expression trees, the CIE/SEE question bank) and slots in the new material <strong>additively</strong>: from <code>UNIT4-Trees ppt.pdf</code><cite class="src" data-src="D9"></cite> the N-ary definition,
+    N-ary → binary and forest → binary conversion rules and worked examples (§1.4, §1.5) and the expression-tree exercises (§5.1); from <code>tree_traversal.pdf</code><cite class="src" data-src="D10"></cite> the BST creation
+    exercise, the traversal practice trees and the BST deletion cases with predecessor and successor (§2.5, §3.2); from <code>THREADED binary tree.pdf</code><cite class="src" data-src="D11"></cite> the header node, the node struct,
     the construction routine and the inorder / preorder traversals (§6.3), together with the threading sections carried over from an earlier draft of these notes (§6.1, §6.2).
     Topics named by the syllabus but absent from every source — level-order traversal, Morris traversal, height / depth / node counts in C, LCA, boolean expression trees and evaluation,
     custom hierarchical trees, the decision-tree and BST-dictionary lab applications — are written from scratch and each is flagged
@@ -548,7 +548,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-II · 3 Jan 2021 · Q1.5</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-II · 3 Jan 2021 · Q1.5<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">For the tree below, find: (i) height of node 7, (ii) common ancestors of nodes 10 and 11, (iii) depth of node 6, (iv) level of node 9.</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg">
@@ -586,7 +586,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE Quiz-II · 2 Dec 2024 · Q1.4</span><span class="marks">1 mark</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE Quiz-II · 2 Dec 2024 · Q1.4<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
     <div class="qtext">The maximum height of a binary tree with n nodes is ______.</div>
     <div class="ans-label">Solution</div>
     <p>Height is maximised when the tree is as "unbalanced" as possible — a fully skewed (degenerate)
@@ -666,7 +666,7 @@ re-interpreted so that nothing about the original tree is lost.</p>
 </div>
 
 <div class="qbox">
-    <div class="qmeta"><span class="qsrc">UNIT4-Trees ppt.pdf · p34–36 · worked example</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">UNIT4-Trees ppt.pdf · p34–36 · worked example<cite class="src" data-src="D9" data-p="34-36"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Convert the N-ary tree with A → B, C, D; B → E, F; D → G into a binary tree using the left-child / right-sibling method.</div>
     
     <div class="ans-label">Solution</div>
@@ -677,7 +677,7 @@ re-interpreted so that nothing about the original tree is lost.</p>
     <p>Reading the table: <span class="mono">A.left = B</span>; <span class="mono">B.right = C</span>,
     <span class="mono">C.right = D</span> (the sibling chain B → C → D); <span class="mono">B.left = E</span>,
     <span class="mono">E.right = F</span>; <span class="mono">D.left = G</span> — exactly the six links
-    listed on page 36 of the deck. The result is Fig 5 (right).</p>
+    listed on page 36 of the deck. The result is Fig 5 (right).<cite class="src" data-src="D9"></cite></p>
   </div>
 
 <h2>Going back, and what is preserved</h2>
@@ -729,7 +729,7 @@ leaves a forest — the forest of that root's subtrees — and a graph-theory ex
 of a graph that is not connected.</p>
 <table><tr><th></th><th>Tree</th><th>Forest</th></tr><tr><td>Connected components</td><td>exactly one</td><td>k (one per tree)</td></tr><tr><td>Roots</td><td>exactly one</td><td>k — one per tree</td></tr><tr><td>Edges for n nodes</td><td>n − 1</td><td>n − k (here 8 nodes, 3 trees: 5 edges)</td></tr><tr><td>Single parent for every node?</td><td>every node except the root</td><td>every node except the k roots</td></tr><tr><td>Typical uses</td><td>one hierarchy (file system under /)</td><td>separate organisation hierarchies, independent folder trees, spanning forests</td></tr></table>
 <p>Checking the edge count on the deck's forest A(B,C), D(E), F(G,H): trees have 3, 2 and 3 nodes, hence 2 + 1 + 2 =
-<strong>5 edges = 8 − 3</strong> (verified in code).</p>
+<strong>5 edges = 8 − 3</strong> (verified in code).<cite class="src" data-src="D9"></cite></p>
 
 <h2>Converting a forest to a binary tree</h2>
 <ol class="steps">
@@ -787,7 +787,7 @@ of a graph that is not connected.</p>
 </div>
 
 <div class="qbox">
-    <div class="qmeta"><span class="qsrc">UNIT4-Trees ppt.pdf · p37</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">UNIT4-Trees ppt.pdf · p37<cite class="src" data-src="D9" data-p="37"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Convert the forest of three trees A(B, C), D(E), F(G, H) into a binary tree.</div>
     
     <div class="ans-label">Solution</div>
@@ -1270,7 +1270,7 @@ next-sibling. Need to walk <em>up</em> (full path of a file, manager of an emplo
 
   <h2>Worked example: build a BST and traverse it</h2>
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-II · 3 Jan 2021 · Q6a</span><span class="marks">7 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-II · 3 Jan 2021 · Q6a<cite class="src" data-src="Q1"></cite></span><span class="marks">7 marks</span></div>
     <div class="qtext">Construct a binary search tree by inserting the keys 6, 4, 22, 10, 2, 14, 3, 8, 11 (in this order). Traverse the constructed tree in preorder, inorder, and postorder.</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 820 380" xmlns="http://www.w3.org/2000/svg">
@@ -1312,7 +1312,7 @@ next-sibling. Need to walk <em>up</em> (full path of a file, manager of an emplo
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-II · 3 Jan 2021 · Q5a</span><span class="marks">7 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-II · 3 Jan 2021 · Q5a<cite class="src" data-src="Q1"></cite></span><span class="marks">7 marks</span></div>
     <div class="qtext">Write a C function to perform iterative preorder traversal on a binary tree, and a C function to count the number of leaf nodes in a binary tree.</div>
     <div class="ans-label">Solution</div>
     <p>Preorder is naturally recursive (root, then left, then right), but it can be done iteratively with
@@ -1376,7 +1376,7 @@ next-sibling. Need to walk <em>up</em> (full path of a file, manager of an emplo
 
   <h2>Worked example: a BST from an insertion sequence mislabelled "in-order"</h2>
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE SEE Jan/Feb 2025 · Part A Q1.8</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE SEE Jan/Feb 2025 · Part A Q1.8<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">Given In-order: 3, 12, 6, 4, 7, 10, 11, 5, 2, 8. Construct a Binary Search Tree.</div>
     <div class="callout clarify">
       <span class="label">Clarifying an ambiguous point in the source</span>
@@ -1432,7 +1432,7 @@ next-sibling. Need to walk <em>up</em> (full path of a file, manager of an emplo
     <strong>inorder</strong> traversal — which, as already established, always yields sorted order.
   </div>
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q1.b</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q1.b<cite class="src" data-src="Q2"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Construct the BST for the numbers (45, 32, 57, 37, 52, 67, 28, 30, 39, 63, 55). Apply tree sort.</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
@@ -1499,7 +1499,7 @@ different tree, because the first key always becomes the root. (Duplicates are n
 }</div>
 
 <div class="qbox">
-    <div class="qmeta"><span class="qsrc">tree_traversal.pdf · p10 · creation exercise</span><span class="marks">7 marks</span></div>
+    <div class="qmeta"><span class="qsrc">tree_traversal.pdf · p10 · creation exercise<cite class="src" data-src="D10" data-p="10"></cite></span><span class="marks">7 marks</span></div>
     <div class="qtext">Create a BST from the list 76, 32, 7, 8, 23, 56, 67, 12, 35, 20, 59, 21 and give its traversals.</div>
     
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
@@ -1765,12 +1765,12 @@ BST of height h each operation takes O(h): O(log n) for a balanced tree, O(n) fo
 <div class="cap">Fig 18. Results of the four deletions on the tree above. Amber = node whose position or key changed; teal = the child that moved up.</div>
 </div>
 <div class="qbox">
-    <div class="qmeta"><span class="qsrc">tree_traversal.pdf · p28–34 (cases) and p33 (delete 15)</span><span class="marks">8 marks</span></div>
+    <div class="qmeta"><span class="qsrc">tree_traversal.pdf · p28–34 (cases) and p33 (delete 15)<cite class="src" data-src="D10" data-p="28-34"></cite></span><span class="marks">8 marks</span></div>
     <div class="qtext">For the BST with root 12 shown above, show the tree after (a) deleting 18, (b) deleting 13, (c) deleting 15 using the inorder successor, (d) deleting 15 using the inorder predecessor.</div>
     
     <div class="ans-label">Solution (each result verified by running the deletion in code; every inorder stays sorted)</div>
     <table><tr><th>Delete</th><th>Case</th><th>What happens</th><th>Inorder afterwards</th></tr><tr><td>18</td><td>1 (leaf)</td><td>18 is the left child of 20; 20.left becomes NULL</td><td><span class="mono">1, 3, 5, 7, 8, 9, 11, 12, 13, 14, 15, 17, 20</span></td></tr><tr><td>13</td><td>2 (one child)</td><td>13 has only the right child 14; 15.left now points to 14</td><td><span class="mono">1, 3, 5, 7, 8, 9, 11, 12, 14, 15, 17, 18, 20</span></td></tr><tr><td>15 (successor)</td><td>3</td><td>successor = min of right subtree 17 → 17 is a node with right child 20; 15 is overwritten by 17, then the old 17 is removed (20 takes its place). New right child of 12 is 17 with children 13 and 20</td><td><span class="mono">1, 3, 5, 7, 8, 9, 11, 12, 13, 14, 17, 18, 20</span></td></tr><tr><td>15 (predecessor)</td><td>3</td><td>predecessor = max of left subtree 13(→14) is 14 (a leaf); 15 is overwritten by 14 and the old 14 is removed. New right child of 12 is 14 with children 13 and 17</td><td><span class="mono">1, 3, 5, 7, 8, 9, 11, 12, 13, 14, 17, 18, 20</span></td></tr></table>
-    <p>The successor result is exactly the "after deletion" tree on page 33 of the deck (root 12; right subtree 17 with children 13(→14) and 20(→18)).</p>
+    <p>The successor result is exactly the "after deletion" tree on page 33 of the deck (root 12; right subtree 17 with children 13(→14) and 20(→18)).<cite class="src" data-src="D10"></cite></p>
   </div>
 <div class="formula-block code"><span class="cm">// predecessor variant of case 3 (maximum of the LEFT subtree); the successor version is in section 2.4</span>
 <span class="c1">struct</span> BinTree* findMax(<span class="c1">struct</span> BinTree *root) {
@@ -1790,7 +1790,7 @@ BST of height h each operation takes O(h): O(log n) for a balanced tree, O(n) fo
     }
     <span class="c1">return</span> root;
 }</div>
-<p>Compact version of the logic used in the deck (page 34): <em>search for X; if X is a leaf delete it; else replace it with the largest value Y in its left subtree or the smallest value Z in its right subtree, then delete the replacement from that subtree.</em></p>
+<p>Compact version of the logic used in the deck (page 34): <em>search for X; if X is a leaf delete it; else replace it with the largest value Y in its left subtree or the smallest value Z in its right subtree, then delete the replacement from that subtree.</em><cite class="src" data-src="D10"></cite></p>
 
 <h2>Display</h2>
 <p>"Display" a BST in one of four ways. <strong>Inorder</strong> displays the keys in sorted (ascending) order; preorder and postorder display the structure (preorder lists a node before its subtrees — useful for copying a tree; postorder lists children first — useful for deleting a tree); <strong>level-order</strong> is covered in §3.3. A tree-shaped
@@ -2149,9 +2149,9 @@ without any separate sorting step.</p>
 
 
 <h2>More practice trees (from the traversal deck)</h2>
-<p>Four further trees taken from <code>tree_traversal.pdf</code>. The deck gives the three orders for some of them; every order below was
+<p>Four further trees taken from <code>tree_traversal.pdf</code><cite class="src" data-src="D10"></cite>. The deck gives the three orders for some of them; every order below was
 recomputed in code (for the two trees whose picture was not fully legible, the tree was <em>reconstructed from the printed
-preorder + inorder and its postorder then matched the printed postorder</em>, which confirms the reading).</p>
+preorder + inorder and its postorder then matched the printed postorder</em>, which confirms the reading).<cite class="src" data-src="D10"></cite></p>
 <div class="svg-wrap">
 <svg viewBox="0 0 756 262" xmlns="http://www.w3.org/2000/svg">
 <line x1="92.0" y1="154.0" x2="46.0" y2="216.0" stroke="#1C1E21" stroke-width="1.3"/>
@@ -2202,7 +2202,7 @@ preorder + inorder and its postorder then matched the printed postorder</em>, wh
 <div class="cap">Fig 25. BST of deck p25 (root 25) — the "find the inorder, preorder, postorder" exercise.</div>
 </div>
 <table><tr><th>Tree</th><th>Preorder</th><th>Inorder</th><th>Postorder</th><th>Level-order</th></tr><tr><td>Fig 25 (25-rooted BST)</td><td><span class="mono">25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90</span></td><td><span class="mono">4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90</span></td><td><span class="mono">4, 12, 10, 18, 24, 22, 15, 31, 44, 35, 66, 90, 70, 50, 25</span></td><td><span class="mono">25, 15, 50, 10, 22, 35, 70, 4, 12, 18, 24, 31, 44, 66, 90</span></td></tr></table>
-<p>These agree with the deck (p26): inorder <span class="mono">4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90</span> is sorted because the tree is a BST.</p>
+<p>These agree with the deck (p26): inorder <span class="mono">4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90</span> is sorted because the tree is a BST.<cite class="src" data-src="D10"></cite></p>
 <div class="svg-wrap">
 <svg viewBox="0 0 612 324" xmlns="http://www.w3.org/2000/svg">
 <line x1="196.0" y1="154.0" x2="146.0" y2="216.0" stroke="#1C1E21" stroke-width="1.3"/>
@@ -2328,7 +2328,7 @@ preorder + inorder and its postorder then matched the printed postorder</em>, wh
 </div>
 <table><tr><th>Tree</th><th>Preorder</th><th>Inorder</th><th>Postorder</th><th>Level-order</th></tr><tr><td>Fig 28 (1-rooted)</td><td><span class="mono">1, 3, 5, 4, 6, 7, 8, 9, 10, 11, 12</span></td><td><span class="mono">4, 5, 6, 3, 1, 8, 7, 9, 11, 10, 12</span></td><td><span class="mono">4, 6, 5, 3, 8, 11, 12, 10, 9, 7, 1</span></td><td><span class="mono">1, 3, 7, 5, 8, 9, 4, 6, 10, 11, 12</span></td></tr></table>
 <p>The deck's two small postorder walk-throughs (p21–23) agree too: tree 40(25(10, 32), 78) has postorder <span class="mono">10, 32, 25, 78, 40</span>; tree 40(20(10, 30), 60(50, 70)) has
-preorder <span class="mono">40, 20, 10, 30, 60, 50, 70</span>, inorder <span class="mono">10, 20, 30, 40, 50, 60, 70</span> and postorder <span class="mono">10, 30, 20, 50, 70, 60, 40</span>.</p>
+preorder <span class="mono">40, 20, 10, 30, 60, 50, 70</span>, inorder <span class="mono">10, 20, 30, 40, 50, 60, 70</span> and postorder <span class="mono">10, 30, 20, 50, 70, 60, 40</span>.<cite class="src" data-src="D10"></cite></p>
 
 
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -2581,7 +2581,7 @@ completion to restore every pointer).</p>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part A Q1.2</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part A Q1.2<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">Assume only preorder traversal of a BST is given, and you are asked to reconstruct the tree. Is it possible to build the BST? Justify.</div>
     <div class="ans-label">Answer — decision rule</div>
     <p><strong>Yes, uniquely — for a BST specifically, unlike an arbitrary binary tree.</strong> A general
@@ -2661,7 +2661,7 @@ completion to restore every pointer).</p>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-II · 2 Dec 2024 · Q3a</span><span class="marks">6 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-II · 2 Dec 2024 · Q3a<cite class="src" data-src="Q2"></cite></span><span class="marks">6 marks</span></div>
     <div class="qtext">Construct the binary tree from the following data: Postorder: A C E D B H I G F. Inorder: A B C D E F G H I.</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg">
@@ -2962,7 +2962,7 @@ BST given → <code>lcaBST</code>, O(h), iterative. Not a BST, no parent pointer
   (result 31, matching 3+((5+9)×2) computed directly).</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q1.a</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q1.a<cite class="src" data-src="Q2"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">An expression tree is already constructed but you need to obtain prefix, infix and postfix expressions. Write the suitable functions.</div>
     <div class="ans-label">Solution</div>
     <p>Exactly the three traversal functions from §3.1, applied to a node holding a <code>char</code>
@@ -2974,7 +2974,7 @@ BST given → <code>lcaBST</code>, O(h), iterative. Not a BST, no parent pointer
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE Quiz-II · 2 Dec 2024 · Q1.2</span><span class="marks">1 mark</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE Quiz-II · 2 Dec 2024 · Q1.2<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
     <div class="qtext">Write the inorder and preorder of the following expression tree.</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 460 240" xmlns="http://www.w3.org/2000/svg">
@@ -3012,7 +3012,7 @@ BST given → <code>lcaBST</code>, O(h), iterative. Not a BST, no parent pointer
 
 <h2>More expression trees and their three traversals (from the Unit 4 deck)</h2>
 <p>The deck's complete example (p25–27) builds the tree of <strong>(A + B) × (C − D)</strong>: the root is the lowest-priority operator applied last
-(×), its left subtree is (A + B) and its right subtree is (C − D). Its "Your turn" exercise (p28) asks for <strong>(P − Q) + (R × S)</strong>.</p>
+(×), its left subtree is (A + B) and its right subtree is (C − D). Its "Your turn" exercise (p28) asks for <strong>(P − Q) + (R × S)</strong>.<cite class="src" data-src="D9"></cite></p>
 <div class="svg-wrap">
 <svg viewBox="0 0 770 216" xmlns="http://www.w3.org/2000/svg">
 <text x="182.0" y="22.0" text-anchor="middle" font-family="Inter" font-size="13" font-weight="700" fill="#A66A0D">(A + B) * (C - D)</text><line x1="82.0" y1="110.0" x2="36.0" y2="170.0" stroke="#1C1E21" stroke-width="1.3"/>
@@ -3058,14 +3058,14 @@ BST given → <code>lcaBST</code>, O(h), iterative. Not a BST, no parent pointer
 <div class="cap">Fig 37. Expression trees for (A + B) * (C − D) (left) and (P − Q) + (R * S) (right). Amber = operators (internal nodes), white = operands (leaves).</div>
 </div>
 <div class="qbox">
-    <div class="qmeta"><span class="qsrc">UNIT4-Trees ppt.pdf · p25–28</span><span class="marks">4 marks</span></div>
+    <div class="qmeta"><span class="qsrc">UNIT4-Trees ppt.pdf · p25–28<cite class="src" data-src="D9" data-p="25-28"></cite></span><span class="marks">4 marks</span></div>
     <div class="qtext">Draw the expression trees for (A+B)×(C−D) and (P−Q)+(R×S) and give the infix, prefix and postfix forms from the three traversals.</div>
     
     <div class="ans-label">Solution (traversals generated by code)</div>
     <table><tr><th>Expression</th><th>Inorder → infix</th><th>Preorder → prefix</th><th>Postorder → postfix</th></tr><tr><td>(A+B)×(C−D)</td><td><span class="mono">A, +, B, *, C, -, D</span></td><td><span class="mono">*, +, A, B, -, C, D</span></td><td><span class="mono">A, B, +, C, D, -, *</span></td></tr><tr><td>(P−Q)+(R×S)</td><td><span class="mono">P, -, Q, +, R, *, S</span></td><td><span class="mono">+, -, P, Q, *, R, S</span></td><td><span class="mono">P, Q, -, R, S, *, +</span></td></tr></table>
     <p>The inorder walk prints operands and operators without brackets, so <strong>parentheses must be added to restore the tree's structure</strong>:
     A + B × C − D read literally would mean something different from (A + B) × (C − D). Prefix and postfix need no brackets. For the second exercise, the
-    <em>postorder</em> traversal gives the postfix expression P Q − R S × +, the answer to the deck's "challenge".</p>
+    <em>postorder</em> traversal gives the postfix expression P Q − R S × +, the answer to the deck's "challenge".<cite class="src" data-src="D9"></cite></p>
   </div>
 
 
@@ -3128,7 +3128,7 @@ BST given → <code>lcaBST</code>, O(h), iterative. Not a BST, no parent pointer
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-II · 2 Dec 2024 · Q3b</span><span class="marks">4 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-II · 2 Dec 2024 · Q3b<cite class="src" data-src="Q2"></cite></span><span class="marks">4 marks</span></div>
     <div class="qtext">Construct the expression tree for the postfix expression: 2 3 * 2 1 − / 5 4 1 − * +</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
@@ -3173,7 +3173,7 @@ BST given → <code>lcaBST</code>, O(h), iterative. Not a BST, no parent pointer
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-II · 3 Jan 2021 · Q1.4</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-II · 3 Jan 2021 · Q1.4<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">Construct an expression tree for the following expression: (a+b*c)+(d*r+f)*(g-h)</div>
     <div class="callout key">
       <span class="label">A different construction method — precedence, not a postfix scan</span>
@@ -3667,7 +3667,7 @@ Node* leftMost(Node* n) {
   overhead. This is the practical payoff threading is built for.</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q1.7</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q1.7<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">A left-in threaded binary search tree is constructed for the following list of numbers: {40, 35, 70, 30, 39, 20, 34, 10, 5, 11}. Write the inorder traversal for the constructed tree.</div>
     <div class="ans-label">Solution</div>
     <p>Threading changes <em>how</em> the traversal is computed, not the order it produces — a left-in
@@ -3678,7 +3678,7 @@ Node* leftMost(Node* n) {
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q4.b</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q4.b<cite class="src" data-src="Q1"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Construct a double threaded binary search tree for the following keys: 10, 5, 14, 4, 7, 12, 15, 6, 9, 8.</div>
     <div class="ans-label">Solution</div>
     <p>Build the BST by ordinary insertion (verified by simulation): root 10, left subtree 5 (left child
@@ -3691,7 +3691,7 @@ Node* leftMost(Node* n) {
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q4.a &amp; Q4.b</span><span class="marks">4 + 6 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q4.a &amp; Q4.b<cite class="src" data-src="Q2"></cite></span><span class="marks">4 + 6 marks</span></div>
     <div class="qtext">4.a — State the benefits of a threaded binary tree compared to a regular binary tree. Mention the types. 4.b — Construct the single-threaded (right-in) and double-threaded binary tree for the tree shown (root 50, left child 17 with children 12 and 23, right child 72 with children 54 and 76, where 54 has right child 67).</div>
     <div class="ans-label">4.a</div>
     <p>Benefits: see §6.1 (O(1) predecessor/successor access, stack-free traversal, better use of
@@ -3716,7 +3716,7 @@ Node* leftMost(Node* n) {
 <h2>Node and header node</h2>
 <p>A double-threaded node needs two extra tag bits so that "real child" and "thread" can be told apart. In the deck's convention
 <strong>lbit = 1 (rbit = 1) means the left (right) pointer is a real child; 0 means it is a thread.</strong> A new node starts with
-both bits 0 and both pointers NULL.</p>
+both bits 0 and both pointers NULL.<cite class="src" data-src="D11"></cite></p>
 <div class="formula-block code"><span class="c1">struct</span> node {
     <span class="c1">int</span> data;
     <span class="c1">struct</span> node *left, *right;
@@ -3725,7 +3725,7 @@ both bits 0 and both pointers NULL.</p>
 };</div>
 <p>The tree hangs from a <strong>header node</strong> (sentinel, data 999 in the deck): <code>head-&gt;left</code> points to the root (<code>lbit = 1</code>),
 <code>head-&gt;right</code> points to the header itself (<code>rbit = 1</code>), the <em>left thread of the first (leftmost) node</em> and the <em>right thread of the last (rightmost) node</em> both point to the header.
-Because of this, no pointer in the structure is ever NULL, and a traversal can detect its end by reaching <code>head</code> again.</p>
+Because of this, no pointer in the structure is ever NULL, and a traversal can detect its end by reaching <code>head</code> again.<cite class="src" data-src="D11"></cite></p>
 <div class="svg-wrap">
 <svg viewBox="0 0 760 388" xmlns="http://www.w3.org/2000/svg">
 <marker id="thL" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#12796F"/></marker><marker id="thR" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#93316B"/></marker><marker id="thH" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1C1E21"/></marker><rect x="204" y="71" width="68" height="30" rx="5" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.7"/><text x="238.0" y="90.0" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="#1C1E21">header</text><path d="M272.0,86.0 Q344.1,82.9 415.0,95.8" fill="none" stroke="#1C1E21" stroke-width="1.6"  marker-end="url(#thH)"/><line x1="274.0" y1="236.0" x2="346.0" y2="306.0" stroke="#1C1E21" stroke-width="1.3"/>
@@ -3834,7 +3834,7 @@ The versions in this guide have those fixed; the logic is otherwise the deck's. 
     } <span class="c1">while</span> (ptr != head);
 }</div>
 <div class="qbox">
-    <div class="qmeta"><span class="qsrc">THREADED binary tree.pdf · p9–13, p21–22 · trace</span><span class="marks">6 marks</span></div>
+    <div class="qmeta"><span class="qsrc">THREADED binary tree.pdf · p9–13, p21–22 · trace<cite class="src" data-src="D11" data-p="9-13"></cite></span><span class="marks">6 marks</span></div>
     <div class="qtext">For the tree built by inserting 65, 40, 72, 30, 50, 69, 80, 60, give the inorder and preorder output of the threaded traversals.</div>
     
     <div class="ans-label">Solution (the deck's code was ported and executed)</div>
@@ -4018,12 +4018,12 @@ inorder predecessor = maximum of the LEFT  subtree  (rightmost node)
   <h2>Threaded binary trees — RVCE CIE-III · 16 Mar 2022 · CIE-III · 07 Jan 2025 · SEE Jan/Feb 2025</h2>
   <table>
     <tr><th>Q#</th><th>Marks</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td>CIE-III 2022 · 1.7</td><td>2</td><td>Left-in-threaded BST for 40,35,70,30,39,20,34,10,5,11, inorder</td><td>→ <a href="#threaded-worked">6.2 Left / Right / Double Threading</a></td></tr>
-    <tr><td>CIE-III 2022 · 4.a</td><td>5</td><td>Iterative inorder for a right-in-threaded binary tree</td><td>→ <a href="#threaded-worked">6.2</a> / <a href="#threaded-impl">6.3</a></td></tr>
-    <tr><td>CIE-III 2022 · 4.b</td><td>5</td><td>Double-threaded BST for 10,5,14,4,7,12,15,6,9,8</td><td>→ <a href="#threaded-worked">6.2</a> <span class="pill">thread lists corrected</span></td></tr>
-    <tr><td>CIE-III 2025 · Part B 4.a</td><td>4</td><td>Benefits of threaded BT vs regular + types</td><td>→ <a href="#threaded-intro">6.1 Motivation &amp; Types</a></td></tr>
-    <tr><td>CIE-III 2025 · Part B 4.b</td><td>6</td><td>Construct single (right-in) and double threaded BT for a given tree</td><td>→ <a href="#threaded-worked">6.2</a> <span class="pill">thread lists corrected</span></td></tr>
-    <tr><td>SEE 2025 · Part B 7b / 8b</td><td>8</td><td>Implement Threaded Binary Tree (program)</td><td>→ <a href="#threaded-impl">6.3 Header Node, C Code &amp; Traversals</a></td></tr>
+    <tr><td>CIE-III 2022 · 1.7<cite class="src" data-src="Q1"></cite></td><td>2</td><td>Left-in-threaded BST for 40,35,70,30,39,20,34,10,5,11, inorder</td><td>→ <a href="#threaded-worked">6.2 Left / Right / Double Threading</a></td></tr>
+    <tr><td>CIE-III 2022 · 4.a<cite class="src" data-src="Q1"></cite></td><td>5</td><td>Iterative inorder for a right-in-threaded binary tree</td><td>→ <a href="#threaded-worked">6.2</a> / <a href="#threaded-impl">6.3</a></td></tr>
+    <tr><td>CIE-III 2022 · 4.b<cite class="src" data-src="Q1"></cite></td><td>5</td><td>Double-threaded BST for 10,5,14,4,7,12,15,6,9,8</td><td>→ <a href="#threaded-worked">6.2</a> <span class="pill">thread lists corrected</span></td></tr>
+    <tr><td>CIE-III 2025 · Part B 4.a<cite class="src" data-src="Q2"></cite></td><td>4</td><td>Benefits of threaded BT vs regular + types</td><td>→ <a href="#threaded-intro">6.1 Motivation &amp; Types</a></td></tr>
+    <tr><td>CIE-III 2025 · Part B 4.b<cite class="src" data-src="Q2"></cite></td><td>6</td><td>Construct single (right-in) and double threaded BT for a given tree</td><td>→ <a href="#threaded-worked">6.2</a> <span class="pill">thread lists corrected</span></td></tr>
+    <tr><td>SEE 2025 · Part B 7b / 8b<cite class="src" data-src="Q2"></cite></td><td>8</td><td>Implement Threaded Binary Tree (program)</td><td>→ <a href="#threaded-impl">6.3 Header Node, C Code &amp; Traversals</a></td></tr>
   </table>
 
   <h2>Syllabus topics with no past-paper question — practice questions</h2>

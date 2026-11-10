@@ -718,7 +718,7 @@ right_child(i) = 2*i + 1</div>
 
   <h2>Top-down construction, worked</h2>
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q5</span><span class="marks">10 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q5<cite class="src" data-src="Q1"></cite></span><span class="marks">10 marks</span></div>
     <div class="qtext">List the properties of a binary heap. For the given elements construct a min heap using top-down approach (show the steps clearly): 54, 26, 93, 17, 77, 31. For the above constructed min heap, perform the Extractmin operation once and write the tree after the deletion.</div>
     <div class="ans-label">Properties of a binary heap</div>
     <p>See the checklist in §1.2: shape property (complete binary tree), heap-order property, root
@@ -791,7 +791,7 @@ buildHeap(a[0..n-1]):
     siftDown(a, i, n)</div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q2.a &amp; Q2.b</span><span class="marks">5 + 5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q2.a &amp; Q2.b<cite class="src" data-src="Q2"></cite></span><span class="marks">5 + 5 marks</span></div>
     <div class="qtext">2.a — Define heap and mention the properties. Write the pseudocode for the bottom-up heap construction. 2.b — Construct the min-heap for the instance (35, 67, 12, 89, 102, 42, 5, 19, 10). How can you leverage heap for sorting?</div>
     <div class="ans-label">2.a — definition, properties, pseudocode</div>
     <p>Heap definition and properties: see §1.2. Pseudocode: as above, using a min-comparison
@@ -864,7 +864,7 @@ buildHeap(a[0..n-1]):
 }</div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE SEE Jan/Feb 2025 · Part B Q7a</span><span class="marks">10 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE SEE Jan/Feb 2025 · Part B Q7a<cite class="src" data-src="Q2"></cite></span><span class="marks">10 marks</span></div>
     <div class="qtext">Consider the Railway passengers database. Build a Program to sort passengers' IDs using Heap Sort.</div>
     <div class="ans-label">Worked trace — passenger IDs [502, 317, 819, 246, 458, 91, 673]</div>
     <table>
@@ -1311,7 +1311,7 @@ extract on empty returns 0</div>
   <p class="section-sub">Three constructions, three different question papers, every rotation case (LL, RR, LR, RL) covered between them.</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q3.b</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q3.b<cite class="src" data-src="Q1"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Construct AVL tree for keys: 11, 12, 13, 14, 15, 16, 17. Each step of the construction must be shown.</div>
     <div class="ans-label">Solution</div>
     <p>Inserting in ascending order into a plain BST would produce a fully right-skewed chain — the
@@ -1381,7 +1381,7 @@ extract on empty returns 0</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q3.b</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q3.b<cite class="src" data-src="Q2"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Mention the types of rotations in AVL tree. Apply it suitably while constructing the tree for the instance (15, 9, 12, 19, 8, 17, 4). Show tree in each step with balance factor attached to nodes.</div>
     <div class="ans-label">Solution (verified in code)</div>
     <table>
@@ -1957,7 +1957,7 @@ search 10 -&gt; 1, search 12 -&gt; 0</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q1.5 &amp; Q1.6</span><span class="marks">1 + 1 mark</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q1.5 &amp; Q1.6<cite class="src" data-src="Q1"></cite></span><span class="marks">1 + 1 mark</span></div>
     <div class="qtext">1.5 — B+ tree can contain a maximum of 7 pointers in a node. What is the minimum number of keys in leaves? 1.6 — What is the maximum number of keys that a B+ tree of order 3 and of height 3 have?</div>
     <div class="ans-label">1.5</div>
     <p>Max pointers per node = n = 7 → min keys in a leaf = ⌈(n−1)/2⌉ = ⌈6/2⌉ = <strong>3</strong>.</p>
@@ -1969,7 +1969,7 @@ search 10 -&gt; 1, search 12 -&gt; 0</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part A Q1.1</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part A Q1.1<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">Construct a B+ tree of order 3 for the numbers (7, 2, 9, 11, 15, 5, 37).</div>
     <div class="ans-label">Solution</div>
     <p>Order 3 means each leaf holds at most 2 keys and each internal node has at most 3 children.
@@ -2086,7 +2086,7 @@ search 10 -&gt; 1, search 12 -&gt; 0</div>
   </ul>
 
   <h2>Comparing the tree structures of this unit</h2>
-  <p>Answers to &ldquo;compare BST, skew BST, AVL tree, splay tree&rdquo; type questions (RVCE CIE-III 2022, Q2.a):</p>
+  <p>Answers to &ldquo;compare BST, skew BST, AVL tree, splay tree&rdquo; type questions (RVCE CIE-III 2022, Q2.a):<cite class="src" data-src="Q1"></cite></p>
 <table>
 <tr><th>Tree</th><th>Balance rule</th><th>Worst-case search</th><th>Good for</th><th>Weakness</th></tr>
 <tr><td>BST</td><td>none</td><td>O(n)</td><td>simple ordered data; random insertion order</td><td>sorted input degenerates it</td></tr>
@@ -2315,7 +2315,7 @@ search 10 -&gt; 1, search 12 -&gt; 0</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part A Q1.3</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part A Q1.3<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">Construct a Trie for: [out, one, me, my, men, mud, mug, wine, wife, wifi]</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
@@ -2371,7 +2371,7 @@ search 10 -&gt; 1, search 12 -&gt; 0</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q2.b</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q2.b<cite class="src" data-src="Q1"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Construct Trie for keys: {betty, bought, some, butter, but, the, was, bitter}</div>
     <div class="ans-label">Solution (built and verified in code)</div>
     <table>
@@ -2615,7 +2615,7 @@ all words, lexicographic order:
   </table>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q3.a</span><span class="marks">5 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q3.a<cite class="src" data-src="Q2"></cite></span><span class="marks">5 marks</span></div>
     <div class="qtext">Define the following w.r.t graphs and give suitable examples: (i) Euler graph (ii) Complete graph (iii) Degree of vertex (iv) Disconnected graph.</div>
     <div class="ans-label">Solution</div>
     <div class="svg-wrap">
@@ -2771,7 +2771,7 @@ all words, lexicographic order:
   a graph is undirected when reconstructing one from raw data, as in both worked examples below.</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part A Q1.5</span><span class="marks">1 mark</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part A Q1.5<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
     <div class="qtext">Construct the graph from the following matrix.</div>
     <div class="formula-block">    1  2  3  4
 1 [ 0  0  0  1 ]
@@ -2797,7 +2797,7 @@ all words, lexicographic order:
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part A Q1.6</span><span class="marks">1 mark</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part A Q1.6<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
     <div class="qtext">Construct the graph from the following adjacency list.</div>
     <div class="formula-block">1 → 2, 3, 5
 2 → 1
@@ -3256,7 +3256,7 @@ count = 3</div>
   too close to a power of 2, is the usual recommendation).</p>
 
   <div class="qbox">
-    <div class="qtext">Worked example (from the source deck) — division method with chaining.</div>
+    <div class="qtext">Worked example (from the source deck) — division method with chaining.<cite class="src" data-src="D15"></cite></div>
     <div class="qtext" style="font-weight:400;font-size:14px">h(x) = x mod 8. Insert 36, 18, 72, 43, 6, 10, 5, 15 into an 8-slot table, resolving collisions by chaining.</div>
     <table>
       <tr><th>Index</th><th>Chain</th></tr>
@@ -3346,7 +3346,7 @@ count = 3</div>
   growing, since any key hashing anywhere inside the run has to probe through the whole thing.</p>
 
   <div class="qbox">
-    <div class="qtext">Worked example (source deck) — insert 50, 700, 76 (no collisions), then 85, 92, 73, 101 (each colliding) into a size-7 table.</div>
+    <div class="qtext">Worked example (source deck) — insert 50, 700, 76 (no collisions), then 85, 92, 73, 101 (each colliding) into a size-7 table.<cite class="src" data-src="D15"></cite></div>
     <table>
       <tr><th>Key</th><th>h(key)</th><th>Final index</th></tr>
       <tr><td>700</td><td>0</td><td>0</td></tr>
@@ -3368,7 +3368,7 @@ count = 3</div>
   clustering</strong> (keys that collide at the same slot follow the exact same probe sequence).</p>
 
   <div class="qbox">
-    <div class="qtext">Worked example (source deck) — h(x) = x mod 10, insert 89, 18, 49, 58, 9 into a size-10 table.</div>
+    <div class="qtext">Worked example (source deck) — h(x) = x mod 10, insert 89, 18, 49, 58, 9 into a size-10 table.<cite class="src" data-src="D15"></cite></div>
     <table>
       <tr><th>Key</th><th>h(x)</th><th>Probing</th><th>Final index</th></tr>
       <tr><td>89</td><td>9</td><td>direct</td><td>9</td></tr>
@@ -3519,7 +3519,7 @@ search 14 -&gt; slot 9, search 25 -&gt; -1</div>
   <p class="section-sub">Every hash-table construction question from both papers, each independently verified.</p>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q1.8</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q1.8<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">The keys 10, 40, 20, 30, 100, 200 are inserted into the empty hash table of length 10 with hash function H(i) = i² mod 10. What is the maximum probe value for the resultant hash table?</div>
     <div class="ans-label">Solution</div>
     <p>H(10)=0, H(40)=0, H(20)=0, H(30)=0, H(100)=0, H(200)=0 — <strong>every single key hashes to index
@@ -3539,7 +3539,7 @@ search 14 -&gt; slot 9, search 25 -&gt; -1</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q6</span><span class="marks">10 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q6<cite class="src" data-src="Q1"></cite></span><span class="marks">10 marks</span></div>
     <div class="qtext">Compare linear probing with separate chaining collision resolution technique. Construct the hash table for the keys: 54, 26, 93, 17, 77, 31, that are inserted one after the other into the empty hash table of length 11 using linear probing with hash function (h(key) = key² % 11).</div>
     <div class="ans-label">Comparison</div>
     <table>
@@ -3583,7 +3583,7 @@ search 14 -&gt; slot 9, search 25 -&gt; -1</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part A Q1.4</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part A Q1.4<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">The hash function h(x) = (5x² − 8) mod 12 is used to store the keys [10, 11, 15]. Calculate the index for each key.</div>
     <div class="ans-label">Solution (verified by direct computation)</div>
     <table>
@@ -3595,7 +3595,7 @@ search 14 -&gt; slot 9, search 25 -&gt; -1</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q5.b</span><span class="marks">6 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q5.b<cite class="src" data-src="Q2"></cite></span><span class="marks">6 marks</span></div>
     <div class="qtext">Mention the properties of hash function. Given two hash functions, h1 and h2 defined by h1(x)=(3x+11) mod 17 and h2(x)=5x mod 29, identify which is better w.r.t collision resistance. Being a cyber-forensic expert, the original hard drive and image are handed to you. How do you take a decision and generate the report?</div>
     <div class="ans-label">Properties of a good hash function</div>
     <p>Deterministic (same key always gives the same index); fast to compute; distributes keys uniformly
@@ -3620,7 +3620,7 @@ search 14 -&gt; slot 9, search 25 -&gt; -1</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE SEE Jan/Feb 2025 · Part A Q1.7</span><span class="marks">2 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE SEE Jan/Feb 2025 · Part A Q1.7<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
     <div class="qtext">The keys 43, 135, 72, 23, 99, 19, 82 are inserted into the empty hash table of length 10 using linear probing with hash function h(key) = key mod 10. What is the location (index) of key 82?</div>
     <div class="ans-label">Solution (verified by simulation)</div>
     <table>
@@ -3637,7 +3637,7 @@ search 14 -&gt; slot 9, search 25 -&gt; -1</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE SEE Jan/Feb 2025 · Part B Q9a</span><span class="marks">8 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE SEE Jan/Feb 2025 · Part B Q9a<cite class="src" data-src="Q2"></cite></span><span class="marks">8 marks</span></div>
     <div class="qtext">Construct the hash table for the keys: 58, 21, 93, 17, 88, 30 that are inserted one after the other into the empty hash table of length 7 using linear probing with hash function (h(key) = key² % 7).</div>
     <div class="ans-label">Solution (verified by simulation)</div>
     <table>
@@ -3653,7 +3653,7 @@ search 14 -&gt; slot 9, search 25 -&gt; -1</div>
   </div>
 
   <div class="qbox">
-    <div class="qmeta"><span class="qsrc">RVCE SEE Jan/Feb 2025 · Part B Q10a</span><span class="marks">8 marks</span></div>
+    <div class="qmeta"><span class="qsrc">RVCE SEE Jan/Feb 2025 · Part B Q10a<cite class="src" data-src="Q2"></cite></span><span class="marks">8 marks</span></div>
     <div class="qtext">The keys 10, 6, 12, 4, 25, 6, 18, 20, 8 are inserted into the empty hash table of length 10 using linear probing with hash function H(i) = i mod 10. What is the resultant hash table, and find the maximum probe value?</div>
     <div class="ans-label">Solution (verified by simulation)</div>
     <p>Note key 6 appears twice in the list — both instances are inserted (a hash table can store
@@ -3979,7 +3979,7 @@ Load factor:       alpha = n/m</div>
     <tr><td>Part B 10b</td><td>8</td><td>Explain linear probing and double hashing with examples</td><td><a href="#closed-hashing">4.4</a> / <a href="#double-hash">4.5</a> / <a href="#hash-numericals">4.6</a></td></tr>
   </table>
 
-  <p style="font-size:13px;color:var(--ink-soft)">(Part A 1.2, Part B 1.a / 1.b of the 2025 CIE-III are general tree questions answered in the binary-tree (BST) guide.)</p>
+  <p style="font-size:13px;color:var(--ink-soft)">(Part A 1.2, Part B 1.a / 1.b of the 2025 CIE-III are general tree questions answered in the binary-tree (BST) guide.)<cite class="src" data-src="Q2"></cite></p>
 
   <h2>Questions the new syllabus invites (no past paper yet)</h2>
   <table>
