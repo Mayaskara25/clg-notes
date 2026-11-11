@@ -5,6 +5,13 @@
 .qtext .qcode{font-family:'JetBrains Mono',monospace;white-space:pre-wrap;background:var(--paper);border:1px solid var(--line-soft);border-radius:8px;padding:8px 12px;margin:6px 0;font-size:.92em;font-weight:500;overflow-wrap:anywhere;min-width:0;font-variant-ligatures:none}
 .qbox .qtext .qparts{margin:8px 0;padding-left:24px;color:inherit}
 .qbox .qtext .qparts li{margin:6px 0}
+.ans-toggle{display:inline-flex;align-items:center;margin:4px 0 10px;padding:4px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink-soft);font:600 12px/1.6 'Inter',system-ui,sans-serif;cursor:pointer}
+.ans-toggle:hover,.ans-toggle[aria-expanded="true"]{border-color:var(--blue);color:var(--blue)}
+.ans-toggle:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+/* until-found remains searchable without reserving space for the full answer. */
+.ans[hidden="until-found"]{content-visibility:hidden}
+.ans{scroll-margin-top:24px}
+@media print{.ans[hidden]{display:block!important;content-visibility:visible!important}.ans-toggle{display:none!important}}
 .src-chip{display:inline-block;margin:0 3px;padding:1px 6px;border:1px solid var(--line);border-radius:999px;color:var(--ink-soft);font:500 11px/1.65 'JetBrains Mono',monospace;white-space:nowrap;text-decoration:none;vertical-align:baseline}
 .src-chip:hover{border-color:var(--blue);color:var(--blue)}
 .src-chip:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
@@ -17,7 +24,7 @@
 :root[data-theme="dark"] .sitebar .primary,:root[data-theme="dark"] .sd-form button.go{color:#14161A}
 .sitebar .stamp{font:500 11px 'JetBrains Mono',monospace;color:var(--ink-faint);background:var(--surface);border:1px solid var(--line-soft);border-radius:999px;padding:5px 10px}
 .sitebar a:focus-visible,.sitebar button:focus-visible,.sd-form :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-@media(max-width:640px){.sitebar .stamp,.sitebar .lbl-long{display:none}.sitebar a,.sitebar button{padding:9px 12px}}
+@media(max-width:640px){.sitebar{right:12px;gap:6px;flex-wrap:nowrap;max-width:calc(100vw - 24px)}.sitebar .stamp,.sitebar .lbl-long{display:none}.sitebar a,.sitebar button{padding:9px;white-space:nowrap}}
 @media print{.sitebar,.sd{display:none!important}}
 /* every guide's own light/dark toggle sits top-right so it never covers the toolbar */
 .theme-toggle{position:fixed!important;top:14px!important;right:16px!important;bottom:auto!important;left:auto!important;z-index:61!important}
@@ -38,11 +45,13 @@
 .sd-form button.go{background:var(--blue);border-color:var(--blue);color:#FFFFFF}
 .sd-form .err{color:var(--plum);font-size:13px;margin:-6px 0 0;display:none}
 </style>
+<noscript><style>.ans[hidden]{display:block;content-visibility:visible}.ans-toggle,#answersToggle{display:none}</style></noscript>
 <div class="sitebar" role="navigation" aria-label="Site">
   <span class="stamp" title="Version of this page">Updated {{UPDATED_HUMAN}} · {{VERSION}}</span>
   <a href="../" title="All {{CODE}} units">⌂ <span class="lbl-long">{{CODE}} units</span></a>
   <a href="index.html" download="{{DOWNLOAD_NAME}}" title="Save this unit for offline use">⬇ <span class="lbl-long">Download</span></a>
   <a href="{{SITE_URL}}/{{SUBJECT_SLUG}}/sources/" title="Sources used by these notes" aria-label="Sources">📄 <span class="lbl-long">Sources</span></a>
+  <button type="button" id="answersToggle" aria-pressed="false" title="Show all answers">👁 <span class="lbl-long">Answers: </span><span id="answersStatus">hidden</span></button>
   <button type="button" class="primary" id="sdOpen" title="Report an error or suggest a change">✎ <span>Suggest<span class="lbl-long"> / report</span></span></button>
 </div>
 <dialog class="sd" id="sd" aria-labelledby="sdTitle">
@@ -79,6 +88,70 @@
     </div>
   </form>
 </dialog>
+<script>
+(function(){
+  var answers=[].slice.call(document.querySelectorAll('.qbox > .ans'));
+  var allButton=document.getElementById('answersToggle'),status=document.getElementById('answersStatus');
+  function buttonFor(answer){return answer.previousElementSibling;}
+  function setAnswer(answer,shown){
+    if(shown)answer.removeAttribute('hidden');else answer.setAttribute('hidden','until-found');
+    var button=buttonFor(answer);
+    button.setAttribute('aria-expanded',String(shown));
+    button.textContent=shown?'Hide answer ▴':'Show answer ▾';
+  }
+  function updateAll(){
+    var shown=answers.filter(function(a){return !a.hasAttribute('hidden')}).length;
+    var all=answers.length>0&&shown===answers.length;
+    status.textContent=all?'shown':shown?'mixed':'hidden';
+    allButton.setAttribute('aria-pressed',String(all));
+    allButton.setAttribute('aria-label',all?'Hide all answers':'Show all answers');
+    allButton.title=all?'Hide all answers':'Show all answers';
+    allButton.disabled=answers.length===0;
+  }
+  var preferred='hidden';
+  try{if(localStorage.getItem('clgAnswers')==='shown')preferred='shown'}catch(e){}
+  answers.forEach(function(a){setAnswer(a,preferred==='shown')});
+  updateAll();
+  allButton.addEventListener('click',function(){
+    var show=answers.some(function(a){return a.hasAttribute('hidden')});
+    answers.forEach(function(a){setAnswer(a,show)});
+    try{localStorage.setItem('clgAnswers',show?'shown':'hidden')}catch(e){}
+    updateAll();
+  });
+  // Keep the legacy section controls independent; opening an answer never collapses its panel.
+  function revealAncestors(target){
+    var parent=target;
+    while(parent){
+      if(parent.classList&&parent.classList.contains('ans'))setAnswer(parent,true);
+      parent=parent.parentElement;
+    }
+    updateAll();
+  }
+  function hashTarget(hash){
+    try{return document.getElementById(decodeURIComponent(hash.slice(1)))}catch(e){return null}
+  }
+  function revealHash(){var target=hashTarget(location.hash);if(target)revealAncestors(target);}
+  document.addEventListener('click',function(event){
+    var button=event.target.closest&&event.target.closest('.ans-toggle');
+    if(button){
+      var answer=document.getElementById(button.getAttribute('aria-controls'));
+      if(answer){setAnswer(answer,answer.hasAttribute('hidden'));updateAll()}
+      return;
+    }
+    var link=event.target.closest&&event.target.closest('a[href]');
+    if(!link)return;
+    var url;
+    try{url=new URL(link.href,location.href)}catch(e){return}
+    if(url.origin===location.origin&&url.pathname===location.pathname&&url.search===location.search&&url.hash){
+      var target=hashTarget(url.hash);
+      if(target){revealAncestors(target);requestAnimationFrame(function(){target.scrollIntoView()})}
+    }
+  });
+  document.addEventListener('beforematch',function(event){revealAncestors(event.target)},true);
+  window.addEventListener('hashchange',revealHash);
+  revealHash();
+})();
+</script>
 <script>
 (function(){
   var REPO="{{REPO}}", CODE="{{CODE_JS}}", UNIT="{{UNIT_N_JS}}", UNIT_TITLE="{{UNIT_TITLE_JS}}", VERSION="{{VERSION}}", UPDATED="{{UPDATED}}";

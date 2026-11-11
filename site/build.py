@@ -162,6 +162,103 @@ def unit_slug(n):
     return "unit-" + re.sub(r"[^a-z0-9]+", "-", str(n).lower()).strip("-")
 
 
+# ---------- question/answer boundaries (preserve the original source slices) ----------
+class QuestionElement:
+    def __init__(self, tag, attrs, start, inner):
+        self.tag, self.attrs = tag, dict(attrs)
+        self.start, self.inner = start, inner
+        self.close = self.end = inner
+        self.children = []
+
+    def has_class(self, name):
+        return name in (self.attrs.get("class") or "").split()
+
+
+class QuestionScanner(HTMLParser):
+    """Balanced elements and direct children; offsets avoid reserializing guide HTML."""
+    VOID = set("area base br col embed hr img input link meta param source track wbr".split())
+
+    def __init__(self, source):
+        super().__init__(convert_charrefs=False)
+        self.lines = [0] + [m.end() for m in re.finditer("\n", source)]
+        self.stack = [QuestionElement("document", {}, 0, 0)]
+        self.boxes, self.ids = [], set()
+        self.feed(source)
+        self.close()
+        if len(self.stack) != 1:
+            raise ValueError("unclosed element in guide")
+
+    def source_position(self):
+        line, column = self.getpos()
+        return self.lines[line - 1] + column
+
+    def handle_starttag(self, tag, attrs):
+        start = self.source_position()
+        node = QuestionElement(tag, attrs, start, start + len(self.get_starttag_text()))
+        self.stack[-1].children.append(node)
+        if node.attrs.get("id"):
+            self.ids.add(node.attrs["id"])
+        if node.has_class("qbox"):
+            self.boxes.append(node)
+        if tag not in self.VOID:
+            self.stack.append(node)
+
+    def handle_startendtag(self, tag, attrs):
+        self.handle_starttag(tag, attrs)
+        if tag not in self.VOID:
+            self.stack.pop()
+
+    def handle_endtag(self, tag):
+        if tag in self.VOID:
+            return
+        if self.stack[-1].tag != tag:
+            raise ValueError(f"unbalanced </{tag}> at {self.getpos()}")
+        node = self.stack.pop()
+        node.close = self.source_position()
+        node.end = node.close + len(tag) + 3
+
+
+def wrap_answers(content, unit):
+    """Keep question/givens visible, wrapping the remaining children in one answer."""
+    scanner = QuestionScanner(content)
+    edits, wrapped, skipped = [], 0, 0
+    for number, box in enumerate(scanner.boxes, 1):
+        if any(x.has_class("ans") for x in box.children):
+            continue  # A downloaded/already transformed guide is safe to process again.
+        questions = [i for i, x in enumerate(box.children) if x.has_class("qtext")]
+        if not questions:
+            raise ValueError("qbox without a direct qtext child")
+        last = questions[0]
+        while last + 1 < len(box.children) and box.children[last + 1].has_class("q-given"):
+            last += 1
+        cutoff = box.children[last].end
+        answer = content[cutoff:box.close]
+        if not re.sub(r"<!--.*?-->|\s+", "", answer, flags=re.S):
+            skipped += 1
+            continue
+        qid = box.attrs.get("id")
+        if not qid:
+            base = f"q-{unit_slug(unit)[5:]}-{number}"
+            qid, suffix = base, 2
+            while qid in scanner.ids or qid + "-ans" in scanner.ids:
+                qid, suffix = f"{base}-{suffix}", suffix + 1
+            scanner.ids.add(qid)
+            opening = content[box.start:box.inner]
+            edits.append((box.start, box.inner, opening[:-1] + f' id="{qid}">'))
+        aid = qid + "-ans"
+        if aid in scanner.ids:
+            raise ValueError(f"answer id already exists: {aid}")
+        scanner.ids.add(aid)
+        button = (f'\n<button type="button" class="ans-toggle" aria-expanded="false" '
+                  f'aria-controls="{e(aid)}">Show answer ▾</button>\n')
+        edits.append((cutoff, box.close, button + f'<div class="ans" id="{e(aid)}" hidden="until-found">'
+                      + answer + '</div>\n'))
+        wrapped += 1
+    for start, end, replacement in sorted(edits, reverse=True):
+        content = content[:start] + replacement + content[end:]
+    return content, wrapped, skipped
+
+
 # ---------- loading ----------
 REQUIRED_SUBJECT = ["code", "title", "course", "accent", "units", "changelog"]
 REQUIRED_UNIT = ["n", "source", "title", "topics", "updated"]
@@ -421,6 +518,7 @@ def main():
     os.makedirs(OUT)
 
     search, subject_cards, all_log, built = [], [], [], {}
+    answer_count, answer_skipped = 0, 0
     for s in subjects:
         code, slug = s["code"], s["slug"]
         cards, labs = [], []
@@ -460,7 +558,15 @@ def main():
                 "SITE_URL": cfg["url"], "PAGE_URL_JS": js_str(f'{cfg["url"]}/{slug}/{u["slug"]}/'),
                 "SUBJECT_SLUG": slug,
             }, name + " toolbar")
-            page = c
+            # Sections/search above are extracted before answer controls are introduced.
+            try:
+                page, wrapped, skipped = wrap_answers(c, n)
+                answer_count += wrapped
+                answer_skipped += skipped
+            except ValueError as ex:
+                err(f"{name}: answer transform: {ex}")
+                page = c
+            validate_unit(name + " with answer controls", page)
             if slug in {"os", "dsa"}:
                 page = highlight_code_blocks(page)
                 page = page.replace("</head>", "<style>\n" + code_style + "</style>\n</head>", 1)
@@ -571,6 +677,7 @@ def main():
         sys.exit(1)
     summary = ", ".join(f"{s['code']} {len(s['units'])}" for s in subjects)
     print(f"OK: {len(subjects)} subjects ({summary} units), {len(search)} searchable sections, "
+          f"{answer_count} answer toggles, {answer_skipped} empty qboxes skipped, "
           f"{size/1024:.0f} KB total, version {ver}, latest update {latest}")
 
 

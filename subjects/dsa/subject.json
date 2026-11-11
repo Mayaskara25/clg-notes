@@ -15,7 +15,7 @@
       "topics": "ADT, data types, static vs dynamic memory, singly / doubly / circular lists, polynomials, sparse matrices, Josephus, loop detection",
       "lab": "syllabus-map",
       "accent": "#1D4E89",
-      "updated": "2026-11-10"
+      "updated": "2026-11-11"
     },
     {
       "n": 2,
@@ -24,7 +24,7 @@
       "topics": "Stack ADT, array & linked stacks, infix / postfix / prefix conversion and evaluation, parenthesis balancing, recursion, Tower of Hanoi",
       "lab": "syllabus-map",
       "accent": "#4C3F91",
-      "updated": "2026-11-10"
+      "updated": "2026-11-11"
     },
     {
       "n": 3,
@@ -33,7 +33,7 @@
       "topics": "Simple, circular, deque and priority queues, array & linked implementations, multiple queues, scheduling, ring buffers, Josephus, BFS",
       "lab": "sec-4-1",
       "accent": "#12796F",
-      "updated": "2026-11-10"
+      "updated": "2026-11-11"
     },
     {
       "n": 4,
@@ -42,7 +42,7 @@
       "topics": "N-ary trees & forests, binary trees, BST operations, traversals, Morris traversal, LCA, expression trees, threaded binary trees",
       "lab": "lab-programs",
       "accent": "#93316B",
-      "updated": "2026-11-10"
+      "updated": "2026-11-11"
     },
     {
       "n": 5,
@@ -51,10 +51,21 @@
       "topics": "Binary heap & heap sort, AVL, B / B+ trees, splay trees, tries, graph representation, BFS / DFS, open & closed hashing",
       "lab": "lab-index",
       "accent": "#A66A0D",
-      "updated": "2026-11-10"
+      "updated": "2026-11-11"
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-11",
+      "units": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "text": "Questions are easier to read, and answers are now hidden until you press Show answer (or use the Answers switch)."
+    },
     {
       "date": "2026-11-10",
       "units": [
