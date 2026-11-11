@@ -5,11 +5,21 @@
 .qtext .qcode{font-family:'JetBrains Mono',monospace;white-space:pre-wrap;background:var(--paper);border:1px solid var(--line-soft);border-radius:8px;padding:8px 12px;margin:6px 0;font-size:.92em;font-weight:500;overflow-wrap:anywhere;min-width:0;font-variant-ligatures:none}
 .qbox .qtext .qparts{margin:8px 0;padding-left:24px;color:inherit}
 .qbox .qtext .qparts li{margin:6px 0}
+@media screen and (max-width:640px){
+  .section table{display:block;max-width:100%;overflow-x:auto}
+  .grid2>*{min-width:0}
+  .section-head{flex-wrap:wrap}
+  .section-head h1{min-width:0;overflow-wrap:anywhere}
+  .qbox .qmeta{flex-wrap:wrap;gap:6px}
+  .section p,.section li{overflow-wrap:anywhere}
+  .section .eq{white-space:normal;max-width:100%;overflow-wrap:anywhere}
+}
 .ans-toggle{display:inline-flex;align-items:center;margin:4px 0 10px;padding:4px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink-soft);font:600 12px/1.6 'Inter',system-ui,sans-serif;cursor:pointer}
 .ans-toggle:hover,.ans-toggle[aria-expanded="true"]{border-color:var(--blue);color:var(--blue)}
 .ans-toggle:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-/* until-found remains searchable without reserving space for the full answer. */
-.ans[hidden="until-found"]{content-visibility:hidden}
+/* OS guides force [hidden] to display:none!important for legacy panels. Answers
+   need a layout box for native find; content-visibility keeps their text hidden. */
+.ans[hidden="until-found"]{display:block!important;content-visibility:hidden}
 .ans{scroll-margin-top:24px}
 @media print{.ans[hidden]{display:block!important;content-visibility:visible!important}.ans-toggle{display:none!important}}
 .src-chip{display:inline-block;margin:0 3px;padding:1px 6px;border:1px solid var(--line);border-radius:999px;color:var(--ink-soft);font:500 11px/1.65 'JetBrains Mono',monospace;white-space:nowrap;text-decoration:none;vertical-align:baseline}
