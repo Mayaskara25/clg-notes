@@ -1233,7 +1233,14 @@ The syllabus lists &ldquo;combining stack and queue operations for complex probl
 <table><tr><th>String</th><th>Palindrome?</th></tr><tr><td><code>MALAYALAM</code></td><td>yes</td></tr><tr><td><code>LEVEL</code></td><td>yes</td></tr><tr><td><code>HELLO</code></td><td>no</td></tr><tr><td><code>ABBA</code></td><td>yes</td></tr><tr><td><code>ABC</code></td><td>no</td></tr></table>
 <div class="qbox">
 <div class="qmeta"><span class="qsrc">Syllabus; Part A lab programs</span><span class="marks">typical 6-8 marks</span></div>
-<div class="qtext">Implement a queue using two stacks. Trace enqueue(1), enqueue(2), enqueue(3), dequeue, enqueue(4), dequeue.</div>
+<div class="qtext">
+<span class="qline">Implement a queue using two stacks. Trace </span><div class="qcode">enqueue(1),
+enqueue(2),
+enqueue(3),
+dequeue,
+enqueue(4),
+dequeue.</div>
+</div>
 <div class="ans-label">Answer</div>
 <p>inStack = [1 2 3] after the three enqueues. The first dequeue finds outStack empty, pours inStack into it (outStack = [3 2 1], top 1), and returns 1; outStack = [3 2]. enqueue(4) pushes 4 on inStack = [4]. The next dequeue pops 2 from outStack (no transfer). Returned: 1, 2. The same behaviour appears in the trace above, where an extra enqueue(5) happens before the second dequeue.</p>
 </div>
@@ -1368,7 +1375,14 @@ The decks mention BFS only as a one-line application. The algorithm, the graph, 
 
 <div class="qbox">
 <div class="qmeta"><span class="qsrc">Typical exam trace</span><span class="marks">6 marks</span></div>
-<div class="qtext">A circular queue of size 5 uses the convention front = rear = 0 (one cell left empty). Show front, rear and the array after each of: enqueue 11, 22, 33, 44, 55; dequeue; dequeue; enqueue 55, 66, 77; dequeue.</div>
+<div class="qtext">
+<span class="qline">A circular queue of size 5 uses the convention front = rear = 0 (one cell left empty). Show front, rear and the array after each of:</span>
+<div class="qcode">enqueue 11, 22, 33, 44, 55;
+dequeue;
+dequeue;
+enqueue 55, 66, 77;
+dequeue.</div>
+</div>
 <div class="ans-label">Answer (program output)</div>
 <table><tr><th>Operation</th><th>Result</th><th>front</th><th>rear</th><th>Array</th></tr><tr><td><code>init</code></td><td>-</td><td>0</td><td>0</td><td><code>[. . . . .]</code></td></tr><tr><td><code>enqueue(11)</code></td><td>ok</td><td>0</td><td>1</td><td><code>[. 11 . . .]</code></td></tr><tr><td><code>enqueue(22)</code></td><td>ok</td><td>0</td><td>2</td><td><code>[. 11 22 . .]</code></td></tr><tr><td><code>enqueue(33)</code></td><td>ok</td><td>0</td><td>3</td><td><code>[. 11 22 33 .]</code></td></tr><tr><td><code>enqueue(44)</code></td><td>ok</td><td>0</td><td>4</td><td><code>[. 11 22 33 44]</code></td></tr><tr><td><code>enqueue(55)</code></td><td>FULL</td><td>0</td><td>4</td><td><code>[. 11 22 33 44]</code></td></tr><tr><td><code>dequeue()</code></td><td>11</td><td>1</td><td>4</td><td><code>[. . 22 33 44]</code></td></tr><tr><td><code>dequeue()</code></td><td>22</td><td>2</td><td>4</td><td><code>[. . . 33 44]</code></td></tr><tr><td><code>enqueue(55)</code></td><td>ok</td><td>2</td><td>0</td><td><code>[55 . . 33 44]</code></td></tr><tr><td><code>enqueue(66)</code></td><td>ok</td><td>2</td><td>1</td><td><code>[55 66 . 33 44]</code></td></tr><tr><td><code>enqueue(77)</code></td><td>FULL</td><td>2</td><td>1</td><td><code>[55 66 . 33 44]</code></td></tr><tr><td><code>dequeue()</code></td><td>33</td><td>3</td><td>1</td><td><code>[55 66 . . 44]</code></td></tr></table>
 <p>The queue holds at most MAX - 1 = 4 items. enqueue(55) is rejected the first time because <code>(4+1)%5 == 0 == front</code>. After two dequeues front = 2; enqueue(55) wraps rear to 0 and enqueue(66) takes cell 1; enqueue(77) is rejected because <code>(1+1)%5 == 2 == front</code>. The last dequeue returns 33; the queue then holds 44, 55, 66.</p>
@@ -1376,7 +1390,16 @@ The decks mention BFS only as a one-line application. The algorithm, the graph, 
 
 <div class="qbox">
 <div class="qmeta"><span class="qsrc">Typical exam trace</span><span class="marks">5 marks</span></div>
-<div class="qtext">Starting with an empty deque, perform insertRear(1), insertFront(2), insertRear(3), insertFront(4), deleteRear(), deleteFront(). Give the contents (front to rear) after each stage.</div>
+<div class="qtext">
+<span class="qline">Starting with an empty deque, perform</span>
+<div class="qcode">insertRear(1),
+insertFront(2),
+insertRear(3),
+insertFront(4),
+deleteRear(),
+deleteFront().</div>
+<span class="qline">Give the contents (front to rear) after each stage.</span>
+</div>
 <div class="ans-label">Answer (program output)</div>
 <table><tr><th>Step</th><th>Result</th></tr><tr><td>after 4 inserts</td><td>4 2 1 3</td></tr><tr><td>deleteRear</td><td>3</td></tr><tr><td>deleteFront</td><td>4</td></tr><tr><td>final</td><td>2 1 (front=4 rear=0 count=2)</td></tr></table>
 <p>After the four insertions: 4 2 1 3 (insertFront pushes to the left end, insertRear to the right). deleteRear removes 3; deleteFront removes 4; 2 1 remains.</p>

@@ -1650,7 +1650,18 @@ R.<span class="tf">release</span>();</pre>
 
   <div class="qbox" id="u2-example-21">
     <div class="qmeta"><span class="qsrc">2021-22 CIE-II Q1</span><span class="marks">1 mark · verified by exhaustive interleaving enumeration</span></div>
-    <div class="qtext">P1(){C=B-1; B=2*C;} and P2(){D=2*B; B=D-1;} share a variable B with initial value 2 and execute concurrently. How many distinct values can B possibly take after execution?</div>
+    <div class="qtext">
+<div class="qcode">P1(){
+  C=B-1;
+  B=2*C;
+}</div>
+<span class="qline">and</span>
+<div class="qcode">P2(){
+  D=2*B;
+  B=D-1;
+}</div>
+<span class="qline">share a variable B with initial value 2 and execute concurrently. How many distinct values can B possibly take after execution?</span>
+</div>
     <div class="ans-label">Solution</div>
     <p>Treat each process as two atomic steps executed in program order; enumerate every way to interleave
     P1's 2 steps with P2's 2 steps (C(4,2) = 6 valid interleavings) and compute the resulting B for each:</p>
@@ -1824,7 +1835,19 @@ R.<span class="tf">release</span>();</pre>
 
   <div class="qbox" id="u2-example-22">
     <div class="qmeta"><span class="qsrc">2024-25 CIE-II Test-2 Q1a<cite class="src" data-src="Q1"></cite></span><span class="marks">7 marks · verified by simulation · why BOTH flag and turn matter</span></div>
-    <div class="qtext">P1 executes: while(S1==S2); Critical Section; S1=S2. P2 executes: while(S1!=S2); Critical Section; S2=!S1. Shared Boolean S1, S2. Case 1: S1=0, S2=0. Case 2: S1=0, S2=1. Is mutual exclusion and progress guaranteed in both cases? Justify.</div>
+    <div class="qtext">
+<div class="qcode">P1 executes:
+  while(S1==S2);
+  Critical Section;
+  S1=S2.</div>
+<div class="qcode">P2 executes:
+  while(S1!=S2);
+  Critical Section;
+  S2=!S1.</div>
+<span class="qline">Shared Boolean S1, S2.</span>
+<ul class="qparts"><li>Case 1: S1=0, S2=0.</li><li>Case 2: S1=0, S2=1.</li></ul>
+<span class="qline">Is mutual exclusion and progress guaranteed in both cases? Justify.</span>
+</div>
     <div class="ans-label">Mutual exclusion: YES, in both cases</div>
     <p>P1's guard (<span class="mono">S1==S2</span>) and P2's guard (<span class="mono">S1!=S2</span>) are
     exact logical complements of each other — at any instant, S1 and S2 are either equal or not, so
@@ -2194,7 +2217,19 @@ signal(semaphore *S) {
 
   <div class="qbox" id="u2-example-26">
     <div class="qmeta"><span class="qsrc">2024-25 SEE Part-A<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks · rechecked by state simulation</span></div>
-    <div class="qtext">n processes each run: Code Section P: wait(a); count=count+1; if(count==n) signal(b); signal(a); — Code Section Q: wait(b); signal(b); — with semaphores a=1, b=0, and shared count=0. What does this code achieve?</div>
+    <div class="qtext">
+<span class="qline">n processes each run: </span>
+<div class="qcode">Code Section P:
+  wait(a);
+  count=count+1;
+  if(count==n) signal(b);
+  signal(a);</div>
+<span class="qline">—</span>
+<div class="qcode">Code Section Q:
+  wait(b);
+  signal(b);</div>
+<span class="qline">— with semaphores a=1, b=0, and shared count=0. What does this code achieve?</span>
+</div>
     <div class="ans-label">This is a one-shot barrier (rendezvous point)</div>
     <p>Semaphore <span class="mono">a</span> protects the shared counter (only one process increments
     <span class="mono">count</span> at a time). The <em>last</em> process to reach Section P — the one that
@@ -2215,7 +2250,15 @@ P0 passed the barrier (section Q)</div>
   </div>
   <div class="qbox" id="u2-example-26b">
     <div class="qmeta"><span class="qsrc">Nov/Dec 2019 SEE Q1.2 (18CS34)<cite class="src" data-src="Q2"></cite></span><span class="marks">worked example · lock ordering</span></div>
-    <div class="qtext">P1 does <span class="mono">X = X + 10; Y = Y − 20;</span> and P2 does <span class="mono">Y = Y + 20; X = X − 10;</span>. Using binary semaphores SX = 1 and SY = 1, write the entry and exit sections so that both updates are consistent and deadlock cannot occur.</div>
+    <div class="qtext">
+<div class="qcode">P1 does
+  X = X + 10;
+  Y = Y − 20;</div>
+<div class="qcode">and P2 does
+  Y = Y + 20;
+  X = X − 10;</div>
+<span class="qline">. Using binary semaphores SX = 1 and SY = 1, write the entry and exit sections so that both updates are consistent and deadlock cannot occur.</span>
+</div>
     <p><strong>The trap:</strong> the obvious approach is to "lock what you touch first". Then P1 does wait(SX) followed by wait(SY), while P2 does wait(SY) followed by wait(SX). If P1 gets SX and P2 gets SY, each process waits forever for the other's lock. This is the same circular wait as the <a href="#u2-example-27">S/Q deadlock example</a>.</p>
     <div class="formula-block code"><span class="cm">// both processes acquire in the SAME global order: SX, then SY</span>
 P1:  wait(SX); wait(SY);  X = X + 10;  Y = Y - 20;  signal(SY); signal(SX);
@@ -2565,7 +2608,14 @@ do {
 
   <div class="qbox" id="u2-example-27">
     <div class="qmeta"><span class="qsrc">classic example<cite class="src" data-src="D7" data-p="41"></cite></span><span class="marks">worked example · verified with real threads</span></div>
-    <div class="qtext">Semaphores S and Q are both initialized to 1. P0 executes wait(S) then wait(Q); P1 executes wait(Q) then wait(S). Show that this can deadlock.</div>
+    <div class="qtext">
+<span class="qline">Semaphores S and Q are both initialized to 1.</span>
+<div class="qcode">P0 executes
+  wait(S) then wait(Q);</div>
+<div class="qcode">P1 executes
+  wait(Q) then wait(S).</div>
+<span class="qline">Show that this can deadlock.</span>
+</div>
     <p>Consider this interleaving: P0 runs <span class="mono">wait(S)</span> and acquires S. P1 runs
     <span class="mono">wait(Q)</span> and acquires Q. Now P0 attempts <span class="mono">wait(Q)</span> — but
     Q is held by P1, so P0 blocks. P1 attempts <span class="mono">wait(S)</span> — but S is held by P0, so

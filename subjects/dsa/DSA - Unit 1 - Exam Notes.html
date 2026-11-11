@@ -558,7 +558,12 @@ free(q);</div>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
     <div class="qmeta"><span class="qsrc">SEE Jan/Feb 2025 · Q1.9<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
-    <div class="qtext">Predict the output of the following C code:<br><code>char *p = calloc(100,1); p = "welcome"; printf("%s\n", p);</code></div>
+    <div class="qtext">
+<span class="qline">Predict the output of the following C code:</span>
+<div class="qcode">char *p = calloc(100,1);
+p = "welcome";
+printf("%s\n", p);</div>
+</div>
     <div class="ans-label">Answer</div>
     <p><strong>Output: <code>welcome</code></strong>. The teaching point is what <em>doesn't</em> happen: <code>p = "welcome"</code> does not copy the string into the 100-byte calloc'd block — it <strong>rebinds the pointer variable <code>p</code></strong> to point at the string literal <code>"welcome"</code> instead. The original 100-byte block is now unreachable (no pointer references it anymore) and can never be freed — a classic <strong>memory leak</strong> triggered by pointer reassignment instead of content copy (which would have needed <code>strcpy(p, "welcome")</code>).</p>
   </div>
@@ -1242,7 +1247,16 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
     <div class="qmeta"><span class="qsrc">CIE-II 2021-22 · Q1.1<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks</span></div>
-    <div class="qtext">What does the function "fun" print for a given singly linked list with contents (1, 3, 5, 7, 9, 11, 13, 15, 17, 19), first node pointed to by "head"?<br><code>void fun(struct node *head){ if(head!=NULL){ struct node *q=head; while(q-&gt;next-&gt;next!=NULL) q=q-&gt;next; printf("%d",q-&gt;data); } }</code></div>
+    <div class="qtext">
+<span class="qline">What does the function "fun" print for a given singly linked list with contents (1, 3, 5, 7, 9, 11, 13, 15, 17, 19), first node pointed to by "head"?</span>
+<div class="qcode">void fun(struct node *head){
+  if(head!=NULL){
+    struct node *q=head;
+    while(q-&gt;next-&gt;next!=NULL) q=q-&gt;next;
+    printf("%d",q-&gt;data);
+  }
+}</div>
+</div>
     <div class="ans-label">Answer — traced (verified by code)</div>
     <p>The loop advances <code>q</code> only while <code>q-&gt;next-&gt;next</code> is non-NULL — so it stops exactly when <code>q</code> is the <strong>second-to-last</strong> node (at that point, <code>q-&gt;next</code> is the last node and <code>q-&gt;next-&gt;next</code> is NULL). For the 10-node list, the second-to-last node holds <strong>17</strong>.</p>
     <p><strong>Prints: 17</strong></p>
@@ -1250,7 +1264,10 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
     <div class="qmeta"><span class="qsrc">CIE-II 2021-22 · Q1.2<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks</span></div>
-    <div class="qtext">Given <code>struct node { int *num; struct node *next; };</code>, what is the number of bytes allocated after executing:<br><code>p = (struct node *)malloc(sizeof(struct node *));</code></div>
+    <div class="qtext">
+<span class="qline">Given <code>struct node { int *num; struct node *next; };</code>, what is the number of bytes allocated after executing:</span>
+<div class="qcode">p = (struct node *)malloc(sizeof(struct node *));</div>
+</div>
     <div class="ans-label">Answer — read the statement literally</div>
     <div class="callout clarify">
       <span class="label">Correcting the intended reading of this question</span>
@@ -1261,7 +1278,15 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
     <div class="qmeta"><span class="qsrc">Quiz-II 2024-25 · Q1.1<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
-    <div class="qtext">What is the output of the following code snippet for the list 1→2→3→4→5→6?<br><code>void FUN(struct node* start){ if(start==NULL) return; printf("%d ",start-&gt;data); if(start-&gt;next!=NULL) FUN(start-&gt;next-&gt;next); printf("%d ",start-&gt;data); }</code></div>
+    <div class="qtext">
+<span class="qline">What is the output of the following code snippet for the list 1→2→3→4→5→6?</span>
+<div class="qcode">void FUN(struct node* start){
+  if(start==NULL) return;
+  printf("%d ",start-&gt;data);
+  if(start-&gt;next!=NULL) FUN(start-&gt;next-&gt;next);
+  printf("%d ",start-&gt;data);
+}</div>
+</div>
     <div class="ans-label">Answer — traced (verified by code)</div>
     <table>
       <tr><th>Call</th><th>Prints before recursing</th><th>Recurses into</th></tr>
@@ -1275,7 +1300,21 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
     <div class="qmeta"><span class="qsrc">Quiz-II 2024-25 · Q1.5<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
-    <div class="qtext">What does the following code snippet do?<br><code>ListNode* fun(ListNode* head, int x){ ListNode* front=head; int count=1; while(front!=NULL){ if(count&lt;=x){ front=front-&gt;next; } else { head=head-&gt;next; front=front-&gt;next; } count++; } return head; }</code></div>
+    <div class="qtext">
+<span class="qline">What does the following code snippet do?</span>
+<div class="qcode">ListNode* fun(ListNode* head, int x){
+  ListNode* front=head;
+  int count=1;
+  while(front!=NULL){
+    if(count&lt;=x){
+      front=front-&gt;next;
+    } else {
+      head=head-&gt;next;
+      front=front-&gt;next;
+    } count++;
+  } return head;
+}</div>
+</div>
     <div class="ans-label">Answer — traced with list [10,20,30,40,50,60,70], x=3 (verified by code)</div>
     <p>For the first <code>x</code> iterations, only <code>front</code> advances — <code>head</code> stays put. After that, <code>head</code> and <code>front</code> advance together until <code>front</code> falls off the end. Since <code>front</code> is <code>x</code> nodes ahead of <code>head</code> throughout the second phase, by the time <code>front</code> becomes NULL, <code>head</code> has advanced exactly <code>(length − x)</code> steps from the original head — landing on the node that is <code>x</code> nodes from the end.</p>
     <p>For the 7-node example list with x=3: <code>fun</code> returns a pointer to <strong>[50, 60, 70]</strong> — the last 3 nodes.</p>
@@ -1284,7 +1323,14 @@ NODE dequeue(NODE first, <span class="c1">int</span> *val) {
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
     <div class="qmeta"><span class="qsrc">Quiz-II 2024-25 · Q1.6<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks</span></div>
-    <div class="qtext">What will be the value of "sum" after the following code snippet terminates, for the list 1→2→3→4→5?<br><code>int sum=0; while(root!=NULL){ sum+=root-&gt;val; root=root-&gt;next; } printf("%d",sum);</code></div>
+    <div class="qtext">
+<span class="qline">What will be the value of "sum" after the following code snippet terminates, for the list 1→2→3→4→5?</span>
+<div class="qcode">int sum=0;
+while(root!=NULL){
+  sum+=root-&gt;val;
+  root=root-&gt;next;
+} printf("%d",sum);</div>
+</div>
     <div class="ans-label">Answer</div>
     <p>A plain traversal-accumulate over the list: 1+2+3+4+5 = <strong>15</strong>.</p>
   </div>

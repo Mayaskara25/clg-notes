@@ -1211,7 +1211,14 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 
   <div class="qbox" id="u1-example-05">
     <div class="qmeta"><span class="qsrc">CIE-I Quiz-1 Q3, 2024-25 · Question Bank #16<cite class="src" data-src="Q1"></cite></span><span class="marks">1 mark</span></div>
-    <div class="qtext">What is the output of the following C program?<br><code>int main(){ fork(); fork(); printf("code"); }</code></div>
+    <div class="qtext">
+<span class="qline">What is the output of the following C program?</span>
+<div class="qcode">int main(){
+  fork();
+  fork();
+  printf("code");
+}</div>
+</div>
     <div class="ans-label">Answer — verified by compiling and running the actual program</div>
     <p>Each <code>fork()</code> call <strong>doubles</strong> the number of processes executing from that point onward, because both the calling process and its new child continue past the call. With 2 sequential <code>fork()</code> calls, the number of processes reaching the <code>printf</code> line is 2² = <strong>4</strong>, so the output is <code>codecodecodecode</code> (no newline, since none is printed).</p>
     <div class="formula-block"><span class="cm">$ gcc double_fork.c -o double_fork &amp;&amp; ./double_fork
@@ -1221,7 +1228,11 @@ codecodecodecode</span>   <span class="cm">// 4 processes × "code" — confirme
 
   <div class="qbox" id="u1-example-06">
     <div class="qmeta"><span class="qsrc">SEE Feb/Mar 2025 Q1.2, 24-25 · Question Bank #26<cite class="src" data-src="Q1"></cite></span><span class="marks">1 mark</span></div>
-    <div class="qtext">Assume a process executes the following code: <code>for(i=1;i&lt;=n;i++) fork();</code> How many new processes will be created?</div>
+    <div class="qtext">
+<span class="qline">Assume a process executes the following code:</span>
+<div class="qcode">for(i=1;i&lt;=n;i++) fork();</div>
+<span class="qline">How many new processes will be created?</span>
+</div>
     <div class="ans-label">Answer — verified for n = 3</div>
     <p>Because the loop has no conditional guard on which process runs it, <em>every</em> process created so far re-enters the loop and forks again on the next iteration — so, exactly as with the straight-line case above, the population doubles on each of the <em>n</em> iterations. Starting from 1 process, after <em>n</em> iterations there are 2<sup><em>n</em></sup> processes in total, of which the original one is not "new" — so the number of <strong>new</strong> processes created is 2<sup><em>n</em></sup> − 1.</p>
     <div class="formula-block"><span class="cm">$ ./loop_nowait   </span><span class="cm">// n=3, prints "x" once per process after the loop</span>
@@ -1230,7 +1241,17 @@ xxxxxxxx   <span class="c1">// 8 processes total (2³) → 7 NEW child processes
 
   <div class="qbox" id="u1-example-07">
     <div class="qmeta"><span class="qsrc">SEE Feb/Mar 2025 Q1.1, 24-25 · Question Bank #25<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks</span></div>
-    <div class="qtext">Consider: <code>int x=3; while(x&gt;0){ fork(); printf("hello"); wait(NULL); x--; }</code> Calculate the total number of times the <code>printf</code> statement executes.</div>
+    <div class="qtext">
+<span class="qline">Consider:</span>
+<div class="qcode">int x=3;
+while(x&gt;0){
+  fork();
+  printf("hello");
+  wait(NULL);
+  x--;
+}</div>
+<span class="qline">Calculate the total number of times the<code>printf</code> statement executes.</span>
+</div>
     <div class="ans-label">Answer — verified by compiling and running the actual program (buffering disabled to isolate the true process count)</div>
     <p>This looks different from the previous two because of the <code>wait(NULL)</code> call, but <code>wait()</code> only blocks the <em>parent</em> until <em>its own</em> immediate child exits — it does not stop the child from continuing to loop and fork on its own. So the process population still doubles on every one of the 3 iterations (x = 3 → 2 → 1), and <em>every</em> process prints <code>"hello"</code> once per iteration it takes part in — the doubling just happens to be interleaved with the parent's wait rather than blocked by it.</p>
     <table>
@@ -1250,7 +1271,13 @@ xxxxxxxx   <span class="c1">// 8 processes total (2³) → 7 NEW child processes
 
   <div class="qbox" id="u1-example-07b">
     <div class="qmeta"><span class="qsrc">Apr 2023 SEE Q1.3 · Nov/Dec 2019 SEE Q1.1 · Oct 2020 SEE Q1.3 · Oct 2020 Q1.5<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks · fork() with &amp;&amp; / ||</span></div>
-    <div class="qtext">Write the output: (a) <code>if (fork() || fork()) fork(); printf("1 ");</code> &nbsp;(b) <code>if (fork() &amp;&amp; fork()) fork(); printf("2 ");</code> &nbsp;Also: how does <code>vfork()</code> differ from <code>fork()</code>?</div>
+    <div class="qtext">
+<span class="qline">Write the output:</span>
+<ul class="qparts"><li>(a) <div class="qcode">if (fork() || fork()) fork();
+printf("1 ");</div> &nbsp;</li><li>(b) <div class="qcode">if (fork() &amp;&amp; fork()) fork();
+printf("2 ");</div> &nbsp;</li></ul>
+<span class="qline">Also: how does <code>vfork()</code> differ from <code>fork()</code>?</span>
+</div>
     <div class="ans-label">Key idea — short-circuit evaluation</div>
     <p><code>fork()</code> returns a <strong>non-zero</strong> pid (true) in the parent and <strong>0</strong> (false) in the child. With <code>||</code>, the second <code>fork()</code> runs only where the first returned false, which is in the child. With <code>&amp;&amp;</code>, it runs only where the first returned true, which is in the parent. Trace each process and count the ones that reach <code>printf</code>.</p>
     <table>

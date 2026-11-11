@@ -494,7 +494,19 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
     <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q7<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
-    <div class="qtext">Consider the following operations performed on a stack of size 5: Push(1); Pop(); Push(2); Push(3); Pop(); Push(4); Pop(); Pop(); Push(5); After completion of all operations, the number of elements present in the stack is?</div>
+    <div class="qtext">
+<span class="qline">Consider the following operations performed on a stack of size 5:</span>
+<div class="qcode">Push(1);
+Pop();
+Push(2);
+Push(3);
+Pop();
+Push(4);
+Pop();
+Pop();
+Push(5);</div>
+<span class="qline">After completion of all operations, the number of elements present in the stack is?</span>
+</div>
     <div class="ans-label">Answer — traced step by step</div>
     <table>
       <tr><th>Operation</th><th>Stack after operation</th></tr>
@@ -520,7 +532,15 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
     <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q9<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
-    <div class="qtext">Consider the following algorithm — declare a stack of characters; while there are more characters to read: read a character, push it on the stack; while the stack is not empty: pop a character off the stack, write it to the screen. What is the output for input "Bengaluru"?</div>
+    <div class="qtext">
+<span class="qline">Consider the following algorithm —</span>
+<div class="qcode">declare a stack of characters;
+while there are more characters to read:
+  read a character, push it on the stack;
+while the stack is not empty:
+  pop a character off the stack, write it to the screen.</div>
+<span class="qline">What is the output for input "Bengaluru"?</span>
+</div>
     <div class="ans-label">Answer</div>
     <p>Every character is pushed in order, then popped — and pop always returns the most-recently-pushed character first (LIFO), so the whole string comes back out <strong>reversed</strong>:</p>
     <p class="mono" style="font-size:15px">"Bengaluru" → <strong>"urulagneB"</strong></p>
@@ -1088,7 +1108,13 @@ Result = 25</pre>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
     <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Quiz Q2<cite class="src" data-src="Q2"></cite></span><span class="marks">1 mark</span></div>
-    <div class="qtext">What is the output of the following recursion when n = 2?<br><code>int fun(int n) { if (n == 4) return n; else return 2*fun(n+1); }</code></div>
+    <div class="qtext">
+<span class="qline">What is the output of the following recursion when n = 2?</span>
+<div class="qcode">int fun(int n) {
+  if (n == 4) return n;
+  else return 2*fun(n+1);
+}</div>
+</div>
     <div class="ans-label">Answer — traced (verified by code)</div>
     <table>
       <tr><th>Call</th><th>Condition</th><th>Result</th></tr>
