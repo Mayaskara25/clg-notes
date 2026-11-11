@@ -58,6 +58,13 @@
     {
       "date": "2026-11-11",
       "units": [
+        2
+      ],
+      "text": "Marked the recursion sections the new syllabus doesn't need (2.4 recursive binary search, 2.6 more examples, 2.7 old-syllabus question) as \"Beyond syllabus\"; the syllabus map now says which parts of Part 2 are needed for Tower of Hanoi."
+    },
+    {
+      "date": "2026-11-11",
+      "units": [
         1,
         2,
         3,

@@ -79,6 +79,7 @@ td{padding:10px 13px;border-bottom:1px solid var(--line-soft);color:var(--body);
 .steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--accent-soft,var(--blue-soft));color:var(--accent,var(--blue));font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 .backtotop{display:inline-block;margin-top:44px;font-size:13px;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:16px;width:100%}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.beyond{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:1px 8px;border-radius:20px;border:1px dashed var(--ink-faint);color:var(--ink-soft);background:var(--paper);vertical-align:middle;margin-left:6px;white-space:nowrap;line-height:1.6}
 .pill{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:20px;background:var(--paper);color:var(--ink-soft);border:1px solid var(--line);margin:2px 4px 2px 0}
 
 /* ---- dark theme ---- */
@@ -155,10 +156,10 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
     <a class="navlink" href="#sec-3-1"><span class="dot"></span>2.1 Introduction to Recursion</a>
     <a class="navlink" href="#sec-3-2"><span class="dot"></span>2.2 Factorial Function &amp; Execution Trace</a>
     <a class="navlink" href="#sec-3-3"><span class="dot"></span>2.3 Role of the Stack During Recursion Execution</a>
-    <a class="navlink" href="#sec-3-4"><span class="dot"></span>2.4 Recursive Binary Search</a>
+    <a class="navlink" href="#sec-3-4"><span class="dot"></span>2.4 Recursive Binary Search <span class="beyond">extra</span></a>
     <a class="navlink" href="#sec-3-5"><span class="dot"></span>2.5 Towers of Hanoi Problem</a>
-    <a class="navlink" href="#sec-3-6"><span class="dot"></span>2.6 More Recursion Examples</a>
-    <a class="navlink" href="#sec-3-7"><span class="dot"></span>2.7 Solved Numericals — Recursion</a>
+    <a class="navlink" href="#sec-3-6"><span class="dot"></span>2.6 More Recursion Examples <span class="beyond">extra</span></a>
+    <a class="navlink" href="#sec-3-7"><span class="dot"></span>2.7 Solved Numericals — Recursion <span class="beyond">extra</span></a>
   </div>
   <div class="navgroup">
     <div class="part-label">Part 3 — Self-learning / Extended Topics</div>
@@ -253,7 +254,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
       <p>How the call stack tracks recursive calls.</p>
     </a>
     <a class="index-card" href="#sec-3-4" style="--card-color:var(--indigo)">
-      <span class="num">2.4</span>
+      <span class="num">2.4</span><span class="beyond">Beyond syllabus</span>
       <h3>Recursive Binary Search</h3>
       <p>Divide-and-conquer search, fully traced.</p>
     </a>
@@ -263,12 +264,12 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
       <p>Syllabus application: recurrence 2ⁿ−1 and move traces for n=3, 4.</p>
     </a>
     <a class="index-card" href="#sec-3-6" style="--card-color:var(--indigo)">
-      <span class="num">2.6</span>
+      <span class="num">2.6</span><span class="beyond">Beyond syllabus</span>
       <h3>More Recursion Examples</h3>
       <p>Fibonacci, GCD, sum of N, counting zeros.</p>
     </a>
     <a class="index-card" href="#sec-3-7" style="--card-color:var(--indigo)">
-      <span class="num">2.7</span>
+      <span class="num">2.7</span><span class="beyond">Beyond syllabus</span>
       <h3>Solved Numericals — Recursion</h3>
       <p>Exam-style recursion questions, worked end to end.</p>
     </a>
@@ -313,7 +314,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
     <tr><td>Operations: push, pop, peek</td><td>§1.2</td></tr>
     <tr><td>Implementation using arrays and linked lists</td><td>§1.1, §1.2, §1.3</td></tr>
     <tr><td>Applications: expression evaluation and conversion, parenthesis balancing, Tower of Hanoi</td><td>§1.4 – §1.8, §2.5, §3.4</td></tr>
-    <tr><td rowspan="6"><strong>Self-learning / Extended topics</strong></td><td>Eliminating recursion with a stack; Undo/Redo; backtracking (maze, N-Queens)</td><td>§3.1</td></tr>
+    <tr><td rowspan="6"><strong>Self-learning / Extended topics</strong></td><td>Eliminating recursion with a stack; Undo/Redo; backtracking (maze, N-Queens)</td><td>§3.1, §3.4 (background: §2.3)</td></tr>
     <tr><td>Multiple stacks in a single array; Min/Max stack; stack of plates</td><td>§3.2</td></tr>
     <tr><td>Browser history navigation</td><td>§3.1</td></tr>
     <tr><td>Stock Span; Largest Rectangle in Histogram</td><td>§3.3</td></tr>
@@ -335,7 +336,12 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
 
   <div class="callout clarify">
     <span class="label">How this version differs from the earlier Unit 1 notes</span>
-    The earlier Unit 1 notes combined introduction, stacks and recursion. The introduction moved to the new Unit I, so this guide keeps the stack sections and the recursion sections (recursion is retained because Tower of Hanoi, a named application, depends on it and on the role of the call stack). Part 2 is therefore supporting material beyond the syllabus wording. The earlier copy is in <code>old-syllabus/</code>.
+    The earlier Unit 1 notes combined introduction, stacks and recursion. The new Unit II syllabus does not list recursion as a topic. It names Tower of Hanoi as an application, and "using stacks to eliminate recursion" as self-learning, and both need the basics. So Part 2 is split:
+    <ul>
+      <li><strong>Needed:</strong> §2.1 what recursion is, §2.2 the factorial trace, §2.3 the role of the stack, §2.5 Tower of Hanoi.</li>
+      <li><strong>Beyond syllabus</strong> (marked <span class="beyond">extra</span>): §2.4 recursive binary search, §2.6 more recursion examples, §2.7 the old-syllabus recursion question. They are kept for practice and can be skipped.</li>
+    </ul>
+    The earlier copy is in <code>old-syllabus/</code>.
   </div>
   <div class="callout clarify">
     <span class="label">Not in your earlier materials — added</span>
@@ -1238,8 +1244,13 @@ Result = 25</pre>
 </section>
 
 <section class="page section" id="sec-3-4" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-  <div class="section-head"><span class="tag">2.4</span><h1>Recursive Binary Search</h1></div>
+  <div class="section-head"><span class="tag">2.4</span><h1>Recursive Binary Search</h1><span class="beyond">Beyond syllabus</span></div>
   <p class="section-sub">Binary search</p>
+
+  <div class="callout clarify">
+    <span class="label">Beyond the new syllabus — old-syllabus topic</span>
+    The new Unit II syllabus does not name recursive binary search. It is kept because a past CIE paper asked it (see §2.7) and because it is a short second example of the call stack at work (§2.3). Skip it if you are short on time.
+  </div>
 
   <h2>Idea</h2>
   <p>Binary search finds the position of a target value in a <strong>sorted</strong> array by repeatedly comparing the target against the <strong>middle</strong> element and discarding the half of the array that cannot contain it. Each recursive call operates on a range half the size of the previous one — a textbook divide-and-conquer recursion.</p>
@@ -1446,12 +1457,12 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
 </section>
 
 <section class="page section" id="sec-3-6" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-  <div class="section-head"><span class="tag">2.6</span><h1>More Recursion Examples</h1></div>
+  <div class="section-head"><span class="tag">2.6</span><h1>More Recursion Examples</h1><span class="beyond">Beyond syllabus</span></div>
   <p class="section-sub">Additional practice with the same decomposition → composition → base-case pattern</p>
 
   <div class="callout clarify">
-    <span class="label">Not explicitly named in the syllabus wording — kept as reinforcement</span>
-    The syllabus names only factorial, binary search, and Towers of Hanoi under "Recursion." The examples below come from the source deck (<code>unit 1 recursion.pdf</code><cite class="src" data-src="D8"></cite>) and are kept because they reinforce the same decomposition/composition/base-case pattern with very short, exam-friendly functions.
+    <span class="label">Beyond the new syllabus — optional practice</span>
+    The new Unit II syllabus names Tower of Hanoi (and, as self-learning, using a stack to eliminate recursion), not these functions. The examples below come from the source deck (<code>unit 1 recursion.pdf</code><cite class="src" data-src="D8"></cite>) and are kept because they reinforce the same decomposition/composition/base-case pattern with very short, exam-friendly functions.
   </div>
 
   <div class="grid2">
@@ -1504,8 +1515,13 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
 </section>
 
 <section class="page section" id="sec-3-7" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-  <div class="section-head"><span class="tag">2.7</span><h1>Solved Numericals — Recursion</h1></div>
+  <div class="section-head"><span class="tag">2.7</span><h1>Solved Numericals — Recursion</h1><span class="beyond">Beyond syllabus</span></div>
   <p class="section-sub">The full multi-part recursion question from CIE-1, answered end to end</p>
+
+  <div class="callout clarify">
+    <span class="label">Beyond the new syllabus — old-syllabus paper</span>
+    This question is from the 2024-25 paper, set on the old syllabus where recursion was a topic of its own. Under the new syllabus, its "role of the stack" part is still worth knowing (§2.3); the binary-search part is optional.
+  </div>
 
   <div class="qbox" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
     <div class="qmeta"><span class="qsrc">CIE-1 2024-25 · Q2 (full)<cite class="src" data-src="Q2"></cite></span><span class="marks">7+3 = 10 marks</span></div>
@@ -1836,7 +1852,7 @@ Prefix eval:      scan RIGHT→LEFT; operand→push; operator→ pop op1 (left),
     <tr><th>Source · Marks</th><th>Question</th><th>Answered at</th></tr>
     <tr><td class="mono">CIE-1 2024-25 · Q4b · 4M<cite class="src" data-src="Q2"></cite></td><td>Define Recursion. How does recursion differ from iteration?</td><td>→ <a href="#sec-3-1">§2.1 Introduction to Recursion</a></td></tr>
     <tr><td class="mono">CIE-1 2024-25 · Quiz Q2 · 1M<cite class="src" data-src="Q2"></cite></td><td>Trace <code>fun(n)</code> for n=2, base case n==4, else <code>2*fun(n+1)</code>.</td><td>→ <a href="#sec-3-1">§2.1</a></td></tr>
-    <tr><td class="mono">CIE-1 2024-25 · Q2 · 7+3M<cite class="src" data-src="Q2"></cite></td><td>Design a recursive Binary Search function; explain the role of stack during its execution.</td><td>→ <a href="#sec-3-7">§2.7 Solved Numericals — Recursion</a> (full answer, links §3.3 + §3.4)</td></tr>
+    <tr><td class="mono">CIE-1 2024-25 · Q2 · 7+3M<cite class="src" data-src="Q2"></cite></td><td>Design a recursive Binary Search function; explain the role of stack during its execution. <span class="beyond">old syllabus</span></td><td>→ <a href="#sec-3-7">§2.7 Solved Numericals — Recursion</a> (full answer, links §3.3 + §3.4)</td></tr>
     <tr><td class="mono">CIE-1 2024-25 · Q4a · 6M<cite class="src" data-src="Q2"></cite></td><td>Write a recursive program to solve the Tower of Hanoi problem.</td><td>→ <a href="#sec-3-5">§2.5 Towers of Hanoi Problem</a></td></tr>
     <tr><td class="mono">CIE 21-22 Test-I · Q3 · 10M<cite class="src" data-src="Q1"></cite></td><td>C program to solve Tower of Hanoi recursively, printing all moves and the total count; trace for n=4.</td><td>→ <a href="#sec-3-5">§2.5</a> <span class="pill">solved example added</span></td></tr>
     <tr><td class="mono">CIE-1 2024-25 · Quiz Q8 · 2M<cite class="src" data-src="Q2"></cite></td><td>Minimum moves for Tower of Hanoi with 3 disks; list the moves A→C via B.</td><td>→ <a href="#sec-3-5">§2.5</a></td></tr>
