@@ -20,7 +20,7 @@
       "n": 2,
       "source": "Applied Digital Logic Design - Unit 2 Complete - Exam Notes.html",
       "title": "Combinational & Sequential Logic Design",
-      "topics": "parallel adder, carry lookahead, magnitude comparator, decoders, encoders, multiplexers, latches, timing, master-slave, pulse-triggered and edge-triggered flip-flops, characteristic equations, shift registers, universal shift register",
+      "topics": "parallel adder, carry lookahead, magnitude comparator, decoders, encoders, multiplexers, latches, timing, master-slave, pulse-triggered and edge-triggered flip-flops, characteristic equations, shift registers, universal shift register, flip-flop conversion, race-around condition, frequency divider, binary to Gray converter",
       "lab": "lab-overview",
       "updated": "2026-11-11"
     },
@@ -33,6 +33,13 @@
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-11",
+      "units": [
+        2
+      ],
+      "text": "Unit 2 aligned to the 2026 faculty notes: truth/characteristic/excitation tables and excitation equations, the five-step flip-flop conversion with eight cases (new: JK to SR), frequency dividers, race-around and master-slave operation with the faculty's CIE 2025 answer, two decoder-function questions (x = a′, y = 1; P = x ⊕ y ⊕ z), encoders and a decoder + encoder binary-to-Gray converter, and the CIE 2024/2025 flip-flop and shift-register questions; 2 new figures. The slide answer to the CIE 2025 shift-register question (9 clocks) could not be reproduced and is flagged."
+    },
     {
       "date": "2026-11-11",
       "units": [
@@ -219,23 +226,25 @@
     {
       "id": "D9",
       "kind": "notes",
-      "title": "Counters: faculty slides, 2026",
+      "title": "Counters and flip-flop questions: faculty slides, 2026",
       "by": "Dept. faculty",
       "file": "kb-counters-2026.pdf",
       "units": [
+        2,
         3
       ]
     },
     {
       "id": "D10",
       "kind": "notes",
-      "title": "Unit III handwritten notes, 2026 (pages 21–44: counters, sequence detectors, analysis)",
+      "title": "Handwritten notes, 2026: flip-flops, conversions, decoders, encoders (pages 1–20, 26), counters, sequence detectors and analysis (pages 21–44)",
       "by": "Dr K. B. Ramesh",
       "file": "kb-ramesh-unit3-notes-2026.pdf",
       "units": [
+        2,
         3
       ],
-      "note": "Scanned pages re-compressed for the web. Pages 1–20 cover Unit II topics."
+      "note": "Scanned pages re-compressed for the web."
     },
     {
       "id": "D11",
