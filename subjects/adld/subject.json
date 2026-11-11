@@ -28,11 +28,18 @@
       "n": 3,
       "source": "Applied Digital Logic Design - Unit 3 - Exam Notes.html",
       "title": "Counters & Synchronous Sequential Networks",
-      "topics": "ripple counters, synchronous counters, ring and Johnson counters, counter design, self-correcting counters, Mealy and Moore models, analysis, state diagrams, sequence detectors, state table reduction, implication table",
+      "topics": "ripple counters, synchronous counters, ring and Johnson counters, counter design, self-correcting counters, Mealy and Moore models, analysis, state diagrams, sequence detectors, state table reduction, implication table, frequency division, mod-N by clear, lock-out, Mealy to Moore conversion",
       "updated": "2026-11-11"
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-11",
+      "units": [
+        3
+      ],
+      "text": "Unit 3 aligned to the 2026 faculty material (counters slides, handwritten Unit III and Mealy/Moore notes, Dr K. Badari Nath's three counter lectures): the four ripple configurations, mod-N by clear, f_max, the CIE 2025 / CIE-II 2025 / SEE 2024 counter questions, the self-correcting T design from the lecture, 1101 / 111 / 101 sequence detectors (Mealy and Moore), Mealy-to-Moore conversion and four analysis examples; 10 new figures. Six slips in the faculty answers are corrected and marked."
+    },
     {
       "date": "2026-11-11",
       "units": [
@@ -208,6 +215,38 @@
       "units": [
         2
       ]
+    },
+    {
+      "id": "D9",
+      "kind": "notes",
+      "title": "Counters: faculty slides, 2026",
+      "by": "Dept. faculty",
+      "file": "kb-counters-2026.pdf",
+      "units": [
+        3
+      ]
+    },
+    {
+      "id": "D10",
+      "kind": "notes",
+      "title": "Unit III handwritten notes, 2026 (pages 21–44: counters, sequence detectors, analysis)",
+      "by": "Dr K. B. Ramesh",
+      "file": "kb-ramesh-unit3-notes-2026.pdf",
+      "units": [
+        3
+      ],
+      "note": "Scanned pages re-compressed for the web. Pages 1–20 cover Unit II topics."
+    },
+    {
+      "id": "D11",
+      "kind": "notes",
+      "title": "Mealy and Moore models: handwritten notes, 2026",
+      "by": "Dr K. B. Ramesh",
+      "file": "kb-ramesh-mealy-moore-2026.pdf",
+      "units": [
+        3
+      ],
+      "note": "Scanned pages re-compressed for the web."
     },
     {
       "id": "Q1",
