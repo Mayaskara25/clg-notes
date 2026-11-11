@@ -21,7 +21,7 @@
    need a layout box for native find; content-visibility keeps their text hidden. */
 .ans[hidden="until-found"]{display:block!important;content-visibility:hidden}
 .ans{scroll-margin-top:24px}
-@media print{.ans[hidden]{display:block!important;content-visibility:visible!important}.ans-toggle{display:none!important}}
+@media print{.ans[hidden],.legacy-content[hidden]{display:block!important;content-visibility:visible!important}.ans-toggle,.extra-toggle{display:none!important}}
 .src-chip{display:inline-block;margin:0 3px;padding:1px 6px;border:1px solid var(--line);border-radius:999px;color:var(--ink-soft);font:500 11px/1.65 'JetBrains Mono',monospace;white-space:nowrap;text-decoration:none;vertical-align:baseline}
 .src-chip:hover{border-color:var(--blue);color:var(--blue)}
 .src-chip:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
@@ -55,7 +55,7 @@
 .sd-form button.go{background:var(--blue);border-color:var(--blue);color:#FFFFFF}
 .sd-form .err{color:var(--plum);font-size:13px;margin:-6px 0 0;display:none}
 </style>
-<noscript><style>.ans[hidden]{display:block;content-visibility:visible}.ans-toggle,#answersToggle{display:none}</style></noscript>
+<noscript><style>.ans[hidden],.legacy-content[hidden]{display:block!important;content-visibility:visible}.ans-toggle,.extra-toggle,#answersToggle{display:none}</style></noscript>
 <div class="sitebar" role="navigation" aria-label="Site">
   <span class="stamp" title="Version of this page">Updated {{UPDATED_HUMAN}} · {{VERSION}}</span>
   <a href="../" title="All {{CODE}} units">⌂ <span class="lbl-long">{{CODE}} units</span></a>
