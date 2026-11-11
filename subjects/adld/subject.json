@@ -14,7 +14,7 @@
       "source": "Applied Digital Logic Design - Unit 1 - Exam Notes.html",
       "title": "Arithmetic & Simplification of Boolean Expressions",
       "topics": "signed addition and subtraction, unsigned and signed multiplication, Booth and radix-4 modified Booth (bit-pair recoding), integer division, IEEE 754 single and double precision, Karnaugh maps, Quine-McCluskey",
-      "updated": "2026-11-10"
+      "updated": "2026-11-11"
     },
     {
       "n": 2,
@@ -22,17 +22,26 @@
       "title": "Combinational & Sequential Logic Design",
       "topics": "parallel adder, carry lookahead, magnitude comparator, decoders, encoders, multiplexers, latches, timing, master-slave, pulse-triggered and edge-triggered flip-flops, characteristic equations, shift registers, universal shift register",
       "lab": "lab-overview",
-      "updated": "2026-11-10"
+      "updated": "2026-11-11"
     },
     {
       "n": 3,
       "source": "Applied Digital Logic Design - Unit 3 - Exam Notes.html",
       "title": "Counters & Synchronous Sequential Networks",
       "topics": "ripple counters, synchronous counters, ring and Johnson counters, counter design, self-correcting counters, Mealy and Moore models, analysis, state diagrams, sequence detectors, state table reduction, implication table",
-      "updated": "2026-11-10"
+      "updated": "2026-11-11"
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-11",
+      "units": [
+        1,
+        2,
+        3
+      ],
+      "text": "More questions split into clear givens and parts; given data now shows above the hidden answer."
+    },
     {
       "date": "2026-11-11",
       "units": [

@@ -39,6 +39,15 @@
         2,
         3
       ],
+      "text": "More questions split into clear givens and parts; given data now shows above the hidden answer."
+    },
+    {
+      "date": "2026-11-11",
+      "units": [
+        1,
+        2,
+        3
+      ],
       "text": "Questions are easier to read, and answers are now hidden until you press Show answer (or use the Answers switch)."
     },
     {

@@ -803,7 +803,10 @@ printf("%s\n", p);</div>
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
     <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q2a<cite class="src" data-src="Q1"></cite></span><span class="marks">7 marks</span></div>
-    <div class="qtext">Develop C functions to perform the following operations on a singly linked list: (1) Replacing all nodes which have the data 'x' by 'y'. (2) Create an ordered list (a list of n nodes such that N<sub>i</sub> ≤ N<sub>i+1</sub> for all 1 ≤ i ≤ n-1).</div>
+    <div class="qtext">
+<span class="qline">Develop C functions to perform the following operations on a singly linked list:</span>
+<ul class="qparts"><li>(1) Replacing all nodes which have the data 'x' by 'y'.</li><li>(2) Create an ordered list (a list of n nodes such that N<sub>i</sub> ≤ N<sub>i+1</sub> for all 1 ≤ i ≤ n-1).</li></ul>
+</div>
     <div class="ans-label">Answer</div>
     <p><strong>Part 2</strong> is exactly <code>insertorder</code> above, called once per input value. <strong>Part 1</strong> is a single traversal with no pointer rewiring at all — since only the <em>data</em> field changes, not the list's structure:</p>
     <div class="formula-block code"><span class="c1">void</span> replaceAll(NODE first, <span class="c1">int</span> x, <span class="c1">int</span> y) {
@@ -1337,7 +1340,12 @@ while(root!=NULL){
 
   <div class="qbox" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
     <div class="qmeta"><span class="qsrc">CIE-II 2024-25 · Q2a<cite class="src" data-src="Q2"></cite></span><span class="marks">10 marks</span></div>
-    <div class="qtext">You are given two non-empty linked lists, each representing a non-negative integer. The digits are stored in reverse order, one digit per node. Write a program to add the two numbers and return the result as a linked list.<br>Input: (2→4→5) + (5→7→2) &nbsp; Output: (7→1→8)</div>
+    <div class="qtext">
+<span class="qline">You are given two non-empty linked lists, each representing a non-negative integer. The digits are stored in reverse order, one digit per node.</span>
+<span class="qline">Write a program to add the two numbers and return the result as a linked list.</span>
+<div class="qcode">Input: (2→4→5) + (5→7→2)
+Output: (7→1→8)</div>
+</div>
     <div class="ans-label">Answer — why "reverse order" makes this easy, verified by simulation</div>
     <p>Because the least-significant digit is stored at the <em>head</em> of each list, adding two numbers digit-by-digit from the heads is the same direction as adding them by hand from the ones place — no reversal needed. Traverse both lists together, adding corresponding digits plus any carry from the previous step, and append <code>(sum % 10)</code> to the result while carrying <code>(sum / 10)</code> forward:</p>
     <div class="formula-block code">NODE addTwoNumbers(NODE l1, NODE l2) {
@@ -1491,7 +1499,11 @@ while(root!=NULL){
   <p>Subtraction <code>P1 − P2</code> is addition with every coefficient of P2 negated, so the same two-pointer merge works. The three cases change only slightly: equal exponents give <code>c1 − c2</code> (dropped if zero); a term present only in P1 is copied unchanged; a term present only in P2 is copied with its <strong>sign flipped</strong>. The routine below takes <code>sign = +1</code> for addition and <code>sign = −1</code> for subtraction. Time O(m + n), no node of the inputs is modified.</p>
   <div class="qbox" style="--accent:var(--plum);--accent-soft:var(--plum-soft);">
     <div class="qmeta"><span class="qsrc">Lab program · verified by running in C</span><span class="marks">8 marks</span></div>
-    <div class="qtext">Write a C program to add and subtract two polynomials using linked lists. Use P1 = 5x³ + 4x² + 2x + 7 and P2 = 3x³ + 6x² + 9.</div>
+    <div class="qtext">
+<span class="qline">Write a C program to add and subtract two polynomials using linked lists. Use</span>
+<div class="qcode">P1 = 5x³ + 4x² + 2x + 7
+P2 = 3x³ + 6x² + 9</div>
+</div>
     <div class="ans-label">Answer — full program</div>
     <pre class="formula-block code">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
@@ -1582,7 +1594,14 @@ P1-P1 = empty (zero polynomial)</pre>
   </ol>
   <div class="qbox" style="--accent:var(--plum);--accent-soft:var(--plum-soft);">
     <div class="qmeta"><span class="qsrc">Lab program · verified by running in C and against dense multiplication</span><span class="marks">8 marks</span></div>
-    <div class="qtext">Write a C program to multiply two sparse matrices stored as linked lists. A is the 4×5 matrix above; B is 5×3 with non-zeros 2 at (0,1), 5 at (1,0), 1 at (2,0), 6 at (2,2) and 7 at (4,1).</div>
+    <div class="qtext">
+<span class="qline">Write a C program to multiply two sparse matrices stored as linked lists.</span>
+<ul class="qparts"><li>A is the 4×5 matrix above</li><li>B is 5×3 with non-zeros<div class="qcode">2 at (0,1)
+5 at (1,0)
+1 at (2,0)
+6 at (2,2)
+7 at (4,1)</div></li></ul>
+</div>
     <div class="ans-label">Answer — full program</div>
     <pre class="formula-block code">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;

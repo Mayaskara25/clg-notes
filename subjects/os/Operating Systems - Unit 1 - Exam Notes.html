@@ -1016,7 +1016,10 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 <p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne — process concept (PDF p. 129)<cite class="src" data-src="B1" data-p="§3.1"></cite></span>.</p>
 <div class="qbox" id="u1-example-02">
     <div class="qmeta"><span class="qsrc">CIE-I Q4a, 2021-22 · Question Bank #3</span><span class="marks">7 marks</span></div>
-    <div class="qtext">With a neat diagram, explain the memory map of a process. Given a C program that declares a global variable, a static variable, a local variable, and a heap-allocated variable (via <code>malloc</code>), identify which memory region each is stored in.</div>
+    <div class="qtext">
+<span class="qline">With a neat diagram, explain the memory map of a process.</span>
+<span class="qline">Given a C program that declares a global variable, a static variable, a local variable, and a heap-allocated variable (via <code>malloc</code>), identify which memory region each is stored in.</span>
+</div>
     <div class="ans-label">Answer</div>
     <p>Draw the process memory layout from Fig 8 (text at the bottom, then data, then heap growing upward, then stack growing downward from the top), then classify each variable by its storage duration and scope:</p>
     <table>
@@ -1107,7 +1110,10 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 
   <div class="qbox" id="u1-example-03">
     <div class="qmeta"><span class="qsrc">CIE-I Test-1 Q3 (i–iii), 2024-25 · Question Bank #22<cite class="src" data-src="Q1"></cite></span><span class="marks">10 marks (i–iii Unit-1-answerable)</span></div>
-    <div class="qtext">Indicate, with specific justification, whether the following claims are true or false: (i) Timesharing systems are identical to multiprogramming systems when the time slice exceeds the CPU burst of every program. (ii) Kernel mode is essential for isolated and protected execution of processes. (iii) Swapping of processes in and out of memory increases OS overhead and decreases CPU efficiency.</div>
+    <div class="qtext">
+<span class="qline">Indicate, with specific justification, whether the following claims are true or false:</span>
+<ul class="qparts"><li>(i) Timesharing systems are identical to multiprogramming systems when the time slice exceeds the CPU burst of every program.</li><li>(ii) Kernel mode is essential for isolated and protected execution of processes.</li><li>(iii) Swapping of processes in and out of memory increases OS overhead and decreases CPU efficiency.</li></ul>
+</div>
     <div class="ans-label">Answer</div>
     <ol class="steps">
       <li><strong>(i) False.</strong> Timesharing and multiprogramming both aim to maximize CPU utilization by keeping several processes in memory, but they are not identical in purpose: multiprogramming's goal is simply to never let the CPU sit idle, while timesharing's goal is <em>interactivity</em> — switching between programs fast enough that users can interact with each one. Even in the edge case where the time slice exceeds every program's CPU burst (so no program is ever preempted mid-burst), timesharing systems are still built around fast, frequent switching for responsiveness, which is a distinct design goal from multiprogramming's CPU-utilization focus.</li>
@@ -1122,7 +1128,9 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 
   <div class="qbox" id="u1-example-04">
     <div class="qmeta"><span class="qsrc">CIE-II Quiz-II, 2024-25 · Question Bank #23, #24<cite class="src" data-src="Q3"></cite></span><span class="marks">1–2 marks each</span></div>
-    <div class="qtext">"In a preemptive scheduling algorithm, when can a currently running process be interrupted?" &nbsp;/&nbsp; "Define CPU utilization and its goal."</div>
+    <div class="qtext">
+<ul class="qparts"><li>"In a preemptive scheduling algorithm, when can a currently running process be interrupted?"</li><li>"Define CPU utilization and its goal."</li></ul>
+</div>
     <div class="ans-label">Answer</div>
     <p>A running process can be interrupted at any point the OS chooses to reclaim the CPU — most commonly when its time slice (quantum) expires, when a higher-priority process becomes ready, or when an I/O or hardware interrupt occurs — moving it from <em>running</em> back to <em>ready</em> (see the state diagram, Fig 9). This is what distinguishes preemptive scheduling from non-preemptive scheduling, where a process keeps the CPU until it voluntarily yields (blocks for I/O or terminates). <strong>CPU utilization</strong> is the fraction of time the CPU is actively executing a process rather than sitting idle; its goal, shared by both multiprogramming and timesharing, is to keep utilization as close to 100% as possible by always having some ready process available to run whenever the current one blocks or is preempted.</p>
   </div>
@@ -1293,7 +1301,11 @@ printf("2 ");</div> &nbsp;</li></ul>
 
   <div class="qbox" id="u1-example-08">
     <div class="qmeta"><span class="qsrc">CIE-I Q1b (2021-22) / Test-1 Q5.a (2024-25) · Question Bank #2<cite class="src" data-src="Q1"></cite></span><span class="marks">6 marks</span></div>
-    <div class="qtext">Write a program in which a parent process spawns N children, where N is read as a command-line argument. Each child should print "Hi from child PID", where PID is its own process ID; the parent must wait for all children to exit before finishing.</div>
+    <div class="qtext">
+<span class="qline">Write a program in which a parent process spawns N children, where N is read as a command-line argument.</span>
+<span class="qline">Each child should print "Hi from child PID", where PID is its own process ID;</span>
+<span class="qline">the parent must wait for all children to exit before finishing.</span>
+</div>
     <div class="ans-label">Answer — verified for N = 4 (produced exactly 4 child prints, 0 from the parent)</div>
     <div class="formula-block code">int main(int argc, char *argv[]) {
     int n = atoi(argv[1]);
@@ -1785,7 +1797,11 @@ void *runner(void *param) {
 <h2>Additional Pthreads worked programs</h2><div class="callout clarify"><span class="label">Question-source transcription note</span><p>The earlier question-bank extraction marked the second sorting clause as OCR-damaged. Descending order is the retained interpretation; the program below is a complete worked ascending/descending example. The original paper is not currently in the repository for a fresh visual check.</p></div>
 <div class="qbox" id="u1-example-14">
     <div class="qmeta"><span class="qsrc">2021-22 CIE-I, Q2</span><span class="marks">10 marks</span></div>
-    <div class="qtext">Write a program to create threads to perform the following functions on an array simultaneously: (i) sort the array in ascending order, (ii) sort the array in descending order — and record execution time in milliseconds.</div>
+    <div class="qtext">
+<span class="qline">Write a program to create threads to perform the following functions on an array simultaneously:</span>
+<ul class="qparts"><li>(i) sort the array in ascending order</li><li>(ii) sort the array in descending order</li></ul>
+<span class="qline">— and record execution time in milliseconds.</span>
+</div>
     <div class="ans-label">Complete C program — compile with gcc -std=c11 -pthread</div>
     <pre class="formula-block code">#define _POSIX_C_SOURCE 200809L
 #include &lt;pthread.h&gt;

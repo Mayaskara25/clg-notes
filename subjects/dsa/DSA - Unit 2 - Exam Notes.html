@@ -677,7 +677,11 @@ int pop(void) {
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
     <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q2<cite class="src" data-src="Q1"></cite></span><span class="marks">10 marks</span></div>
-    <div class="qtext">Design an algorithm using stack to convert a given infix expression (without parenthesis) into a postfix expression. Using the same, convert the following infix to postfix, showing each step: <code>A+B/C*D-A^F^H</code></div>
+    <div class="qtext">
+<span class="qline">Design an algorithm using stack to convert a given infix expression (without parenthesis) into a postfix expression.</span>
+<span class="qline">Using the same, convert the following infix to postfix, showing each step:</span>
+<div class="qcode">A+B/C*D-A^F^H</div>
+</div>
     <div class="ans-label">Answer — algorithm as above; trace below (verified by code simulation)</div>
     <table>
       <tr><th>Char</th><th>Stack</th><th>Output</th></tr>
@@ -1003,7 +1007,10 @@ Result = 25</pre>
 }</pre>
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
     <div class="qmeta"><span class="qsrc">Your Unit II deck · verified<cite class="src" data-src="D6"></cite></span><span class="marks">3 marks</span></div>
-    <div class="qtext">Classify each expression.</div>
+    <div class="qtext">
+<span class="qline">Classify each expression.</span>
+<ul class="qparts"><li><code>{ [ ( A + B ) ] }</code></li><li><code>(A + B) * [C − D]</code></li><li><code>{ [ ( A + B ] ) }</code></li><li><code>(A + B</code></li><li><code>A + B)</code></li></ul>
+</div>
     <table>
       <tr><th>Expression</th><th>Result</th><th>Reason</th></tr>
       <tr><td><code>{ [ ( A + B ) ] }</code></td><td>Balanced</td><td>Closes in reverse order of opening; stack ends empty</td></tr>
@@ -1023,7 +1030,14 @@ Result = 25</pre>
 
   <div class="qbox" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
     <div class="qmeta"><span class="qsrc">CIE 21-22 Test-I · Q1a<cite class="src" data-src="Q1"></cite></span><span class="marks">10 marks</span></div>
-    <div class="qtext">Considering only the characters '(' and ')', a sequence of parentheses is called <strong>regular</strong> if: an empty sequence is regular; if S is regular, then (S) is regular; if A and B are regular, their concatenation AB is regular. Write a C function/algorithm using stack to find if the sequence is regular or not. Trace your algorithm for the input sequences <code>((()))()</code> and <code>(())))()</code>.</div>
+    <div class="qtext">
+<span class="qline">Considering only the characters '(' and ')', a sequence of parentheses is called <strong>regular</strong> if:</span>
+<ul class="qparts"><li>an empty sequence is regular</li><li>if S is regular, then (S) is regular</li><li>if A and B are regular, their concatenation AB is regular.</li></ul>
+<span class="qline">Write a C function/algorithm using stack to find if the sequence is regular or not.</span>
+<span class="qline">Trace your algorithm for the input sequences</span>
+<div class="qcode">((()))()
+(())))()</div>
+</div>
 
     <div class="ans-label">Algorithm (using a stack)</div>
     <ol class="steps">

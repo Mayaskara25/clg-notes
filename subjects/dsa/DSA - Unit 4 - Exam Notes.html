@@ -549,7 +549,10 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">RVCE CIE-II · 3 Jan 2021 · Q1.5<cite class="src" data-src="Q1"></cite></span><span class="marks">2 marks</span></div>
-    <div class="qtext">For the tree below, find: (i) height of node 7, (ii) common ancestors of nodes 10 and 11, (iii) depth of node 6, (iv) level of node 9.</div>
+    <div class="qtext">
+<span class="qline">For the tree below, find:</span>
+<ul class="qparts"><li>(i) height of node 7</li><li>(ii) common ancestors of nodes 10 and 11</li><li>(iii) depth of node 6</li><li>(iv) level of node 9.</li></ul>
+</div>
     <div class="q-given svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg">
         <line x1="320" y1="50" x2="180" y2="105" stroke="#1C1E21" stroke-width="1.3"/>
@@ -667,7 +670,13 @@ re-interpreted so that nothing about the original tree is lost.</p>
 
 <div class="qbox">
     <div class="qmeta"><span class="qsrc">worked example<cite class="src" data-src="D9" data-p="34-36"></cite></span><span class="marks">5 marks</span></div>
-    <div class="qtext">Convert the N-ary tree with A → B, C, D; B → E, F; D → G into a binary tree using the left-child / right-sibling method.</div>
+    <div class="qtext">
+<span class="qline">Convert the N-ary tree with</span>
+<div class="qcode">A → B, C, D
+B → E, F
+D → G</div>
+<span class="qline">into a binary tree using the left-child / right-sibling method.</span>
+</div>
     
     <div class="ans-label">Solution</div>
     <p>Children lists: A has B, C, D; B has E, F; D has G; C, E, F, G are leaves. Apply the rules node by node
@@ -1271,7 +1280,10 @@ next-sibling. Need to walk <em>up</em> (full path of a file, manager of an emplo
   <h2>Worked example: build a BST and traverse it</h2>
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">RVCE CIE-II · 3 Jan 2021 · Q6a<cite class="src" data-src="Q1"></cite></span><span class="marks">7 marks</span></div>
-    <div class="qtext">Construct a binary search tree by inserting the keys 6, 4, 22, 10, 2, 14, 3, 8, 11 (in this order). Traverse the constructed tree in preorder, inorder, and postorder.</div>
+    <div class="qtext">
+<span class="qline">Construct a binary search tree by inserting the keys 6, 4, 22, 10, 2, 14, 3, 8, 11 (in this order).</span>
+<span class="qline">Traverse the constructed tree in preorder, inorder, and postorder.</span>
+</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <svg viewBox="0 0 820 380" xmlns="http://www.w3.org/2000/svg">
         <line x1="315" y1="55" x2="230" y2="105" stroke="#1C1E21" stroke-width="1.3"/>
@@ -1766,7 +1778,10 @@ BST of height h each operation takes O(h): O(log n) for a balanced tree, O(n) fo
 </div>
 <div class="qbox">
     <div class="qmeta"><span class="qsrc">tree_traversal.pdf · p28–34 (cases) and p33 (delete 15)<cite class="src" data-src="D10" data-p="28-34"></cite></span><span class="marks">8 marks</span></div>
-    <div class="qtext">For the BST with root 12 shown above, show the tree after (a) deleting 18, (b) deleting 13, (c) deleting 15 using the inorder successor, (d) deleting 15 using the inorder predecessor.</div>
+    <div class="qtext">
+<span class="qline">For the BST with root 12 shown above, show the tree after</span>
+<ul class="qparts"><li>(a) deleting 18</li><li>(b) deleting 13</li><li>(c) deleting 15 using the inorder successor</li><li>(d) deleting 15 using the inorder predecessor.</li></ul>
+</div>
     
     <div class="ans-label">Solution (each result verified by running the deletion in code; every inorder stays sorted)</div>
     <table><tr><th>Delete</th><th>Case</th><th>What happens</th><th>Inorder afterwards</th></tr><tr><td>18</td><td>1 (leaf)</td><td>18 is the left child of 20; 20.left becomes NULL</td><td><span class="mono">1, 3, 5, 7, 8, 9, 11, 12, 13, 14, 15, 17, 20</span></td></tr><tr><td>13</td><td>2 (one child)</td><td>13 has only the right child 14; 15.left now points to 14</td><td><span class="mono">1, 3, 5, 7, 8, 9, 11, 12, 14, 15, 17, 18, 20</span></td></tr><tr><td>15 (successor)</td><td>3</td><td>successor = min of right subtree 17 → 17 is a node with right child 20; 15 is overwritten by 17, then the old 17 is removed (20 takes its place). New right child of 12 is 17 with children 13 and 20</td><td><span class="mono">1, 3, 5, 7, 8, 9, 11, 12, 13, 14, 17, 18, 20</span></td></tr><tr><td>15 (predecessor)</td><td>3</td><td>predecessor = max of left subtree 13(→14) is 14 (a leaf); 15 is overwritten by 14 and the old 14 is removed. New right child of 12 is 14 with children 13 and 17</td><td><span class="mono">1, 3, 5, 7, 8, 9, 11, 12, 13, 14, 17, 18, 20</span></td></tr></table>
@@ -2782,7 +2797,10 @@ completion to restore every pointer).</p>
 }</div>
 <div class="qbox">
     <div class="qmeta"><span class="qsrc">Worked example · Fig 13 BST</span><span class="marks">5 marks</span></div>
-    <div class="qtext">For the BST built from 6, 4, 22, 10, 2, 14, 3, 8, 11 give the height, the depth of every node, the number of leaf nodes, internal nodes and total nodes.</div>
+    <div class="qtext">
+<span class="qline">For the BST built from 6, 4, 22, 10, 2, 14, 3, 8, 11 give:</span>
+<ul class="qparts"><li>the height</li><li>the depth of every node</li><li>the number of leaf nodes, internal nodes and total nodes.</li></ul>
+</div>
     
     <div class="ans-label">Solution (computed in code; recursive, iterative and level-order versions all agree)</div>
     <table><tr><th>Quantity</th><th>Value</th><th>Which nodes / why</th></tr><tr><td>Height of the tree</td><td class="mono">4</td><td>longest path 6 → 22 → 10 → 14 → 11 has 4 edges (5 levels)</td></tr><tr><td>Depth of each node</td><td class="mono">0 to 4</td><td>depths: 6=0; 4,22=1; 2,10=2; 3,8,14=3; 11=4</td></tr><tr><td>Leaf nodes</td><td class="mono">3</td><td>3, 8, 11</td></tr><tr><td>Internal nodes</td><td class="mono">6</td><td>6, 4, 22, 2, 10, 14</td></tr><tr><td>Total nodes</td><td class="mono">9</td><td>3 + 6</td></tr><tr><td>Leaves by degree</td><td class="mono">n0=3, n1=4, n2=2</td><td>n0 = n2 + 1 holds: 3 = 2 + 1</td></tr></table>
@@ -3692,7 +3710,11 @@ Node* leftMost(Node* n) {
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q4.a &amp; Q4.b<cite class="src" data-src="Q2"></cite></span><span class="marks">4 + 6 marks</span></div>
-    <div class="qtext">4.a — State the benefits of a threaded binary tree compared to a regular binary tree. Mention the types. 4.b — Construct the single-threaded (right-in) and double-threaded binary tree for the tree shown (root 50, left child 17 with children 12 and 23, right child 72 with children 54 and 76, where 54 has right child 67).</div>
+    <div class="qtext">
+<ul class="qparts"><li>4.a — State the benefits of a threaded binary tree compared to a regular binary tree. Mention the types.</li><li>4.b — Construct the single-threaded (right-in) and double-threaded binary tree for the tree shown<div class="qcode">root 50
+left child 17 with children 12 and 23
+right child 72 with children 54 and 76, where 54 has right child 67</div></li></ul>
+</div>
     <div class="ans-label">4.a</div>
     <p>Benefits: see §6.1 (O(1) predecessor/successor access, stack-free traversal, better use of
     otherwise-wasted NULL pointers). Types: in/pre/post-threaded, each independently left-, right-, or

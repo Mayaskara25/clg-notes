@@ -352,7 +352,11 @@ body{transition:background-color .2s,color .2s}
   <p><strong>Sign extension.</strong> If a number has fewer bits than the register or memory location that holds it, the vacant MSBs are filled with copies of the sign bit: <strong>0s for a positive number (S = 0), 1s for a negative number (S = 1)</strong>. This keeps both the sign and the value unchanged.</p>
   <div class="qbox">
     <div class="qmeta"><span class="qsrc"><cite class="src" data-src="D6" data-p="1"></cite></span><span class="marks">verified</span></div>
-    <div class="qtext">Show how the 5-bit signed numbers a) 00111, b) 11001, c) 00000 are stored in 8-bit registers.</div>
+    <div class="qtext">
+<span class="qline">Show how the 5-bit signed numbers</span>
+<ul class="qparts"><li>a) 00111</li><li>b) 11001</li><li>c) 00000</li></ul>
+<span class="qline">are stored in 8-bit registers.</span>
+</div>
     <table>
       <tr><th>5-bit</th><th>Value</th><th>8-bit (sign-extended)</th></tr>
       <tr><td class="mono">00111</td><td>+7</td><td class="mono">00000111</td></tr>
@@ -441,7 +445,10 @@ body{transition:background-color .2s,color .2s}
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">every example, recomputed<cite class="src" data-src="D6" data-p="17-21"></cite><cite class="src" data-src="D6" data-p="30-31"></cite></span><span class="marks">verified</span></div>
-    <div class="qtext">Signed 2's-complement addition and subtraction: the teacher's examples.</div>
+    <div class="qtext">
+<span class="qline">Signed 2's-complement addition and subtraction: the teacher's examples.</span>
+<table><tr><th>Problem</th><th>Bits</th></tr><tr><td>7 + (−3)</td><td>5</td></tr><tr><td>−6 + 5</td><td>5</td></tr><tr><td>9 + 8</td><td>5</td></tr><tr><td>−9 + (−3)</td><td>5</td></tr><tr><td>−9 + (−8)</td><td>5</td></tr><tr><td>−9 + 9</td><td>5</td></tr><tr><td>3 + (−4)</td><td>4</td></tr><tr><td>−3 − 4</td><td>4</td></tr><tr><td>2 − 7</td><td>4</td></tr><tr><td>5 − 2</td><td>4</td></tr><tr><td>−5 − 2</td><td>4</td></tr><tr><td>5 − (−2)</td><td>4</td></tr><tr><td>7 − 7</td><td>4</td></tr><tr><td>7 − (−7)</td><td>4</td></tr><tr><td>−6 − 4</td><td>4</td></tr><tr><td>19 − (−4)</td><td>8</td></tr><tr><td>18 − 16</td><td>8</td></tr><tr><td>−35 + (−11)</td><td>8</td></tr></table>
+</div>
     <table>
       <tr><th>Problem</th><th>Bits</th><th>Added (subtrahend already 2's-complemented)</th><th>Result</th><th>Overflow?</th></tr>
             <tr><td>7 + (−3)</td><td>5</td><td><span class="mono">00111</span> + <span class="mono">11101</span></td><td><span class="mono">00100</span> (carry 1 discarded)</td><td>No → 4</td></tr>
@@ -737,7 +744,11 @@ body{transition:background-color .2s,color .2s}
 
 <div class="qbox">
     <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q1a<cite class="src" data-src="Q4"></cite></span><span class="marks">5 marks</span></div>
-    <div class="qtext">Using Radix-4 Modified Booth's algorithm, multiply (−13) by 10. Show clearly: a) binary representation, b) formation of groups, c) modified Booth encoding for each group, d) generation of partial products and the final product.</div>
+    <div class="qtext">
+<span class="qline">Using Radix-4 Modified Booth's algorithm, multiply (−13) by 10.</span>
+<span class="qline">Show clearly:</span>
+<ul class="qparts"><li>a) binary representation</li><li>b) formation of groups</li><li>c) modified Booth encoding for each group</li><li>d) generation of partial products and the final product.</li></ul>
+</div>
     <div class="ans-label">a) Binary representation (6-bit 2's complement, an even number of bits so the groups come out even)</div>
     <p>Multiplicand M = −13: 13 = 001101 → 1's complement 110010 → +1 → <span class="mono">110011</span>. Multiplier Q = +10 = <span class="mono">001010</span>. Also needed: −M = +13 = <span class="mono">001101</span>, 2M = −26, −2M = +26.</p>
     <div class="ans-label">b) Formation of groups</div>
@@ -1055,7 +1066,10 @@ Mantissa : <span class="c2">11011011000000000000000</span></div>
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q2b<cite class="src" data-src="Q4"></cite></span><span class="marks">5 marks</span></div>
-    <div class="qtext">Consider the decimal number −18.625. a) Convert it into binary. b) Normalise the binary number. c) Determine the sign bit and biased exponent. d) Write the complete 32-bit IEEE 754 single-precision representation.</div>
+    <div class="qtext">
+<span class="qline">Consider the decimal number −18.625.</span>
+<ul class="qparts"><li>a) Convert it into binary.</li><li>b) Normalise the binary number.</li><li>c) Determine the sign bit and biased exponent.</li><li>d) Write the complete 32-bit IEEE 754 single-precision representation.</li></ul>
+</div>
     <div class="ans-label">Solution</div>
     <ol class="steps">
       <li><strong>Binary:</strong> 18 = 10010₂; 0.625 → 0.625×2 = 1.25 (1), 0.25×2 = 0.5 (0), 0.5×2 = 1.0 (1) → .101. So 18.625 = <span class="mono">10010.101</span>₂.</li>
@@ -1083,7 +1097,10 @@ Full word: 1 10000011 00101010000000000000000  = 0xC1950000</div>
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">Problem 4(b)–(f), Booth's algorithm, 6-bit<cite class="src" data-src="D1"></cite></span><span class="marks">verified</span></div>
-    <div class="qtext">Perform signed multiplication of the following 2's-complement pairs using Booth's algorithm.</div>
+    <div class="qtext">
+<span class="qline">Perform signed multiplication of the following 2's-complement pairs using Booth's algorithm.</span>
+<table><tr><th>Part</th><th>A (M)</th><th>B (Q)</th></tr><tr><td>(b)</td><td>110011</td><td>101100</td></tr><tr><td>(c)</td><td>110101</td><td>011011</td></tr><tr><td>(d)</td><td>001111</td><td>001111</td></tr><tr><td>(e)</td><td>10100</td><td>10101</td></tr><tr><td>(f)</td><td>01110</td><td>11000</td></tr></table>
+</div>
     <table>
       <tr><th>Part</th><th>A (M)</th><th>B (Q)</th><th>Decimal</th><th>Product</th></tr>
       <tr><td>(b)</td><td>110011</td><td>101100</td><td>−13 × −20</td><td><strong>260</strong></td></tr>
@@ -1566,7 +1583,10 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
 
 <div class="qbox">
     <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q2a<cite class="src" data-src="Q4"></cite></span><span class="marks">5 marks</span></div>
-    <div class="qtext">The combinational circuit shown in the question paper is a function of four variables A, B, C, D. a) Find its Boolean expression. b) Minimise it using a Karnaugh map. c) Draw the resultant circuit.</div>
+    <div class="qtext">
+<span class="qline">The combinational circuit shown in the question paper is a function of four variables A, B, C, D.</span>
+<ul class="qparts"><li>a) Find its Boolean expression.</li><li>b) Minimise it using a Karnaugh map.</li><li>c) Draw the resultant circuit.</li></ul>
+</div>
     <div class="ans-label">a) Read off each AND gate. The paper's circuit has 5 AND gates feeding one 5-input OR gate.</div>
     <table>
       <tr><th>AND gate</th><th>Inputs (tracing the wires)</th><th>Term</th></tr>
@@ -1619,7 +1639,10 @@ F' = (X'YZ')' · (X'Y'Z')'      <span class="cm">complement each product, AND th
 
 <div class="qbox">
     <div class="qmeta"><span class="qsrc">CIE-I 2026 (12-10-2026), Q5<cite class="src" data-src="Q4"></cite></span><span class="marks">10 marks</span></div>
-    <div class="qtext">Minimise the given Boolean function using the Quine–McCluskey tabular method and verify the result with a K-map: f(a, b, c, d) = Σm(0, 5, 7, 8, 9, 10, 11, 14, 15) + d(1, 6).</div>
+    <div class="qtext">
+<span class="qline">Minimise the given Boolean function using the Quine–McCluskey tabular method and verify the result with a K-map:</span>
+<div class="qcode">f(a, b, c, d) = Σm(0, 5, 7, 8, 9, 10, 11, 14, 15) + d(1, 6)</div>
+</div>
     <div class="ans-label">Step 1: list minterms and don't-cares together, grouped by number of 1s (✓ = combined into a larger term)</div>
     <p style="font-size:14px"><strong>0</strong>: 0 <span class="mono">0000</span> ✓<br><strong>1</strong>: 1 <span class="mono">0001</span> ✓, 8 <span class="mono">1000</span> ✓<br><strong>2</strong>: 5 <span class="mono">0101</span> ✓, 6 <span class="mono">0110</span> ✓, 9 <span class="mono">1001</span> ✓, 10 <span class="mono">1010</span> ✓<br><strong>3</strong>: 7 <span class="mono">0111</span> ✓, 11 <span class="mono">1011</span> ✓, 14 <span class="mono">1110</span> ✓<br><strong>4</strong>: 15 <span class="mono">1111</span> ✓</p>
     <div class="ans-label">Step 2: combine terms in adjacent groups that differ in exactly one bit (pairs)</div>

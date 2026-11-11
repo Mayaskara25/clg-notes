@@ -636,7 +636,11 @@ right_child(i) = 2*i + 1</div>
 }</div>
 
   <div class="qbox"><cite class="src" data-src="D13"></cite>
-    <div class="qtext">Worked example — delete the root (90) from an 11-node max-heap.</div>
+    <div class="qtext">
+<span class="qline">Worked example — delete the root (90) from an 11-node max-heap.</span>
+<span class="qline">Given: array</span>
+<div class="qcode">[90,89,70,36,85,63,65,21,18,15,75]</div>
+</div>
     <div class="svg-wrap" style="box-shadow:none;border:1px solid var(--line-soft);margin:6px 0 16px;">
       <div class="grid2">
         <div>
@@ -719,7 +723,9 @@ right_child(i) = 2*i + 1</div>
   <h2>Top-down construction, worked</h2>
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q5<cite class="src" data-src="Q1"></cite></span><span class="marks">10 marks</span></div>
-    <div class="qtext">List the properties of a binary heap. For the given elements construct a min heap using top-down approach (show the steps clearly): 54, 26, 93, 17, 77, 31. For the above constructed min heap, perform the Extractmin operation once and write the tree after the deletion.</div>
+    <div class="qtext">
+<ul class="qparts"><li>List the properties of a binary heap.</li><li>For the given elements construct a min heap using top-down approach (show the steps clearly):<div class="qcode">54, 26, 93, 17, 77, 31</div></li><li>For the above constructed min heap, perform the Extractmin operation once and write the tree after the deletion.</li></ul>
+</div>
     <div class="ans-label">Properties of a binary heap</div>
     <p>See the checklist in §1.2: shape property (complete binary tree), heap-order property, root
     extremum, no sibling ordering, array-storable, O(log n) insert/delete.</p>
@@ -792,7 +798,9 @@ buildHeap(a[0..n-1]):
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q2.a &amp; Q2.b<cite class="src" data-src="Q2"></cite></span><span class="marks">5 + 5 marks</span></div>
-    <div class="qtext">2.a — Define heap and mention the properties. Write the pseudocode for the bottom-up heap construction. 2.b — Construct the min-heap for the instance (35, 67, 12, 89, 102, 42, 5, 19, 10). How can you leverage heap for sorting?</div>
+    <div class="qtext">
+<ul class="qparts"><li>2.a — Define heap and mention the properties. Write the pseudocode for the bottom-up heap construction.</li><li>2.b — Construct the min-heap for the instance (35, 67, 12, 89, 102, 42, 5, 19, 10). How can you leverage heap for sorting?</li></ul>
+</div>
     <div class="ans-label">2.a — definition, properties, pseudocode</div>
     <p>Heap definition and properties: see §1.2. Pseudocode: as above, using a min-comparison
     <code>siftDown</code> for a min-heap.</p>
@@ -1382,7 +1390,11 @@ extract on empty returns 0</div>
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q3.b<cite class="src" data-src="Q2"></cite></span><span class="marks">5 marks</span></div>
-    <div class="qtext">Mention the types of rotations in AVL tree. Apply it suitably while constructing the tree for the instance (15, 9, 12, 19, 8, 17, 4). Show tree in each step with balance factor attached to nodes.</div>
+    <div class="qtext">
+<span class="qline">Mention the types of rotations in AVL tree.</span>
+<span class="qline">Apply it suitably while constructing the tree for the instance (15, 9, 12, 19, 8, 17, 4).</span>
+<span class="qline">Show tree in each step with balance factor attached to nodes.</span>
+</div>
     <div class="ans-label">Solution (verified in code)</div>
     <table>
       <tr><th>Insert</th><th>Rotation triggered</th></tr>
@@ -1958,7 +1970,9 @@ search 10 -&gt; 1, search 12 -&gt; 0</div>
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q1.5 &amp; Q1.6<cite class="src" data-src="Q1"></cite></span><span class="marks">1 + 1 mark</span></div>
-    <div class="qtext">1.5 — B+ tree can contain a maximum of 7 pointers in a node. What is the minimum number of keys in leaves? 1.6 — What is the maximum number of keys that a B+ tree of order 3 and of height 3 have?</div>
+    <div class="qtext">
+<ul class="qparts"><li>1.5 — B+ tree can contain a maximum of 7 pointers in a node. What is the minimum number of keys in leaves?</li><li>1.6 — What is the maximum number of keys that a B+ tree of order 3 and of height 3 have?</li></ul>
+</div>
     <div class="ans-label">1.5</div>
     <p>Max pointers per node = n = 7 → min keys in a leaf = ⌈(n−1)/2⌉ = ⌈6/2⌉ = <strong>3</strong>.</p>
     <div class="ans-label">1.6</div>
@@ -2212,8 +2226,12 @@ search 10 -&gt; 1, search 12 -&gt; 0</div>
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">Simulation</span><span class="marks">cost = nodes visited</span></div>
-    <div class="qtext">Both trees start as the same right-leaning chain 10 &rarr; 20 &rarr; 30 &rarr; 40 &rarr; 50 (what sorted loading gives). One tree is a plain BST,
-    the other splays on every access. Process the lookups 50, 50, 40, 50, 40, 50, 30, 50, 50, 40.</div>
+    <div class="qtext">
+<span class="qline">Both trees start as the same right-leaning chain 10 &rarr; 20 &rarr; 30 &rarr; 40 &rarr; 50 (what sorted loading gives).</span>
+<span class="qline">One tree is a plain BST, the other splays on every access.</span>
+<span class="qline">Process the lookups</span>
+<div class="qcode">50, 50, 40, 50, 40, 50, 30, 50, 50, 40</div>
+</div>
     <div class="ans-label">Solution</div>
 <table>
 <tr><th>Access</th><th>Splay cost</th><th>Plain BST cost</th><th>Splay root after</th><th>Splay tree after (preorder)</th></tr>
@@ -2616,7 +2634,10 @@ all words, lexicographic order:
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q3.a<cite class="src" data-src="Q2"></cite></span><span class="marks">5 marks</span></div>
-    <div class="qtext">Define the following w.r.t graphs and give suitable examples: (i) Euler graph (ii) Complete graph (iii) Degree of vertex (iv) Disconnected graph.</div>
+    <div class="qtext">
+<span class="qline">Define the following w.r.t graphs and give suitable examples:</span>
+<ul class="qparts"><li>(i) Euler graph</li><li>(ii) Complete graph</li><li>(iii) Degree of vertex</li><li>(iv) Disconnected graph.</li></ul>
+</div>
     <div class="ans-label">Solution</div>
     <div class="svg-wrap">
       <div class="grid2">
@@ -3540,7 +3561,10 @@ search 14 -&gt; slot 9, search 25 -&gt; -1</div>
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">RVCE CIE-III · 16 Mar 2022 · Q6<cite class="src" data-src="Q1"></cite></span><span class="marks">10 marks</span></div>
-    <div class="qtext">Compare linear probing with separate chaining collision resolution technique. Construct the hash table for the keys: 54, 26, 93, 17, 77, 31, that are inserted one after the other into the empty hash table of length 11 using linear probing with hash function (h(key) = key² % 11).</div>
+    <div class="qtext">
+<span class="qline">Compare linear probing with separate chaining collision resolution technique.</span>
+<span class="qline">Construct the hash table for the keys: 54, 26, 93, 17, 77, 31, that are inserted one after the other into the empty hash table of length 11 using linear probing with hash function (h(key) = key² % 11).</span>
+</div>
     <div class="ans-label">Comparison</div>
     <table>
       <tr><th></th><th>Linear probing</th><th>Separate chaining</th></tr>
@@ -3596,7 +3620,14 @@ search 14 -&gt; slot 9, search 25 -&gt; -1</div>
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">RVCE CIE-III · 07 Jan 2025 · Part B Q5.b<cite class="src" data-src="Q2"></cite></span><span class="marks">6 marks</span></div>
-    <div class="qtext">Mention the properties of hash function. Given two hash functions, h1 and h2 defined by h1(x)=(3x+11) mod 17 and h2(x)=5x mod 29, identify which is better w.r.t collision resistance. Being a cyber-forensic expert, the original hard drive and image are handed to you. How do you take a decision and generate the report?</div>
+    <div class="qtext">
+<span class="qline">Mention the properties of hash function.</span>
+<span class="qline">Given two hash functions, h1 and h2 defined by</span>
+<div class="qcode">h1(x)=(3x+11) mod 17
+h2(x)=5x mod 29</div>
+<span class="qline">identify which is better w.r.t collision resistance.</span>
+<span class="qline">Being a cyber-forensic expert, the original hard drive and image are handed to you. How do you take a decision and generate the report?</span>
+</div>
     <div class="ans-label">Properties of a good hash function</div>
     <p>Deterministic (same key always gives the same index); fast to compute; distributes keys uniformly
     across the table (minimizes collisions); small changes in the key should ideally produce large,
@@ -3654,7 +3685,10 @@ search 14 -&gt; slot 9, search 25 -&gt; -1</div>
 
   <div class="qbox">
     <div class="qmeta"><span class="qsrc">RVCE SEE Jan/Feb 2025 · Part B Q10a<cite class="src" data-src="Q2"></cite></span><span class="marks">8 marks</span></div>
-    <div class="qtext">The keys 10, 6, 12, 4, 25, 6, 18, 20, 8 are inserted into the empty hash table of length 10 using linear probing with hash function H(i) = i mod 10. What is the resultant hash table, and find the maximum probe value?</div>
+    <div class="qtext">
+<span class="qline">The keys 10, 6, 12, 4, 25, 6, 18, 20, 8 are inserted into the empty hash table of length 10 using linear probing with hash function H(i) = i mod 10.</span>
+<span class="qline">What is the resultant hash table, and find the maximum probe value?</span>
+</div>
     <div class="ans-label">Solution (verified by simulation)</div>
     <p>Note key 6 appears twice in the list — both instances are inserted (a hash table can store
     duplicate keys as distinct entries unless the implementation explicitly rejects them; this question
