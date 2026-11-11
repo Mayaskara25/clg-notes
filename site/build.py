@@ -217,6 +217,19 @@ class QuestionScanner(HTMLParser):
         node.close = self.source_position()
         node.end = node.close + len(tag) + 3
 
+QPARTS_LABEL = re.compile(r"\s*(?:\((?:[a-z]|[ivx]+|\d+)\)|(?:[a-z]|[ivx]+)[.)]\s|\d+\.\w+\s+—|Case\s+\d+|Part\s+\w+)", re.I)
+
+
+def mark_labelled_parts(content):
+    """A .qparts list whose items all start with their own label ((a), (i), Case 1) needs no bullets."""
+    def fix(m):
+        items = re.findall(r"<li>(.*?)</li>", m.group(2), re.S)
+        text = [re.sub(r"<[^>]+>", "", x) for x in items]
+        if items and all(QPARTS_LABEL.match(t) for t in text):
+            return '<ul class="qparts labelled">' + m.group(2) + "</ul>"
+        return m.group(0)
+    return re.sub(r'<ul class="(qparts)">(.*?)</ul>', fix, content, flags=re.S)
+
 
 def wrap_answers(content, unit):
     """Keep question/givens visible, wrapping the remaining children in one answer."""
@@ -560,7 +573,7 @@ def main():
             }, name + " toolbar")
             # Sections/search above are extracted before answer controls are introduced.
             try:
-                page, wrapped, skipped = wrap_answers(c, n)
+                page, wrapped, skipped = wrap_answers(mark_labelled_parts(c), n)
                 answer_count += wrapped
                 answer_skipped += skipped
             except ValueError as ex:
