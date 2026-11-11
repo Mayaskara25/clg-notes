@@ -1,33 +1,15 @@
 # Class Exam Notes
 
-Revision notes for our class, one section per subject, unit by unit.
-Subjects still being written show as **in progress**.
+Revision notes for our class, made from the faculty slides, handwritten notes and past CIE/SEE papers, one guide per unit.
 
-**Read them on the website.** The link is shared in the class group. These files are the source.
+**Read them at https://clg-notes.onrender.com**
 
-## Found an error or something missing?
+## What's on the site
+- **Subjects:** DSA (Units 1–5), OS (Units 1–3), ADLD (Units 1–3). More units appear as they are finished.
+- **Inside each unit:** the topics explained, worked CIE/SEE questions with answers, ✦ Ask AI, ▶ Videos, and 📄 Sources (the original slides and papers).
+- **Download** any unit to read offline.
 
-Open the unit on the website, scroll to the section, and press **✎ Suggest / report** at the bottom right.
-That opens a pre-filled issue here, which you only need to submit. You can also
-[open an issue directly](../../issues/new).
+## Found an error, or have notes to add?
+Press **✎ Suggest / report** at the bottom-right of any unit. It opens a pre-filled issue here that you only need to submit. You can also [open an issue directly](../../issues/new).
 
-## How it is published (maintainer notes)
-
-- `subjects/<subject>/` holds that subject's finished guides and its `subject.json`
-  (units, topics, the per-unit **updated** date and the **What changed** log).
-- `site/build.py` builds the website into `public/`. It adds the noindex tags, version stamp, suggest popup,
-  download links, the subject and landing pages, and the search index. It also validates every guide.
-  If validation fails the build exits with code 1, so Render keeps the last good version live.
-- In OS and DSA guides, mark program snippets with `class="formula-block code"` on a
-  `div` or `pre`. The build adds syntax colors using `site/code_highlight.py` and
-  embeds `site/code-highlight.css`; downloaded guides keep their highlighting offline.
-  Leave formulas, traces and sample output as `class="formula-block"`.
-- `render.yaml` defines the Render static site. Every push to `main` redeploys automatically.
-
-```bash
-python3 site/build.py                         # build + validate locally
-python3 -m http.server 8765 -d public         # preview at http://localhost:8765
-git pull --rebase && git add -A && git commit -m "DSA Unit 3: fix circular queue trace" && git push
-```
-
-Not an official college document. Check anything important against your lecture slides.
+*Not an official college document. Check anything important against your lecture slides.*
