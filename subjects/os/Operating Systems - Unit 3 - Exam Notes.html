@@ -165,9 +165,35 @@ svg text{font-family:'Inter',system-ui,sans-serif}
 .section-head{flex-wrap:wrap}.section-head .tag{flex-shrink:0}
 .section-head h1{line-height:1.2}
 .source-note a{overflow-wrap:anywhere}
-td,th{overflow-wrap:anywhere}
 @media(max-width:640px){.section-head h1{font-size:26px}.cover h1{font-size:35px}}
 @media print{.sidebar,.theme-toggle,.extra-toggle{display:none}.page{padding:25px}.cover{min-height:auto}}
+/* Keep words intact; wide tables scroll without widening the page. */
+.table-scroll{max-width:100%;min-width:0;overflow-x:auto;margin:18px 0;border-radius:8px;box-shadow:var(--shadow)}
+.table-scroll:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.table-scroll>table,.section .table-scroll>table{display:table;max-width:none;margin:0;box-shadow:none}
+.table-scroll th,.table-scroll td,.table-scroll p,.table-scroll li{overflow-wrap:normal;word-break:normal;hyphens:none}
+.table-scroll th{vertical-align:top}
+.binding-times th:first-child,.binding-times td:first-child{width:9rem;min-width:7rem}
+.table-scroll td.mono[style*="white-space:nowrap"]{white-space:normal!important}
+@media screen and (max-width:1000px){.sidebar{display:none}}
+@media screen and (max-width:640px){
+ .cover{padding:48px 20px}.cover h1{font-size:35px}
+ .table-scroll th,.table-scroll td{padding:8px}
+ /* Prose reads vertically on phones; numerical tables keep their grid. */
+ .table-scroll>.table-prose,.section .table-scroll>.table-prose{display:block;width:100%}
+ .table-prose>tbody{display:block}
+ .table-prose>tbody>tr{display:block;padding:10px 0;border-bottom:1px solid var(--line)}
+ .table-prose>tbody>tr:last-child{border-bottom:0}
+ .table-prose>tbody>tr:first-child{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ .table-prose>tbody>tr>td{display:block;width:auto;min-width:0;padding:6px 12px;border:0}
+ .table-prose>tbody>tr>td::before{content:attr(data-label);display:block;margin-bottom:3px;color:var(--ink-soft);font:600 11px/1.5 'Inter',system-ui,sans-serif;letter-spacing:.03em;text-transform:uppercase}
+}
+@media print{
+ .table-scroll{overflow:visible;box-shadow:none}
+ .table-scroll>table{min-width:0;width:100%;table-layout:auto;font-size:10px}
+ .table-scroll th,.table-scroll td{padding:6px}
+ .binding-times th:first-child,.binding-times td:first-child,.binding-times th:nth-child(2){width:auto}
+}
 </style><meta name="color-scheme" content="light dark">
 <script>(function(){var m=false;try{m=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</script></head><body>
 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode">🌙 Dark</button>
@@ -196,15 +222,17 @@ td,th{overflow-wrap:anywhere}
 <section class="page section" id="syllabus-map" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">MAP</span><h1>Syllabus map</h1></div>
 <p class="section-sub">CS235AT · Unit III · 9 hours. The syllabus image determines the coverage and order.</p>
-<table><tr><th>Official topic</th><th>Where it is taught</th><th>Local Silberschatz<cite class="src" data-src="B1"></cite>, ninth edition</th></tr>
-<tr><td>Address binding</td><td><a href="#memory-binding">3.1 Binding stages and program preparation</a></td><td>§8.1.2, pp.354–355; PDF pp.378–379</td></tr>
-<tr><td>Logical versus physical-address space</td><td><a href="#memory-addresses">3.2 Address spaces, MMU and protection</a></td><td>§8.1.3, pp.355–357; PDF pp.379–381</td></tr>
-<tr><td>Dynamic loading</td><td><a href="#memory-loading">3.3 Routine loading on first use</a></td><td>§8.1.4, p.357; PDF p.381</td></tr>
-<tr><td>Dynamic linking and shared libraries</td><td><a href="#memory-linking">3.4 Link resolution, shared code and private data</a></td><td>§8.1.5, pp.357–358; PDF pp.381–382</td></tr>
-<tr><td>Swapping</td><td><a href="#memory-swapping">3.5 Whole-process swapping and its costs</a></td><td>§8.2, pp.358–360; PDF pp.382–384</td></tr>
-<tr><td>Contiguous allocation</td><td><a href="#memory-contiguous">3.6 Partitions, placement and fragmentation</a></td><td>§8.3, pp.360–364; PDF pp.384–388</td></tr>
-<tr><td>Paging</td><td><a href="#memory-paging">3.7 Pages, frames, translation, TLB, protection, sharing and page-table structure</a></td><td>§8.5–8.6, pp.367–383; PDF pp.391–407</td></tr>
-<tr><td>Segmentation</td><td><a href="#memory-segmentation">3.8 Logical segments and segment tables</a></td><td>§8.4, pp.364–367; PDF pp.388–391</td></tr></table>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Official topic / Where it is taught / Local Silberschatz, ninth edition">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Official topic</th><th role="columnheader" scope="col">Where it is taught</th><th role="columnheader" scope="col">Local Silberschatz<cite class="src" data-src="B1"></cite>, ninth edition</th></tr>
+<tr role="row"><td role="cell" data-label="Official topic">Address binding</td><td role="cell" data-label="Where it is taught"><a href="#memory-binding">3.1 Binding stages and program preparation</a></td><td role="cell" data-label="Local Silberschatz, ninth edition">§8.1.2, pp.354–355; PDF pp.378–379</td></tr>
+<tr role="row"><td role="cell" data-label="Official topic">Logical versus physical-address space</td><td role="cell" data-label="Where it is taught"><a href="#memory-addresses">3.2 Address spaces, MMU and protection</a></td><td role="cell" data-label="Local Silberschatz, ninth edition">§8.1.3, pp.355–357; PDF pp.379–381</td></tr>
+<tr role="row"><td role="cell" data-label="Official topic">Dynamic loading</td><td role="cell" data-label="Where it is taught"><a href="#memory-loading">3.3 Routine loading on first use</a></td><td role="cell" data-label="Local Silberschatz, ninth edition">§8.1.4, p.357; PDF p.381</td></tr>
+<tr role="row"><td role="cell" data-label="Official topic">Dynamic linking and shared libraries</td><td role="cell" data-label="Where it is taught"><a href="#memory-linking">3.4 Link resolution, shared code and private data</a></td><td role="cell" data-label="Local Silberschatz, ninth edition">§8.1.5, pp.357–358; PDF pp.381–382</td></tr>
+<tr role="row"><td role="cell" data-label="Official topic">Swapping</td><td role="cell" data-label="Where it is taught"><a href="#memory-swapping">3.5 Whole-process swapping and its costs</a></td><td role="cell" data-label="Local Silberschatz, ninth edition">§8.2, pp.358–360; PDF pp.382–384</td></tr>
+<tr role="row"><td role="cell" data-label="Official topic">Contiguous allocation</td><td role="cell" data-label="Where it is taught"><a href="#memory-contiguous">3.6 Partitions, placement and fragmentation</a></td><td role="cell" data-label="Local Silberschatz, ninth edition">§8.3, pp.360–364; PDF pp.384–388</td></tr>
+<tr role="row"><td role="cell" data-label="Official topic">Paging</td><td role="cell" data-label="Where it is taught"><a href="#memory-paging">3.7 Pages, frames, translation, TLB, protection, sharing and page-table structure</a></td><td role="cell" data-label="Local Silberschatz, ninth edition">§8.5–8.6, pp.367–383; PDF pp.391–407</td></tr>
+<tr role="row"><td role="cell" data-label="Official topic">Segmentation</td><td role="cell" data-label="Where it is taught"><a href="#memory-segmentation">3.8 Logical segments and segment tables</a></td><td role="cell" data-label="Local Silberschatz, ninth edition">§8.4, pp.364–367; PDF pp.388–391</td></tr></table>
+</div>
 <div class="callout clarify"><span class="label">How the sources combine / where this guide fills gaps</span>
 The previous Unit III guide covered synchronization. This new main-memory teaching is drawn from the local textbook, with new practice problems labelled as constructed examples. Paging precedes segmentation to match the syllabus. The textbook is a supplementary source; it is not one of the references printed in the syllabus image. Brief hardware and protection prerequisites support the named topics.<br><br><strong>2026-11-09:</strong> every topic was checked against the faculty’s new-syllabus slides (Unit III Main Memory). The guide now follows the slides’ definitions and examples. It adds memory-hardware background, MFT/MVT, the slides’ fixed-partition fit examples, the 50-percent rule, modern and mobile swapping, static vs dynamic linking, TLB/PTLR details and the structure of the page table (hierarchical, hashed and inverted).</div>
 <div class="callout key"><span class="label">Scope and preserved extras</span>
@@ -222,9 +250,11 @@ Demand paging, replacement algorithms, allocation of frames as a virtual-memory 
 <li>Along with speed, memory must be <strong>protected</strong>: the operating system must be protected from user processes, and user processes from one another. This protection is provided by <strong>hardware</strong>.</li>
 </ul>
 <p>The first requirement is that <strong>each process has a separate memory space</strong>. To separate memory spaces, the hardware must know the range of legal addresses a process may use. Two registers provide this:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Register / Holds">
 <table><tr><th>Register</th><th>Holds</th></tr>
 <tr><td><strong>Base register</strong></td><td>The smallest legal physical memory address of the process</td></tr>
 <tr><td><strong>Limit register</strong></td><td>The size of the legal range</td></tr></table>
+</div>
 <p>The CPU hardware <strong>compares every address generated in user mode</strong> with these registers. A legal address satisfies <code>base ≤ address &lt; base + limit</code>. Any attempt by a user-mode program to access operating-system memory or another user’s memory results in a <strong>trap</strong> to the operating system, which treats it as a fatal error. The base and limit registers can be loaded <strong>only by the operating system</strong>, using a special privileged instruction. User programs therefore cannot change them.</p>
 <div class="qbox" id="memory-ex-base-limit"><div class="qmeta"><span class="qsrc">base/limit figure<cite class="src" data-src="D4"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">A process has base register 300040 and limit register 120900. Which physical addresses may it access? Are 300040, 420939 and 420940 legal?</div>
@@ -235,10 +265,12 @@ Demand paging, replacement algorithms, allocation of frames as a virtual-memory 
 <p>The limit is a length, so the upper bound is exclusive.</p></div>
 <h2>From symbolic names to absolute addresses</h2>
 <p>A program usually resides on disk as a binary executable file. Depending on the memory management in use, the process may be moved between disk and memory during its execution. The processes on disk that are waiting to be brought into memory form the <strong>input queue</strong>. It would be inconvenient to force the first user process to start at physical address 0000, and addresses are represented differently at different stages of a program’s life:</p>
-<table><tr><th>Stage</th><th>Form of address</th><th>Example</th></tr>
-<tr><td>Source code</td><td>Symbolic</td><td>A variable name such as <code>count</code></td></tr>
-<tr><td>Compiled code</td><td>Relocatable — the compiler binds symbols to relocatable addresses</td><td>“14 bytes from the beginning of this module”</td></tr>
-<tr><td>Linked / loaded code</td><td>Absolute — the linker or loader binds relocatable addresses to absolute ones</td><td>74014</td></tr></table>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Stage / Form of address / Example">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Stage</th><th role="columnheader" scope="col">Form of address</th><th role="columnheader" scope="col">Example</th></tr>
+<tr role="row"><td role="cell" data-label="Stage">Source code</td><td role="cell" data-label="Form of address">Symbolic</td><td role="cell" data-label="Example">A variable name such as <code>count</code></td></tr>
+<tr role="row"><td role="cell" data-label="Stage">Compiled code</td><td role="cell" data-label="Form of address">Relocatable — the compiler binds symbols to relocatable addresses</td><td role="cell" data-label="Example">“14 bytes from the beginning of this module”</td></tr>
+<tr role="row"><td role="cell" data-label="Stage">Linked / loaded code</td><td role="cell" data-label="Form of address">Absolute — the linker or loader binds relocatable addresses to absolute ones</td><td role="cell" data-label="Example">74014</td></tr></table>
+</div>
 <p>Each binding maps one address space to another.</p>
 <p><strong>Address binding</strong> is the mapping of instructions and data from one address representation to another. A source program refers to symbolic names such as <code>count</code>. A compiler or assembler can represent a name as an offset relative to a module. A linker combines object modules and resolves references between them; a loader places the resulting executable in memory. Depending on the scheme, physical placement is fixed during compilation, during loading, or during execution.</p>
 <p>Keep the <strong>program-preparation stages</strong> separate from the <strong>time of final address binding</strong>. Compilation, linking and loading can all occur even when the final physical address is determined only on a memory reference. Linkers resolve symbols; memory-management hardware translates running-process addresses. These solve related but different problems.</p>
@@ -255,10 +287,12 @@ Demand paging, replacement algorithms, allocation of frames as a virtual-memory 
 <text x="360" y="210" fill="#5B6169" font-size="12">The preparation pipeline does not force a particular binding policy.</text></g>
 <g stroke="#1D4E89" stroke-width="2" marker-end="url(#m-bind)"><path d="M130 98 L153 98" fill="none"/><path d="M275 98 L298 98" fill="none"/><path d="M420 98 L443 98" fill="none"/><path d="M565 98 L588 98" fill="none"/></g></svg><div class="cap">Fig 1. Program preparation and the possible times of final address binding.</div></div>
 <h2>The three binding times</h2>
-<table><tr><th>Binding time</th><th>How it works</th><th>If the physical starting address changes</th></tr>
-<tr><td><strong>Compile time</strong></td><td>The starting location is known in advance. The compiler generates absolute addresses for that location.</td><td>Recompile the absolute code for the new location.</td></tr>
-<tr><td><strong>Load time</strong></td><td>The compiler produces relocatable code. The loader adjusts address references when it selects the physical starting location.</td><td>Reload and perform relocation for the new starting location. Ordinary load-time binding does not support moving an executing image merely by changing a base register.</td></tr>
-<tr><td><strong>Execution time</strong></td><td>The running program uses logical addresses. Hardware maps them to physical addresses when they are used.</td><td>Update the mapping when moving the process; its logical addresses can stay the same. Hardware translation support is required.</td></tr></table>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Binding time / How it works / If the physical starting address changes">
+<table class="table-prose binding-times" role="table"><tr role="row"><th role="columnheader" scope="col">Binding time</th><th role="columnheader" scope="col">How it works</th><th role="columnheader" scope="col">If the physical starting address changes</th></tr>
+<tr role="row"><td role="cell" data-label="Binding time"><strong>Compile time</strong></td><td role="cell" data-label="How it works">The starting location is known in advance. The compiler generates absolute addresses for that location.</td><td role="cell" data-label="If the physical starting address changes">Recompile the absolute code for the new location.</td></tr>
+<tr role="row"><td role="cell" data-label="Binding time"><strong>Load time</strong></td><td role="cell" data-label="How it works">The compiler produces relocatable code. The loader adjusts address references when it selects the physical starting location.</td><td role="cell" data-label="If the physical starting address changes">Reload and perform relocation for the new starting location. Ordinary load-time binding does not support moving an executing image merely by changing a base register.</td></tr>
+<tr role="row"><td role="cell" data-label="Binding time"><strong>Execution time</strong></td><td role="cell" data-label="How it works">The running program uses logical addresses. Hardware maps them to physical addresses when they are used.</td><td role="cell" data-label="If the physical starting address changes">Update the mapping when moving the process; its logical addresses can stay the same. Hardware translation support is required.</td></tr></table>
+</div>
 <p>Execution-time binding allows a process to resume at a different physical location after being swapped out, and supports the mappings used in paging and segmentation. The mapping must remain correct for every reference. The operating system controls it using privileged operations so a user process cannot redirect its accesses into another process’s memory.</p>
 <div class="qbox" id="memory-ex-binding"><div class="qmeta"><span class="qsrc">Constructed practice using §8.1.2 notation</span><span class="marks">worked example</span></div>
 <div class="qtext">A symbol is at byte offset 14 in a module. The module is placed at physical base 74000, then considered for placement at base 90000. What are the corresponding addresses, and what must change under each binding policy?</div>
@@ -298,7 +332,9 @@ Book §8.1.1 checks an already-physical address against <code>base ≤ address &
 <span class="qline">Translate offsets 0, 346, 999 and 1000.</span>
 <span class="qline">What happens to offset 346 if the base changes to 20000?</span>
 </div>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Logical offset / Check / Physical result">
 <table><tr><th>Logical offset</th><th>Check</th><th>Physical result</th></tr><tr><td>0</td><td>0 &lt; 1000</td><td>14000 + 0 = 14000</td></tr><tr><td>346</td><td>346 &lt; 1000</td><td>14000 + 346 = 14346</td></tr><tr><td>999</td><td>999 &lt; 1000</td><td>14000 + 999 = 14999</td></tr><tr><td>1000</td><td>1000 is not smaller than 1000</td><td>Trap; do not perform the memory access</td></tr></table>
+</div>
 <p>The legal physical range is 14000–14999 inclusive. After relocation, the unchanged logical offset 346 maps to <strong>20000 + 346 = 20346</strong>. The program does not need to replace this logical pointer.</p></div>
 <p class="source-note">Sources: §8.1.3, printed pp.355–357 (PDF pp.379–381); §8.3.1 and Fig.8.6, printed p.361 (PDF p.385).<cite class="src" data-src="B1" data-p="§8.1.3"></cite><cite class="src" data-src="B1" data-p="§8.3.1"></cite><cite class="src" data-src="D4" data-p="14-20"></cite></p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
@@ -359,16 +395,20 @@ Dynamic loading needs <strong>no special OS support</strong>. Unlike dynamic loa
 <p>The operating system supplies protection and the mappings needed to share physical pages safely; the runtime linker resolves library symbols. Dynamic linking and physical sharing are closely related but should not be treated as synonyms. Linking concerns how references are resolved. Sharing concerns which physical memory is used by those mappings.</p>
 <h2>Benefits and compatibility</h2>
 <p>Dynamic linking reduces duplication in executables, and shared mappings can reduce physical-memory use. Programs can use a compatible library repair without all being statically relinked. Compatibility still matters: a changed interface or calling convention can break an old program. Library versioning and compatibility rules allow the intended version to be selected, including keeping incompatible versions side by side. An update should not be assumed to replace code inside every process already running.</p>
-<table><tr><th>Technique</th><th>What is delayed or reused?</th><th>Main purpose</th></tr>
-<tr><td>Dynamic loading</td><td>Bringing a routine’s code into memory</td><td>Avoid loading code that is never called</td></tr>
-<tr><td>Dynamic linking</td><td>Resolving executable references to library routines</td><td>Avoid embedding all required library code in each executable; permit compatible library reuse</td></tr>
-<tr><td>Shared library mappings</td><td>One physical code image is used by several processes</td><td>Reduce physical duplication while preserving isolation</td></tr></table>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Technique / What is delayed or reused? / Main purpose">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Technique</th><th role="columnheader" scope="col">What is delayed or reused?</th><th role="columnheader" scope="col">Main purpose</th></tr>
+<tr role="row"><td role="cell" data-label="Technique">Dynamic loading</td><td role="cell" data-label="What is delayed or reused?">Bringing a routine’s code into memory</td><td role="cell" data-label="Main purpose">Avoid loading code that is never called</td></tr>
+<tr role="row"><td role="cell" data-label="Technique">Dynamic linking</td><td role="cell" data-label="What is delayed or reused?">Resolving executable references to library routines</td><td role="cell" data-label="Main purpose">Avoid embedding all required library code in each executable; permit compatible library reuse</td></tr>
+<tr role="row"><td role="cell" data-label="Technique">Shared library mappings</td><td role="cell" data-label="What is delayed or reused?">One physical code image is used by several processes</td><td role="cell" data-label="Main purpose">Reduce physical duplication while preserving isolation</td></tr></table>
+</div>
 <h2>Static linking versus dynamic linking</h2>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Static linking / Dynamic linking">
 <table><tr><th>Static linking</th><th>Dynamic linking</th></tr>
 <tr><td>The necessary library functions are embedded directly in the program’s executable binary file.</td><td>External libraries and references are linked at run time, when the program is loaded or executed.</td></tr>
 <tr><td>Performed during compilation/linking of the source program.</td><td>Run-time linking.</td></tr>
 <tr><td>Every program generated must contain copies of exactly the same common system library functions.</td><td>Memory requirements of the program are reduced; one library copy can be shared.</td></tr>
 <tr><td>A library change requires recompilation (relinking) of every program.</td><td>Changes can be made without recompilation: programs pick up a compatible updated library.</td></tr></table>
+</div>
 <div class="qbox" id="memory-ex-sharing"><div class="qmeta"><span class="qsrc">Book, printed pp.376–377<cite class="src" data-src="B1" data-p="§8.5.4"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">Forty users run an editor containing 150 units of sharable code and 50 units of private data per user. Compare separate code copies with one shared code copy. Use the same memory unit throughout.</div>
 <div class="formula-block">Separate copies = 40 × (150 + 50) = <span class="c1">8000 units</span>
@@ -426,9 +466,11 @@ The textbook (printed p.359, PDF p.383) and the faculty slide (p.28) both comput
 <li>Swapping <strong>portions of processes</strong>, rather than entire processes, to decrease swap time.</li>
 </ul>
 <p><strong>Mobile systems</strong> typically do not support swapping in any form. They use flash memory rather than large hard disks, and three things make swapping unattractive: the resulting space constraint, the limited number of writes flash memory can tolerate before it becomes unreliable, and the poor throughput between main memory and flash. Instead, when free memory runs low:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="System / Response to low free memory">
 <table><tr><th>System</th><th>Response to low free memory</th></tr>
 <tr><td><strong>Apple iOS</strong></td><td>Asks applications to <strong>voluntarily relinquish</strong> allocated memory. Read-only data such as code can be removed and reloaded from flash later; an app that fails to free enough memory may be terminated.</td></tr>
 <tr><td><strong>Android</strong></td><td>May <strong>terminate a process</strong> if insufficient free memory is available, first writing its application state to flash so it can be restarted quickly.</td></tr></table>
+</div>
 <p>The whole-process model here explains the syllabus term. It should be distinguished from transferring selected pages of a process, which is developed with virtual memory in Unit IV.</p>
 <p class="source-note">Sources: §8.2, printed pp.358–360 (local PDF pp.382–384).<cite class="src" data-src="B1" data-p="§8.2"></cite><cite class="src" data-src="D4" data-p="25-32"></cite></p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
@@ -442,10 +484,12 @@ The textbook (printed p.359, PDF p.383) and the faculty slide (p.28) both comput
 <p>In <strong>variable partitioning</strong>, the operating system maintains the occupied regions and the free regions, called <strong>holes</strong>. It selects a sufficiently large hole when a process arrives. A larger hole is split into the allocated portion and a remaining free portion. When a process leaves, its region becomes free; adjacent holes are merged, or <strong>coalesced</strong>. Nonadjacent holes cannot be merged merely by changing a list entry because live process memory lies between them.</p>
 <p>As processes enter the system they are put into an <strong>input queue</strong>. The OS considers each process’s memory requirement and the amount of available memory, and may order the input queue according to a scheduling algorithm. At any time there is a list of available block (hole) sizes and an input queue. Memory is allocated to processes until the requirement of the next process cannot be satisfied. That process can wait, or the OS can skip down the queue to a smaller request. Satisfying a request of size <em>n</em> from a list of free holes is called the <strong>dynamic storage-allocation problem</strong>.</p>
 <h2>Choosing a hole</h2>
-<table><tr><th>Strategy</th><th>Selection rule</th><th>Tradeoff</th></tr>
-<tr><td><strong>First fit</strong></td><td>Use the first hole large enough, in the specified scan order.</td><td>Can stop searching as soon as a large-enough hole is found. Searching can start at the beginning of the list or where the previous first-fit search ended. Here each request restarts at the beginning of the address-ordered list.</td></tr>
-<tr><td><strong>Best fit</strong></td><td>Use the smallest hole that is large enough.</td><td>Produces the <strong>smallest leftover hole</strong>, but can create tiny unusable holes. Must search the entire list unless it is ordered by size.</td></tr>
-<tr><td><strong>Worst fit</strong></td><td>Use the largest available hole.</td><td>Produces the <strong>largest leftover hole</strong>, which may be more useful than best fit’s small leftover. Must also search the entire list unless it is sorted by size, and may consume a large region needed by a future request.</td></tr></table>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Strategy / Selection rule / Tradeoff">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Strategy</th><th role="columnheader" scope="col">Selection rule</th><th role="columnheader" scope="col">Tradeoff</th></tr>
+<tr role="row"><td role="cell" data-label="Strategy"><strong>First fit</strong></td><td role="cell" data-label="Selection rule">Use the first hole large enough, in the specified scan order.</td><td role="cell" data-label="Tradeoff">Can stop searching as soon as a large-enough hole is found. Searching can start at the beginning of the list or where the previous first-fit search ended. Here each request restarts at the beginning of the address-ordered list.</td></tr>
+<tr role="row"><td role="cell" data-label="Strategy"><strong>Best fit</strong></td><td role="cell" data-label="Selection rule">Use the smallest hole that is large enough.</td><td role="cell" data-label="Tradeoff">Produces the <strong>smallest leftover hole</strong>, but can create tiny unusable holes. Must search the entire list unless it is ordered by size.</td></tr>
+<tr role="row"><td role="cell" data-label="Strategy"><strong>Worst fit</strong></td><td role="cell" data-label="Selection rule">Use the largest available hole.</td><td role="cell" data-label="Tradeoff">Produces the <strong>largest leftover hole</strong>, which may be more useful than best fit’s small leftover. Must also search the entire list unless it is sorted by size, and may consume a large region needed by a future request.</td></tr></table>
+</div>
 <p>Best fit is a local choice, not a guarantee that the whole workload will fit best. Results depend on the request sizes and order. A numerical must state whether holes are split, whether freed blocks are coalesced, and where first-fit scanning begins. Reusing the remainder of a hole is essential in the variable-partition examples below.</p>
 <div class="qbox" id="memory-ex-fixed-fit"><div class="qmeta"><span class="qsrc">verified in code<cite class="src" data-src="D4" data-p="40-48"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">
@@ -454,12 +498,14 @@ The textbook (printed p.359, PDF p.383) and the faculty slide (p.28) both comput
 <span class="qline">Processes P1–P4 of 40, 10, 30 and 60 K arrive in that order.</span>
 <span class="qline">Apply first fit, best fit and worst fit.</span>
 </div>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Process / First fit / Best fit">
 <table><tr><th>Process</th><th>First fit</th><th>Best fit</th><th>Worst fit</th></tr>
 <tr><td>P1 = 40</td><td>B1 (100) · waste 60</td><td>B2 (50) · waste 10</td><td>B4 (120) · waste 80</td></tr>
 <tr><td>P2 = 10</td><td>B2 (50) · waste 40</td><td>B3 (30) · waste 20</td><td>B1 (100) · waste 90</td></tr>
 <tr><td>P3 = 30</td><td>B3 (30) · waste 0</td><td>B5 (35) · waste 5</td><td>B2 (50) · waste 20</td></tr>
 <tr><td>P4 = 60</td><td>B4 (120) · waste 60</td><td>B1 (100) · waste 40</td><td><strong>Not allocated</strong> — free B3 (30) and B5 (35) are too small</td></tr>
 <tr><td>Total waste</td><td>160 K</td><td><strong>75 K</strong></td><td>190 K, and P4 waits</td></tr></table>
+</div>
 <p>Best fit compares the leftover in every free block that can hold the process and takes the smallest. Worst fit takes the largest leftover. In worst fit, P4 fails even though 65 K is free in total, because the free space is split between two blocks.</p>
 <p><strong>Second slide example (first fit).</strong> Blocks 20, 100, 40, 200, 10; processes 90, 50, 30, 40:</p>
 <div class="formula-block">P1 = 90 → Block 2 (100)   waste 100 − 90 = 10
@@ -467,11 +513,13 @@ P2 = 50 → Block 4 (200)   waste 200 − 50 = 150
 P3 = 30 → Block 3 (40)    waste 40 − 30 = 10
 P4 = 40 → <span class="c1">unallocated</span> (free blocks 20 and 10 are too small)</div>
 <p><strong>Third slide example.</strong> <code>blockSize[] = {100, 500, 200, 300, 600}</code>, <code>processSize[] = {212, 417, 112, 426}</code>, one process per block:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Process / First fit / Best fit">
 <table><tr><th>Process</th><th>First fit</th><th>Best fit</th><th>Worst fit</th></tr>
 <tr><td>212</td><td>500</td><td>300</td><td>600</td></tr>
 <tr><td>417</td><td>600</td><td>500</td><td>500</td></tr>
 <tr><td>112</td><td>200</td><td>200</td><td>300</td></tr>
 <tr><td>426</td><td>Not allocated</td><td>600</td><td>Not allocated</td></tr></table>
+</div>
 <p>The slides’ best-fit implementation: (1) input the blocks and processes with their sizes; (2) mark all blocks free; (3) for each process, find the <em>smallest free block</em> with size ≥ the process size and assign it; (4) if no block fits, leave that process and continue with the next. If a question allows a block’s leftover to be reused (variable partitions), use the hole-splitting method in the later example. The results for the same numbers differ.</p></div>
 <h2>Internal versus external fragmentation</h2>
 <p><strong>Fragmentation</strong> is the problem that, as processes are loaded into and removed from memory, the free memory space is broken into little pieces.</p>
@@ -495,11 +543,13 @@ P4 = 40 → <span class="c1">unallocated</span> (free blocks 20 and 10 are too s
 <text x="540" y="292" font-size="12" fill="#93316B">A 45 KB process cannot be placed:</text>
 <text x="540" y="310" font-size="12" fill="#93316B">50 KB is free, but the largest hole is 30 KB</text>
 </g></svg><div class="cap">Fig 6. The faculty slides’ two examples. Internal waste lies inside an allocated block; external waste is free space split into holes too small to use.</div></div>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Internal fragmentation / External fragmentation">
 <table><tr><th>Internal fragmentation</th><th>External fragmentation</th></tr>
 <tr><td>Occurs with <strong>fixed-sized</strong> memory blocks</td><td>Occurs with <strong>variable-sized</strong> memory blocks</td></tr>
 <tr><td>Occurs when the process is <strong>smaller</strong> than its block</td><td>Occurs when processes are <strong>removed</strong>, leaving scattered holes</td></tr>
 <tr><td>Unused space is <strong>inside</strong> an allocated block</td><td>Unused space is <strong>outside</strong> allocations, between them</td></tr>
 <tr><td>Reduced by allocating the <strong>best-fit</strong> block</td><td>Solved by <strong>compaction</strong>, <strong>paging</strong> or <strong>segmentation</strong></td></tr></table>
+</div>
 <h3>The 50-percent rule</h3>
 <p>Depending on total memory and the average process size, external fragmentation may be a minor or a major problem. Statistical analysis of first fit shows that, even with some optimisation, <strong>given N allocated blocks, another 0.5 N blocks will be lost to fragmentation</strong>. That is, about <strong>one-third of memory may be unusable</strong>. This is the <strong>50-percent rule</strong>.</p>
 <div class="formula-block">Allocated blocks: N        Lost to fragmentation: 0.5 N
@@ -534,6 +584,7 @@ The faculty slide illustrates the rule with 100 MB of memory: 50 MB allocated to
 <span class="qline">Apply first fit, best fit and worst fit separately, splitting holes after each successful allocation.</span>
 </div>
 <p>Restart each strategy from the original hole list. A failed request is left waiting and does not change the holes. The entries in the last column retain the original H1–H5 labels; a label denotes the remaining free portion of that hole.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Strategy / Request (KiB) / Chosen hole">
 <table><tr><th>Strategy</th><th>Request (KiB)</th><th>Chosen hole</th><th>Remaining H1, H2, H3, H4, H5 (KiB)</th></tr>
 <tr><td>First fit</td><td>212</td><td>H2</td><td>100, 288, 200, 300, 600</td></tr>
 <tr><td>First fit</td><td>417</td><td>H5</td><td>100, 288, 200, 300, 183</td></tr>
@@ -547,15 +598,18 @@ The faculty slide illustrates the rule with 100 MB of memory: 50 MB allocated to
 <tr><td>Worst fit</td><td>417</td><td>H2</td><td>100, 83, 200, 300, 388</td></tr>
 <tr><td>Worst fit</td><td>112</td><td>H5 remainder</td><td>100, 83, 200, 300, 276</td></tr>
 <tr><td>Worst fit</td><td>426</td><td>Cannot fit</td><td>100, 83, 200, 300, 276</td></tr></table>
+</div>
 <p>Best fit admits every request in this particular sequence. First fit ends with <strong>959 KiB</strong> free in total but no hole larger than <strong>300 KiB</strong>, so the 426 KiB request still fails. This demonstrates external fragmentation; it does not prove best fit is always superior. The remaining holes are free space, not internal fragmentation in the admitted processes.</p></div>
 <div class="qbox" id="memory-ex-single-fit"><div class="qmeta"><span class="qsrc">Apr 2023 SEE Q1.5 · Nov/Dec 2019 SEE Q1.4 · Apr/May 2019 SEE Q1.12<cite class="src" data-src="Q2"></cite></span><span class="marks">2 marks · one request, three policies</span></div>
 <div class="qtext">
 <ul class="qparts"><li>(a) A process requests 12 KB. Free blocks, in list order: 6, 14, 19, 11, 13 KB.</li><li>(b) A process requests 10 KB. Free blocks: 6, 15, 20, 11, 16 KB.</li></ul>
 <span class="qline">Which block does each of first fit, best fit and worst fit choose?</span>
 </div>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Request / Blocks that fit / First fit">
 <table><tr><th>Request</th><th>Blocks that fit</th><th>First fit</th><th>Best fit</th><th>Worst fit</th></tr>
 <tr><td>(a) 12 KB</td><td>14, 19, 13</td><td><strong>14 KB</strong> (2 left)</td><td><strong>13 KB</strong> (1 left)</td><td><strong>19 KB</strong> (7 left)</td></tr>
 <tr><td>(b) 10 KB</td><td>15, 20, 11, 16</td><td><strong>15 KB</strong> (5 left)</td><td><strong>11 KB</strong> (1 left)</td><td><strong>20 KB</strong> (10 left)</td></tr></table>
+</div>
 <p>Method: discard the blocks that are too small (6 KB in both). First fit takes the first remaining block in list order. Best fit takes the smallest block that fits, and worst fit the largest. The leftover becomes a smaller free hole. The 2019 answer key gives the same choices for (b).</p></div>
 <p class="source-note">Sources: §8.3, printed pp.360–364 (local PDF pp.384–388). Partition-waste numbers are from printed p.363; the hole-splitting sequence and compaction sizes are constructed practice. Fixed-partition placements are recomputed in code.<cite class="src" data-src="B1" data-p="§8.3"></cite><cite class="src" data-src="D4" data-p="33-58"></cite></p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
@@ -585,8 +639,10 @@ page number: m − n high bits; offset: n low bits</div>
 <span class="qline">Translate logical addresses 0, 3, 4 and 13.</span>
 </div>
 <p>The logical address has 4 bits: 2 page-number bits and 2 offset bits. Physical memory has 8 frames. Use division and remainder rather than treating the frame number as a byte address.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="LA / Page p / Offset d">
 <table><tr><th>LA</th><th>Page p</th><th>Offset d</th><th>Frame f</th><th>PA = f × 4 + d</th></tr>
 <tr><td>0</td><td>0</td><td>0</td><td>5</td><td>5 × 4 + 0 = 20</td></tr><tr><td>3</td><td>0</td><td>3</td><td>5</td><td>5 × 4 + 3 = 23</td></tr><tr><td>4</td><td>1</td><td>0</td><td>6</td><td>6 × 4 + 0 = 24</td></tr><tr><td>13</td><td>3</td><td>1</td><td>2</td><td>2 × 4 + 1 = 9</td></tr></table>
+</div>
 <div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" role="img" aria-label="Pages 0 1 2 3 map to physical frames 5 6 1 2 with logical address 13 mapping to physical address 9">
 <defs><marker id="m-toy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
 <g fill="#1C1E21" text-anchor="middle" font-size="12"><text x="100" y="24">Logical pages</text><text x="340" y="24">Page table</text><text x="590" y="24">Physical frames</text>
@@ -613,11 +669,13 @@ page number: m − n high bits; offset: n low bits</div>
 <span class="qline">The page table maps pages 0, 1, 2, 3 to frames 1, 4, 3, 7.</span>
 <span class="qline">Translate logical addresses 0, 5, 10 and 15.</span>
 </div>
+<div class="table-scroll" role="region" tabindex="0" aria-label="LA / p = LA ÷ 4 / d = LA mod 4">
 <table><tr><th>LA</th><th>p = LA ÷ 4</th><th>d = LA mod 4</th><th>Frame f</th><th>PA = f × 4 + d</th></tr>
 <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>4</td></tr>
 <tr><td>5</td><td>1</td><td>1</td><td>4</td><td>17</td></tr>
 <tr><td>10</td><td>2</td><td>2</td><td>3</td><td>14</td></tr>
 <tr><td>15</td><td>3</td><td>3</td><td>7</td><td>31</td></tr></table>
+</div>
 <p>Consecutive logical pages land in scattered frames (1, 4, 3, 7) while the program still sees addresses 0–15 as one continuous range.</p></div>
 <h2>Allocation and internal fragmentation</h2>
 <p>For basic paging, the operating system counts the process’s required pages and obtains that many free frames. The frames need not be adjacent. A <strong>frame table</strong> tracks physical frames and their owners; a <strong>page table</strong> tracks the logical-page mappings for a process. The dispatcher installs the correct page-table state when switching processes.</p>
@@ -695,17 +753,21 @@ EAT = h(ε + m) + (1 − h)(ε + 2m)
 <p>Memory protection is implemented by associating <strong>protection bits</strong> with each frame, normally kept in the page table, to mark a page read-only or read-write. More bits can mark a page execute-only, and so on. Hardware checks the requested operation and traps on a violation. A <strong>valid–invalid bit</strong> in the textbook’s basic model marks whether a page belongs to the process’s legal logical address space. Do not silently equate this basic validity convention with every architecture’s present/resident bit used for demand paging.</p>
 <p>Page-granularity checks do not necessarily detect the exact end of a program inside its final page. In the textbook example, the program ends at logical byte 10468 with 2048-byte pages. Page 5 contains that byte, so a whole-page validity check can also permit offsets through logical byte 12287. Pages starting at byte 12288 are invalid in that example. Software still has to respect the actual object and program bounds.</p>
 <p>A process rarely uses its whole address range, so a full-size page table would waste space on invalid entries. Some systems provide a <strong>page-table length register (PTLR)</strong> to indicate the size of the page table. Each logical address is checked against the PTLR value, and an address beyond it causes a trap.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Shared code / Private code and data">
 <table><tr><th>Shared code</th><th>Private code and data</th></tr>
 <tr><td>One copy of <strong>read-only (reentrant)</strong> code is shared among processes, e.g. text editors, compilers and window systems.</td><td>Each process keeps a <strong>separate copy</strong> of its own code and data.</td></tr>
 <tr><td>Similar to multiple threads sharing the same process space.</td><td>The pages for private code and data can appear anywhere in the logical address space.</td></tr>
 <tr><td>Also useful for <strong>interprocess communication</strong> if sharing of read-write pages is allowed.</td><td></td></tr></table>
+</div>
 <p>Reentrant code never changes during execution, so two or more processes can execute it at the same time. Different page tables can deliberately map the same physical code frames. This provides the shared-library arrangement in <a href="#memory-linking">3.4</a>: common read-only code with distinct writable data frames. The operating system controls the mappings and enforces permissions. The page table provides controlled sharing rather than letting a process access arbitrary frames.</p>
 <h2>Structure of the page table</h2>
 <p>With large logical address spaces, a single linear page table becomes too big. The single-level example above needs a 4 MiB table per process for 32-bit addresses. The faculty slides cover three common ways to structure the page table:</p>
-<table><tr><th>Structure</th><th>Idea</th><th>Typical use</th></tr>
-<tr><td><a href="#memory-hierarchical">Hierarchical paging</a></td><td>Page the page table itself (two or more levels)</td><td>32-bit address spaces</td></tr>
-<tr><td><a href="#memory-hashed">Hashed page table</a></td><td>Hash the virtual page number into a table of chains</td><td>Address spaces larger than 32 bits</td></tr>
-<tr><td><a href="#memory-inverted">Inverted page table</a></td><td>One entry per physical frame for the whole system</td><td>Reducing page-table memory</td></tr></table>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Structure / Idea / Typical use">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Structure</th><th role="columnheader" scope="col">Idea</th><th role="columnheader" scope="col">Typical use</th></tr>
+<tr role="row"><td role="cell" data-label="Structure"><a href="#memory-hierarchical">Hierarchical paging</a></td><td role="cell" data-label="Idea">Page the page table itself (two or more levels)</td><td role="cell" data-label="Typical use">32-bit address spaces</td></tr>
+<tr role="row"><td role="cell" data-label="Structure"><a href="#memory-hashed">Hashed page table</a></td><td role="cell" data-label="Idea">Hash the virtual page number into a table of chains</td><td role="cell" data-label="Typical use">Address spaces larger than 32 bits</td></tr>
+<tr role="row"><td role="cell" data-label="Structure"><a href="#memory-inverted">Inverted page table</a></td><td role="cell" data-label="Idea">One entry per physical frame for the whole system</td><td role="cell" data-label="Typical use">Reducing page-table memory</td></tr></table>
+</div>
 <h3 id="memory-hierarchical">Hierarchical paging</h3>
 <p>Break the logical address space into multiple page tables. The simplest technique is a <strong>two-level page table</strong>: we <strong>page the page table</strong> itself. The page number is split into <code>p1</code>, an index into the <strong>outer page table</strong>, and <code>p2</code>, the displacement within the page of the inner page table that <code>p1</code> selects. Address translation works from the outer page table inward, so this scheme is also called a <strong>forward-mapped page table</strong>.</p>
 <div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="Two-level paging: p1 indexes the outer page table, which points to a page of the page table; p2 indexes that page to get frame f; f joined with offset d gives the physical address.">
@@ -817,11 +879,13 @@ Physical address  = | frame number (17) | offset d (12) |</div></div>
 <path d="M95 56 L238 150"/><path d="M400 158 L448 158"/><path d="M550 158 L608 158"/><path d="M200 40 L525 40 L525 140"/></g>
 </svg><div class="cap">Fig 13. Inverted page table: search for ⟨pid, p⟩; the index i of the matching entry is the frame number.</div></div>
 <p>An inverted table <strong>decreases the memory needed to store page tables</strong>, but <strong>increases the time needed to search the table</strong> when a page reference occurs, since the table is ordered by physical address while lookups are by virtual address. To limit the search to one, or at most a few, page-table entries, a <strong>hash table</strong> is used. The <strong>TLB</strong> can accelerate access further. A drawback is that shared memory is harder to implement, because there is only one virtual-page entry for each physical frame.</p>
-<table><tr><th>Property</th><th>Hierarchical</th><th>Hashed</th><th>Inverted</th></tr>
-<tr><td>Entries</td><td>Per process, only for used regions of the outer space</td><td>Per process (or system), one element per mapped page</td><td>One per physical frame, system-wide</td></tr>
-<tr><td>Lookup</td><td>Index p1, then p2 (one memory access per level)</td><td>Hash p, then walk the chain</td><td>Search for ⟨pid, p⟩, usually via a hash table</td></tr>
-<tr><td>Main advantage</td><td>No large contiguous table needed</td><td>Handles very large (64-bit) spaces</td><td>Smallest total page-table memory</td></tr>
-<tr><td>Main cost</td><td>Extra memory accesses per level</td><td>Chain search on collisions</td><td>Longer search; sharing is difficult</td></tr></table>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Property / Hierarchical / Hashed">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Property</th><th role="columnheader" scope="col">Hierarchical</th><th role="columnheader" scope="col">Hashed</th><th role="columnheader" scope="col">Inverted</th></tr>
+<tr role="row"><td role="cell" data-label="Property">Entries</td><td role="cell" data-label="Hierarchical">Per process, only for used regions of the outer space</td><td role="cell" data-label="Hashed">Per process (or system), one element per mapped page</td><td role="cell" data-label="Inverted">One per physical frame, system-wide</td></tr>
+<tr role="row"><td role="cell" data-label="Property">Lookup</td><td role="cell" data-label="Hierarchical">Index p1, then p2 (one memory access per level)</td><td role="cell" data-label="Hashed">Hash p, then walk the chain</td><td role="cell" data-label="Inverted">Search for ⟨pid, p⟩, usually via a hash table</td></tr>
+<tr role="row"><td role="cell" data-label="Property">Main advantage</td><td role="cell" data-label="Hierarchical">No large contiguous table needed</td><td role="cell" data-label="Hashed">Handles very large (64-bit) spaces</td><td role="cell" data-label="Inverted">Smallest total page-table memory</td></tr>
+<tr role="row"><td role="cell" data-label="Property">Main cost</td><td role="cell" data-label="Hierarchical">Extra memory accesses per level</td><td role="cell" data-label="Hashed">Chain search on collisions</td><td role="cell" data-label="Inverted">Longer search; sharing is difficult</td></tr></table>
+</div>
 <div class="callout key"><span class="label">Long-answer structure</span>
 Define pages and frames, draw translation, derive page/offset fields, work one address, explain the TLB, then discuss protection, sharing, fragmentation and the page-table structures. Keep the translation mechanism separate from Unit IV’s decisions about loading and replacing pages.</div>
 <p class="source-note">Sources: §8.5–8.6, printed pp.367–383 (PDF pp.391–407). The full-table size calculation uses §8.6’s opening example, printed p.378 (PDF p.402).<cite class="src" data-src="B1" data-p="§8.5-8.6"></cite><cite class="src" data-src="B1" data-p="§8.6"></cite><cite class="src" data-src="D4" data-p="64-98"></cite></p>
@@ -852,7 +916,10 @@ Otherwise: trap to the operating system</div>
 <p>Segments can grow independently only when the allocation scheme can provide room or relocate them. Because they have variable sizes, their allocation resembles the hole-management problem in contiguous allocation. Pure segmentation does not impose fixed-page rounding waste, but variable-sized free holes can produce external fragmentation. Hardware tables, bookkeeping and alignment can still cost memory; “no fixed-page internal fragmentation” does not mean “zero overhead.”</p>
 <div class="qbox" id="memory-ex-segmentation"><div class="qmeta"><span class="qsrc">Book Fig.8.9, printed pp.366–367; additional boundary tests<cite class="src" data-src="B1"></cite></span><span class="marks">worked example</span></div>
 <div class="qtext">Use the following segment table to translate ⟨2,53⟩, ⟨3,852⟩, ⟨0,1222⟩, ⟨1,399⟩, ⟨1,400⟩ and ⟨5,0⟩. Segment limits are lengths in bytes.</div>
+<div class="table-scroll q-given" role="region" tabindex="0" aria-label="Segment / Base / Limit">
 <table class="q-given"><tr><th>Segment</th><th>Base</th><th>Limit</th></tr><tr><td>0</td><td>1400</td><td>1000</td></tr><tr><td>1</td><td>6300</td><td>400</td></tr><tr><td>2</td><td>4300</td><td>400</td></tr><tr><td>3</td><td>3200</td><td>1100</td></tr><tr><td>4</td><td>4700</td><td>1000</td></tr></table>
+</div>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Logical address / Check / Result">
 <table><tr><th>Logical address</th><th>Check</th><th>Result</th></tr>
 <tr><td>⟨2,53⟩</td><td>53 &lt; 400</td><td>4300 + 53 = <strong>4353</strong></td></tr>
 <tr><td>⟨3,852⟩</td><td>852 &lt; 1100</td><td>3200 + 852 = <strong>4052</strong></td></tr>
@@ -860,17 +927,20 @@ Otherwise: trap to the operating system</div>
 <tr><td>⟨1,399⟩</td><td>399 &lt; 400</td><td>6300 + 399 = <strong>6699</strong></td></tr>
 <tr><td>⟨1,400⟩</td><td>Offset equals the length</td><td>Trap: upper bound is exclusive</td></tr>
 <tr><td>⟨5,0⟩</td><td>Only segment numbers 0–4 exist</td><td>Trap: invalid segment number</td></tr></table>
+</div>
 <p>A physical sum alone cannot prove an address legal. For example, an out-of-range offset must trap even if adding it to the base produces a physical address that happens to exist somewhere in memory.</p></div>
 <h2>Paging versus segmentation</h2>
-<table><tr><th>Property</th><th>Paging</th><th>Pure segmentation</th></tr>
-<tr><td>Logical unit</td><td>Fixed-sized page, independent of program meaning</td><td>Variable-sized unit corresponding to program structure</td></tr>
-<tr><td>Logical address</td><td>Page number and within-page offset, extracted from a linear address</td><td>Segment number and within-segment offset</td></tr>
-<tr><td>Mapping entry</td><td>Frame number with status and protection information</td><td>Base and limit, with protection information where supported</td></tr>
-<tr><td>Physical placement</td><td>Pages can occupy arbitrary equal-sized frames</td><td>Segments can be separate, but each segment needs a contiguous region</td></tr>
-<tr><td>Typical fragmentation</td><td>Internal waste in a partially used page; no external fragmentation at frame granularity</td><td>External fragmentation among variable-sized holes</td></tr>
-<tr><td>Protection and sharing</td><td>Per-page mappings and permissions</td><td>Per-segment bounds and permissions aligned with logical units</td></tr>
-<tr><td>Programmer’s view</td><td><strong>Invisible</strong> to the user program; hidden behind a linear logical space</td><td><strong>Visible</strong> to the user program; explicitly expresses logical program divisions</td></tr>
-<tr><td>Block size</td><td>Pages of uniform, hardware-defined size</td><td>Segments of arbitrary sizes</td></tr></table>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Property / Paging / Pure segmentation">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Property</th><th role="columnheader" scope="col">Paging</th><th role="columnheader" scope="col">Pure segmentation</th></tr>
+<tr role="row"><td role="cell" data-label="Property">Logical unit</td><td role="cell" data-label="Paging">Fixed-sized page, independent of program meaning</td><td role="cell" data-label="Pure segmentation">Variable-sized unit corresponding to program structure</td></tr>
+<tr role="row"><td role="cell" data-label="Property">Logical address</td><td role="cell" data-label="Paging">Page number and within-page offset, extracted from a linear address</td><td role="cell" data-label="Pure segmentation">Segment number and within-segment offset</td></tr>
+<tr role="row"><td role="cell" data-label="Property">Mapping entry</td><td role="cell" data-label="Paging">Frame number with status and protection information</td><td role="cell" data-label="Pure segmentation">Base and limit, with protection information where supported</td></tr>
+<tr role="row"><td role="cell" data-label="Property">Physical placement</td><td role="cell" data-label="Paging">Pages can occupy arbitrary equal-sized frames</td><td role="cell" data-label="Pure segmentation">Segments can be separate, but each segment needs a contiguous region</td></tr>
+<tr role="row"><td role="cell" data-label="Property">Typical fragmentation</td><td role="cell" data-label="Paging">Internal waste in a partially used page; no external fragmentation at frame granularity</td><td role="cell" data-label="Pure segmentation">External fragmentation among variable-sized holes</td></tr>
+<tr role="row"><td role="cell" data-label="Property">Protection and sharing</td><td role="cell" data-label="Paging">Per-page mappings and permissions</td><td role="cell" data-label="Pure segmentation">Per-segment bounds and permissions aligned with logical units</td></tr>
+<tr role="row"><td role="cell" data-label="Property">Programmer’s view</td><td role="cell" data-label="Paging"><strong>Invisible</strong> to the user program; hidden behind a linear logical space</td><td role="cell" data-label="Pure segmentation"><strong>Visible</strong> to the user program; explicitly expresses logical program divisions</td></tr>
+<tr role="row"><td role="cell" data-label="Property">Block size</td><td role="cell" data-label="Paging">Pages of uniform, hardware-defined size</td><td role="cell" data-label="Pure segmentation">Segments of arbitrary sizes</td></tr></table>
+</div>
 <p>In both cases, the operating system works together with the hardware to translate logical addresses into physical addresses.</p>
 <div class="callout clarify"><span class="label">Clarifying a slide wording</span>
 The faculty slide’s comparison says paging “divides physical memory into blocks (pages).” More precisely, paging divides <strong>logical</strong> memory into pages and <strong>physical</strong> memory into equal-sized frames. Use page for the logical unit and frame for the physical unit in an exam answer.</div>
@@ -881,34 +951,38 @@ If given a page size and a linear address, divide into page number and remainder
 <section class="page section" id="memory-solved" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">SOLVED</span><h1>Solved numericals</h1></div>
 <p class="section-sub">All main-memory solutions are indexed here and worked in full beside their topics.</p>
-<table><tr><th>Question type</th><th>What to practise</th><th>Complete solution</th></tr>
-<tr><td>Base and limit</td><td>Legal range base ≤ address &lt; base + limit</td><td><a href="#memory-ex-base-limit">Base/limit example</a></td></tr>
-<tr><td>Binding and relocation</td><td>Relative offset versus physical placement; effect of moving the image</td><td><a href="#memory-ex-binding">Binding example</a></td></tr>
-<tr><td>Logical/physical address</td><td>Limit check, exclusive upper bound and base addition</td><td><a href="#memory-ex-relocation">MMU example</a></td></tr>
-<tr><td>Shared code</td><td>Count common code once and private data for every process</td><td><a href="#memory-ex-sharing">Shared editor example</a></td></tr>
-<tr><td>Swapping</td><td>Size divided by rate; add both transfer directions</td><td><a href="#memory-ex-swapping">Swap-time example</a> · <a href="#memory-ex-swap-size">3 GB vs 100 MB</a></td></tr>
-<tr><td>Fixed-partition fits</td><td>One process per block; compare leftovers for first/best/worst fit</td><td><a href="#memory-ex-fixed-fit">Faculty-slide fit examples</a></td></tr>
-<tr><td>Contiguous allocation</td><td>Split hole remainders after every request; restart for each policy</td><td><a href="#memory-ex-allocation">First/best/worst-fit sequence</a></td></tr>
-<tr><td>Paging translation</td><td>Quotient, remainder, table lookup, frame base and offset</td><td><a href="#memory-ex-paging">Toy paging example and diagram</a> · <a href="#memory-ex-paging-model">Slide paging model</a></td></tr>
-<tr><td>Paging waste</td><td>Ceiling frame count and unused last-frame space</td><td><a href="#memory-ex-page-waste">Internal-fragmentation example</a></td></tr>
-<tr><td>Page-table size</td><td>Offset bits, page-number bits, entry count and bytes</td><td><a href="#memory-ex-table-size">Single-level table example</a></td></tr>
-<tr><td>Address-field bits</td><td>Frame-number bits, frame count, two-level p1/p2/d split</td><td><a href="#memory-ex-frame-bits">512 MB / 4 KB frames</a> · <a href="#memory-ex-two-level">Two-level split</a></td></tr>
-<tr><td>TLB timing</td><td>Weight hit/miss costs; state whether lookup time is counted</td><td><a href="#memory-ex-tlb">Effective-access-time example</a></td></tr>
-<tr><td>Segmentation</td><td>Valid segment index, strict offset bounds and base addition</td><td><a href="#memory-ex-segmentation">Segment-table example</a></td></tr><tr><td>Single-request fits</td><td>Discard too-small blocks; first in list / smallest / largest</td><td><a href="#memory-ex-single-fit">12 KB and 10 KB requests</a></td></tr><tr><td>EAT with TLB time</td><td>Add ε to both hit and miss paths</td><td><a href="#memory-ex-tlb-see">SEE EAT questions</a></td></tr><tr><td>Paging arithmetic (SEE)</td><td>Address translation, word-addressed bit counts, single-level vs inverted entries</td><td><a href="#memory-ex-see-paging">SEE paging set</a></td></tr><tr><td>Shared compiler</td><td>One shared code copy plus per-user data</td><td><a href="#memory-ex-sharing-see">20-user compiler</a></td></tr></table>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Question type / What to practise / Complete solution">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Question type</th><th role="columnheader" scope="col">What to practise</th><th role="columnheader" scope="col">Complete solution</th></tr>
+<tr role="row"><td role="cell" data-label="Question type">Base and limit</td><td role="cell" data-label="What to practise">Legal range base ≤ address &lt; base + limit</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-base-limit">Base/limit example</a></td></tr>
+<tr role="row"><td role="cell" data-label="Question type">Binding and relocation</td><td role="cell" data-label="What to practise">Relative offset versus physical placement; effect of moving the image</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-binding">Binding example</a></td></tr>
+<tr role="row"><td role="cell" data-label="Question type">Logical/physical address</td><td role="cell" data-label="What to practise">Limit check, exclusive upper bound and base addition</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-relocation">MMU example</a></td></tr>
+<tr role="row"><td role="cell" data-label="Question type">Shared code</td><td role="cell" data-label="What to practise">Count common code once and private data for every process</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-sharing">Shared editor example</a></td></tr>
+<tr role="row"><td role="cell" data-label="Question type">Swapping</td><td role="cell" data-label="What to practise">Size divided by rate; add both transfer directions</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-swapping">Swap-time example</a> · <a href="#memory-ex-swap-size">3 GB vs 100 MB</a></td></tr>
+<tr role="row"><td role="cell" data-label="Question type">Fixed-partition fits</td><td role="cell" data-label="What to practise">One process per block; compare leftovers for first/best/worst fit</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-fixed-fit">Faculty-slide fit examples</a></td></tr>
+<tr role="row"><td role="cell" data-label="Question type">Contiguous allocation</td><td role="cell" data-label="What to practise">Split hole remainders after every request; restart for each policy</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-allocation">First/best/worst-fit sequence</a></td></tr>
+<tr role="row"><td role="cell" data-label="Question type">Paging translation</td><td role="cell" data-label="What to practise">Quotient, remainder, table lookup, frame base and offset</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-paging">Toy paging example and diagram</a> · <a href="#memory-ex-paging-model">Slide paging model</a></td></tr>
+<tr role="row"><td role="cell" data-label="Question type">Paging waste</td><td role="cell" data-label="What to practise">Ceiling frame count and unused last-frame space</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-page-waste">Internal-fragmentation example</a></td></tr>
+<tr role="row"><td role="cell" data-label="Question type">Page-table size</td><td role="cell" data-label="What to practise">Offset bits, page-number bits, entry count and bytes</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-table-size">Single-level table example</a></td></tr>
+<tr role="row"><td role="cell" data-label="Question type">Address-field bits</td><td role="cell" data-label="What to practise">Frame-number bits, frame count, two-level p1/p2/d split</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-frame-bits">512 MB / 4 KB frames</a> · <a href="#memory-ex-two-level">Two-level split</a></td></tr>
+<tr role="row"><td role="cell" data-label="Question type">TLB timing</td><td role="cell" data-label="What to practise">Weight hit/miss costs; state whether lookup time is counted</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-tlb">Effective-access-time example</a></td></tr>
+<tr role="row"><td role="cell" data-label="Question type">Segmentation</td><td role="cell" data-label="What to practise">Valid segment index, strict offset bounds and base addition</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-segmentation">Segment-table example</a></td></tr><tr role="row"><td role="cell" data-label="Question type">Single-request fits</td><td role="cell" data-label="What to practise">Discard too-small blocks; first in list / smallest / largest</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-single-fit">12 KB and 10 KB requests</a></td></tr><tr role="row"><td role="cell" data-label="Question type">EAT with TLB time</td><td role="cell" data-label="What to practise">Add ε to both hit and miss paths</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-tlb-see">SEE EAT questions</a></td></tr><tr role="row"><td role="cell" data-label="Question type">Paging arithmetic (SEE)</td><td role="cell" data-label="What to practise">Address translation, word-addressed bit counts, single-level vs inverted entries</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-see-paging">SEE paging set</a></td></tr><tr role="row"><td role="cell" data-label="Question type">Shared compiler</td><td role="cell" data-label="What to practise">One shared code copy plus per-user data</td><td role="cell" data-label="Complete solution"><a href="#memory-ex-sharing-see">20-user compiler</a></td></tr></table>
+</div>
 <p>Solutions are labelled with their source: past RVCE papers, the faculty slides, the textbook, or constructed practice. Every past-paper question is listed in the <a href="#memory-question-bank">question bank</a>.</p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="memory-quick-revision" style="--accent:var(--blue);--accent-soft:var(--blue-soft)">
 <div class="section-head"><span class="tag">REVISE</span><h1>Main-memory quick revision</h1></div>
 <p class="section-sub">The current Unit III at a glance.</p>
-<table><tr><th>Topic</th><th>Exam essentials</th><th>Common mistake</th></tr>
-<tr><td><a href="#memory-binding">Address binding</a></td><td>Compile time: absolute placement. Load time: relocate while loading. Execution time: translate while running.</td><td>Confusing symbol linking with physical-address translation</td></tr>
-<tr><td><a href="#memory-addresses">Logical/physical</a></td><td>Logical addresses are generated by the CPU; physical addresses reach memory. MMU translates them.</td><td>Using the limit as the last legal offset rather than the length</td></tr>
-<tr><td><a href="#memory-loading">Dynamic loading</a></td><td>Load a routine when it is called; unused routines stay unloaded.</td><td>Calling the routine-loading technique demand paging</td></tr>
-<tr><td><a href="#memory-linking">Dynamic linking</a></td><td>Resolve library references at run time; shared code mappings can reduce physical duplication.</td><td>Assuming writable data becomes one common copy</td></tr>
-<tr><td><a href="#memory-swapping">Swapping</a></td><td>Move a process image out and later restore it; account for relocation and pending I/O. Not used in its standard form today; mobile systems do not swap (iOS asks apps to free memory, Android terminates them).</td><td>Calculating one direction when both out and in are needed</td></tr>
-<tr><td><a href="#memory-contiguous">Contiguous allocation</a></td><td>One process region; MFT (fixed) vs MVT (variable). First/best/worst fit choose holes. 50-percent rule: N blocks lose 0.5 N, so one-third is unusable. Internal = inside a fixed block; external = scattered holes, solved by compaction, paging or segmentation.</td><td>Calling unallocated holes internal fragmentation</td></tr>
-<tr><td><a href="#memory-paging">Paging</a></td><td>Equal pages and frames; page table replaces p with f, leaving d unchanged. TLB (key = page, value = frame) caches translations; ASIDs avoid flushing. PTLR bounds the table. Structures: hierarchical (page the page table), hashed (chains for &gt;32-bit), inverted (one entry per frame).</td><td>Treating a TLB miss as a disk access, or a frame number as a byte base</td></tr>
-<tr><td><a href="#memory-segmentation">Segmentation</a></td><td>Variable-sized logical units; choose the segment entry, check d against its limit, add base.</td><td>Assuming noncontiguous segments mean each segment can itself be scattered</td></tr></table>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Topic / Exam essentials / Common mistake">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Topic</th><th role="columnheader" scope="col">Exam essentials</th><th role="columnheader" scope="col">Common mistake</th></tr>
+<tr role="row"><td role="cell" data-label="Topic"><a href="#memory-binding">Address binding</a></td><td role="cell" data-label="Exam essentials">Compile time: absolute placement. Load time: relocate while loading. Execution time: translate while running.</td><td role="cell" data-label="Common mistake">Confusing symbol linking with physical-address translation</td></tr>
+<tr role="row"><td role="cell" data-label="Topic"><a href="#memory-addresses">Logical/physical</a></td><td role="cell" data-label="Exam essentials">Logical addresses are generated by the CPU; physical addresses reach memory. MMU translates them.</td><td role="cell" data-label="Common mistake">Using the limit as the last legal offset rather than the length</td></tr>
+<tr role="row"><td role="cell" data-label="Topic"><a href="#memory-loading">Dynamic loading</a></td><td role="cell" data-label="Exam essentials">Load a routine when it is called; unused routines stay unloaded.</td><td role="cell" data-label="Common mistake">Calling the routine-loading technique demand paging</td></tr>
+<tr role="row"><td role="cell" data-label="Topic"><a href="#memory-linking">Dynamic linking</a></td><td role="cell" data-label="Exam essentials">Resolve library references at run time; shared code mappings can reduce physical duplication.</td><td role="cell" data-label="Common mistake">Assuming writable data becomes one common copy</td></tr>
+<tr role="row"><td role="cell" data-label="Topic"><a href="#memory-swapping">Swapping</a></td><td role="cell" data-label="Exam essentials">Move a process image out and later restore it; account for relocation and pending I/O. Not used in its standard form today; mobile systems do not swap (iOS asks apps to free memory, Android terminates them).</td><td role="cell" data-label="Common mistake">Calculating one direction when both out and in are needed</td></tr>
+<tr role="row"><td role="cell" data-label="Topic"><a href="#memory-contiguous">Contiguous allocation</a></td><td role="cell" data-label="Exam essentials">One process region; MFT (fixed) vs MVT (variable). First/best/worst fit choose holes. 50-percent rule: N blocks lose 0.5 N, so one-third is unusable. Internal = inside a fixed block; external = scattered holes, solved by compaction, paging or segmentation.</td><td role="cell" data-label="Common mistake">Calling unallocated holes internal fragmentation</td></tr>
+<tr role="row"><td role="cell" data-label="Topic"><a href="#memory-paging">Paging</a></td><td role="cell" data-label="Exam essentials">Equal pages and frames; page table replaces p with f, leaving d unchanged. TLB (key = page, value = frame) caches translations; ASIDs avoid flushing. PTLR bounds the table. Structures: hierarchical (page the page table), hashed (chains for &gt;32-bit), inverted (one entry per frame).</td><td role="cell" data-label="Common mistake">Treating a TLB miss as a disk access, or a frame number as a byte base</td></tr>
+<tr role="row"><td role="cell" data-label="Topic"><a href="#memory-segmentation">Segmentation</a></td><td role="cell" data-label="Exam essentials">Variable-sized logical units; choose the segment entry, check d against its limit, add base.</td><td role="cell" data-label="Common mistake">Assuming noncontiguous segments mean each segment can itself be scattered</td></tr></table>
+</div>
 <div class="formula-block">Contiguous: 0 ≤ LA &lt; limit → PA = base + LA
 Paging:     p = floor(LA/P), d = LA mod P → PA = frame[p] × P + d
 Frames:     ceil(process_bytes / page_bytes)
@@ -928,29 +1002,31 @@ Frames:     frame_bits = physical_bits − offset_bits</div>
 <div class="section-head"><span class="tag">Q-BANK</span><h1>Past-paper questions</h1></div>
 <p class="section-sub">Main-memory questions from RVCE papers, each linked to where it is answered.</p>
 <div class="callout clarify"><span class="label">Scope note</span><p>Sources: the 2024-25 CIE-III and SEE (Feb/Mar 2025), and older SEEs from Apr/May 2019, Nov/Dec 2019, Oct 2020 (Fast Track), Mar 2021 and two Apr 2023 sets. Page-replacement, demand-paging, frame-allocation and copy-on-write parts belong to Unit IV and are left out. Repeated questions are grouped on one row.<cite class="src" data-src="Q1"></cite><cite class="src" data-src="Q2"></cite></p></div>
-<table><tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-<tr><td class="mono">SEE 2025 Q7a, 8M<cite class="src" data-src="Q1"></cite></td><td>Explain address binding; diagram of the multistep processing of a user program.</td><td>→ <a href="#memory-binding">§3.1</a></td></tr>
-<tr><td class="mono">Mar-21 Q6a · Oct-20 Q6a · Apr/May-19 Q1.9</td><td>Distinguish logical and physical address space (and how a program can have a larger logical space).</td><td>→ <a href="#memory-addresses">§3.2</a></td></tr>
-<tr><td class="mono">Apr-23 A Q7a · B Q7a, 10M</td><td>Dynamic linking, dynamic loading and memory fragmentation.</td><td>→ <a href="#memory-loading">§3.3</a>, <a href="#memory-linking">§3.4</a>, <a href="#memory-contiguous">§3.6</a></td></tr>
-<tr><td class="mono">CIE-III 24-25 Q4b<cite class="src" data-src="Q1"></cite></td><td>Differentiate static and dynamic linking.</td><td>→ <a href="#memory-linking">§3.4</a></td></tr>
-<tr><td class="mono">Mar-21 Q1.7</td><td>20 users, 50 kB compiler + 5 kB data each: total memory.</td><td>→ <a href="#memory-ex-sharing-see">§3.4</a> <span class="pill">solved example added</span></td></tr>
-<tr><td class="mono">Mar-21 Q5b, 10M · CIE-III 24-25 Q4a (part)<cite class="src" data-src="Q1"></cite></td><td>Contiguous allocation: mapping and protection, allocation, fragmentation; advantages and drawbacks.</td><td>→ <a href="#memory-contiguous">§3.6</a></td></tr>
-<tr><td class="mono">CIE-III 24-25 Q4a, 8M · Oct-20 Q5a, 8M<cite class="src" data-src="Q1"></cite></td><td>Partitions 100, 500, 200, 300, 600 K; processes 212, 417, 112, 426 K — first, best, worst fit; which is most efficient?</td><td>→ <a href="#memory-ex-allocation">§3.6</a></td></tr>
-<tr><td class="mono">Apr-23 A Q1.5 · Nov/Dec-19 Q1.4 · Apr/May-19 Q1.12</td><td>One 12 KB (or 10 KB) request against a free-block list: block chosen by each fit.</td><td>→ <a href="#memory-ex-single-fit">§3.6</a> <span class="pill">solved example added</span></td></tr>
-<tr><td class="mono">Apr-23 B Q1.4</td><td>Allocator places a process in the (first) large-enough block: name the algorithm (first fit).</td><td>→ <a href="#memory-contiguous">§3.6</a></td></tr>
-<tr><td class="mono">SEE 2025 Q7c<cite class="src" data-src="Q1"></cite></td><td>One method that avoids external fragmentation and compaction (paging); hardware and technique with a diagram.</td><td>→ <a href="#memory-paging">§3.7</a></td></tr>
-<tr><td class="mono">Apr-23 A Q8a · B Q8a · Oct-20 Q5b · Nov/Dec-19 Q5a</td><td>Basic paging scheme with a diagram; hardware support for paging.</td><td>→ <a href="#memory-paging">§3.7</a></td></tr>
-<tr><td class="mono">Apr/May-19 Q7a (part)</td><td>Define paging; fragmentation.</td><td>→ <a href="#memory-paging">§3.7</a></td></tr>
-<tr><td class="mono">Mar-21 Q1.8</td><td>Why are page sizes always a power of 2?</td><td>→ <a href="#memory-paging">§3.7</a></td></tr>
-<tr><td class="mono">CIE-III 24-25 Quiz Q1<cite class="src" data-src="Q1"></cite></td><td>Significance of the TLB.</td><td>→ <a href="#memory-ex-tlb">§3.7 TLB</a></td></tr>
-<tr><td class="mono">Apr-23 A Q1.8 · Oct-20 Q1.8 · Nov/Dec-19 Q1.6 · CIE-III Quiz Q5</td><td>EAT with TLB search time (20/100 ns at 98% or 99%; 10/150 ns at 95%).</td><td>→ <a href="#memory-ex-tlb-see">§3.7</a> <span class="pill">solved example added</span></td></tr>
-<tr><td class="mono">SEE 2025 Q1.9<cite class="src" data-src="Q1"></cite></td><td>2 KB pages, pages 0–3 in frames 1, 3, 2, 0: physical address of virtual address 2500.</td><td>→ <a href="#memory-ex-see-paging">§3.7</a> <span class="pill">solved example added</span></td></tr>
-<tr><td class="mono">SEE 2025 Q8c · Apr-23 B Q1.9<cite class="src" data-src="Q1"></cite></td><td>64 (or 8) pages of 1024 words onto 32 frames: logical and physical address bits.</td><td>→ <a href="#memory-ex-see-paging">§3.7</a> <span class="pill">solved example added</span></td></tr>
-<tr><td class="mono">SEE 2025 Q7b, 4M<cite class="src" data-src="Q1"></cite></td><td>32-bit logical address, 4 KB pages, 512 MB memory: entries in a single-level and an inverted page table.</td><td>→ <a href="#memory-ex-see-paging">§3.7</a> <span class="pill">solved example added</span></td></tr>
-<tr><td class="mono">CIE-III 24-25 Q5a, 6M<cite class="src" data-src="Q1"></cite></td><td>Hashed and inverted page tables.</td><td>→ <a href="#memory-hashed">Hashed</a>, <a href="#memory-inverted">Inverted</a></td></tr>
-<tr><td class="mono">Apr-23 A Q1.7</td><td>Two differences between paging and segmentation.</td><td>→ <a href="#memory-segmentation">§3.8</a></td></tr>
-<tr><td class="mono">Apr-23 B Q7b · Mar-21 Q6c · Nov/Dec-19 Q6b</td><td>Segmentation with a diagram: hardware support, merits and demerits.</td><td>→ <a href="#memory-segmentation">§3.8</a></td></tr>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">SEE 2025 Q7a, 8M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Explain address binding; diagram of the multistep processing of a user program.</td><td role="cell" data-label="Answered at">→ <a href="#memory-binding">§3.1</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Mar-21 Q6a · Oct-20 Q6a · Apr/May-19 Q1.9</td><td role="cell" data-label="Question">Distinguish logical and physical address space (and how a program can have a larger logical space).</td><td role="cell" data-label="Answered at">→ <a href="#memory-addresses">§3.2</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q7a · B Q7a, 10M</td><td role="cell" data-label="Question">Dynamic linking, dynamic loading and memory fragmentation.</td><td role="cell" data-label="Answered at">→ <a href="#memory-loading">§3.3</a>, <a href="#memory-linking">§3.4</a>, <a href="#memory-contiguous">§3.6</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">CIE-III 24-25 Q4b<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Differentiate static and dynamic linking.</td><td role="cell" data-label="Answered at">→ <a href="#memory-linking">§3.4</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Mar-21 Q1.7</td><td role="cell" data-label="Question">20 users, 50 kB compiler + 5 kB data each: total memory.</td><td role="cell" data-label="Answered at">→ <a href="#memory-ex-sharing-see">§3.4</a> <span class="pill">solved example added</span></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Mar-21 Q5b, 10M · CIE-III 24-25 Q4a (part)<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Contiguous allocation: mapping and protection, allocation, fragmentation; advantages and drawbacks.</td><td role="cell" data-label="Answered at">→ <a href="#memory-contiguous">§3.6</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">CIE-III 24-25 Q4a, 8M · Oct-20 Q5a, 8M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Partitions 100, 500, 200, 300, 600 K; processes 212, 417, 112, 426 K — first, best, worst fit; which is most efficient?</td><td role="cell" data-label="Answered at">→ <a href="#memory-ex-allocation">§3.6</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q1.5 · Nov/Dec-19 Q1.4 · Apr/May-19 Q1.12</td><td role="cell" data-label="Question">One 12 KB (or 10 KB) request against a free-block list: block chosen by each fit.</td><td role="cell" data-label="Answered at">→ <a href="#memory-ex-single-fit">§3.6</a> <span class="pill">solved example added</span></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 B Q1.4</td><td role="cell" data-label="Question">Allocator places a process in the (first) large-enough block: name the algorithm (first fit).</td><td role="cell" data-label="Answered at">→ <a href="#memory-contiguous">§3.6</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">SEE 2025 Q7c<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">One method that avoids external fragmentation and compaction (paging); hardware and technique with a diagram.</td><td role="cell" data-label="Answered at">→ <a href="#memory-paging">§3.7</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q8a · B Q8a · Oct-20 Q5b · Nov/Dec-19 Q5a</td><td role="cell" data-label="Question">Basic paging scheme with a diagram; hardware support for paging.</td><td role="cell" data-label="Answered at">→ <a href="#memory-paging">§3.7</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr/May-19 Q7a (part)</td><td role="cell" data-label="Question">Define paging; fragmentation.</td><td role="cell" data-label="Answered at">→ <a href="#memory-paging">§3.7</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Mar-21 Q1.8</td><td role="cell" data-label="Question">Why are page sizes always a power of 2?</td><td role="cell" data-label="Answered at">→ <a href="#memory-paging">§3.7</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">CIE-III 24-25 Quiz Q1<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Significance of the TLB.</td><td role="cell" data-label="Answered at">→ <a href="#memory-ex-tlb">§3.7 TLB</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q1.8 · Oct-20 Q1.8 · Nov/Dec-19 Q1.6 · CIE-III Quiz Q5</td><td role="cell" data-label="Question">EAT with TLB search time (20/100 ns at 98% or 99%; 10/150 ns at 95%).</td><td role="cell" data-label="Answered at">→ <a href="#memory-ex-tlb-see">§3.7</a> <span class="pill">solved example added</span></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">SEE 2025 Q1.9<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">2 KB pages, pages 0–3 in frames 1, 3, 2, 0: physical address of virtual address 2500.</td><td role="cell" data-label="Answered at">→ <a href="#memory-ex-see-paging">§3.7</a> <span class="pill">solved example added</span></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">SEE 2025 Q8c · Apr-23 B Q1.9<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">64 (or 8) pages of 1024 words onto 32 frames: logical and physical address bits.</td><td role="cell" data-label="Answered at">→ <a href="#memory-ex-see-paging">§3.7</a> <span class="pill">solved example added</span></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">SEE 2025 Q7b, 4M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">32-bit logical address, 4 KB pages, 512 MB memory: entries in a single-level and an inverted page table.</td><td role="cell" data-label="Answered at">→ <a href="#memory-ex-see-paging">§3.7</a> <span class="pill">solved example added</span></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">CIE-III 24-25 Q5a, 6M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Hashed and inverted page tables.</td><td role="cell" data-label="Answered at">→ <a href="#memory-hashed">Hashed</a>, <a href="#memory-inverted">Inverted</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q1.7</td><td role="cell" data-label="Question">Two differences between paging and segmentation.</td><td role="cell" data-label="Answered at">→ <a href="#memory-segmentation">§3.8</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 B Q7b · Mar-21 Q6c · Nov/Dec-19 Q6b</td><td role="cell" data-label="Question">Segmentation with a diagram: hardware support, merits and demerits.</td><td role="cell" data-label="Answered at">→ <a href="#memory-segmentation">§3.8</a></td></tr>
 </table>
+</div>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 </div></div><script>
 (()=>{

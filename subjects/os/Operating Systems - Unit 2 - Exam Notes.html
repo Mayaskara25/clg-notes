@@ -178,6 +178,33 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 :root[data-theme="dark"] svg :is(rect,circle,ellipse,polygon)[fill="#93316B" i]{fill:var(--diagram-plum)}
 :root[data-theme="dark"] svg text[fill="#A66A0D" i]{fill:var(--amber)}
 :root[data-theme="dark"] svg :is(rect,circle,ellipse,polygon)[fill="#A66A0D" i]{fill:var(--diagram-amber)}
+/* Keep words intact; wide tables scroll without widening the page. */
+.table-scroll{max-width:100%;min-width:0;overflow-x:auto;margin:18px 0;border-radius:8px;box-shadow:var(--shadow)}
+.table-scroll:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.table-scroll>table,.section .table-scroll>table{display:table;max-width:none;margin:0;box-shadow:none}
+.table-scroll th,.table-scroll td,.table-scroll p,.table-scroll li{overflow-wrap:normal;word-break:normal;hyphens:none}
+.table-scroll th{vertical-align:top}
+.binding-times th:first-child,.binding-times td:first-child{width:9rem;min-width:7rem}
+.table-scroll td.mono[style*="white-space:nowrap"]{white-space:normal!important}
+@media screen and (max-width:1000px){.sidebar{display:none}}
+@media screen and (max-width:640px){
+ .cover{padding:48px 20px}.cover h1{font-size:35px}
+ .table-scroll th,.table-scroll td{padding:8px}
+ /* Prose reads vertically on phones; numerical tables keep their grid. */
+ .table-scroll>.table-prose,.section .table-scroll>.table-prose{display:block;width:100%}
+ .table-prose>tbody{display:block}
+ .table-prose>tbody>tr{display:block;padding:10px 0;border-bottom:1px solid var(--line)}
+ .table-prose>tbody>tr:last-child{border-bottom:0}
+ .table-prose>tbody>tr:first-child{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ .table-prose>tbody>tr>td{display:block;width:auto;min-width:0;padding:6px 12px;border:0}
+ .table-prose>tbody>tr>td::before{content:attr(data-label);display:block;margin-bottom:3px;color:var(--ink-soft);font:600 11px/1.5 'Inter',system-ui,sans-serif;letter-spacing:.03em;text-transform:uppercase}
+}
+@media print{
+ .table-scroll{overflow:visible;box-shadow:none}
+ .table-scroll>table{min-width:0;width:100%;table-layout:auto;font-size:10px}
+ .table-scroll th,.table-scroll td{padding:6px}
+ .binding-times th:first-child,.binding-times td:first-child,.binding-times th:nth-child(2){width:auto}
+}
 </style>
 <meta name="color-scheme" content="light dark"><script>(function(){var m=false;try{m=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</script>
 </head>
@@ -196,7 +223,9 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 
 <section class="page section" id="syllabus-map" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
 <div class="section-head"><span class="tag">MAP</span><h1>New Syllabus Map</h1></div>
-<p class="section-sub">Master checklist: syllabus.png · CS235AT · 9 teaching hours. Only the named new-syllabus topics are listed in this table.</p><table><tr><th>Official syllabus topic</th><th>Study here</th><th>Reference book</th></tr><tr><td>CPU scheduling: basic concepts</td><td><a href="#t2-5">2.1 Basic concepts</a></td><td>§6.1</td></tr><tr><td>Scheduling criteria</td><td><a href="#t2-6">2.2 Criteria</a></td><td>§6.2</td></tr><tr><td>FCFS</td><td><a href="#t2-7">2.3 FCFS</a></td><td>§6.3.1</td></tr><tr><td>SJF</td><td><a href="#t2-8">2.4 SJF / SRTF</a></td><td>§6.3.2</td></tr><tr><td>RR</td><td><a href="#t2-10">2.5 Round Robin</a></td><td>§6.3.4</td></tr><tr><td>Priority</td><td><a href="#t2-9">2.6 Priority scheduling</a></td><td>§6.3.3</td></tr><tr><td>Real-time scheduling</td><td><a href="#t2-11">2.7 Real-time, RMS and EDF</a></td><td>§6.6</td></tr><tr><td>Synchronization: background</td><td><a href="#sync-t3-1">2.8 Background and race conditions</a></td><td>§5.1</td></tr><tr><td>Critical-section problem</td><td><a href="#sync-t3-2">2.9 Critical sections</a></td><td>§5.2</td></tr><tr><td>Peterson’s solution</td><td><a href="#sync-t3-3">2.10 Peterson</a></td><td>§5.3</td></tr><tr><td>Synchronization hardware</td><td><a href="#sync-t3-4">2.11 Interrupts, test-and-set, CAS, bounded waiting</a></td><td>§5.4</td></tr><tr><td>Semaphores</td><td><a href="#sync-t3-6">2.12 Permits, spinning and blocking</a></td><td>§5.6</td></tr><tr><td>Classic problems of synchronization</td><td><a href="#sync-t3-7">2.13 Bounded buffer</a></td><td>§5.7.1</td></tr><tr><td>Classic problems: readers–writers</td><td><a href="#sync-t3-8">2.14 Readers–writers</a></td><td>§5.7.2</td></tr><tr><td>Classic problems: dining philosophers</td><td><a href="#sync-t3-9">2.15 Dining philosophers</a></td><td>§5.7.3</td></tr></table><div class="callout clarify"><span class="label">How the sources combine</span><p>The new syllabus controls scope. Matching teaching content is reused from the existing HTML and course PDFs, with textbook clarifications from the local Silberschatz<cite class="src" data-src="B1"></cite> ninth edition. Required explanations stay open. Older extras remain in their original positions, collapsed behind View/Hide buttons. A topic that only moved to another unit is taught there and is not repeated here; only topics dropped from the new syllabus are kept collapsed.</p><p>References to missing original decks/question papers are historical provenance from the retained notes; the available transcripts and textbook were used for this revision.</p><p><strong>2026-11-09:</strong> sections 2.8–2.15 were checked against the faculty's updated Unit II Process Synchronization slides. The guide now uses the slides' definitions, variable names (<code>rw_mutex</code>, <code>read_count</code>) and code. It adds data-access vs control synchronization, disabling interrupts, the bounded-waiting <code>test_and_set</code> algorithm, unbounded vs bounded buffers and the first/second readers–writers problems.</p></div><p>CPU scheduling is followed by the complete required synchronization material, previously stored as old Unit III. RMS/EDF remain under real-time scheduling. Mutex and brief deadlock concepts support semaphore explanations; their extended standalone treatments are collapsed.</p>
+<p class="section-sub">Master checklist: syllabus.png · CS235AT · 9 teaching hours. Only the named new-syllabus topics are listed in this table.</p><div class="table-scroll" role="region" tabindex="0" aria-label="Official syllabus topic / Study here / Reference book">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Official syllabus topic</th><th role="columnheader" scope="col">Study here</th><th role="columnheader" scope="col">Reference book</th></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">CPU scheduling: basic concepts</td><td role="cell" data-label="Study here"><a href="#t2-5">2.1 Basic concepts</a></td><td role="cell" data-label="Reference book">§6.1</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Scheduling criteria</td><td role="cell" data-label="Study here"><a href="#t2-6">2.2 Criteria</a></td><td role="cell" data-label="Reference book">§6.2</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">FCFS</td><td role="cell" data-label="Study here"><a href="#t2-7">2.3 FCFS</a></td><td role="cell" data-label="Reference book">§6.3.1</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">SJF</td><td role="cell" data-label="Study here"><a href="#t2-8">2.4 SJF / SRTF</a></td><td role="cell" data-label="Reference book">§6.3.2</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">RR</td><td role="cell" data-label="Study here"><a href="#t2-10">2.5 Round Robin</a></td><td role="cell" data-label="Reference book">§6.3.4</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Priority</td><td role="cell" data-label="Study here"><a href="#t2-9">2.6 Priority scheduling</a></td><td role="cell" data-label="Reference book">§6.3.3</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Real-time scheduling</td><td role="cell" data-label="Study here"><a href="#t2-11">2.7 Real-time, RMS and EDF</a></td><td role="cell" data-label="Reference book">§6.6</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Synchronization: background</td><td role="cell" data-label="Study here"><a href="#sync-t3-1">2.8 Background and race conditions</a></td><td role="cell" data-label="Reference book">§5.1</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Critical-section problem</td><td role="cell" data-label="Study here"><a href="#sync-t3-2">2.9 Critical sections</a></td><td role="cell" data-label="Reference book">§5.2</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Peterson’s solution</td><td role="cell" data-label="Study here"><a href="#sync-t3-3">2.10 Peterson</a></td><td role="cell" data-label="Reference book">§5.3</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Synchronization hardware</td><td role="cell" data-label="Study here"><a href="#sync-t3-4">2.11 Interrupts, test-and-set, CAS, bounded waiting</a></td><td role="cell" data-label="Reference book">§5.4</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Semaphores</td><td role="cell" data-label="Study here"><a href="#sync-t3-6">2.12 Permits, spinning and blocking</a></td><td role="cell" data-label="Reference book">§5.6</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Classic problems of synchronization</td><td role="cell" data-label="Study here"><a href="#sync-t3-7">2.13 Bounded buffer</a></td><td role="cell" data-label="Reference book">§5.7.1</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Classic problems: readers–writers</td><td role="cell" data-label="Study here"><a href="#sync-t3-8">2.14 Readers–writers</a></td><td role="cell" data-label="Reference book">§5.7.2</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Classic problems: dining philosophers</td><td role="cell" data-label="Study here"><a href="#sync-t3-9">2.15 Dining philosophers</a></td><td role="cell" data-label="Reference book">§5.7.3</td></tr></table>
+</div><div class="callout clarify"><span class="label">How the sources combine</span><p>The new syllabus controls scope. Matching teaching content is reused from the existing HTML and course PDFs, with textbook clarifications from the local Silberschatz<cite class="src" data-src="B1"></cite> ninth edition. Required explanations stay open. Older extras remain in their original positions, collapsed behind View/Hide buttons. A topic that only moved to another unit is taught there and is not repeated here; only topics dropped from the new syllabus are kept collapsed.</p><p>References to missing original decks/question papers are historical provenance from the retained notes; the available transcripts and textbook were used for this revision.</p><p><strong>2026-11-09:</strong> sections 2.8–2.15 were checked against the faculty's updated Unit II Process Synchronization slides. The guide now uses the slides' definitions, variable names (<code>rw_mutex</code>, <code>read_count</code>) and code. It adds data-access vs control synchronization, disabling interrupts, the bounded-waiting <code>test_and_set</code> algorithm, unbounded vs bounded buffers and the first/second readers–writers problems.</p></div><p>CPU scheduling is followed by the complete required synchronization material, previously stored as old Unit III. RMS/EDF remain under real-time scheduling. Mutex and brief deadlock concepts support semaphore explanations; their extended standalone treatments are collapsed.</p>
 <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
@@ -220,12 +249,14 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
   </ul>
   <p>The register set, the two stacks and the private storage area together are called the <strong>context</strong>
   of the thread. The primary data structures of a Windows thread are:</p>
-  <table>
-    <tr><th>Structure</th><th>Full name</th><th>Lives in</th><th>Holds</th></tr>
-    <tr><td class="mono">ETHREAD</td><td>Executive thread block</td><td>Kernel space</td><td>Pointer to the owning process, start address of the thread routine, pointer to the KTHREAD</td></tr>
-    <tr><td class="mono">KTHREAD</td><td>Kernel thread block</td><td>Kernel space</td><td>Scheduling and synchronization information, the kernel stack, pointer to the TEB</td></tr>
-    <tr><td class="mono">TEB</td><td>Thread environment block</td><td>User space</td><td>Thread id, user-mode stack, thread-local storage</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Structure / Full name / Lives in">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Structure</th><th role="columnheader" scope="col">Full name</th><th role="columnheader" scope="col">Lives in</th><th role="columnheader" scope="col">Holds</th></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Structure">ETHREAD</td><td role="cell" data-label="Full name">Executive thread block</td><td role="cell" data-label="Lives in">Kernel space</td><td role="cell" data-label="Holds">Pointer to the owning process, start address of the thread routine, pointer to the KTHREAD</td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Structure">KTHREAD</td><td role="cell" data-label="Full name">Kernel thread block</td><td role="cell" data-label="Lives in">Kernel space</td><td role="cell" data-label="Holds">Scheduling and synchronization information, the kernel stack, pointer to the TEB</td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Structure">TEB</td><td role="cell" data-label="Full name">Thread environment block</td><td role="cell" data-label="Lives in">User space</td><td role="cell" data-label="Holds">Thread id, user-mode stack, thread-local storage</td></tr>
   </table>
+</div>
   <p>ETHREAD and KTHREAD are only reachable in kernel mode; the TEB is the one structure user-mode code can touch.</p>
 
   <h2>Java threads</h2>
@@ -277,11 +308,13 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
   <p>Terminating a thread <em>before it has completed</em> — for example when several threads search a database and
   one finds the answer, or when a user presses Stop in a browser. The thread to be cancelled is the <strong>target
   thread</strong>. Two cases:</p>
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Type / How it works / Drawback / advantage">
+<table>
     <tr><th>Type</th><th>How it works</th><th>Drawback / advantage</th></tr>
     <tr><td><strong>Asynchronous cancellation</strong></td><td>One thread terminates the target thread <em>immediately</em>.</td><td>May leave shared data inconsistent or fail to reclaim resources the target was holding (locks, files).</td></tr>
     <tr><td><strong>Deferred cancellation</strong></td><td>The target thread <em>periodically checks</em> whether it should terminate, at safe <em>cancellation points</em>.</td><td>Orderly clean-up is possible; this is the default in Pthreads.</td></tr>
   </table>
+</div>
 
   <h2>3. Signal handling</h2>
   <p>In UNIX a <strong>signal</strong> notifies a process that a particular event has occurred. Every signal follows the
@@ -458,14 +491,16 @@ t.<span class="tf">join</span>();    <span class="tc">// parent waits for the wo
   <p>Different scheduling algorithms favour different classes of processes, so comparing them needs agreed
   criteria. All five below appear regularly as define-and-explain questions on their own.</p>
 
-  <table>
-    <tr><th>Criterion</th><th>Definition</th><th>Goal</th></tr>
-    <tr><td><strong>CPU utilization</strong></td><td>Fraction of time the CPU is actually busy (0–100%; realistically 40% lightly-loaded to 90% heavily-loaded).</td><td>Maximize</td></tr>
-    <tr><td><strong>Throughput</strong></td><td>Number of processes completed per unit time.</td><td>Maximize</td></tr>
-    <tr><td><strong>Turnaround time</strong></td><td>Total time to execute a process = time waiting to get into memory + waiting in the ready queue + executing on the CPU + doing I/O.</td><td>Minimize</td></tr>
-    <tr><td><strong>Waiting time</strong></td><td>Sum of the periods a process spends waiting in the <em>ready queue</em> specifically — the only part of turnaround time the scheduler actually controls.</td><td>Minimize</td></tr>
-    <tr><td><strong>Response time</strong></td><td>Time from submitting a request until the <em>first</em> response is produced (not until the full response is output) — the criterion that matters most for interactive/time-sharing systems.</td><td>Minimize</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Criterion / Definition / Goal">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Criterion</th><th role="columnheader" scope="col">Definition</th><th role="columnheader" scope="col">Goal</th></tr>
+    <tr role="row"><td role="cell" data-label="Criterion"><strong>CPU utilization</strong></td><td role="cell" data-label="Definition">Fraction of time the CPU is actually busy (0–100%; realistically 40% lightly-loaded to 90% heavily-loaded).</td><td role="cell" data-label="Goal">Maximize</td></tr>
+    <tr role="row"><td role="cell" data-label="Criterion"><strong>Throughput</strong></td><td role="cell" data-label="Definition">Number of processes completed per unit time.</td><td role="cell" data-label="Goal">Maximize</td></tr>
+    <tr role="row"><td role="cell" data-label="Criterion"><strong>Turnaround time</strong></td><td role="cell" data-label="Definition">Total time to execute a process = time waiting to get into memory + waiting in the ready queue + executing on the CPU + doing I/O.</td><td role="cell" data-label="Goal">Minimize</td></tr>
+    <tr role="row"><td role="cell" data-label="Criterion"><strong>Waiting time</strong></td><td role="cell" data-label="Definition">Sum of the periods a process spends waiting in the <em>ready queue</em> specifically — the only part of turnaround time the scheduler actually controls.</td><td role="cell" data-label="Goal">Minimize</td></tr>
+    <tr role="row"><td role="cell" data-label="Criterion"><strong>Response time</strong></td><td role="cell" data-label="Definition">Time from submitting a request until the <em>first</em> response is produced (not until the full response is output) — the criterion that matters most for interactive/time-sharing systems.</td><td role="cell" data-label="Goal">Minimize</td></tr>
   </table>
+</div>
 
   <div class="callout key">
     <span class="label">Exam tip</span>
@@ -555,9 +590,12 @@ Utilization (first cycle) = 60 / 120 = <span class="c1">50%</span></div>
     <div class="qmeta"><span class="qsrc">"FCFS Problem"<cite class="src" data-src="D2"></cite></span><span class="marks">worked example</span></div>
     <div class="qtext">
 <span class="qline">Five processes arrive as below. Calculate the average waiting time and average turnaround time using FCFS. (Tie-break: if two processes share an arrival time, the lower process ID is served first.)</span>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Process / Arrival / Burst">
 <table><tr><th>Process</th><th>Arrival</th><th>Burst</th></tr><tr><td>P3</td><td>0</td><td>3</td></tr><tr><td>P1</td><td>4</td><td>5</td></tr><tr><td>P5</td><td>5</td><td>4</td></tr><tr><td>P2</td><td>6</td><td>4</td></tr><tr><td>P4</td><td>6</td><td>2</td></tr></table>
 </div>
-    <table>
+</div>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Process / Arrival / Burst">
+<table>
       <tr><th>Process</th><th>Arrival</th><th>Burst</th><th>Completion</th><th>Turnaround</th><th>Waiting</th></tr>
       <tr><td>P3</td><td>0</td><td>3</td><td>3</td><td>3</td><td>0</td></tr>
       <tr><td>P1</td><td>4</td><td>5</td><td>9</td><td>5</td><td>0</td></tr>
@@ -565,6 +603,7 @@ Utilization (first cycle) = 60 / 120 = <span class="c1">50%</span></div>
       <tr><td>P2</td><td>6</td><td>4</td><td>17</td><td>11</td><td>7</td></tr>
       <tr><td>P4</td><td>6</td><td>2</td><td>19</td><td>13</td><td>11</td></tr>
     </table>
+</div>
     <p style="font-size:13.5px;color:var(--ink-soft);margin:6px 0 0">Note the CPU sits idle from t=3 to t=4 (P3 finishes before P1 arrives) — FCFS just serves whoever is in the queue, in order, with no lookahead.</p>
     <div class="ans-label">Result</div>
     <p style="margin:0"><strong>Average turnaround time</strong> = 40/5 = <strong>8 units</strong>. <strong>Average waiting time</strong> = 22/5 = <strong>4.4 units</strong>.</p>
@@ -677,11 +716,13 @@ P5(AT2,BT3)</div>
   <div class="qbox" id="u2-example-10">
     <div class="qmeta"><span class="qsrc">2024-25 SEE Part-B, Q4<cite class="src" data-src="Q1"></cite></span><span class="marks">8 marks · FCFS vs SJF comparison</span></div>
     <div class="qtext">P1(AT0,BT10), P2(AT2,BT5), P3(AT4,BT8), P4(AT6,BT2). Compute average waiting/turnaround time using FCFS and SJF; analyze the results.</div>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Algorithm / Gantt order / Avg turnaround">
+<table>
       <tr><th>Algorithm</th><th>Gantt order</th><th>Avg turnaround</th><th>Avg waiting</th></tr>
       <tr><td>FCFS</td><td>P1[0–10], P2[10–15], P3[15–23], P4[23–25]</td><td>15.25ms</td><td>9ms</td></tr>
       <tr><td>SJF (non-preemptive)</td><td>P1[0–10], P4[10–12], P2[12–17], P3[17–25]</td><td>13ms</td><td>6.75ms</td></tr>
     </table>
+</div>
     <p style="margin:0"><strong>Analysis:</strong> SJF wins on both measures. The gap comes almost entirely from
     P4 (burst 2): under FCFS it's stuck behind P1, P2, and P3 despite being the shortest job in the set; SJF
     recognizes this the moment P1 finishes and runs P4 next instead of P2. Both algorithms agree on P1 going
@@ -696,13 +737,15 @@ P3(AT1, BT1)</div>
 <span class="qline">Find the average turnaround time under FCFS, non-preemptive SJF and SRTF.</span>
 <span class="qline">Then: what if the CPU were deliberately left idle for the first 1 unit and SJF were used (scheduling with "future knowledge")?</span>
 </div>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Algorithm / Gantt / TAT (P1, P2, P3)">
+<table>
       <tr><th>Algorithm</th><th>Gantt</th><th>TAT (P1, P2, P3)</th><th>Avg TAT</th><th>Avg WT</th></tr>
       <tr><td>FCFS</td><td>P1[0–8] P2[8–12] P3[12–13]</td><td>8, 11.6, 12</td><td>10.53</td><td>6.20</td></tr>
       <tr><td>SJF (non-preemptive)</td><td>P1[0–8] P3[8–9] P2[9–13]</td><td>8, 12.6, 8</td><td>9.53</td><td>5.20</td></tr>
       <tr><td>Idle 1 unit, then SJF</td><td>idle[0–1] P3[1–2] P2[2–6] P1[6–14]</td><td>14, 5.6, 1</td><td>6.87</td><td>2.53</td></tr>
       <tr><td>SRTF (preemptive SJF)</td><td>P1[0–0.4] P2[0.4–1] P3[1–2] P2[2–5.4] P1[5.4–13]</td><td>13, 5, 1</td><td><strong>6.33</strong></td><td><strong>2.00</strong></td></tr>
     </table>
+</div>
     <p style="margin:0"><strong>Why non-preemptive SJF barely helps:</strong> at t=0 P1 is the <em>only</em> ready process, so SJF has to start it, and then it cannot take the CPU back for 8 units. The only change SJF makes is to swap P2 and P3 at t=8. Idling the CPU for one unit lets all three jobs arrive first, so SJF can order them properly (6.87). This needs knowledge of future arrivals, and the idle time counts in every turnaround. SRTF gets an even better result (6.33) without knowing the future: preemption lets each shorter job take over the moment it arrives. Turnaround is always measured from each job's own arrival (e.g. P2: 12 − 0.4 = 11.6).</p>
   </div>
   <div class="qbox" id="u2-example-10c">
@@ -762,18 +805,22 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
   <h3>Quantum size versus context switches and turnaround time</h3>
   <p>The PDF shows both effects in figures. <strong>(1) Smaller quantum → more context switches.</strong> For a single process needing 10 time units
   the number of quantum boundaries before completion is ⌈10/q⌉ − 1:</p>
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Quantum / Quantum boundaries / How the 10 units split">
+<table>
     <tr><th>Quantum</th><th>Quantum boundaries</th><th>How the 10 units split</th></tr>
     <tr><td>12</td><td>0</td><td>one block 0–10</td></tr>
     <tr><td>6</td><td>1</td><td>0–6, then 6–10</td></tr>
     <tr><td>1</td><td>9</td><td>ten blocks of 1</td></tr>
   </table>
+</div>
   <p><strong>(2) Average turnaround time does not improve monotonically with quantum size.</strong> For four processes arriving together with bursts
   P1=6, P2=3, P3=1, P4=7 (recomputed in code), the average turnaround time is:</p>
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Quantum / Avg turnaround (ms)">
+<table>
     <tr><th>Quantum</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
     <tr><th>Avg turnaround (ms)</th><td>11.0</td><td>11.5</td><td>10.75</td><td>11.5</td><td>12.25</td><td>10.5</td><td>10.5</td></tr>
   </table>
+</div>
   <p>The curve goes up and down (worst at q = 5), so the PDF's conclusion holds: <strong>average turnaround improves when most processes finish
   their next CPU burst within one quantum</strong> — here from q = 6, when the longest-but-one burst (6) fits — but a larger quantum is not automatically
   better, and too large degenerates to FCFS.</p>
@@ -820,7 +867,8 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
     switches</strong> before completion at t=67 — too long to usefully hand-trace segment by segment, but the
     mechanics are identical to the worked common-mistake example above: cycle the ready queue, 2ms per turn,
     newly-arrived processes join the queue ahead of the process whose quantum just expired.</p>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Process / Arrival / Burst">
+<table>
       <tr><th>Process</th><th>Arrival</th><th>Burst</th><th>Completion</th><th>Turnaround</th><th>Waiting</th></tr>
       <tr><td>P1</td><td>0</td><td>11</td><td>37</td><td>37</td><td>26</td></tr>
       <tr><td>P2</td><td>5</td><td>28</td><td>67</td><td>62</td><td>34</td></tr>
@@ -828,6 +876,7 @@ Average TAT = (12 + 13 + 14) / 3 = <span class="c1">13</span></div>
       <tr><td>P4</td><td>2</td><td>10</td><td>32</td><td>30</td><td>20</td></tr>
       <tr><td>P5</td><td>9</td><td>16</td><td>55</td><td>46</td><td>30</td></tr>
     </table>
+</div>
     <p style="margin:0"><strong>Average turnaround = 36.6ms, average waiting = 23.2ms</strong> — lower than preemptive priority (29ms wait, §2.6) but higher than preemptive SJF (11.8ms wait, the SRTF calculation in §2.6) on this exact same
     dataset. This dataset illustrates that RR does not universally improve or worsen average waiting time relative to priority scheduling. It cycles fairly through ready processes, without using "shortest job" or
     "highest priority" — it just cycles.</p>
@@ -1014,12 +1063,14 @@ P5(AT20, BT3, Pri1)</div>
   alone only guarantees <em>soft</em> real-time behaviour; hard real-time systems need an explicit guarantee
   that tasks meet their deadlines, which is where RMS and EDF come in.</p>
 
-  <table>
-    <tr><th></th><th>Rate-Monotonic Scheduling (RMS)</th><th>Earliest-Deadline-First (EDF)</th></tr>
-    <tr><td><strong>Priority assignment</strong></td><td>Static — fixed inversely by period at admission (shorter period → higher priority)</td><td>Dynamic — recomputed whenever a process becomes runnable, based on its deadline</td></tr>
-    <tr><td><strong>Rationale</strong></td><td>Tasks needing the CPU more often get priority</td><td>The task with the nearest deadline always runs next</td></tr>
-    <tr><td><strong>Assumption</strong></td><td>Each periodic task's CPU-burst duration is the same every period</td><td>No fixed-priority assumption; priorities shift as deadlines approach</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label=" / Rate-Monotonic Scheduling (RMS) / Earliest-Deadline-First (EDF)">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col"></th><th role="columnheader" scope="col">Rate-Monotonic Scheduling (RMS)</th><th role="columnheader" scope="col">Earliest-Deadline-First (EDF)</th></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Priority assignment</strong></td><td role="cell" data-label="Rate-Monotonic Scheduling (RMS)">Static — fixed inversely by period at admission (shorter period → higher priority)</td><td role="cell" data-label="Earliest-Deadline-First (EDF)">Dynamic — recomputed whenever a process becomes runnable, based on its deadline</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Rationale</strong></td><td role="cell" data-label="Rate-Monotonic Scheduling (RMS)">Tasks needing the CPU more often get priority</td><td role="cell" data-label="Earliest-Deadline-First (EDF)">The task with the nearest deadline always runs next</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Assumption</strong></td><td role="cell" data-label="Rate-Monotonic Scheduling (RMS)">Each periodic task's CPU-burst duration is the same every period</td><td role="cell" data-label="Earliest-Deadline-First (EDF)">No fixed-priority assumption; priorities shift as deadlines approach</td></tr>
   </table>
+</div>
 
   <h2>Earliest-Deadline-First — worked and verified</h2>
   <div class="qbox" id="u2-example-17">
@@ -1082,11 +1133,13 @@ RMS (Liu–Layland) bound, n = 3:  3(2<sup>1/3</sup> − 1) = <span class="c2">0
 <span class="cm">U &gt; 0.780 → the RMS bound gives no guarantee (test inconclusive)</span>
 <span class="cm">U ≤ 1     → EDF is guaranteed to meet every deadline</span></div>
     <p>Because the bound is only <em>sufficient</em>, you have to draw the schedule over the hyperperiod LCM(4, 6, 8) = 24 to decide for RMS:</p>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Policy / Schedule over 0–24 (subscript = job number)">
+<table>
       <tr><th>Policy</th><th>Schedule over 0–24 (subscript = job number)</th></tr>
       <tr><td>RMS<br><span class="mono" style="font-size:12px">A &gt; B &gt; C</span></td><td class="mono" style="font-size:12.5px">A1[0–1] B1[1–3] C1[3–4] A2[4–5] C1[5–6] B2[6–8] A3[8–9] C2[9–11] idle[11–12] A4[12–13] B3[13–15] idle[15–16] A5[16–17] C3[17–18] B4[18–20] A6[20–21] C3[21–22] idle[22–24]</td></tr>
       <tr><td>EDF</td><td class="mono" style="font-size:12.5px">A1[0–1] B1[1–3] C1[3–5] A2[5–6] B2[6–8] A3[8–9] C2[9–11] idle[11–12] A4[12–13] B3[13–15] idle[15–16] A5[16–17] C3[17–19] B4[19–21] A6[21–22] idle[22–24]</td></tr>
     </table>
+</div>
     <p><strong>Both meet every deadline.</strong> In each schedule the CPU idles 4 of 24 units, which equals 1 − U = 1/6, so the schedules and the utilization agree. The two schedules first differ at t=4. A2 arrives while C1 still needs 1 more unit. RMS preempts C1, because A has the shorter period. EDF keeps running C1, because both jobs have the same deadline of 8, and lets A2 run afterwards at 5–6. C1 still finishes by 6, well before its deadline of 8.</p>
     <p style="margin:0"><strong>Exam lesson:</strong> "U exceeds the RMS bound" does <em>not</em> mean "RMS fails". When a question asks about RMS and U falls between the bound and 1, draw the RMS schedule over the hyperperiod before you conclude. (A quicker test, not in your slides: worst-case response time R<sub>C</sub> = 2 + ⌈R/4⌉·1 + ⌈R/6⌉·2 converges to 6 ≤ 8.) Your 2024-25 Test-2 paper prints C<sub>C</sub>=1, so read the given values carefully.</p>
   </div>
@@ -1210,13 +1263,15 @@ P4(AT 3, BT 4)</div>
 <ul class="qparts"><li>(a) FCFS</li><li>(b) SJF non-preemptive and preemptive</li><li>(c) RR with quantum = 4.</li></ul>
 </div>
     <div class="ans-label">Gantt charts (verified by simulation; SRTF hand-checked)</div>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Algorithm / Gantt chart / Waiting (P1,P2,P3,P4)">
+<table>
       <tr><th>Algorithm</th><th>Gantt chart</th><th>Waiting (P1,P2,P3,P4)</th><th>Turnaround (P1,P2,P3,P4)</th><th>Avg WT</th><th>Avg TAT</th></tr>
       <tr><td>FCFS</td><td class="mono">P1[0-4] P2[4-6] P3[6-11] P4[11-15]</td><td>0, 3, 4, 8</td><td>4, 5, 9, 12</td><td><strong>3.75</strong></td><td><strong>7.5</strong></td></tr>
       <tr><td>SJF (non-preemptive)</td><td class="mono">P1[0-4] P2[4-6] P4[6-10] P3[10-15]</td><td>0, 3, 8, 3</td><td>4, 5, 13, 7</td><td><strong>3.5</strong></td><td><strong>7.25</strong></td></tr>
       <tr><td>SJF (preemptive / SRTF)</td><td class="mono">P1[0-1] P2[1-3] P1[3-6] P4[6-10] P3[10-15]</td><td>2, 0, 8, 3</td><td>6, 2, 13, 7</td><td><strong>3.25</strong></td><td><strong>7</strong></td></tr>
       <tr><td>RR (q = 4)</td><td class="mono">P1[0-4] P2[4-6] P3[6-10] P4[10-14] P3[14-15]</td><td>0, 3, 8, 7</td><td>4, 5, 13, 11</td><td><strong>4.5</strong></td><td><strong>8.25</strong></td></tr>
     </table>
+</div>
     <p style="margin:0">Waiting = turnaround − burst; turnaround = completion − arrival. SRTF preempts P1 at t = 1 because P2 (2 ms) is shorter than P1's remaining 3 ms; at t = 3 P1 (remaining 3) beats P4 (4). In RR, P3 arrives at t = 2 and P4 at t = 3 (before P3's second turn), so P4 queues ahead of P3's leftover 1 ms. SRTF gives the best averages here; RR the worst, as expected for a fair-share policy.</p>
   </div>
   <a class="backtotop" href="#index">↑ Back to index</a>
@@ -1263,12 +1318,14 @@ P4(AT 3, BT 4)</div>
     </svg>
     <div class="cap">Fig 12. Asymmetric multiprocessing (one master makes all decisions) versus symmetric multiprocessing (every CPU is self-scheduling).</div>
   </div>
-  <table>
-    <tr><th></th><th>Asymmetric multiprocessing</th><th>Symmetric multiprocessing (SMP)</th></tr>
-    <tr><td><strong>Who schedules</strong></td><td>A single <strong>master server</strong> processor handles all scheduling decisions, I/O processing and other system activity; the other processors execute only user code.</td><td>Each processor is <strong>self-scheduling</strong>: its scheduler examines the ready queue and selects a process to run.</td></tr>
-    <tr><td><strong>Advantage</strong></td><td>Simple — only one processor accesses the system data structures, so little data sharing is needed.</td><td>No master bottleneck; the standard approach (Windows, Linux, macOS).</td></tr>
-    <tr><td><strong>Restriction</strong></td><td>The master can become a bottleneck.</td><td>Must ensure that <strong>two processors never choose the same process</strong> and that processes are <strong>not lost from the queue</strong>.</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label=" / Asymmetric multiprocessing / Symmetric multiprocessing (SMP)">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col"></th><th role="columnheader" scope="col">Asymmetric multiprocessing</th><th role="columnheader" scope="col">Symmetric multiprocessing (SMP)</th></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Who schedules</strong></td><td role="cell" data-label="Asymmetric multiprocessing">A single <strong>master server</strong> processor handles all scheduling decisions, I/O processing and other system activity; the other processors execute only user code.</td><td role="cell" data-label="Symmetric multiprocessing (SMP)">Each processor is <strong>self-scheduling</strong>: its scheduler examines the ready queue and selects a process to run.</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Advantage</strong></td><td role="cell" data-label="Asymmetric multiprocessing">Simple — only one processor accesses the system data structures, so little data sharing is needed.</td><td role="cell" data-label="Symmetric multiprocessing (SMP)">No master bottleneck; the standard approach (Windows, Linux, macOS).</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Restriction</strong></td><td role="cell" data-label="Asymmetric multiprocessing">The master can become a bottleneck.</td><td role="cell" data-label="Symmetric multiprocessing (SMP)">Must ensure that <strong>two processors never choose the same process</strong> and that processes are <strong>not lost from the queue</strong>.</td></tr>
   </table>
+</div>
 
   <h2>Processor affinity</h2>
   <p>When a process migrates, the cache of the old processor must be invalidated and the new one re-populated — expensive.
@@ -1343,13 +1400,15 @@ P4(AT 3, BT 4)</div>
     </svg>
     <div class="cap">Fig 13. PCS: threads of one process compete for an LWP chosen by the library. SCS: the kernel picks among all kernel threads in the system.</div>
   </div>
-  <table>
-    <tr><th></th><th>Process-contention scope (PCS)</th><th>System-contention scope (SCS)</th></tr>
-    <tr><td><strong>Who decides</strong></td><td>The <strong>thread library</strong> schedules user-level threads onto an available LWP.</td><td>The <strong>kernel</strong> decides which kernel thread to put on the CPU.</td></tr>
-    <tr><td><strong>Competition</strong></td><td>Among threads belonging to the <strong>same process</strong>.</td><td>Among <strong>all threads in the system</strong>.</td></tr>
-    <tr><td><strong>Models</strong></td><td>Many-to-one and many-to-many.</td><td>Systems using <strong>one-to-one</strong> schedule using only SCS (Windows, Linux, Solaris).</td></tr>
-    <tr><td><strong>Priority</strong></td><td>Typically priority-based, set by the programmer; the library may preempt a thread for a higher-priority one, but there is no time-slicing guarantee.</td><td>Handled by the kernel scheduler (§2.1–2.11).</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label=" / Process-contention scope (PCS) / System-contention scope (SCS)">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col"></th><th role="columnheader" scope="col">Process-contention scope (PCS)</th><th role="columnheader" scope="col">System-contention scope (SCS)</th></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Who decides</strong></td><td role="cell" data-label="Process-contention scope (PCS)">The <strong>thread library</strong> schedules user-level threads onto an available LWP.</td><td role="cell" data-label="System-contention scope (SCS)">The <strong>kernel</strong> decides which kernel thread to put on the CPU.</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Competition</strong></td><td role="cell" data-label="Process-contention scope (PCS)">Among threads belonging to the <strong>same process</strong>.</td><td role="cell" data-label="System-contention scope (SCS)">Among <strong>all threads in the system</strong>.</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Models</strong></td><td role="cell" data-label="Process-contention scope (PCS)">Many-to-one and many-to-many.</td><td role="cell" data-label="System-contention scope (SCS)">Systems using <strong>one-to-one</strong> schedule using only SCS (Windows, Linux, Solaris).</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Priority</strong></td><td role="cell" data-label="Process-contention scope (PCS)">Typically priority-based, set by the programmer; the library may preempt a thread for a higher-priority one, but there is no time-slicing guarantee.</td><td role="cell" data-label="System-contention scope (SCS)">Handled by the kernel scheduler (§2.1–2.11).</td></tr>
   </table>
+</div>
 
   <h2>Pthread scheduling</h2>
   <p>The Pthread API lets the programmer specify PCS or SCS <strong>at thread creation</strong>. Two contention-scope values:</p>
@@ -1534,7 +1593,9 @@ R.<span class="tf">release</span>();</pre>
 
 <section class="page section" id="solved-scheduling" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
 <div class="section-head"><span class="tag">PRACTICE</span><h1>Solved CPU Scheduling Examples</h1></div>
-<p>Use these links for the full worked solutions in the relevant topics. The comparison below was previously buried inside the optional MLFQ section; it tests required FCFS, SJF/SRTF and RR.</p><table><tr><th>Source</th><th>Worked answer</th><th>Scope</th></tr><tr><td>unit 2.pdf<cite class="src" data-src="D2"></cite>, &quot;FCFS Problem&quot;</td><td><a href="#u2-example-04">Five processes arrive as below. Calculate the average waiting time and average turnaround time using FCFS. (Tie-break: if two processes share an arrival time, the lower process ID is served first.)</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2, Q6<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-05">Given P1(AT=1,BT=1), P2(AT=1,BT=3), P3(AT=0,BT=40): apply FCFS, compute average waiting/turnaround time. Then, if P3&#x27;s arrival changes to 1 and P1, P2 change to 0, what&#x27;s the variation? Does the convoy effect appear?</a></td><td>Core example</td></tr><tr><td><cite class="src" data-src="D2" data-p="34"></cite> — non-preemptive</td><td><a href="#u2-example-06">Processes P1(6), P2(8), P3(7), P4(3) — burst times only, all arrive at t=0. Apply non-preemptive SJF; find average waiting time.</a></td><td>Core example</td></tr><tr><td><cite class="src" data-src="D2" data-p="37"></cite> — preemptive (SRTF)</td><td><a href="#u2-example-07">P1(AT0,BT10), P2(AT3,BT6), P3(AT7,BT1), P4(AT8,BT3). Apply preemptive SJF; calculate average turnaround time.</a></td><td>Core example</td></tr><tr><td><cite class="src" data-src="D2" data-p="38"></cite> — preemptive (SRTF), gap-fill</td><td><a href="#u2-example-08">P1(AT0,BT12), P2(AT2,BT4), P3(AT3,BT6), P4(AT8,BT5). Apply preemptive SJF; find average waiting and turnaround time.</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2, Q2<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-09">P1(AT3,BT1), P2(AT1,BT4), P3(AT4,BT2), P4(AT0,BT6), P5(AT2,BT3). Draw the Gantt chart for non-preemptive SJF; find average waiting and turnaround time.</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-B, Q4<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-10">P1(AT0,BT10), P2(AT2,BT5), P3(AT4,BT8), P4(AT6,BT2). Compute average waiting/turnaround time using FCFS and SJF; analyze the results.</a></td><td>Core example</td></tr><tr><td><cite class="src" data-src="D2" data-p="46"></cite> — classic example</td><td><a href="#u2-example-11">P1(24), P2(3), P3(3), all arriving at t=0. Apply RR with time quantum = 4.</a></td><td>Core example</td></tr><tr><td><cite class="src" data-src="D2" data-p="49-52"></cite>, &quot;GATE 2019&quot; — TQ=2ms</td><td><a href="#u2-example-12">P1(AT0,BT5), P2(AT1,BT3), P3(AT2,BT1), P4(AT3,BT2), P5(AT4,BT3). Apply RR with quantum = 2ms; find average waiting and turnaround time.</a></td><td>Core example</td></tr><tr><td>21-22 CIE-I Q3 — FLAGSHIP dataset, 3rd algorithm</td><td><a href="#u2-example-13">Same dataset as §2.6&#x27;s flagship box: P1(AT0,BT11), P2(AT5,BT28), P3(AT12,BT2), P4(AT2,BT10), P5(AT9,BT16). Apply RR with quantum = 2ms.</a></td><td>Core example</td></tr><tr><td><cite class="src" data-src="D2" data-p="40"></cite> — non-preemptive</td><td><a href="#u2-example-14">All arrive at t=0: P1(BT10,Pri3), P2(BT1,Pri1), P3(BT2,Pri4), P4(BT1,Pri5), P5(BT5,Pri2). Smallest number = highest priority. Draw the Gantt chart.</a></td><td>Core example</td></tr><tr><td><cite class="src" data-src="D2" data-p="43-44"></cite>, &quot;Solved Pbm-2&quot;</td><td><a href="#u2-example-15">P1(AT0,BT4,Pri2), P2(AT1,BT3,Pri3), P3(AT2,BT1,Pri4), P4(AT3,BT5,Pri5), P5(AT4,BT2,Pri5).  Higher number = higher priority  here. Apply non-preemptive priority scheduling.</a></td><td>Core example</td></tr><tr><td>21-22 CIE-I Q3 &amp; &quot;GATE-2017&quot; — FLAGSHIP<cite class="src" data-src="D2" data-p="42"></cite><cite class="src" data-src="Q2"></cite></td><td><a href="#u2-example-16">P1(AT0,BT11,Pri2), P2(AT5,BT28,Pri0), P3(AT12,BT2,Pri3), P4(AT2,BT10,Pri1), P5(AT9,BT16,Pri4). Smallest number = highest priority. Apply  preemptive  priority scheduling; find average waiting time.</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2, Q1<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-17">Task A(period=4, execution=1, deadline=4), Task B(period=6, execution=2, deadline=6), Task C(period=8, execution=1, deadline=8). Compute the processor utilization and show the schedule using EDF.</a></td><td>Core example</td></tr><tr><td>CIE question bank Q11, 10M<cite class="src" data-src="D6"></cite></td><td><a href="#cie-cpu-comparison">P1(AT 0, BT 4), P2(AT 1, BT 2), P3(AT 2, BT 5), P4(AT 3, BT 4). Find average waiting and turnaround time, with Gantt charts, for (a) FCFS, (b) SJF non-preemptive and preemptive, (c) RR with quantum = 4.</a></td><td>Core example</td></tr><tr><td>Mar 2021 SEE Q4a<cite class="src" data-src="Q2"></cite></td><td><a href="#u2-example-10b">P1(0,8), P2(0.4,4), P3(1,1): FCFS vs SJF vs SRTF vs idle-first SJF</a></td><td>Core example</td></tr><tr><td>Nov/Dec 2019 SEE Q4a<cite class="src" data-src="Q2"></cite></td><td><a href="#u2-example-16b">Preemptive priority with SRTF among equal priorities</a></td><td>Core example</td></tr><tr><td>CIE-2 solved bank RT-Q3<cite class="src" data-src="Q3"></cite></td><td><a href="#u2-example-17b">RMS vs EDF when U = 0.833 exceeds the RMS bound</a></td><td>Core example</td></tr><tr><td>Oct 2020 SEE Q4a · Apr 2023 Q3a<cite class="src" data-src="Q2"></cite></td><td><a href="#cie2-combined">SRTF, preemptive priority and RR q=2 with response time and context switches</a></td><td>Core example</td></tr><tr><td>Nov/Dec 2019 SEE Q1.5 · GATE-style<cite class="src" data-src="Q2"></cite></td><td><a href="#cie2-gate-shorts">GATE-style: RR completion time; SRTF context-switch count</a></td><td>Core example</td></tr><tr><td>Apr 2023 SEE Q1.9 · Oct 2020 Q1.6<cite class="src" data-src="Q2"></cite></td><td><a href="#u2-example-10c">LRTF with bursts 2, 4, 8</a></td><td>Core example</td></tr><tr><td>SEE 2025 Q2b<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-util">CPU utilization: 20 ms CPU / 80 ms I/O, FCFS vs RR q=10</a></td><td>Core example</td></tr><tr><td>Apr 2023 SEE Q4a<cite class="src" data-src="Q2"></cite></td><td><a href="#see-apr23-b4a">SRTF, preemptive priority, RR q=1 with context switches</a></td><td>Core example</td></tr><tr><td>Mar 2021 SEE Q3a · Apr/May 2019 Q3b<cite class="src" data-src="Q2"></cite></td><td><a href="#see-all-zero">All arrive at 0: FCFS, SJF, priority, RR q=1</a></td><td>Core example</td></tr><tr><td>Apr 2023 · Apr/May 2019 SEE<cite class="src" data-src="Q2"></cite></td><td><a href="#see-four-proc">Three 4-process FCFS vs SRTF sets</a></td><td>Core example</td></tr><tr><td>Nov/Dec 2019 SEE Q3a<cite class="src" data-src="Q2"></cite></td><td><a href="#see-flagship-rr4">Flagship set, RR q=4 with all arrivals at 0</a></td><td>Core example</td></tr></table>
+<p>Use these links for the full worked solutions in the relevant topics. The comparison below was previously buried inside the optional MLFQ section; it tests required FCFS, SJF/SRTF and RR.</p><div class="table-scroll" role="region" tabindex="0" aria-label="Source / Worked answer / Scope">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Worked answer</th><th role="columnheader" scope="col">Scope</th></tr><tr role="row"><td role="cell" data-label="Source">unit 2.pdf<cite class="src" data-src="D2"></cite>, &quot;FCFS Problem&quot;</td><td role="cell" data-label="Worked answer"><a href="#u2-example-04">Five processes arrive as below. Calculate the average waiting time and average turnaround time using FCFS. (Tie-break: if two processes share an arrival time, the lower process ID is served first.)</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">2024-25 CIE-II Test-2, Q6<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-05">Given P1(AT=1,BT=1), P2(AT=1,BT=3), P3(AT=0,BT=40): apply FCFS, compute average waiting/turnaround time. Then, if P3&#x27;s arrival changes to 1 and P1, P2 change to 0, what&#x27;s the variation? Does the convoy effect appear?</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source"><cite class="src" data-src="D2" data-p="34"></cite> — non-preemptive</td><td role="cell" data-label="Worked answer"><a href="#u2-example-06">Processes P1(6), P2(8), P3(7), P4(3) — burst times only, all arrive at t=0. Apply non-preemptive SJF; find average waiting time.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source"><cite class="src" data-src="D2" data-p="37"></cite> — preemptive (SRTF)</td><td role="cell" data-label="Worked answer"><a href="#u2-example-07">P1(AT0,BT10), P2(AT3,BT6), P3(AT7,BT1), P4(AT8,BT3). Apply preemptive SJF; calculate average turnaround time.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source"><cite class="src" data-src="D2" data-p="38"></cite> — preemptive (SRTF), gap-fill</td><td role="cell" data-label="Worked answer"><a href="#u2-example-08">P1(AT0,BT12), P2(AT2,BT4), P3(AT3,BT6), P4(AT8,BT5). Apply preemptive SJF; find average waiting and turnaround time.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">2024-25 CIE-II Test-2, Q2<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-09">P1(AT3,BT1), P2(AT1,BT4), P3(AT4,BT2), P4(AT0,BT6), P5(AT2,BT3). Draw the Gantt chart for non-preemptive SJF; find average waiting and turnaround time.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">2024-25 SEE Part-B, Q4<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-10">P1(AT0,BT10), P2(AT2,BT5), P3(AT4,BT8), P4(AT6,BT2). Compute average waiting/turnaround time using FCFS and SJF; analyze the results.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source"><cite class="src" data-src="D2" data-p="46"></cite> — classic example</td><td role="cell" data-label="Worked answer"><a href="#u2-example-11">P1(24), P2(3), P3(3), all arriving at t=0. Apply RR with time quantum = 4.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source"><cite class="src" data-src="D2" data-p="49-52"></cite>, &quot;GATE 2019&quot; — TQ=2ms</td><td role="cell" data-label="Worked answer"><a href="#u2-example-12">P1(AT0,BT5), P2(AT1,BT3), P3(AT2,BT1), P4(AT3,BT2), P5(AT4,BT3). Apply RR with quantum = 2ms; find average waiting and turnaround time.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">21-22 CIE-I Q3 — FLAGSHIP dataset, 3rd algorithm</td><td role="cell" data-label="Worked answer"><a href="#u2-example-13">Same dataset as §2.6&#x27;s flagship box: P1(AT0,BT11), P2(AT5,BT28), P3(AT12,BT2), P4(AT2,BT10), P5(AT9,BT16). Apply RR with quantum = 2ms.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source"><cite class="src" data-src="D2" data-p="40"></cite> — non-preemptive</td><td role="cell" data-label="Worked answer"><a href="#u2-example-14">All arrive at t=0: P1(BT10,Pri3), P2(BT1,Pri1), P3(BT2,Pri4), P4(BT1,Pri5), P5(BT5,Pri2). Smallest number = highest priority. Draw the Gantt chart.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source"><cite class="src" data-src="D2" data-p="43-44"></cite>, &quot;Solved Pbm-2&quot;</td><td role="cell" data-label="Worked answer"><a href="#u2-example-15">P1(AT0,BT4,Pri2), P2(AT1,BT3,Pri3), P3(AT2,BT1,Pri4), P4(AT3,BT5,Pri5), P5(AT4,BT2,Pri5).  Higher number = higher priority  here. Apply non-preemptive priority scheduling.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">21-22 CIE-I Q3 &amp; &quot;GATE-2017&quot; — FLAGSHIP<cite class="src" data-src="D2" data-p="42"></cite><cite class="src" data-src="Q2"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-16">P1(AT0,BT11,Pri2), P2(AT5,BT28,Pri0), P3(AT12,BT2,Pri3), P4(AT2,BT10,Pri1), P5(AT9,BT16,Pri4). Smallest number = highest priority. Apply  preemptive  priority scheduling; find average waiting time.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">2024-25 CIE-II Test-2, Q1<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-17">Task A(period=4, execution=1, deadline=4), Task B(period=6, execution=2, deadline=6), Task C(period=8, execution=1, deadline=8). Compute the processor utilization and show the schedule using EDF.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">CIE question bank Q11, 10M<cite class="src" data-src="D6"></cite></td><td role="cell" data-label="Worked answer"><a href="#cie-cpu-comparison">P1(AT 0, BT 4), P2(AT 1, BT 2), P3(AT 2, BT 5), P4(AT 3, BT 4). Find average waiting and turnaround time, with Gantt charts, for (a) FCFS, (b) SJF non-preemptive and preemptive, (c) RR with quantum = 4.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">Mar 2021 SEE Q4a<cite class="src" data-src="Q2"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-10b">P1(0,8), P2(0.4,4), P3(1,1): FCFS vs SJF vs SRTF vs idle-first SJF</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">Nov/Dec 2019 SEE Q4a<cite class="src" data-src="Q2"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-16b">Preemptive priority with SRTF among equal priorities</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">CIE-2 solved bank RT-Q3<cite class="src" data-src="Q3"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-17b">RMS vs EDF when U = 0.833 exceeds the RMS bound</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">Oct 2020 SEE Q4a · Apr 2023 Q3a<cite class="src" data-src="Q2"></cite></td><td role="cell" data-label="Worked answer"><a href="#cie2-combined">SRTF, preemptive priority and RR q=2 with response time and context switches</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">Nov/Dec 2019 SEE Q1.5 · GATE-style<cite class="src" data-src="Q2"></cite></td><td role="cell" data-label="Worked answer"><a href="#cie2-gate-shorts">GATE-style: RR completion time; SRTF context-switch count</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">Apr 2023 SEE Q1.9 · Oct 2020 Q1.6<cite class="src" data-src="Q2"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-10c">LRTF with bursts 2, 4, 8</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">SEE 2025 Q2b<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-util">CPU utilization: 20 ms CPU / 80 ms I/O, FCFS vs RR q=10</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">Apr 2023 SEE Q4a<cite class="src" data-src="Q2"></cite></td><td role="cell" data-label="Worked answer"><a href="#see-apr23-b4a">SRTF, preemptive priority, RR q=1 with context switches</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">Mar 2021 SEE Q3a · Apr/May 2019 Q3b<cite class="src" data-src="Q2"></cite></td><td role="cell" data-label="Worked answer"><a href="#see-all-zero">All arrive at 0: FCFS, SJF, priority, RR q=1</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">Apr 2023 · Apr/May 2019 SEE<cite class="src" data-src="Q2"></cite></td><td role="cell" data-label="Worked answer"><a href="#see-four-proc">Three 4-process FCFS vs SRTF sets</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">Nov/Dec 2019 SEE Q3a<cite class="src" data-src="Q2"></cite></td><td role="cell" data-label="Worked answer"><a href="#see-flagship-rr4">Flagship set, RR q=4 with all arrivals at 0</a></td><td role="cell" data-label="Scope">Core example</td></tr></table>
+</div>
 <div class="qbox" id="cie-cpu-comparison">
     <div class="qmeta"><span class="qsrc">CIE question bank Q11, 10M<cite class="src" data-src="D6"></cite></span><span class="marks">FCFS · SJF · RR</span></div>
     <div class="qtext">
@@ -1546,13 +1607,15 @@ P4(AT 3, BT 4)</div>
 <ul class="qparts"><li>(a) FCFS</li><li>(b) SJF non-preemptive and preemptive</li><li>(c) RR with quantum = 4.</li></ul>
 </div>
     <div class="ans-label">Gantt charts (verified by simulation; SRTF hand-checked)</div>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Algorithm / Gantt chart / Waiting (P1,P2,P3,P4)">
+<table>
       <tr><th>Algorithm</th><th>Gantt chart</th><th>Waiting (P1,P2,P3,P4)</th><th>Turnaround (P1,P2,P3,P4)</th><th>Avg WT</th><th>Avg TAT</th></tr>
       <tr><td>FCFS</td><td class="mono">P1[0-4] P2[4-6] P3[6-11] P4[11-15]</td><td>0, 3, 4, 8</td><td>4, 5, 9, 12</td><td><strong>3.75</strong></td><td><strong>7.5</strong></td></tr>
       <tr><td>SJF (non-preemptive)</td><td class="mono">P1[0-4] P2[4-6] P4[6-10] P3[10-15]</td><td>0, 3, 8, 3</td><td>4, 5, 13, 7</td><td><strong>3.5</strong></td><td><strong>7.25</strong></td></tr>
       <tr><td>SJF (preemptive / SRTF)</td><td class="mono">P1[0-1] P2[1-3] P1[3-6] P4[6-10] P3[10-15]</td><td>2, 0, 8, 3</td><td>6, 2, 13, 7</td><td><strong>3.25</strong></td><td><strong>7</strong></td></tr>
       <tr><td>RR (q = 4)</td><td class="mono">P1[0-4] P2[4-6] P3[6-10] P4[10-14] P3[14-15]</td><td>0, 3, 8, 7</td><td>4, 5, 13, 11</td><td><strong>4.5</strong></td><td><strong>8.25</strong></td></tr>
     </table>
+</div>
     <p style="margin:0">Waiting = turnaround − burst; turnaround = completion − arrival. SRTF preempts P1 at t = 1 because P2 (2 ms) is shorter than P1's remaining 3 ms; at t = 3 P1 (remaining 3) beats P4 (4). In RR, P3 arrives at t = 2 and P4 at t = 3 (before P3's second turn), so P4 queues ahead of P3's leftover 1 ms. SRTF gives the best averages here; RR the worst, as expected for a fair-share policy.</p>
   </div>
 <div class="qbox" id="cie2-combined">
@@ -1567,20 +1630,24 @@ P5(AT5, BT3, Pri3)</div>
 <span class="qline">Draw Gantt charts for SRTF, preemptive priority and RR (q=2).</span>
 <span class="qline">Find the average waiting, turnaround and response time, and the number of context switches.</span>
 </div>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Algorithm / Gantt / TAT P1–P5 · avg">
+<table>
       <tr><th>Algorithm</th><th>Gantt</th><th>TAT P1–P5 · avg</th><th>WT · avg</th><th>RT · avg</th><th>CS</th></tr>
       <tr><td>SRTF</td><td>P1[0–3] P2[3–5] P4[5–6] P3[6–9] P5[9–12] P1[12–16]</td><td>16,2,5,2,7 · <strong>6.4</strong></td><td>9,0,2,1,4 · <strong>3.2</strong></td><td>0,0,2,1,4 · 1.4</td><td>5</td></tr>
       <tr><td>Preemptive priority</td><td>P1[0–3] P2[3–4] P3[4–7] P4[7–8] P2[8–9] P1[9–13] P5[13–16]</td><td>13,6,3,4,11 · <strong>7.4</strong></td><td>6,4,0,3,8 · <strong>4.2</strong></td><td>0,0,0,3,8 · 2.2</td><td>6</td></tr>
       <tr><td>RR, q=2</td><td>P1[0–4] P2[4–6] P3[6–8] P4[8–9] P1[9–11] P5[11–13] P3[13–14] P1[14–15] P5[15–16]</td><td>15,3,10,5,11 · <strong>8.8</strong></td><td>8,1,7,4,8 · <strong>5.6</strong></td><td>0,1,2,4,6 · 2.6</td><td>8</td></tr>
     </table>
+</div>
     <p style="margin:0"><strong>Tie points to explain in your answer.</strong> <em>SRTF:</em> at t=4, P4 (1) only <em>ties</em> P2's remaining 1, so P2 is not preempted. At t=6, P3 and P5 both have 3 left, and P3 wins because it arrived first. <em>Priority:</em> P3 and P4 arrive together at t=4 with priority 1, and they are taken in arrival/ID order. <em>RR:</em> P1 runs 0–4 as two back-to-back quanta because nobody is waiting at t=2. At t=4 the new arrivals P3 and P4 join the queue <em>before</em> P1 is re-queued. Response time = first time on the CPU − arrival time. Context switches count only changes from one process to a different one. SRTF wins on all three averages here. RR pays for its 8 switches with the worst averages; what it buys is that no process waits more than (n−1)·q for its next turn.</p>
     <div class="ans-label">Apr 2023 SEE Q3a — same table, different algorithms</div>
     <p>That paper asks for <strong>SJF</strong>, preemptive priority (as above) and <strong>RR with a 1 ms slice</strong>, then asks which gives the minimum averages and when the ready queue holds the most processes.</p>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Algorithm / Gantt / TAT · avg">
+<table>
       <tr><th>Algorithm</th><th>Gantt</th><th>TAT · avg</th><th>WT · avg</th></tr>
       <tr><td>SJF (non-preemptive)</td><td>P1[0–7] P4[7–8] P2[8–10] P3[10–13] P5[13–16]</td><td>7,7,9,4,11 · 7.6</td><td>0,5,6,3,8 · 4.4</td></tr>
       <tr><td>RR, q=1</td><td>P1[0–3] P2 P1 P3 P4 P2 P5 P1 P3 P5 P1 P3 P5 P1 [15–16]</td><td>16,5,10,3,10 · 8.8</td><td>9,3,7,2,7 · 5.6</td></tr>
     </table>
+</div>
     <p style="margin:0"><strong>Minimum averages:</strong> preemptive priority (WT 4.2, TAT 7.4) beats SJF (4.4, 7.6) and RR q=1 (5.6, 8.8) on both counts. That is unusual, so compute all three before answering. <strong>Ready queue:</strong> all five processes have arrived by t=5, and none finishes before t=6 in any of the three schedules. So during <strong>t = 5 to 6</strong> one process runs and <strong>4 wait</strong> in the ready queue, the maximum.</p>
 
   </div>
@@ -1606,12 +1673,14 @@ P5(AT5, BT12, Pri2)</div>
 <span class="qline">Draw Gantt charts for preemptive SJF, priority and RR (time slice 1 ms).</span>
 <span class="qline">Compute the average waiting time, average turnaround time and number of context switches for each.</span>
 </div>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Algorithm / Gantt / TAT P1–P5 · avg">
+<table>
       <tr><th>Algorithm</th><th>Gantt</th><th>TAT P1–P5 · avg</th><th>WT · avg</th><th>CS</th></tr>
       <tr><td>SRTF</td><td>P1[0–3] P2[3–4] P4[4–6] P2[6–10] P1[10–17] P3[17–25] P5[25–37]</td><td>17,7,21,2,32 · <strong>15.8</strong></td><td>7,2,13,0,20 · <strong>8.4</strong></td><td>6</td></tr>
       <tr><td>Priority (preemptive)</td><td>P1[0–3] P2[3–4] P3[4–12] P4[12–14] P2[14–18] P5[18–30] P1[30–37]</td><td>37,15,8,10,25 · <strong>19.0</strong></td><td>27,10,0,8,13 · <strong>11.6</strong></td><td>6</td></tr>
       <tr><td>RR, q=1</td><td>P1[0–3], then one unit each: P2 P1 P3 P4 P2 P5 P1 P3 P4 P2 P5 P1 P3 P2 P5 P1 P3 P2 P5 P1 P3 P5 P1 P3 P5 P1 P3 P5 (to t=31), P3[31–32] P5[32–37]</td><td>29,18,28,8,32 · <strong>23.0</strong></td><td>19,13,20,6,20 · <strong>15.6</strong></td><td>30</td></tr>
     </table>
+</div>
     <p style="margin:0"><strong>Decision points:</strong> SRTF preempts P2 at t=4 because P4's 2 is less than P2's remaining 4. Priority runs P3 ahead of P4 at t=4 (equal priority 1, ID order). After t=14 it runs P2 before P5 (both priority 2; P2 arrived first). P1 (priority 3) waits until t=30. RR with q=1 runs P1 for three slices because it is alone until t=3. From then on the queue order is P2, P1, P3, P4, P2, P5, … (arrivals join before the preempted process). <strong>SRTF has the lowest average WT and TAT.</strong> RR is worst on both and makes 30 switches: a 1 ms slice is too small for bursts this long.</p>
   </div>
 
@@ -1627,13 +1696,15 @@ P2(8, 1)
 P3(7, 4)
 P4(3, 2)</div><span class="qline">SJF and priority.</span></li></ul>
 </div>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="(a) Algorithm / Gantt / TAT P1–P5 · avg">
+<table>
       <tr><th>(a) Algorithm</th><th>Gantt</th><th>TAT P1–P5 · avg</th><th>WT P1–P5 · avg</th></tr>
       <tr><td>FCFS</td><td>P1[0–10] P2[10–11] P3[11–13] P4[13–14] P5[14–19]</td><td>10,11,13,14,19 · 13.4</td><td>0,10,11,13,14 · 9.6</td></tr>
       <tr><td>SJF</td><td>P2[0–1] P4[1–2] P3[2–4] P5[4–9] P1[9–19]</td><td>19,1,4,2,9 · <strong>7.0</strong></td><td>9,0,2,1,4 · <strong>3.2</strong></td></tr>
       <tr><td>Priority (NP)</td><td>P2[0–1] P5[1–6] P1[6–16] P3[16–18] P4[18–19]</td><td>16,1,18,19,6 · 12.0</td><td>6,0,16,18,1 · 8.2</td></tr>
       <tr><td>RR, q=1</td><td>P1 P2 P3 P4 P5 P1 P3 P5 P1 P5 P1 P5 P1 P5 [13–14] P1[14–19]</td><td>19,2,7,4,14 · 9.2</td><td>9,1,5,3,9 · 5.4</td></tr>
     </table>
+</div>
     <p>(b) <strong>SJF:</strong> P4[0–3] P1[3–9] P3[9–16] P2[16–24]. WT 3, 16, 9, 0, so the average is <strong>7 ms</strong> (this matches the 2019 answer key), and the average TAT is 13 ms. <strong>Priority:</strong> P2[0–8] P4[8–11] P1[11–17] P3[17–24]. WT 11, 0, 17, 8, average 9 ms; average TAT 15 ms.</p>
     <p style="margin:0">When all jobs arrive together, SJF gives the minimum average waiting time. This is the one setting where its optimality is a theorem. P2/P4 ties (both 1 unit) are broken in FCFS order. Part (a) data is the same as the <a href="#u2-example-14">§2.6 priority example</a>, which shows only the priority chart.</p>
   </div>
@@ -1645,12 +1716,14 @@ P4(3, 2)</div><span class="qline">SJF and priority.</span></li></ul>
 <ul class="qparts"><li>(i) P1(0, 6), P2(4, 2), P3(3, 7), P4(3, 1).</li><li>(ii) P1(0, 1.5), P2(1.5, 3), P3(3, 1), P4(3, 7.5).</li><li>(iii) P1(0, 2), P2(1, 3), P3(3, 1), P4(3, 7).</li></ul>
 <span class="qline">Format: (arrival, burst).</span>
 </div>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Set / FCFS Gantt · avg WT / SRTF Gantt · avg WT">
+<table>
       <tr><th>Set</th><th>FCFS Gantt · avg WT</th><th>SRTF Gantt · avg WT</th></tr>
       <tr><td>(i)</td><td>P1[0–6] P3[6–13] P4[13–14] P2[14–16] · <strong>5.75</strong></td><td>P1[0–3] P4[3–4] P2[4–6] P1[6–9] P3[9–16] · <strong>2.25</strong></td></tr>
       <tr><td>(ii)</td><td>P1[0–1.5] P2[1.5–4.5] P3[4.5–5.5] P4[5.5–13] · <strong>1.0</strong></td><td>P1[0–1.5] P2[1.5–3] P3[3–4] P2[4–5.5] P4[5.5–13] · <strong>0.875</strong></td></tr>
       <tr><td>(iii)</td><td>P1[0–2] P2[2–5] P3[5–6] P4[6–13] · <strong>1.5</strong></td><td>P1[0–2] P2[2–3] P3[3–4] P2[4–6] P4[6–13] · <strong>1.25</strong></td></tr>
     </table>
+</div>
     <p style="margin:0"><strong>Watch the arrival order in set (i):</strong> P2 is listed second but arrives last (t=4), so FCFS runs P3 and P4 (both t=3, ID order) before it. In SRTF, P4 (burst 1) preempts P1 at t=3, and P2 (burst 2) beats P1's remaining 3 at t=4. In sets (ii) and (iii) the gain from preemption is small: P3 (burst 1) interrupts P2 for one unit, and the long P4 runs last under both policies. Average TAT for (i)–(iii): FCFS 9.75 / 4.25 / 4.75 and SRTF 6.25 / 4.125 / 4.5. The 2019 key's charts for set (iii) match these.</p>
   </div>
 
@@ -1676,11 +1749,13 @@ P4(3, 2)</div><span class="qline">SJF and priority.</span></li></ul>
   <strong>process synchronization</strong>.</p>
 
   <h2>Two kinds of synchronization</h2>
-  <table>
-    <tr><th>Kind</th><th>What it ensures</th><th>How</th></tr>
-    <tr><td><strong>Data access synchronization</strong></td><td>Shared data does not lose consistency when interacting processes update it.</td><td>Implemented by <strong>mutual exclusion</strong> — only one process updates the data at a time.</td></tr>
-    <tr><td><strong>Control synchronization</strong></td><td>Interacting processes perform their actions in a <strong>desired order</strong> (e.g. a consumer acts only after a producer has produced).</td><td>One process waits for a signal from another.</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Kind / What it ensures / How">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Kind</th><th role="columnheader" scope="col">What it ensures</th><th role="columnheader" scope="col">How</th></tr>
+    <tr role="row"><td role="cell" data-label="Kind"><strong>Data access synchronization</strong></td><td role="cell" data-label="What it ensures">Shared data does not lose consistency when interacting processes update it.</td><td role="cell" data-label="How">Implemented by <strong>mutual exclusion</strong> — only one process updates the data at a time.</td></tr>
+    <tr role="row"><td role="cell" data-label="Kind"><strong>Control synchronization</strong></td><td role="cell" data-label="What it ensures">Interacting processes perform their actions in a <strong>desired order</strong> (e.g. a consumer acts only after a producer has produced).</td><td role="cell" data-label="How">One process waits for a signal from another.</td></tr>
   </table>
+</div>
   <p>Together these two kinds make up <strong>process synchronization</strong>. The hardware supports it by
   providing <strong>atomic instructions</strong> (§2.11). In this unit the term <em>process</em> denotes both
   processes and threads.</p>
@@ -1777,7 +1852,8 @@ P4(3, 2)</div><span class="qline">SJF and priority.</span></li></ul>
     <div class="ans-label">Solution</div>
     <p>Treat each process as two atomic steps executed in program order; enumerate every way to interleave
     P1's 2 steps with P2's 2 steps (C(4,2) = 6 valid interleavings) and compute the resulting B for each:</p>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Interleaving / Final B">
+<table>
       <tr><th>Interleaving</th><th>Final B</th></tr>
       <tr><td>P1:C=B−1 → P1:B=2C → P2:D=2B → P2:B=D−1</td><td>3</td></tr>
       <tr><td>P1:C=B−1 → P2:D=2B → P1:B=2C → P2:B=D−1</td><td>3</td></tr>
@@ -1786,6 +1862,7 @@ P4(3, 2)</div><span class="qline">SJF and priority.</span></li></ul>
       <tr><td>P2:D=2B → P1:C=B−1 → P2:B=D−1 → P1:B=2C</td><td>2</td></tr>
       <tr><td>P2:D=2B → P2:B=D−1 → P1:C=B−1 → P1:B=2C</td><td>4</td></tr>
     </table>
+</div>
     <p style="margin:0">Distinct final values: <strong>{2, 3, 4} → 3 distinct values.</strong> (This is a
     well-known GATE-style question — the two sequential orders give B=3 and B=4; interleaving also permits B=2. The result depends on the order of the atomic statements.)</p>
   </div>
@@ -1832,12 +1909,14 @@ P4(3, 2)</div><span class="qline">SJF and priority.</span></li></ul>
 
   <h2>The three requirements</h2>
   <p>Any solution to the critical-section problem must satisfy all three of the following:</p>
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Requirement / What it guarantees">
+<table>
     <tr><th>Requirement</th><th>What it guarantees</th></tr>
     <tr><td><strong>1. Mutual Exclusion</strong></td><td>If process Pᵢ is executing in its critical section, no other process can be executing in its critical section at the same time.</td></tr>
     <tr><td><strong>2. Progress</strong></td><td>If no process is in its critical section and some processes wish to enter, only processes <em>not</em> in their remainder sections can participate in deciding who goes next — and that decision cannot be postponed indefinitely.</td></tr>
     <tr><td><strong>3. Bounded Waiting</strong></td><td>There's a bound on how many times other processes are allowed to enter their critical sections after a process has requested entry and before that request is granted.</td></tr>
   </table>
+</div>
 
   <div class="callout key">
     <span class="label">Exam tip</span>
@@ -2149,12 +2228,14 @@ do {
   i+1, i+2, …, n−1, 0, …, i−1 and passes the critical section straight to the first waiting one. Only if
   nobody is waiting does it set <span class="mono">lock=false</span>. When the CS is handed over,
   <span class="mono">lock</span> stays <span class="mono">true</span> and ownership moves to P<sub>j</sub>.</p>
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Requirement / Why it holds">
+<table>
     <tr><th>Requirement</th><th>Why it holds</th></tr>
     <tr><td><strong>Mutual exclusion</strong></td><td>P<sub>i</sub> enters only if <span class="mono">key==false</span> or <span class="mono">waiting[i]==false</span>. <span class="mono">key</span> is false only for the first process to execute <span class="mono">test_and_set</span> while the lock is free; all others then get <span class="mono">true</span>. <span class="mono">waiting[i]</span> becomes false only when an exiting process hands over, and each exit releases exactly one process.</td></tr>
     <tr><td><strong>Progress</strong></td><td>An exiting process either sets <span class="mono">lock=false</span> or sets some <span class="mono">waiting[j]=false</span>. Either action lets a waiting process enter, so the decision is never postponed.</td></tr>
     <tr><td><strong>Bounded waiting</strong></td><td>The exiting process scans in cyclic order and picks the first waiting process. Any waiting process therefore enters within <strong>n − 1 turns</strong>.</td></tr>
   </table>
+</div>
   <div class="callout key">
     <span class="label">Checked in code</span>
     <p style="margin:0">A random-interleaving simulation of this exact algorithm, with <span class="mono">test_and_set</span>
@@ -2236,11 +2317,13 @@ release() {
   returns a unit to the pool. The successful test-and-decrement and each signal must be <strong>atomic</strong>. A waiting process must not hold the semaphore’s internal guard while spinning, because a signal must still be able to make progress.</p>
 
   <h2>Binary vs counting semaphores</h2>
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Type / Range / Use">
+<table>
     <tr><th>Type</th><th>Range</th><th>Use</th></tr>
     <tr><td><strong>Binary semaphore</strong></td><td>0 or 1 only</td><td>Can enforce mutual exclusion with one permit, but also signals events. Unlike an ownership-based mutex, the signalling process need not be the one that waited.</td></tr>
     <tr><td><strong>Counting semaphore</strong></td><td>Unrestricted (0, 1, 2, …)</td><td>Controls access to a resource with <em>multiple</em> interchangeable instances — the count tracks how many are currently free.</td></tr>
   </table>
+</div>
 
   <h2>Counting semaphore implementation</h2>
   <ol>
@@ -2394,11 +2477,13 @@ P2:  wait(SX); wait(SY);  Y = Y + 20;  X = X - 10;  signal(SY); signal(SX);</div
     <li><strong>Data-processing applications:</strong> producers generate data and place it in a shared data store, and consumers retrieve the data and process it.</li>
   </ul>
   <p>The producer–consumer problem is solved using a shared buffer of one of two kinds:</p>
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Buffer / Size / Who may have to wait">
+<table>
     <tr><th>Buffer</th><th>Size</th><th>Who may have to wait</th></tr>
     <tr><td><strong>Unbounded buffer</strong></td><td>No practical limit</td><td>Only the consumer, when the buffer is empty. The producer can always produce new items.</td></tr>
     <tr><td><strong>Bounded buffer</strong></td><td>Fixed size <em>n</em></td><td>The consumer when the buffer is empty <em>and</em> the producer when it is full.</td></tr>
   </table>
+</div>
 
   <h2>The bounded-buffer problem</h2>
   <p>A buffer of <em>n</em> slots sits between a <strong>producer</strong>, which produces data and stores
@@ -2415,12 +2500,14 @@ P2:  wait(SX); wait(SY);  Y = Y + 20;  X = X - 10;  signal(SY); signal(SX);</div
 semaphore mutex = 1;
 semaphore empty = n;
 semaphore full  = 0;</div>
-  <table>
-    <tr><th>Semaphore</th><th>Type</th><th>Initial value</th><th>Role</th></tr>
-    <tr><td><span class="mono">mutex</span></td><td>Binary</td><td>1</td><td>Acquires/releases the lock around the actual buffer access, guaranteeing rule 3.</td></tr>
-    <tr><td><span class="mono">empty</span></td><td>Counting</td><td>n (buffer size)</td><td>Tracks free slots — starts at n since the buffer starts empty. Guarantees rule 1.</td></tr>
-    <tr><td><span class="mono">full</span></td><td>Counting</td><td>0</td><td>Tracks filled slots — starts at 0. Guarantees rule 2.</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Semaphore / Type / Initial value">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Semaphore</th><th role="columnheader" scope="col">Type</th><th role="columnheader" scope="col">Initial value</th><th role="columnheader" scope="col">Role</th></tr>
+    <tr role="row"><td role="cell" data-label="Semaphore"><span class="mono">mutex</span></td><td role="cell" data-label="Type">Binary</td><td role="cell" data-label="Initial value">1</td><td role="cell" data-label="Role">Acquires/releases the lock around the actual buffer access, guaranteeing rule 3.</td></tr>
+    <tr role="row"><td role="cell" data-label="Semaphore"><span class="mono">empty</span></td><td role="cell" data-label="Type">Counting</td><td role="cell" data-label="Initial value">n (buffer size)</td><td role="cell" data-label="Role">Tracks free slots — starts at n since the buffer starts empty. Guarantees rule 1.</td></tr>
+    <tr role="row"><td role="cell" data-label="Semaphore"><span class="mono">full</span></td><td role="cell" data-label="Type">Counting</td><td role="cell" data-label="Initial value">0</td><td role="cell" data-label="Role">Tracks filled slots — starts at 0. Guarantees rule 2.</td></tr>
   </table>
+</div>
 
   <div class="svg-wrap">
     <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg">
@@ -2512,22 +2599,26 @@ semaphore full  = 0;</div>
   number of readers share access freely amongst themselves.</p>
 
   <h2>Variations of the readers–writers problem</h2>
-  <table>
-    <tr><th>Variation</th><th>Requirement</th><th>Who can starve</th></tr>
-    <tr><td><strong>First readers–writers problem</strong></td><td>No reader is kept waiting unless a writer has <em>already</em> obtained permission to use the shared object.</td><td>Writers</td></tr>
-    <tr><td><strong>Second readers–writers problem</strong></td><td>Once a writer is ready, that writer performs its write <strong>as soon as possible</strong>.</td><td>Readers</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Variation / Requirement / Who can starve">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Variation</th><th role="columnheader" scope="col">Requirement</th><th role="columnheader" scope="col">Who can starve</th></tr>
+    <tr role="row"><td role="cell" data-label="Variation"><strong>First readers–writers problem</strong></td><td role="cell" data-label="Requirement">No reader is kept waiting unless a writer has <em>already</em> obtained permission to use the shared object.</td><td role="cell" data-label="Who can starve">Writers</td></tr>
+    <tr role="row"><td role="cell" data-label="Variation"><strong>Second readers–writers problem</strong></td><td role="cell" data-label="Requirement">Once a writer is ready, that writer performs its write <strong>as soon as possible</strong>.</td><td role="cell" data-label="Who can starve">Readers</td></tr>
   </table>
+</div>
 
   <h2>Solution to the first readers–writers problem</h2>
   <div class="formula-block code">semaphore rw_mutex = 1;
 semaphore mutex = 1;
 int read_count = 0;</div>
-  <table>
-    <tr><th>Variable</th><th>Type</th><th>Initial value</th><th>Role</th></tr>
-    <tr><td><span class="mono">mutex</span></td><td>Semaphore</td><td>1</td><td>Protects updates to <code>read_count</code> itself, so two readers incrementing/decrementing it don't race.</td></tr>
-    <tr><td><span class="mono">rw_mutex</span></td><td>Semaphore</td><td>1</td><td>Shared between readers and writers — a writer holds it for the whole write; the <em>first</em> reader to arrive also grabs it (locking out writers), and the <em>last</em> reader to leave releases it.</td></tr>
-    <tr><td><span class="mono">read_count</span></td><td>Integer</td><td>0</td><td>Tracks how many readers are currently active.</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Variable / Type / Initial value">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Variable</th><th role="columnheader" scope="col">Type</th><th role="columnheader" scope="col">Initial value</th><th role="columnheader" scope="col">Role</th></tr>
+    <tr role="row"><td role="cell" data-label="Variable"><span class="mono">mutex</span></td><td role="cell" data-label="Type">Semaphore</td><td role="cell" data-label="Initial value">1</td><td role="cell" data-label="Role">Protects updates to <code>read_count</code> itself, so two readers incrementing/decrementing it don't race.</td></tr>
+    <tr role="row"><td role="cell" data-label="Variable"><span class="mono">rw_mutex</span></td><td role="cell" data-label="Type">Semaphore</td><td role="cell" data-label="Initial value">1</td><td role="cell" data-label="Role">Shared between readers and writers — a writer holds it for the whole write; the <em>first</em> reader to arrive also grabs it (locking out writers), and the <em>last</em> reader to leave releases it.</td></tr>
+    <tr role="row"><td role="cell" data-label="Variable"><span class="mono">read_count</span></td><td role="cell" data-label="Type">Integer</td><td role="cell" data-label="Initial value">0</td><td role="cell" data-label="Role">Tracks how many readers are currently active.</td></tr>
   </table>
+</div>
 
   <div class="svg-wrap">
     <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg">
@@ -2765,7 +2856,9 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
 </div></section>
 <section class="page section" id="solved-sync" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
 <div class="section-head"><span class="tag">PRACTICE</span><h1>Solved Synchronization Examples</h1></div>
-<p>Race-condition interleavings, strict alternation, semaphore arithmetic, resource permits, lock ordering and a one-shot barrier are worked in their topic sections.</p><table><tr><th>Source</th><th>Worked answer</th><th>Scope</th></tr><tr><td>Older course deck, p5–7</td><td><a href="#u2-example-20">counter starts at 5. Producer and consumer execute counter++ and counter-- concurrently, interleaved exactly as S0–S5 in Fig 16. What is the final value of counter?</a></td><td>Core example</td></tr><tr><td>2021-22 CIE-II Q1</td><td><a href="#u2-example-21">P1(){C=B-1; B=2*C;} and P2(){D=2*B; B=D-1;} share a variable B with initial value 2 and execute concurrently. How many distinct values can B possibly take after execution?</a></td><td>Core example</td></tr><tr><td>2024-25 CIE-II Test-2 Q1a<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-22">P1 executes: while(S1==S2); Critical Section; S1=S2. P2 executes: while(S1!=S2); Critical Section; S2=!S1. Shared Boolean S1, S2. Case 1: S1=0, S2=0. Case 2: S1=0, S2=1. Is mutual exclusion and progress guaranteed in both cases? Justify.</a></td><td>Core example</td></tr><tr><td>Course slides — counting semaphore</td><td><a href="#u2-example-23">Three processes P1, P2, P3 all call wait(S) on a counting semaphore initialized to S=2 (a resource with 2 interchangeable instances). What happens?</a></td><td>Core example</td></tr><tr><td>2021-22 CIE-II Q4</td><td><a href="#u2-example-24">A counting semaphore has value 7. 20 P-operations and 15 V-operations are completed on it. What is the resulting value?</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-A<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-25">A counting semaphore has value 7. 20 P-operations and x V-operations are completed; the new value is 5. Find x.</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-A<cite class="src" data-src="Q1"></cite></td><td><a href="#u2-example-26">n processes each run: Code Section P: wait(a); count=count+1; if(count==n) signal(b); signal(a); — Code Section Q: wait(b); signal(b); — with semaphores a=1, b=0, and shared count=0. What does this code achieve?</a></td><td>Core example</td></tr><tr><td>Older course deck p41, classic example</td><td><a href="#u2-example-27">Semaphores S and Q are both initialized to 1. P0 executes wait(S) then wait(Q); P1 executes wait(Q) then wait(S). Show that this can deadlock.</a></td><td>Collapsed older/supplementary example</td></tr><tr><td>Nov/Dec 2019 SEE Q1.2<cite class="src" data-src="Q2"></cite></td><td><a href="#u2-example-26b">Two semaphores SX, SY — entry/exit sections without deadlock (lock ordering)</a></td><td>Core example</td></tr></table>
+<p>Race-condition interleavings, strict alternation, semaphore arithmetic, resource permits, lock ordering and a one-shot barrier are worked in their topic sections.</p><div class="table-scroll" role="region" tabindex="0" aria-label="Source / Worked answer / Scope">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Worked answer</th><th role="columnheader" scope="col">Scope</th></tr><tr role="row"><td role="cell" data-label="Source">Older course deck, p5–7</td><td role="cell" data-label="Worked answer"><a href="#u2-example-20">counter starts at 5. Producer and consumer execute counter++ and counter-- concurrently, interleaved exactly as S0–S5 in Fig 16. What is the final value of counter?</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">2021-22 CIE-II Q1</td><td role="cell" data-label="Worked answer"><a href="#u2-example-21">P1(){C=B-1; B=2*C;} and P2(){D=2*B; B=D-1;} share a variable B with initial value 2 and execute concurrently. How many distinct values can B possibly take after execution?</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">2024-25 CIE-II Test-2 Q1a<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-22">P1 executes: while(S1==S2); Critical Section; S1=S2. P2 executes: while(S1!=S2); Critical Section; S2=!S1. Shared Boolean S1, S2. Case 1: S1=0, S2=0. Case 2: S1=0, S2=1. Is mutual exclusion and progress guaranteed in both cases? Justify.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">Course slides — counting semaphore</td><td role="cell" data-label="Worked answer"><a href="#u2-example-23">Three processes P1, P2, P3 all call wait(S) on a counting semaphore initialized to S=2 (a resource with 2 interchangeable instances). What happens?</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">2021-22 CIE-II Q4</td><td role="cell" data-label="Worked answer"><a href="#u2-example-24">A counting semaphore has value 7. 20 P-operations and 15 V-operations are completed on it. What is the resulting value?</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">2024-25 SEE Part-A<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-25">A counting semaphore has value 7. 20 P-operations and x V-operations are completed; the new value is 5. Find x.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">2024-25 SEE Part-A<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-26">n processes each run: Code Section P: wait(a); count=count+1; if(count==n) signal(b); signal(a); — Code Section Q: wait(b); signal(b); — with semaphores a=1, b=0, and shared count=0. What does this code achieve?</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">Older course deck p41, classic example</td><td role="cell" data-label="Worked answer"><a href="#u2-example-27">Semaphores S and Q are both initialized to 1. P0 executes wait(S) then wait(Q); P1 executes wait(Q) then wait(S). Show that this can deadlock.</a></td><td role="cell" data-label="Scope">Collapsed older/supplementary example</td></tr><tr role="row"><td role="cell" data-label="Source">Nov/Dec 2019 SEE Q1.2<cite class="src" data-src="Q2"></cite></td><td role="cell" data-label="Worked answer"><a href="#u2-example-26b">Two semaphores SX, SY — entry/exit sections without deadlock (lock ordering)</a></td><td role="cell" data-label="Scope">Core example</td></tr></table>
+</div>
 <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="quick-revision" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
@@ -2780,7 +2873,8 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   <div class="grid2">
     <div class="card">
       <h3 style="margin-top:0">Algorithm cheat sheet</h3>
-      <table>
+      <div class="table-scroll" role="region" tabindex="0" aria-label="Algorithm / Preemptive? / Picks">
+<table>
         <tr><th>Algorithm</th><th>Preemptive?</th><th>Picks</th></tr>
         <tr><td>FCFS</td><td>No</td><td>Whoever arrived first</td></tr>
         <tr><td>SJF (non-preemptive)</td><td>No</td><td>Smallest next burst, among ready processes</td></tr>
@@ -2790,6 +2884,7 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
         <tr><td>Rate-Monotonic</td><td>Yes</td><td>Shortest <em>period</em> = highest static priority</td></tr>
         <tr><td>EDF</td><td>Yes</td><td>Nearest absolute deadline, re-checked dynamically</td></tr>
       </table>
+</div>
     </div>
     <div class="card">
       <h3 style="margin-top:0">Gotchas this guide caught</h3>
@@ -2809,7 +2904,8 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   <div class="legacy-heading"><div class="legacy-heading-text"><h2>Threading issues &amp; scheduling extras (one line each)</h2><span class="scope-note">Present in older notes; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1002" aria-label="View Threading issues &amp; scheduling extras (one line each)">View</button></div>
   <div class="legacy-content" id="legacy-u2-1002" hidden>
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table>
     <tr><td><strong>fork()/exec()</strong></td><td>fork may copy all threads or only the caller; exec replaces the whole process</td></tr>
     <tr><td><strong>Cancellation</strong></td><td>asynchronous = immediate kill; deferred = target checks at cancellation points (safe)</td></tr>
     <tr><td><strong>Signals</strong></td><td>generate → deliver → handle; sync (div-by-0) vs async (Ctrl-C); 4 delivery options in MT programs</td></tr>
@@ -2823,13 +2919,15 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
     <tr><td><strong>PCS / SCS</strong></td><td>library picks among a process's threads / kernel picks among all threads; one-to-one = SCS only</td></tr>
     <tr><td><strong>Monitor</strong></td><td>one process active at a time; condition x: wait() suspends, signal() resumes one (no memory if none waiting)</td></tr>
   </table>
+</div>
 
   </div>
 </div><h2>Real-time essentials</h2>
   <p><strong>Hard real-time</strong>: missed deadline = failure. <strong>Soft real-time</strong>: missed
   deadline = degraded, not fatal. <strong>Event latency = interrupt latency + dispatch latency</strong>.
   RMS = static priority by period; EDF = dynamic priority by deadline, schedulable up to U=100%.</p>
-<h2>Synchronization — quick revision</h2><table>
+<h2>Synchronization — quick revision</h2><div class="table-scroll" role="region" tabindex="0" aria-label="Topic / Key point">
+<table>
 <tr><th>Topic</th><th>Key point</th></tr>
 <tr><td>Critical sections</td><td>Mutual exclusion, progress, bounded waiting; distinguish critical/entry/exit/remainder sections.</td></tr>
 <tr><td>Peterson</td><td>Two-process flag/turn algorithm; the proof assumes atomic reads/writes and sequential consistency.</td></tr>
@@ -2841,6 +2939,7 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
 <tr><td>Bounded buffer</td><td>Unbounded buffer: only the consumer waits. Bounded: mutex=1, empty=n, full=0. Producer waits empty then mutex; consumer waits full then mutex. Release mutex before signalling the complementary counting semaphore.</td></tr>
 <tr><td>Readers–writers</td><td>First problem: no reader waits unless a writer already has access (writers may starve). Second problem: a ready writer writes as soon as possible (readers may starve). rw_mutex=1, mutex=1, read_count=0. First reader waits on rw_mutex; last reader signals it.</td></tr>
 <tr><td>Dining philosophers</td><td>One semaphore per chopstick; naive left-then-right pickup can deadlock. Break the cycle with ordered/asymmetric pickup, at most n−1 diners, or coordinated pickup of both.</td></tr></table>
+</div>
 <div class="formula-block">Semaphore net bookkeeping = initial − completed waits + signals
 7 − 20 + 15 = 2
 7 − 20 + x = 5  ⇒  x = 18</div>
@@ -2858,206 +2957,248 @@ P1: attempting wait(S) → <span class="c2">TIMED OUT (deadlocked)</span></div>
   <div class="callout clarify"><span class="label">New syllabus scope</span><p>Required synchronization questions are included here, with local answers in this guide. Thread questions now belong to Unit I and are answered in the <a href="../unit-1/#threads">Unit I guide</a>. MLQ/MLFQ and monitor questions remain as collapsed older material. Memory management and file systems are outside this guide.</p></div>
 
   <h2>2.1 Scheduling — Basic Concepts</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q1, 1M<cite class="src" data-src="Q1"></cite></td><td>In timeshare OS, when a time slot completes, the process switches to ___ state. (Ans: Ready)</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-1 Q1.i, part of 10M</td><td>T/F: timesharing = multiprogramming when time slice exceeds every program's CPU burst. Justify. (Ans: False)</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q2, 2M<cite class="src" data-src="Q1"></cite></td><td>In preemptive scheduling, when can a running process be interrupted?</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q3, 3M<cite class="src" data-src="Q1"></cite></td><td>List two types of schedulers with one example each.</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Quiz-1 Q1, 1M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">In timeshare OS, when a time slot completes, the process switches to ___ state. (Ans: Ready)</td><td role="cell" data-label="Answered at">→ <a href="#t2-5">§2.1</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-1 Q1.i, part of 10M</td><td role="cell" data-label="Question">T/F: timesharing = multiprogramming when time slice exceeds every program's CPU burst. Justify. (Ans: False)</td><td role="cell" data-label="Answered at">→ <a href="#t2-5">§2.1</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Quiz-2 Q2, 2M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">In preemptive scheduling, when can a running process be interrupted?</td><td role="cell" data-label="Answered at">→ <a href="#t2-5">§2.1</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Quiz-2 Q3, 3M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">List two types of schedulers with one example each.</td><td role="cell" data-label="Answered at">→ <a href="#t2-5">§2.1</a></td></tr>
   </table>
+</div>
 
   <h2>2.2 Scheduling Criteria</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q4, 2M<cite class="src" data-src="Q1"></cite></td><td>Define CPU utilization and its goal.</td><td>→ <a href="#t2-6">§2.2</a> (subsumed by Test-2 Q4 below)</td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q4, 5M</td><td>Discuss the scheduling criteria for scheduling algorithms.</td><td>→ <a href="#t2-6">§2.2</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Quiz-2 Q4, 2M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Define CPU utilization and its goal.</td><td role="cell" data-label="Answered at">→ <a href="#t2-6">§2.2</a> (subsumed by Test-2 Q4 below)</td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-2 Q4, 5M</td><td role="cell" data-label="Question">Discuss the scheduling criteria for scheduling algorithms.</td><td role="cell" data-label="Answered at">→ <a href="#t2-6">§2.2</a></td></tr>
   </table>
+</div>
 
   <h2>2.3 FCFS &amp; 2.4 SJF Scheduling</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q6, 6M</td><td>FCFS convoy effect: P1(AT1,BT1), P2(AT1,BT3), P3(AT0,BT40) — original vs modified arrival order.</td><td>→ <a href="#t2-7">§2.3</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q2, 4M</td><td>SJF non-preemptive: P1(AT3,BT1) P2(AT1,BT4) P3(AT4,BT2) P4(AT0,BT6) P5(AT2,BT3) — Gantt + avg times.</td><td>→ <a href="#t2-8">§2.4</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q4, 8M<cite class="src" data-src="Q1"></cite></td><td>FCFS vs SJF comparison: P1(AT0,BT10) P2(AT2,BT5) P3(AT4,BT8) P4(AT6,BT2).</td><td>→ <a href="#t2-7">§2.3</a> &amp; <a href="#t2-8">§2.4</a> <span class="pill">solved example added</span></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-2 Q6, 6M</td><td role="cell" data-label="Question">FCFS convoy effect: P1(AT1,BT1), P2(AT1,BT3), P3(AT0,BT40) — original vs modified arrival order.</td><td role="cell" data-label="Answered at">→ <a href="#t2-7">§2.3</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-2 Q2, 4M</td><td role="cell" data-label="Question">SJF non-preemptive: P1(AT3,BT1) P2(AT1,BT4) P3(AT4,BT2) P4(AT0,BT6) P5(AT2,BT3) — Gantt + avg times.</td><td role="cell" data-label="Answered at">→ <a href="#t2-8">§2.4</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-B Q4, 8M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">FCFS vs SJF comparison: P1(AT0,BT10) P2(AT2,BT5) P3(AT4,BT8) P4(AT6,BT2).</td><td role="cell" data-label="Answered at">→ <a href="#t2-7">§2.3</a> &amp; <a href="#t2-8">§2.4</a> <span class="pill">solved example added</span></td></tr>
   </table>
+</div>
 
   <h2>2.6 Priority Scheduling</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q5, 5M</td><td>Which algorithm encounters starvation? What is the solution? Explain with an example.</td><td>→ <a href="#t2-9">§2.6</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-2 Q5, 5M</td><td role="cell" data-label="Question">Which algorithm encounters starvation? What is the solution? Explain with an example.</td><td role="cell" data-label="Answered at">→ <a href="#t2-9">§2.6</a></td></tr>
   </table>
+</div>
 
   <h2>2.4 / 2.5 / 2.6 — Flagship dataset (all three algorithms)</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-I Q3, 4M <span class="pill">flagship</span></td><td>5-process Gantt chart: preemptive SJF, preemptive priority, and Round Robin (q=2ms) — average waiting/turnaround time and context switches for each. Same dataset as unit2.pdf<cite class="src" data-src="D2"></cite>'s own "GATE-2017" priority example.</td><td>→ <a href="#t2-8">§2.4</a>, <a href="#t2-9">§2.6</a>, <a href="#t2-10">§2.5</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q1, 3M<cite class="src" data-src="Q1"></cite></td><td>Which scheduling algorithm is most suitable for a time-sharing system?</td><td>→ <a href="#t2-10">§2.5</a> (Round Robin — see quantum-tradeoff discussion)</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">21-22 CIE-I Q3, 4M <span class="pill">flagship</span></td><td role="cell" data-label="Question">5-process Gantt chart: preemptive SJF, preemptive priority, and Round Robin (q=2ms) — average waiting/turnaround time and context switches for each. Same dataset as unit2.pdf<cite class="src" data-src="D2"></cite>'s own "GATE-2017" priority example.</td><td role="cell" data-label="Answered at">→ <a href="#t2-8">§2.4</a>, <a href="#t2-9">§2.6</a>, <a href="#t2-10">§2.5</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Quiz-2 Q1, 3M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Which scheduling algorithm is most suitable for a time-sharing system?</td><td role="cell" data-label="Answered at">→ <a href="#t2-10">§2.5</a> (Round Robin — see quantum-tradeoff discussion)</td></tr>
   </table>
+</div>
 
   <h2>2.7 Real-Time CPU Scheduling</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q5, 1M <span class="pill">borderline→included</span><cite class="src" data-src="Q1"></cite></td><td>Which type of OS reads and reacts in terms of actual time? (Ans: Real-Time OS)</td><td>→ <a href="#t2-11">§2.7</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q1, 7M</td><td>EDF: Task A(period4,exec1,deadline4), B(period6,exec2,deadline6), C(period8,exec1,deadline8) — utilization + schedule.</td><td>→ <a href="#t2-11">§2.7</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q3, 4M</td><td>Compare Rate-Monotonic scheduling and Earliest-Deadline-First scheduling.</td><td>→ <a href="#t2-11">§2.7</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Quiz-1 Q5, 1M <span class="pill">borderline→included</span><cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Which type of OS reads and reacts in terms of actual time? (Ans: Real-Time OS)</td><td role="cell" data-label="Answered at">→ <a href="#t2-11">§2.7</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-2 Q1, 7M</td><td role="cell" data-label="Question">EDF: Task A(period4,exec1,deadline4), B(period6,exec2,deadline6), C(period8,exec1,deadline8) — utilization + schedule.</td><td role="cell" data-label="Answered at">→ <a href="#t2-11">§2.7</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-2 Q3, 4M</td><td role="cell" data-label="Question">Compare Rate-Monotonic scheduling and Earliest-Deadline-First scheduling.</td><td role="cell" data-label="Answered at">→ <a href="#t2-11">§2.7</a></td></tr>
   </table>
+</div>
 
   <div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h2>2.4b Threading Issues (CIE-1 PDF bank)</h2><span class="scope-note">Present in older notes; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1010" aria-label="View 2.4b Threading Issues (CIE-1 PDF bank)">View</button></div>
   <div class="legacy-content" id="legacy-u2-1010" hidden>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q3</td><td>What is thread cancellation?</td><td>→ <a href="#t2-4b">§2.4b</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q4</td><td>What is signal handling?</td><td>→ <a href="#t2-4b">§2.4b</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q5</td><td>Explain the various threading issues.</td><td>→ <a href="#t2-4b">§2.4b</a> <span class="pill">new section</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q6</td><td>Thread pool, thread-specific data, scheduler activation.</td><td>→ <a href="#t2-4b">§2.4b</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q3</td><td role="cell" data-label="Question">What is thread cancellation?</td><td role="cell" data-label="Answered at">→ <a href="#t2-4b">§2.4b</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q4</td><td role="cell" data-label="Question">What is signal handling?</td><td role="cell" data-label="Answered at">→ <a href="#t2-4b">§2.4b</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q5</td><td role="cell" data-label="Question">Explain the various threading issues.</td><td role="cell" data-label="Answered at">→ <a href="#t2-4b">§2.4b</a> <span class="pill">new section</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q6</td><td role="cell" data-label="Question">Thread pool, thread-specific data, scheduler activation.</td><td role="cell" data-label="Answered at">→ <a href="#t2-4b">§2.4b</a></td></tr>
   </table>
+</div>
 
   </div>
 </div><h2>Scheduling questions (CIE-1 PDF bank)</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q7</td><td>What is preemptive scheduling and non-preemptive scheduling?</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q8</td><td>Define CPU utilization, throughput, turnaround time, waiting time, response time.</td><td>→ <a href="#t2-6">§2.2</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q9</td><td>Explain scheduling algorithms with examples.</td><td>→ <a href="#t2-7">§2.3</a>–<a href="#t2-10">§2.5</a></td></tr>
-    <tr class="legacy-row"><td colspan="3"><div class="legacy-topic">
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q7</td><td role="cell" data-label="Question">What is preemptive scheduling and non-preemptive scheduling?</td><td role="cell" data-label="Answered at">→ <a href="#t2-5">§2.1</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q8</td><td role="cell" data-label="Question">Define CPU utilization, throughput, turnaround time, waiting time, response time.</td><td role="cell" data-label="Answered at">→ <a href="#t2-6">§2.2</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q9</td><td role="cell" data-label="Question">Explain scheduling algorithms with examples.</td><td role="cell" data-label="Answered at">→ <a href="#t2-7">§2.3</a>–<a href="#t2-10">§2.5</a></td></tr>
+    <tr class="legacy-row" role="row"><td colspan="3" role="cell" data-label="Source"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>Older question — multilevel queues</h3><span class="scope-note">Present in older question papers; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1011" aria-label="View Older question — multilevel queues">View</button></div>
-  <div class="legacy-content" id="legacy-u2-1011" hidden><table><tbody><tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q10</td><td>Explain multilevel and multilevel feedback queue.</td><td>→ <a href="#t2-10a">§2.12</a> <span class="pill">new section</span></td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u2-1011" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q10</td><td>Explain multilevel and multilevel feedback queue.</td><td>→ <a href="#t2-10a">§2.12</a> <span class="pill">new section</span></td></tr></tbody></table>
+</div></div>
 </div></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q11</td><td>P1(0,4) P2(1,2) P3(2,5) P4(3,4): avg WT/TAT for FCFS, SJF (non-pre &amp; pre), RR q=4.</td><td>→ <a href="#cie-cpu-comparison">Core CPU-comparison worked example</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q11</td><td role="cell" data-label="Question">P1(0,4) P2(1,2) P3(2,5) P4(3,4): avg WT/TAT for FCFS, SJF (non-pre &amp; pre), RR q=4.</td><td role="cell" data-label="Answered at">→ <a href="#cie-cpu-comparison">Core CPU-comparison worked example</a> <span class="pill">solved example added</span></td></tr>
   </table>
+</div>
 
   <h2>Process synchronization (CIE-1 PDF bank)</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q12, Q18</td><td>What are semaphores? Two primitive operations, advantages; producer-consumer with semaphores.</td><td>→ <a href="#sync-t3-6">Unit II §2.12</a>, <a href="#sync-t3-7">§2.13</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q13, Q20</td><td>Explain a classic synchronization problem / the various classical problems.</td><td>→ <a href="#sync-t3-7">Unit II §2.13–3.9</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q14</td><td>Three requirements of a critical-section solution.</td><td>→ <a href="#sync-t3-2">Unit II §2.9</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q15</td><td>Dining philosophers with semaphores; structure of philosopher.</td><td>→ <a href="#sync-t3-9">Unit II §2.15</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q16</td><td>Binary vs counting semaphore; C-struct wait()/signal(); semaphore as a general tool.</td><td>→ <a href="#sync-t3-6">Unit II §2.12</a></td></tr>
-    <tr class="legacy-row"><td colspan="3"><div class="legacy-topic">
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q12, Q18</td><td role="cell" data-label="Question">What are semaphores? Two primitive operations, advantages; producer-consumer with semaphores.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-6">Unit II §2.12</a>, <a href="#sync-t3-7">§2.13</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q13, Q20</td><td role="cell" data-label="Question">Explain a classic synchronization problem / the various classical problems.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-7">Unit II §2.13–3.9</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q14</td><td role="cell" data-label="Question">Three requirements of a critical-section solution.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-2">Unit II §2.9</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q15</td><td role="cell" data-label="Question">Dining philosophers with semaphores; structure of philosopher.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-9">Unit II §2.15</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q16</td><td role="cell" data-label="Question">Binary vs counting semaphore; C-struct wait()/signal(); semaphore as a general tool.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-6">Unit II §2.12</a></td></tr>
+    <tr class="legacy-row" role="row"><td colspan="3" role="cell" data-label="Source"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>Older question — monitors</h3><span class="scope-note">Present in older question papers; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-1012" aria-label="View Older question — monitors">View</button></div>
-  <div class="legacy-content" id="legacy-u2-1012" hidden><table><tbody><tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q17</td><td>Describe a monitor; solution to dining philosophers.</td><td>→ <a href="#t2-12">§2.15</a> <span class="pill">new section</span></td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u2-1012" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q17</td><td>Describe a monitor; solution to dining philosophers.</td><td>→ <a href="#t2-12">§2.15</a> <span class="pill">new section</span></td></tr></tbody></table>
+</div></div>
 </div></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q19</td><td>What is a critical section? Methods to implement process synchronization.</td><td>→ <a href="#sync-t3-2">Unit II §2.9–3.6</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q19</td><td role="cell" data-label="Question">What is a critical section? Methods to implement process synchronization.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-2">Unit II §2.9–3.6</a></td></tr>
   </table>
+</div>
 <h2>Synchronization questions reassigned from old Unit III</h2><h2>2.8 Background &amp; Race Conditions</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II A-Q1, 1M</td><td>P1(){C=B-1;B=2*C;} P2(){D=2*B;B=D-1;} share B=2, execute concurrently. How many distinct values can B take?</td><td>→ <a href="#sync-t3-1">§2.8</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q1, 3M<cite class="src" data-src="Q1"></cite></td><td>What is a race condition? Give an example.</td><td>→ <a href="#sync-t3-1">§2.8</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">21-22 CIE-II A-Q1, 1M</td><td role="cell" data-label="Question">P1(){C=B-1;B=2*C;} P2(){D=2*B;B=D-1;} share B=2, execute concurrently. How many distinct values can B take?</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-1">§2.8</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Quiz-2 Q1, 3M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">What is a race condition? Give an example.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-1">§2.8</a></td></tr>
   </table>
+</div>
 
   <h2>2.9 The Critical Section Problem</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II B-2.a, 5M</td><td>Identify the requirements of a critical section and illustrate Peterson's solution.</td><td>→ <a href="#sync-t3-2">§2.9</a> &amp; <a href="#sync-t3-3">§2.10</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-2 Q2, 2M<cite class="src" data-src="Q1"></cite></td><td>Why is mutual exclusion important in solving the critical section problem?</td><td>→ <a href="#sync-t3-2">§2.9</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q4, 4M</td><td>Define critical section problem. Give an example. Explain any two of the three solution conditions.</td><td>→ <a href="#sync-t3-2">§2.9</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q1a, 7M</td><td>Boolean-flag S1/S2 mechanism for P1/P2, two initial-value cases — is mutual exclusion and progress guaranteed in both?</td><td>→ <a href="#sync-t3-3">§2.10</a> <span class="pill">solved example added</span></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">21-22 CIE-II B-2.a, 5M</td><td role="cell" data-label="Question">Identify the requirements of a critical section and illustrate Peterson's solution.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-2">§2.9</a> &amp; <a href="#sync-t3-3">§2.10</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Quiz-2 Q2, 2M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Why is mutual exclusion important in solving the critical section problem?</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-2">§2.9</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-2 Q4, 4M</td><td role="cell" data-label="Question">Define critical section problem. Give an example. Explain any two of the three solution conditions.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-2">§2.9</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-2 Q1a, 7M</td><td role="cell" data-label="Question">Boolean-flag S1/S2 mechanism for P1/P2, two initial-value cases — is mutual exclusion and progress guaranteed in both?</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-3">§2.10</a> <span class="pill">solved example added</span></td></tr>
   </table>
+</div>
 
   <h2>2.10 Peterson's Solution</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q5, 4M</td><td>Explain Peterson's solution with algorithm for two-process synchronization.</td><td>→ <a href="#sync-t3-3">§2.10</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q5a, 8M<cite class="src" data-src="Q1"></cite></td><td>Explain Peterson's Solution and the structure of Pi. What are the disadvantages?</td><td>→ <a href="#sync-t3-3">§2.10</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-2 Q5, 4M</td><td role="cell" data-label="Question">Explain Peterson's solution with algorithm for two-process synchronization.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-3">§2.10</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-B Q5a, 8M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Explain Peterson's Solution and the structure of Pi. What are the disadvantages?</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-3">§2.10</a></td></tr>
   </table>
+</div>
 
   <h2>2.11 Synchronization Hardware</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II A-Q2, 2M</td><td>Enumerate the advantages of spinlocks.</td><td>→ <a href="#sync-t3-4">§2.11</a> &amp; <a href="#sync-t3-5">§Supporting mutex detail</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II B-1.a, 5M</td><td>Illustrate the basic synchronization primitives test_and_set and compare_and_swap.</td><td>→ <a href="#sync-t3-4">§2.11</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-2 Q6, 6M</td><td>Explain with an algorithm how test_and_set solves all the CS-problem requirements.</td><td>→ <a href="#sync-t3-4">§2.11</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1.6, 1M<cite class="src" data-src="Q1"></cite></td><td>The hardware implementation which provides mutual exclusion is ____.</td><td>→ <a href="#sync-t3-4">§2.11</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">21-22 CIE-II A-Q2, 2M</td><td role="cell" data-label="Question">Enumerate the advantages of spinlocks.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-4">§2.11</a> &amp; <a href="#sync-t3-5">§Supporting mutex detail</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">21-22 CIE-II B-1.a, 5M</td><td role="cell" data-label="Question">Illustrate the basic synchronization primitives test_and_set and compare_and_swap.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-4">§2.11</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-2 Q6, 6M</td><td role="cell" data-label="Question">Explain with an algorithm how test_and_set solves all the CS-problem requirements.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-4">§2.11</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-A Q1.6, 1M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">The hardware implementation which provides mutual exclusion is ____.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-4">§2.11</a></td></tr>
   </table>
+</div>
 
   <div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h2>Mutex questions — supporting material</h2><span class="scope-note">Supporting older questions; mutex is not separately named in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u2-2001" aria-label="View Mutex questions — supporting material">View</button></div>
   <div class="legacy-content" id="legacy-u2-2001" hidden>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q5b, 8M<cite class="src" data-src="Q1"></cite></td><td>Write a program using a mutex lock to solve a critical section problem; explain the execution flow.</td><td>→ <a href="#sync-t3-5">§Supporting mutex detail</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q6b, 8M<cite class="src" data-src="Q1"></cite></td><td>Identify the key differences between mutex locks and semaphores.</td><td>→ <a href="#sync-t3-5">§Supporting mutex detail</a> &amp; <a href="#sync-t3-6">§2.12</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-B Q5b, 8M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Write a program using a mutex lock to solve a critical section problem; explain the execution flow.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-5">§Supporting mutex detail</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-B Q6b, 8M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Identify the key differences between mutex locks and semaphores.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-5">§Supporting mutex detail</a> &amp; <a href="#sync-t3-6">§2.12</a></td></tr>
   </table>
+</div>
 
   </div>
 </div><h2>2.12 Semaphores</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-II A-Q4, 1M</td><td>Counting semaphore=7; 20 P-ops, 15 V-ops. Resulting value?</td><td>→ <a href="#sync-t3-6">§2.12</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1.7, 2M<cite class="src" data-src="Q1"></cite></td><td>n-process barrier using semaphores a=1, b=0 and a shared counter — what does the code achieve?</td><td>→ <a href="#sync-t3-6">§2.12</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1.8, 2M<cite class="src" data-src="Q1"></cite></td><td>Counting semaphore=7; 20 P-ops, x V-ops; final value=5. Find x.</td><td>→ <a href="#sync-t3-6">§2.12</a> <span class="pill">solved example added</span></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">21-22 CIE-II A-Q4, 1M</td><td role="cell" data-label="Question">Counting semaphore=7; 20 P-ops, 15 V-ops. Resulting value?</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-6">§2.12</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-A Q1.7, 2M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">n-process barrier using semaphores a=1, b=0 and a shared counter — what does the code achieve?</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-6">§2.12</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-A Q1.8, 2M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Counting semaphore=7; 20 P-ops, x V-ops; final value=5. Find x.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-6">§2.12</a> <span class="pill">solved example added</span></td></tr>
   </table>
+</div>
 
   <h2>2.14 Readers-Writers Problem</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q6a, 8M<cite class="src" data-src="Q1"></cite></td><td>Develop a solution for the Readers-Writers problem using semaphores; explain fairness and synchronization.</td><td>→ <a href="#sync-t3-8">§2.14</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-B Q6a, 8M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Develop a solution for the Readers-Writers problem using semaphores; explain fairness and synchronization.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-8">§2.14</a></td></tr>
   </table>
+</div>
 
   <h2>Supporting deadlock detail Deadlock &amp; Starvation</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-III A-Q1.4, 2M <span class="pill">borderline→included</span></td><td>List two examples of deadlocks not related to a computer system.</td><td>→ <a href="#sync-t3-10">§Supporting deadlock detail</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-III A-Q1.5, 2M <span class="pill">borderline→included</span></td><td>Is it possible to have a deadlock involving only one single-threaded process? Explain.</td><td>→ <a href="#sync-t3-10">§Supporting deadlock detail</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">21-22 CIE-III A-Q1.4, 2M <span class="pill">borderline→included</span></td><td role="cell" data-label="Question">List two examples of deadlocks not related to a computer system.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-10">§Supporting deadlock detail</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">21-22 CIE-III A-Q1.5, 2M <span class="pill">borderline→included</span></td><td role="cell" data-label="Question">Is it possible to have a deadlock involving only one single-threaded process? Explain.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-10">§Supporting deadlock detail</a></td></tr>
   </table>
+</div>
 
   
 
 
     <h2>From the CIE-2 solved question bank (Nov 2026)</h2>
   <div class="callout clarify"><span class="label">How this bank was merged</span><p>This bank has 88 questions. Its "Units II and III" use the old numbering; both are now Unit II. Most of the 88 repeat theory or examples already in this guide, so they are not listed again. Only the problems that add something new are listed below. Its RR answer to the long-run CPU-utilization question (Q19) assumes a repeating 120 ms cycle that does not actually occur, so that question is left out.</p></div>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q9<cite class="src" data-src="Q3"></cite></td><td>Arrivals 0, 0.4, 1 with bursts 8, 4, 1: compare FCFS, SJF and SRTF.</td><td>→ <a href="#u2-example-10b">§2.4</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q11<cite class="src" data-src="Q3"></cite></td><td>Priority scheduling, using preemptive SJF only between equal priorities; average TAT.</td><td>→ <a href="#u2-example-16b">§2.6</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank RT-Q3<cite class="src" data-src="Q3"></cite></td><td>A(4,1), B(6,2), C(8,2): utilization and EDF schedule.</td><td>→ <a href="#u2-example-17b">§2.7</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q4, Q12<cite class="src" data-src="Q3"></cite></td><td>SRTF, preemptive priority, RR (q=2): WT, TAT, RT and context switches.</td><td>→ <a href="#cie2-combined">Solved examples</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q17, Q18<cite class="src" data-src="Q3"></cite></td><td>RR (q=1) completion time of A; SRTF context-switch count.</td><td>→ <a href="#cie2-gate-shorts">Solved examples</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-2 bank Q13<cite class="src" data-src="Q3"></cite></td><td>Entry/exit sections for updates to X and Y under SX and SY, without deadlock.</td><td>→ <a href="#u2-example-26b">§2.12</a> <span class="pill">solved example added</span></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-2 bank Q9<cite class="src" data-src="Q3"></cite></td><td role="cell" data-label="Question">Arrivals 0, 0.4, 1 with bursts 8, 4, 1: compare FCFS, SJF and SRTF.</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-10b">§2.4</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-2 bank Q11<cite class="src" data-src="Q3"></cite></td><td role="cell" data-label="Question">Priority scheduling, using preemptive SJF only between equal priorities; average TAT.</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-16b">§2.6</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-2 bank RT-Q3<cite class="src" data-src="Q3"></cite></td><td role="cell" data-label="Question">A(4,1), B(6,2), C(8,2): utilization and EDF schedule.</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-17b">§2.7</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-2 bank Q4, Q12<cite class="src" data-src="Q3"></cite></td><td role="cell" data-label="Question">SRTF, preemptive priority, RR (q=2): WT, TAT, RT and context switches.</td><td role="cell" data-label="Answered at">→ <a href="#cie2-combined">Solved examples</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-2 bank Q17, Q18<cite class="src" data-src="Q3"></cite></td><td role="cell" data-label="Question">RR (q=1) completion time of A; SRTF context-switch count.</td><td role="cell" data-label="Answered at">→ <a href="#cie2-gate-shorts">Solved examples</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-2 bank Q13<cite class="src" data-src="Q3"></cite></td><td role="cell" data-label="Question">Entry/exit sections for updates to X and Y under SX and SY, without deadlock.</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-26b">§2.12</a> <span class="pill">solved example added</span></td></tr>
   </table>
+</div>
 
   <h2>Older SEE papers (2019–2023) and SEE 2025</h2>
   <div class="callout clarify"><span class="label">Scope note</span><p>Transcribed from RVCE SEE papers: Apr/May 2019 (16CS45), Nov/Dec 2019, Oct 2020 Fast Track, Mar 2021 (18CS34), and two Apr 2023 sets (21CS35). Only questions in the current Unit II syllabus are listed. Monitor and Linux-scheduling questions are kept as retained extras, and deadlock and disk questions are left out. Repeated questions are grouped on one row.<cite class="src" data-src="Q2"></cite></p></div>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono">SEE 2025 Q2b, 8M<cite class="src" data-src="Q1"></cite></td><td>Three processes alternate 20 ms CPU / 80 ms I/O: long-run CPU utilization under FCFS and RR (q=10).</td><td>→ <a href="#u2-example-util">§2.2</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Apr/May-19 Q3a</td><td>Define CPU scheduling and the circumstances under which scheduling decisions take place.</td><td>→ <a href="#t2-5">§2.1</a></td></tr>
-    <tr><td class="mono">Mar-21 Q1.4</td><td>Time taken by the dispatcher to stop one process and start another is the ____.</td><td>→ <a href="#t2-5">§2.1</a> (dispatch latency)</td></tr>
-    <tr><td class="mono">Apr-23 B Q1.2 · Nov/Dec-19 Q1.7 · Apr/May-19 Q1.4</td><td>Disadvantage of SJF / priority; starvation and aging; convoy effect and its consequence.</td><td>→ <a href="#t2-7">§2.3</a>, <a href="#t2-8">§2.4</a>, <a href="#t2-9">§2.6</a></td></tr>
-    <tr><td class="mono">Oct-20 Q3a, 6M</td><td>Compare FCFS, SJF, priority and RR on performance and complexity.</td><td>→ <a href="#t2-6">§2.2</a>–<a href="#t2-9">§2.6</a></td></tr>
-    <tr><td class="mono">Apr-23 A Q1.9 · Oct-20 Q1.6</td><td>LRTF, bursts 2, 4, 8 at t=0: average turnaround time.</td><td>→ <a href="#u2-example-10c">§2.4</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Mar-21 Q4a, 6M</td><td>Arrivals 0.0, 0.4, 1.0; bursts 8, 4, 1: FCFS average TAT; preemptive SJF AWT and ATAT.</td><td>→ <a href="#u2-example-10b">§2.4</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Nov/Dec-19 Q4a, 5M</td><td>Preemptive priority, with preemptive SJF only between equal priorities: average TAT.</td><td>→ <a href="#u2-example-16b">§2.6</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Nov/Dec-19 Q1.5</td><td>RR q=1, A=4, B=1, C=8, D=1: completion time of A.</td><td>→ <a href="#cie2-gate-shorts">Solved examples</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Apr/May-19 Q1.5</td><td>RR (q=4) Gantt chart for bursts 24, 3, 3.</td><td>→ <a href="#t2-10">§2.5</a></td></tr>
-    <tr><td class="mono">Nov/Dec-19 Q3a, 10M</td><td>Flagship 5-process set: preemptive SJF, preemptive priority and RR (q=4, all arrivals 0) — averages.</td><td>→ <a href="#u2-example-16">§2.6</a>, <a href="#see-flagship-rr4">RR q=4</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Oct-20 Q4a, 10M · Apr-23 A Q3a, 10M</td><td>P1(0,7,3)…P5(5,3,3): SRTF / SJF, preemptive priority, RR (q=2 or q=1); WT, TAT, RT; when the ready queue is fullest.</td><td>→ <a href="#cie2-combined">Solved examples</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Apr-23 B Q4a, 10M</td><td>P1(0,10,3)…P5(5,12,2): preemptive SJF, priority, RR q=1 — averages and context switches.</td><td>→ <a href="#see-apr23-b4a">Solved examples</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Mar-21 Q3a, 10M · Apr/May-19 Q3b</td><td>All arrive at 0: FCFS, SJF, non-preemptive priority, RR q=1; SJF and priority for bursts 6, 8, 7, 3.</td><td>→ <a href="#see-all-zero">Solved examples</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Apr-23 B Q3a · Apr-23 A Q4b · Apr/May-19 Q4a</td><td>Four processes, two arriving at t=3: FCFS vs preemptive SJF.</td><td>→ <a href="#see-four-proc">Solved examples</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Apr-23 A Q1.2 · B Q1.3 · Mar-21 Q1.5</td><td>Define race condition (with example); techniques to avoid it.</td><td>→ <a href="#sync-t3-1">§2.8</a></td></tr>
-    <tr><td class="mono">Apr-23 A Q5a · B Q5a · Apr/May-19 Q3c</td><td>Critical-section problem: general structure and the three requirements.</td><td>→ <a href="#sync-t3-2">§2.9</a></td></tr>
-    <tr><td class="mono">Mar-21 Q4b</td><td>Explain Peterson's solution.</td><td>→ <a href="#sync-t3-3">§2.10</a></td></tr>
-    <tr><td class="mono">Apr-23 A Q6b · B Q6b</td><td>TestAndSet and Swap pseudo-code; prove the critical-section conditions.</td><td>→ <a href="#sync-t3-4">§2.11</a></td></tr>
-    <tr><td class="mono">Apr/May-19 Q1.6</td><td>Advantage of semaphores over hardware-based solutions.</td><td>→ <a href="#sync-t3-6">§2.12</a></td></tr>
-    <tr><td class="mono">Mar-21 Q1.6</td><td>Drawbacks of semaphores.</td><td>→ <a href="#sync-t3-6">§2.12</a></td></tr>
-    <tr><td class="mono">Apr-23 A Q1.4</td><td>Counting semaphore = 8; 6 P and 4 V operations: final value (8 − 6 + 4 = 6).</td><td>→ <a href="#u2-example-24">§2.12</a> (same method)</td></tr>
-    <tr><td class="mono">Nov/Dec-19 Q1.10</td><td>Semaphore initial 2; P1, P2, P3 request the critical section in turn.</td><td>→ <a href="#u2-example-23">§2.12</a></td></tr>
-    <tr><td class="mono">Nov/Dec-19 Q1.2</td><td>Sx, Sy protecting X and Y: complete entry/exit sections without deadlock.</td><td>→ <a href="#u2-example-26b">§2.12</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Oct-20 Q1.7</td><td>Show how improper use of semaphores leads to deadlock.</td><td>→ <a href="#u2-example-27">S/Q example</a></td></tr>
-    <tr><td class="mono">Apr-23 B Q6a · Oct-20 Q3b(i) · Apr/May-19 Q5a(i)</td><td>Producer–consumer / bounded buffer with semaphores.</td><td>→ <a href="#sync-t3-7">§2.13</a></td></tr>
-    <tr><td class="mono">Apr-23 A Q6a · B Q5b · Nov/Dec-19 Q3b · Apr/May-19 Q5a(ii)</td><td>Readers–writers with semaphores.</td><td>→ <a href="#sync-t3-8">§2.14</a></td></tr>
-    <tr><td class="mono">Mar-21 Q3b · Nov/Dec-19 Q4b · Oct-20 Q3b(ii) · Apr/May-19 Q6b</td><td>Dining philosophers: describe; deadlock-free (and starvation-free) solution.</td><td>→ <a href="#sync-t3-9">§2.15</a></td></tr>
-    <tr><td class="mono">Apr-23 A Q5b</td><td>Dining philosophers using monitors.</td><td>→ <a href="#sync-t3-9">§2.15</a> (monitors are a retained extra)</td></tr>
-    <tr><td class="mono">Oct-20 Q4b</td><td>Process scheduling in the Linux operating system.</td><td>Not in the current syllabus</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">SEE 2025 Q2b, 8M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Three processes alternate 20 ms CPU / 80 ms I/O: long-run CPU utilization under FCFS and RR (q=10).</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-util">§2.2</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr/May-19 Q3a</td><td role="cell" data-label="Question">Define CPU scheduling and the circumstances under which scheduling decisions take place.</td><td role="cell" data-label="Answered at">→ <a href="#t2-5">§2.1</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Mar-21 Q1.4</td><td role="cell" data-label="Question">Time taken by the dispatcher to stop one process and start another is the ____.</td><td role="cell" data-label="Answered at">→ <a href="#t2-5">§2.1</a> (dispatch latency)</td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 B Q1.2 · Nov/Dec-19 Q1.7 · Apr/May-19 Q1.4</td><td role="cell" data-label="Question">Disadvantage of SJF / priority; starvation and aging; convoy effect and its consequence.</td><td role="cell" data-label="Answered at">→ <a href="#t2-7">§2.3</a>, <a href="#t2-8">§2.4</a>, <a href="#t2-9">§2.6</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Oct-20 Q3a, 6M</td><td role="cell" data-label="Question">Compare FCFS, SJF, priority and RR on performance and complexity.</td><td role="cell" data-label="Answered at">→ <a href="#t2-6">§2.2</a>–<a href="#t2-9">§2.6</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q1.9 · Oct-20 Q1.6</td><td role="cell" data-label="Question">LRTF, bursts 2, 4, 8 at t=0: average turnaround time.</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-10c">§2.4</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Mar-21 Q4a, 6M</td><td role="cell" data-label="Question">Arrivals 0.0, 0.4, 1.0; bursts 8, 4, 1: FCFS average TAT; preemptive SJF AWT and ATAT.</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-10b">§2.4</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Nov/Dec-19 Q4a, 5M</td><td role="cell" data-label="Question">Preemptive priority, with preemptive SJF only between equal priorities: average TAT.</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-16b">§2.6</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Nov/Dec-19 Q1.5</td><td role="cell" data-label="Question">RR q=1, A=4, B=1, C=8, D=1: completion time of A.</td><td role="cell" data-label="Answered at">→ <a href="#cie2-gate-shorts">Solved examples</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr/May-19 Q1.5</td><td role="cell" data-label="Question">RR (q=4) Gantt chart for bursts 24, 3, 3.</td><td role="cell" data-label="Answered at">→ <a href="#t2-10">§2.5</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Nov/Dec-19 Q3a, 10M</td><td role="cell" data-label="Question">Flagship 5-process set: preemptive SJF, preemptive priority and RR (q=4, all arrivals 0) — averages.</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-16">§2.6</a>, <a href="#see-flagship-rr4">RR q=4</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Oct-20 Q4a, 10M · Apr-23 A Q3a, 10M</td><td role="cell" data-label="Question">P1(0,7,3)…P5(5,3,3): SRTF / SJF, preemptive priority, RR (q=2 or q=1); WT, TAT, RT; when the ready queue is fullest.</td><td role="cell" data-label="Answered at">→ <a href="#cie2-combined">Solved examples</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 B Q4a, 10M</td><td role="cell" data-label="Question">P1(0,10,3)…P5(5,12,2): preemptive SJF, priority, RR q=1 — averages and context switches.</td><td role="cell" data-label="Answered at">→ <a href="#see-apr23-b4a">Solved examples</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Mar-21 Q3a, 10M · Apr/May-19 Q3b</td><td role="cell" data-label="Question">All arrive at 0: FCFS, SJF, non-preemptive priority, RR q=1; SJF and priority for bursts 6, 8, 7, 3.</td><td role="cell" data-label="Answered at">→ <a href="#see-all-zero">Solved examples</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 B Q3a · Apr-23 A Q4b · Apr/May-19 Q4a</td><td role="cell" data-label="Question">Four processes, two arriving at t=3: FCFS vs preemptive SJF.</td><td role="cell" data-label="Answered at">→ <a href="#see-four-proc">Solved examples</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q1.2 · B Q1.3 · Mar-21 Q1.5</td><td role="cell" data-label="Question">Define race condition (with example); techniques to avoid it.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-1">§2.8</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q5a · B Q5a · Apr/May-19 Q3c</td><td role="cell" data-label="Question">Critical-section problem: general structure and the three requirements.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-2">§2.9</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Mar-21 Q4b</td><td role="cell" data-label="Question">Explain Peterson's solution.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-3">§2.10</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q6b · B Q6b</td><td role="cell" data-label="Question">TestAndSet and Swap pseudo-code; prove the critical-section conditions.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-4">§2.11</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr/May-19 Q1.6</td><td role="cell" data-label="Question">Advantage of semaphores over hardware-based solutions.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-6">§2.12</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Mar-21 Q1.6</td><td role="cell" data-label="Question">Drawbacks of semaphores.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-6">§2.12</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q1.4</td><td role="cell" data-label="Question">Counting semaphore = 8; 6 P and 4 V operations: final value (8 − 6 + 4 = 6).</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-24">§2.12</a> (same method)</td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Nov/Dec-19 Q1.10</td><td role="cell" data-label="Question">Semaphore initial 2; P1, P2, P3 request the critical section in turn.</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-23">§2.12</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Nov/Dec-19 Q1.2</td><td role="cell" data-label="Question">Sx, Sy protecting X and Y: complete entry/exit sections without deadlock.</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-26b">§2.12</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Oct-20 Q1.7</td><td role="cell" data-label="Question">Show how improper use of semaphores leads to deadlock.</td><td role="cell" data-label="Answered at">→ <a href="#u2-example-27">S/Q example</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 B Q6a · Oct-20 Q3b(i) · Apr/May-19 Q5a(i)</td><td role="cell" data-label="Question">Producer–consumer / bounded buffer with semaphores.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-7">§2.13</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q6a · B Q5b · Nov/Dec-19 Q3b · Apr/May-19 Q5a(ii)</td><td role="cell" data-label="Question">Readers–writers with semaphores.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-8">§2.14</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Mar-21 Q3b · Nov/Dec-19 Q4b · Oct-20 Q3b(ii) · Apr/May-19 Q6b</td><td role="cell" data-label="Question">Dining philosophers: describe; deadlock-free (and starvation-free) solution.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-9">§2.15</a></td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q5b</td><td role="cell" data-label="Question">Dining philosophers using monitors.</td><td role="cell" data-label="Answered at">→ <a href="#sync-t3-9">§2.15</a> (monitors are a retained extra)</td></tr>
+    <tr role="row"><td class="mono" role="cell" data-label="Source">Oct-20 Q4b</td><td role="cell" data-label="Question">Process scheduling in the Linux operating system.</td><td role="cell" data-label="Answered at">Not in the current syllabus</td></tr>
   </table>
+</div>
 
 <a class="backtotop" href="#index">↑ Back to index</a>
 </section>

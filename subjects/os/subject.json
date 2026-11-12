@@ -14,24 +14,33 @@
       "source": "Operating Systems - Unit 1 - Exam Notes.html",
       "title": "OS Foundations, Processes & Threads",
       "topics": "OS services, system calls, OS structures, iOS and Android, processes, IPC, threads, multicore programming, Pthreads",
-      "updated": "2026-11-11"
+      "updated": "2026-11-12"
     },
     {
       "n": 2,
       "source": "Operating Systems - Unit 2 - Exam Notes.html",
       "title": "CPU Scheduling & Synchronization",
       "topics": "FCFS, SJF, SRTF, round robin, priority scheduling, real-time scheduling, Peterson's solution, synchronization hardware, semaphores, classic synchronization problems",
-      "updated": "2026-11-11"
+      "updated": "2026-11-12"
     },
     {
       "n": 3,
       "source": "Operating Systems - Unit 3 - Exam Notes.html",
       "title": "Main Memory Management",
       "topics": "Address binding, base and limit registers, logical and physical addresses, dynamic loading, shared libraries, swapping, contiguous allocation, first/best/worst fit, fragmentation, paging, TLBs, hierarchical, hashed and inverted page tables, segmentation",
-      "updated": "2026-11-11"
+      "updated": "2026-11-12"
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-12",
+      "units": [
+        1,
+        2,
+        3
+      ],
+      "text": "Tables wrap naturally on desktop; text comparisons and question indexes use labelled rows on phones, with scrolling reserved for wide numerical tables."
+    },
     {
       "date": "2026-11-11",
       "units": [

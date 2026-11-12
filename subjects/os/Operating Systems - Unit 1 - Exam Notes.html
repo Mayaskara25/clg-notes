@@ -170,6 +170,33 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 :root[data-theme="dark"] svg :is(rect,circle,ellipse,polygon)[fill="#93316B" i]{fill:var(--diagram-plum)}
 :root[data-theme="dark"] svg text[fill="#A66A0D" i]{fill:var(--amber)}
 :root[data-theme="dark"] svg :is(rect,circle,ellipse,polygon)[fill="#A66A0D" i]{fill:var(--diagram-amber)}
+/* Keep words intact; wide tables scroll without widening the page. */
+.table-scroll{max-width:100%;min-width:0;overflow-x:auto;margin:18px 0;border-radius:8px;box-shadow:var(--shadow)}
+.table-scroll:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.table-scroll>table,.section .table-scroll>table{display:table;max-width:none;margin:0;box-shadow:none}
+.table-scroll th,.table-scroll td,.table-scroll p,.table-scroll li{overflow-wrap:normal;word-break:normal;hyphens:none}
+.table-scroll th{vertical-align:top}
+.binding-times th:first-child,.binding-times td:first-child{width:9rem;min-width:7rem}
+.table-scroll td.mono[style*="white-space:nowrap"]{white-space:normal!important}
+@media screen and (max-width:1000px){.sidebar{display:none}}
+@media screen and (max-width:640px){
+ .cover{padding:48px 20px}.cover h1{font-size:35px}
+ .table-scroll th,.table-scroll td{padding:8px}
+ /* Prose reads vertically on phones; numerical tables keep their grid. */
+ .table-scroll>.table-prose,.section .table-scroll>.table-prose{display:block;width:100%}
+ .table-prose>tbody{display:block}
+ .table-prose>tbody>tr{display:block;padding:10px 0;border-bottom:1px solid var(--line)}
+ .table-prose>tbody>tr:last-child{border-bottom:0}
+ .table-prose>tbody>tr:first-child{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ .table-prose>tbody>tr>td{display:block;width:auto;min-width:0;padding:6px 12px;border:0}
+ .table-prose>tbody>tr>td::before{content:attr(data-label);display:block;margin-bottom:3px;color:var(--ink-soft);font:600 11px/1.5 'Inter',system-ui,sans-serif;letter-spacing:.03em;text-transform:uppercase}
+}
+@media print{
+ .table-scroll{overflow:visible;box-shadow:none}
+ .table-scroll>table{min-width:0;width:100%;table-layout:auto;font-size:10px}
+ .table-scroll th,.table-scroll td{padding:6px}
+ .binding-times th:first-child,.binding-times td:first-child,.binding-times th:nth-child(2){width:auto}
+}
 </style>
 
 <meta name="color-scheme" content="light dark"><script>(function(){var m=false;try{m=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</script>
@@ -196,7 +223,9 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 <!--SYLLABUS_START-->
 <section class="page section" id="syllabus-map" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
 <div class="section-head"><span class="tag">MAP</span><h1>New Syllabus Map</h1></div>
-<p class="section-sub">Master checklist: syllabus.png · CS235AT · 9 teaching hours. Only the named new-syllabus topics are listed in this table.</p><table><tr><th>Official syllabus topic</th><th>Study here</th><th>Reference book</th></tr><tr><td>Operating system services</td><td><a href="#os-services">OS services</a></td><td>§2.1</td></tr><tr><td>System calls</td><td><a href="#system-calls">System calls and categories</a></td><td>§§2.3–2.4</td></tr><tr><td>Operating system structure</td><td><a href="#os-structure-design">OS design structures</a></td><td>§2.7</td></tr><tr><td>iOS architecture</td><td><a href="#os-structure-design">Mobile OS architecture</a></td><td>§2.7.5.2</td></tr><tr><td>Android architecture</td><td><a href="#os-structure-design">Version-labelled Android stack</a></td><td>§2.7.5.3 + AOSP</td></tr><tr><td>Process concept</td><td><a href="#process-concept">Processes, states and PCB</a></td><td>§3.1</td></tr><tr><td>Process scheduling</td><td><a href="#process-scheduling">Scheduling queues and schedulers</a></td><td>§3.2</td></tr><tr><td>Operations on processes</td><td><a href="#process-operations">Creation, fork/exec/wait, termination</a></td><td>§3.3</td></tr><tr><td>Inter-process communication</td><td><a href="#process-ipc">Shared memory and message passing</a></td><td>§3.4</td></tr><tr><td>Threads: overview</td><td><a href="#threads">Thread anatomy and benefits</a></td><td>§4.1</td></tr><tr><td>Multithreading models</td><td><a href="#threads">User/kernel mappings</a></td><td>§4.3</td></tr><tr><td>Multi-core programming</td><td><a href="#threads">Concurrency, parallelism and challenges</a></td><td>§4.2</td></tr><tr><td>Pthreads</td><td><a href="#threads">POSIX API and worked C programs</a></td><td>§4.4.1</td></tr></table><div class="callout clarify"><span class="label">How the sources combine</span><p>The new syllabus controls scope. Matching teaching content is reused from the existing HTML and course PDFs, with textbook clarifications from the local Silberschatz<cite class="src" data-src="B1"></cite> ninth edition. Required explanations stay open. Older extras remain in their original positions, collapsed behind View/Hide buttons. A topic reassigned to another unit is labelled with its new home, rather than called absent from the whole syllabus.</p><p>References to missing original decks/question papers are historical provenance from the retained notes; the available transcripts and textbook were used for this revision.</p></div><p>The short OS-definition section is a prerequisite. Detailed computer organisation, computing environments and other older foundation topics remain available in place. Amdahl calculations are supplementary depth within multicore programming.</p>
+<p class="section-sub">Master checklist: syllabus.png · CS235AT · 9 teaching hours. Only the named new-syllabus topics are listed in this table.</p><div class="table-scroll" role="region" tabindex="0" aria-label="Official syllabus topic / Study here / Reference book">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Official syllabus topic</th><th role="columnheader" scope="col">Study here</th><th role="columnheader" scope="col">Reference book</th></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Operating system services</td><td role="cell" data-label="Study here"><a href="#os-services">OS services</a></td><td role="cell" data-label="Reference book">§2.1</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">System calls</td><td role="cell" data-label="Study here"><a href="#system-calls">System calls and categories</a></td><td role="cell" data-label="Reference book">§§2.3–2.4</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Operating system structure</td><td role="cell" data-label="Study here"><a href="#os-structure-design">OS design structures</a></td><td role="cell" data-label="Reference book">§2.7</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">iOS architecture</td><td role="cell" data-label="Study here"><a href="#os-structure-design">Mobile OS architecture</a></td><td role="cell" data-label="Reference book">§2.7.5.2</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Android architecture</td><td role="cell" data-label="Study here"><a href="#os-structure-design">Version-labelled Android stack</a></td><td role="cell" data-label="Reference book">§2.7.5.3 + AOSP</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Process concept</td><td role="cell" data-label="Study here"><a href="#process-concept">Processes, states and PCB</a></td><td role="cell" data-label="Reference book">§3.1</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Process scheduling</td><td role="cell" data-label="Study here"><a href="#process-scheduling">Scheduling queues and schedulers</a></td><td role="cell" data-label="Reference book">§3.2</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Operations on processes</td><td role="cell" data-label="Study here"><a href="#process-operations">Creation, fork/exec/wait, termination</a></td><td role="cell" data-label="Reference book">§3.3</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Inter-process communication</td><td role="cell" data-label="Study here"><a href="#process-ipc">Shared memory and message passing</a></td><td role="cell" data-label="Reference book">§3.4</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Threads: overview</td><td role="cell" data-label="Study here"><a href="#threads">Thread anatomy and benefits</a></td><td role="cell" data-label="Reference book">§4.1</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Multithreading models</td><td role="cell" data-label="Study here"><a href="#threads">User/kernel mappings</a></td><td role="cell" data-label="Reference book">§4.3</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Multi-core programming</td><td role="cell" data-label="Study here"><a href="#threads">Concurrency, parallelism and challenges</a></td><td role="cell" data-label="Reference book">§4.2</td></tr><tr role="row"><td role="cell" data-label="Official syllabus topic">Pthreads</td><td role="cell" data-label="Study here"><a href="#threads">POSIX API and worked C programs</a></td><td role="cell" data-label="Reference book">§4.4.1</td></tr></table>
+</div><div class="callout clarify"><span class="label">How the sources combine</span><p>The new syllabus controls scope. Matching teaching content is reused from the existing HTML and course PDFs, with textbook clarifications from the local Silberschatz<cite class="src" data-src="B1"></cite> ninth edition. Required explanations stay open. Older extras remain in their original positions, collapsed behind View/Hide buttons. A topic reassigned to another unit is labelled with its new home, rather than called absent from the whole syllabus.</p><p>References to missing original decks/question papers are historical provenance from the retained notes; the available transcripts and textbook were used for this revision.</p></div><p>The short OS-definition section is a prerequisite. Detailed computer organisation, computing environments and other older foundation topics remain available in place. Amdahl calculations are supplementary depth within multicore programming.</p>
 <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <!--SYLLABUS_END-->
@@ -555,12 +584,14 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 
 
   <h2>Multiprogramming vs. multitasking vs. multiprocessor <span class="pill lp">low priority</span></h2>
-  <table>
-    <tr><th></th><th>Multiprogramming</th><th>Multitasking (time-sharing)</th><th>Multiprocessor</th></tr>
-    <tr><td><strong>Idea</strong></td><td>Several jobs kept in memory; CPU switches when the current job waits (e.g. for I/O)</td><td>CPU switches between jobs very frequently, even if they are not waiting</td><td>Two or more CPUs in one system, executing programs truly in parallel</td></tr>
-    <tr><td><strong>Goal</strong></td><td>Efficiency — keep the CPU busy</td><td>Responsiveness — interactive feel (&lt; 1 s)</td><td>Throughput, reliability</td></tr>
-    <tr><td><strong>Example</strong></td><td>Old batch systems</td><td>Typing in a word processor while music plays and a download runs</td><td>A multicore PC or server</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label=" / Multiprogramming / Multitasking (time-sharing)">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col"></th><th role="columnheader" scope="col">Multiprogramming</th><th role="columnheader" scope="col">Multitasking (time-sharing)</th><th role="columnheader" scope="col">Multiprocessor</th></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Idea</strong></td><td role="cell" data-label="Multiprogramming">Several jobs kept in memory; CPU switches when the current job waits (e.g. for I/O)</td><td role="cell" data-label="Multitasking (time-sharing)">CPU switches between jobs very frequently, even if they are not waiting</td><td role="cell" data-label="Multiprocessor">Two or more CPUs in one system, executing programs truly in parallel</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Goal</strong></td><td role="cell" data-label="Multiprogramming">Efficiency — keep the CPU busy</td><td role="cell" data-label="Multitasking (time-sharing)">Responsiveness — interactive feel (&lt; 1 s)</td><td role="cell" data-label="Multiprocessor">Throughput, reliability</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Example</strong></td><td role="cell" data-label="Multiprogramming">Old batch systems</td><td role="cell" data-label="Multitasking (time-sharing)">Typing in a word processor while music plays and a download runs</td><td role="cell" data-label="Multiprocessor">A multicore PC or server</td></tr>
   </table>
+</div>
   <p>Further mechanisms that make this work: <strong>job scheduling</strong> picks which jobs from the job pool are brought into memory; <strong>CPU scheduling</strong> chooses among several ready jobs; <strong>swapping</strong> moves processes in and out of memory when they do not all fit; and <strong>virtual memory</strong> allows a process to execute without being completely in memory.</p>
 
   <a class="backtotop" href="#index">&uarr; Back to index</a>
@@ -701,10 +732,12 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
   <p>A GUI offers a more user-friendly, mouse/keyboard/monitor-driven <strong>desktop</strong> metaphor interface, invented at Xerox PARC. <strong>Icons</strong> represent files, programs and actions; clicking different mouse buttons over these icons triggers different actions — providing information, offering options, executing a function, or opening a directory (a <strong>folder</strong>).</p>
   <p>Many modern systems provide both: Microsoft Windows is GUI-based but ships a CLI "command" shell; Apple's macOS is a GUI ("Aqua") built on a UNIX kernel with shells available underneath; UNIX and Linux are CLI-based by default but commonly run optional GUI environments (CDE, KDE, GNOME) on top.</p>
 
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="CLI / GUI">
+<table>
     <tr><th>CLI</th><th>GUI</th></tr>
     <tr><td>Text commands typed by the user, low resource overhead, fast for experienced users, easy to script/automate</td><td>Point-and-click, icon-driven, more approachable for new users, heavier resource footprint</td></tr>
   </table>
+</div>
 
   <h2>System programs <span class="pill lp">low priority</span></h2>
   <p><strong>System programs</strong> (system utilities) provide a convenient environment for program development and execution; they are a collection of programs other than the OS itself, and for most users the system programs — not the system calls underneath — <em>are</em> the operating system. They fall into categories:</p>
@@ -750,7 +783,8 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
     <div class="cap">Fig 7. The six categories of system call, all reached through the same trap mechanism.</div>
   </div>
 
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Category / Typical operations">
+<table>
     <tr><th>Category</th><th>Typical operations</th></tr>
     <tr><td><strong>Process control</strong></td><td>end, abort; load, execute; create process, terminate process; get/set process attributes; wait for time; wait event, signal event; allocate and free memory</td></tr>
     <tr><td><strong>File management</strong></td><td>create file, delete file; open, close; read, write, reposition; get/set file attributes</td></tr>
@@ -759,20 +793,23 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
     <tr><td><strong>Communication</strong></td><td>create/delete communication connection; send, receive messages; transfer status information; attach or detach remote devices</td></tr>
     <tr><td><strong>Protection</strong></td><td>set/get permission; allow/deny user access to resources such as files and disks</td></tr>
   </table>
+</div>
 
   <h3>Two models of communication</h3>
   <p>Under the <strong>message-passing model</strong>, communicating processes exchange messages with one another, either directly or indirectly through a common mailbox — a connection must be opened, the other communicator identified (via <code>get hostid()</code>/<code>get processid()</code>), and the recipient must usually grant permission via <code>accept connection()</code>; the source of the communication is the <strong>client</strong>, the receiving daemon the <strong>server</strong>. Messages are then exchanged with <code>read message()</code>/<code>write message()</code>, and <code>close connection()</code> ends the exchange. Under the <strong>shared-memory model</strong>, processes use <code>shared memory create()</code> and <code>shared memory attach()</code> to create and gain access to a region of memory owned by another process — normally the OS prevents one process from touching another's memory, so both processes must explicitly agree to remove this restriction, after which they read/write the shared region directly (and are themselves responsible for not writing to it simultaneously).</p>
 
   <h3>Windows vs. UNIX — example system calls</h3>
-  <table>
-    <tr><th>Category</th><th>Windows</th><th>Unix</th></tr>
-    <tr><td>Process control</td><td><code>CreateProcess()</code>, <code>ExitProcess()</code>, <code>WaitForSingleObject()</code></td><td><code>fork()</code>, <code>exit()</code>, <code>wait()</code></td></tr>
-    <tr><td>File manipulation</td><td><code>CreateFile()</code>, <code>ReadFile()</code>, <code>WriteFile()</code>, <code>CloseHandle()</code></td><td><code>open()</code>, <code>read()</code>, <code>write()</code>, <code>close()</code></td></tr>
-    <tr><td>Device manipulation</td><td><code>SetConsoleMode()</code>, <code>ReadConsole()</code>, <code>WriteConsole()</code></td><td><code>ioctl()</code>, <code>read()</code>, <code>write()</code></td></tr>
-    <tr><td>Information maintenance</td><td><code>GetCurrentProcessID()</code>, <code>SetTimer()</code>, <code>Sleep()</code></td><td><code>getpid()</code>, <code>alarm()</code>, <code>sleep()</code></td></tr>
-    <tr><td>Communication</td><td><code>CreatePipe()</code>, <code>CreateFileMapping()</code>, <code>MapViewOfFile()</code></td><td><code>pipe()</code>, <code>shm_open()</code>, <code>mmap()</code></td></tr>
-    <tr><td>Protection</td><td><code>SetFileSecurity()</code>, <code>InitializeSecurityDescriptor()</code></td><td><code>chmod()</code>, <code>umask()</code>, <code>chown()</code></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Category / Windows / Unix">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Category</th><th role="columnheader" scope="col">Windows</th><th role="columnheader" scope="col">Unix</th></tr>
+    <tr role="row"><td role="cell" data-label="Category">Process control</td><td role="cell" data-label="Windows"><code>CreateProcess()</code>, <code>ExitProcess()</code>, <code>WaitForSingleObject()</code></td><td role="cell" data-label="Unix"><code>fork()</code>, <code>exit()</code>, <code>wait()</code></td></tr>
+    <tr role="row"><td role="cell" data-label="Category">File manipulation</td><td role="cell" data-label="Windows"><code>CreateFile()</code>, <code>ReadFile()</code>, <code>WriteFile()</code>, <code>CloseHandle()</code></td><td role="cell" data-label="Unix"><code>open()</code>, <code>read()</code>, <code>write()</code>, <code>close()</code></td></tr>
+    <tr role="row"><td role="cell" data-label="Category">Device manipulation</td><td role="cell" data-label="Windows"><code>SetConsoleMode()</code>, <code>ReadConsole()</code>, <code>WriteConsole()</code></td><td role="cell" data-label="Unix"><code>ioctl()</code>, <code>read()</code>, <code>write()</code></td></tr>
+    <tr role="row"><td role="cell" data-label="Category">Information maintenance</td><td role="cell" data-label="Windows"><code>GetCurrentProcessID()</code>, <code>SetTimer()</code>, <code>Sleep()</code></td><td role="cell" data-label="Unix"><code>getpid()</code>, <code>alarm()</code>, <code>sleep()</code></td></tr>
+    <tr role="row"><td role="cell" data-label="Category">Communication</td><td role="cell" data-label="Windows"><code>CreatePipe()</code>, <code>CreateFileMapping()</code>, <code>MapViewOfFile()</code></td><td role="cell" data-label="Unix"><code>pipe()</code>, <code>shm_open()</code>, <code>mmap()</code></td></tr>
+    <tr role="row"><td role="cell" data-label="Category">Protection</td><td role="cell" data-label="Windows"><code>SetFileSecurity()</code>, <code>InitializeSecurityDescriptor()</code></td><td role="cell" data-label="Unix"><code>chmod()</code>, <code>umask()</code>, <code>chown()</code></td></tr>
   </table>
+</div>
 
   <h3>An everyday example: printf() → write()</h3>
   <p>A C program that calls <code>printf("Greetings")</code> never issues a system call directly — the standard C library intercepts the call in user mode and invokes the necessary system call (here, <code>write()</code>) on the program's behalf, then reports a library-level character count or error to the caller. This is exactly why most of the operating-system interface is hidden from the programmer: the caller only needs to obey the API, not know how the system call is implemented.</p>
@@ -813,13 +850,15 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
   </ul>
 
   <h2>Layered vs. modular kernel — trade-offs</h2>
-  <table>
-    <tr><th></th><th>Layered approach</th><th>Modular approach (loadable modules)</th></tr>
-    <tr><td><strong>Structure</strong></td><td>Strict stack of layers; layer <em>n</em> uses only layers below it</td><td>Small core kernel + dynamically loadable modules, each with a clear interface</td></tr>
-    <tr><td><strong>Module/layer communication</strong></td><td>Only with adjacent lower layers; requests pass through every layer</td><td>Any module can call any other directly — no intermediate layers</td></tr>
-    <tr><td><strong>Strength</strong></td><td>Simple construction and debugging; each layer verified in turn</td><td>Flexible and extensible; modules loaded when needed; kernel stays small (Solaris, Linux, macOS)</td></tr>
-    <tr><td><strong>Weakness</strong></td><td>Hard to define layers well; less efficient because each call traverses many layers</td><td>Less strict structure than layers; a faulty module runs in kernel mode</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label=" / Layered approach / Modular approach (loadable modules)">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col"></th><th role="columnheader" scope="col">Layered approach</th><th role="columnheader" scope="col">Modular approach (loadable modules)</th></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Structure</strong></td><td role="cell" data-label="Layered approach">Strict stack of layers; layer <em>n</em> uses only layers below it</td><td role="cell" data-label="Modular approach (loadable modules)">Small core kernel + dynamically loadable modules, each with a clear interface</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Module/layer communication</strong></td><td role="cell" data-label="Layered approach">Only with adjacent lower layers; requests pass through every layer</td><td role="cell" data-label="Modular approach (loadable modules)">Any module can call any other directly — no intermediate layers</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Strength</strong></td><td role="cell" data-label="Layered approach">Simple construction and debugging; each layer verified in turn</td><td role="cell" data-label="Modular approach (loadable modules)">Flexible and extensible; modules loaded when needed; kernel stays small (Solaris, Linux, macOS)</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Weakness</strong></td><td role="cell" data-label="Layered approach">Hard to define layers well; less efficient because each call traverses many layers</td><td role="cell" data-label="Modular approach (loadable modules)">Less strict structure than layers; a faulty module runs in kernel mode</td></tr>
   </table>
+</div>
   <p>The <strong>microkernel</strong>'s principal disadvantage is the performance overhead of user-space to kernel-space communication; its benefit is that adding a new service only means adding a user-level system program, not rebuilding the kernel. <strong>Mach</strong> is a well-known early microkernel and now forms a major component of macOS.</p>
 
   <h2>Architecture of mobile operating systems: iOS and Android</h2>
@@ -876,14 +915,16 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
     <div class="cap">Fig 7b. Layers of iOS and Android, application framework at the top, kernel at the bottom.</div>
   </div>
 
-  <table>
-    <tr><th></th><th>iOS</th><th>Android</th></tr>
-    <tr><td><strong>Owner / source</strong></td><td>Apple; closed source</td><td>Google / Open Handset Alliance; open source</td></tr>
-    <tr><td><strong>Kernel</strong></td><td>Darwin (Mach + BSD)</td><td>Modified Linux</td></tr>
-    <tr><td><strong>App languages</strong></td><td>Objective-C, Swift</td><td>Java, Kotlin</td></tr>
-    <tr><td><strong>Execution of apps</strong></td><td>Native ARM code</td><td>Bytecode run by ART (Dalvik in older versions)</td></tr>
-    <tr><td><strong>Runs on</strong></td><td>Apple devices only</td><td>Many vendors' devices (hence the HAL)</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label=" / iOS / Android">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col"></th><th role="columnheader" scope="col">iOS</th><th role="columnheader" scope="col">Android</th></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Owner / source</strong></td><td role="cell" data-label="iOS">Apple; closed source</td><td role="cell" data-label="Android">Google / Open Handset Alliance; open source</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Kernel</strong></td><td role="cell" data-label="iOS">Darwin (Mach + BSD)</td><td role="cell" data-label="Android">Modified Linux</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>App languages</strong></td><td role="cell" data-label="iOS">Objective-C, Swift</td><td role="cell" data-label="Android">Java, Kotlin</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Execution of apps</strong></td><td role="cell" data-label="iOS">Native ARM code</td><td role="cell" data-label="Android">Bytecode run by ART (Dalvik in older versions)</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Runs on</strong></td><td role="cell" data-label="iOS">Apple devices only</td><td role="cell" data-label="Android">Many vendors' devices (hence the HAL)</td></tr>
   </table>
+</div>
 
   <div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h2>OS design and implementation</h2><span class="scope-note">Present in older notes; not listed in the new syllabus</span></div>
@@ -994,10 +1035,12 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 
   <h2>Context switch</h2>
   <p>When the CPU switches from one process to another, the system must save the state of the old process (into its PCB) and load the saved state of the new process — this is a <strong>context switch</strong>. Context-switch time is pure overhead, since the system does no useful work while switching; its duration depends on memory speed, the number of registers that must be copied, and the availability of special hardware instructions for the purpose.</p>
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Advantages / Costs">
+<table>
     <tr><th>Advantages</th><th>Costs</th></tr>
     <tr><td>Efficient CPU utilization (multiple processes share the CPU); enables multitasking; improves responsiveness, especially for high-priority processes; fair CPU-time allocation</td><td>Pure overhead (saving/loading state consumes cycles that do no useful work); increased latency, especially harmful in real-time systems; cache misses after the switch; added kernel complexity</td></tr>
   </table>
+</div>
 
   <h2>A brief word on threads</h2>
   <p>When a process runs a single-threaded program, one thread of instructions executes at a time, letting the process do only one thing at once. Most modern operating systems extend the process concept so a process can have <strong>multiple threads of execution</strong>, letting it perform more than one task at a time — especially valuable on multicore systems, where separate threads can run in true parallel on separate cores. The key contrast to state in an exam answer: a <strong>process</strong> is an independent unit with its own private address space (text/data/heap/stack) and its own PCB, and inter-process communication requires explicit OS mechanisms (shared memory or message passing, §1.2); a <strong>thread</strong> is a single path of execution <em>within</em> a process — threads of the same process share that process's code, data and open files by default, each needing only its own program counter, register set and stack. (The full treatment — benefits, multithreading models, multicore programming and Pthreads — is in <a href="#threads">1.8 Threads</a>.)</p>
@@ -1022,13 +1065,15 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
 </div>
     <div class="ans-label">Answer</div>
     <p>Draw the process memory layout from Fig 8 (text at the bottom, then data, then heap growing upward, then stack growing downward from the top), then classify each variable by its storage duration and scope:</p>
-    <table>
-      <tr><th>Declaration style</th><th>Memory region</th><th>Why</th></tr>
-      <tr><td><code>int global_var;</code> (outside any function, no initializer, or initialized)</td><td><strong>Data section</strong></td><td>Global variables have a fixed address for the program's whole lifetime — they belong in the data section, not the stack or heap.</td></tr>
-      <tr><td><code>static int counter;</code> (inside or outside a function)</td><td><strong>Data section</strong></td><td><code>static</code> gives a variable the same fixed-address, whole-program lifetime as a global, regardless of where it's declared — the data section is exactly for variables like this.</td></tr>
-      <tr><td><code>int local_var;</code> (declared inside a function, not static)</td><td><strong>Stack</strong></td><td>Local (automatic) variables, function parameters, and return addresses live in the stack frame of the currently executing function, and are reclaimed when that function returns.</td></tr>
-      <tr><td><code>int *p = malloc(sizeof(int));</code></td><td><strong>Heap</strong></td><td>Memory obtained dynamically at run time (via <code>malloc</code>/<code>free</code>) is, by definition, heap memory — it persists until explicitly freed, independent of any function's stack frame.</td></tr>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Declaration style / Memory region / Why">
+<table class="table-prose" role="table">
+      <tr role="row"><th role="columnheader" scope="col">Declaration style</th><th role="columnheader" scope="col">Memory region</th><th role="columnheader" scope="col">Why</th></tr>
+      <tr role="row"><td role="cell" data-label="Declaration style"><code>int global_var;</code> (outside any function, no initializer, or initialized)</td><td role="cell" data-label="Memory region"><strong>Data section</strong></td><td role="cell" data-label="Why">Global variables have a fixed address for the program's whole lifetime — they belong in the data section, not the stack or heap.</td></tr>
+      <tr role="row"><td role="cell" data-label="Declaration style"><code>static int counter;</code> (inside or outside a function)</td><td role="cell" data-label="Memory region"><strong>Data section</strong></td><td role="cell" data-label="Why"><code>static</code> gives a variable the same fixed-address, whole-program lifetime as a global, regardless of where it's declared — the data section is exactly for variables like this.</td></tr>
+      <tr role="row"><td role="cell" data-label="Declaration style"><code>int local_var;</code> (declared inside a function, not static)</td><td role="cell" data-label="Memory region"><strong>Stack</strong></td><td role="cell" data-label="Why">Local (automatic) variables, function parameters, and return addresses live in the stack frame of the currently executing function, and are reclaimed when that function returns.</td></tr>
+      <tr role="row"><td role="cell" data-label="Declaration style"><code>int *p = malloc(sizeof(int));</code></td><td role="cell" data-label="Memory region"><strong>Heap</strong></td><td role="cell" data-label="Why">Memory obtained dynamically at run time (via <code>malloc</code>/<code>free</code>) is, by definition, heap memory — it persists until explicitly freed, independent of any function's stack frame.</td></tr>
     </table>
+</div>
     <p style="margin-top:10px;font-size:13.5px;color:var(--ink-soft)">The general rule an exam answer should state explicitly: <strong>text</strong> = compiled instructions, <strong>data</strong> = global/static variables (fixed address, whole-program lifetime), <strong>heap</strong> = dynamically allocated memory (grows upward, lifetime controlled by the programmer), <strong>stack</strong> = function-call machinery — parameters, return addresses, local variables (grows downward, lifetime = one function call).</p>
   </div>
 
@@ -1097,13 +1142,15 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{tra
     <div class="cap">Fig 12. The medium-term scheduler swaps processes out to disk and back to control the degree of multiprogramming.</div>
   </div>
 
-  <table>
-    <tr><th></th><th>Long-Term Scheduler</th><th>Short-Term Scheduler</th><th>Medium-Term Scheduler</th></tr>
-    <tr><td>Also called</td><td>Job scheduler</td><td>CPU scheduler</td><td>Process-swapping scheduler</td></tr>
-    <tr><td>Selects from</td><td>The job pool (disk)</td><td>The ready queue</td><td>Running or waiting/suspended processes</td></tr>
-    <tr><td>Frequency</td><td>Infrequent (seconds–minutes) — can be slow</td><td>Very frequent (milliseconds) — must be fast</td><td>In between the other two</td></tr>
-    <tr><td>Controls</td><td>Degree of multiprogramming</td><td>Which ready process runs next</td><td>Reduces degree of multiprogramming via swapping</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label=" / Long-Term Scheduler / Short-Term Scheduler">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col"></th><th role="columnheader" scope="col">Long-Term Scheduler</th><th role="columnheader" scope="col">Short-Term Scheduler</th><th role="columnheader" scope="col">Medium-Term Scheduler</th></tr>
+    <tr role="row"><td role="cell" data-label="Feature">Also called</td><td role="cell" data-label="Long-Term Scheduler">Job scheduler</td><td role="cell" data-label="Short-Term Scheduler">CPU scheduler</td><td role="cell" data-label="Medium-Term Scheduler">Process-swapping scheduler</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature">Selects from</td><td role="cell" data-label="Long-Term Scheduler">The job pool (disk)</td><td role="cell" data-label="Short-Term Scheduler">The ready queue</td><td role="cell" data-label="Medium-Term Scheduler">Running or waiting/suspended processes</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature">Frequency</td><td role="cell" data-label="Long-Term Scheduler">Infrequent (seconds–minutes) — can be slow</td><td role="cell" data-label="Short-Term Scheduler">Very frequent (milliseconds) — must be fast</td><td role="cell" data-label="Medium-Term Scheduler">In between the other two</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature">Controls</td><td role="cell" data-label="Long-Term Scheduler">Degree of multiprogramming</td><td role="cell" data-label="Short-Term Scheduler">Which ready process runs next</td><td role="cell" data-label="Medium-Term Scheduler">Reduces degree of multiprogramming via swapping</td></tr>
   </table>
+</div>
 
   <h2>I/O-bound vs. CPU-bound processes</h2>
   <p>The long-term scheduler strives for a good <strong>process mix</strong> of two broad process types: an <strong>I/O-bound process</strong> spends more of its time doing I/O than computation (many short CPU bursts); a <strong>CPU-bound process</strong> spends more of its time doing computation (few, long CPU bursts). A system with too many CPU-bound processes leaves I/O devices idle; too many I/O-bound processes leave the CPU idle — the long-term scheduler's job is to balance the mix. A <strong>web server</strong> is a textbook I/O-bound example: most of its time is spent waiting on network and disk I/O to serve requests, with comparatively short bursts of CPU computation in between.</p>
@@ -1262,12 +1309,14 @@ while(x&gt;0){
 </div>
     <div class="ans-label">Answer — verified by compiling and running the actual program (buffering disabled to isolate the true process count)</div>
     <p>This looks different from the previous two because of the <code>wait(NULL)</code> call, but <code>wait()</code> only blocks the <em>parent</em> until <em>its own</em> immediate child exits — it does not stop the child from continuing to loop and fork on its own. So the process population still doubles on every one of the 3 iterations (x = 3 → 2 → 1), and <em>every</em> process prints <code>"hello"</code> once per iteration it takes part in — the doubling just happens to be interleaved with the parent's wait rather than blocked by it.</p>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Iteration (x before decrement) / Processes entering this iteration / &quot;hello&quot; prints this iteration">
+<table>
       <tr><th>Iteration (x before decrement)</th><th>Processes entering this iteration</th><th>"hello" prints this iteration</th></tr>
       <tr><td>1st (x=3)</td><td>1</td><td>2</td></tr>
       <tr><td>2nd (x=2)</td><td>2</td><td>4</td></tr>
       <tr><td>3rd (x=1)</td><td>4</td><td>8</td></tr>
     </table>
+</div>
     <p>Total = 2 + 4 + 8 = <strong>14</strong>.</p>
     <div class="formula-block"><span class="cm">$ ./loop_wait_unbuf   </span><span class="cm">// stdout unbuffered, so this counts real printf() calls, not stdio-flush artifacts</span>
 <span class="c1">14 "hello" prints — confirmed by execution, matching 2+4+8</span></div>
@@ -1288,11 +1337,13 @@ printf("2 ");</div> &nbsp;</li></ul>
 </div>
     <div class="ans-label">Key idea — short-circuit evaluation</div>
     <p><code>fork()</code> returns a <strong>non-zero</strong> pid (true) in the parent and <strong>0</strong> (false) in the child. With <code>||</code>, the second <code>fork()</code> runs only where the first returned false, which is in the child. With <code>&amp;&amp;</code>, it runs only where the first returned true, which is in the parent. Trace each process and count the ones that reach <code>printf</code>.</p>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Program / Trace / Processes · output">
+<table>
       <tr><th>Program</th><th>Trace</th><th>Processes · output</th></tr>
       <tr><td>(a) <code>A || B</code></td><td>Parent: A ≠ 0 → condition true → 3rd fork (+1 child).<br>Child of A: A = 0 → runs B, which creates a grandchild. The child gets B ≠ 0 → true → 3rd fork (+1). The grandchild gets B = 0 → false → no fork.</td><td>parent, its fork-3 child, A-child, its fork-3 child, grandchild = <strong>5</strong> → <code>1 1 1 1 1</code></td></tr>
       <tr><td>(b) <code>A &amp;&amp; B</code></td><td>Parent: A ≠ 0 → runs B (+1 child). The parent gets B ≠ 0 → true → 3rd fork (+1). The B-child gets 0 → false.<br>A-child: A = 0 → false; B and the 3rd fork are skipped.</td><td>parent, A-child, B-child, fork-3 child = <strong>4</strong> → <code>2 2 2 2</code></td></tr>
     </table>
+</div>
     <div class="formula-block"><span class="cm">$ gcc f_or.c &amp;&amp; ./a.out    // compiled and run, counting the prints</span>
 <span class="c1">(a) 5 prints    (b) 4 prints</span></div>
     <p>The order of the printed values can vary between runs because the scheduler decides which process prints first. Only the count is fixed. The "Oct 2020 Q1.3" print of this program has an unclear operator; it is one of these two forms.</p>
@@ -1433,14 +1484,16 @@ receive(A, message)    <span class="cm">/* receive a message from mailbox A */</
   <p>Properties of the link: it is established <strong>only if the two processes share a mailbox</strong>; a link may be associated with <strong>more than two</strong> processes; and between a pair of processes there may be <strong>several different links</strong>, each corresponding to one mailbox. A mailbox may be <strong>owned by a process</strong> (it is part of that process's address space; the owner can only receive and other users can only send, and the mailbox disappears when the owner terminates) or <strong>owned by the operating system</strong>, which is independent of any process. In the latter case the OS must provide calls to <strong>create</strong> a new mailbox, <strong>send and receive</strong> through it, and <strong>delete</strong> it, and the creating process may be given ownership and receive privilege initially, which it can pass to others.</p>
   <p>If more than one process tries to receive from the same mailbox, who gets the message depends on the scheme: allow at most one process to receive from a mailbox, allow only one process at a time to execute <code>receive</code>, or let the system choose arbitrarily (the sender may be told which).</p>
 
-  <table>
-    <tr><th></th><th>Direct communication</th><th>Indirect communication</th></tr>
-    <tr><td><strong>Addressing</strong></td><td>Process names (P, Q)</td><td>Mailbox / port names (A)</td></tr>
-    <tr><td><strong>Link set-up</strong></td><td>Automatic, between each pair that wants to communicate</td><td>Only if the processes share a mailbox</td></tr>
-    <tr><td><strong>Processes per link</strong></td><td>Exactly two</td><td>Two or more</td></tr>
-    <tr><td><strong>Links per pair</strong></td><td>Exactly one</td><td>Any number (one per shared mailbox)</td></tr>
-    <tr><td><strong>Modularity</strong></td><td>Limited — change of a name must be propagated</td><td>Better — decoupled through the mailbox</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label=" / Direct communication / Indirect communication">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col"></th><th role="columnheader" scope="col">Direct communication</th><th role="columnheader" scope="col">Indirect communication</th></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Addressing</strong></td><td role="cell" data-label="Direct communication">Process names (P, Q)</td><td role="cell" data-label="Indirect communication">Mailbox / port names (A)</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Link set-up</strong></td><td role="cell" data-label="Direct communication">Automatic, between each pair that wants to communicate</td><td role="cell" data-label="Indirect communication">Only if the processes share a mailbox</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Processes per link</strong></td><td role="cell" data-label="Direct communication">Exactly two</td><td role="cell" data-label="Indirect communication">Two or more</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Links per pair</strong></td><td role="cell" data-label="Direct communication">Exactly one</td><td role="cell" data-label="Indirect communication">Any number (one per shared mailbox)</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Modularity</strong></td><td role="cell" data-label="Direct communication">Limited — change of a name must be propagated</td><td role="cell" data-label="Indirect communication">Better — decoupled through the mailbox</td></tr>
   </table>
+</div>
 
   <h3>2. Synchronization — blocking vs. non-blocking</h3>
   <p>Message passing may be <strong>blocking (synchronous)</strong> or <strong>non-blocking (asynchronous)</strong>:</p>
@@ -1461,13 +1514,15 @@ receive(A, message)    <span class="cm">/* receive a message from mailbox A */</
   </ul>
 
   <h2>Shared memory vs. message passing</h2>
-  <table>
-    <tr><th></th><th>Shared memory</th><th>Message passing</th></tr>
-    <tr><td><strong>Speed</strong></td><td>Faster — kernel needed only to set up the region</td><td>Slower — a system call and kernel intervention per message</td></tr>
-    <tr><td><strong>Best for</strong></td><td>Large amounts of data, same machine</td><td>Small amounts of data; also across a network (distributed systems)</td></tr>
-    <tr><td><strong>Ease of use</strong></td><td>Harder — processes must handle synchronisation themselves</td><td>Easier — OS handles it; no conflicts to avoid</td></tr>
-    <tr><td><strong>Address space</strong></td><td>A region is shared between processes</td><td>No sharing; each process keeps its own</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label=" / Shared memory / Message passing">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col"></th><th role="columnheader" scope="col">Shared memory</th><th role="columnheader" scope="col">Message passing</th></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Speed</strong></td><td role="cell" data-label="Shared memory">Faster — kernel needed only to set up the region</td><td role="cell" data-label="Message passing">Slower — a system call and kernel intervention per message</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Best for</strong></td><td role="cell" data-label="Shared memory">Large amounts of data, same machine</td><td role="cell" data-label="Message passing">Small amounts of data; also across a network (distributed systems)</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Ease of use</strong></td><td role="cell" data-label="Shared memory">Harder — processes must handle synchronisation themselves</td><td role="cell" data-label="Message passing">Easier — OS handles it; no conflicts to avoid</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Address space</strong></td><td role="cell" data-label="Shared memory">A region is shared between processes</td><td role="cell" data-label="Message passing">No sharing; each process keeps its own</td></tr>
   </table>
+</div>
 
   <div class="qbox" id="u1-example-09">
     <div class="qmeta"><span class="qsrc">CIE-1 Question Bank Q4 (<code>CIE-1 Unit 1.pdf</code>)<cite class="src" data-src="D1"></cite><cite class="src" data-src="D5"></cite></span><span class="marks">typically 6–10 marks</span></div>
@@ -1499,10 +1554,12 @@ receive(A, message)    <span class="cm">/* receive a message from mailbox A */</
   <p>A <strong>thread</strong> is a basic unit of CPU utilisation. It comprises a <strong>thread ID</strong>, a <strong>program counter</strong>, a <strong>register set</strong> and a <strong>stack</strong>. It shares with the other threads of the same process its <strong>code (text) section, data section, heap and other OS resources</strong> such as open files and signals. A traditional (<em>heavyweight</em>) process has a single thread of control; a process with multiple threads can perform more than one task at a time, each thread having its own program counter, registers and stack but sharing everything else.</p>
   <p>Many applications are multithreaded: a web browser may have one thread displaying images or text while another retrieves data from the network; a word processor may have a thread for display, one for keystrokes and one for spell-checking in the background; a web server runs one thread per client request instead of creating a heavyweight process for each.</p>
 
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Shared by all threads of a process / Private to each thread">
+<table>
     <tr><th>Shared by all threads of a process</th><th>Private to each thread</th></tr>
     <tr><td>Code (text) section · data section (global variables) · heap · open files · signals · address space</td><td>Thread ID · program counter · register set · stack (local variables, return addresses)</td></tr>
   </table>
+</div>
 
   <h3>Benefits of multithreading</h3>
   <ul>
@@ -1609,12 +1666,14 @@ receive(A, message)    <span class="cm">/* receive a message from mailbox A */</
   <h3>Many-to-many</h3>
   <p>Many user-level threads are <strong>multiplexed</strong> onto a smaller or equal number of kernel threads. The number of kernel threads may be specific to a particular application or machine. Developers can create as many user threads as needed, and the corresponding kernel threads run in parallel on a multiprocessor; when one thread blocks, the kernel can schedule another thread. It avoids the weaknesses of the other two models but is <strong>harder to implement</strong>. A popular variant is the <strong>two-level model</strong>, which is many-to-many but also allows a user thread to be <strong>bound</strong> to a particular kernel thread (used in IRIX, HP-UX and Tru64 UNIX).</p>
 
-  <table>
-    <tr><th>Model</th><th>Mapping</th><th>Concurrency</th><th>Blocking call</th><th>Parallel on multicore</th></tr>
-    <tr><td>Many-to-one</td><td>N user → 1 kernel</td><td>Low</td><td>Blocks the whole process</td><td>No</td></tr>
-    <tr><td>One-to-one</td><td>1 user → 1 kernel</td><td>High</td><td>Only that thread blocks</td><td>Yes</td></tr>
-    <tr><td>Many-to-many</td><td>N user ↔ M kernel (M ≤ N)</td><td>High (flexible)</td><td>Kernel schedules another thread</td><td>Yes</td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Model / Mapping / Concurrency">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Model</th><th role="columnheader" scope="col">Mapping</th><th role="columnheader" scope="col">Concurrency</th><th role="columnheader" scope="col">Blocking call</th><th role="columnheader" scope="col">Parallel on multicore</th></tr>
+    <tr role="row"><td role="cell" data-label="Model">Many-to-one</td><td role="cell" data-label="Mapping">N user → 1 kernel</td><td role="cell" data-label="Concurrency">Low</td><td role="cell" data-label="Blocking call">Blocks the whole process</td><td role="cell" data-label="Parallel on multicore">No</td></tr>
+    <tr role="row"><td role="cell" data-label="Model">One-to-one</td><td role="cell" data-label="Mapping">1 user → 1 kernel</td><td role="cell" data-label="Concurrency">High</td><td role="cell" data-label="Blocking call">Only that thread blocks</td><td role="cell" data-label="Parallel on multicore">Yes</td></tr>
+    <tr role="row"><td role="cell" data-label="Model">Many-to-many</td><td role="cell" data-label="Mapping">N user ↔ M kernel (M ≤ N)</td><td role="cell" data-label="Concurrency">High (flexible)</td><td role="cell" data-label="Blocking call">Kernel schedules another thread</td><td role="cell" data-label="Parallel on multicore">Yes</td></tr>
   </table>
+</div>
 
   <h2>Multicore programming</h2>
   <p>Modern systems put multiple computing cores on a single chip; to the operating system each core appears as a separate processor. <strong>Multithreaded programming</strong> provides a mechanism for using these cores efficiently. Two terms must be distinguished:</p>
@@ -1732,13 +1791,15 @@ N → ∞:  speedup = 1 / 0.25 = <span class="c1">4</span></div>
     <div class="cap">Fig 16d. Pthread lifecycle: <code>pthread_create()</code> spawns the runner thread, which executes concurrently with main; <code>pthread_join()</code> makes main wait until the runner calls <code>pthread_exit()</code>.</div>
   </div>
   <p><strong>Pthreads</strong> refers to the <strong>POSIX standard (IEEE 1003.1c)</strong> defining an <strong>API for thread creation and synchronisation</strong>. It is a <em>specification</em> for thread behaviour, not an implementation: operating-system designers may implement it any way they like, and it is common on UNIX-type systems (Linux, macOS, Solaris). The API can be implemented using different user/kernel thread mappings; calling Pthreads does not itself imply many-to-one blocking. Windows has its own thread API, and Java threads are managed by the JVM using the host's native thread model. The key functions are:</p>
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Function / Purpose">
+<table>
     <tr><th>Function</th><th>Purpose</th></tr>
     <tr><td><code>pthread_create(&amp;tid, &amp;attr, fn, arg)</code></td><td>Create a new thread that starts executing <code>fn(arg)</code>; <code>tid</code> receives its identifier; <code>attr</code> holds its attributes (stack size, scheduling).</td></tr>
     <tr><td><code>pthread_attr_init(&amp;attr)</code></td><td>Initialise a thread-attribute structure to its defaults.</td></tr>
     <tr><td><code>pthread_join(tid, NULL)</code></td><td>Wait for the named thread to terminate (the parent's equivalent of <code>wait()</code>).</td></tr>
     <tr><td><code>pthread_exit(0)</code></td><td>Terminate the calling thread.</td></tr>
   </table>
+</div>
 
   <div class="qbox" id="u1-example-12">
     <div class="qmeta"><span class="qsrc">Worked example · Pthreads program</span><span class="marks">typical 6 marks</span></div>
@@ -1779,20 +1840,24 @@ void *runner(void *param) {
     <div class="qmeta"><span class="qsrc">CIE-I, 2021-22 · Question Bank #6</span><span class="marks">5 marks</span></div>
     <div class="qtext">Differentiate (i) a process and a thread; (ii) a user thread and a kernel thread.</div>
     <div class="ans-label">Answer</div>
-    <table>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Process / Thread">
+<table>
       <tr><th>Process</th><th>Thread</th></tr>
       <tr><td>Heavyweight; own address space and PCB</td><td>Lightweight; shares the process's address space, has its own PC, registers, stack</td></tr>
       <tr><td>Creation and context switch are expensive</td><td>Creation and switching are cheap</td></tr>
       <tr><td>Communication needs IPC (<a href="#process-ipc">1.7</a>)</td><td>Communicate directly through shared data</td></tr>
       <tr><td>One crashing process leaves others unaffected</td><td>A faulty thread can bring down the whole process</td></tr>
     </table>
-    <table>
+</div>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="User thread / Kernel thread">
+<table>
       <tr><th>User thread</th><th>Kernel thread</th></tr>
       <tr><td>Managed by a user-space library; kernel unaware</td><td>Managed directly by the OS</td></tr>
       <tr><td>Fast to create and switch</td><td>Slower, needs system calls</td></tr>
       <tr><td>In many-to-one, a blocking system call can block the whole process</td><td>A blocking call blocks only that thread</td></tr>
       <tr><td>Cannot use multiple cores (many-to-one)</td><td>Can run in parallel on multiple cores</td></tr>
     </table>
+</div>
   </div>
 <h2>Additional Pthreads worked programs</h2><div class="callout clarify"><span class="label">Question-source transcription note</span><p>The earlier question-bank extraction marked the second sorting clause as OCR-damaged. Descending order is the retained interpretation; the program below is a complete worked ascending/descending example. The original paper is not currently in the repository for a fresh visual check.</p></div>
 <div class="qbox" id="u1-example-14">
@@ -1914,44 +1979,59 @@ int main(void) {
 <!--REVISION_START-->
 <section class="page section" id="solved-examples" style="--accent:var(--teal);--accent-soft:var(--teal-soft);">
 <div class="section-head"><span class="tag">PRACTICE</span><h1>Solved Examples and Programs</h1></div>
-<p>Each link goes to the full solution at the end of its topic. Optional calculations stay inside their existing collapsed panels; following a link opens the relevant panel.</p><table><tr><th>Source</th><th>Worked answer</th><th>Scope</th></tr><tr><td>worked example — system-call sequence</td><td><a href="#u1-example-01">Trace the system calls needed for a program that copies data from a source file to a destination file.</a></td><td>Core example</td></tr><tr><td>CIE-I Q4a, 2021-22 · Question Bank #3</td><td><a href="#u1-example-02">With a neat diagram, explain the memory map of a process. Given a C program that declares a global variable, a static variable, a local variable, and a heap-allocated variable (via  malloc ), identify which memory region each is stored in.</a></td><td>Core example</td></tr><tr><td>CIE-I Test-1 Q3 (i–iii), 2024-25 · Question Bank #22<cite class="src" data-src="Q1"></cite></td><td><a href="#u1-example-03">Indicate, with specific justification, whether the following claims are true or false: (i) Timesharing systems are identical to multiprogramming systems when the time slice exceeds the CPU burst of every program. (ii) Kernel mode is essential for isolated and protected execution of processes. (iii) Swapping of processes in and out of memory increases OS overhead and decreases CPU efficiency.</a></td><td>Core example</td></tr><tr><td>CIE-II Quiz-II, 2024-25 · Question Bank #23, #24<cite class="src" data-src="Q3"></cite></td><td><a href="#u1-example-04">&quot;In a preemptive scheduling algorithm, when can a currently running process be interrupted?&quot;  /  &quot;Define CPU utilization and its goal.&quot;</a></td><td>Core example</td></tr><tr><td>CIE-I Quiz-1 Q3, 2024-25 · Question Bank #16<cite class="src" data-src="Q1"></cite></td><td><a href="#u1-example-05">What is the output of the following C program? int main(){ fork(); fork(); printf(&quot;code&quot;); }</a></td><td>Core example</td></tr><tr><td>SEE Feb/Mar 2025 Q1.2, 24-25 · Question Bank #26<cite class="src" data-src="Q1"></cite></td><td><a href="#u1-example-06">Assume a process executes the following code:  for(i=1;i&lt;=n;i++) fork();  How many new processes will be created?</a></td><td>Core example</td></tr><tr><td>SEE Feb/Mar 2025 Q1.1, 24-25 · Question Bank #25<cite class="src" data-src="Q1"></cite></td><td><a href="#u1-example-07">Consider:  int x=3; while(x&gt;0){ fork(); printf(&quot;hello&quot;); wait(NULL); x--; }  Calculate the total number of times the  printf  statement executes.</a></td><td>Core example</td></tr><tr><td>CIE-I Q1b (2021-22) / Test-1 Q5.a (2024-25) · Question Bank #2<cite class="src" data-src="Q1"></cite></td><td><a href="#u1-example-08">Write a program in which a parent process spawns N children, where N is read as a command-line argument. Each child should print &quot;Hi from child PID&quot;, where PID is its own process ID; the parent must wait for all children to exit before finishing.</a></td><td>Core example</td></tr><tr><td>CIE-1 Question Bank Q4 ( CIE-1 Unit 1.pdf )<cite class="src" data-src="D1"></cite><cite class="src" data-src="D5"></cite></td><td><a href="#u1-example-09">What is inter-process communication? Explain direct and indirect communication with respect to a message-passing system.</a></td><td>Core example</td></tr><tr><td>Worked example · Amdahl&#x27;s law</td><td><a href="#u1-example-10">An application is 75% parallel and 25% serial. What is the speed-up on 2 cores and on 4 cores, and what is the best possible speed-up?</a></td><td>Collapsed older/supplementary example</td></tr><tr><td>2024-25 CIE-I Test-1, Q3<cite class="src" data-src="Q1"></cite></td><td><a href="#u1-example-11">A task has 70% of its code that can be parallelized, and the remaining 30% cannot be parallelized. If you run this task on 5 processors, what is the theoretical maximum speedup according to Amdahl&#x27;s Law?</a></td><td>Collapsed older/supplementary example</td></tr><tr><td>Worked example · Pthreads program</td><td><a href="#u1-example-12">Write a multithreaded C program using Pthreads in which a separate thread computes the sum 1 + 2 + … + N, and the main thread prints it.</a></td><td>Core example</td></tr><tr><td>CIE-I, 2021-22 · Question Bank #6</td><td><a href="#u1-example-13">Differentiate (i) a process and a thread; (ii) a user thread and a kernel thread.</a></td><td>Core example</td></tr><tr><td>2021-22 CIE-I, Q2</td><td><a href="#u1-example-14">Write a program to create threads to perform the following functions on an array simultaneously: (i) sort the array in ascending order, (ii) sort the array in descending order — and record execution time in milliseconds.</a></td><td>Core example</td></tr><tr><td>2024-25 SEE Part-B, Q3 (alt. to Q2)<cite class="src" data-src="Q1"></cite></td><td><a href="#u1-example-15">Develop a program to perform matrix multiplication using pthreads, where each thread computes one row of the resulting matrix.</a></td><td>Core example</td></tr></table>
+<p>Each link goes to the full solution at the end of its topic. Optional calculations stay inside their existing collapsed panels; following a link opens the relevant panel.</p><div class="table-scroll" role="region" tabindex="0" aria-label="Source / Worked answer / Scope">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Worked answer</th><th role="columnheader" scope="col">Scope</th></tr><tr role="row"><td role="cell" data-label="Source">worked example — system-call sequence</td><td role="cell" data-label="Worked answer"><a href="#u1-example-01">Trace the system calls needed for a program that copies data from a source file to a destination file.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">CIE-I Q4a, 2021-22 · Question Bank #3</td><td role="cell" data-label="Worked answer"><a href="#u1-example-02">With a neat diagram, explain the memory map of a process. Given a C program that declares a global variable, a static variable, a local variable, and a heap-allocated variable (via  malloc ), identify which memory region each is stored in.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">CIE-I Test-1 Q3 (i–iii), 2024-25 · Question Bank #22<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u1-example-03">Indicate, with specific justification, whether the following claims are true or false: (i) Timesharing systems are identical to multiprogramming systems when the time slice exceeds the CPU burst of every program. (ii) Kernel mode is essential for isolated and protected execution of processes. (iii) Swapping of processes in and out of memory increases OS overhead and decreases CPU efficiency.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">CIE-II Quiz-II, 2024-25 · Question Bank #23, #24<cite class="src" data-src="Q3"></cite></td><td role="cell" data-label="Worked answer"><a href="#u1-example-04">&quot;In a preemptive scheduling algorithm, when can a currently running process be interrupted?&quot;  /  &quot;Define CPU utilization and its goal.&quot;</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">CIE-I Quiz-1 Q3, 2024-25 · Question Bank #16<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u1-example-05">What is the output of the following C program? int main(){ fork(); fork(); printf(&quot;code&quot;); }</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">SEE Feb/Mar 2025 Q1.2, 24-25 · Question Bank #26<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u1-example-06">Assume a process executes the following code:  for(i=1;i&lt;=n;i++) fork();  How many new processes will be created?</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">SEE Feb/Mar 2025 Q1.1, 24-25 · Question Bank #25<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u1-example-07">Consider:  int x=3; while(x&gt;0){ fork(); printf(&quot;hello&quot;); wait(NULL); x--; }  Calculate the total number of times the  printf  statement executes.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">CIE-I Q1b (2021-22) / Test-1 Q5.a (2024-25) · Question Bank #2<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u1-example-08">Write a program in which a parent process spawns N children, where N is read as a command-line argument. Each child should print &quot;Hi from child PID&quot;, where PID is its own process ID; the parent must wait for all children to exit before finishing.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">CIE-1 Question Bank Q4 ( CIE-1 Unit 1.pdf )<cite class="src" data-src="D1"></cite><cite class="src" data-src="D5"></cite></td><td role="cell" data-label="Worked answer"><a href="#u1-example-09">What is inter-process communication? Explain direct and indirect communication with respect to a message-passing system.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">Worked example · Amdahl&#x27;s law</td><td role="cell" data-label="Worked answer"><a href="#u1-example-10">An application is 75% parallel and 25% serial. What is the speed-up on 2 cores and on 4 cores, and what is the best possible speed-up?</a></td><td role="cell" data-label="Scope">Collapsed older/supplementary example</td></tr><tr role="row"><td role="cell" data-label="Source">2024-25 CIE-I Test-1, Q3<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u1-example-11">A task has 70% of its code that can be parallelized, and the remaining 30% cannot be parallelized. If you run this task on 5 processors, what is the theoretical maximum speedup according to Amdahl&#x27;s Law?</a></td><td role="cell" data-label="Scope">Collapsed older/supplementary example</td></tr><tr role="row"><td role="cell" data-label="Source">Worked example · Pthreads program</td><td role="cell" data-label="Worked answer"><a href="#u1-example-12">Write a multithreaded C program using Pthreads in which a separate thread computes the sum 1 + 2 + … + N, and the main thread prints it.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">CIE-I, 2021-22 · Question Bank #6</td><td role="cell" data-label="Worked answer"><a href="#u1-example-13">Differentiate (i) a process and a thread; (ii) a user thread and a kernel thread.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">2021-22 CIE-I, Q2</td><td role="cell" data-label="Worked answer"><a href="#u1-example-14">Write a program to create threads to perform the following functions on an array simultaneously: (i) sort the array in ascending order, (ii) sort the array in descending order — and record execution time in milliseconds.</a></td><td role="cell" data-label="Scope">Core example</td></tr><tr role="row"><td role="cell" data-label="Source">2024-25 SEE Part-B, Q3 (alt. to Q2)<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Worked answer"><a href="#u1-example-15">Develop a program to perform matrix multiplication using pthreads, where each thread computes one row of the resulting matrix.</a></td><td role="cell" data-label="Scope">Core example</td></tr></table>
+</div>
 <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 <section class="page section" id="quick-revision" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
   <div class="section-head"><span class="tag">REVISE</span><h1>Quick Revision Sheet</h1></div>
   <p class="section-sub">One line per topic — for the last pass before the exam, not for first-time learning.</p>
-  <table>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Topic / The one thing to remember">
+<table>
     <tr><th>Topic</th><th>The one thing to remember</th></tr>
     <tr class="legacy-row"><td colspan="2"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>Earlier OS-definition revision row</h3><span class="scope-note">Background from older notes; the core definition is included with OS services</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u1-3002" aria-label="View Earlier OS-definition revision row">View</button></div>
-  <div class="legacy-content" id="legacy-u1-3002" hidden><table><tbody><tr><td><a href="#os-intro">1.1 What an OS does</a></td><td>Intermediary between user and hardware; three roles — control freak, resource manager, great pretender.</td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u1-3002" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td><a href="#os-intro">1.1 What an OS does</a></td><td>Intermediary between user and hardware; three roles — control freak, resource manager, great pretender.</td></tr></tbody></table>
+</div></div>
 </div></td></tr>
     <tr class="legacy-row"><td colspan="2"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>1.2 System organization</h3><span class="scope-note">Retained earlier revision topic; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u1-1001" aria-label="View 1.2 System organization">View</button></div>
-  <div class="legacy-content" id="legacy-u1-1001" hidden><table><tbody><tr><td><a href="#system-org">1.2 System organization</a></td><td>Bootstrap program (firmware) loads the kernel; storage hierarchy trades speed for capacity: registers &gt; cache &gt; RAM &gt; SSD &gt; HDD &gt; optical &gt; tape.</td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u1-1001" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td><a href="#system-org">1.2 System organization</a></td><td>Bootstrap program (firmware) loads the kernel; storage hierarchy trades speed for capacity: registers &gt; cache &gt; RAM &gt; SSD &gt; HDD &gt; optical &gt; tape.</td></tr></tbody></table>
+</div></div>
 </div></td></tr>
     <tr class="legacy-row"><td colspan="2"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>1.3 Perspectives</h3><span class="scope-note">Retained earlier revision topic; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u1-1002" aria-label="View 1.3 Perspectives">View</button></div>
-  <div class="legacy-content" id="legacy-u1-1002" hidden><table><tbody><tr><td><a href="#perspectives">1.3 Perspectives</a></td><td>Traditional (local resources) vs. mobile (1 foreground + limited background) vs. distributed (many networked nodes) vs. virtualization/cloud (1 machine looks like many, via a hypervisor; IaaS/PaaS/SaaS).</td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u1-1002" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td><a href="#perspectives">1.3 Perspectives</a></td><td>Traditional (local resources) vs. mobile (1 foreground + limited background) vs. distributed (many networked nodes) vs. virtualization/cloud (1 machine looks like many, via a hypervisor; IaaS/PaaS/SaaS).</td></tr></tbody></table>
+</div></div>
 </div></td></tr>
     <tr class="legacy-row"><td colspan="2"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>1.4 OS structure</h3><span class="scope-note">Retained earlier revision topic; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u1-1003" aria-label="View 1.4 OS structure">View</button></div>
-  <div class="legacy-content" id="legacy-u1-1003" hidden><table><tbody><tr><td><a href="#os-structure">1.4 OS structure</a></td><td>Multiprogramming = never leave the CPU idle; time-sharing = switch fast enough for interactive response (&lt;1s).</td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u1-1003" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td><a href="#os-structure">1.4 OS structure</a></td><td>Multiprogramming = never leave the CPU idle; time-sharing = switch fast enough for interactive response (&lt;1s).</td></tr></tbody></table>
+</div></div>
 </div></td></tr>
     <tr class="legacy-row"><td colspan="2"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>1.5 OS operations</h3><span class="scope-note">Retained earlier revision topic; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u1-1004" aria-label="View 1.5 OS operations">View</button></div>
-  <div class="legacy-content" id="legacy-u1-1004" hidden><table><tbody><tr><td><a href="#os-operations">1.5 OS operations</a></td><td>Dual-mode: mode bit 0=kernel, 1=user; trap on system call/error switches to kernel mode; timer prevents runaway user programs.</td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u1-1004" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td><a href="#os-operations">1.5 OS operations</a></td><td>Dual-mode: mode bit 0=kernel, 1=user; trap on system call/error switches to kernel mode; timer prevents runaway user programs.</td></tr></tbody></table>
+</div></div>
 </div></td></tr>
     <tr><td><a href="#os-services">1.1 OS services</a></td><td>User-facing: UI, program execution, I/O, file manipulation, communication, error detection. System-facing: resource allocation, accounting, protection/security.</td></tr>
     <tr class="legacy-row"><td colspan="2"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>1.7 User–OS interface</h3><span class="scope-note">Retained earlier revision topic; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u1-1005" aria-label="View 1.7 User–OS interface">View</button></div>
-  <div class="legacy-content" id="legacy-u1-1005" hidden><table><tbody><tr><td><a href="#os-interface">1.7 User–OS interface</a></td><td>CLI = shell, text commands; GUI = desktop metaphor, icons; most systems offer both.</td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u1-1005" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td><a href="#os-interface">1.7 User–OS interface</a></td><td>CLI = shell, text commands; GUI = desktop metaphor, icons; most systems offer both.</td></tr></tbody></table>
+</div></div>
 </div></td></tr>
     <tr><td><a href="#system-calls">1.2 System calls</a></td><td>Only doorway into the kernel; 6 types — process control, file mgmt, device mgmt, info maintenance, communication (message-passing/shared-memory), protection.</td></tr>
     <tr><td><a href="#os-structure-design">1.3 OS structure &amp; mobile OS</a></td><td>Simple (MS-DOS) &rarr; layered (easy to debug, slower) &rarr; microkernel (message passing, small kernel) &rarr; modules (core + loadable, e.g. Linux) &rarr; hybrid. iOS = Cocoa Touch / Media / Core Services / Core OS (Darwin). Android = apps / framework / libs + ART / HAL / Linux kernel.</td></tr>
@@ -1961,7 +2041,9 @@ int main(void) {
     <tr class="legacy-row"><td colspan="2"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>Low-priority extras low priority</h3><span class="scope-note">Retained earlier revision topic; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u1-1006" aria-label="View Low-priority extras low priority">View</button></div>
-  <div class="legacy-content" id="legacy-u1-1006" hidden><table><tbody><tr><td>Low-priority extras <span class="pill lp">low priority</span></td><td>SMP = peers sharing memory, asymmetric = master/slave; clusters give high availability (hot standby); DMA = one interrupt per block; mechanism = how, policy = what; SYSGEN tailors the OS; two-step boot via a boot block; P2P = every node is client and server.</td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u1-1006" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td>Low-priority extras <span class="pill lp">low priority</span></td><td>SMP = peers sharing memory, asymmetric = master/slave; clusters give high availability (hot standby); DMA = one interrupt per block; mechanism = how, policy = what; SYSGEN tailors the OS; two-step boot via a boot block; P2P = every node is client and server.</td></tr></tbody></table>
+</div></div>
 </div></td></tr>
     <tr><td><a href="#process-ipc">1.7 Inter-process communication</a></td><td>Two models: shared memory (fast, set up once, processes sync themselves) vs. message passing (send/receive; direct = name processes, indirect = mailbox; blocking vs non-blocking; zero/bounded/unbounded buffer). Bounded buffer: empty if in==out, full if (in+1)%N==out.</td></tr>
     <tr><td><a href="#threads">1.8 Threads</a></td><td>Thread shares code/data/heap/files, owns PC+registers+stack. Models: many-to-one (blocks all, no parallelism), one-to-one (Linux/Windows), many-to-many (flexible, hard). <div class="legacy-topic">
@@ -1970,6 +2052,7 @@ int main(void) {
   <div class="legacy-content" id="legacy-u1-1007" hidden><p>Amdahl: speedup ≤ 1/(S+(1−S)/N). </p></div>
 </div>Pthreads: pthread_create / join / exit.</td></tr>
   </table>
+</div>
 
   <div class="callout key">
     <span class="label">The fork()-counting pattern, once and for all</span>
@@ -1986,124 +2069,146 @@ int main(void) {
 
   <div class="callout clarify"><span class="label">New syllabus scope</span><p>Threads, models, multicore programming and Pthreads now belong to Unit I. Scheduling algorithms and synchronization belong to Unit II. Memory management and file-system internals are outside this guide. Earlier papers remain useful practice; their unit numbering does not define the new syllabus. Historical computing-environment questions remain below behind View/Hide controls. Amdahl questions link to the supplementary multicore panel.</p></div>
 
-  <table>
-    <tr><th>#</th><th>Question</th><th>Source</th><th>Answered at</th><th></th></tr>
-    <tr class="legacy-row"><td colspan="5"><div class="legacy-topic">
+  <div class="table-scroll" role="region" tabindex="0" aria-label="# / Question / Source">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">#</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Answered at</th><th role="columnheader" scope="col"></th></tr>
+    <tr class="legacy-row" role="row"><td colspan="5" role="cell" data-label="#"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>Historical question — computing environments</h3><span class="scope-note">Present in older question papers; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u1-1008" aria-label="View Historical question — computing environments">View</button></div>
-  <div class="legacy-content" id="legacy-u1-1008" hidden><table><tbody><tr><td>1</td><td>"Exemplify how the advances in digital technologies are attributed to different classes of operating system."</td><td>CIE-I, 21-22 · 4M</td><td><a href="#os-intro">1.1</a>, <a href="#perspectives">1.3</a></td><td></td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u1-1008" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td>1</td><td>"Exemplify how the advances in digital technologies are attributed to different classes of operating system."</td><td>CIE-I, 21-22 · 4M</td><td><a href="#os-intro">1.1</a>, <a href="#perspectives">1.3</a></td><td></td></tr></tbody></table>
+</div></div>
 </div></td></tr>
-    <tr><td>2</td><td>"A parent process spawns N children (N from argv); each child prints 'Hi from child PID'; parent waits for all children." / "Write a C program to illustrate UNIX fork()."</td><td>CIE-I, 21-22, 6M &amp; CIE-I Test-1, 24-25, 6M<cite class="src" data-src="Q1"></cite></td><td><a href="#process-operations">1.6</a></td><td><span class="pill">solved example added</span></td></tr>
-    <tr><td>3</td><td>"With a diagram, explain the memory map of a process; identify the region for var1..var5 in [a C program]."</td><td>CIE-I, 21-22 · 7M</td><td><a href="#process-concept">1.4</a></td><td><span class="pill">solved example added</span></td></tr>
-    <tr><td>4</td><td>"Briefly describe scenarios for: Running→waiting, Running→ready, New→Ready."</td><td>CIE-I, 21-22 · 3M</td><td><a href="#process-concept">1.4</a> (Fig 9)</td><td></td></tr>
-    <tr><td>5</td><td>"Exemplify user mode and kernel mode. Show how the Linux kernel handles system calls, with example + diagram."</td><td>CIE-I, 21-22 · 5M</td><td><a href="#os-operations">1.5</a>, <a href="#system-calls">1.2</a></td><td></td></tr>
-    <tr><td>6</td><td>"Differentiate i) a process and a thread ii) user thread and kernel thread."</td><td>CIE-I, 21-22 · 5M</td><td><a href="#threads">1.8 Threads</a>, <a href="#threads">1.8</a></td><td><span class="pill">solved example added</span></td></tr>
-    <tr><td>7</td><td>"Kernel mode is also known as ________."</td><td>SEE, 21-22 · 1M</td><td><a href="#os-operations">1.5</a></td><td></td></tr>
-    <tr><td>8</td><td>"What are used by microkernels for communication?"</td><td>SEE, 21-22 · 1M</td><td><a href="#os-structure-design">1.3</a></td><td><span class="pill">solved example added</span></td></tr>
-    <tr class="legacy-row"><td colspan="5"><div class="legacy-topic">
+    <tr role="row"><td role="cell" data-label="#">2</td><td role="cell" data-label="Question">"A parent process spawns N children (N from argv); each child prints 'Hi from child PID'; parent waits for all children." / "Write a C program to illustrate UNIX fork()."</td><td role="cell" data-label="Source">CIE-I, 21-22, 6M &amp; CIE-I Test-1, 24-25, 6M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#process-operations">1.6</a></td><td role="cell" data-label="Notes"><span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td role="cell" data-label="#">3</td><td role="cell" data-label="Question">"With a diagram, explain the memory map of a process; identify the region for var1..var5 in [a C program]."</td><td role="cell" data-label="Source">CIE-I, 21-22 · 7M</td><td role="cell" data-label="Answered at"><a href="#process-concept">1.4</a></td><td role="cell" data-label="Notes"><span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td role="cell" data-label="#">4</td><td role="cell" data-label="Question">"Briefly describe scenarios for: Running→waiting, Running→ready, New→Ready."</td><td role="cell" data-label="Source">CIE-I, 21-22 · 3M</td><td role="cell" data-label="Answered at"><a href="#process-concept">1.4</a> (Fig 9)</td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">5</td><td role="cell" data-label="Question">"Exemplify user mode and kernel mode. Show how the Linux kernel handles system calls, with example + diagram."</td><td role="cell" data-label="Source">CIE-I, 21-22 · 5M</td><td role="cell" data-label="Answered at"><a href="#os-operations">1.5</a>, <a href="#system-calls">1.2</a></td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">6</td><td role="cell" data-label="Question">"Differentiate i) a process and a thread ii) user thread and kernel thread."</td><td role="cell" data-label="Source">CIE-I, 21-22 · 5M</td><td role="cell" data-label="Answered at"><a href="#threads">1.8 Threads</a>, <a href="#threads">1.8</a></td><td role="cell" data-label="Notes"><span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td role="cell" data-label="#">7</td><td role="cell" data-label="Question">"Kernel mode is also known as ________."</td><td role="cell" data-label="Source">SEE, 21-22 · 1M</td><td role="cell" data-label="Answered at"><a href="#os-operations">1.5</a></td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">8</td><td role="cell" data-label="Question">"What are used by microkernels for communication?"</td><td role="cell" data-label="Source">SEE, 21-22 · 1M</td><td role="cell" data-label="Answered at"><a href="#os-structure-design">1.3</a></td><td role="cell" data-label="Notes"><span class="pill">solved example added</span></td></tr>
+    <tr class="legacy-row" role="row"><td colspan="5" role="cell" data-label="#"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>Historical question — computing environments</h3><span class="scope-note">Present in older question papers; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u1-1009" aria-label="View Historical question — computing environments">View</button></div>
-  <div class="legacy-content" id="legacy-u1-1009" hidden><table><tbody><tr><td>9</td><td>"What technique lets an OS continue working in the presence of failures?"</td><td>SEE, 21-22 · 1M</td><td><a href="#perspectives">1.3</a></td><td></td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u1-1009" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td>9</td><td>"What technique lets an OS continue working in the presence of failures?"</td><td>SEE, 21-22 · 1M</td><td><a href="#perspectives">1.3</a></td><td></td></tr></tbody></table>
+</div></div>
 </div></td></tr>
-    <tr><td>10</td><td>"What type of process is a web server?"</td><td>SEE, 21-22 · 1M</td><td><a href="#process-scheduling">1.5</a></td><td></td></tr>
-    <tr><td>11</td><td>"Name the Unix command used to check process status."</td><td>SEE, 21-22 · 1M</td><td><a href="#process-concept">1.4</a></td><td></td></tr>
-    <tr><td>12</td><td>"List the approaches to design OS structure, explain any one in detail."</td><td>SEE Q2a, 21-22</td><td><a href="#os-structure-design">1.3</a></td><td><span class="pill">solved example added</span></td></tr>
-    <tr><td>13</td><td>"With a diagram, illustrate the process transition diagram."</td><td>SEE Q2b, 21-22</td><td><a href="#process-concept">1.4</a> (Fig 9)</td><td></td></tr>
-    <tr><td>14</td><td>"To access the services of the OS, the interface is provided by ________."</td><td>CIE-I Quiz-1, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td><a href="#system-calls">1.2</a></td><td></td></tr>
-    <tr><td>15</td><td>"Which type of OS reads and reacts in terms of actual time?"</td><td>CIE-I Quiz-1, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td><a href="#os-intro">1.1</a></td><td></td></tr>
-    <tr><td>16</td><td>"Output of: <code>int main(){fork();fork();printf("code");}</code>"</td><td>CIE-I Quiz-1, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td><a href="#process-operations">1.6</a></td><td><span class="pill">solved example added</span></td></tr>
-    <tr><td>17</td><td>"In timeshare OS, when the time slot completes, the process switches to ________ state."</td><td>CIE-I Quiz-1, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td><a href="#process-concept">1.4</a> (Fig 9)</td><td></td></tr>
-    <tr><td>18</td><td>"When a process is 'waiting', it can't continue until some ________."</td><td>CIE-I Quiz-1, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td><a href="#process-concept">1.4</a> (Fig 9)</td><td></td></tr>
-    <tr><td>19</td><td>"________ swaps processes in and out to improve the program-mix."</td><td>CIE-I Quiz-1, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td><a href="#process-scheduling">1.5</a></td><td></td></tr>
-    <tr><td>20</td><td>"What is a Process? Illustrate/explain the PCB and process-state transition diagram."</td><td>CIE-I Test-1, 24-25 · 10M<cite class="src" data-src="Q1"></cite></td><td><a href="#process-concept">1.4</a></td><td></td></tr>
-    <tr><td>21</td><td>"Describe in detail the lifecycle of a child process from creation till termination."</td><td>CIE-I Test-1, 24-25 · 10M<cite class="src" data-src="Q1"></cite></td><td><a href="#process-operations">1.6</a></td><td></td></tr>
-    <tr><td>22</td><td>"T/F justify: (i) timesharing≡multiprogramming when timeslice&gt;CPU burst (ii) kernel mode essential for isolation (iii) swapping increases overhead (iv) matrix-mult on a uniprocessor: algorithm vs. threads vs. processes."</td><td>CIE-I Test-1, 24-25 · 10M<cite class="src" data-src="Q1"></cite></td><td><a href="#process-scheduling">1.5</a>, <a href="#threads">1.8 — subpart (iv)</a></td><td><span class="pill">solved example added</span> · <span class="pill">Multicore subpart (iv) → Threads in new Unit I</span></td></tr>
-    <tr><td>23</td><td>"In preemptive scheduling, when can a currently running process be interrupted?"</td><td>CIE-II Quiz-II, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td><a href="#process-scheduling">1.5</a></td><td></td></tr>
-    <tr><td>24</td><td>"Define CPU utilization and its goal."</td><td>CIE-II Quiz-II, 24-25 · 2M<cite class="src" data-src="Q1"></cite></td><td><a href="#process-scheduling">1.5</a></td><td></td></tr>
-    <tr><td>25</td><td>"<code>int x=3; while(x&gt;0){fork(); printf("hello"); wait(NULL); x--;}</code> — total printf executions?"</td><td>SEE Feb/Mar 2025, 24-25 · 2M<cite class="src" data-src="Q1"></cite></td><td><a href="#process-operations">1.6</a></td><td><span class="pill">solved example added</span></td></tr>
-    <tr><td>26</td><td>"<code>for(i=1;i&lt;=n;i++) fork();</code> — how many new processes are created?"</td><td>SEE Feb/Mar 2025, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td><a href="#process-operations">1.6</a></td><td><span class="pill">solved example added</span></td></tr>
-    <tr class="legacy-row"><td colspan="5"><div class="legacy-topic">
+    <tr role="row"><td role="cell" data-label="#">10</td><td role="cell" data-label="Question">"What type of process is a web server?"</td><td role="cell" data-label="Source">SEE, 21-22 · 1M</td><td role="cell" data-label="Answered at"><a href="#process-scheduling">1.5</a></td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">11</td><td role="cell" data-label="Question">"Name the Unix command used to check process status."</td><td role="cell" data-label="Source">SEE, 21-22 · 1M</td><td role="cell" data-label="Answered at"><a href="#process-concept">1.4</a></td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">12</td><td role="cell" data-label="Question">"List the approaches to design OS structure, explain any one in detail."</td><td role="cell" data-label="Source">SEE Q2a, 21-22</td><td role="cell" data-label="Answered at"><a href="#os-structure-design">1.3</a></td><td role="cell" data-label="Notes"><span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td role="cell" data-label="#">13</td><td role="cell" data-label="Question">"With a diagram, illustrate the process transition diagram."</td><td role="cell" data-label="Source">SEE Q2b, 21-22</td><td role="cell" data-label="Answered at"><a href="#process-concept">1.4</a> (Fig 9)</td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">14</td><td role="cell" data-label="Question">"To access the services of the OS, the interface is provided by ________."</td><td role="cell" data-label="Source">CIE-I Quiz-1, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#system-calls">1.2</a></td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">15</td><td role="cell" data-label="Question">"Which type of OS reads and reacts in terms of actual time?"</td><td role="cell" data-label="Source">CIE-I Quiz-1, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#os-intro">1.1</a></td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">16</td><td role="cell" data-label="Question">"Output of: <code>int main(){fork();fork();printf("code");}</code>"</td><td role="cell" data-label="Source">CIE-I Quiz-1, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#process-operations">1.6</a></td><td role="cell" data-label="Notes"><span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td role="cell" data-label="#">17</td><td role="cell" data-label="Question">"In timeshare OS, when the time slot completes, the process switches to ________ state."</td><td role="cell" data-label="Source">CIE-I Quiz-1, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#process-concept">1.4</a> (Fig 9)</td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">18</td><td role="cell" data-label="Question">"When a process is 'waiting', it can't continue until some ________."</td><td role="cell" data-label="Source">CIE-I Quiz-1, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#process-concept">1.4</a> (Fig 9)</td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">19</td><td role="cell" data-label="Question">"________ swaps processes in and out to improve the program-mix."</td><td role="cell" data-label="Source">CIE-I Quiz-1, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#process-scheduling">1.5</a></td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">20</td><td role="cell" data-label="Question">"What is a Process? Illustrate/explain the PCB and process-state transition diagram."</td><td role="cell" data-label="Source">CIE-I Test-1, 24-25 · 10M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#process-concept">1.4</a></td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">21</td><td role="cell" data-label="Question">"Describe in detail the lifecycle of a child process from creation till termination."</td><td role="cell" data-label="Source">CIE-I Test-1, 24-25 · 10M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#process-operations">1.6</a></td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">22</td><td role="cell" data-label="Question">"T/F justify: (i) timesharing≡multiprogramming when timeslice&gt;CPU burst (ii) kernel mode essential for isolation (iii) swapping increases overhead (iv) matrix-mult on a uniprocessor: algorithm vs. threads vs. processes."</td><td role="cell" data-label="Source">CIE-I Test-1, 24-25 · 10M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#process-scheduling">1.5</a>, <a href="#threads">1.8 — subpart (iv)</a></td><td role="cell" data-label="Notes"><span class="pill">solved example added</span> · <span class="pill">Multicore subpart (iv) → Threads in new Unit I</span></td></tr>
+    <tr role="row"><td role="cell" data-label="#">23</td><td role="cell" data-label="Question">"In preemptive scheduling, when can a currently running process be interrupted?"</td><td role="cell" data-label="Source">CIE-II Quiz-II, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#process-scheduling">1.5</a></td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">24</td><td role="cell" data-label="Question">"Define CPU utilization and its goal."</td><td role="cell" data-label="Source">CIE-II Quiz-II, 24-25 · 2M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#process-scheduling">1.5</a></td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">25</td><td role="cell" data-label="Question">"<code>int x=3; while(x&gt;0){fork(); printf("hello"); wait(NULL); x--;}</code> — total printf executions?"</td><td role="cell" data-label="Source">SEE Feb/Mar 2025, 24-25 · 2M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#process-operations">1.6</a></td><td role="cell" data-label="Notes"><span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td role="cell" data-label="#">26</td><td role="cell" data-label="Question">"<code>for(i=1;i&lt;=n;i++) fork();</code> — how many new processes are created?"</td><td role="cell" data-label="Source">SEE Feb/Mar 2025, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#process-operations">1.6</a></td><td role="cell" data-label="Notes"><span class="pill">solved example added</span></td></tr>
+    <tr class="legacy-row" role="row"><td colspan="5" role="cell" data-label="#"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>Historical question — computing environments</h3><span class="scope-note">Present in older question papers; not listed in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u1-1010" aria-label="View Historical question — computing environments">View</button></div>
-  <div class="legacy-content" id="legacy-u1-1010" hidden><table><tbody><tr><td>27</td><td>"A ________ is a collection of physically separate, possibly heterogeneous computer systems networked to provide access to resources."</td><td>SEE Feb/Mar 2025, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td><a href="#perspectives">1.3</a></td><td></td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u1-1010" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td>27</td><td>"A ________ is a collection of physically separate, possibly heterogeneous computer systems networked to provide access to resources."</td><td>SEE Feb/Mar 2025, 24-25 · 1M<cite class="src" data-src="Q1"></cite></td><td><a href="#perspectives">1.3</a></td><td></td></tr></tbody></table>
+</div></div>
 </div><cite class="src" data-src="Q1"></cite></td></tr>
-    <tr><td>28</td><td>"Demonstrate how system calls manage file-handling operations. Provide examples."</td><td>SEE Feb/Mar 2025, 24-25 · 8M<cite class="src" data-src="Q1"></cite></td><td><a href="#system-calls">1.2</a></td><td><span class="pill">partial scope — syscalls angle only, not file-system internals</span></td></tr>
-    <tr><td>29</td><td>"Write a program demonstrating the use of any three basic file system calls."</td><td>SEE Feb/Mar 2025, 24-25 · 8M<cite class="src" data-src="Q1"></cite></td><td><a href="#system-calls">1.2</a> (copy-file worked example)</td><td><span class="pill">partial scope — syscalls angle only, not file-system internals</span></td></tr>
-    <tr><td>30</td><td>"What is inter-process communication? Explain direct and indirect communication with respect to a message-passing system."</td><td>CIE-1 handout Question Bank Q4</td><td><a href="#process-ipc">1.7</a></td><td><span class="pill">solved example added</span></td></tr>
-    <tr><td>31</td><td>"Analyze the modular kernel approach with the layered approach, with a neat sketch."</td><td>CIE-1 handout Question Bank Q5</td><td><a href="#os-structure-design">1.3</a> (approaches: layered, modules)</td><td></td></tr>
-    <tr><td>32</td><td>"What is an operating system? Explain multiprogramming and time-sharing systems." / "Explain dual-mode operation with a neat block diagram." / "What are system calls? Briefly point out its types."</td><td>CIE-1 handout Question Bank Q1–Q3</td><td><a href="#os-structure">1.4</a>, <a href="#os-operations">1.5</a>, <a href="#system-calls">1.2</a></td><td></td></tr>
+    <tr role="row"><td role="cell" data-label="#">28</td><td role="cell" data-label="Question">"Demonstrate how system calls manage file-handling operations. Provide examples."</td><td role="cell" data-label="Source">SEE Feb/Mar 2025, 24-25 · 8M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#system-calls">1.2</a></td><td role="cell" data-label="Notes"><span class="pill">partial scope — syscalls angle only, not file-system internals</span></td></tr>
+    <tr role="row"><td role="cell" data-label="#">29</td><td role="cell" data-label="Question">"Write a program demonstrating the use of any three basic file system calls."</td><td role="cell" data-label="Source">SEE Feb/Mar 2025, 24-25 · 8M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Answered at"><a href="#system-calls">1.2</a> (copy-file worked example)</td><td role="cell" data-label="Notes"><span class="pill">partial scope — syscalls angle only, not file-system internals</span></td></tr>
+    <tr role="row"><td role="cell" data-label="#">30</td><td role="cell" data-label="Question">"What is inter-process communication? Explain direct and indirect communication with respect to a message-passing system."</td><td role="cell" data-label="Source">CIE-1 handout Question Bank Q4</td><td role="cell" data-label="Answered at"><a href="#process-ipc">1.7</a></td><td role="cell" data-label="Notes"><span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td role="cell" data-label="#">31</td><td role="cell" data-label="Question">"Analyze the modular kernel approach with the layered approach, with a neat sketch."</td><td role="cell" data-label="Source">CIE-1 handout Question Bank Q5</td><td role="cell" data-label="Answered at"><a href="#os-structure-design">1.3</a> (approaches: layered, modules)</td><td role="cell" data-label="Notes"></td></tr>
+    <tr role="row"><td role="cell" data-label="#">32</td><td role="cell" data-label="Question">"What is an operating system? Explain multiprogramming and time-sharing systems." / "Explain dual-mode operation with a neat block diagram." / "What are system calls? Briefly point out its types."</td><td role="cell" data-label="Source">CIE-1 handout Question Bank Q1–Q3</td><td role="cell" data-label="Answered at"><a href="#os-structure">1.4</a>, <a href="#os-operations">1.5</a>, <a href="#system-calls">1.2</a></td><td role="cell" data-label="Notes"></td></tr>
   </table>
+</div>
 <h2>Thread questions reassigned from old Unit II</h2><p>These source rows now belong to Unit I. Their answers are taught once in the Threads section.</p><h2>Threads — Overview of Threads</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-I Q5b, 5M</td><td>Differentiate (i) a process and a thread, (ii) user thread and kernel thread, with a diagram.</td><td>→ <a href="#threads">§2.1</a> &amp; <a href="#threads">§2.3</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q2, 1M<cite class="src" data-src="Q1"></cite></td><td>"A thread shares the same ___ space with other threads in the same process." (Ans: code, data, files)</td><td>→ <a href="#threads">§2.1</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-1 Q2, 5M</td><td>Two differences between user-level and kernel-level threads; when is one better?</td><td>→ <a href="#threads">§2.1</a> &amp; <a href="#threads">§2.3</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q1, 8M<cite class="src" data-src="Q1"></cite></td><td>Analyze the benefits of multithreading — responsiveness, resource sharing, performance in a multicore environment, with examples.</td><td>→ <a href="#threads">§2.1</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">21-22 CIE-I Q5b, 5M</td><td role="cell" data-label="Question">Differentiate (i) a process and a thread, (ii) user thread and kernel thread, with a diagram.</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.1</a> &amp; <a href="#threads">§2.3</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Quiz-1 Q2, 1M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">"A thread shares the same ___ space with other threads in the same process." (Ans: code, data, files)</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.1</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-1 Q2, 5M</td><td role="cell" data-label="Question">Two differences between user-level and kernel-level threads; when is one better?</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.1</a> &amp; <a href="#threads">§2.3</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-B Q1, 8M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Analyze the benefits of multithreading — responsiveness, resource sharing, performance in a multicore environment, with examples.</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.1</a></td></tr>
   </table>
+</div>
 
   <h2>Threads — Multicore Programming</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q4, 2M<cite class="src" data-src="Q1"></cite></td><td>Illustrate the distinction between concurrency and parallelism, with a diagram.</td><td>→ <a href="#threads">§2.2</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Test-1 Q1.iv, part of 10M <span class="pill">borderline→included</span></td><td>Matrix multiplication on a uniprocessor: more efficient algorithm, more threads, or more processes — which is viable? Justify.</td><td>→ <a href="#threads">§2.2</a></td></tr>
-    <tr class="legacy-row"><td colspan="3"><div class="legacy-topic">
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Quiz-1 Q4, 2M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Illustrate the distinction between concurrency and parallelism, with a diagram.</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.2</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Test-1 Q1.iv, part of 10M <span class="pill">borderline→included</span></td><td role="cell" data-label="Question">Matrix multiplication on a uniprocessor: more efficient algorithm, more threads, or more processes — which is viable? Justify.</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.2</a></td></tr>
+    <tr class="legacy-row" role="row"><td colspan="3" role="cell" data-label="Source"><div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h3>Amdahl&#x27;s-law practice question</h3><span class="scope-note">Supplementary multicore calculation; not explicitly named in the new syllabus</span></div>
   <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-u1-1011" aria-label="View Amdahl&#x27;s-law practice question">View</button></div>
-  <div class="legacy-content" id="legacy-u1-1011" hidden><table><tbody><tr><td class="mono" style="white-space:nowrap">24-25 Test-1 Q3, 4M</td><td>Amdahl's Law: 70% parallelizable code, 5 processors — theoretical max speedup?</td><td>→ <a href="#threads">§2.2</a> <span class="pill">solved example added</span></td></tr></tbody></table></div>
+  <div class="legacy-content" id="legacy-u1-1011" hidden><div class="table-scroll" role="region" tabindex="0" aria-label="Study data">
+<table><tbody><tr><td class="mono" style="white-space:nowrap">24-25 Test-1 Q3, 4M</td><td>Amdahl's Law: 70% parallelizable code, 5 processors — theoretical max speedup?</td><td>→ <a href="#threads">§2.2</a> <span class="pill">solved example added</span></td></tr></tbody></table>
+</div></div>
 </div></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q1, 2M<cite class="src" data-src="Q1"></cite></td><td>Suggest any four challenges in programming for multicore systems.</td><td>→ <a href="#threads">§2.2</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-A Q2, 2M<cite class="src" data-src="Q1"></cite></td><td>Can one have concurrent execution of threads/processes without parallelism? Support with reason.</td><td>→ <a href="#threads">§2.2</a> (same idea as Quiz-1 Q4 above, asked as justify-your-answer)</td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-A Q1, 2M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Suggest any four challenges in programming for multicore systems.</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.2</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-A Q2, 2M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Can one have concurrent execution of threads/processes without parallelism? Support with reason.</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.2</a> (same idea as Quiz-1 Q4 above, asked as justify-your-answer)</td></tr>
   </table>
+</div>
 
   <h2>Threads — Multithreading Models</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 Quiz-1 Q3, 1M<cite class="src" data-src="Q1"></cite></td><td>"The ___ model allows threads to run in parallel, utilizing multiple cores." (Ans: many-to-many)</td><td>→ <a href="#threads">§2.3</a> (subsumed by SEE Part-B Q2 below)</td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q2, 8M<cite class="src" data-src="Q1"></cite></td><td>With diagrams, explain the different multithreading models, and the types of parallelism.</td><td>→ <a href="#threads">§2.3</a> &amp; <a href="#threads">§2.2</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 Quiz-1 Q3, 1M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">"The ___ model allows threads to run in parallel, utilizing multiple cores." (Ans: many-to-many)</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.3</a> (subsumed by SEE Part-B Q2 below)</td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-B Q2, 8M<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">With diagrams, explain the different multithreading models, and the types of parallelism.</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.3</a> &amp; <a href="#threads">§2.2</a></td></tr>
   </table>
+</div>
 
   <h2>Threads — Thread Libraries — Pthreads</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">21-22 CIE-I Q2, 10M</td><td>Program: threads to sort an array ascending and descending simultaneously, time the execution.</td><td>→ <a href="#threads">§2.4</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">24-25 SEE Part-B Q3, 8M (alt. to Q2)<cite class="src" data-src="Q1"></cite></td><td>Matrix multiplication using pthreads, one thread per output row.</td><td>→ <a href="#threads">§2.4</a> <span class="pill">solved example added</span></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">21-22 CIE-I Q2, 10M</td><td role="cell" data-label="Question">Program: threads to sort an array ascending and descending simultaneously, time the execution.</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.4</a> <span class="pill">solved example added</span></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">24-25 SEE Part-B Q3, 8M (alt. to Q2)<cite class="src" data-src="Q1"></cite></td><td role="cell" data-label="Question">Matrix multiplication using pthreads, one thread per output row.</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.4</a> <span class="pill">solved example added</span></td></tr>
   </table>
+</div>
 
   <h2>Threads — definition and control block (CIE-1 bank)</h2>
-  <table>
-    <tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q1</td><td>What is a thread? What is TCB?</td><td>→ <a href="#threads">§2.1</a></td></tr>
-    <tr><td class="mono" style="white-space:nowrap">CIE-1 PDF bank Q2</td><td>Write a note on multithreading models.</td><td>→ <a href="#threads">§2.3</a></td></tr>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q1</td><td role="cell" data-label="Question">What is a thread? What is TCB?</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.1</a></td></tr>
+    <tr role="row"><td class="mono" style="white-space:nowrap" role="cell" data-label="Source">CIE-1 PDF bank Q2</td><td role="cell" data-label="Question">Write a note on multithreading models.</td><td role="cell" data-label="Answered at">→ <a href="#threads">§2.3</a></td></tr>
   </table>
+</div>
 
   
 
   <h2>Older SEE papers (2019–2023)</h2>
 <div class="callout clarify"><span class="label">Scope note</span><p>Unit I questions from RVCE SEEs: Apr/May 2019 (16CS45), Nov/Dec 2019, Oct 2020 Fast Track, Mar 2021 (18CS34) and two Apr 2023 sets (21CS35). Questions answered by the same section are grouped. Linux-specific process management and scheduling, and thread pools and threading issues, are not in the current syllabus.</p></div>
-<table><tr><th>Source</th><th>Question</th><th>Answered at</th></tr>
-<tr><td class="mono">Apr-23 A Q1.3 · Nov/Dec-19 Q1.1 · Oct-20 Q1.3</td><td>Output of <code>if (fork() || fork()) fork();</code> / <code>if (fork() &amp;&amp; fork()) fork();</code>.</td><td>→ <a href="#u1-example-07b">Operations on processes</a> <span class="pill">solved example added</span></td></tr>
-<tr><td class="mono">Oct-20 Q1.5</td><td>Differentiate fork and vfork.</td><td>→ <a href="#u1-example-07b">Operations on processes</a> <span class="pill">added</span></td></tr>
-<tr><td class="mono">Apr-23 A Q1.1</td><td>Differentiate a zombie process and an orphan process.</td><td>→ <a href="#process-operations">Operations on processes</a></td></tr>
-<tr><td class="mono">Apr-23 A Q2b · B Q2a · Oct-20 Q2b</td><td>Programs using fork(), wait() and exec()/execl(); create a child and synchronize with it.</td><td>→ <a href="#process-operations">Operations on processes</a>, <a href="#u1-example-08">N-children program</a></td></tr>
-<tr><td class="mono">Apr-23 A Q4a</td><td>Compare process and thread as units of execution; program creating a child process and a thread.</td><td>→ <a href="#u1-example-13">Process vs thread</a>, <a href="#u1-example-12">Pthreads program</a></td></tr>
-<tr><td class="mono">Apr-23 B Q1.6 · Mar-21 Q1.1 · Apr/May-19 Q2b</td><td>The structure that holds all information about a process (PCB); explain the PCB with a diagram.</td><td>→ <a href="#process-concept">Process concept</a></td></tr>
-<tr><td class="mono">Apr/May-19 Q1.3</td><td>A process waiting to be assigned to a processor is in the ____ state (ready).</td><td>→ <a href="#process-concept">Process concept</a></td></tr>
-<tr><td class="mono">Apr-23 B Q2b · Mar-21 Q2a · Apr-23 A Q1.6</td><td>Long-, medium- and short-term schedulers; which suits time-sharing vs job scheduling.</td><td>→ <a href="#process-scheduling">Process scheduling</a></td></tr>
-<tr><td class="mono">Nov/Dec-19 Q2b, 6M</td><td>The four actions of a context switch, with a diagram.</td><td>→ <a href="#process-concept">Process concept</a>, <a href="#process-scheduling">Process scheduling</a></td></tr>
-<tr><td class="mono">Apr-23 A Q2a · Oct-20 Q2a · Mar-21 Q2c · Oct-20 Q1.10</td><td>Approaches to OS structure: monolithic, layered, microkernel, modular.</td><td>→ <a href="#os-structure-design">OS structure</a></td></tr>
-<tr><td class="mono">Oct-20 Q1.2 · Mar-21 Q1.2</td><td>Design principles / goals of an operating system.</td><td>→ <a href="#os-structure-design">OS structure</a></td></tr>
-<tr><td class="mono">Apr-23 B Q2c</td><td>Benefits of virtual machines, with an example.</td><td>→ <a href="#os-structure-design">OS structure</a></td></tr>
-<tr><td class="mono">Nov/Dec-19 Q2c</td><td>User mode vs kernel mode.</td><td>→ <a href="#os-operations">OS operations</a></td></tr>
-<tr><td class="mono">Apr/May-19 Q1.2</td><td>Purpose of a system call.</td><td>→ <a href="#system-calls">System calls</a></td></tr>
-<tr><td class="mono">Oct-20 Q1.1 · Apr/May-19 Q1.1, Q2a · Oct-20 Q2c · Apr-23 B Q1.1</td><td>Classes of OS (batch, time-sharing/multi-user, real-time…) and how computing evolution shaped them.</td><td>→ <a href="#perspectives">Perspectives</a>, <a href="#os-structure">OS structure</a></td></tr>
-<tr><td class="mono">Apr-23 A Q1.10, Q3b · Oct-20 Q1.4</td><td>Why is a thread a light-weight process? Threading models.</td><td>→ <a href="#threads">Threads</a></td></tr>
-<tr><td class="mono">Apr-23 B Q3b · Apr/May-19 Q2c</td><td>User vs kernel threads; mapping models; single- vs multithreaded process.</td><td>→ <a href="#threads">Threads</a>, <a href="#u1-example-13">Process vs thread</a></td></tr>
-<tr><td class="mono">Mar-21 Q1.3 · Nov/Dec-19 Q2a</td><td>Four benefits of multithreaded programming; threads vs processes, with a thread-sum program.</td><td>→ <a href="#threads">Threads</a>, <a href="#u1-example-12">Pthreads program</a></td></tr>
-<tr><td class="mono">Apr-23 B Q4b · Mar-21 Q2b</td><td>Pthread program to sum N non-negative numbers.</td><td>→ <a href="#u1-example-12">Pthreads program</a></td></tr>
-<tr><td class="mono">Apr/May-19 Q4b</td><td>Threading issues; thread pools.</td><td>Not in the current syllabus</td></tr>
-<tr><td class="mono">Mar-21 Q4c · Nov/Dec-19 Q4c</td><td>Process management / process scheduling in Linux.</td><td>Not in the current syllabus</td></tr>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Source / Question / Answered at">
+<table class="table-prose" role="table"><tr role="row"><th role="columnheader" scope="col">Source</th><th role="columnheader" scope="col">Question</th><th role="columnheader" scope="col">Answered at</th></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q1.3 · Nov/Dec-19 Q1.1 · Oct-20 Q1.3</td><td role="cell" data-label="Question">Output of <code>if (fork() || fork()) fork();</code> / <code>if (fork() &amp;&amp; fork()) fork();</code>.</td><td role="cell" data-label="Answered at">→ <a href="#u1-example-07b">Operations on processes</a> <span class="pill">solved example added</span></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Oct-20 Q1.5</td><td role="cell" data-label="Question">Differentiate fork and vfork.</td><td role="cell" data-label="Answered at">→ <a href="#u1-example-07b">Operations on processes</a> <span class="pill">added</span></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q1.1</td><td role="cell" data-label="Question">Differentiate a zombie process and an orphan process.</td><td role="cell" data-label="Answered at">→ <a href="#process-operations">Operations on processes</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q2b · B Q2a · Oct-20 Q2b</td><td role="cell" data-label="Question">Programs using fork(), wait() and exec()/execl(); create a child and synchronize with it.</td><td role="cell" data-label="Answered at">→ <a href="#process-operations">Operations on processes</a>, <a href="#u1-example-08">N-children program</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q4a</td><td role="cell" data-label="Question">Compare process and thread as units of execution; program creating a child process and a thread.</td><td role="cell" data-label="Answered at">→ <a href="#u1-example-13">Process vs thread</a>, <a href="#u1-example-12">Pthreads program</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 B Q1.6 · Mar-21 Q1.1 · Apr/May-19 Q2b</td><td role="cell" data-label="Question">The structure that holds all information about a process (PCB); explain the PCB with a diagram.</td><td role="cell" data-label="Answered at">→ <a href="#process-concept">Process concept</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr/May-19 Q1.3</td><td role="cell" data-label="Question">A process waiting to be assigned to a processor is in the ____ state (ready).</td><td role="cell" data-label="Answered at">→ <a href="#process-concept">Process concept</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 B Q2b · Mar-21 Q2a · Apr-23 A Q1.6</td><td role="cell" data-label="Question">Long-, medium- and short-term schedulers; which suits time-sharing vs job scheduling.</td><td role="cell" data-label="Answered at">→ <a href="#process-scheduling">Process scheduling</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Nov/Dec-19 Q2b, 6M</td><td role="cell" data-label="Question">The four actions of a context switch, with a diagram.</td><td role="cell" data-label="Answered at">→ <a href="#process-concept">Process concept</a>, <a href="#process-scheduling">Process scheduling</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q2a · Oct-20 Q2a · Mar-21 Q2c · Oct-20 Q1.10</td><td role="cell" data-label="Question">Approaches to OS structure: monolithic, layered, microkernel, modular.</td><td role="cell" data-label="Answered at">→ <a href="#os-structure-design">OS structure</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Oct-20 Q1.2 · Mar-21 Q1.2</td><td role="cell" data-label="Question">Design principles / goals of an operating system.</td><td role="cell" data-label="Answered at">→ <a href="#os-structure-design">OS structure</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 B Q2c</td><td role="cell" data-label="Question">Benefits of virtual machines, with an example.</td><td role="cell" data-label="Answered at">→ <a href="#os-structure-design">OS structure</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Nov/Dec-19 Q2c</td><td role="cell" data-label="Question">User mode vs kernel mode.</td><td role="cell" data-label="Answered at">→ <a href="#os-operations">OS operations</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr/May-19 Q1.2</td><td role="cell" data-label="Question">Purpose of a system call.</td><td role="cell" data-label="Answered at">→ <a href="#system-calls">System calls</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Oct-20 Q1.1 · Apr/May-19 Q1.1, Q2a · Oct-20 Q2c · Apr-23 B Q1.1</td><td role="cell" data-label="Question">Classes of OS (batch, time-sharing/multi-user, real-time…) and how computing evolution shaped them.</td><td role="cell" data-label="Answered at">→ <a href="#perspectives">Perspectives</a>, <a href="#os-structure">OS structure</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 A Q1.10, Q3b · Oct-20 Q1.4</td><td role="cell" data-label="Question">Why is a thread a light-weight process? Threading models.</td><td role="cell" data-label="Answered at">→ <a href="#threads">Threads</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 B Q3b · Apr/May-19 Q2c</td><td role="cell" data-label="Question">User vs kernel threads; mapping models; single- vs multithreaded process.</td><td role="cell" data-label="Answered at">→ <a href="#threads">Threads</a>, <a href="#u1-example-13">Process vs thread</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Mar-21 Q1.3 · Nov/Dec-19 Q2a</td><td role="cell" data-label="Question">Four benefits of multithreaded programming; threads vs processes, with a thread-sum program.</td><td role="cell" data-label="Answered at">→ <a href="#threads">Threads</a>, <a href="#u1-example-12">Pthreads program</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr-23 B Q4b · Mar-21 Q2b</td><td role="cell" data-label="Question">Pthread program to sum N non-negative numbers.</td><td role="cell" data-label="Answered at">→ <a href="#u1-example-12">Pthreads program</a></td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Apr/May-19 Q4b</td><td role="cell" data-label="Question">Threading issues; thread pools.</td><td role="cell" data-label="Answered at">Not in the current syllabus</td></tr>
+<tr role="row"><td class="mono" role="cell" data-label="Source">Mar-21 Q4c · Nov/Dec-19 Q4c</td><td role="cell" data-label="Question">Process management / process scheduling in Linux.</td><td role="cell" data-label="Answered at">Not in the current syllabus</td></tr>
 </table>
+</div>
 
 <a class="backtotop" href="#index">&uarr; Back to index</a>
 </section>
