@@ -29,10 +29,17 @@
       "source": "Applied Digital Logic Design - Unit 3 - Exam Notes.html",
       "title": "Counters & Synchronous Sequential Networks",
       "topics": "ripple counters, synchronous counters, ring and Johnson counters, counter design, self-correcting counters, Mealy and Moore models, analysis, state diagrams, sequence detectors, state table reduction, implication table, frequency division, mod-N by clear, lock-out, Mealy to Moore conversion",
-      "updated": "2026-11-11"
+      "updated": "2026-11-12"
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-12",
+      "units": [
+        3
+      ],
+      "text": "Readability rewrite for first-time readers: flip-flop/clock refresher, examples before definitions, a small D-flip-flop mod-3 counter before the JK design, a 111 detector to explain states, D analysis before JK, glossary and self-check questions, three new diagrams, sideways-scrolling diagrams on phones. Fixed P6.38's self-correction verdict."
+    },
     {
       "date": "2026-11-11",
       "units": [
