@@ -29,10 +29,17 @@
       "source": "Applied Digital Logic Design - Unit 3 - Exam Notes.html",
       "title": "Counters & Synchronous Sequential Networks",
       "topics": "ripple counters, synchronous counters, ring and Johnson counters, counter design, self-correcting counters, Mealy and Moore models, analysis, state diagrams, sequence detectors, state table reduction, implication table, frequency division, mod-N by clear, lock-out, Mealy to Moore conversion",
-      "updated": "2026-11-12"
+      "updated": "2026-11-13"
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-13",
+      "units": [
+        3
+      ],
+      "text": "§2 counter question (J = K = Q̄A): the question now spells out that B is fed from A's complement output, and a note shows the answer if it were fed from QA (10 instead of 11). Answer unchanged, as it matches the faculty figure."
+    },
     {
       "date": "2026-11-12",
       "units": [
