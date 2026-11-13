@@ -122,11 +122,36 @@ body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap{transition:backgr
 .theme-toggle:hover{border-color:var(--blue)}
 .theme-toggle:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .theme-toggle .ico{font-size:15px;line-height:1}
+/* Syllabus revision: optional material stays at its original location. */
+[hidden]{display:none!important}
+.legacy-topic{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin:18px 0;overflow:hidden}
+.legacy-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 18px}
+.legacy-heading-text{min-width:0;flex:1}
+.legacy-heading h1,.legacy-heading h2,.legacy-heading h3{font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.5;margin:0;padding:0;color:var(--ink);font-weight:600}
+.scope-note{display:block;font-size:12px;color:var(--ink-soft);margin-top:3px}
+.extra-toggle{flex-shrink:0;border:1px solid var(--line);background:var(--paper);color:var(--blue);border-radius:999px;padding:7px 16px;font:600 13px 'Inter',system-ui,sans-serif;cursor:pointer;min-width:66px}
+.extra-toggle:hover{border-color:var(--blue)}
+.extra-toggle:focus-visible,.navlink:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.legacy-content{padding:4px 20px 20px;border-top:1px solid var(--line-soft)}
+.legacy-section{padding-top:6px;padding-bottom:6px}
+.legacy-content .legacy-topic{box-shadow:none}
+.source-note{font-size:12.5px;color:var(--ink-soft)!important;margin:18px 0!important}
+.topic-badge{font-size:10px;color:var(--ink-soft);font-weight:400;margin-left:auto}
+.section:target{scroll-margin-top:55px}
+code,pre,.mono,.formula-block{font-variant-ligatures:none;font-feature-settings:'liga' 0,'calt' 0}
+pre.formula-block{white-space:pre;tab-size:4}
+.formula-block .tk,.formula-block .tt,.formula-block .tf,.formula-block .tn,.formula-block .ts,.formula-block .tm{color:inherit}
+.formula-block .tc{color:var(--ink-faint);font-style:italic}
+body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap,.legacy-topic{transition:background-color .2s,color .2s,border-color .2s}
+@media(max-width:640px){.legacy-heading{gap:10px;padding:13px}.legacy-content{padding:4px 13px 15px}.legacy-heading h1,.legacy-heading h2,.legacy-heading h3{font-size:14px}.extra-toggle{padding:6px 12px}}
+
+@media print{.legacy-content[hidden]{display:block!important}}
 </style>
 <script>
 (function(){var m=false;try{m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}
 document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
 </script>
+<noscript><style>.legacy-content[hidden]{display:block!important}.extra-toggle{display:none!important}</style></noscript>
 </head>
 <body>
 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode"><span class="ico" id="themeIco">🌙</span><span id="themeLbl">Dark</span></button>
@@ -156,10 +181,10 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
     <a class="navlink" href="#sec-3-1"><span class="dot"></span>2.1 Introduction to Recursion</a>
     <a class="navlink" href="#sec-3-2"><span class="dot"></span>2.2 Factorial Function &amp; Execution Trace</a>
     <a class="navlink" href="#sec-3-3"><span class="dot"></span>2.3 Role of the Stack During Recursion Execution</a>
-    <a class="navlink" href="#sec-3-4"><span class="dot"></span>2.4 Recursive Binary Search <span class="beyond">extra</span></a>
+    <a class="navlink" href="#sec-3-4"><span class="dot"></span>2.4 Recursive Binary Search <span class="beyond">hidden</span></a>
     <a class="navlink" href="#sec-3-5"><span class="dot"></span>2.5 Towers of Hanoi Problem</a>
-    <a class="navlink" href="#sec-3-6"><span class="dot"></span>2.6 More Recursion Examples <span class="beyond">extra</span></a>
-    <a class="navlink" href="#sec-3-7"><span class="dot"></span>2.7 Solved Numericals — Recursion <span class="beyond">extra</span></a>
+    <a class="navlink" href="#sec-3-6"><span class="dot"></span>2.6 More Recursion Examples <span class="beyond">hidden</span></a>
+    <a class="navlink" href="#sec-3-7"><span class="dot"></span>2.7 Solved Numericals — Recursion <span class="beyond">hidden</span></a>
   </div>
   <div class="navgroup">
     <div class="part-label">Part 3 — Self-learning / Extended Topics</div>
@@ -254,7 +279,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
       <p>How the call stack tracks recursive calls.</p>
     </a>
     <a class="index-card" href="#sec-3-4" style="--card-color:var(--indigo)">
-      <span class="num">2.4</span><span class="beyond">Beyond syllabus</span>
+      <span class="num">2.4</span><span class="beyond">Beyond syllabus · hidden</span>
       <h3>Recursive Binary Search</h3>
       <p>Divide-and-conquer search, fully traced.</p>
     </a>
@@ -264,12 +289,12 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
       <p>Syllabus application: recurrence 2ⁿ−1 and move traces for n=3, 4.</p>
     </a>
     <a class="index-card" href="#sec-3-6" style="--card-color:var(--indigo)">
-      <span class="num">2.6</span><span class="beyond">Beyond syllabus</span>
+      <span class="num">2.6</span><span class="beyond">Beyond syllabus · hidden</span>
       <h3>More Recursion Examples</h3>
       <p>Fibonacci, GCD, sum of N, counting zeros.</p>
     </a>
     <a class="index-card" href="#sec-3-7" style="--card-color:var(--indigo)">
-      <span class="num">2.7</span><span class="beyond">Beyond syllabus</span>
+      <span class="num">2.7</span><span class="beyond">Beyond syllabus · hidden</span>
       <h3>Solved Numericals — Recursion</h3>
       <p>Exam-style recursion questions, worked end to end.</p>
     </a>
@@ -339,7 +364,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light');})();
     The earlier Unit 1 notes combined introduction, stacks and recursion. The new Unit II syllabus does not list recursion as a topic. It names Tower of Hanoi as an application, and "using stacks to eliminate recursion" as self-learning, and both need the basics. So Part 2 is split:
     <ul>
       <li><strong>Needed:</strong> §2.1 what recursion is, §2.2 the factorial trace, §2.3 the role of the stack, §2.5 Tower of Hanoi.</li>
-      <li><strong>Beyond syllabus</strong> (marked <span class="beyond">extra</span>): §2.4 recursive binary search, §2.6 more recursion examples, §2.7 the old-syllabus recursion question. They are kept for practice and can be skipped.</li>
+      <li><strong>Beyond syllabus</strong> (marked <span class="beyond">hidden</span>): §2.4 recursive binary search, §2.6 more recursion examples, §2.7 the old-syllabus recursion question. They are hidden by default and kept for optional practice. Press View to open a section and Hide to close it; links open the relevant section automatically.</li>
     </ul>
     The earlier copy is in <code>old-syllabus/</code>.
   </div>
@@ -1257,8 +1282,11 @@ Result = 25</pre>
   <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
-<section class="page section" id="sec-3-4" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-  <div class="section-head"><span class="tag">2.4</span><h1>Recursive Binary Search</h1><span class="beyond">Beyond syllabus</span></div>
+<section class="page section legacy-section" id="sec-3-4" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
+  <div class="legacy-topic">
+  <div class="legacy-heading"><div class="legacy-heading-text"><h1>2.4 · Recursive Binary Search</h1><span class="scope-note">Beyond syllabus · hidden by default; retained for optional practice</span></div>
+  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-sec-3-4" aria-label="View 2.4 · Recursive Binary Search">View</button></div>
+  <div class="legacy-content" id="legacy-sec-3-4" hidden>
   <p class="section-sub">Binary search</p>
 
   <div class="callout clarify">
@@ -1329,6 +1357,8 @@ Result = 25</pre>
   </div>
 
   <a class="backtotop" href="#index">↑ Back to index</a>
+  </div>
+  </div>
 </section>
 
 <section class="page section" id="sec-3-5" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
@@ -1357,37 +1387,87 @@ Result = 25</pre>
 <span class="cm">// called as: ToH(n, 'A', 'C', 'B');</span></div>
 
   <div class="svg-wrap">
-    <svg viewBox="0 0 640 290" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <marker id="arrow5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5B6169"/></marker>
-      </defs>
-      <g font-family="Inter" font-size="13" font-weight="600" fill="#2A2C2F">
-        <text x="90" y="24" text-anchor="middle">A (Source)</text>
-        <text x="320" y="24" text-anchor="middle">B (Spare)</text>
-        <text x="550" y="24" text-anchor="middle">C (Destination)</text>
+    <svg viewBox="0 0 640 576" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hanoi-fig-title hanoi-fig-desc">
+      <title id="hanoi-fig-title">Tower of Hanoi: three recursive steps for three disks</title>
+      <desc id="hanoi-fig-desc">Four successive states show all disks on A, the smaller disks moved to B, disk 3 moved to C, and all disks finally on C. Disk 1 is smallest.</desc>
+      <g transform="translate(0 0)" font-family="Inter, sans-serif" text-anchor="middle">
+      <text x="320" y="20" font-size="14" font-weight="600" fill="#2A2C2F">Initial state — n = 3 disks</text>
+      <text x="320" y="40" font-size="12" fill="#5B6169">A is the source; B is spare; C is the destination.</text>
+      <line x1="130" y1="54" x2="130" y2="112" stroke="#5B6169" stroke-width="4"/>
+      <line x1="70" y1="114" x2="190" y2="114" stroke="#5B6169" stroke-width="3"/>
+      <rect x="82" y="96" width="96" height="16" rx="4" fill="#E4F3F0" stroke="#12796F"/>
+      <text x="130" y="108" font-size="11" fill="#2A2C2F">3</text>
+      <rect x="93" y="79" width="74" height="16" rx="4" fill="#EEECF7" stroke="#4C3F91"/>
+      <text x="130" y="91" font-size="11" fill="#2A2C2F">2</text>
+      <rect x="104" y="62" width="52" height="16" rx="4" fill="#F6E9F0" stroke="#93316B"/>
+      <text x="130" y="74" font-size="11" fill="#2A2C2F">1</text>
+      <text x="130" y="133" font-size="12" fill="#5B6169">A</text>
+      <line x1="320" y1="54" x2="320" y2="112" stroke="#5B6169" stroke-width="4"/>
+      <line x1="260" y1="114" x2="380" y2="114" stroke="#5B6169" stroke-width="3"/>
+      <text x="320" y="133" font-size="12" fill="#5B6169">B</text>
+      <line x1="510" y1="54" x2="510" y2="112" stroke="#5B6169" stroke-width="4"/>
+      <line x1="450" y1="114" x2="570" y2="114" stroke="#5B6169" stroke-width="3"/>
+      <text x="510" y="133" font-size="12" fill="#5B6169">C</text>
       </g>
-      <line x1="90" y1="34" x2="90" y2="120" stroke="#8A9096" stroke-width="4"/>
-      <line x1="320" y1="34" x2="320" y2="120" stroke="#8A9096" stroke-width="4"/>
-      <line x1="550" y1="34" x2="550" y2="120" stroke="#8A9096" stroke-width="4"/>
-      <rect x="30" y="34" width="120" height="90" fill="none" stroke="#E4E0D3" rx="4"/>
-      <rect x="260" y="34" width="120" height="90" fill="none" stroke="#E4E0D3" rx="4"/>
-      <rect x="490" y="34" width="120" height="90" fill="none" stroke="#E4E0D3" rx="4"/>
-      <rect x="55" y="96" width="70" height="20" rx="4" fill="#E4F3F0" stroke="#12796F"/>
-      <rect x="63" y="76" width="54" height="20" rx="4" fill="#EEECF7" stroke="#4C3F91"/>
-      <rect x="71" y="56" width="38" height="20" rx="4" fill="#F6E9F0" stroke="#93316B"/>
-      <text x="90" y="140" text-anchor="middle" font-family="Inter" font-size="12" fill="#5B6169">initial: n disks on A</text>
-
-      <path d="M170,150 Q260,190 300,150" fill="none" stroke="#12796F" stroke-width="2" marker-end="url(#arrow5)"/>
-      <text x="235" y="205" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="#12796F">1. move n−1 disks: A → B (using C as spare)</text>
-
-      <path d="M400,150 Q470,190 520,150" fill="none" stroke="#A66A0D" stroke-width="2" marker-end="url(#arrow5)"/>
-      <text x="460" y="205" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="#A66A0D">2. move disk n: A → C</text>
-      <text x="460" y="225" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="#A66A0D">3. move n−1 disks: B → C (using A as spare)</text>
-
-      <rect x="285" y="96" width="70" height="20" rx="4" fill="#E4F3F0" stroke="#12796F" opacity="0.4"/>
-      <rect x="515" y="116" width="70" height="20" rx="4" fill="#F7EEDD" stroke="#A66A0D"/>
-    </svg>
-    <div class="cap">Fig 5. Towers of Hanoi — recursive decomposition. Moving n disks A→C reduces to: move n−1 disks A→B, move the largest disk A→C, move n−1 disks B→C.</div>
+      <g transform="translate(0 144)" font-family="Inter, sans-serif" text-anchor="middle">
+      <text x="320" y="20" font-size="14" font-weight="600" fill="#2A2C2F">1. Move n−1 disks: A → B</text>
+      <text x="320" y="40" font-size="12" fill="#5B6169">Recursive call: use C as the spare peg.</text>
+      <line x1="130" y1="54" x2="130" y2="112" stroke="#5B6169" stroke-width="4"/>
+      <line x1="70" y1="114" x2="190" y2="114" stroke="#5B6169" stroke-width="3"/>
+      <rect x="82" y="96" width="96" height="16" rx="4" fill="#E4F3F0" stroke="#12796F"/>
+      <text x="130" y="108" font-size="11" fill="#2A2C2F">3</text>
+      <text x="130" y="133" font-size="12" fill="#5B6169">A</text>
+      <line x1="320" y1="54" x2="320" y2="112" stroke="#5B6169" stroke-width="4"/>
+      <line x1="260" y1="114" x2="380" y2="114" stroke="#5B6169" stroke-width="3"/>
+      <rect x="283" y="96" width="74" height="16" rx="4" fill="#EEECF7" stroke="#4C3F91"/>
+      <text x="320" y="108" font-size="11" fill="#2A2C2F">2</text>
+      <rect x="294" y="79" width="52" height="16" rx="4" fill="#F6E9F0" stroke="#93316B"/>
+      <text x="320" y="91" font-size="11" fill="#2A2C2F">1</text>
+      <text x="320" y="133" font-size="12" fill="#5B6169">B</text>
+      <line x1="510" y1="54" x2="510" y2="112" stroke="#5B6169" stroke-width="4"/>
+      <line x1="450" y1="114" x2="570" y2="114" stroke="#5B6169" stroke-width="3"/>
+      <text x="510" y="133" font-size="12" fill="#5B6169">C</text>
+      </g>
+      <g transform="translate(0 288)" font-family="Inter, sans-serif" text-anchor="middle">
+      <text x="320" y="20" font-size="14" font-weight="600" fill="#2A2C2F">2. Move the largest disk: A → C</text>
+      <text x="320" y="40" font-size="12" fill="#5B6169">One direct move; the smaller disks stay on B.</text>
+      <line x1="130" y1="54" x2="130" y2="112" stroke="#5B6169" stroke-width="4"/>
+      <line x1="70" y1="114" x2="190" y2="114" stroke="#5B6169" stroke-width="3"/>
+      <text x="130" y="133" font-size="12" fill="#5B6169">A</text>
+      <line x1="320" y1="54" x2="320" y2="112" stroke="#5B6169" stroke-width="4"/>
+      <line x1="260" y1="114" x2="380" y2="114" stroke="#5B6169" stroke-width="3"/>
+      <rect x="283" y="96" width="74" height="16" rx="4" fill="#EEECF7" stroke="#4C3F91"/>
+      <text x="320" y="108" font-size="11" fill="#2A2C2F">2</text>
+      <rect x="294" y="79" width="52" height="16" rx="4" fill="#F6E9F0" stroke="#93316B"/>
+      <text x="320" y="91" font-size="11" fill="#2A2C2F">1</text>
+      <text x="320" y="133" font-size="12" fill="#5B6169">B</text>
+      <line x1="510" y1="54" x2="510" y2="112" stroke="#5B6169" stroke-width="4"/>
+      <line x1="450" y1="114" x2="570" y2="114" stroke="#5B6169" stroke-width="3"/>
+      <rect x="462" y="96" width="96" height="16" rx="4" fill="#E4F3F0" stroke="#12796F"/>
+      <text x="510" y="108" font-size="11" fill="#2A2C2F">3</text>
+      <text x="510" y="133" font-size="12" fill="#5B6169">C</text>
+      </g>
+      <g transform="translate(0 432)" font-family="Inter, sans-serif" text-anchor="middle">
+      <text x="320" y="20" font-size="14" font-weight="600" fill="#2A2C2F">3. Move n−1 disks: B → C</text>
+      <text x="320" y="40" font-size="12" fill="#5B6169">Recursive call: use A as the spare peg.</text>
+      <line x1="130" y1="54" x2="130" y2="112" stroke="#5B6169" stroke-width="4"/>
+      <line x1="70" y1="114" x2="190" y2="114" stroke="#5B6169" stroke-width="3"/>
+      <text x="130" y="133" font-size="12" fill="#5B6169">A</text>
+      <line x1="320" y1="54" x2="320" y2="112" stroke="#5B6169" stroke-width="4"/>
+      <line x1="260" y1="114" x2="380" y2="114" stroke="#5B6169" stroke-width="3"/>
+      <text x="320" y="133" font-size="12" fill="#5B6169">B</text>
+      <line x1="510" y1="54" x2="510" y2="112" stroke="#5B6169" stroke-width="4"/>
+      <line x1="450" y1="114" x2="570" y2="114" stroke="#5B6169" stroke-width="3"/>
+      <rect x="462" y="96" width="96" height="16" rx="4" fill="#E4F3F0" stroke="#12796F"/>
+      <text x="510" y="108" font-size="11" fill="#2A2C2F">3</text>
+      <rect x="473" y="79" width="74" height="16" rx="4" fill="#EEECF7" stroke="#4C3F91"/>
+      <text x="510" y="91" font-size="11" fill="#2A2C2F">2</text>
+      <rect x="484" y="62" width="52" height="16" rx="4" fill="#F6E9F0" stroke="#93316B"/>
+      <text x="510" y="74" font-size="11" fill="#2A2C2F">1</text>
+      <text x="510" y="133" font-size="12" fill="#5B6169">C</text>
+      </g>
+      </svg>
+    <div class="cap">Fig 5. Towers of Hanoi — successive states for n = 3. Each numbered step finishes before the next begins; disk 1 is smallest and disk 3 is largest.</div>
   </div>
 
   <h2>Recurrence Relation &amp; Minimum Moves</h2>
@@ -1470,8 +1550,11 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
   <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
 
-<section class="page section" id="sec-3-6" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-  <div class="section-head"><span class="tag">2.6</span><h1>More Recursion Examples</h1><span class="beyond">Beyond syllabus</span></div>
+<section class="page section legacy-section" id="sec-3-6" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
+  <div class="legacy-topic">
+  <div class="legacy-heading"><div class="legacy-heading-text"><h1>2.6 · More Recursion Examples</h1><span class="scope-note">Beyond syllabus · hidden by default; retained for optional practice</span></div>
+  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-sec-3-6" aria-label="View 2.6 · More Recursion Examples">View</button></div>
+  <div class="legacy-content" id="legacy-sec-3-6" hidden>
   <p class="section-sub">Additional practice with the same decomposition → composition → base-case pattern</p>
 
   <div class="callout clarify">
@@ -1526,10 +1609,15 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
   </div>
 
   <a class="backtotop" href="#index">↑ Back to index</a>
+  </div>
+  </div>
 </section>
 
-<section class="page section" id="sec-3-7" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
-  <div class="section-head"><span class="tag">2.7</span><h1>Solved Numericals — Recursion</h1><span class="beyond">Beyond syllabus</span></div>
+<section class="page section legacy-section" id="sec-3-7" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);">
+  <div class="legacy-topic">
+  <div class="legacy-heading"><div class="legacy-heading-text"><h1>2.7 · Solved Numericals — Recursion</h1><span class="scope-note">Beyond syllabus · hidden by default; retained for optional practice</span></div>
+  <button type="button" class="extra-toggle" aria-expanded="false" aria-controls="legacy-sec-3-7" aria-label="View 2.7 · Solved Numericals — Recursion">View</button></div>
+  <div class="legacy-content" id="legacy-sec-3-7" hidden>
   <p class="section-sub">The full multi-part recursion question from CIE-1, answered end to end</p>
 
   <div class="callout clarify">
@@ -1567,6 +1655,8 @@ Solving: T(n) = 2<sup>n</sup> - 1</div>
   <p class="section-sub" style="margin-top:-8px">Binary search's depth grows logarithmically because each call discards half the remaining input; factorial and Towers of Hanoi both branch/step linearly with n, but ToH still does exponentially more total <em>work</em> (2ⁿ−1 moves) because it makes two recursive calls per level instead of one.</p>
 
   <a class="backtotop" href="#index">↑ Back to index</a>
+  </div>
+  </div>
 </section>
 
 <section class="page section" id="sl-stack-recursion" style="--accent:var(--plum);--accent-soft:var(--plum-soft);">
@@ -1901,6 +1991,16 @@ const setActive=()=>{let cur='';const y=window.scrollY+140;
  navLinks.forEach(l=>{l.style.color='';l.style.fontWeight='';
   if(l.getAttribute('href')==='#'+cur){l.style.color='var(--blue)';l.style.fontWeight='600'}})};
 window.addEventListener('scroll',setActive);setActive();
+(function(){
+ const buttons=[...document.querySelectorAll('.extra-toggle')];
+ function setPanel(button,open){const panel=document.getElementById(button.getAttribute('aria-controls'));if(!panel)return;panel.hidden=!open;button.setAttribute('aria-expanded',String(open));button.textContent=open?'Hide':'View';const title=button.closest('.legacy-topic').querySelector('.legacy-heading-text').textContent.trim().split('\n')[0];button.setAttribute('aria-label',(open?'Hide ':'View ')+title);setActive()}
+ buttons.forEach(button=>button.addEventListener('click',()=>setPanel(button,button.getAttribute('aria-expanded')!=='true')));
+ function reveal(target){if(!target)return;if(target.classList.contains('legacy-section')){const button=target.querySelector('.extra-toggle');if(button)setPanel(button,true)}let ancestor=target.closest('.legacy-content');while(ancestor){const button=buttons.find(b=>b.getAttribute('aria-controls')===ancestor.id);if(button)setPanel(button,true);ancestor=ancestor.parentElement.closest('.legacy-content')}}
+ function revealHash(){let id;try{id=decodeURIComponent(location.hash.slice(1))}catch(e){return}const target=document.getElementById(id);if(target){reveal(target);setTimeout(()=>target.scrollIntoView({block:'start'}),0)}}
+ document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',()=>{let id;try{id=decodeURIComponent(link.getAttribute('href').slice(1))}catch(e){return}reveal(document.getElementById(id))}));
+ window.addEventListener('hashchange',revealHash);
+ revealHash();
+})();
 (function(){var root=document.documentElement,b=document.getElementById('themeToggle'),ico=document.getElementById('themeIco'),lbl=document.getElementById('themeLbl');
  function paint(){var d=root.getAttribute('data-theme')==='dark';ico.textContent=d?'☀️':'🌙';lbl.textContent=d?'Light':'Dark';b.setAttribute('aria-pressed',d?'true':'false')}
  b.addEventListener('click',function(){root.setAttribute('data-theme',root.getAttribute('data-theme')==='dark'?'light':'dark');paint()});

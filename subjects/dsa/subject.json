@@ -24,7 +24,7 @@
       "topics": "Stack ADT, array & linked stacks, infix / postfix / prefix conversion and evaluation, parenthesis balancing, recursion, Tower of Hanoi",
       "lab": "syllabus-map",
       "accent": "#4C3F91",
-      "updated": "2026-11-11"
+      "updated": "2026-11-13"
     },
     {
       "n": 3,
@@ -55,6 +55,13 @@
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-13",
+      "units": [
+        2
+      ],
+      "text": "Beyond-syllabus sections now start hidden with OS-style View/Hide controls; links open them automatically. Redrew the Tower of Hanoi figure as four correct successive states."
+    },
     {
       "date": "2026-11-11",
       "units": [
