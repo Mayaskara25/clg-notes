@@ -21,7 +21,7 @@
       "source": "Operating Systems - Unit 2 - Exam Notes.html",
       "title": "CPU Scheduling & Synchronization",
       "topics": "FCFS, SJF, SRTF, round robin, priority scheduling, real-time scheduling, Peterson's solution, synchronization hardware, semaphores, classic synchronization problems",
-      "updated": "2026-11-13"
+      "updated": "2026-11-14"
     },
     {
       "n": 3,
@@ -32,6 +32,13 @@
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-14",
+      "units": [
+        2
+      ],
+      "text": "Redrew the dining philosophers figure with evenly spaced seats, readable labels and indexed chopsticks matching the semaphore code; highlighted P0’s required pair."
+    },
     {
       "date": "2026-11-13",
       "units": [

@@ -2713,29 +2713,48 @@ int read_count = 0;</div>
   every element initialized to 1.</p>
 
   <div class="svg-wrap">
-    <svg viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="200" cy="190" r="90" fill="#FFFFFF" stroke="#4C3F91" stroke-width="1.5"/>
-      <text x="200" y="195" text-anchor="middle" font-size="11" fill="#5B6169">bowl of rice</text>
-      <!-- philosophers at 5 positions -->
-      <g font-size="10.5">
-        <circle cx="200" cy="50" r="28" fill="#E8EFF8" stroke="#1D4E89"/><text x="200" y="54" text-anchor="middle" fill="#1C1E21">P0</text>
-        <circle cx="322" cy="140" r="28" fill="#E8EFF8" stroke="#1D4E89"/><text x="322" y="144" text-anchor="middle" fill="#1C1E21">P1</text>
-        <circle cx="278" cy="315" r="28" fill="#E8EFF8" stroke="#1D4E89"/><text x="278" y="319" text-anchor="middle" fill="#1C1E21">P2</text>
-        <circle cx="122" cy="315" r="28" fill="#E8EFF8" stroke="#1D4E89"/><text x="122" y="319" text-anchor="middle" fill="#1C1E21">P3</text>
-        <circle cx="78" cy="140" r="28" fill="#E8EFF8" stroke="#1D4E89"/><text x="78" y="144" text-anchor="middle" fill="#1C1E21">P4</text>
+    <svg width="440" viewBox="0 0 360 375" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="dining-title dining-desc" font-family="Inter, Arial, sans-serif">
+      <title id="dining-title">Five philosophers and their shared chopsticks</title>
+      <desc id="dining-desc">Philosophers P0 to P4 sit clockwise around a table. Chopstick Ck is shared by Pk and P(k−1) modulo 5. P0 and its required pair, C0 and C1, are highlighted as an example, not as an allocation state. Each chopstick semaphore starts at 1.</desc>
+      <circle cx="180" cy="170" r="101" fill="#F6F4EE" stroke="#E4E0D3" stroke-width="1.5"/>
+      <!-- One radial chopstick between each neighbouring pair of philosophers. -->
+      <g stroke-width="5" stroke-linecap="round">
+        <line x1="131.2" y1="102.9" x2="113.6" y2="78.6" stroke="#4C3F91"/>
+        <line x1="228.8" y1="102.9" x2="246.4" y2="78.6" stroke="#4C3F91"/>
+        <line x1="258.9" y1="195.6" x2="287.5" y2="204.9" stroke="#A66A0D"/>
+        <line x1="180" y1="253" x2="180" y2="283" stroke="#A66A0D"/>
+        <line x1="101.1" y1="195.6" x2="72.5" y2="204.9" stroke="#A66A0D"/>
       </g>
-      <!-- chopsticks between them -->
-      <g stroke="#A66A0D" stroke-width="4" stroke-linecap="round">
-        <line x1="253" y1="75" x2="287" y2="105"/>
-        <line x1="307" y1="190" x2="292" y2="235"/>
-        <line x1="200" y1="280" x2="200" y2="320"/>
-        <line x1="108" y1="235" x2="93" y2="190"/>
-        <line x1="113" y1="105" x2="147" y2="75"/>
+      <g font-size="15" font-weight="600" text-anchor="middle" fill="#1C1E21">
+        <text x="100.6" y="65">C0</text>
+        <text x="259.4" y="65">C1</text>
+        <text x="312" y="218">C2</text>
+        <text x="180" y="310">C3</text>
+        <text x="48" y="218">C4</text>
       </g>
-      <text x="200" y="390" text-anchor="middle" font-size="10.5" fill="#5B6169">Semaphore chopstick[5], all initialized to 1 —</text>
-      <text x="200" y="406" text-anchor="middle" font-size="10.5" fill="#5B6169">each shared by two adjacent philosophers</text>
+      <!-- Evenly spaced seats; P0 illustrates the adjacent pair used in the code. -->
+      <g stroke-width="1.5">
+        <circle cx="180" cy="36" r="24" fill="#EEECF7" stroke="#4C3F91"/>
+        <circle cx="307.4" cy="128.6" r="24" fill="#E8EFF8" stroke="#1D4E89"/>
+        <circle cx="258.8" cy="278.4" r="24" fill="#E8EFF8" stroke="#1D4E89"/>
+        <circle cx="101.2" cy="278.4" r="24" fill="#E8EFF8" stroke="#1D4E89"/>
+        <circle cx="52.6" cy="128.6" r="24" fill="#E8EFF8" stroke="#1D4E89"/>
+      </g>
+      <g font-size="17" font-weight="600" text-anchor="middle" fill="#1C1E21">
+        <text x="180" y="42">P0</text>
+        <text x="307.4" y="134.6">P1</text>
+        <text x="258.8" y="284.4">P2</text>
+        <text x="101.2" y="284.4">P3</text>
+        <text x="52.6" y="134.6">P4</text>
+      </g>
+      <ellipse cx="180" cy="147" rx="38" ry="22" fill="#FFFFFF" stroke="#E4E0D3" stroke-width="1.5"/>
+      <text x="180" y="152" text-anchor="middle" font-size="13" fill="#5B6169">rice</text>
+      <text x="180" y="196" text-anchor="middle" font-size="14" fill="#5B6169">Example: P0 needs</text>
+      <text x="180" y="220" text-anchor="middle" font-size="19" font-weight="600" fill="#1C1E21">C0 + C1</text>
+      <text x="180" y="345" text-anchor="middle" font-size="14" fill="#1C1E21">Ck = chopstick[k]</text>
+      <text x="180" y="366" text-anchor="middle" font-size="13" fill="#5B6169">Each semaphore starts at 1.</text>
     </svg>
-    <div class="cap">Fig 23. Five philosophers, five shared chopstick semaphores — each philosopher needs both of their two adjacent chopsticks simultaneously.</div>
+    <div class="cap">Fig 23. Five philosophers share five chopsticks. Philosopher Pi needs chopstick[i] and chopstick[(i+1) % 5] together; P0’s pair is highlighted above.</div>
   </div>
 
   <h2>The naive semaphore solution — and why it deadlocks</h2>
