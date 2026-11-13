@@ -14,7 +14,7 @@
       "source": "Applied Digital Logic Design - Unit 1 - Exam Notes.html",
       "title": "Arithmetic & Simplification of Boolean Expressions",
       "topics": "signed addition and subtraction, unsigned and signed multiplication, Booth and radix-4 modified Booth (bit-pair recoding), integer division, IEEE 754 single and double precision, Karnaugh maps, Quine-McCluskey",
-      "updated": "2026-11-11"
+      "updated": "2026-11-14"
     },
     {
       "n": 2,
@@ -22,17 +22,22 @@
       "title": "Combinational & Sequential Logic Design",
       "topics": "parallel adder, carry lookahead, magnitude comparator, decoders, encoders, multiplexers, latches, timing, master-slave, pulse-triggered and edge-triggered flip-flops, characteristic equations, shift registers, universal shift register, flip-flop conversion, race-around condition, frequency divider, binary to Gray converter",
       "lab": "lab-overview",
-      "updated": "2026-11-11"
+      "updated": "2026-11-14"
     },
     {
       "n": 3,
       "source": "Applied Digital Logic Design - Unit 3 - Exam Notes.html",
       "title": "Counters & Synchronous Sequential Networks",
       "topics": "ripple counters, synchronous counters, ring and Johnson counters, counter design, self-correcting counters, Mealy and Moore models, analysis, state diagrams, sequence detectors, state table reduction, implication table, frequency division, mod-N by clear, lock-out, Mealy to Moore conversion",
-      "updated": "2026-11-13"
+      "updated": "2026-11-14"
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-14",
+      "units": [1, 2, 3],
+      "text": "Added 61 checked Engineering Funda videos beside matching topics: 13 in Unit 1, 39 in Unit 2 and 9 in Unit 3. Includes double-precision IEEE 754, decoder basics and counter-design examples, with notes on relevant notation and circuit differences."
+    },
     {
       "date": "2026-11-13",
       "units": [

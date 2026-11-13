@@ -15,6 +15,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "Ityo4DGDJ5c",
+            "title": "2's Complement signed Representation: Examples, Steps, Block Diagram, Range, and Mathematics",
+            "channel": "Engineering Funda",
+            "duration": "16:04",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -30,6 +40,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "16cIpTh60dg",
+            "title": "Binary Subtraction Using 2's Complement: Steps, Process, and Examples",
+            "channel": "Engineering Funda",
+            "duration": "10:11",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -146,6 +166,16 @@
             "differs": "Description confirms single-precision conversions but does not name the example operands. Double precision begins at 19:33; use the single-precision examples for this guide.",
             "note": "Also covers double precision from 19:33; use the single-precision examples.",
             "start": 434
+          },
+          {
+            "id": "XiE19xIWqwc",
+            "title": "IEEE 754 Single Precision 32-bit Floating Point Format: Steps, Format, and Example",
+            "channel": "Engineering Funda",
+            "duration": "13:51",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -178,6 +208,16 @@
             "differs": "",
             "note": "",
             "start": 436
+          },
+          {
+            "id": "eKVD_ec4U6M",
+            "title": "Minterms and Maxterms in Boolean Function Representation",
+            "channel": "Engineering Funda",
+            "duration": "12:02",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -193,6 +233,26 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "mzxWLjEU1xU",
+            "title": "SOP (Sum of Products) and POS (Product of Sums) in Boolean Functions",
+            "channel": "Engineering Funda",
+            "duration": "10:06",
+            "kind": "topic",
+            "differs": "SSOP/SPOS mean canonical SOP/POS, with every variable in every term.",
+            "note": "SSOP/SPOS mean canonical SOP/POS, with every variable in every term.",
+            "checked": "2026-11-14"
+          },
+          {
+            "id": "72ecVqT7Vbc",
+            "title": "SSOP to SPOS Conversion and Visa Versa | Boolean Algebra",
+            "channel": "Engineering Funda",
+            "duration": "12:53",
+            "kind": "numerical",
+            "differs": "SSOP/SPOS mean canonical SOP/POS, with every variable in every term.",
+            "note": "SSOP/SPOS mean canonical SOP/POS, with every variable in every term.",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -208,6 +268,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "OjQAwJx_DM0",
+            "title": "De Morgan's Theorem Explained: Basics, Statement, Circuit, and Proof",
+            "channel": "Engineering Funda",
+            "duration": "12:57",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -232,6 +302,16 @@
             "kind": "numerical",
             "differs": "Description does not list the worked function’s minterms; it cannot be confirmed as the notes’ example. Use the same Gray-order grouping method.",
             "note": ""
+          },
+          {
+            "id": "j0tcU67SNQE",
+            "title": "Karnaugh Map Rules: Cell Grouping and Boolean Function Formation",
+            "channel": "Engineering Funda",
+            "duration": "13:49",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -247,6 +327,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "CQFy38TbAhY",
+            "title": "Implicants, Prime Implicants, and Essential Prime Implicants in Karnaugh Maps",
+            "channel": "Engineering Funda",
+            "duration": "7:21",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -262,6 +352,16 @@
             "kind": "topic",
             "differs": "Covers don’t-care conditions only, not the Variable Entered Map procedure in the same section.",
             "note": "Covers don't-care conditions; use your notes for Variable Entered Maps."
+          },
+          {
+            "id": "UaVpZQTvVbc",
+            "title": "Karnaugh Map Examples: Part 2 – K Map with Don't care",
+            "channel": "Engineering Funda",
+            "duration": "14:46",
+            "kind": "numerical",
+            "differs": "Covers ordinary K-map don’t-cares; use your notes for variable entered maps (VEM).",
+            "note": "Covers ordinary K-map don’t-cares; use your notes for variable entered maps (VEM).",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -277,6 +377,16 @@
             "kind": "numerical",
             "differs": "Description confirms a worked tabulation example but does not list its minterms. Use the notes’ function and prime-implicant chart in exams.",
             "note": ""
+          },
+          {
+            "id": "fy2gsDFY-KQ",
+            "title": "Quine McCluskey Method Explained: Optimizing Boolean Expressions",
+            "channel": "Engineering Funda",
+            "duration": "26:56",
+            "kind": "numerical",
+            "differs": "Longer (26:56) worked tabulation example, including the implicant chart and K-map verification.",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -301,6 +411,32 @@
             "kind": "numerical",
             "differs": "Description confirms a worked four-variable example but does not list its minterms. It cannot be confirmed as the notes’ example.",
             "note": ""
+          },
+          {
+            "id": "bFAQXelb3VQ",
+            "title": "Karnaugh Map for POS Expressions: Simplifying Product of Sums",
+            "channel": "Engineering Funda",
+            "duration": "10:55",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
+          }
+        ]
+      },
+      {
+        "section": "floating-point",
+        "sub": "Double precision (64-bit): taught in the faculty notes",
+        "videos": [
+          {
+            "id": "WME1IkIHewU",
+            "title": "IEEE 754 Double Precision 64-bit Floating Point Format: Steps, Format, and Example",
+            "channel": "Engineering Funda",
+            "duration": "12:48",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       }
@@ -318,6 +454,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "GItLxgrzIPs",
+            "title": "Half Adder Explained: Working, Truth Table, Design, and Circuit in Digital Electronics",
+            "channel": "Engineering Funda",
+            "duration": "8:31",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -342,6 +488,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "CAvQ3F0mpFk",
+            "title": "Full Adder Explained: Working, Truth Table, Design, and Circuit in Digital Electronics",
+            "channel": "Engineering Funda",
+            "duration": "14:10",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -357,6 +513,16 @@
             "kind": "topic",
             "differs": "Description confirms the four-bit circuit but does not state a delay formula. For exams use the notes’ N×2 gate-delay model.",
             "note": ""
+          },
+          {
+            "id": "lrG9X69z-UE",
+            "title": "4-Bit Parallel Adder Explained: Working, Circuit, and Designing in Digital Electronics",
+            "channel": "Engineering Funda",
+            "duration": "7:50",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -373,6 +539,16 @@
             "differs": "",
             "note": "",
             "start": 569
+          },
+          {
+            "id": "ougII0SPfYU",
+            "title": "2's Complement Subtraction Using Parallel Adder: Working, Design, and Circuit",
+            "channel": "Engineering Funda",
+            "duration": "11:22",
+            "kind": "topic",
+            "differs": "Shows subtraction; your notes also include the add/subtract mode-control circuit.",
+            "note": "Shows subtraction; your notes also include the add/subtract mode-control circuit.",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -397,6 +573,16 @@
             "kind": "numerical",
             "differs": "Description does not specify output polarity. The notes OR active-high decoder minterm lines; active-low outputs require NAND instead.",
             "note": ""
+          },
+          {
+            "id": "z9jTPA4Q9b8",
+            "title": "Full Adder Implementation Using Decoder: Circuit, Truth Table, and Designing",
+            "channel": "Engineering Funda",
+            "duration": "8:29",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -421,6 +607,16 @@
             "kind": "topic",
             "differs": "Description does not specify OR versus XOR carry-propagate notation. Use the notes’ OR definition of Pᵢ and Sᵢ=Xᵢ⊕Yᵢ⊕Cᵢ.",
             "note": ""
+          },
+          {
+            "id": "1Z0i9lycXb4",
+            "title": "CLA Adder Explained: Working, Truth Table, Circuit, and Designing",
+            "channel": "Engineering Funda",
+            "duration": "16:19",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -436,6 +632,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "SykDGP9Aoh0",
+            "title": "BCD Adder Using Parallel Adder: Truth Table, Working, Design, and Circuit",
+            "channel": "Engineering Funda",
+            "duration": "12:43",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -451,6 +657,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "yUkBGL8YAFU",
+            "title": "Half Subtractor Explained: Working, Truth Table, Circuit, and Design",
+            "channel": "Engineering Funda",
+            "duration": "10:50",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -466,6 +682,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "wqbpR_GVwfA",
+            "title": "Full Subtractor Explained: Working, Truth Table, Design, and Circuit in Digital Electronics",
+            "channel": "Engineering Funda",
+            "duration": "12:34",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -496,6 +722,16 @@
             "kind": "topic",
             "differs": "Description does not give the gate count. The notes’ implementation uses five NAND gates, including the carry inverter.",
             "note": ""
+          },
+          {
+            "id": "_9TPmGTMmNA",
+            "title": "Half Adder with NAND Gates Explained: Design and Circuit",
+            "channel": "Engineering Funda",
+            "duration": "2:58",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -558,6 +794,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "L5twvzRoTFk",
+            "title": "2-Bit Data Comparator Explained: Working, Truth Table, Circuit, and Designing",
+            "channel": "Engineering Funda",
+            "duration": "18:20",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -634,6 +880,16 @@
             "kind": "topic",
             "differs": "Description does not specify the priority direction or valid-output V. The notes use I₃ highest priority and include V; check before copying the truth table.",
             "note": ""
+          },
+          {
+            "id": "jbghfcdj5Dc",
+            "title": "Priority Encoder Explained: Basics, Working, Truth Table, and Circuit",
+            "channel": "Engineering Funda",
+            "duration": "14:04",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -649,6 +905,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "KChbcXoZO4U",
+            "title": "Multiplexer Explained: Basics, Working, Advantages, Applications, and Types",
+            "channel": "Engineering Funda",
+            "duration": "10:20",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -664,6 +930,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "oR1Gec5dX9g",
+            "title": "2 to 1 Multiplexer: Basics, Working, Truth Table, Circuit, and Designing",
+            "channel": "Engineering Funda",
+            "duration": "7:21",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -679,6 +955,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "cUyyYcH8so4",
+            "title": "4 to 1 Multiplexer: Basics, Working, Truth Table, Circuit, and Designing",
+            "channel": "Engineering Funda",
+            "duration": "10:08",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -694,6 +980,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "h_Xr2KL2y-c",
+            "title": "8 to 1 Multiplexer: Basics, Working, Truth Table, Circuit, and Designing",
+            "channel": "Engineering Funda",
+            "duration": "11:04",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -709,6 +1005,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "S9UU9EuY3rQ",
+            "title": "4 to 1 Multiplexer Design Using 2 to 1 Multiplexers: Detailed Explanation and Circuit",
+            "channel": "Engineering Funda",
+            "duration": "5:56",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -739,6 +1045,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "xq1OSx_Bzt0",
+            "title": "Demultiplexer and 1 to 2 Demultiplexer: Basics, Working, Truth Table, Circuit, and Designing",
+            "channel": "Engineering Funda",
+            "duration": "10:03",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -754,6 +1070,16 @@
             "kind": "topic",
             "differs": "Description does not specify a separate enable E. The notes include E, with all outputs inactive when E=0.",
             "note": ""
+          },
+          {
+            "id": "m_qZefA2rMM",
+            "title": "1 to 4 Demultiplexer Explained: Working, Truth Table, Boolean Expression, Circuit and Designing",
+            "channel": "Engineering Funda",
+            "duration": "10:20",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -769,6 +1095,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "d3qXw1swvbg",
+            "title": "Demultiplexer as Decoder: Designing and Circuit",
+            "channel": "Engineering Funda",
+            "duration": "3:55",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -784,6 +1120,16 @@
             "kind": "numerical",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "Vmt_V2wib4A",
+            "title": "SOP Implementation Using Multiplexer: Design, Circuit, and Solved Examples in Digital Electronics",
+            "channel": "Engineering Funda",
+            "duration": "12:11",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -829,6 +1175,16 @@
             "kind": "topic",
             "differs": "Calls flip-flops edge-sensitive; Givone also classifies pulse-triggered master-slave devices as flip-flops.",
             "note": "Calls flip-flops edge-sensitive; your notes also include master-slave types."
+          },
+          {
+            "id": "7bEWlzeiPA0",
+            "title": "Difference Between Latch and Flip-Flop: Key Comparisons in Digital Electronics",
+            "channel": "Engineering Funda",
+            "duration": "9:14",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -844,6 +1200,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "u_J9ZVWXAjM",
+            "title": "SR Latch by NOR Gates: Basics, Circuit, Working, and Truth Table",
+            "channel": "Engineering Funda",
+            "duration": "13:19",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -859,6 +1225,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "775SwW6Ug3k",
+            "title": "SR Latch using NAND Gates: Basics, Circuit, Working, and Truth Table",
+            "channel": "Engineering Funda",
+            "duration": "12:10",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -891,6 +1267,16 @@
             "differs": "Use the gated D latch circuit in the circuit discussion starting at 9:17. The video also covers edge-triggered D flip-flops; this subsection requires level-sensitive enable operation.",
             "note": "Also covers edge-triggered D flip-flops; this section uses a level-sensitive D latch.",
             "start": 557
+          },
+          {
+            "id": "vsZQLw6C4-w",
+            "title": "D Latch Explained: Basics, Working, Circuit, Case Study & Truth Table",
+            "channel": "Engineering Funda",
+            "duration": "7:39",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -921,6 +1307,16 @@
             "kind": "topic",
             "differs": "Description does not specify the active master/slave clock phases. The notes enable the master at C=1 and transfer to the slave when C falls.",
             "note": ""
+          },
+          {
+            "id": "ZeqYZsuG9W8",
+            "title": "Master Slave JK Flip Flop: Circuit, Working, and Waveforms",
+            "channel": "Engineering Funda",
+            "duration": "10:05",
+            "kind": "topic",
+            "differs": "Topic and scope checked against the published description; clock-edge or reset-polarity details are not established by that description.",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -951,6 +1347,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "ncXt9BBjXlI",
+            "title": "Race Around Condition in JK Flip-Flop: Understanding and Solutions in Digital Electronics",
+            "channel": "Engineering Funda",
+            "duration": "10:29",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -966,6 +1372,16 @@
             "kind": "topic",
             "differs": "Description does not state input polarity. The notes use active-low PR/CLR; never assume an unmarked input is active-low.",
             "note": ""
+          },
+          {
+            "id": "307U8olfGEI",
+            "title": "Preset and Clear Inputs in Flip-Flops: Basics, Functions, Truth Table and Applications",
+            "channel": "Engineering Funda",
+            "duration": "7:19",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -996,6 +1412,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "setjWv81KY8",
+            "title": "Flip Flop Tables: Truth Table, Characteristic Table, and Excitation Table",
+            "channel": "Engineering Funda",
+            "duration": "6:26",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1021,6 +1447,16 @@
             "differs": "",
             "note": "",
             "start": 531
+          },
+          {
+            "id": "aaHphwMfJ-E",
+            "title": "D Flip Flop: Circuit, Working, Truth Table, Characteristics Table & Excitation Table",
+            "channel": "Engineering Funda",
+            "duration": "8:33",
+            "kind": "topic",
+            "differs": "D flip-flop example; your notes give equations for SR, D, JK and T flip-flops.",
+            "note": "D flip-flop example; your notes give equations for SR, D, JK and T flip-flops.",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1102,6 +1538,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "HDk1Swndn_M",
+            "title": "Registers Explained: Basics, Data Formats, Working and Classification",
+            "channel": "Engineering Funda",
+            "duration": "12:36",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1156,6 +1602,16 @@
             "kind": "topic",
             "differs": "Covers shift right, then shift left (12:09) and the bidirectional register (13:05) — matches both SISO directions in the faculty notes.",
             "note": ""
+          },
+          {
+            "id": "3WdILptK7QQ",
+            "title": "SISO Shift Register: Basics, Circuit, Designing, Working, Waveforms and Applications",
+            "channel": "Engineering Funda",
+            "duration": "13:29",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1171,6 +1627,16 @@
             "kind": "topic",
             "differs": "Covers SIPO and PIPO together. Description does not specify stage order; the notes use Q3 at the serial-input end and Q0 at the far end.",
             "note": ""
+          },
+          {
+            "id": "BcEhle8ev_4",
+            "title": "SIPO Shift Register: Basics, Circuit, Designing, Working, Waveforms and Applications",
+            "channel": "Engineering Funda",
+            "duration": "10:02",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1196,6 +1662,16 @@
             "kind": "topic",
             "differs": "OPPOSITE convention: Neso uses an active-low Shift/L̄oad (load when 0, shift when 1), numbers FF0 at the input end and takes the serial output from Q3. The faculty notes use Load/Shift 0 = shift, 1 = load, with Q3 left and serial output Q0. Follow the notes in exams.",
             "note": ""
+          },
+          {
+            "id": "af_lr338vc4",
+            "title": "PISO Shift Register: Basics, Circuit, Designing, Block Diagram, Working, and Waveforms",
+            "channel": "Engineering Funda",
+            "duration": "12:47",
+            "kind": "topic",
+            "differs": "PISO example. The description does not establish its load/shift polarity; the guide uses 1 = load and 0 = shift.",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1211,6 +1687,16 @@
             "kind": "topic",
             "differs": "Description does not give the mode coding. The notes use 00=hold, 01=right, 10=left, 11=parallel load; check MUX inputs before copying.",
             "note": ""
+          },
+          {
+            "id": "UMQP_Hh5vKA",
+            "title": "Universal Shift Register: Basics, Circuit, Designing, Block Diagram, Modes, and Working",
+            "channel": "Engineering Funda",
+            "duration": "10:28",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1226,6 +1712,64 @@
             "kind": "numerical",
             "differs": "Description does not specify the problem’s initial state, feedback taps or stage order; it cannot be confirmed as a Givone trace. Use the notes’ diagrams for their exact sequences.",
             "note": ""
+          },
+          {
+            "id": "xIMj2EQhWhQ",
+            "title": "Shift Register Examples: Circuit Designs and Working Principles in Digital Electronics",
+            "channel": "Engineering Funda",
+            "duration": "8:01",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
+          }
+        ]
+      },
+      {
+        "section": "decoders",
+        "sub": "Definition and idea",
+        "videos": [
+          {
+            "id": "TJ0EG5fmTWM",
+            "title": "Decoder Basics and 2-to-4 Decoder: Working, Truth Table, Circuit, and Designing",
+            "channel": "Engineering Funda",
+            "duration": "11:11",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
+          }
+        ]
+      },
+      {
+        "section": "decoders",
+        "sub": "3-to-8 decoder",
+        "videos": [
+          {
+            "id": "GMi0iDQeyvY",
+            "title": "3 to 8 Decoder Explained: Working, Truth Table, Circuit, and Designing",
+            "channel": "Engineering Funda",
+            "duration": "11:41",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
+          }
+        ]
+      },
+      {
+        "section": "encoders",
+        "sub": "From the 2026 faculty notes: encoders and a binary-to-Gray converter",
+        "videos": [
+          {
+            "id": "Pk9YouWUwHI",
+            "title": "Binary Code to Gray Code Converter: Circuit, Truth Table, and Designing",
+            "channel": "Engineering Funda",
+            "duration": "10:44",
+            "kind": "topic",
+            "differs": "Use the decoder–encoder circuit in your notes when that implementation is requested.",
+            "note": "Use the decoder–encoder circuit in your notes when that implementation is requested.",
+            "checked": "2026-11-14"
           }
         ]
       }
@@ -1243,6 +1787,16 @@
             "kind": "topic",
             "differs": "Description does not identify flip-flop type or active edge. The notes use positive-edge T flip-flops clocked from the preceding Q̄; check the video’s convention before copying wiring.",
             "note": ""
+          },
+          {
+            "id": "O5oX0c89pBQ",
+            "title": "Asynchronous Up Counter (Ripple Up Counter): Basics, Circuit, Working, and Waveforms",
+            "channel": "Engineering Funda",
+            "duration": "10:19",
+            "kind": "topic",
+            "differs": "3-bit ripple example; your notes start with a 4-bit counter using T flip-flops.",
+            "note": "3-bit ripple example; your notes start with a 4-bit counter using T flip-flops.",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1258,6 +1812,16 @@
             "kind": "topic",
             "differs": "Includes both three- and four-bit counters. Description does not specify active edges; for the notes’ positive-edge flip-flops, down-counting clocks each stage from preceding Q.",
             "note": ""
+          },
+          {
+            "id": "fWgbiOODGkw",
+            "title": "Asynchronous Down Counter (Ripple Down Counter): Basics, Circuit, Working, and Waveforms",
+            "channel": "Engineering Funda",
+            "duration": "11:00",
+            "kind": "topic",
+            "differs": "3-bit down-counter; choose Q or Q-bar to match the active clock edge in your notes.",
+            "note": "3-bit down-counter; choose Q or Q-bar to match the active clock edge in your notes.",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1282,6 +1846,16 @@
             "kind": "numerical",
             "differs": "Mod-10 example instead of the notes’ worked mod-6. Description does not specify clear polarity; the notes detect 1010 for a ripple decade counter.",
             "note": "Mod-10 (decade) example; your notes work a mod-6 counter."
+          },
+          {
+            "id": "veRVXbRSHFQ",
+            "title": "Modulo Counter Using Asynchronous Counter: Basics, Circuit, Designing, Working, and Waveforms",
+            "channel": "Engineering Funda",
+            "duration": "12:12",
+            "kind": "topic",
+            "differs": "Topic and scope checked against the published description; clock-edge or reset-polarity details are not established by that description.",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1297,6 +1871,16 @@
             "kind": "topic",
             "differs": "Three-bit example; the notes’ basic circuit is four-bit with T flip-flops and count enable. Flip-flop type and enable convention are not stated in the description.",
             "note": "3-bit example; your notes use a 4-bit counter with T flip-flops."
+          },
+          {
+            "id": "KcmfnPOLIdI",
+            "title": "3 Bit Synchronous Counter Using T Flip-Flops: Basics, Circuit, Designing, Working, and Waveforms",
+            "channel": "Engineering Funda",
+            "duration": "10:52",
+            "kind": "topic",
+            "differs": "3-bit T flip-flop example; your notes begin with a 4-bit synchronous counter.",
+            "note": "3-bit T flip-flop example; your notes begin with a 4-bit synchronous counter.",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1312,6 +1896,16 @@
             "kind": "topic",
             "differs": "Description does not specify bit order, active edge or initial one-hot position. The notes initialise 1000 and shift right; rotations of the same cycle may be labelled differently.",
             "note": ""
+          },
+          {
+            "id": "BTzoEYv-FjI",
+            "title": "Ring Counter Explained: Basics, Circuit, Designing, Working, and Waveforms",
+            "channel": "Engineering Funda",
+            "duration": "10:09",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1327,6 +1921,16 @@
             "kind": "topic",
             "differs": "Description does not specify shift direction or bit order. The notes’ four-stage cycle starts 0000→1000; this does not cover the separate mod-7 feedback variation.",
             "note": "Covers the standard Johnson counter; use your notes for the mod-7 variation."
+          },
+          {
+            "id": "hOTEVVxJAes",
+            "title": "Johnson's Counter (Twisted Ring Counter) Explained: Basics, Circuit, Designing, Working, & Waveforms",
+            "channel": "Engineering Funda",
+            "duration": "10:47",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1390,6 +1994,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "VGTDT2sEHfY",
+            "title": "Moore State Machine: Basics, Block Diagram, Example, State Table, and Circuit",
+            "channel": "Engineering Funda",
+            "duration": "13:36",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1405,6 +2019,16 @@
             "kind": "topic",
             "differs": "",
             "note": ""
+          },
+          {
+            "id": "iqLn_4fjYTU",
+            "title": "Comparison of Mealy and Moore State Machines: Digital Electronics and Sequential Circuits",
+            "channel": "Engineering Funda",
+            "duration": "7:55",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-14"
           }
         ]
       },
@@ -1530,7 +2154,24 @@
             "note": ""
           }
         ]
+      },
+      {
+        "section": "sync-design",
+        "sub": "4.6 Another sequence: apply the same method",
+        "videos": [
+          {
+            "id": "WTota91fc6Q",
+            "title": "Arbitrary Sequence Counter Example 1: Designing, Circuit, Working & State Table",
+            "channel": "Engineering Funda",
+            "duration": "13:58",
+            "kind": "numerical",
+            "differs": "Uses T flip-flops; follow the required sequence and flip-flop type in your question.",
+            "note": "Uses T flip-flops; follow the required sequence and flip-flop type in your question.",
+            "checked": "2026-11-14"
+          }
+        ]
       }
     ]
-  }
+  },
+  "updated": "2026-11-14"
 }
