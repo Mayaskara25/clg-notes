@@ -21,7 +21,7 @@
       "source": "Operating Systems - Unit 2 - Exam Notes.html",
       "title": "CPU Scheduling & Synchronization",
       "topics": "FCFS, SJF, SRTF, round robin, priority scheduling, real-time scheduling, Peterson's solution, synchronization hardware, semaphores, classic synchronization problems",
-      "updated": "2026-11-14"
+      "updated": "2026-11-17"
     },
     {
       "n": 3,
@@ -32,6 +32,13 @@
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-17",
+      "units": [
+        2
+      ],
+      "text": "Rewrote 2.7 Real-Time CPU Scheduling so the theory matches the worked problems: added the periodic task model (period, execution, deadline, utilization, hyperperiod), the Liu–Layland RMS bound and the EDF U ≤ 1 test, a drawing recipe, the Silberschatz P1/P2 example where RMS misses a deadline and EDF does not (new Fig 8a), and a summary table of the three task sets. Removed the leftover correction note."
+    },
     {
       "date": "2026-11-14",
       "units": [

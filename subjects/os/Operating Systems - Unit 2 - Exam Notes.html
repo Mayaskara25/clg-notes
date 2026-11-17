@@ -1018,7 +1018,7 @@ P5(AT20, BT3, Pri1)</div>
 
 <section class="page section" id="t2-11" style="--accent:var(--blue);--accent-soft:var(--blue-soft);">
   <div class="section-head"><span class="tag">2.7</span><h1>Real-Time CPU Scheduling</h1></div>
-  <p class="section-sub">Scheduling with deadlines, not just fairness — latency budgets, Rate-Monotonic vs EDF, and a fully verified EDF schedule.</p>
+  <p class="section-sub">Scheduling with deadlines, not just fairness — latency, the periodic task model, Rate-Monotonic vs EDF, and verified worked schedules.</p>
 
   <h2>Soft vs hard real-time systems</h2>
   <p><strong>Soft real-time systems</strong> give no hard guarantee about exactly when a critical process
@@ -1057,22 +1057,105 @@ P5(AT20, BT3, Pri1)</div>
     <div class="cap">Fig 8. Event latency decomposed into interrupt latency (recognizing and routing the interrupt) and dispatch latency (context-switching to the servicing task).</div>
   </div>
 
+  <h2>The periodic task model — the vocabulary every numerical uses</h2>
+  <p>A hard real-time workload is a set of <strong>periodic tasks</strong>. Each task releases a new <strong>job</strong>
+  every period, and every job must be finished before its deadline. The exam gives you the tasks in this notation,
+  so learn what each letter means before touching a schedule:</p>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Symbol / Meaning / In the Test-2 problem">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Term</th><th role="columnheader" scope="col">Meaning</th><th role="columnheader" scope="col">Example (Task B: period 6, execution 2)</th></tr>
+    <tr role="row"><td role="cell" data-label="Term"><strong>Period T</strong> (p)</td><td role="cell" data-label="Meaning">Time between two consecutive releases of the task. The rate is 1/T.</td><td role="cell" data-label="Example">B releases at 0, 6, 12, 18, …</td></tr>
+    <tr role="row"><td role="cell" data-label="Term"><strong>Execution time C</strong> (t, burst)</td><td role="cell" data-label="Meaning">CPU time one job needs. Assumed identical every period.</td><td role="cell" data-label="Example">Every B job needs 2 ms of CPU</td></tr>
+    <tr role="row"><td role="cell" data-label="Term"><strong>Deadline D</strong> (d)</td><td role="cell" data-label="Meaning">How soon after its release the job must be complete. Silberschatz: 0 ≤ C ≤ D ≤ T. Our problems use <strong>D = T</strong>: finish before the next period starts.</td><td role="cell" data-label="Example">The job released at 6 must finish by 12</td></tr>
+    <tr role="row"><td role="cell" data-label="Term"><strong>Absolute deadline</strong></td><td role="cell" data-label="Meaning">Release time + D. EDF compares these, not D itself.</td><td role="cell" data-label="Example">B's 2nd job: 6 + 6 = 12</td></tr>
+    <tr role="row"><td role="cell" data-label="Term"><strong>CPU utilization</strong></td><td role="cell" data-label="Meaning">Fraction of the CPU a task needs: C/T. Add them up for the whole set: <span class="mono">U = Σ Cᵢ/Tᵢ</span>.</td><td role="cell" data-label="Example">B needs 2/6 = 33% of the CPU</td></tr>
+    <tr role="row"><td role="cell" data-label="Term"><strong>Hyperperiod</strong></td><td role="cell" data-label="Meaning">LCM of all periods. The release pattern repeats after this, so drawing one hyperperiod is enough.</td><td role="cell" data-label="Example">LCM(4, 6, 8) = 24</td></tr>
+  </table>
+</div>
+  <div class="callout key"><span class="label">Model assumptions (state them in the answer)</span><p>One CPU, tasks are independent and preemptible, D = T, execution time is constant, and context-switch and interrupt overhead are ignored. Everything below, including the "U ≤ 1" test for EDF, holds <em>only</em> under these assumptions. A real-time system also needs <strong>admission control</strong>: a task announces its needs, and the scheduler accepts it only if it can guarantee the deadline, otherwise it rejects the request.</p></div>
+
   <h2>Priority-based scheduling, and two ways to assign priority</h2>
   <p>The most important feature of a real-time scheduler is responding immediately once a real-time process
-  needs the CPU — so real-time schedulers are priority-based and preemptive. A preemptive priority scheduler
+  needs the CPU, so real-time schedulers are priority-based and preemptive. A preemptive priority scheduler
   alone only guarantees <em>soft</em> real-time behaviour; hard real-time systems need an explicit guarantee
-  that tasks meet their deadlines, which is where RMS and EDF come in.</p>
+  that tasks meet their deadlines. The open question is <em>how to choose the priorities</em>, and RMS and EDF
+  answer it differently.</p>
+
+  <h3>Rate-Monotonic Scheduling (RMS) — static priority by period</h3>
+  <ul>
+    <li><strong>Rule:</strong> when a task enters the system, give it a fixed priority inversely proportional to its period. Shorter period → higher priority. Always preemptive.</li>
+    <li><strong>Why:</strong> a task with a short period needs the CPU more often and has less slack, so it should win.</li>
+    <li><strong>Optimal among static-priority algorithms:</strong> if any fixed-priority assignment can meet all deadlines, RMS can.</li>
+    <li><strong>Limitation:</strong> CPU use is bounded. The <strong>Liu–Layland bound</strong> is the worst-case utilization at which RMS is still <em>guaranteed</em> to work for n tasks:</li>
+  </ul>
+  <div class="formula-block"><span class="c1">RMS bound</span> = n (2<sup>1/n</sup> − 1)
+<span class="cm">n = 1 → 1.000    n = 2 → 0.828    n = 3 → 0.780    n = 4 → 0.757    n → ∞ → ln 2 ≈ 0.693</span>
+<span class="cm">U ≤ bound            → RMS is guaranteed to meet every deadline</span>
+<span class="cm">bound &lt; U ≤ 1        → test inconclusive: RMS may or may not work, so draw the schedule</span>
+<span class="cm">U &gt; 1                → no algorithm can schedule it</span></div>
+
+  <h3>Earliest-Deadline-First (EDF) — dynamic priority by deadline</h3>
+  <ul>
+    <li><strong>Rule:</strong> whenever a job is released or finishes, give the CPU to the ready job with the earliest absolute deadline. A newly released job may preempt only if its deadline is earlier than the running job's.</li>
+    <li><strong>Why it beats RMS:</strong> priorities are not frozen by period, so a job that is close to its deadline can keep running even when a short-period task is released.</li>
+    <li><strong>Test:</strong> under the model assumptions EDF meets every deadline <em>if and only if</em> U ≤ 1. Theoretically that is 100% CPU use. In practice overhead (context switches, interrupts) keeps it below 100%.</li>
+    <li><strong>Less restrictive:</strong> tasks need not be periodic and burst lengths need not be constant. A task only has to announce its deadline when it becomes runnable.</li>
+  </ul>
 
   <div class="table-scroll" role="region" tabindex="0" aria-label=" / Rate-Monotonic Scheduling (RMS) / Earliest-Deadline-First (EDF)">
 <table class="table-prose" role="table">
     <tr role="row"><th role="columnheader" scope="col"></th><th role="columnheader" scope="col">Rate-Monotonic Scheduling (RMS)</th><th role="columnheader" scope="col">Earliest-Deadline-First (EDF)</th></tr>
     <tr role="row"><td role="cell" data-label="Feature"><strong>Priority assignment</strong></td><td role="cell" data-label="Rate-Monotonic Scheduling (RMS)">Static — fixed inversely by period at admission (shorter period → higher priority)</td><td role="cell" data-label="Earliest-Deadline-First (EDF)">Dynamic — recomputed whenever a process becomes runnable, based on its deadline</td></tr>
     <tr role="row"><td role="cell" data-label="Feature"><strong>Rationale</strong></td><td role="cell" data-label="Rate-Monotonic Scheduling (RMS)">Tasks needing the CPU more often get priority</td><td role="cell" data-label="Earliest-Deadline-First (EDF)">The task with the nearest deadline always runs next</td></tr>
-    <tr role="row"><td role="cell" data-label="Feature"><strong>Assumption</strong></td><td role="cell" data-label="Rate-Monotonic Scheduling (RMS)">Each periodic task's CPU-burst duration is the same every period</td><td role="cell" data-label="Earliest-Deadline-First (EDF)">No fixed-priority assumption; priorities shift as deadlines approach</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Assumption</strong></td><td role="cell" data-label="Rate-Monotonic Scheduling (RMS)">Periodic tasks; each CPU burst is the same every period</td><td role="cell" data-label="Earliest-Deadline-First (EDF)">Only that each job announces its deadline; periodic is not required</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Guarantee</strong></td><td role="cell" data-label="Rate-Monotonic Scheduling (RMS)">Only when U ≤ n(2<sup>1/n</sup>−1) (≈ 69% for large n); the bound is sufficient, not necessary</td><td role="cell" data-label="Earliest-Deadline-First (EDF)">U ≤ 1 (100%, theoretically)</td></tr>
+    <tr role="row"><td role="cell" data-label="Feature"><strong>Preempts a running job when…</strong></td><td role="cell" data-label="Rate-Monotonic Scheduling (RMS)">a task with a shorter period is released</td><td role="cell" data-label="Earliest-Deadline-First (EDF)">a job with an earlier absolute deadline is released</td></tr>
   </table>
 </div>
 
-  <h2>Earliest-Deadline-First — worked and verified</h2>
+  <h2>Why both exist — the textbook example (Silberschatz §6.6)</h2>
+  <div class="qbox" id="u2-example-silberschatz">
+    <div class="qmeta"><span class="qsrc">Silberschatz, Galvin &amp; Gagne §6.6, Figs 6.17–6.19<cite class="src" data-src="B1" data-p="§6.6"></cite></span><span class="marks">textbook example · RMS fails, EDF works</span></div>
+    <div class="qtext">
+<div class="qcode">P1: period 50, execution 25
+P2: period 80, execution 35      (deadline = period)</div>
+<span class="qline">Can RMS schedule these? Can EDF?</span>
+</div>
+    <div class="ans-label">Step 1 — Utilization and the tests</div>
+    <div class="formula-block">U = 25/50 + 35/80 = 0.500 + 0.4375 = <span class="c1">0.9375</span>  <span class="cm">(93.75%)</span>
+RMS bound, n = 2: 2(2<sup>1/2</sup> − 1) = <span class="c2">0.828</span>
+<span class="cm">U = 0.9375 &gt; 0.828 → RMS gives no guarantee</span>
+<span class="cm">U = 0.9375 ≤ 1     → EDF is guaranteed</span></div>
+    <div class="ans-label">Step 2 — Draw both schedules up to t = 160</div>
+    <div class="svg-wrap" style="margin:12px 0 0">
+      <svg viewBox="0 0 700 290" xmlns="http://www.w3.org/2000/svg">
+        <text x="50" y="24" font-size="11" font-weight="700" fill="#1F2328">Rate-Monotonic (P1 always higher priority)</text><rect x="50.0" y="48" width="93.8" height="28" fill="#1D4E89" stroke="#fff" stroke-width="1"/><text x="96.9" y="66" text-anchor="middle" font-size="9.5" fill="#fff">P1</text><rect x="143.8" y="48" width="93.8" height="28" fill="#12796F" stroke="#fff" stroke-width="1"/><text x="190.6" y="66" text-anchor="middle" font-size="9.5" fill="#fff">P2</text><rect x="237.5" y="48" width="93.8" height="28" fill="#1D4E89" stroke="#fff" stroke-width="1"/><text x="284.4" y="66" text-anchor="middle" font-size="9.5" fill="#fff">P1</text><rect x="331.2" y="48" width="37.5" height="28" fill="#12796F" stroke="#fff" stroke-width="1"/><text x="350.0" y="66" text-anchor="middle" font-size="9.5" fill="#fff">P2</text><rect x="368.8" y="48" width="56.2" height="28" fill="#12796F" stroke="#fff" stroke-width="1"/><text x="396.9" y="66" text-anchor="middle" font-size="9.5" fill="#fff">P2</text><rect x="425.0" y="48" width="93.8" height="28" fill="#1D4E89" stroke="#fff" stroke-width="1"/><text x="471.9" y="66" text-anchor="middle" font-size="9.5" fill="#fff">P1</text><rect x="518.8" y="48" width="75.0" height="28" fill="#12796F" stroke="#fff" stroke-width="1"/><text x="556.2" y="66" text-anchor="middle" font-size="9.5" fill="#fff">P2</text><rect x="593.8" y="48" width="18.8" height="28" fill="#EDEAE0"/><rect x="612.5" y="48" width="37.5" height="28" fill="#1D4E89" stroke="#fff" stroke-width="1"/><text x="631.2" y="66" text-anchor="middle" font-size="9.5" fill="#fff">P1</text><path d="M233.5 36 L241.5 36 L237.5 45 Z" fill="#5B6169"/><text x="237.5" y="33" text-anchor="middle" font-size="8" fill="#5B6169">P1 d=50</text><path d="M421.0 36 L429.0 36 L425.0 45 Z" fill="#5B6169"/><text x="425.0" y="33" text-anchor="middle" font-size="8" fill="#5B6169">P1 d=100</text><path d="M608.5 36 L616.5 36 L612.5 45 Z" fill="#5B6169"/><text x="612.5" y="33" text-anchor="middle" font-size="8" fill="#5B6169">P1 d=150</text><path d="M346.0 36 L354.0 36 L350.0 45 Z" fill="#B42318"/><text x="350.0" y="33" text-anchor="middle" font-size="8" fill="#B42318">P2 d=80</text><path d="M646.0 36 L654.0 36 L650.0 45 Z" fill="#5B6169"/><text x="650.0" y="33" text-anchor="middle" font-size="8" fill="#5B6169">P2 d=160</text>
+        <rect x="331.2" y="48" width="18.8" height="28" fill="none" stroke="#B42318" stroke-width="2"/>
+        <text x="350.0" y="96" font-size="9.5" font-weight="700" fill="#B42318">✗ P2 has run only 30 of its 35 units when its deadline (t=80) arrives</text>
+        <line x1="50" y1="104" x2="650.0" y2="104" stroke="#8A9096" stroke-width="1"/><line x1="50.0" y1="104" x2="50.0" y2="108" stroke="#8A9096"/><text x="50.0" y="119" text-anchor="middle" font-size="8.5" fill="#8A9096">0</text><line x1="143.8" y1="104" x2="143.8" y2="108" stroke="#8A9096"/><text x="143.8" y="119" text-anchor="middle" font-size="8.5" fill="#8A9096">25</text><line x1="237.5" y1="104" x2="237.5" y2="108" stroke="#8A9096"/><text x="237.5" y="119" text-anchor="middle" font-size="8.5" fill="#8A9096">50</text><line x1="275.0" y1="104" x2="275.0" y2="108" stroke="#8A9096"/><text x="275.0" y="119" text-anchor="middle" font-size="8.5" fill="#8A9096">60</text><line x1="331.2" y1="104" x2="331.2" y2="108" stroke="#8A9096"/><text x="331.2" y="119" text-anchor="middle" font-size="8.5" fill="#8A9096">75</text><line x1="350.0" y1="104" x2="350.0" y2="108" stroke="#8A9096"/><text x="350.0" y="119" text-anchor="middle" font-size="8.5" fill="#8A9096">80</text><line x1="368.8" y1="104" x2="368.8" y2="108" stroke="#8A9096"/><text x="368.8" y="119" text-anchor="middle" font-size="8.5" fill="#8A9096">85</text><line x1="425.0" y1="104" x2="425.0" y2="108" stroke="#8A9096"/><text x="425.0" y="119" text-anchor="middle" font-size="8.5" fill="#8A9096">100</text><line x1="518.8" y1="104" x2="518.8" y2="108" stroke="#8A9096"/><text x="518.8" y="119" text-anchor="middle" font-size="8.5" fill="#8A9096">125</text><line x1="593.8" y1="104" x2="593.8" y2="108" stroke="#8A9096"/><text x="593.8" y="119" text-anchor="middle" font-size="8.5" fill="#8A9096">145</text><line x1="612.5" y1="104" x2="612.5" y2="108" stroke="#8A9096"/><text x="612.5" y="119" text-anchor="middle" font-size="8.5" fill="#8A9096">150</text><line x1="650.0" y1="104" x2="650.0" y2="108" stroke="#8A9096"/><text x="650.0" y="119" text-anchor="middle" font-size="8.5" fill="#8A9096">160</text>
+        <text x="50" y="152" font-size="11" font-weight="700" fill="#1F2328">Earliest-Deadline-First</text><rect x="50.0" y="176" width="93.8" height="28" fill="#1D4E89" stroke="#fff" stroke-width="1"/><text x="96.9" y="194" text-anchor="middle" font-size="9.5" fill="#fff">P1</text><rect x="143.8" y="176" width="131.2" height="28" fill="#12796F" stroke="#fff" stroke-width="1"/><text x="209.4" y="194" text-anchor="middle" font-size="9.5" fill="#fff">P2</text><rect x="275.0" y="176" width="93.8" height="28" fill="#1D4E89" stroke="#fff" stroke-width="1"/><text x="321.9" y="194" text-anchor="middle" font-size="9.5" fill="#fff">P1</text><rect x="368.8" y="176" width="56.2" height="28" fill="#12796F" stroke="#fff" stroke-width="1"/><text x="396.9" y="194" text-anchor="middle" font-size="9.5" fill="#fff">P2</text><rect x="425.0" y="176" width="93.8" height="28" fill="#1D4E89" stroke="#fff" stroke-width="1"/><text x="471.9" y="194" text-anchor="middle" font-size="9.5" fill="#fff">P1</text><rect x="518.8" y="176" width="75.0" height="28" fill="#12796F" stroke="#fff" stroke-width="1"/><text x="556.2" y="194" text-anchor="middle" font-size="9.5" fill="#fff">P2</text><rect x="593.8" y="176" width="18.8" height="28" fill="#EDEAE0"/><rect x="612.5" y="176" width="37.5" height="28" fill="#1D4E89" stroke="#fff" stroke-width="1"/><text x="631.2" y="194" text-anchor="middle" font-size="9.5" fill="#fff">P1</text><path d="M233.5 164 L241.5 164 L237.5 173 Z" fill="#5B6169"/><text x="237.5" y="161" text-anchor="middle" font-size="8" fill="#5B6169">P1 d=50</text><path d="M421.0 164 L429.0 164 L425.0 173 Z" fill="#5B6169"/><text x="425.0" y="161" text-anchor="middle" font-size="8" fill="#5B6169">P1 d=100</text><path d="M608.5 164 L616.5 164 L612.5 173 Z" fill="#5B6169"/><text x="612.5" y="161" text-anchor="middle" font-size="8" fill="#5B6169">P1 d=150</text><path d="M346.0 164 L354.0 164 L350.0 173 Z" fill="#5B6169"/><text x="350.0" y="161" text-anchor="middle" font-size="8" fill="#5B6169">P2 d=80</text><path d="M646.0 164 L654.0 164 L650.0 173 Z" fill="#5B6169"/><text x="650.0" y="161" text-anchor="middle" font-size="8" fill="#5B6169">P2 d=160</text>
+        <text x="275.0" y="224" font-size="9.5" fill="#5B6169">t=50: P1's next deadline is 100, P2's is 80 → P2 keeps the CPU</text>
+        <line x1="50" y1="232" x2="650.0" y2="232" stroke="#8A9096" stroke-width="1"/><line x1="50.0" y1="232" x2="50.0" y2="236" stroke="#8A9096"/><text x="50.0" y="247" text-anchor="middle" font-size="8.5" fill="#8A9096">0</text><line x1="143.8" y1="232" x2="143.8" y2="236" stroke="#8A9096"/><text x="143.8" y="247" text-anchor="middle" font-size="8.5" fill="#8A9096">25</text><line x1="237.5" y1="232" x2="237.5" y2="236" stroke="#8A9096"/><text x="237.5" y="247" text-anchor="middle" font-size="8.5" fill="#8A9096">50</text><line x1="275.0" y1="232" x2="275.0" y2="236" stroke="#8A9096"/><text x="275.0" y="247" text-anchor="middle" font-size="8.5" fill="#8A9096">60</text><line x1="331.2" y1="232" x2="331.2" y2="236" stroke="#8A9096"/><text x="331.2" y="247" text-anchor="middle" font-size="8.5" fill="#8A9096">75</text><line x1="350.0" y1="232" x2="350.0" y2="236" stroke="#8A9096"/><text x="350.0" y="247" text-anchor="middle" font-size="8.5" fill="#8A9096">80</text><line x1="368.8" y1="232" x2="368.8" y2="236" stroke="#8A9096"/><text x="368.8" y="247" text-anchor="middle" font-size="8.5" fill="#8A9096">85</text><line x1="425.0" y1="232" x2="425.0" y2="236" stroke="#8A9096"/><text x="425.0" y="247" text-anchor="middle" font-size="8.5" fill="#8A9096">100</text><line x1="518.8" y1="232" x2="518.8" y2="236" stroke="#8A9096"/><text x="518.8" y="247" text-anchor="middle" font-size="8.5" fill="#8A9096">125</text><line x1="593.8" y1="232" x2="593.8" y2="236" stroke="#8A9096"/><text x="593.8" y="247" text-anchor="middle" font-size="8.5" fill="#8A9096">145</text><line x1="612.5" y1="232" x2="612.5" y2="236" stroke="#8A9096"/><text x="612.5" y="247" text-anchor="middle" font-size="8.5" fill="#8A9096">150</text><line x1="650.0" y1="232" x2="650.0" y2="236" stroke="#8A9096"/><text x="650.0" y="247" text-anchor="middle" font-size="8.5" fill="#8A9096">160</text>
+        <text x="50" y="272" font-size="9.5" fill="#5B6169">Triangles ▼ mark deadlines (= next period start). Grey = idle. EDF still has idle time (145–150) after meeting every deadline.</text>
+      </svg>
+      <div class="cap">Fig 8a. Silberschatz §6.6, P1 (p=50, t=25) and P2 (p=80, t=35), U = 0.9375. Top: rate-monotonic misses P2's first deadline. Bottom: EDF meets every deadline up to t=160. Both schedules simulated tick-by-tick.</div>
+    </div>
+    <p><strong>RMS fails.</strong> P1 has the shorter period, so it always wins. P1 runs 0–25, P2 runs 25–50, then P1's second job (released at 50) preempts P2, which still needs 10 units. P1 runs 50–75, P2 gets only 75–80, and <strong>at t = 80 P2 still has 5 units left: deadline missed</strong>, even though the set only loads the CPU to 93.75%.</p>
+    <p style="margin:0"><strong>EDF succeeds.</strong> At t = 50 P1 is released again with absolute deadline 100, but P2's deadline is 80, which is earlier, so P2 keeps the CPU and finishes at 60. P1 runs 60–85, and then the schedule continues without a miss: at t = 100, P1's new deadline (150) is earlier than P2's (160), so P1 preempts P2; P2 resumes 125–145; the CPU idles 145–150. This is the point of the section: <em>keeping priorities fixed by period wastes the slack that deadline-based priorities can use</em>.</p>
+  </div>
+  <div class="callout clarify"><span class="label">Same book, easier case — priority assignment matters</span><p>P1 (p=50, t=20) and P2 (p=100, t=35) have U = 0.75, below the n=2 bound of 0.828, so RMS is guaranteed to work. It does: P1 runs 0–20, P2 20–50, P1 50–70, P2 70–75, then idle until 100. But if you give P2 the <em>higher</em> priority, P2 runs 0–35, P1 only runs 35–55 and misses its deadline at 50. Priorities must follow period (RMS) or deadline (EDF), not "whoever is bigger".</p></div>
+
+  <h2>Recipe: how to draw a real-time schedule</h2>
+  <ol>
+    <li><strong>Utilization.</strong> Compute U = Σ Cᵢ/Tᵢ. If U &gt; 1, stop: no algorithm works.</li>
+    <li><strong>Test.</strong> EDF: U ≤ 1 means guaranteed. RMS: compare U with n(2<sup>1/n</sup>−1). Above it, the answer is "inconclusive", so you must draw.</li>
+    <li><strong>Hyperperiod.</strong> LCM of the periods; write down every release time (0, T, 2T, … for each task) and its absolute deadline.</li>
+    <li><strong>Walk through time.</strong> At each release or completion, pick the ready job: RMS picks the shortest period, EDF the earliest absolute deadline. Run it until the next release or until it finishes. On an EDF tie, let the running job continue.</li>
+    <li><strong>Check.</strong> Every job must complete before its absolute deadline, and idle time over the hyperperiod must equal (1 − U) × hyperperiod.</li>
+  </ol>
+
+  <h2>Worked exam problems</h2>
+  <p>Test-2 Q1 below is solved with this recipe under EDF. RT-Q3 changes one number so that the RMS bound becomes inconclusive, which is exactly when you have to draw the RMS schedule.</p>
   <div class="qbox" id="u2-example-17">
     <div class="qmeta"><span class="qsrc">2024-25 CIE-II Test-2, Q1<cite class="src" data-src="Q1"></cite></span><span class="marks">7 marks</span></div>
     <div class="qtext">
@@ -1084,8 +1167,8 @@ Task C(period=8, execution=1, deadline=8)</div>
     <div class="ans-label">Step 1 — Processor utilization</div>
     <div class="formula-block">U = Σ (C<span class="cm">ᵢ</span>/T<span class="cm">ᵢ</span>) = 1/4 + 2/6 + 1/8
    = 0.250 + 0.333 + 0.125 = <span class="c1">0.708</span>  <span class="cm">(≈ 70.8%)</span></div>
-    <p>For independent, preemptible periodic tasks with deadlines equal to periods on one CPU and no scheduling overhead, U ≤ 1 is the exact EDF feasibility condition. RMS has the sufficient Liu–Layland bound <span class="mono">n(2<sup>1/n</sup>−1)</span>; exceeding that bound alone does not prove an RMS schedule infeasible.</p>
-    <div class="ans-label">Step 2 — Schedule over one hyperperiod (LCM(4,6,8) = 24ms)</div>
+    <p>U ≤ 1, so EDF is guaranteed to meet every deadline (task-model assumptions above). For RMS, 3(2<sup>1/3</sup>−1) = 0.780 and 0.708 ≤ 0.780, so RMS would be guaranteed as well.</p>
+    <div class="ans-label">Step 2 — Schedule over one hyperperiod (LCM(4,6,8) = 24ms), EDF</div>
     <div class="svg-wrap" style="margin:12px 0 0">
       <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg">
         <rect x="20" y="30" width="25" height="30" fill="#1D4E89"/><text x="32" y="50" text-anchor="middle" font-size="9" fill="#fff">A</text>
@@ -1115,6 +1198,7 @@ Task C(period=8, execution=1, deadline=8)</div>
     for C), and at each moment EDF runs whichever ready job has the nearest absolute deadline. The CPU sits
     idle for 7 of the 24ms (29.17%) — consistent with 1−U ≈ 29.2% idle capacity — confirming the utilization
     calculation and the schedule agree with each other.</p>
+    <p style="margin:10px 0 0"><strong>Cross-check with RMS.</strong> Under RMS (A &gt; B &gt; C) this particular set produces exactly the same schedule (checked tick-by-tick), so here the choice of policy does not matter. The two only diverge once the load is higher, as in the next problem.</p>
   </div>
 
   <div class="qbox" id="u2-example-17b">
@@ -1141,8 +1225,20 @@ RMS (Liu–Layland) bound, n = 3:  3(2<sup>1/3</sup> − 1) = <span class="c2">0
     </table>
 </div>
     <p><strong>Both meet every deadline.</strong> In each schedule the CPU idles 4 of 24 units, which equals 1 − U = 1/6, so the schedules and the utilization agree. The two schedules first differ at t=4. A2 arrives while C1 still needs 1 more unit. RMS preempts C1, because A has the shorter period. EDF keeps running C1, because both jobs have the same deadline of 8, and lets A2 run afterwards at 5–6. C1 still finishes by 6, well before its deadline of 8.</p>
-    <p style="margin:0"><strong>Exam lesson:</strong> "U exceeds the RMS bound" does <em>not</em> mean "RMS fails". When a question asks about RMS and U falls between the bound and 1, draw the RMS schedule over the hyperperiod before you conclude. (A quicker test, not in your slides: worst-case response time R<sub>C</sub> = 2 + ⌈R/4⌉·1 + ⌈R/6⌉·2 converges to 6 ≤ 8.) Your 2024-25 Test-2 paper prints C<sub>C</sub>=1, so read the given values carefully.</p>
+    <p style="margin:0"><strong>Exam lesson:</strong> "U exceeds the RMS bound" does <em>not</em> mean "RMS fails". When a question asks about RMS and U falls between the bound and 1, draw the RMS schedule over the hyperperiod before you conclude. Your 2024-25 Test-2 paper prints C<sub>C</sub>=1, so read the given values carefully.</p>
+    <p style="margin:8px 0 0"><strong>Optional shortcut (not in the faculty slides).</strong> To test one task under RMS without drawing, iterate its worst-case response time R = C + Σ⌈R/Tⱼ⌉·Cⱼ over the higher-priority tasks j, starting at R = C, until R stops changing; the task is safe if R ≤ D. For C: R = 2 → 2+⌈2/4⌉·1+⌈2/6⌉·2 = 5 → 2+⌈5/4⌉·1+⌈5/6⌉·2 = 6 → 6 again, so R = 6 ≤ 8 and C meets its deadline, matching the drawn schedule (C1 finishes at 6).</p>
   </div>
+
+  <h2>Putting it together: three task sets, two policies</h2>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="Task set / U / RMS bound / RMS result / EDF result">
+<table class="table-prose" role="table">
+    <tr role="row"><th role="columnheader" scope="col">Task set</th><th role="columnheader" scope="col">U</th><th role="columnheader" scope="col">RMS bound (n)</th><th role="columnheader" scope="col">RMS</th><th role="columnheader" scope="col">EDF</th></tr>
+    <tr role="row"><td role="cell" data-label="Task set">Test-2 Q1: A(4,1) B(6,2) C(8,1)</td><td role="cell" data-label="U">0.708</td><td role="cell" data-label="RMS bound">0.780 (n=3), U below it</td><td role="cell" data-label="RMS">Guaranteed ✓</td><td role="cell" data-label="EDF">Guaranteed ✓</td></tr>
+    <tr role="row"><td role="cell" data-label="Task set">RT-Q3: A(4,1) B(6,2) C(8,2)</td><td role="cell" data-label="U">0.833</td><td role="cell" data-label="RMS bound">0.780 (n=3), U above it</td><td role="cell" data-label="RMS">Inconclusive → drawn: meets all ✓</td><td role="cell" data-label="EDF">Guaranteed ✓</td></tr>
+    <tr role="row"><td role="cell" data-label="Task set">Silberschatz: P1(50,25) P2(80,35)</td><td role="cell" data-label="U">0.9375</td><td role="cell" data-label="RMS bound">0.828 (n=2), U above it</td><td role="cell" data-label="RMS">Inconclusive → drawn: P2 misses at t=80 ✗</td><td role="cell" data-label="EDF">Guaranteed ✓</td></tr>
+  </table>
+</div>
+  <p>Reading the table from top to bottom is the whole topic: below the bound RMS is safe; between the bound and 1 it can go either way, and only the schedule tells you; EDF never has to be checked past U ≤ 1.</p>
 
   <div class="legacy-topic">
   <div class="legacy-heading"><div class="legacy-heading-text"><h2>Proportional share &amp; POSIX real-time scheduling</h2><span class="scope-note">Present in older notes; not listed in the new syllabus</span></div>
@@ -1162,7 +1258,6 @@ RMS (Liu–Layland) bound, n = 3:  3(2<sup>1/3</sup> − 1) = <span class="c2">0
   </div>
 </div>
 <p class="source-note">Reference: <span class="book-citation">Silberschatz, Galvin &amp; Gagne — CPU scheduling<cite class="src" data-src="B1" data-p="§6.6"></cite></span>.</p>
-<div class="callout clarify"><span class="label">Verified real-time assumptions and correction</span><p>The periodic EDF example has deadlines equal to periods, independent preemptible jobs on one processor, and no scheduling overhead. Its utilisation is 17/24 and idle time is 7/24 of the hyperperiod. The earlier prose said 6ms idle; the actual schedule contains 7ms. For this model U ≤ 1 is the EDF feasibility test; do not apply it unchanged to arbitrary deadlines, blocking or overhead. RMS uses fixed priorities by period; its standard utilisation bound is sufficient, not necessary.</p></div>
 
 <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
