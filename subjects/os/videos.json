@@ -830,13 +830,7 @@
       "duration": "8:51",
       "kind": "numerical",
       "note": "Rate-monotonic only: shorter period means higher priority."
-     }
-    ]
-   },
-   {
-    "section": "t2-11",
-    "sub": "Worked exam problems",
-    "videos": [
+     },
      {
       "id": "ejPXTOcMRPA",
       "title": "Earliest Deadline First (EDF)",
