@@ -4,29 +4,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../site/guide-base.css" data-guide-base>
 <style>
-/* soft fills -> dark tints */
-:root[data-theme="dark"] svg [fill="#1C1E21" i],:root[data-theme="dark"] svg [fill="#2A2C2F" i]{fill:#ECEAE4} /* ...repeat for every other fill/stroke hex found in your SVGs (accents: #1D4E89->#7FB0E8, #4C3F91->#A99CEB,
-   #93316B->#E58BBD, #A66A0D->#E0A94C; soft fills: #E8EFF8->#1C2B3F, #EEECF7->#2A2642, #F6E9F0->#3A2230,
-   #F7EEDD->#3A2F18; rule stroke #E4E0D3->#3C4047). Careful: don't put fill and stroke in one rule unless
-   they should both change, or an arrow's stroke will gain a fill. */
 .source-note{font-size:12.5px;color:var(--ink-soft)!important;margin:18px 0!important}
 pre.formula-block{white-space:pre;tab-size:4}
 .formula-block .tk,.formula-block .tt,.formula-block .tf,.formula-block .tn,.formula-block .ts,.formula-block .tm{color:inherit}
 .formula-block .tc{color:var(--ink-faint);font-style:italic}
 :root[data-theme="dark"] svg [fill="#fff" i]{fill:#1D2025}
 :root[data-theme="dark"] svg [stroke="#fff" i]{stroke:#1D2025}
-:root[data-theme="dark"] svg [fill="#2A2C2F" i]{fill:#ECEAE4}
 :root[data-theme="dark"] svg [stroke="#2A2C2F" i]{stroke:#ECEAE4}
-:root[data-theme="dark"] svg [fill="#8A9096" i]{fill:#7C828B}
-:root[data-theme="dark"] svg [stroke="#8A9096" i]{stroke:#7C828B}
 :root[data-theme="dark"] svg [fill="#8A8F96" i]{fill:#7C828B}
 :root[data-theme="dark"] svg [stroke="#8A8F96" i]{stroke:#7C828B}
 :root[data-theme="dark"] svg [fill="#EDEAE0" i]{fill:#2A2D33}
 :root[data-theme="dark"] svg [stroke="#EDEAE0" i]{stroke:#2A2D33}
-:root[data-theme="dark"] svg [fill="#E4E0D3" i]{fill:#33373E}
-:root[data-theme="dark"] svg [stroke="#E4E0D3" i]{stroke:#33373E}
 svg text{font-family:'Inter',system-ui,sans-serif}
-.section-head{flex-wrap:wrap}.section-head .tag{flex-shrink:0}
+/* override: long Unit 3 headings wrap under the tag */
+.section-head{flex-wrap:wrap}
+/* override: keep the tag whole when headings wrap */
+.section-head .tag{flex-shrink:0}
+/* override: tighter line height for wrapped headings */
 .section-head h1{line-height:1.2}
 .source-note a{overflow-wrap:anywhere}
 @media(max-width:640px){.section-head h1{font-size:26px}.cover h1{font-size:35px}}

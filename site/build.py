@@ -100,6 +100,21 @@ def css_rules(css):
     return out
 
 
+def check_svg_colours(name, c, base_rules):
+    """Every hex colour an inline SVG uses must have a dark-mode remap, or it can vanish on the dark background."""
+    head, body = c[:c.find("</head>")], c[c.find("</head>"):]
+    own = [r for b in re.findall(r"<style>(.*?)</style>", head, flags=re.S) for r in css_rules(b)]
+    dark = " ".join(sel for _, sel, _ in list(base_rules) + own if "dark" in sel).lower()
+    missing = set()
+    for svg in re.findall(r"<svg\b.*?</svg>", body, flags=re.S):
+        for attr, hexc in re.findall(r'\b(fill|stroke)="(#[0-9a-fA-F]{3,8})"', svg):
+            if f'[{attr}="{hexc.lower()}"' not in dark:
+                missing.add(f'{attr}="{hexc}"')
+    if missing:
+        err(f"{name}: SVG colours with no dark-mode remap: {sorted(missing)[:8]}. Use a palette colour from "
+            "site/guide-base.css or add a :root[data-theme=\"dark\"] svg [fill=\"#…\" i] rule")
+
+
 def check_guide_css(name, c, base_rules):
     """Keep guides from drifting: their own <style> may only add to site/guide-base.css."""
     head = c[:c.find("</head>")]
@@ -107,6 +122,16 @@ def check_guide_css(name, c, base_rules):
     dup = [r[1] for r in own if r in base_rules]
     if dup:
         err(f"{name}: {len(dup)} CSS rule(s) copied from site/guide-base.css (delete them from the guide): {dup[:4]}")
+    # a guide may override a shared rule only on purpose: mark it with /* override: why */ right before it
+    base_sel = {(m, sel) for m, sel, _ in base_rules if sel not in (":root", ':root[data-theme="dark"]')}
+    marked = set()
+    for b in re.findall(r"<style>(.*?)</style>", head, flags=re.S):
+        for m in re.finditer(r"/\*\s*override\b[^*]*\*/\s*([^{}]+?)\s*\{", b):
+            marked.add(" ".join(m.group(1).split()))
+    silent = sorted({sel for media, sel, decls in own if (media, sel) in base_sel and sel not in marked})
+    if silent:
+        err(f"{name}: changes shared rule(s) {silent[:5]} from site/guide-base.css without a /* override: reason */ "
+            "comment; delete the rule, change guide-base.css for every guide, or mark it")
     for media, sel, decls in own:
         if sel in (":root", ':root[data-theme="dark"]'):
             redefined = sorted({d.split(":")[0].strip() for d in decls.split(";")} & BASE_TOKENS)
@@ -584,6 +609,7 @@ def main():
             if len(GUIDE_BASE_LINK.findall(c)) != 1:
                 err(f"{name}: needs exactly one <link rel=\"stylesheet\" href=\"…/guide-base.css\" data-guide-base> in <head>")
             check_guide_css(name, c, base_rules)
+            check_svg_colours(name, c, base_rules)
             if not SIDEBAR_OPEN.search(c):
                 err(f"{name}: no <nav class=\"sidebar\"> found")
             c = render_citations(name, c, s, cfg)

@@ -61,7 +61,7 @@ th{background:var(--paper);text-align:left;padding:10px 13px;font-weight:600;fon
 td{padding:10px 13px;border-bottom:1px solid var(--line-soft);color:var(--body);vertical-align:top} tr:last-child td{border-bottom:none}
 .formula-block{background:#20232A;color:#E8EAED;border-radius:8px;padding:16px 20px;margin:16px 0;font-family:'JetBrains Mono',monospace;font-size:14px;overflow-x:auto;line-height:1.8;white-space:pre-wrap}
 .formula-block .c1{color:#7FB8E8}.formula-block .c2{color:#F2C88F}.formula-block .cm{color:#8A9099}
-.svg-wrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:20px 0;text-align:center;box-shadow:var(--shadow)}
+.svg-wrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:20px 0;text-align:center;box-shadow:var(--shadow);overflow-x:auto}
 .svg-wrap .cap{font-size:12.5px;color:var(--ink-soft);margin-top:8px;font-style:italic} .svg-wrap svg{max-width:100%;height:auto}
 .qbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:22px 0 26px;box-shadow:var(--shadow);border-top:3px solid var(--accent,var(--blue))}
 .qbox .qmeta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}

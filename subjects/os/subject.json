@@ -34,6 +34,11 @@
   "changelog": [
     {
       "date": "2026-11-21",
+      "units": [2, 3],
+      "text": "Unit 2: the real-time scheduling figure's title was invisible in dark mode; it is now readable, and its red deadline markers are brighter in dark mode. Unit 3 dark-mode figure colours now match the other units."
+    },
+    {
+      "date": "2026-11-21",
       "units": [1, 2, 3],
       "text": "Shared look across all guides: the sidebar has a ← All units back link and a Hide button, and phones and tablets get a ☰ Contents drawer. Dark-mode colours in Units 1–2 now match the other subjects."
     },
