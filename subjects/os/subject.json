@@ -33,6 +33,11 @@
   ],
   "changelog": [
     {
+      "date": "2026-11-21",
+      "units": [1, 2, 3],
+      "text": "Shared look across all guides: the sidebar has a ← All units back link and a Hide button, and phones and tablets get a ☰ Contents drawer. Dark-mode colours in Units 1–2 now match the other subjects."
+    },
+    {
       "date": "2026-11-17",
       "units": [
         2

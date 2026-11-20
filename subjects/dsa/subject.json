@@ -56,6 +56,11 @@
   ],
   "changelog": [
     {
+      "date": "2026-11-21",
+      "units": [1, 2, 3, 4, 5],
+      "text": "Shared look across all guides: the sidebar has a ← All units back link and a Hide button, and phones get a ☰ Contents drawer. Unit 3 code blocks now use the same 14px font as the other units."
+    },
+    {
       "date": "2026-11-13",
       "units": [
         2

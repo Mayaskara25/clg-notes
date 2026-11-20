@@ -1,0 +1,93 @@
+<!-- sidebar top: injected by site/build.py right after <nav class="sidebar"> -->
+<style>
+/* critical collapse/drawer rules live here so they apply before unit-chrome's styles */
+html.side-collapsed .sidebar{display:none!important}
+html.side-drawer-open,html.side-drawer-open body{overflow:hidden!important}
+html.side-drawer-open .sidebar{display:block!important;position:fixed!important;top:0;left:0;bottom:0;height:100%!important;width:min(320px,85vw)!important;max-width:85vw;z-index:90;overflow-y:auto;overscroll-behavior:contain;box-shadow:0 0 40px rgba(0,0,0,.35)}
+.site-side.side-cluster,.site-side.side-backdrop{display:none}
+html.side-cluster-on .site-side.side-cluster{display:flex;position:fixed;top:14px;left:14px;z-index:62;gap:8px;align-items:center}
+html.side-cluster-on .main{padding-top:48px}
+html.side-drawer-open .site-side.side-backdrop{display:block;position:fixed;inset:0;z-index:89;background:rgba(20,22,26,.5)}
+html.side-drawer-open .site-side.side-cluster{display:none}
+.site-side.side-top{display:flex;align-items:stretch;gap:8px;margin:0 0 16px;padding:0 0 14px;border-bottom:1px solid var(--line-soft);font-family:'Inter',system-ui,sans-serif}
+.site-side .side-back{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;padding:7px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);text-decoration:none;font:600 12.5px/1.3 'Inter',system-ui,sans-serif;box-shadow:var(--shadow)}
+.site-side .side-back small{font:500 11px/1.3 'Inter',system-ui,sans-serif;color:var(--ink-soft)}
+.site-side .side-back span{overflow-wrap:anywhere}
+.site-side .side-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 12.5px 'Inter',system-ui,sans-serif;cursor:pointer;box-shadow:var(--shadow);text-decoration:none;white-space:nowrap}
+.site-side.side-top .side-btn{align-self:center;padding:8px 11px}
+.site-side .side-back:hover,.site-side .side-btn:hover{border-color:var(--blue);text-decoration:none}
+.site-side .side-back:focus-visible,.site-side .side-btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.site-side{display:none!important}html.side-cluster-on .main{padding-top:0}}
+</style>
+<div class="site-side side-top">
+  <a class="side-back" href="../" id="sideBack" data-code="{{CODE}}" data-file-href="{{SITE_URL}}/{{SUBJECT_SLUG}}/" title="Back to all {{COURSE}} units"><span>&larr; All units</span><small>{{COURSE}}</small></a>
+  <button type="button" class="side-btn" id="sideHide" aria-label="Hide contents sidebar" title="Hide sidebar" aria-expanded="true">&#9664;<span class="side-hide-lbl"> Hide</span></button>
+</div>
+<script>
+(function(){
+  var de=document.documentElement, KEY='notes-sidebar-collapsed';
+  var nav=document.currentScript&&document.currentScript.parentNode;
+  if(!nav||!nav.classList||!nav.classList.contains('sidebar'))return;
+  if(!nav.id)nav.id='site-sidebar';
+  try{if(localStorage.getItem(KEY)==='1')de.classList.add('side-collapsed');}catch(e){}
+  var back=document.getElementById('sideBack'), hide=document.getElementById('sideHide');
+  if(location.protocol==='file:')back.href=back.getAttribute('data-file-href');
+  var code=back.getAttribute('data-code');
+  // fixed cluster + backdrop sit outside the nav, since the guides hide the nav with display:none
+  var cl=document.createElement('div');cl.className='site-side side-cluster';
+  var openBtn=document.createElement('button');openBtn.type='button';openBtn.className='side-btn';
+  openBtn.setAttribute('aria-controls',nav.id);openBtn.setAttribute('aria-expanded','false');openBtn.title='Show contents';
+  openBtn.textContent='☰ Contents';
+  var back2=document.createElement('a');back2.className='side-btn';back2.href=back.href;back2.title=back.title;
+  back2.textContent='← '+code;
+  cl.appendChild(openBtn);cl.appendChild(back2);
+  var bd=document.createElement('div');bd.className='site-side side-backdrop';bd.setAttribute('aria-hidden','true');
+  document.body.insertBefore(bd,document.body.firstChild);
+  document.body.insertBefore(cl,document.body.firstChild);
+  hide.setAttribute('aria-controls',nav.id);
+  var narrow=false;
+  function probe(){ // is the nav hidden by the guide's own CSS (phone / OS 1000px breakpoints)?
+    var c=de.classList.contains('side-collapsed'),d=de.classList.contains('side-drawer-open');
+    if(c)de.classList.remove('side-collapsed');if(d)de.classList.remove('side-drawer-open');
+    narrow=getComputedStyle(nav).display==='none';
+    if(c)de.classList.add('side-collapsed');if(d)de.classList.add('side-drawer-open');
+  }
+  function sync(){
+    var drawer=de.classList.contains('side-drawer-open');
+    de.classList.toggle('side-cluster-on',narrow||de.classList.contains('side-collapsed'));
+    openBtn.setAttribute('aria-expanded',drawer?'true':'false');
+    hide.setAttribute('aria-label',drawer?'Close contents':'Hide contents sidebar');
+    hide.title=drawer?'Close':'Hide sidebar';
+    hide.querySelector('.side-hide-lbl').textContent=drawer?' Close':' Hide';
+  }
+  function closeDrawer(focus){
+    de.classList.remove('side-drawer-open');sync();if(focus)openBtn.focus();
+  }
+  openBtn.addEventListener('click',function(){
+    if(narrow){de.classList.add('side-drawer-open');sync();hide.focus();return;}
+    de.classList.remove('side-collapsed');
+    try{localStorage.setItem(KEY,'0');}catch(e){}
+    sync();hide.focus();
+  });
+  hide.addEventListener('click',function(){
+    if(de.classList.contains('side-drawer-open')){closeDrawer(true);return;}
+    de.classList.add('side-collapsed');
+    try{localStorage.setItem(KEY,'1');}catch(e){}
+    sync();openBtn.focus();
+  });
+  bd.addEventListener('click',function(){closeDrawer(true);});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&de.classList.contains('side-drawer-open'))closeDrawer(true);
+  });
+  nav.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a');
+    if(a&&de.classList.contains('side-drawer-open'))closeDrawer(false);
+  });
+  window.addEventListener('resize',function(){
+    probe();
+    if(!narrow&&de.classList.contains('side-drawer-open'))de.classList.remove('side-drawer-open');
+    sync();
+  });
+  probe();sync();
+})();
+</script>

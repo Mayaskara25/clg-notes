@@ -34,6 +34,11 @@
   ],
   "changelog": [
     {
+      "date": "2026-11-21",
+      "units": [1, 2, 3],
+      "text": "Shared look across all guides: the sidebar has a ← All units back link and a Hide button, and phones get a ☰ Contents drawer. Dark-mode colours in Units 1–2 now match the other subjects."
+    },
+    {
       "date": "2026-11-14",
       "units": [1, 2, 3],
       "text": "Added 61 checked Engineering Funda videos beside matching topics: 13 in Unit 1, 39 in Unit 2 and 9 in Unit 3. Includes double-precision IEEE 754, decoder basics and counter-design examples, with notes on relevant notation and circuit differences."

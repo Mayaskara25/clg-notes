@@ -78,6 +78,42 @@ def fill(template, values, name):
     return template
 
 
+GUIDE_BASE_LINK = re.compile(r'<link\b[^>]*\bdata-guide-base\b[^>]*>')
+SIDEBAR_OPEN = re.compile(r'<nav\b[^>]*\bclass="sidebar"[^>]*>')
+BASE_TOKENS = {"--body", "--paper", "--surface", "--ink", "--ink-soft", "--ink-faint", "--line", "--line-soft",
+               "--blue", "--blue-soft", "--indigo", "--indigo-soft", "--teal", "--teal-soft", "--plum", "--plum-soft",
+               "--amber", "--amber-soft", "--radius", "--shadow"}
+
+
+def css_rules(css):
+    """(media, selector, normalised declarations) for every rule; one level of @media nesting."""
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    out = []
+    def norm(x):
+        return " ".join(x.split())
+    for m in re.finditer(r"(@[^{}]*)\{((?:[^{}]*\{[^{}]*\})*)\s*\}|([^{}@]+)\{([^{}]*)\}", css):
+        if m.group(1):
+            for r in re.finditer(r"([^{}]+)\{([^{}]*)\}", m.group(2)):
+                out.append((norm(m.group(1)), norm(r.group(1)), ";".join(sorted(norm(d) for d in r.group(2).split(";") if d.strip()))))
+        else:
+            out.append(("", norm(m.group(3)), ";".join(sorted(norm(d) for d in m.group(4).split(";") if d.strip()))))
+    return out
+
+
+def check_guide_css(name, c, base_rules):
+    """Keep guides from drifting: their own <style> may only add to site/guide-base.css."""
+    head = c[:c.find("</head>")]
+    own = [r for b in re.findall(r"<style>(.*?)</style>", head, flags=re.S) for r in css_rules(b)]
+    dup = [r[1] for r in own if r in base_rules]
+    if dup:
+        err(f"{name}: {len(dup)} CSS rule(s) copied from site/guide-base.css (delete them from the guide): {dup[:4]}")
+    for media, sel, decls in own:
+        if sel in (":root", ':root[data-theme="dark"]'):
+            redefined = sorted({d.split(":")[0].strip() for d in decls.split(";")} & BASE_TOKENS)
+            if redefined:
+                err(f"{name}: redefines shared colour tokens {redefined} (change them in site/guide-base.css instead)")
+
+
 # ---------- validation (same checks as the notes-maker Tier-1 script) ----------
 TAGS = ["section", "div", "svg", "g", "table", "ul", "ol", "tr", "td", "th", "h1", "h2", "h3"]
 
@@ -512,6 +548,9 @@ def main():
     search_js = read(os.path.join(SITE, "search.js"))
     style = read(os.path.join(SITE, "landing.css"))
     code_style = read(os.path.join(SITE, "code-highlight.css"))
+    guide_base = read(os.path.join(SITE, "guide-base.css"))
+    sidebar_top_t = read(os.path.join(SITE, "sidebar-top.html"))
+    base_rules = set(css_rules(guide_base))
     # runs after each guide's own OS-preference script, so an explicit ?theme= wins before first paint
     theme_head = ("<script>(function(){try{var t=new URLSearchParams(location.search).get('theme');"
                   "if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>\n")
@@ -542,6 +581,11 @@ def main():
                 err(f"{name}: source file missing: subjects/{slug}/{u['source']}")
                 continue
             c = read(src)
+            if len(GUIDE_BASE_LINK.findall(c)) != 1:
+                err(f"{name}: needs exactly one <link rel=\"stylesheet\" href=\"…/guide-base.css\" data-guide-base> in <head>")
+            check_guide_css(name, c, base_rules)
+            if not SIDEBAR_OPEN.search(c):
+                err(f"{name}: no <nav class=\"sidebar\"> found")
             c = render_citations(name, c, s, cfg)
             validate_unit(name, c)
             secs = sections(c)
@@ -584,6 +628,13 @@ def main():
                 page = highlight_code_blocks(page)
                 page = page.replace("</head>", "<style>\n" + code_style + "</style>\n</head>", 1)
             page = page.replace("</head>", '<meta name="robots" content="noindex, nofollow">\n' + theme_head + "</head>", 1)
+            # shared guide styles go where the guide links them, so the guide's own <style> still overrides
+            page = GUIDE_BASE_LINK.sub(lambda _: "<style>/* shared: site/guide-base.css */\n" + guide_base + "</style>", page, count=1)
+            side_top = fill(sidebar_top_t, {
+                "CODE": e(code), "COURSE": e(s["course"]), "SUBJECT_SLUG": slug, "SITE_URL": cfg["url"],
+                "UNIT_N": e(str(n)),
+            }, name + " sidebar top")
+            page = SIDEBAR_OPEN.sub(lambda m: m.group(0) + side_top, page, count=1)
             i = page.rfind("</body>")
             page = page[:i] + chrome + "\n<script>" + theme_js + "</script>\n" + page[i:]
             write(os.path.join(OUT, slug, u["slug"], "index.html"), page)
