@@ -658,7 +658,7 @@ def main():
             page = GUIDE_BASE_LINK.sub(lambda _: "<style>/* shared: site/guide-base.css */\n" + guide_base + "</style>", page, count=1)
             side_top = fill(sidebar_top_t, {
                 "CODE": e(code), "COURSE": e(s["course"]), "SUBJECT_SLUG": slug, "SITE_URL": cfg["url"],
-                "UNIT_N": e(str(n)),
+                "UNIT_N": e(str(n)), "ACCENT": e(u.get("accent") or s.get("accent") or "var(--blue)", quote=True),
             }, name + " sidebar top")
             page = SIDEBAR_OPEN.sub(lambda m: m.group(0) + side_top, page, count=1)
             i = page.rfind("</body>")

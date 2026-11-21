@@ -17,11 +17,41 @@ html.side-drawer-open .site-side.side-cluster{display:none}
 .site-side.side-top .side-btn{align-self:center;padding:8px 11px}
 .site-side .side-back:hover,.site-side .side-btn:hover{border-color:var(--blue);text-decoration:none}
 .site-side .side-back:focus-visible,.site-side .side-btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+/* reading progress: unit bar (sidebar top), one bar under the current topic's link, corner pill when the sidebar is away */
+.site-side.side-unit{margin:-4px 0 14px;font:600 11.5px/1.2 'Inter',system-ui,sans-serif;color:var(--ink-soft)}
+.side-unit-row{display:flex;justify-content:space-between;gap:8px;margin-bottom:5px}
+.side-unit-row b{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+.side-track{height:4px;border-radius:99px;background:var(--line-soft);overflow:hidden}
+.side-fill{height:100%;width:0;border-radius:99px;background:var(--prog,var(--blue));transition:width .15s linear}
+.navlink.prog-on{position:relative;color:var(--ink);background:var(--paper)}
+.site-side.side-topic{position:absolute;left:8px;right:8px;bottom:1px;height:3px}
+.site-side.side-topic .side-track{height:3px}
+.site-side.side-pill{display:none}
+html.side-cluster-on .site-side.side-pill.has-topic{display:block;position:fixed;left:14px;bottom:16px;z-index:62;width:min(260px,calc(100vw - 28px));padding:9px 12px 10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);box-shadow:var(--shadow);font:600 12px/1.3 'Inter',system-ui,sans-serif;text-align:left;cursor:pointer}
+.side-pill .pill-row{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.side-pill .pill-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.side-pill .pill-pct{color:var(--ink-soft);font-variant-numeric:tabular-nums;flex-shrink:0}
+.side-pill .side-track{margin:6px 0 7px}
+.side-pill .pill-unit{display:flex;align-items:center;gap:8px;color:var(--ink-soft);font-weight:500;font-size:11px}
+.side-pill .pill-unit .side-track{flex:1;margin:0;height:3px}
+.site-side.side-topbar{display:none}
+@media (max-width:760px){
+  html.side-cluster-on .site-side.side-topbar{display:block;position:fixed;top:0;left:0;right:0;height:3px;z-index:63;background:transparent}
+  html.side-cluster-on .side-topbar .side-fill{border-radius:0}
+  html.side-cluster-on .site-side.side-pill.has-topic{display:none}
+}
+.site-side.side-unit:not(.has-topics){display:none}
+:root[data-theme="dark"] .side-fill{filter:brightness(1.6) saturate(1.1)}
+@media (prefers-reduced-motion:reduce){.side-fill{transition:none}}
 @media print{.site-side{display:none!important}html.side-cluster-on .main{padding-top:0}}
 </style>
 <div class="site-side side-top">
   <a class="side-back" href="../" id="sideBack" data-code="{{CODE}}" data-file-href="{{SITE_URL}}/{{SUBJECT_SLUG}}/" title="Back to all {{COURSE}} units"><span>&larr; All units</span><small>{{COURSE}}</small></a>
   <button type="button" class="side-btn" id="sideHide" aria-label="Hide contents sidebar" title="Hide sidebar" aria-expanded="true">&#9664;<span class="side-hide-lbl"> Hide</span></button>
+</div>
+<div class="site-side side-unit" id="sideUnit" style="--prog:{{ACCENT}}">
+  <div class="side-unit-row"><span>Unit {{UNIT_N}} progress</span><b id="sideUnitPct">0%</b></div>
+  <div class="side-track" role="progressbar" aria-label="Unit progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="side-fill"></div></div>
 </div>
 <script>
 (function(){
@@ -89,5 +119,72 @@ html.side-drawer-open .site-side.side-cluster{display:none}
     sync();
   });
   probe();sync();
+
+  // ---- reading progress (nothing stored: computed from the scroll position each time) ----
+  // this script runs at the top of the sidebar, before the sections exist, so wait for the page
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',progress);else progress();
+  function progress(){
+  var secs=[].slice.call(document.querySelectorAll('section.section[id]'));
+  var links={};
+  [].forEach.call(nav.querySelectorAll('a.navlink[href^="#"]'),function(a){links[a.getAttribute('href').slice(1)]=a;});
+  var isTopic=secs.map(function(s){var t=s.querySelector('.tag');return !!t&&/^\s*\d/.test(t.textContent);});
+  var first=isTopic.indexOf(true),last=isTopic.lastIndexOf(true);
+  var unitBox=document.getElementById('sideUnit');
+  if(!secs.length||first<0)return;
+  unitBox.classList.add('has-topics');
+  var prog=unitBox.style.getPropertyValue('--prog');
+  var unitPct=document.getElementById('sideUnitPct'),unitTrack=unitBox.querySelector('.side-track'),unitFill=unitBox.querySelector('.side-fill');
+  function mk(cls,html){var d=document.createElement('div');d.className='site-side '+cls;d.innerHTML=html;d.style.setProperty('--prog',prog);return d;}
+  var bar='<div class="side-track"><div class="side-fill"></div></div>';
+  var topic=mk('side-topic',bar),topicFill=topic.querySelector('.side-fill');
+  var pill=mk('side-pill','<div class="pill-row"><span class="pill-name"></span><span class="pill-pct"></span></div>'+bar+
+    '<div class="pill-unit"><span>Unit</span>'+bar+'<span class="pill-u"></span></div>');
+  pill.setAttribute('role','button');pill.tabIndex=0;pill.title='Show contents';
+  var pName=pill.querySelector('.pill-name'),pPct=pill.querySelector('.pill-pct'),pFills=pill.querySelectorAll('.side-fill'),pU=pill.querySelector('.pill-u');
+  var topbar=mk('side-topbar',bar),topFill=topbar.querySelector('.side-fill');
+  topbar.setAttribute('aria-hidden','true');
+  document.body.appendChild(pill);document.body.appendChild(topbar);
+  pill.addEventListener('click',function(){openBtn.click();});
+  pill.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openBtn.click();}});
+  var onLink=null;
+  function clamp(x){return x<0?0:x>1?1:x;}
+  function pct(x){return Math.round(x*100)+'%';}
+  function update(){
+    var vh=window.innerHeight,atEnd=window.scrollY+vh>=document.documentElement.scrollHeight-4;
+    var line=atEnd?vh:vh*0.4,cur=-1,cr=null,start=null,end=null;
+    for(var i=0;i<secs.length;i++){
+      var r=secs[i].getBoundingClientRect();
+      if(!r.height)continue;
+      if(r.top<=line){cur=i;cr=r;}
+      if(i>=first&&i<=last){if(start===null)start=r.top;end=r.bottom;}
+    }
+    var u=start===null?0:clamp((line-start)/Math.max(1,end-start));
+    unitPct.textContent=pct(u);unitFill.style.width=pct(u);unitTrack.setAttribute('aria-valuenow',Math.round(u*100));
+    topFill.style.width=pct(u);pFills[1].style.width=pct(u);pU.textContent=pct(u);
+    var link=cur>=0?links[secs[cur].id]:null;
+    if(link!==onLink){
+      if(onLink)onLink.classList.remove('prog-on');
+      if(link){link.classList.add('prog-on');link.appendChild(topic);}else if(topic.parentNode)topic.parentNode.removeChild(topic);
+      onLink=link;
+      pill.classList.toggle('has-topic',!!link);
+      if(link)pName.textContent=link.textContent.replace(/\s+/g,' ').trim();
+    }
+    if(link){var t=clamp((line-cr.top)/Math.max(1,cr.height));topicFill.style.width=pct(t);pFills[0].style.width=pct(t);pPct.textContent=pct(t);}
+  }
+  function placePill(){ // sit above the page toolbar (bottom right) when the two would overlap
+    var bar=document.querySelector('.sitebar'),bottom=16;
+    if(bar&&pill.offsetWidth){
+      var r=bar.getBoundingClientRect(),right=14+pill.offsetWidth+8;
+      if(r.height&&r.left<right)bottom=Math.round(window.innerHeight-r.top)+10;
+    }
+    pill.style.bottom=bottom+'px';
+  }
+  var queued=false;
+  function later(){if(!queued){queued=true;requestAnimationFrame(function(){queued=false;update();placePill();});}}
+  window.addEventListener('scroll',later,{passive:true});
+  window.addEventListener('resize',later);
+  if(window.ResizeObserver)new ResizeObserver(later).observe(document.body); // answer toggles change section heights
+  later();
+  }
 })();
 </script>
