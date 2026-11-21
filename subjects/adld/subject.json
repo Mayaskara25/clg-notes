@@ -4,7 +4,7 @@
   "title": "ADLD Exam Notes",
   "course": "Applied Digital Logic Design",
   "course_code": "CS234AI",
-  "subtitle": "Notes in progress · Units 1–3 ready, 4–5 coming",
+  "subtitle": "New syllabus · 5 units",
   "accent": "#93316B",
   "planned": 5,
   "search_hint": "e.g. K-map, flip-flop, counter",
@@ -30,9 +30,12 @@
       "title": "Counters & Synchronous Sequential Networks",
       "topics": "ripple counters, synchronous counters, ring and Johnson counters, counter design, self-correcting counters, Mealy and Moore models, analysis, state diagrams, sequence detectors, state table reduction, implication table, frequency division, mod-N by clear, lock-out, Mealy to Moore conversion",
       "updated": "2026-11-14"
-    }
+    },
+    {"n": 4, "source": "Applied Digital Logic Design - Unit 4 - Exam Notes.html", "title": "Computer Structure & Instruction Sets", "topics": "functional units, processor registers, performance, memory locations and addressing, RTN, instruction formats, addressing modes, assembly language, stacks and subroutines, ARM and x86", "updated": "2026-11-21"},
+    {"n": 5, "source": "Applied Digital Logic Design - Unit 5 - Exam Notes.html", "title": "Processing Unit, Memory & I/O", "topics": "datapath and control signals, hardwired and microprogrammed control, pipelining, memory hierarchy, RAM chips, cache mapping, virtual memory, interrupts, DMA", "updated": "2026-11-21"}
   ],
   "changelog": [
+    {"date": "2026-11-21", "units": [4, 5], "text": "Units 4 and 5 published: instruction set architecture and assembly language (Unit 4), and CPU control, memory, cache and I/O (Unit 5), with every 2025–26 improvement-test question answered. Interrupts, DMA and ARM/x86 come from Hamacher and are labelled; they will be revised when the faculty's latest notes arrive."},
     {
       "date": "2026-11-21",
       "units": [1, 2, 3],
