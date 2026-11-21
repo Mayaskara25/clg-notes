@@ -123,7 +123,8 @@
   }
 
   /* ---------- the prompt (fixed template, no AI) ---------- */
-  function prompt(c, doubt, limit) {
+  /* inline: put the study pack's text itself in the prompt (for copying, and for chats that cannot open links) */
+  function prompt(c, doubt, limit, inline) {
     var body = plain(c.nodes);
     var cut = false;
     if (body.length > limit) {
@@ -133,29 +134,45 @@
     }
     var link = (location.protocol === 'file:' && CTX.page ? CTX.page : location.origin + location.pathname) + (c.anchor ? '#' + c.anchor : '');
     var figs = figures(c.nodes);
+    var pack = packUrl(c), packed = inline && pack && c.packText;
     var L = [];
     L.push('I am a student revising ' + (CTX.course || 'my course') + (CTX.courseCode ? ' (' + CTX.courseCode + ')' : '') +
       ', Unit ' + CTX.unit + ': ' + CTX.unitTitle + '.');
     L.push('I have a doubt in this part of my class notes: "' + c.label + '".');
     L.push('');
-    L.push('This is what my notes say:');
-    L.push('"""');
-    L.push(body || '(this part is mostly a diagram)');
-    if (cut) L.push('[... trimmed. The full text is at the link below.]');
-    if (c.subs && c.subs.length) L.push('\nSub-topics in this part: ' + c.subs.join('; '));
-    L.push('"""');
-    if (figs.length) L.push('The notes include ' + (figs.length === 1 ? 'a diagram' : figs.length + ' diagrams') + ': ' +
-      figs.map(function (f) { return f.name; }).join(', ') + ', described in [brackets] above. I may paste the image too.');
-    L.push('Link to this part of my notes: ' + link);
-    var pack = packUrl(c);
-    if (pack) L.push('Everything my course has on this topic (my class notes, the faculty slides and handouts, and past exam questions) is in one plain-text file. If you can open links, read it first and use it: ' + pack);
+    if (packed) {
+      // the pack already holds the class notes, the faculty pages and the past questions for this topic
+      L.push('Below is my course\'s study pack for this topic: my class notes, the matching pages of the faculty slides and handouts, and past exam questions. Use it as your primary source.');
+      L.push('"""');
+      L.push(c.packText.trim());
+      L.push('"""');
+    } else {
+      if (pack) {
+        L.push('FIRST open and read my course\'s study pack for this topic. It is the primary source: my class notes, the matching pages of the faculty slides and handouts, and past exam questions, in one plain-text file:');
+        L.push(pack);
+        L.push('Use the web page of my notes (' + link + ') only if the study pack does not open. If you cannot open links at all, say so, and use the excerpt below.');
+        L.push('');
+        L.push('Excerpt from my notes:');
+      } else {
+        L.push('This is what my notes say:');
+      }
+      L.push('"""');
+      L.push(body || '(this part is mostly a diagram)');
+      if (cut) L.push('[... trimmed. The full text is at the link' + (pack ? 's' : '') + ' above.]');
+      if (c.subs && c.subs.length) L.push('\nSub-topics in this part: ' + c.subs.join('; '));
+      L.push('"""');
+      if (figs.length) L.push('The notes include ' + (figs.length === 1 ? 'a diagram' : figs.length + ' diagrams') + ': ' +
+        figs.map(function (f) { return f.name; }).join(', ') + ', described in [brackets] above. I may paste the image too.');
+      if (!pack) L.push('Link to this part of my notes: ' + link);
+    }
     L.push('');
-    L.push('I have already read the explanation above and it did not make it clear for me. Please:');
+    L.push('I have already read my notes and they did not make it clear for me. Please:');
     L.push('1. Explain it in a different way from my notes: an everyday analogy, a small worked example, or a step-by-step walk-through.');
     L.push('2. Stay within what my notes cover. Do not go far beyond my syllabus.');
     L.push('3. Point out the mistake students most often make here.');
     L.push('4. End with one short question I can answer to check that I understood.');
     L.push('5. If a video would help, tell me what to search for on YouTube. Do not make up video links.');
+    if (pack) L.push('6. Say which source you used: the study pack (and which part: class notes, faculty pages or past questions), the web page, or your general knowledge.');
     L.push('');
     L.push('My doubt: ' + (doubt || 'I am not sure exactly what I am missing. Start with the core idea.'));
     return L.join('\n');
@@ -229,6 +246,9 @@
     close();
     lastBtn = btn; btn.setAttribute('aria-expanded', 'true');
     current = chunk(btn);
+    var pk0 = packUrl(current), forChunk = current;
+    if (pk0 && window.fetch) fetch(pk0).then(function (r) { return r.ok ? r.text() : ''; })
+      .then(function (t) { if (t) forChunk.packText = t; }, function () {});
     var figs = figures(current.nodes);
     menu = document.createElement('div'); menu.className = 'aa-menu'; menu.setAttribute('role', 'dialog'); menu.setAttribute('aria-label', 'Ask an AI about this part');
     var h = '<p class="aa-h">Ask AI about</p><p class="aa-t"></p>' +
@@ -261,7 +281,7 @@
   function act(ev, doubt, figs) {
     var a = ev.target.closest('a[data-ai],button[data-act]'); if (!a) return;
     count(a.dataset.ai || a.dataset.act);
-    var full = prompt(current, doubt, MAX_FULL);
+    var full = prompt(current, doubt, MAX_FULL, true);
     if (a.dataset.ai) {
       var ai = AIS.filter(function (x) { return x.id === a.dataset.ai; })[0];
       var short = prompt(current, doubt, MAX_TEXT);
@@ -269,12 +289,13 @@
       a.href = url;                     // the link opens this, if the side window is blocked or on phones
       copyText(full);
       if (openSide(url)) ev.preventDefault();
-      toast(ai.copyOnly ? 'Prompt copied. Paste it into ' + ai.name + ' (Ctrl+V or long-press, Paste).' :
-        (short.length < full.length ? 'Opening ' + ai.name + '. The section was long: the full prompt is copied, paste it if needed.' : 'Opening ' + ai.name + '…'));
+      toast(ai.copyOnly ? 'Prompt' + (current.packText ? ' with the study pack' : '') + ' copied. Paste it into ' + ai.name + ' (Ctrl+V or long-press, Paste).' :
+        (current.packText ? 'Opening ' + ai.name + '. A prompt with the whole study pack is also copied: paste it if ' + ai.name + ' cannot open the link.' :
+         short.length < full.length ? 'Opening ' + ai.name + '. The section was long: the full prompt is copied, paste it if needed.' : 'Opening ' + ai.name + '…'));
       close(); return;
     }
     var k = a.dataset.act;
-    if (k === 'copy') { copyText(full).then(function (ok) { toast(ok ? 'Prompt copied. Paste it into any AI chat.' : 'Could not copy on this browser.'); }); close(); }
+    if (k === 'copy') { copyText(full).then(function (ok) { toast(ok ? 'Prompt' + (current.packText ? ' with the study pack' : '') + ' copied. Paste it into any AI chat.' : 'Could not copy on this browser.'); }); close(); }
     else if (k === 'fig') {
       var f = figs[+a.dataset.i];
       if (!(window.ClipboardItem && navigator.clipboard && navigator.clipboard.write)) { toast('This browser cannot copy images. Try "Share to an app" or a screenshot.'); return; }
