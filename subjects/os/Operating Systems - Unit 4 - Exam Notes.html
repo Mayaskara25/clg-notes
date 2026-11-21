@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operating Systems · Unit IV · Virtual Memory · Exam Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../site/guide-base.css" data-guide-base>
+<style>
+ /* keep -> == != literal */
+body,.sidebar,.card,table,.qbox,.callout,.index-card,.svg-wrap{transition:background-color .2s,color .2s,border-color .2s}
+:root[data-theme="dark"] svg [fill="#1C1E21" i],:root[data-theme="dark"] svg [fill="#2A2C2F" i]{fill:#ECEAE4}
+svg text{font-family:'Inter',system-ui,sans-serif}
+/* override: figures fill the frame width */ .svg-wrap svg{width:100%;display:block}
+/* override: long unit titles wrap */ .section-head{flex-wrap:wrap;gap:8px 12px}
+.section-head h1,.cover h1{line-height:1.13}
+/* override: cover sits at the top on jump */ .cover{scroll-margin-top:0}
+.section p.source-note{color:var(--ink-soft);font-size:13px;margin-top:20px}
+.supporting a{display:inline-block;margin:3px 17px 3px 0;font-weight:600}
+/* override: long source ids wrap */ .qbox .qmeta{gap:10px;flex-wrap:wrap}
+.qbox .qsrc,.brand .eyebrow,.cover .meta{color:var(--ink-soft)}
+/* override: long question text wraps */ .qbox .qtext{overflow-wrap:anywhere}
+.table-scroll{margin:18px 0;max-width:100%;overflow-x:auto;border-radius:8px;box-shadow:var(--shadow)}
+.table-scroll>table{margin:0;box-shadow:none}
+.trace th,.trace td{padding:7px 10px;white-space:nowrap}
+.trace td{font-variant-numeric:tabular-nums}
+.trace .fault{background:var(--blue-soft);color:var(--blue);font-weight:600}
+.table-scroll:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+details{border:1px solid var(--line);border-radius:8px;background:var(--surface);margin:14px 0;padding:12px 15px}
+summary{cursor:pointer;font-weight:600;color:var(--blue)}
+details[open]>summary{margin-bottom:10px}
+legend{color:var(--ink-soft)}
+.qbank a{font-weight:600}
+.qbank td:first-child{min-width:8rem}
+.qbank td:last-child{min-width:7rem}
+.code-small{font-size:.88em}
+@media(max-width:1000px){.sidebar{display:none}}
+@media(max-width:760px){.cover{padding:58px 20px 32px;min-height:auto}.cover h1{font-size:35px}.cover .meta{gap:10px 18px;margin-bottom:24px}.section-head h1{font-size:26px}.qbox{padding:16px}.svg-wrap{padding:8px}}
+@media(max-width:640px){.qbank,.qbank tbody,.qbank tr,.qbank td{display:block;min-width:0!important}.qbank thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.qbank tr{padding:10px 0;border-bottom:1px solid var(--line)}.qbank td{border:0;padding:4px 12px}.qbank td:first-child{color:var(--ink-soft);font-size:12px;font-weight:600}}
+@media print{.sidebar,.theme-toggle,.backtotop{display:none}.cover{min-height:0}.page{padding:18px}.table-scroll{overflow:visible}}
+</style>
+<meta name="color-scheme" content="light dark">
+<script>(function(){var m=false;try{m=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}
+document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</script>
+</head>
+<body>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode"><span class="ico" id="themeIco" aria-hidden="true">🌙</span><span id="themeLbl">Dark</span></button>
+<div class="shell">
+<nav class="sidebar" aria-label="Guide contents">
+<div class="brand"><span class="eyebrow">CS235AT · Unit IV</span><span class="title">Virtual memory</span></div>
+<div class="navgroup"><a class="navlink" href="#index"><span class="dot"></span>Contents</a>
+<a class="navlink" href="#vm-map"><span class="dot"></span>Syllabus & sources</a>
+<a class="navlink" href="#vm-demand"><span class="dot"></span>Demand paging</a>
+<a class="navlink" href="#vm-fifo"><span class="dot"></span>FIFO replacement</a>
+<a class="navlink" href="#vm-optimal"><span class="dot"></span>Optimal replacement</a>
+<a class="navlink" href="#vm-lru"><span class="dot"></span>LRU replacement</a>
+<a class="navlink" href="#vm-approx"><span class="dot"></span>LRU approximation</a>
+<a class="navlink" href="#vm-allocation"><span class="dot"></span>Allocation of frames</a>
+<a class="navlink" href="#vm-thrashing"><span class="dot"></span>Thrashing</a>
+<a class="navlink" href="#vm-numericals"><span class="dot"></span>Solved numericals</a>
+<a class="navlink" href="#vm-revision"><span class="dot"></span>Quick revision</a>
+<a class="navlink" href="#vm-bank"><span class="dot"></span>Past questions</a></div>
+</nav>
+<main class="main">
+<section class="cover section" id="index">
+<div class="kicker">Operating Systems · CS235AT · Unit IV</div>
+<h1>Virtual memory</h1>
+<p class="desc">A program can use a large address space even when RAM is limited. Follow one memory access to see how the OS brings pages in, chooses pages to evict, and keeps several processes running.</p>
+<div class="meta"><span><b>7</b> syllabus topics</span><span><b>31</b> worked examples</span><span><b>8</b> diagrams</span><span><b>9</b> syllabus hours</span></div>
+<nav class="index-grid" aria-label="Syllabus topics"><a class="index-card" href="#vm-demand"><h3>Demand paging</h3><p>Follow a missing page from the first access to the restarted instruction, the hardware it needs, and copy-on-write.</p></a>
+<a class="index-card" href="#vm-fifo"><h3>FIFO replacement</h3><p>Track arrival order and see how more frames can produce more faults.</p></a>
+<a class="index-card" href="#vm-optimal"><h3>Optimal replacement</h3><p>Look ahead to find the page you can wait longest to use again.</p></a>
+<a class="index-card" href="#vm-lru"><h3>LRU replacement</h3><p>Use the order of past accesses to make a replacement decision.</p></a>
+<a class="index-card" href="#vm-approx"><h3>LRU approximation</h3><p>Trace Clock, enhanced second chance, and reference-bit history. Compare LFU and MFU.</p></a>
+<a class="index-card" href="#vm-allocation"><h3>Allocation of frames</h3><p>Divide RAM across processes and decide whose frames may be reused.</p></a>
+<a class="index-card" href="#vm-thrashing"><h3>Thrashing</h3><p>Recognize when paging takes over and use working sets or fault frequency to respond.</p></a></nav>
+<p class="supporting"><a href="#vm-map">Syllabus &amp; sources</a><a href="#vm-numericals">Solved numericals</a><a href="#vm-revision">Quick revision</a><a href="#vm-bank">Past questions</a></p>
+</section>
+<section class="page section" id="vm-map">
+<div class="section-head"><h1>Syllabus &amp; sources</h1></div>
+<p class="section-sub">Unit IV of the current CS235AT syllabus.</p>
+<table><thead><tr><th scope="col">Syllabus topic</th><th scope="col">What to be able to explain or solve</th></tr></thead><tbody>
+<tr><td><a href="#vm-demand">Demand paging</a></td><td>Virtual memory advantages, hardware support, fault handling, dirty victims, and effective access time. Supporting topic: copy-on-write.</td></tr>
+<tr><td><a href="#vm-fifo">FIFO</a>, <a href="#vm-optimal">Optimal</a>, <a href="#vm-lru">LRU</a></td><td>Trace each policy on a reference string. Explain Belady’s anomaly and why Optimal is a benchmark.</td></tr>
+<tr><td><a href="#vm-approx">LRU approximation</a></td><td>Reference bits, aging, Clock, and classes in enhanced second chance. Supporting topic: LFU/MFU counting policies.</td></tr>
+<tr><td><a href="#vm-allocation">Allocation of frames</a></td><td>Minimum frames, equal/proportional/priority allocation, and local versus global replacement.</td></tr>
+<tr><td><a href="#vm-thrashing">Thrashing</a></td><td>Explain the CPU utilization curve and how working sets or page-fault frequency guide the OS.</td></tr>
+</tbody></table>
+<div class="callout clarify"><span class="label">How the sources fit together</span>The combined Unit III/IV deck ends after basic page replacement. Its diagrams explain demand paging and dirty-page write-back. The older Unit 4 deck supplies the named algorithms, frame allocation, and thrashing. Silberschatz fills in aging, minimum frames, demand-paging hardware, copy-on-write (§9.3) and counting-based replacement (§9.4.6). The CIE and SEE papers, including the 2025–26 CIE-III, guide the worked practice. Copy-on-write and LFU/MFU are outside the named syllabus but asked in that paper, so they are marked as supporting topics.</div>
+<ul>
+<li>Current syllabus image</li>
+<li>Combined Unit III/IV deck · PDF pp. 99–125</li>
+<li>Previous-year Unit 4 deck · PDF pp. 53–89</li>
+<li>Silberschatz, <em>Operating System Concepts</em>, 9th ed. · Ch. 9, especially §§9.1–9.2 and 9.4–9.6</li>
+<li>Arpaci-Dusseau &amp; Arpaci-Dusseau, <em>Operating Systems: Three Easy Pieces</em> · Chs. 21–22</li>
+</ul>
+<a class="backtotop" href="#index">↑ Back to contents</a>
+</section>
+
+<section class="page section" id="vm-demand">
+<div class="section-head"><span class="tag">4.1</span><h1>Demand paging</h1></div>
+<p class="section-sub">Load the page when the process first needs it and again if it has since been evicted.</p>
+<p>A program uses <strong>virtual addresses</strong>. The OS and memory-management unit (MMU) map each resident virtual <strong>page</strong> to a physical <strong>frame</strong> of the same size. The process can run with only part of its address space in RAM. Its page table preserves the mapping wherever the OS places each resident page. A valid nonresident page can be filled from its backing source, such as an executable or swap. A newly allocated anonymous page can instead be filled with zeros.</p>
+<h2 id="vm-why">Virtual memory and its advantages</h2>
+<p><strong>Virtual memory</strong> separates the logical memory a program sees from the physical memory actually installed. Each process gets its own large, contiguous-looking virtual address space. Only the parts in use need to be in RAM, and the rest stays on secondary storage until needed. Demand paging is the usual way to implement it.</p>
+<ul>
+<li><strong>Programs are not limited by RAM size.</strong> A program can be larger than physical memory, and programmers need not use overlays.</li>
+<li><strong>More processes fit in memory.</strong> Each process keeps only its active pages resident, so the degree of multiprogramming rises. CPU utilization and throughput rise with it, as long as the active pages still fit (see <a href="#vm-thrashing">thrashing</a>).</li>
+<li><strong>Less I/O to load or swap.</strong> Unused code, such as error-handling routines, is never read from disk. Programs start faster.</li>
+<li><strong>Sharing.</strong> Shared libraries and shared memory can be mapped into several address spaces using the same physical frames.</li>
+<li><strong>Faster process creation.</strong> <a href="#vm-cow">Copy-on-write</a> lets <code>fork()</code> share pages instead of copying the whole address space.</li>
+<li><strong>Sparse address spaces.</strong> The heap and stack can grow into the unused gap between them without RAM being reserved for it.</li>
+</ul>
+<p>Think of RAM as the space available on a desk. You can work through a large book with only the pages for the current problem spread out. If you use the same pages repeatedly, you rarely go back to the shelf. This pattern is <strong>locality of reference</strong>. Temporal locality means a recently accessed page is likely to be accessed again soon. Spatial locality means nearby addresses are likely to be accessed soon. Paging brings a block of nearby addresses into RAM together.</p>
+<h2>What happens on an access?</h2>
+<p>The MMU looks up the virtual page and checks permissions. If the page is resident and the access is permitted, it uses the frame number with the original offset. In the demand-paging model, an access to a nonresident page traps to the OS. The OS checks its mapping and permission information to distinguish a legal absent page from an illegal access. Some slides call the residency indicator the <em>valid/invalid bit</em>. Read that indicator together with the OS’s separate knowledge of which addresses the process may use.</p>
+<div class="svg-wrap">
+<svg viewBox="0 0 520 360" role="img" aria-label="Page fault flow from legal-reference check to a free frame or victim and instruction restart">
+<defs><marker id="fault-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g fill="#E8EFF8" stroke="#1D4E89"><rect x="139" y="11" width="242" height="40" rx="8"/><rect x="139" y="73" width="242" height="43" rx="8"/><rect x="139" y="144" width="242" height="39" rx="8"/><rect x="139" y="215" width="242" height="57" rx="8"/><rect x="139" y="299" width="242" height="44" rx="8"/></g>
+<rect x="8" y="145" width="112" height="40" rx="8" fill="#F7EEDD" stroke="#A66A0D"/>
+<g stroke="#1D4E89" stroke-width="2" fill="none" marker-end="url(#fault-arrow)">
+<path d="M260 51 V72"/><path d="M260 116 V143"/><path d="M139 95 H64 V144"/><path d="M260 183 V214"/><path d="M260 272 V298"/>
+</g>
+<g text-anchor="middle" font-size="15" fill="#1C1E21"><text x="260" y="36">Nonresident page traps to OS</text><text x="260" y="100">Is the access permitted?</text><text x="64" y="170">Report fault</text><text x="260" y="169">Get a free frame or evict</text><text x="260" y="238">Fill frame and update</text><text x="260" y="257">page table</text><text x="260" y="327">Restart faulting instruction</text></g>
+<g font-size="13" fill="#5B6169"><text x="70" y="120">No</text><text x="269" y="136">Yes</text><text x="273" y="202">Write back dirty victim if needed</text></g>
+</svg>
+<div class="cap">Fig 1. A legal demand fault can be serviced and the same instruction retried.</div>
+</div>
+<ol>
+<li><strong>Trap and check.</strong> The OS saves the faulting context. If the access is illegal, the OS reports the fault to the process, which may be terminated. If it is legal and the page is absent, the OS locates the backing data or determines how to initialize it.</li>
+<li><strong>Obtain a frame.</strong> Take a free frame if one exists. Otherwise, choose a victim. If the victim is dirty, preserve its changed contents before reusing the frame. A clean victim with an up-to-date backing copy can be discarded. Mark the old mapping nonresident and invalidate any stale cached translation as needed.</li>
+<li><strong>Fill and map.</strong> Bring in or initialize the requested page. The faulting process can wait while I/O completes, allowing another process to use the CPU. Update the page table and frame bookkeeping when the page is ready.</li>
+<li><strong>Restart.</strong> Resume the faulting instruction so the access now succeeds. An instruction can touch several pages, which explains why architecture and restart behavior matter when deciding a minimum frame allocation.</li>
+</ol>
+<div class="callout clarify"><span class="label">Clarification in the slides</span>The illegal-access branch applies to the offending process. The OS continues running. Restarting the faulting instruction is part of servicing a legal demand fault.</div>
+<p><strong>Pure demand paging</strong> starts the process without preloading its user pages. First touches can therefore fault. As the current set of actively used pages becomes resident, repeated accesses normally hit. Benefits include less initial loading and more opportunity to share RAM among processes. The cost is the delay of fault handling, particularly when it needs storage I/O.</p>
+<h2 id="vm-hardware">Hardware support for demand paging</h2>
+<p>Demand paging needs the same hardware as paging and swapping, plus the ability to restart an instruction.</p>
+<table><thead><tr><th scope="col">Hardware</th><th scope="col">Why demand paging needs it</th></tr></thead><tbody>
+<tr><td>Page table with a <strong>valid–invalid bit</strong> (or protection bits), used by the MMU</td><td>Marks which pages are resident. An access to an invalid entry causes a <strong>page-fault trap</strong> to the OS instead of a wrong memory access.</td></tr>
+<tr><td><strong>Secondary memory</strong>: swap device / swap space (a fast disk or SSD)</td><td>Holds the pages that are not in RAM, so they can be read in on a fault and dirty victims can be written out.</td></tr>
+<tr><td><strong>Instruction restart</strong></td><td>The CPU saves the registers, condition codes and program counter at the fault, so the faulting instruction can re-run as if nothing happened. An instruction that moves a block of data across a page boundary is the hard case. The hardware either touches both ends of the block first, or keeps the overwritten values in temporary registers so the move can be undone.</td></tr>
+<tr><td><strong>Reference</strong> and <strong>modify (dirty) bits</strong> in each entry</td><td>Used for replacement. R supports <a href="#vm-approx">LRU approximation</a>. M avoids writing back clean victims.</td></tr>
+<tr><td>TLB (translation lookaside buffer)</td><td>Not strictly required, but without it every reference would need an extra memory access to the page table. Stale entries must be invalidated when a page is evicted.</td></tr>
+</tbody></table>
+<article class="qbox" id="demand-10-4"><div class="qmeta"><span class="qsrc">2025–26 CIE-III Q6 · OS-CIE3-2025-26-B6</span><span class="marks">10 marks</span></div>
+<p class="qtext">How does demand paging enable efficient memory usage in real-world systems such as multitasking operating systems, and what hardware support is required to make demand paging possible? A program has 10 pages but only 4 page frames are available. Explain how demand paging decides which pages to load into memory when a page fault occurs.</p><div class="ans-label">Answer outline</div>
+<ol>
+<li><strong>Efficient memory use in multitasking (about 3 marks).</strong> Only the pages a process actually touches are loaded, so each process occupies only its working set. That lets more processes stay in RAM at once, keeps the CPU busy while some processes wait for I/O, shortens start-up, and lets processes share library pages. Use the advantages list <a href="#vm-why">above</a>.</li>
+<li><strong>Hardware (about 3 marks).</strong> Page table with a valid–invalid bit, swap space, instruction restart, plus reference and dirty bits. Use the <a href="#vm-hardware">table above</a>, and draw Fig 1.</li>
+<li><strong>10 pages, 4 frames (about 4 marks).</strong> The process starts with all 10 entries invalid (pure demand paging). Demand paging does not guess. It loads <em>only the page that caused the fault</em>.
+<ul><li>While a frame is free, the faulting page goes into that frame.</li>
+<li>Once all 4 frames are full, a fault on any of the other 6 pages needs a <strong>victim</strong>. A replacement policy (FIFO, LRU, Clock…) chooses it, a dirty victim is written back, the victim's entry is marked invalid, and the new page is read in.</li>
+<li>At any moment at most 4 of the 10 pages are resident. Pages that are never referenced are never loaded.</li></ul></li>
+</ol>
+<p>Illustration (constructed reference string over pages 0–9, LRU, 4 empty frames): <code>0, 1, 2, 0, 3, 4, 0, 1, 5, 0</code>.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>0</td><td>0 · – · – · –</td><td>Fault (free frame)</td><td>–</td></tr>
+<tr><td>2</td><td>1</td><td>0 · 1 · – · –</td><td>Fault (free frame)</td><td>–</td></tr>
+<tr><td>3</td><td>2</td><td>0 · 1 · 2 · –</td><td>Fault (free frame)</td><td>–</td></tr>
+<tr><td>4</td><td>0</td><td>0 · 1 · 2 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>5</td><td>3</td><td>0 · 1 · 2 · 3</td><td>Fault (free frame)</td><td>–</td></tr>
+<tr><td>6</td><td>4</td><td>0 · 4 · 2 · 3</td><td>Fault, replace</td><td>1</td></tr>
+<tr><td>7</td><td>0</td><td>0 · 4 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>8</td><td>1</td><td>0 · 4 · 1 · 3</td><td>Fault, replace</td><td>2</td></tr>
+<tr><td>9</td><td>5</td><td>0 · 4 · 1 · 5</td><td>Fault, replace</td><td>3</td></tr>
+<tr><td>10</td><td>0</td><td>0 · 4 · 1 · 5</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div><p><strong>7 faults, 3 hits.</strong> Pages 6–9 are never referenced, so they are never loaded. The heavily used page 0 stays resident throughout.</p></article>
+<h2>Effective access time (EAT)</h2>
+<p>Average the normal-access and fault paths using their probabilities. Read the question’s definition of the fault time. If it gives the <em>total time on the fault path</em>, use that as a single term. If it gives separate costs, add those costs as specified and include a victim write only where applicable.</p>
+<div class="formula-block">EAT = (1 − p) × normal access time + p × total fault-path time
+p   = page faults ÷ memory references</div>
+<article class="qbox" id="eat-new"><div class="qmeta"><span class="qsrc">UNIT-III,IV.pdf p.117</span><span class="marks">Worked example</span></div>
+<p class="qtext">Find EAT for a 200 ns normal access, a 2 ms fault path, and a fault probability of 0.25.</p><div class="ans-label">Worked solution</div>
+<p>Convert the total fault time to <strong>2,000,000 ns</strong> before averaging.</p>
+<div class="formula-block">EAT = (1 − 0.25) × 200 ns + 0.25 × 2,000,000 ns
+    = 500,150 ns = 500.15 μs</div></article>
+<article class="qbox" id="eat-old"><div class="qmeta"><span class="qsrc">oldppts/unit 4.pdf p.64</span><span class="marks">Worked example</span></div>
+<p class="qtext">Find EAT for a 200 ns normal access, a 8 ms fault path, and a fault probability of 0.001.</p><div class="ans-label">Worked solution</div>
+<p>Convert the total fault time to <strong>8,000,000 ns</strong> before averaging.</p>
+<div class="formula-block">EAT = (1 − 0.001) × 200 ns + 0.001 × 8,000,000 ns
+    = 8,199.8 ns = 8.1998 μs</div><p>That is about <strong>41 times</strong> the normal access time, even though faults are rare. To keep slowdown strictly under 10%, require <code>EAT &lt; 1.10 × 200 ns</code>. Solving the inequality gives <code>p &lt; 1/399990</code>, approximately one fault per 399,990 references at the boundary.</p></article>
+<h2 id="vm-cow">Copy-on-write (supporting topic)</h2>
+<div class="callout clarify"><span class="label">Syllabus status</span>Copy-on-write is not named in the current Unit IV list. It is asked in the 2025–26 CIE-III (Q4b) and an older SEE (Paper F Q7a), so learn it as supporting material.</div>
+<p><strong>Copy-on-write (COW)</strong> lets several processes share the same physical frames until one of them writes. The shared pages are mapped <strong>read-only</strong> in every page table and flagged as copy-on-write.</p>
+<ol>
+<li>Reads by any process go to the single shared frame. No copying takes place.</li>
+<li>When a process writes to a COW page, the hardware raises a <strong>protection fault</strong>, because the page is mapped read-only.</li>
+<li>The OS sees the COW flag. It allocates a free frame, copies the page into it, and maps the copy <strong>read-write</strong> into the writer's page table only. Then it restarts the write.</li>
+<li>The other processes keep the original. When only one process still maps it, the OS can make that mapping writable again.</li>
+</ol>
+<p>Only pages that can be modified need COW. Code and other truly read-only pages can simply be shared. The classic use is <code>fork()</code>. The child shares the parent's pages, so creating a process is fast. If the child immediately calls <code>exec()</code>, almost nothing is ever copied. The free frames used for copies are usually taken from a pool of zero-filled frames (<em>zero-fill-on-demand</em>).</p>
+<article class="qbox" id="cow-dataset"><div class="qmeta"><span class="qsrc">2025–26 CIE-III Q4b · OS-CIE3-2025-26-B4b</span><span class="marks">4 marks</span></div>
+<p class="qtext">A system uses copy-on-write for virtual memory. Analyze a scenario where multiple processes share a large read-only dataset. How does COW improve memory utilization in this case?</p><div class="ans-label">Answer outline</div>
+<ul>
+<li><strong>Setup.</strong> All processes map the dataset's pages to the <em>same</em> physical frames, marked read-only/COW. RAM holds one copy instead of one per process.</li>
+<li><strong>Reads.</strong> Because the dataset is only read, no write fault ever happens, so no page is ever duplicated. The saving lasts for the whole run.</li>
+<li><strong>A write (if one happens).</strong> Only the <em>single page</em> written gets a private copy for that process. The rest of the dataset stays shared, and the other processes are isolated from the change.</li>
+<li><strong>Effect.</strong> More free frames, so more processes or a larger cache fit in RAM. There are fewer page faults and less swap I/O, and new processes start faster because the dataset is never copied up front.</li>
+</ul>
+<p>Constructed illustration: 4 processes each map a 2 GB dataset. Without sharing they need 4 × 2 GB = <strong>8 GB</strong>. With COW they need <strong>2 GB</strong>, plus one 4 KB page for each page a process actually modifies. That saves 6 GB.</p></article>
+<p class="source-note">Combined deck pp. 99–117 and 121–125 · old deck pp. 53–64 · Silberschatz §§9.1–9.3, 9.4.1 · OSTEP ch. 21.</p>
+<a class="backtotop" href="#index">↑ Back to contents</a>
+</section>
+
+<section class="page section" id="vm-fifo">
+<div class="section-head"><span class="tag">4.2</span><h1>FIFO replacement</h1></div>
+<p class="section-sub">Evict the page that entered memory earliest.</p>
+<p>When a page fault occurs and the frame pool is full, a <strong>replacement policy</strong> chooses the page to evict. FIFO (first in, first out) keeps a queue in load order. Put each loaded page at the tail. A hit leaves the queue unchanged. On a full fault, remove the head, reuse its frame, and put the incoming page at the tail. The policy uses arrival time, so a page can be evicted even if it was used a moment ago.</p>
+<div class="svg-wrap"><svg viewBox="0 0 460 150" role="img" aria-label="FIFO removes A at the head and appends D at the tail">
+<defs><marker id="fifo-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g stroke="#1D4E89"><rect x="87" y="47" width="83" height="49" rx="8" fill="#F7EEDD"/><rect x="170" y="47" width="83" height="49" rx="8" fill="#E8EFF8"/><rect x="253" y="47" width="83" height="49" rx="8" fill="#E8EFF8"/></g>
+<g fill="#1C1E21" text-anchor="middle" font-size="19"><text x="128" y="78">A</text><text x="211" y="78">B</text><text x="294" y="78">C</text><text x="423" y="78">D</text></g>
+<g fill="#5B6169" text-anchor="middle" font-size="14"><text x="128" y="31">Head · oldest</text><text x="294" y="31">Tail · newest</text><text x="64" y="123">Evict A</text><text x="389" y="123">Append D</text></g>
+<g stroke="#1D4E89" stroke-width="2" fill="none" marker-end="url(#fifo-arrow)"><path d="M86 72 H28"/><path d="M401 72 H344"/></g>
+</svg><div class="cap">Fig 2. The queue holds arrival order. A recent hit on A would leave it at the head.</div></div>
+<h2>Belady’s anomaly</h2>
+<p>For some reference strings, FIFO has <strong>more</strong> faults when it has more frames. Extra space changes which pages enter the queue and when, which can change later victims. FIFO lacks the <em>stack property</em>: at a given step, the resident set with fewer frames need not be a subset of the set with more frames. LRU and consistently traced Optimal have the stack property, so increasing their frame count cannot increase their fault totals on the same string.</p>
+<div class="callout key"><span class="label">How to show the working</span>Make an entry after each reference. Mark the initial loads as faults as well as evictions. Keep the frames in fixed slots so the overwritten slot is easy to see. Track the FIFO queue separately.</div>
+<article class="qbox" id="standard-fifo"><div class="qmeta"><span class="qsrc">2024–25 CIE-III Test Q1a · shared trace</span><span class="marks">Worked example</span></div>
+<p class="qtext">Use 3 frames. Start with empty frames. Reference string: <code>7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1</code>.</p><div class="ans-label">Worked solution</div>
+<p>At the first full fault, page 2 replaces 7. The hit on 0 at step 5 leaves it at the front of the queue, so the next fault on 3 evicts 0.</p><p><strong>FIFO: 15 faults, 5 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>7</td><td>7 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>0</td><td>7 · 0 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>1</td><td>7 · 0 · 1</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>2</td><td>2 · 0 · 1</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>5</td><td>0</td><td>2 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>3</td><td>2 · 3 · 1</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>7</td><td>0</td><td>2 · 3 · 0</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>8</td><td>4</td><td>4 · 3 · 0</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>9</td><td>2</td><td>4 · 2 · 0</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>10</td><td>3</td><td>4 · 2 · 3</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>11</td><td>0</td><td>0 · 2 · 3</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>12</td><td>3</td><td>0 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>2</td><td>0 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>14</td><td>1</td><td>0 · 1 · 3</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>15</td><td>2</td><td>0 · 1 · 2</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>16</td><td>0</td><td>0 · 1 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>17</td><td>1</td><td>0 · 1 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>18</td><td>7</td><td>7 · 1 · 2</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>19</td><td>0</td><td>7 · 0 · 2</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>20</td><td>1</td><td>7 · 0 · 1</td><td><strong>Fault</strong></td><td>2</td></tr>
+</tbody></table></div></details></article><article class="qbox" id="belady"><div class="qmeta"><span class="qsrc">Old deck p. 78</span><span class="marks">Worked example</span></div>
+<p class="qtext">Trace FIFO on <code>1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5</code> with 3 and 4 empty frames.</p><div class="ans-label">Worked solution</div>
+<p><strong>3 frames: 9 faults, 3 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>4 · 2 · 3</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>5</td><td>1</td><td>4 · 1 · 3</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>6</td><td>2</td><td>4 · 1 · 2</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>7</td><td>5</td><td>5 · 1 · 2</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>8</td><td>1</td><td>5 · 1 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>9</td><td>2</td><td>5 · 1 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>3</td><td>5 · 3 · 2</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>11</td><td>4</td><td>5 · 3 · 4</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>12</td><td>5</td><td>5 · 3 · 4</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details><p><strong>4 frames: 10 faults, 2 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>1 · 2 · 3 · 4</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>1</td><td>1 · 2 · 3 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>2</td><td>1 · 2 · 3 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>5</td><td>5 · 2 · 3 · 4</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>8</td><td>1</td><td>5 · 1 · 3 · 4</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>9</td><td>2</td><td>5 · 1 · 2 · 4</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>10</td><td>3</td><td>5 · 1 · 2 · 3</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>11</td><td>4</td><td>4 · 1 · 2 · 3</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>12</td><td>5</td><td>4 · 5 · 2 · 3</td><td><strong>Fault</strong></td><td>1</td></tr>
+</tbody></table></div></details><p>FIFO faults more often with the larger pool on this string. Compare both sequences of arrivals to see where the two queues diverge.</p></article>
+<p class="source-note">Old deck pp. 75–78 · Silberschatz §9.4.2.</p>
+<a class="backtotop" href="#index">↑ Back to contents</a>
+</section>
+
+<section class="page section" id="vm-optimal">
+<div class="section-head"><span class="tag">4.3</span><h1>Optimal replacement</h1></div>
+<p class="section-sub">Evict the page whose next use is farthest away.</p>
+<p>When a fault requires eviction, look <strong>to the right</strong> of the current reference. Find the first future occurrence of each resident page. Evict the one that will next be used farthest in the future. Treat a page with no future use as being infinitely far away. If several candidates are never used again, any of them gives the same minimum fault count.</p>
+<div class="svg-wrap"><svg viewBox="0 0 460 150" role="img" aria-label="Optimal examines future requests B, X, A. Among A, B and C, it evicts C because C never appears again.">
+<rect x="16" y="11" width="428" height="120" rx="10" fill="#E8EFF8" stroke="#1D4E89"/>
+<g fill="#1C1E21" font-size="16"><text x="34" y="39">Resident candidates</text><text x="245" y="39">Next use in B → X → A</text><text x="34" y="68">B</text><text x="245" y="68">Soonest</text><text x="34" y="93">A</text><text x="245" y="93">Later</text><text x="34" y="118">C</text><text x="245" y="118">Never · evict C</text></g>
+</svg><div class="cap">Fig 3. Only the next use of each resident candidate matters at this fault.</div></div>
+<p>Optimal (OPT or MIN) is a benchmark because it minimizes the number of faults for the given trace and frame count. Intuitively, keeping the page that will be needed sooner can only help before the farther-away page is used. We can exchange a different victim choice for the farthest-next-use choice without increasing total faults. A real OS generally does not know future references, while an exam question gives the whole string.</p>
+<article class="qbox" id="standard-opt"><div class="qmeta"><span class="qsrc">2024–25 CIE-III Test Q1a · shared trace</span><span class="marks">Worked example</span></div>
+<p class="qtext">Use 3 frames. Start with empty frames. Reference string: <code>7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1</code>.</p><div class="ans-label">Worked solution</div>
+<p>At the first full fault on 2, the resident pages are 7, 0, and 1. The next uses of 0 and 1 appear before the next use of 7, so 7 is evicted. On the later fault on 3, the next use of 1 lies farther away than those of 0 and 2.</p><p><strong>OPT: 9 faults, 11 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>7</td><td>7 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>0</td><td>7 · 0 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>1</td><td>7 · 0 · 1</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>2</td><td>2 · 0 · 1</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>5</td><td>0</td><td>2 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>3</td><td>2 · 0 · 3</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>7</td><td>0</td><td>2 · 0 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>8</td><td>4</td><td>2 · 4 · 3</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>9</td><td>2</td><td>2 · 4 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>3</td><td>2 · 4 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>0</td><td>2 · 0 · 3</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>12</td><td>3</td><td>2 · 0 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>2</td><td>2 · 0 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>14</td><td>1</td><td>2 · 0 · 1</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>15</td><td>2</td><td>2 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>0</td><td>2 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>17</td><td>1</td><td>2 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>18</td><td>7</td><td>7 · 0 · 1</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>19</td><td>0</td><td>7 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>1</td><td>7 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details></article>
+<p class="source-note">Old deck p. 79 · Silberschatz §9.4.3 · OSTEP ch. 22.</p>
+<a class="backtotop" href="#index">↑ Back to contents</a>
+</section>
+
+<section class="page section" id="vm-lru">
+<div class="section-head"><span class="tag">4.4</span><h1>LRU replacement</h1></div>
+<p class="section-sub">Evict the page whose most recent use is farthest in the past.</p>
+<p>Least recently used (LRU) assumes the recent past helps predict the near future. When replacement is needed, look <strong>to the left</strong> of the current reference. Find the most recent prior use of each resident page and evict the least recent. Alternatively, keep a recency list and move the accessed page to the front on <strong>every access</strong>, including a hit. This is the step that often makes LRU differ from FIFO.</p>
+<div class="svg-wrap"><svg viewBox="0 0 460 148" role="img" aria-label="Before a hit on C, recency order is A B C. After the hit, the order is C A B and B is least recent.">
+<g fill="#E8EFF8" stroke="#1D4E89"><rect x="122" y="30" width="320" height="36" rx="8"/><rect x="122" y="83" width="320" height="36" rx="8"/></g>
+<g text-anchor="middle" fill="#5B6169" font-size="14"><text x="173" y="21">Most recent</text><text x="386" y="21">Least recent</text></g>
+<g fill="#1C1E21" font-size="15"><text x="14" y="52">Before</text><text x="14" y="106">After hit on C</text></g>
+<g text-anchor="middle" fill="#1C1E21" font-size="18"><text x="173" y="53">A</text><text x="279" y="53">B</text><text x="386" y="53">C</text><text x="173" y="107">C</text><text x="279" y="107">A</text><text x="386" y="107">B</text></g>
+</svg><div class="cap">Fig 4. A hit moves C to the front of the recency list without moving it between physical frames.</div></div>
+<table><thead><tr><th scope="col">Implementation</th><th scope="col">What happens on a reference</th><th scope="col">How the victim is found</th></tr></thead><tbody>
+<tr><td>Timestamp / counter</td><td>Write the current logical time into the page’s last-use field.</td><td>Find the smallest last-use time. The basic method scans resident entries.</td></tr>
+<tr><td>Recency stack / doubly linked list</td><td>Move the accessed page to the most-recent end. With a direct node lookup, the move uses a fixed number of pointer updates.</td><td>Take the least-recent end. The victim is directly available.</td></tr>
+</tbody></table>
+<p>Both methods need to observe every reference to give exact order. Doing this on the ordinary access path is expensive. The shared recency order also explains why LRU avoids Belady’s anomaly. A cache with more frames keeps a longer prefix of that order, so every page held with fewer frames is also held with more frames.</p>
+<article class="qbox" id="standard-lru"><div class="qmeta"><span class="qsrc">2024–25 CIE-III Test Q1a · shared trace</span><span class="marks">Worked example</span></div>
+<p class="qtext">Use 3 frames. Start with empty frames. Reference string: <code>7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1</code>.</p><div class="ans-label">Worked solution</div>
+<p>At the first full fault on 2, the last uses of 7, 0, and 1 are in that order. Evict 7. The hit on 0 at step 5 makes it most recent. The next fault on 3 therefore evicts 1.</p><p><strong>LRU: 12 faults, 8 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>7</td><td>7 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>0</td><td>7 · 0 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>1</td><td>7 · 0 · 1</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>2</td><td>2 · 0 · 1</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>5</td><td>0</td><td>2 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>3</td><td>2 · 0 · 3</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>7</td><td>0</td><td>2 · 0 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>8</td><td>4</td><td>4 · 0 · 3</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>9</td><td>2</td><td>4 · 0 · 2</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>10</td><td>3</td><td>4 · 3 · 2</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>11</td><td>0</td><td>0 · 3 · 2</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>12</td><td>3</td><td>0 · 3 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>2</td><td>0 · 3 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>14</td><td>1</td><td>1 · 3 · 2</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>15</td><td>2</td><td>1 · 3 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>0</td><td>1 · 0 · 2</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>17</td><td>1</td><td>1 · 0 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>18</td><td>7</td><td>1 · 0 · 7</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>19</td><td>0</td><td>1 · 0 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>1</td><td>1 · 0 · 7</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details></article>
+<p class="source-note">Old deck pp. 80–82 · Silberschatz §9.4.4 · OSTEP ch. 22.</p>
+<a class="backtotop" href="#index">↑ Back to contents</a>
+</section>
+<section class="page section" id="vm-approx">
+<div class="section-head"><span class="tag">4.5</span><h1>LRU approximation</h1></div>
+<p class="section-sub">Keep a small record of recent use and consult it when a victim is needed.</p>
+<p>A <strong>reference bit</strong> (<code>R</code>, also called the accessed bit) records whether a page has been touched since the bit was cleared. Hardware can set it on an access, so the OS need not rearrange a software list each time. A single bit distinguishes pages touched since the last clearing from those untouched in that interval. It cannot tell you which of several touched pages was accessed first.</p>
+<h2>Second chance and Clock</h2>
+<p>Second chance starts from FIFO order and gives a candidate with <code>R=1</code> another turn. The Clock implementation organizes frames into a circle. When a full fault requires a victim, start at the hand. If the frame has <code>R=0</code>, evict the page. If it has <code>R=1</code>, clear the bit and advance. Continue until a victim is found. An ordinary access sets that page’s bit. In the trace below, a hit leaves the hand alone, and an insertion sets the bit and advances the hand.</p>
+<div class="svg-wrap"><svg viewBox="0 0 510 255" role="img" aria-label="Clock hand starts at page A. It clears A and B because their reference bits are set, then selects C with a clear bit.">
+<defs><marker id="clock-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1D4E89"/></marker></defs>
+<g stroke="#1D4E89" stroke-width="2" fill="none" marker-end="url(#clock-arrow)">
+<path d="M306 66 Q359 76 373 115" fill="none"/><path d="M330 171 Q255 204 179 171" fill="none"/><path d="M133 115 Q151 76 205 66" fill="none"/><path d="M256 23 V46"/>
+</g>
+<g stroke="#1D4E89"><rect x="207" y="48" width="96" height="45" rx="8" fill="#E8EFF8"/><rect x="330" y="118" width="96" height="45" rx="8" fill="#E8EFF8"/><rect x="83" y="118" width="96" height="45" rx="8" fill="#F7EEDD"/></g>
+<g fill="#1C1E21" text-anchor="middle" font-size="15"><text x="255" y="76">A · R=1</text><text x="378" y="146">B · R=1</text><text x="131" y="146">C · R=0</text><text x="131" y="193">Evict C</text></g>
+<g fill="#5B6169" text-anchor="middle" font-size="14"><text x="256" y="18">Hand starts here</text><text x="392" y="78">Clear A</text><text x="359" y="209">Clear B</text><text x="255" y="239">Install the new page and advance past C’s slot</text></g>
+</svg><div class="cap">Fig 5. Clock clears recently used candidates and stops at the first clear bit.</div></div>
+<p>If all bits are set, one complete pass clears them and the hand returns to its original candidate. Clock then evicts that candidate. The decision follows circular order in this case. In general, Clock approximates recency because it remembers only whether a reference occurred since the bit was cleared.</p>
+<h2>Enhanced second chance</h2>
+<p>The <strong>modify bit</strong> (<code>M</code>, also called the dirty bit) indicates whether the page has changed since it was loaded or last written back. Enhanced second chance prefers the lowest available class in the table. When several pages share a class, the circular scan provides an order. The search may take several passes. Use the scan and bit-clearing rules given in the question if it asks for a step-by-step trace.</p>
+<table><thead><tr><th scope="col">(R, M)</th><th scope="col">What the bits mean</th><th scope="col">Victim preference</th></tr></thead><tbody>
+<tr><td><code>(0, 0)</code></td><td>Untouched since clearing, clean.</td><td>First choice. No write-back is needed when the backing copy is current.</td></tr>
+<tr><td><code>(0, 1)</code></td><td>Untouched since clearing, dirty.</td><td>Less attractive because it needs write-back.</td></tr>
+<tr><td><code>(1, 0)</code></td><td>Referenced since clearing, clean.</td><td>Recent use suggests giving it another chance.</td></tr>
+<tr><td><code>(1, 1)</code></td><td>Referenced since clearing, dirty.</td><td>Last choice under this ordering.</td></tr>
+</tbody></table>
+<h2>Additional reference bits (aging)</h2>
+<p>Aging keeps a short history for each page. At each timer tick, shift its history right, insert the current <code>R</code> at the most significant end, then clear <code>R</code> for the next interval. A recent touch adds more to the unsigned value than an older touch. Evict the page with the smallest history value. The OS can use a rule such as FIFO to break ties. Multiple accesses within one interval still appear as one bit.</p>
+<div class="callout clarify"><span class="label">Textbook supplement</span>Additional-reference-bits aging comes from Silberschatz §9.4.5.1. The older slides teach Clock and enhanced second chance.</div>
+<article class="qbox" id="clock-3"><div class="qmeta"><span class="qsrc">Worked trace using the Clock rule</span><span class="marks">Worked example</span></div>
+<p class="qtext">Trace <code>1, 2, 3, 1, 4, 2, 5</code> with 3 empty frames and the hand at slot 0. An access sets R to 1. A hit leaves the hand in place.</p><div class="ans-label">Worked solution</div>
+<p>At the fault on page 4, all bits are set. The hand clears all three, returns to slot 0, and replaces page 1. The next hit on 2 sets its bit again. At the fault on 5 the hand clears 2’s bit and evicts page 3 from the next slot, whose bit is still clear.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames</th><th scope="col">R bits</th><th scope="col">Next hand</th><th scope="col">Action</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · –</td><td>1, 0, 0</td><td>1</td><td>Fill</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · –</td><td>1, 1, 0</td><td>2</td><td>Fill</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3</td><td>1, 1, 1</td><td>0</td><td>Fill</td></tr>
+<tr><td>4</td><td>1</td><td>1 · 2 · 3</td><td>1, 1, 1</td><td>0</td><td>Hit</td></tr>
+<tr><td>5</td><td>4</td><td>4 · 2 · 3</td><td>1, 0, 0</td><td>1</td><td>Evict 1</td></tr>
+<tr><td>6</td><td>2</td><td>4 · 2 · 3</td><td>1, 1, 0</td><td>1</td><td>Hit</td></tr>
+<tr><td>7</td><td>5</td><td>4 · 2 · 5</td><td>1, 0, 1</td><td>0</td><td>Evict 3</td></tr>
+</tbody></table></div><p><strong>Total: 5 faults.</strong> “Fill” and “Evict” both count as faults.</p></article><article class="qbox" id="aging-4bit"><div class="qmeta"><span class="qsrc">Textbook method · constructed example</span><span class="marks">Worked example</span></div>
+<p class="qtext">Use 4-bit histories starting at <code>0000</code>. Which resident page is the next victim?</p><div class="ans-label">Worked solution</div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Interval</th><th scope="col">Pages touched</th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th></tr></thead><tbody>
+<tr><td>1</td><td>A, B</td><td><code>1000</code> (8)</td><td><code>1000</code> (8)</td><td><code>0000</code> (0)</td></tr>
+<tr><td>2</td><td>A</td><td><code>1100</code> (12)</td><td><code>0100</code> (4)</td><td><code>0000</code> (0)</td></tr>
+<tr><td>3</td><td>C</td><td><code>0110</code> (6)</td><td><code>0010</code> (2)</td><td><code>1000</code> (8)</td></tr>
+<tr><td>4</td><td>A, C</td><td><code>1011</code> (11)</td><td><code>0001</code> (1)</td><td><code>1100</code> (12)</td></tr>
+</tbody></table></div><p>Read the histories as unsigned numbers. The smallest belongs to <strong>B</strong>, so evict that page at the end of the shown intervals.</p></article>
+<h2 id="vm-counting">Counting-based replacement: LFU and MFU (supporting topic)</h2>
+<div class="callout clarify"><span class="label">Syllabus status</span>LFU and MFU are not named in the current Unit IV list. The 2025–26 CIE-III asked a 6-mark question on them (Q4a), so learn the idea and the two scenarios below.</div>
+<p>Keep a <strong>counter</strong> of references for each resident page.</p>
+<ul>
+<li><strong>LFU (least frequently used)</strong> evicts the page with the <em>smallest</em> count. The reasoning is that an actively used page should have a large count. The weakness is a page used heavily early on and never again: its count stays high and it occupies a frame for nothing. A fix is to shift all counts right by 1 bit at regular intervals, which gives an exponentially decaying count.</li>
+<li><strong>MFU (most frequently used)</strong> evicts the page with the <em>largest</em> count. The reasoning is that the page with the smallest count was probably just brought in and has yet to be used.</li>
+</ul>
+<p>Neither is common in practice. The counters are expensive to maintain on every reference, and neither policy approximates OPT well.</p>
+<div class="callout key"><span class="label">Conventions used in the traces below</span>A page's count starts at 1 when it is loaded, rises by 1 on each hit, and is discarded when the page is evicted. Ties are broken by FIFO, so the earliest-loaded page is evicted first. Use 3 empty frames. State your convention in the exam, because counts are sometimes kept across evictions.</div>
+<article class="qbox" id="counting-lfu-mfu"><div class="qmeta"><span class="qsrc">2025–26 CIE-III Q4a · OS-CIE3-2025-26-B4a</span><span class="marks">6 marks</span></div>
+<p class="qtext">Discuss situation under which the most frequently used page replacement algorithm generates fewer page faults than the least frequently used page replacement algorithm. Also discuss under which circumstances the opposite holds.</p><div class="ans-label">Answer</div>
+<p><strong>MFU beats LFU after a change of phase.</strong> If old pages were used heavily and the program then moves to a new locality, the old pages keep large counts. LFU keeps those stale pages and keeps evicting the <em>new</em> pages (count 1) that are now in use, so it faults repeatedly. MFU evicts the high-count stale pages and keeps the new working set.</p>
+<p>Scenario A: <code>1, 1, 1, 2, 2, 2, 3, 4, 3, 4, 3, 4</code></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">From step</th><th scope="col">LFU resident (count)</th><th scope="col">LFU</th><th scope="col">MFU resident (count)</th><th scope="col">MFU</th></tr></thead><tbody>
+<tr><td>1–6</td><td>1(3) · 2(3)</td><td>2 faults</td><td>1(3) · 2(3)</td><td>2 faults</td></tr>
+<tr><td>7 (3)</td><td>1(3) · 2(3) · 3(1)</td><td>Fault</td><td>1(3) · 2(3) · 3(1)</td><td>Fault</td></tr>
+<tr><td>8 (4)</td><td>1(3) · 2(3) · 4(1)</td><td>Fault, evict 3</td><td>2(3) · 3(1) · 4(1)</td><td>Fault, evict 1</td></tr>
+<tr><td>9–12</td><td>3 and 4 keep evicting each other</td><td>4 more faults</td><td>3, 4 resident</td><td>4 hits</td></tr>
+<tr><td><strong>Total</strong></td><td></td><td><strong>8 faults</strong></td><td></td><td><strong>4 faults</strong></td></tr>
+</tbody></table></div>
+<p><strong>LFU beats MFU when a stable set of hot pages is mixed with one-time pages.</strong> Examples are a loop's code and data together with a sequential scan, or a database index together with records read once. The hot pages build large counts. LFU protects them and evicts the one-time pages, which is the right choice. MFU evicts the hot pages precisely <em>because</em> they are popular, and then has to fault them back in.</p>
+<p>Scenario B: <code>1, 2, 1, 2, 1, 2, 3, 1, 2, 4, 1, 2, 5, 1, 2</code></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">From step</th><th scope="col">LFU</th><th scope="col">MFU</th></tr></thead><tbody>
+<tr><td>1–9</td><td>3 faults (1, 2, 3). Then 1(4) · 2(4) · 3(1)</td><td>3 faults. Then 1(4) · 2(4) · 3(1)</td></tr>
+<tr><td>10 (4)</td><td>Fault, evict 3 (count 1)</td><td>Fault, evict 1 (count 4, earlier of the tied pair)</td></tr>
+<tr><td>11 (1)</td><td>Hit</td><td>Fault, evict 2</td></tr>
+<tr><td>12 (2)</td><td>Hit</td><td>Fault, evict 3</td></tr>
+<tr><td>13 (5)</td><td>Fault, evict 4</td><td>Fault, evict 4</td></tr>
+<tr><td>14–15</td><td>Hits</td><td>Hits</td></tr>
+<tr><td><strong>Total</strong></td><td><strong>5 faults</strong></td><td><strong>7 faults</strong></td></tr>
+</tbody></table></div>
+<p>Rule of thumb: <strong>past frequency predicts future use</strong> → LFU wins. <strong>Past frequency is stale</strong> because the locality has changed → MFU (or LFU with decaying counts) wins.</p></article>
+<p class="source-note">Old deck pp. 83–85 · Silberschatz §§9.4.5–9.4.6 · OSTEP §22.8.</p>
+<a class="backtotop" href="#index">↑ Back to contents</a>
+</section>
+
+<section class="page section" id="vm-allocation">
+<div class="section-head"><span class="tag">4.6</span><h1>Allocation of frames</h1></div>
+<p class="section-sub">Decide how many frames each process gets and which frames are eligible for replacement.</p>
+<p>If multiple processes need RAM, the OS has two decisions to make. <strong>Allocation</strong> assigns a share of the available frames. <strong>Replacement scope</strong> specifies which frames the OS can reclaim on a fault. Your desk space sets how much material you can keep at hand. The replacement rule decides which page leaves when you run out of space.</p>
+<p>The available pool excludes RAM reserved for other uses. The instruction set and fault-restart model can impose a <strong>minimum</strong> number of resident frames per process. If one instruction and its operands touch several distinct pages, enough of those pages need to coexist for the instruction to finish. Otherwise, replaying it can evict a page that the same instruction will need again. This minimum is separate from the larger number a process may need to run efficiently.</p>
+<table><thead><tr><th scope="col">Allocation scheme</th><th scope="col">How it divides the pool</th><th scope="col">When it helps</th></tr></thead><tbody>
+<tr><td>Equal</td><td>Divide available frames among the processes equally. For indivisible shares, state how remaining frames are handled.</td><td>Simple when processes have similar needs. A very small process may be unable to use all its share.</td></tr>
+<tr><td>Proportional</td><td>Allocate in proportion to each process’s size in pages.</td><td>Gives larger processes a larger share. The size is only a proxy for the actively used pages.</td></tr>
+<tr><td>Priority</td><td>Use priority as a weight, or combine it with size. Specify the weights and which priority is higher.</td><td>Directs more memory to tasks that need preferential service.</td></tr>
+</tbody></table>
+<div class="formula-block">m = available frames, n = number of processes, sᵢ = size of process i in pages
+Equal share        = m / n
+Proportional share = m × sᵢ / Σsⱼ</div>
+<p>Shares are real numbers until you turn them into integer frame counts. One choice is to take the floors and keep the rest in a free pool. If you need to distribute the full pool, assign remaining frames in descending order of fractional remainder, subject to minimums and usable page counts. An assigned budget can exceed the process’s need, but a process cannot keep more distinct pages resident than it has.</p>
+<h2>Local versus global replacement</h2>
+<div class="svg-wrap"><svg viewBox="0 0 530 136" role="img" aria-label="A local fault can reclaim frames held by P only. A global policy can also consider frames held by Q.">
+<g stroke="#1D4E89"><rect x="167" y="17" width="162" height="42" rx="8" fill="#E8EFF8"/><rect x="342" y="17" width="162" height="42" rx="8" fill="#FFFFFF"/><rect x="167" y="77" width="337" height="42" rx="8" fill="#E8EFF8"/></g>
+<g font-size="16" fill="#1C1E21"><text x="15" y="43">Local fault in P</text><text x="15" y="103">Global fault in P</text></g>
+<g font-size="15" text-anchor="middle" fill="#1C1E21"><text x="248" y="43">P’s frames</text><text x="423" y="43">Q stays out of scope</text><text x="335" y="103">Eligible frames from P and Q</text></g>
+</svg><div class="cap">Fig 6. The pool determines which pages a replacement policy can consider.</div></div>
+<p>With <strong>local replacement</strong>, the faulting process evicts a page from its own allocation, so other processes cannot take its frames directly. Its performance is more predictable, although it can fault while another process holds frames it seldom uses. With <strong>global replacement</strong>, the victim can come from any eligible process. Frames can move to a process that is actively using memory, but one process’s faults can then take resident pages away from another. Priority-aware policies may limit which other processes are eligible.</p>
+<div class="callout clarify"><span class="label">Clarifications in the sources</span>Old slide p. 87 labels the example with 64 frames and substitutes 62 in the formula. Page 88 gives a new question but repeats the earlier calculation. The worked examples below use each stated input separately. The minimum-frame rule comes from Silberschatz §9.5.1.</div>
+<article class="qbox" id="allocation-equal"><div class="qmeta"><span class="qsrc">Old deck p. 87 · equal allocation</span><span class="marks">Worked example</span></div>
+<p class="qtext">Divide 100 available frames equally among 5 processes.</p><div class="ans-label">Worked solution</div>
+<p><code>100 ÷ 5 = 20</code> frames per process. This leaves 0 frames in reserve.</p></article>
+<article class="qbox" id="allocation-sensible"><div class="qmeta"><span class="qsrc">Constructed physically feasible example</span><span class="marks">Worked example</span></div>
+<p class="qtext">Compute proportional shares for 30 frames and process sizes 10, 50 pages.</p><div class="ans-label">Worked solution</div>
+<div class="formula-block">P1 share = 30 × 10/60 = 5 ≈ 5.00
+P2 share = 30 × 50/60 = 25 ≈ 25.00</div><p>Allocate <strong>5, 25</strong> frames respectively. These shares already use the full pool.</p></article>
+<article class="qbox" id="allocation-64"><div class="qmeta"><span class="qsrc">more sees Paper C Q1.9; oldppts/unit 4.pdf p.87 heading</span><span class="marks">Worked example</span></div>
+<p class="qtext">Compute proportional shares for 64 frames and process sizes 10, 127 pages.</p><div class="ans-label">Worked solution</div>
+<div class="formula-block">P1 share = 64 × 10/137 = 640/137 ≈ 4.67
+P2 share = 64 × 127/137 = 8128/137 ≈ 59.33</div><p>Exam answer: <strong>P1 ≈ 4, P2 ≈ 59</strong> frames (the textbook rounds down). The 1 frame left over goes to the free pool. If all 64 must be handed out, give it to P1 (largest fraction, .67): <strong>5, 59</strong>.</p></article>
+<article class="qbox" id="allocation-62"><div class="qmeta"><span class="qsrc">Silberschatz §9.5.2; oldppts/unit 4.pdf p.87 calculation</span><span class="marks">Worked example</span></div>
+<p class="qtext">Compute proportional shares for 62 frames and process sizes 10, 127 pages.</p><div class="ans-label">Worked solution</div>
+<div class="formula-block">P1 share = 62 × 10/137 = 620/137 ≈ 4.53
+P2 share = 62 × 127/137 = 7874/137 ≈ 57.47</div><p>Textbook answer (Silberschatz): <strong>P1 ≈ 4, P2 ≈ 57</strong> frames. The 1 frame left over stays free. If all 62 must be handed out, give it to P1 (.53 &gt; .47): 5, 57.</p></article>
+<article class="qbox" id="allocation-50"><div class="qmeta"><span class="qsrc">CIE-III Quiz Q4; more sees Paper D Q1.9</span><span class="marks">Worked example</span></div>
+<p class="qtext">Compute proportional shares for 50 frames and process sizes 10, 5 pages.</p><div class="ans-label">Worked solution</div>
+<div class="formula-block">P1 share = 50 × 10/15 = 100/3 ≈ 33.33
+P2 share = 50 × 5/15 = 50/3 ≈ 16.67</div><p>Exam answer: <strong>P1 ≈ 33, P2 ≈ 17</strong> frames (16.67 rounds to 17, which uses all 50). <small>Side note, not needed in a 2-mark answer: a 10-page process can never fill 33 frames, so in reality the extra frames would stay free.</small></p></article>
+<article class="qbox" id="allocation-100"><div class="qmeta"><span class="qsrc">oldppts/unit 4.pdf p.88</span><span class="marks">Worked example</span></div>
+<p class="qtext">Compute proportional shares for 100 frames and process sizes 2, 10 pages.</p><div class="ans-label">Worked solution</div>
+<div class="formula-block">P1 share = 100 × 2/12 = 50/3 ≈ 16.67
+P2 share = 100 × 10/12 = 250/3 ≈ 83.33</div><p>Answer: <strong>P1 ≈ 17, P2 ≈ 83</strong> frames (16.67 and 83.33 rounded to the nearest whole number, which uses all 100). <small>As above, processes this small could not actually use these shares. The slide's numbers are only an arithmetic exercise.</small></p></article>
+<p class="source-note">Old deck pp. 87–89 · Silberschatz §§9.5.1–9.5.3.</p>
+<a class="backtotop" href="#index">↑ Back to contents</a>
+</section>
+
+<section class="page section" id="vm-thrashing">
+<div class="section-head"><span class="tag">4.7</span><h1>Thrashing</h1></div>
+<p class="section-sub">The machine spends so much time bringing pages back that it makes little progress.</p>
+<p>A process enters a new phase and touches a set of pages repeatedly. If its frames cannot hold that <strong>locality</strong>, one fault removes a page that another access will need soon. The next fault repeats the cycle. In a thrashing system, processes spend much of their time waiting for paging I/O and useful CPU work falls. Ordinary first-touch faults can be brief. Thrashing is sustained because the active pages cannot stay resident together.</p>
+<p>As the degree of multiprogramming increases, the CPU can initially stay busier because another process can run when one blocks. If aggregate demand for active pages exceeds RAM, paging I/O rises and utilization drops. A scheduler that interprets low utilization as a sign that it should admit more work can amplify the problem. Under global replacement, a faulting process can take frames from another, shrinking the other process’s resident set and spreading the faults.</p>
+<div class="svg-wrap"><svg viewBox="0 0 500 212" role="img" aria-label="CPU utilization rises as more processes run and drops after the system starts thrashing">
+<g stroke="#5B6169" stroke-width="2" fill="none"><path d="M64 21 V164 H466"/><path d="M333 31 V163" stroke-dasharray="5 5"/></g>
+<path d="M66 151 C135 96 203 63 294 56 Q334 52 351 89 Q373 143 447 149" stroke="#1D4E89" stroke-width="4" fill="none"/>
+<g fill="#1C1E21" font-size="15"><text x="355" y="26">Thrashing</text><text x="270" y="192" text-anchor="middle">Degree of multiprogramming</text><text x="26" y="93" text-anchor="middle" transform="rotate(-90 26 93)">CPU utilization</text></g>
+</svg><div class="cap">Fig 7. Qualitative behavior as competition for frames increases.</div></div>
+<h2>Working-set model</h2>
+<p>Pick a window of the last <strong>Δ page references</strong> for each process. Its working set contains each distinct page seen in that window. Its working-set size <code>WSSᵢ</code> estimates how many frames the current phase needs. A short window can miss active pages that are accessed less often. A long window can retain pages from an earlier phase and overestimate demand.</p>
+<div class="formula-block">D = ΣWSSᵢ   (total estimated frame demand)
+m = frames available to those processes
+If D &gt; m, reduce the admitted load or suspend a process to free frames.</div>
+<p>The model aims to keep the active sets of the running processes resident. When RAM is overcommitted, suspending one process can give the others enough room to finish useful work. Local replacement helps contain direct frame stealing. Processes can still contend for a shared paging device, so addressing the shortage itself matters.</p>
+<h2>Page-fault frequency (PFF)</h2>
+<p>PFF reacts to the measured rate of faults. Choose an upper and lower threshold. A process above the upper threshold should get more frames when available. If it is below the lower threshold, the OS may take back some frames, subject to its minimum. Between the thresholds, keep the allocation. If a process needs more frames and none are available, reduce multiprogramming. Working sets estimate demand from <em>which pages</em> were referenced. PFF looks at <em>how often</em> those accesses fault.</p>
+<div class="svg-wrap"><svg viewBox="0 0 500 222" role="img" aria-label="Page-fault frequency above upper threshold calls for more frames. Below lower threshold it may allow reclaiming frames.">
+<g stroke="#5B6169" stroke-width="2" fill="none"><path d="M66 19 V173 H465"/><path d="M66 69 H464 M66 127 H464" stroke-dasharray="5 5"/></g>
+<path d="M75 36 C130 103 195 137 270 154 Q330 166 450 166" stroke="#1D4E89" stroke-width="3" fill="none"/>
+<g fill="#1C1E21" font-size="14"><text x="281" y="54">Add frames if available</text><text x="281" y="104">Keep allocation</text><text x="281" y="143">May reclaim frames</text><text x="261" y="201" text-anchor="middle">Frames allocated</text><text x="23" y="96" text-anchor="middle" transform="rotate(-90 23 96)">Fault frequency</text></g>
+</svg><div class="cap">Fig 8. The thresholds translate a measured fault frequency into an allocation decision.</div></div>
+<article class="qbox" id="working-set-5"><div class="qmeta"><span class="qsrc">Working-set model · constructed example</span><span class="marks">Worked example</span></div>
+<p class="qtext">Use a window of 5 references on <code>1, 2, 1, 3, 2, 4, 2, 4, 5, 4, 5, 6</code>. Count distinct pages in each shown window.</p><div class="ans-label">Worked solution</div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">After access</th><th scope="col">Window</th><th scope="col">Distinct pages</th><th scope="col">Size</th></tr></thead><tbody>
+<tr><td>5</td><td><code>1, 2, 1, 3, 2</code></td><td><code>1, 2, 3</code></td><td>3</td></tr>
+<tr><td>8</td><td><code>3, 2, 4, 2, 4</code></td><td><code>2, 3, 4</code></td><td>3</td></tr>
+<tr><td>12</td><td><code>4, 5, 4, 5, 6</code></td><td><code>4, 5, 6</code></td><td>3</td></tr>
+</tbody></table></div><p>Notice that the size can stay the same while the locality changes. If three processes have working-set sizes 3, 4, 2, they need 9 frames in total. With 8 available, the OS should reduce the active load so the remaining sets can fit.</p></article>
+<article class="qbox" id="working-set-10"><div class="qmeta"><span class="qsrc">2025–26 CIE-III Q1.4 · OS-CIE3-2025-26-A1.4 · Silberschatz Fig 9.20</span><span class="marks">2 marks</span></div>
+<p class="qtext">In the working set model, for <code>2 6 1 5 7 7 7 7 5 1 6 2 3 4 1 2 3 4 4 4 3 4 3 4 4 4 1 3 2 3</code>, if Δ = 10, then the working set at time t<sub>1</sub>(…751) is what?</p><div class="ans-label">Worked solution</div>
+<div class="callout clarify"><span class="label">Reading of the question</span>The time marker is unclear in the photo. “…751” is read as <em>just after the references 7, 5, 1</em>, i.e. after the 10th reference. This matches the same string in Silberschatz Fig 9.20. If your copy of the paper marks t<sub>1</sub> elsewhere, take the 10 references ending at that point.</div>
+<div class="formula-block">Window (refs 1–10) = 2 6 1 5 7 7 7 7 5 1
+WS(t₁) = {1, 2, 5, 6, 7}    WSS = 5</div>
+<p>For practice, the textbook's t<sub>2</sub> comes after the 26th reference. The window is refs 17–26 = <code>3 4 4 4 3 4 3 4 4 4</code>, so WS(t<sub>2</sub>) = <strong>{3, 4}</strong>. The working set shrinks once the program settles into a smaller locality. At the end of the printed string (refs 21–30) it is {1, 2, 3, 4}.</p></article>
+<div class="callout key"><span class="label">Long-answer structure</span>Define thrashing, explain why too few frames for the current locality lead to repeated evictions, and draw the utilization curve. Then describe two controls, such as working-set admission and PFF. Explain when the OS suspends a process.</div>
+<p class="source-note">Old deck pp. 66–73 · Silberschatz §9.6 · OSTEP §22.11.</p>
+<a class="backtotop" href="#index">↑ Back to contents</a>
+</section>
+
+<section class="page section" id="vm-numericals">
+<div class="section-head"><h1>Solved numericals</h1></div>
+<p class="section-sub">Start with one trace you can follow by hand, then try the past-paper variants.</p>
+<h2 id="standard-3">Same reference string, three policies</h2>
+<p>Compare the fault counts on the same inputs. The three worked traces explain what changes on a hit and how each policy chooses its victim.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Policy</th><th scope="col">Faults</th><th scope="col">Hits</th><th scope="col">Worked trace</th></tr></thead><tbody>
+<tr><td>FIFO</td><td>15</td><td>5</td><td><a href="#standard-fifo">See FIFO working</a></td></tr>
+<tr><td>OPT</td><td>9</td><td>11</td><td><a href="#standard-opt">See OPT working</a></td></tr>
+<tr><td>LRU</td><td>12</td><td>8</td><td><a href="#standard-lru">See LRU working</a></td></tr>
+</tbody></table></div>
+<div class="callout clarify"><span class="label">Clarifications in the sources</span>The CIE question uses “FCFS” for the arrival-order policy. Trace FIFO page replacement. The older slides print an extra pair of requests compared with their diagrams. The main solution follows the paper and the diagrams. The printed variant is provided below. Paper F Q1.10 omits a frame count, so its linked solution explicitly assumes three empty frames, matching the key.</div>
+<h2>Other worked methods</h2>
+<ul>
+<li><a href="#eat-new">Effective access time</a> and <a href="#eat-old">a rare-fault slowdown</a></li>
+<li><a href="#belady">FIFO with two frame counts</a> to show Belady’s anomaly</li>
+<li><a href="#clock-3">Clock with changing bits and hand</a> and <a href="#aging-4bit">aging with sampled histories</a></li>
+<li><a href="#allocation-equal">Equal allocation</a> and <a href="#allocation-sensible">proportional allocation</a></li>
+<li><a href="#working-set-5">Count pages in a working-set window</a></li>
+</ul>
+<h2>Past-paper and slide variants</h2>
+<p>Expand the working to see the contents of the frames after each reference. On a narrow screen, scroll wide tables sideways to see all columns. Try tracing the reference string yourself, then compare your totals and frame contents with the worked solution.</p>
+<article class="qbox" id="old-slide-3"><div class="qmeta"><span class="qsrc">oldppts/unit 4.pdf pp.77,79,80</span><span class="marks">Practice</span></div>
+<p class="qtext">Old-slide reference string includes two extra hits. Use 3 frames. Start with empty frames. Reference string: <code>7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1</code>.</p><div class="ans-label">Worked solution</div>
+<p><strong>FIFO: 15 faults, 7 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>7</td><td>7 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>0</td><td>7 · 0 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>1</td><td>7 · 0 · 1</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>2</td><td>2 · 0 · 1</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>5</td><td>0</td><td>2 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>3</td><td>2 · 3 · 1</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>7</td><td>0</td><td>2 · 3 · 0</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>8</td><td>4</td><td>4 · 3 · 0</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>9</td><td>2</td><td>4 · 2 · 0</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>10</td><td>3</td><td>4 · 2 · 3</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>11</td><td>0</td><td>0 · 2 · 3</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>12</td><td>3</td><td>0 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>0</td><td>0 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>14</td><td>3</td><td>0 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>2</td><td>0 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>1</td><td>0 · 1 · 3</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>17</td><td>2</td><td>0 · 1 · 2</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>18</td><td>0</td><td>0 · 1 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>1</td><td>0 · 1 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>7</td><td>7 · 1 · 2</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>21</td><td>0</td><td>7 · 0 · 2</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>22</td><td>1</td><td>7 · 0 · 1</td><td><strong>Fault</strong></td><td>2</td></tr>
+</tbody></table></div></details><p><strong>OPT: 9 faults, 13 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>7</td><td>7 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>0</td><td>7 · 0 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>1</td><td>7 · 0 · 1</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>2</td><td>2 · 0 · 1</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>5</td><td>0</td><td>2 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>3</td><td>2 · 0 · 3</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>7</td><td>0</td><td>2 · 0 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>8</td><td>4</td><td>2 · 4 · 3</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>9</td><td>2</td><td>2 · 4 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>3</td><td>2 · 4 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>0</td><td>2 · 0 · 3</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>12</td><td>3</td><td>2 · 0 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>0</td><td>2 · 0 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>14</td><td>3</td><td>2 · 0 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>2</td><td>2 · 0 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>1</td><td>2 · 0 · 1</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>17</td><td>2</td><td>2 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>18</td><td>0</td><td>2 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>1</td><td>2 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>7</td><td>7 · 0 · 1</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>21</td><td>0</td><td>7 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>22</td><td>1</td><td>7 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details><p><strong>LRU: 12 faults, 10 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>7</td><td>7 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>0</td><td>7 · 0 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>1</td><td>7 · 0 · 1</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>2</td><td>2 · 0 · 1</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>5</td><td>0</td><td>2 · 0 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>3</td><td>2 · 0 · 3</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>7</td><td>0</td><td>2 · 0 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>8</td><td>4</td><td>4 · 0 · 3</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>9</td><td>2</td><td>4 · 0 · 2</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>10</td><td>3</td><td>4 · 3 · 2</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>11</td><td>0</td><td>0 · 3 · 2</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>12</td><td>3</td><td>0 · 3 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>0</td><td>0 · 3 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>14</td><td>3</td><td>0 · 3 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>2</td><td>0 · 3 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>1</td><td>1 · 3 · 2</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>17</td><td>2</td><td>1 · 3 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>18</td><td>0</td><td>1 · 0 · 2</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>19</td><td>1</td><td>1 · 0 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>7</td><td>1 · 0 · 7</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>21</td><td>0</td><td>1 · 0 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>22</td><td>1</td><td>1 · 0 · 7</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details><p>The extra requests are hits in these three runs, so the fault totals match the standard string.</p></article><article class="qbox" id="multi-3"><div class="qmeta"><span class="qsrc">2024–25 SEE Q8a (FIFO/LRU, 3/4/5/6 frames) · more sees Paper A Q7b / E Q6b (5 frames) · more sees Paper F Q7b (3 frames)</span><span class="marks">Practice</span></div>
+<p class="qtext">Past-paper comparison: 3 empty frames. Use 3 frames. Start with empty frames. Reference string: <code>1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6</code>.</p><div class="ans-label">Worked solution</div>
+<p><strong>FIFO: 16 faults, 4 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>4 · 2 · 3</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>5</td><td>2</td><td>4 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>4 · 1 · 3</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>7</td><td>5</td><td>4 · 1 · 5</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>8</td><td>6</td><td>6 · 1 · 5</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>9</td><td>2</td><td>6 · 2 · 5</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>10</td><td>1</td><td>6 · 2 · 1</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>11</td><td>2</td><td>6 · 2 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>3</td><td>3 · 2 · 1</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>13</td><td>7</td><td>3 · 7 · 1</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>14</td><td>6</td><td>3 · 7 · 6</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>15</td><td>3</td><td>3 · 7 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>2</td><td>2 · 7 · 6</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>17</td><td>1</td><td>2 · 1 · 6</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>18</td><td>2</td><td>2 · 1 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>3</td><td>2 · 1 · 3</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>20</td><td>6</td><td>6 · 1 · 3</td><td><strong>Fault</strong></td><td>2</td></tr>
+</tbody></table></div></details><p><strong>OPT: 11 faults, 9 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>1 · 2 · 4</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>1 · 2 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>5</td><td>1 · 2 · 5</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>8</td><td>6</td><td>1 · 2 · 6</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>9</td><td>2</td><td>1 · 2 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>1</td><td>1 · 2 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>2</td><td>1 · 2 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>3</td><td>3 · 2 · 6</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>13</td><td>7</td><td>3 · 7 · 6</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>14</td><td>6</td><td>3 · 7 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>3</td><td>3 · 7 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>2</td><td>3 · 2 · 6</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>17</td><td>1</td><td>3 · 2 · 1</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>18</td><td>2</td><td>3 · 2 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>3</td><td>3 · 2 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>6</td><td>6 · 2 · 1</td><td><strong>Fault</strong></td><td>3</td></tr>
+</tbody></table></div></details><p><strong>LRU: 15 faults, 5 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>4 · 2 · 3</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>5</td><td>2</td><td>4 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>4 · 2 · 1</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>7</td><td>5</td><td>5 · 2 · 1</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>8</td><td>6</td><td>5 · 6 · 1</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>9</td><td>2</td><td>5 · 6 · 2</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>10</td><td>1</td><td>1 · 6 · 2</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>11</td><td>2</td><td>1 · 6 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>3</td><td>1 · 3 · 2</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>13</td><td>7</td><td>7 · 3 · 2</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>14</td><td>6</td><td>7 · 3 · 6</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>15</td><td>3</td><td>7 · 3 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>2</td><td>2 · 3 · 6</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>17</td><td>1</td><td>2 · 3 · 1</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>18</td><td>2</td><td>2 · 3 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>3</td><td>2 · 3 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>6</td><td>2 · 3 · 6</td><td><strong>Fault</strong></td><td>1</td></tr>
+</tbody></table></div></details></article><article class="qbox" id="multi-4"><div class="qmeta"><span class="qsrc">2024–25 SEE Q8a (FIFO/LRU, 3/4/5/6 frames) · more sees Paper A Q7b / E Q6b (5 frames) · more sees Paper F Q7b (3 frames)</span><span class="marks">Practice</span></div>
+<p class="qtext">Past-paper comparison: 4 empty frames. Use 4 frames. Start with empty frames. Reference string: <code>1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6</code>.</p><div class="ans-label">Worked solution</div>
+<p><strong>FIFO: 14 faults, 6 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>1 · 2 · 3 · 4</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 3 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>1 · 2 · 3 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>5</td><td>5 · 2 · 3 · 4</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>8</td><td>6</td><td>5 · 6 · 3 · 4</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>9</td><td>2</td><td>5 · 6 · 2 · 4</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>10</td><td>1</td><td>5 · 6 · 2 · 1</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>11</td><td>2</td><td>5 · 6 · 2 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>3</td><td>3 · 6 · 2 · 1</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>13</td><td>7</td><td>3 · 7 · 2 · 1</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>14</td><td>6</td><td>3 · 7 · 6 · 1</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>15</td><td>3</td><td>3 · 7 · 6 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>2</td><td>3 · 7 · 6 · 2</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>17</td><td>1</td><td>1 · 7 · 6 · 2</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>18</td><td>2</td><td>1 · 7 · 6 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>3</td><td>1 · 3 · 6 · 2</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>20</td><td>6</td><td>1 · 3 · 6 · 2</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details><p><strong>OPT: 8 faults, 12 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>1 · 2 · 3 · 4</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 3 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>1 · 2 · 3 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>5</td><td>1 · 2 · 3 · 5</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>8</td><td>6</td><td>1 · 2 · 3 · 6</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>9</td><td>2</td><td>1 · 2 · 3 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>1</td><td>1 · 2 · 3 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>2</td><td>1 · 2 · 3 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>3</td><td>1 · 2 · 3 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>7</td><td>7 · 2 · 3 · 6</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>14</td><td>6</td><td>7 · 2 · 3 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>3</td><td>7 · 2 · 3 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>2</td><td>7 · 2 · 3 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>17</td><td>1</td><td>1 · 2 · 3 · 6</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>18</td><td>2</td><td>1 · 2 · 3 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>3</td><td>1 · 2 · 3 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>6</td><td>1 · 2 · 3 · 6</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details><p><strong>LRU: 10 faults, 10 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>1 · 2 · 3 · 4</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 3 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>1 · 2 · 3 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>5</td><td>1 · 2 · 5 · 4</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>8</td><td>6</td><td>1 · 2 · 5 · 6</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>9</td><td>2</td><td>1 · 2 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>1</td><td>1 · 2 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>2</td><td>1 · 2 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>3</td><td>1 · 2 · 3 · 6</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>13</td><td>7</td><td>1 · 2 · 3 · 7</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>14</td><td>6</td><td>6 · 2 · 3 · 7</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>15</td><td>3</td><td>6 · 2 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>2</td><td>6 · 2 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>17</td><td>1</td><td>6 · 2 · 3 · 1</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>18</td><td>2</td><td>6 · 2 · 3 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>3</td><td>6 · 2 · 3 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>6</td><td>6 · 2 · 3 · 1</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details></article><article class="qbox" id="multi-5"><div class="qmeta"><span class="qsrc">2024–25 SEE Q8a (FIFO/LRU, 3/4/5/6 frames) · more sees Paper A Q7b / E Q6b (5 frames) · more sees Paper F Q7b (3 frames)</span><span class="marks">Practice</span></div>
+<p class="qtext">Past-paper comparison: 5 empty frames. Use 5 frames. Start with empty frames. Reference string: <code>1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6</code>.</p><div class="ans-label">Worked solution</div>
+<p><strong>FIFO: 10 faults, 10 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>1 · 2 · 3 · 4 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 3 · 4 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>1 · 2 · 3 · 4 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>5</td><td>1 · 2 · 3 · 4 · 5</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>8</td><td>6</td><td>6 · 2 · 3 · 4 · 5</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>9</td><td>2</td><td>6 · 2 · 3 · 4 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>1</td><td>6 · 1 · 3 · 4 · 5</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>11</td><td>2</td><td>6 · 1 · 2 · 4 · 5</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>12</td><td>3</td><td>6 · 1 · 2 · 3 · 5</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>13</td><td>7</td><td>6 · 1 · 2 · 3 · 7</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>14</td><td>6</td><td>6 · 1 · 2 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>3</td><td>6 · 1 · 2 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>2</td><td>6 · 1 · 2 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>17</td><td>1</td><td>6 · 1 · 2 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>18</td><td>2</td><td>6 · 1 · 2 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>3</td><td>6 · 1 · 2 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>6</td><td>6 · 1 · 2 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details><p><strong>OPT: 7 faults, 13 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>1 · 2 · 3 · 4 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 3 · 4 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>1 · 2 · 3 · 4 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>5</td><td>1 · 2 · 3 · 4 · 5</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>8</td><td>6</td><td>1 · 2 · 3 · 6 · 5</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>9</td><td>2</td><td>1 · 2 · 3 · 6 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>1</td><td>1 · 2 · 3 · 6 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>2</td><td>1 · 2 · 3 · 6 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>3</td><td>1 · 2 · 3 · 6 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>7</td><td>1 · 2 · 3 · 6 · 7</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>14</td><td>6</td><td>1 · 2 · 3 · 6 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>3</td><td>1 · 2 · 3 · 6 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>2</td><td>1 · 2 · 3 · 6 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>17</td><td>1</td><td>1 · 2 · 3 · 6 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>18</td><td>2</td><td>1 · 2 · 3 · 6 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>3</td><td>1 · 2 · 3 · 6 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>6</td><td>1 · 2 · 3 · 6 · 7</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details><p><strong>LRU: 8 faults, 12 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>1 · 2 · 3 · 4 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 3 · 4 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>1 · 2 · 3 · 4 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>5</td><td>1 · 2 · 3 · 4 · 5</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>8</td><td>6</td><td>1 · 2 · 6 · 4 · 5</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>9</td><td>2</td><td>1 · 2 · 6 · 4 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>1</td><td>1 · 2 · 6 · 4 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>2</td><td>1 · 2 · 6 · 4 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>3</td><td>1 · 2 · 6 · 3 · 5</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>13</td><td>7</td><td>1 · 2 · 6 · 3 · 7</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>14</td><td>6</td><td>1 · 2 · 6 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>3</td><td>1 · 2 · 6 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>2</td><td>1 · 2 · 6 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>17</td><td>1</td><td>1 · 2 · 6 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>18</td><td>2</td><td>1 · 2 · 6 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>3</td><td>1 · 2 · 6 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>6</td><td>1 · 2 · 6 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details></article><article class="qbox" id="multi-6"><div class="qmeta"><span class="qsrc">2024–25 SEE Q8a (FIFO/LRU, 3/4/5/6 frames) · more sees Paper A Q7b / E Q6b (5 frames) · more sees Paper F Q7b (3 frames)</span><span class="marks">Practice</span></div>
+<p class="qtext">Past-paper comparison: 6 empty frames. Use 6 frames. Start with empty frames. Reference string: <code>1, 2, 3, 4, 2, 1, 5, 6, 2, 1, 2, 3, 7, 6, 3, 2, 1, 2, 3, 6</code>.</p><div class="ans-label">Worked solution</div>
+<p><strong>FIFO: 10 faults, 10 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · – · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · – · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>1 · 2 · 3 · 4 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 3 · 4 · – · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>1 · 2 · 3 · 4 · – · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>5</td><td>1 · 2 · 3 · 4 · 5 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>8</td><td>6</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>9</td><td>2</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>1</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>2</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>3</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>7</td><td>7 · 2 · 3 · 4 · 5 · 6</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>14</td><td>6</td><td>7 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>3</td><td>7 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>2</td><td>7 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>17</td><td>1</td><td>7 · 1 · 3 · 4 · 5 · 6</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>18</td><td>2</td><td>7 · 1 · 2 · 4 · 5 · 6</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>19</td><td>3</td><td>7 · 1 · 2 · 3 · 5 · 6</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>20</td><td>6</td><td>7 · 1 · 2 · 3 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details><p><strong>OPT: 7 faults, 13 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · – · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · – · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>1 · 2 · 3 · 4 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 3 · 4 · – · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>1 · 2 · 3 · 4 · – · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>5</td><td>1 · 2 · 3 · 4 · 5 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>8</td><td>6</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>9</td><td>2</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>1</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>2</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>3</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>7</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>14</td><td>6</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>3</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>2</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>17</td><td>1</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>18</td><td>2</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>3</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>6</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details><p><strong>LRU: 7 faults, 13 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · – · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · – · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>4</td><td>1 · 2 · 3 · 4 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 3 · 4 · – · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>1 · 2 · 3 · 4 · – · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>5</td><td>1 · 2 · 3 · 4 · 5 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>8</td><td>6</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>9</td><td>2</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>1</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>2</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>3</td><td>1 · 2 · 3 · 4 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>7</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>14</td><td>6</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>3</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>2</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>17</td><td>1</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>18</td><td>2</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>3</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>6</td><td>1 · 2 · 3 · 7 · 5 · 6</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details></article><article class="qbox" id="lru-rate-4"><div class="qmeta"><span class="qsrc">2024–25 SEE Q1.10</span><span class="marks">Practice</span></div>
+<p class="qtext">SEE page-fault rate: LRU with four frames. Use 4 frames. Start with empty frames. Reference string: <code>7, 2, 7, 3, 2, 5, 3, 4, 6, 7, 7, 1, 5, 6, 1</code>.</p><div class="ans-label">Worked solution</div>
+<p><strong>LRU: 9 faults, 6 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>7</td><td>7 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>7 · 2 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>7</td><td>7 · 2 · – · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>4</td><td>3</td><td>7 · 2 · 3 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>2</td><td>7 · 2 · 3 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>5</td><td>7 · 2 · 3 · 5</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>7</td><td>3</td><td>7 · 2 · 3 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>8</td><td>4</td><td>4 · 2 · 3 · 5</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>9</td><td>6</td><td>4 · 6 · 3 · 5</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>10</td><td>7</td><td>4 · 6 · 3 · 7</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>11</td><td>7</td><td>4 · 6 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>1</td><td>4 · 6 · 1 · 7</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>13</td><td>5</td><td>5 · 6 · 1 · 7</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>14</td><td>6</td><td>5 · 6 · 1 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>1</td><td>5 · 6 · 1 · 7</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details><p>Page-fault rate = 9/15 = <strong>60%</strong>.</p></article><article class="qbox" id="repeat-four-4"><div class="qmeta"><span class="qsrc">more sees Paper B Q1.8</span><span class="marks">Practice</span></div>
+<p class="qtext">Repeated working set fits four frames. Use 4 frames. Start with empty frames. Reference string: <code>0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7</code>.</p><div class="ans-label">Worked solution</div>
+<p><strong>LRU: 8 faults, 8 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>0</td><td>0 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>1</td><td>0 · 1 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>2</td><td>0 · 1 · 2 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>3</td><td>0 · 1 · 2 · 3</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>0</td><td>0 · 1 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>0 · 1 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>2</td><td>0 · 1 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>8</td><td>3</td><td>0 · 1 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>9</td><td>0</td><td>0 · 1 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>1</td><td>0 · 1 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>2</td><td>0 · 1 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>3</td><td>0 · 1 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>4</td><td>4 · 1 · 2 · 3</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>14</td><td>5</td><td>4 · 5 · 2 · 3</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>15</td><td>6</td><td>4 · 5 · 6 · 3</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>16</td><td>7</td><td>4 · 5 · 6 · 7</td><td><strong>Fault</strong></td><td>3</td></tr>
+</tbody></table></div></details></article><article class="qbox" id="paper-b-5"><div class="qmeta"><span class="qsrc">more sees Paper B Q8b</span><span class="marks">Practice</span></div>
+<p class="qtext">Paper B comparison: five frames. Use 5 frames. Start with empty frames. Reference string: <code>5, 6, 7, 8, 5, 4, 3, 1, 2, 6, 7, 8, 7, 5, 3, 2, 1, 5, 6, 7</code>.</p><div class="ans-label">Worked solution</div>
+<p><strong>FIFO: 17 faults, 3 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>5</td><td>5 · – · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>6</td><td>5 · 6 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>7</td><td>5 · 6 · 7 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>8</td><td>5 · 6 · 7 · 8 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>5</td><td>5 · 6 · 7 · 8 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>4</td><td>5 · 6 · 7 · 8 · 4</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>7</td><td>3</td><td>3 · 6 · 7 · 8 · 4</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>8</td><td>1</td><td>3 · 1 · 7 · 8 · 4</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>9</td><td>2</td><td>3 · 1 · 2 · 8 · 4</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>10</td><td>6</td><td>3 · 1 · 2 · 6 · 4</td><td><strong>Fault</strong></td><td>8</td></tr>
+<tr><td>11</td><td>7</td><td>3 · 1 · 2 · 6 · 7</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>12</td><td>8</td><td>8 · 1 · 2 · 6 · 7</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>13</td><td>7</td><td>8 · 1 · 2 · 6 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>14</td><td>5</td><td>8 · 5 · 2 · 6 · 7</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>15</td><td>3</td><td>8 · 5 · 3 · 6 · 7</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>16</td><td>2</td><td>8 · 5 · 3 · 2 · 7</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>17</td><td>1</td><td>8 · 5 · 3 · 2 · 1</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>18</td><td>5</td><td>8 · 5 · 3 · 2 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>6</td><td>6 · 5 · 3 · 2 · 1</td><td><strong>Fault</strong></td><td>8</td></tr>
+<tr><td>20</td><td>7</td><td>6 · 7 · 3 · 2 · 1</td><td><strong>Fault</strong></td><td>5</td></tr>
+</tbody></table></div></details><p><strong>OPT: 10 faults, 10 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>5</td><td>5 · – · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>6</td><td>5 · 6 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>7</td><td>5 · 6 · 7 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>8</td><td>5 · 6 · 7 · 8 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>5</td><td>5 · 6 · 7 · 8 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>4</td><td>5 · 6 · 7 · 8 · 4</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>7</td><td>3</td><td>5 · 6 · 7 · 8 · 3</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>8</td><td>1</td><td>5 · 6 · 7 · 8 · 1</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>9</td><td>2</td><td>5 · 6 · 7 · 8 · 2</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>10</td><td>6</td><td>5 · 6 · 7 · 8 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>7</td><td>5 · 6 · 7 · 8 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>8</td><td>5 · 6 · 7 · 8 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>7</td><td>5 · 6 · 7 · 8 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>14</td><td>5</td><td>5 · 6 · 7 · 8 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>3</td><td>5 · 6 · 7 · 3 · 2</td><td><strong>Fault</strong></td><td>8</td></tr>
+<tr><td>16</td><td>2</td><td>5 · 6 · 7 · 3 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>17</td><td>1</td><td>5 · 6 · 7 · 1 · 2</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>18</td><td>5</td><td>5 · 6 · 7 · 1 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>6</td><td>5 · 6 · 7 · 1 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>7</td><td>5 · 6 · 7 · 1 · 2</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details><p><strong>LRU: 17 faults, 3 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>5</td><td>5 · – · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>6</td><td>5 · 6 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>7</td><td>5 · 6 · 7 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>8</td><td>5 · 6 · 7 · 8 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>5</td><td>5 · 6 · 7 · 8 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>4</td><td>5 · 6 · 7 · 8 · 4</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>7</td><td>3</td><td>5 · 3 · 7 · 8 · 4</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>8</td><td>1</td><td>5 · 3 · 1 · 8 · 4</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>9</td><td>2</td><td>5 · 3 · 1 · 2 · 4</td><td><strong>Fault</strong></td><td>8</td></tr>
+<tr><td>10</td><td>6</td><td>6 · 3 · 1 · 2 · 4</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>11</td><td>7</td><td>6 · 3 · 1 · 2 · 7</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>12</td><td>8</td><td>6 · 8 · 1 · 2 · 7</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>13</td><td>7</td><td>6 · 8 · 1 · 2 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>14</td><td>5</td><td>6 · 8 · 5 · 2 · 7</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>15</td><td>3</td><td>6 · 8 · 5 · 3 · 7</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>16</td><td>2</td><td>2 · 8 · 5 · 3 · 7</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>17</td><td>1</td><td>2 · 1 · 5 · 3 · 7</td><td><strong>Fault</strong></td><td>8</td></tr>
+<tr><td>18</td><td>5</td><td>2 · 1 · 5 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>19</td><td>6</td><td>2 · 1 · 5 · 3 · 6</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>20</td><td>7</td><td>2 · 1 · 5 · 7 · 6</td><td><strong>Fault</strong></td><td>3</td></tr>
+</tbody></table></div></details></article><article class="qbox" id="paper-c-4"><div class="qmeta"><span class="qsrc">more sees Paper C Q5a</span><span class="marks">Practice</span></div>
+<p class="qtext">Paper C FIFO versus optimal. Use 4 frames. Start with empty frames. Reference string: <code>1, 2, 3, 2, 5, 6, 3, 4, 6, 3, 7, 3, 1, 5, 3, 6, 3, 4, 2, 4, 3, 4, 5, 1</code>.</p><div class="ans-label">Worked solution</div>
+<p><strong>FIFO: 16 faults, 8 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>2</td><td>1 · 2 · 3 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>5</td><td>5</td><td>1 · 2 · 3 · 5</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>6</td><td>6</td><td>6 · 2 · 3 · 5</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>7</td><td>3</td><td>6 · 2 · 3 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>8</td><td>4</td><td>6 · 4 · 3 · 5</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>9</td><td>6</td><td>6 · 4 · 3 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>3</td><td>6 · 4 · 3 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>7</td><td>6 · 4 · 7 · 5</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>12</td><td>3</td><td>6 · 4 · 7 · 3</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>13</td><td>1</td><td>1 · 4 · 7 · 3</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>14</td><td>5</td><td>1 · 5 · 7 · 3</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>15</td><td>3</td><td>1 · 5 · 7 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>6</td><td>1 · 5 · 6 · 3</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>17</td><td>3</td><td>1 · 5 · 6 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>18</td><td>4</td><td>1 · 5 · 6 · 4</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>19</td><td>2</td><td>2 · 5 · 6 · 4</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>20</td><td>4</td><td>2 · 5 · 6 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>21</td><td>3</td><td>2 · 3 · 6 · 4</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>22</td><td>4</td><td>2 · 3 · 6 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>23</td><td>5</td><td>2 · 3 · 5 · 4</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>24</td><td>1</td><td>2 · 3 · 5 · 1</td><td><strong>Fault</strong></td><td>4</td></tr>
+</tbody></table></div></details><p><strong>OPT: 11 faults, 13 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · – · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>1 · 2 · 3 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>2</td><td>1 · 2 · 3 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>5</td><td>5</td><td>1 · 2 · 3 · 5</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>6</td><td>6</td><td>1 · 6 · 3 · 5</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>7</td><td>3</td><td>1 · 6 · 3 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>8</td><td>4</td><td>1 · 6 · 3 · 4</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>9</td><td>6</td><td>1 · 6 · 3 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>10</td><td>3</td><td>1 · 6 · 3 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>11</td><td>7</td><td>1 · 6 · 3 · 7</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>12</td><td>3</td><td>1 · 6 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>1</td><td>1 · 6 · 3 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>14</td><td>5</td><td>1 · 6 · 3 · 5</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>15</td><td>3</td><td>1 · 6 · 3 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>16</td><td>6</td><td>1 · 6 · 3 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>17</td><td>3</td><td>1 · 6 · 3 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>18</td><td>4</td><td>1 · 4 · 3 · 5</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>19</td><td>2</td><td>2 · 4 · 3 · 5</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>20</td><td>4</td><td>2 · 4 · 3 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>21</td><td>3</td><td>2 · 4 · 3 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>22</td><td>4</td><td>2 · 4 · 3 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>23</td><td>5</td><td>2 · 4 · 3 · 5</td><td>Hit</td><td>–</td></tr>
+<tr><td>24</td><td>1</td><td>1 · 4 · 3 · 5</td><td><strong>Fault</strong></td><td>2</td></tr>
+</tbody></table></div></details></article><article class="qbox" id="paper-d-3"><div class="qmeta"><span class="qsrc">more sees Paper D Q6a</span><span class="marks">Practice</span></div>
+<p class="qtext">Paper D comparison: three frames. Use 3 frames. Start with empty frames. Reference string: <code>7, 2, 3, 1, 2, 5, 3, 4, 6, 7, 7, 1, 0, 5, 4, 6, 2, 3, 0, 1</code>.</p><div class="ans-label">Worked solution</div>
+<p><strong>FIFO: 17 faults, 3 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>7</td><td>7 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>7 · 2 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>7 · 2 · 3</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>1</td><td>1 · 2 · 3</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>5</td><td>1 · 5 · 3</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>7</td><td>3</td><td>1 · 5 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>8</td><td>4</td><td>1 · 5 · 4</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>9</td><td>6</td><td>6 · 5 · 4</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>10</td><td>7</td><td>6 · 7 · 4</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>11</td><td>7</td><td>6 · 7 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>1</td><td>6 · 7 · 1</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>13</td><td>0</td><td>0 · 7 · 1</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>14</td><td>5</td><td>0 · 5 · 1</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>15</td><td>4</td><td>0 · 5 · 4</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>16</td><td>6</td><td>6 · 5 · 4</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>17</td><td>2</td><td>6 · 2 · 4</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>18</td><td>3</td><td>6 · 2 · 3</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>19</td><td>0</td><td>0 · 2 · 3</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>20</td><td>1</td><td>0 · 1 · 3</td><td><strong>Fault</strong></td><td>2</td></tr>
+</tbody></table></div></details><p><strong>OPT: 13 faults, 7 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>7</td><td>7 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>7 · 2 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>7 · 2 · 3</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>1</td><td>1 · 2 · 3</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>5</td><td>1 · 5 · 3</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>7</td><td>3</td><td>1 · 5 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>8</td><td>4</td><td>1 · 5 · 4</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>9</td><td>6</td><td>1 · 5 · 6</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>10</td><td>7</td><td>1 · 5 · 7</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>11</td><td>7</td><td>1 · 5 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>1</td><td>1 · 5 · 7</td><td>Hit</td><td>–</td></tr>
+<tr><td>13</td><td>0</td><td>1 · 5 · 0</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>14</td><td>5</td><td>1 · 5 · 0</td><td>Hit</td><td>–</td></tr>
+<tr><td>15</td><td>4</td><td>1 · 4 · 0</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>16</td><td>6</td><td>1 · 6 · 0</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>17</td><td>2</td><td>1 · 2 · 0</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>18</td><td>3</td><td>1 · 3 · 0</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>19</td><td>0</td><td>1 · 3 · 0</td><td>Hit</td><td>–</td></tr>
+<tr><td>20</td><td>1</td><td>1 · 3 · 0</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details><p><strong>LRU: 18 faults, 2 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>7</td><td>7 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>7 · 2 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>3</td><td>7 · 2 · 3</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>1</td><td>1 · 2 · 3</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>5</td><td>2</td><td>1 · 2 · 3</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>5</td><td>1 · 2 · 5</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>7</td><td>3</td><td>3 · 2 · 5</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>8</td><td>4</td><td>3 · 4 · 5</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>9</td><td>6</td><td>3 · 4 · 6</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>10</td><td>7</td><td>7 · 4 · 6</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>11</td><td>7</td><td>7 · 4 · 6</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>1</td><td>7 · 1 · 6</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>13</td><td>0</td><td>7 · 1 · 0</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>14</td><td>5</td><td>5 · 1 · 0</td><td><strong>Fault</strong></td><td>7</td></tr>
+<tr><td>15</td><td>4</td><td>5 · 4 · 0</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>16</td><td>6</td><td>5 · 4 · 6</td><td><strong>Fault</strong></td><td>0</td></tr>
+<tr><td>17</td><td>2</td><td>2 · 4 · 6</td><td><strong>Fault</strong></td><td>5</td></tr>
+<tr><td>18</td><td>3</td><td>2 · 3 · 6</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>19</td><td>0</td><td>2 · 3 · 0</td><td><strong>Fault</strong></td><td>6</td></tr>
+<tr><td>20</td><td>1</td><td>1 · 3 · 0</td><td><strong>Fault</strong></td><td>2</td></tr>
+</tbody></table></div></details></article><article class="qbox" id="initial-lru-3"><div class="qmeta"><span class="qsrc">more sees Paper D Q1.8</span><span class="marks">Practice</span></div>
+<p class="qtext">Initial pages are already resident. Use 3 frames. Pages 1 and 2 are already resident. Page 1 is the less recent of the two. Reference string: <code>1, 2, 4, 5, 2, 1, 2, 4</code>.</p><div class="ans-label">Worked solution</div>
+<p><strong>LRU: 4 faults, 4 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1 · 2 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>2</td><td>2</td><td>1 · 2 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>3</td><td>4</td><td>1 · 2 · 4</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>4</td><td>5</td><td>5 · 2 · 4</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>5</td><td>2</td><td>5 · 2 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>6</td><td>1</td><td>5 · 2 · 1</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>7</td><td>2</td><td>5 · 2 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>8</td><td>4</td><td>4 · 2 · 1</td><td><strong>Fault</strong></td><td>5</td></tr>
+</tbody></table></div></details><p>Count faults only in the supplied trace. The two pages already present set the initial recency order.</p></article><article class="qbox" id="lru-assignment-3"><div class="qmeta"><span class="qsrc">oldppts/unit 4.pdf p.80; frame count inherited from adjacent example</span><span class="marks">Practice</span></div>
+<p class="qtext">Old-slide LRU assignment (three frames assumed). Use 3 frames. Start with empty frames. Reference string: <code>2, 3, 2, 1, 5, 2, 4, 5, 3, 2, 5, 2</code>.</p><div class="ans-label">Worked solution</div>
+<p><strong>LRU: 7 faults, 5 hits.</strong></p><details><summary>Show the full frame trace</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable worked table"><table class=trace><thead><tr><th scope="col">Step</th><th scope="col">Page</th><th scope="col">Frames after access</th><th scope="col">Result</th><th scope="col">Victim</th></tr></thead><tbody>
+<tr><td>1</td><td>2</td><td>2 · – · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>2</td><td>3</td><td>2 · 3 · –</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>3</td><td>2</td><td>2 · 3 · –</td><td>Hit</td><td>–</td></tr>
+<tr><td>4</td><td>1</td><td>2 · 3 · 1</td><td><strong>Fault</strong></td><td>–</td></tr>
+<tr><td>5</td><td>5</td><td>2 · 5 · 1</td><td><strong>Fault</strong></td><td>3</td></tr>
+<tr><td>6</td><td>2</td><td>2 · 5 · 1</td><td>Hit</td><td>–</td></tr>
+<tr><td>7</td><td>4</td><td>2 · 5 · 4</td><td><strong>Fault</strong></td><td>1</td></tr>
+<tr><td>8</td><td>5</td><td>2 · 5 · 4</td><td>Hit</td><td>–</td></tr>
+<tr><td>9</td><td>3</td><td>3 · 5 · 4</td><td><strong>Fault</strong></td><td>2</td></tr>
+<tr><td>10</td><td>2</td><td>3 · 5 · 2</td><td><strong>Fault</strong></td><td>4</td></tr>
+<tr><td>11</td><td>5</td><td>3 · 5 · 2</td><td>Hit</td><td>–</td></tr>
+<tr><td>12</td><td>2</td><td>3 · 5 · 2</td><td>Hit</td><td>–</td></tr>
+</tbody></table></div></details></article><a class="backtotop" href="#index">↑ Back to contents</a>
+</section>
+<section class="page section" id="vm-revision">
+<div class="section-head"><h1>Quick revision</h1></div>
+<p class="section-sub">Use these prompts to reconstruct a full explanation before the exam.</p>
+<table><thead><tr><th scope="col">If the question asks…</th><th scope="col">Build your answer around…</th></tr></thead><tbody>
+<tr><td><a href="#vm-demand">How does demand paging work?</a></td><td>Load on access, check legality, obtain a frame, preserve a dirty victim if needed, bring in and map the requested page, restart. Draw the flow and explain why locality helps.</td></tr>
+<tr><td><a href="#vm-hardware">What hardware does demand paging need?</a></td><td>Page table with valid–invalid bit, swap space, instruction restart, plus R/M bits and a TLB in practice.</td></tr>
+<tr><td><a href="#vm-cow">How does copy-on-write save memory?</a></td><td>Share frames read-only, copy only the page that is written, on its protection fault. Shared read-only data is never copied.</td></tr>
+<tr><td><a href="#vm-fifo">What does FIFO evict?</a></td><td>Oldest arrival. Hits leave queue order unchanged. Show a reference string with two frame counts for Belady’s anomaly.</td></tr>
+<tr><td><a href="#vm-optimal">What does Optimal evict?</a></td><td>Farthest next use, with “never used again” ahead of any finite distance. Explain why the complete trace makes this a benchmark.</td></tr>
+<tr><td><a href="#vm-lru">What does LRU evict?</a></td><td>Oldest last use. Update recency even on hits. Explain a timestamp or recency-list implementation.</td></tr>
+<tr><td><a href="#vm-approx">How does Clock approximate LRU?</a></td><td>State the starting hand. Check R, clear and pass over set bits, evict at the first clear bit, then advance. Add the modify bit if asked about enhanced second chance.</td></tr>
+<tr><td><a href="#vm-counting">When does MFU beat LFU?</a></td><td>After a phase change (stale high counts). LFU wins when a stable hot set is mixed with one-time pages.</td></tr>
+<tr><td><a href="#vm-allocation">How does the OS share RAM?</a></td><td>State the available pool. Compare equal, size-based and priority shares. State rounding and separate allocation size from the replacement pool.</td></tr>
+<tr><td><a href="#vm-thrashing">Why does CPU utilization collapse?</a></td><td>Repeated faults from undersized active sets keep processes waiting. Draw the curve and explain how working sets and PFF can reduce the load. For a working set, list the distinct pages in the last Δ references.</td></tr>
+</tbody></table>
+<div class="callout key"><span class="label">Before submitting a numerical</span>Mark the initial state and every fault. Count initial fills. Keep the frame count fixed for each run. A hit can change future decisions even though it leaves the resident pages in the same slots. Put times in one unit before averaging.</div>
+<a class="backtotop" href="#index">↑ Back to contents</a>
+</section>
+
+<section class="page section" id="vm-bank">
+<div class="section-head"><h1>Past questions</h1></div>
+<p class="section-sub">Unit IV questions from the available CIE and SEE collections, including the 2025–26 CIE-III, organized by the current syllabus.</p>
+<p>Mixed questions are labelled where only part belongs to this unit. Source labels identify the paper and question. Repeated questions link to the same explanation or calculation.</p>
+<ul><li>CIE and SEE collection, 2024–25</li><li>Additional SEE papers (A–F)</li><li>2025–26 CIE-III (January 2026) · transcript</li></ul>
+<h2>Demand paging</h2><table class="qbank"><thead><tr><th scope="col">Paper / marks</th><th scope="col">Question</th><th scope="col">Where to review</th></tr></thead><tbody>
+<tr><td><span title="Paper B — RVCE III Sem B.E. &quot;April -2023&quot; SEE, Operating Systems, 21CS35 (2021 scheme), 100 marks (pages 4–6)">Paper B · Q1.5 · 1 mark</span></td><td>What is demand Paging?</td><td><a href="#vm-demand">Read explanation →</a></td></tr>
+<tr><td><span title="Paper C — RVCE III Sem B.E. Examinations March-2021, Computer Science and Engineering, Operating Systems, 18CS34, 100 marks (pages 9–11; pages 7–8 blank)">Paper C · Q6b · 6 marks</span></td><td>With a neat sketch, explain the steps in handling a page fault.</td><td><a href="#vm-demand">Read explanation →</a></td></tr>
+<tr><td><span title="Paper D — RVCE III Sem B.E. Examinations Nov/Dec-19, Computer Science and Engineering, Operating Systems, 18CS34, 100 marks (pages 12–15)">Paper D · Q5b · 10 marks</span></td><td>What is virtual memory? List the advantages of using virtual memory. Discuss the demand paging approach used to implement virtual memory with help of a neat diagram.</td><td><a href="#vm-demand">Read explanation →</a></td></tr>
+<tr><td><span title="CIE-III Test-1 (pages 12-13), 50 marks">CIE-III Test-1 · Q3 · 10 marks</span></td><td>Analyse the sequence of steps taken to service a page fault with necessary diagram</td><td><a href="#vm-demand">Read explanation →</a></td></tr>
+<tr><td><span title="2025–26 CIE-III, CS235AI, January 2026 (WhatsApp import 2026-11-20), source ID OS-CIE3-2025-26-B6">2025–26 CIE-III · Q6 · 10 marks</span></td><td>How does demand paging enable efficient memory usage in real-world systems such as multitasking operating systems, and what hardware support is required to make demand paging possible? A program has 10 pages but only 4 page frames are available. Explain how demand paging decides which pages to load into memory when a page fault occurs.</td><td><a href="#demand-10-4">Worked answer →</a></td></tr>
+<tr><td><span title="2025–26 CIE-III, CS235AI, January 2026 (WhatsApp import 2026-11-20), source ID OS-CIE3-2025-26-B4b">2025–26 CIE-III · Q4b · 4 marks</span></td><td>A system uses copy-on-write for virtual memory. Analyze a scenario where multiple processes share a large read-only dataset. How does COW improve memory utilization in this case?<br><small>Supporting topic; not named in the current syllabus.</small></td><td><a href="#cow-dataset">Worked answer →</a></td></tr>
+<tr><td><span title="Paper F — RVCE IV Sem B.E. Examinations April/May-19 (pages 19–21)">Paper F · Q7a · 8 marks</span></td><td>Define Paging and explain the following: i) Demand paging. ii) Fragmentation. iii) Copy on write.<br><small>Unit IV covers the demand-paging part. Paging and fragmentation belong to Unit III. Copy-on-write is supporting material.</small></td><td><a href="#vm-demand">Demand paging →</a> · <a href="#vm-cow">COW →</a></td></tr>
+</tbody></table><h2>FIFO, Optimal and LRU traces</h2><table class="qbank"><thead><tr><th scope="col">Paper / marks</th><th scope="col">Question</th><th scope="col">Where to review</th></tr></thead><tbody>
+<tr><td><span title="Paper A — RVCE III Sem B.E. Apr 2023 SEE, Operating Systems, 21CS35 (2021 scheme), 100 marks, 3 h (pages 1–3)">Paper A · Q7b · 6 marks</span></td><td>Consider the following page reference string<br>1,2,3,4,2,1,5,6,2,1,2,3,7,6,3,2,1,2,3,6<br>How many page faults will occur for LRU, FIFO, Optimal page replacement algorithms, assuming 5 free frames?</td><td><a href="#multi-5">Worked solution →</a></td></tr>
+<tr><td><span title="Paper B — RVCE III Sem B.E. &quot;April -2023&quot; SEE, Operating Systems, 21CS35 (2021 scheme), 100 marks (pages 4–6)">Paper B · Q1.8 · 2 marks</span></td><td>How many Page fault would occur for the given string: 0,1,2,3,0,1,2,3,0,1,2,3,4,5,6,7 using LRU algorithm where page frame is FOUR</td><td><a href="#repeat-four-4">Worked solution →</a></td></tr>
+<tr><td><span title="Paper B — RVCE III Sem B.E. &quot;April -2023&quot; SEE, Operating Systems, 21CS35 (2021 scheme), 100 marks (pages 4–6)">Paper B · Q8b · 8 marks</span></td><td>Consider the following page reference string<br>5,6,7,8,5,4,3,1,2,6,7,8,7,5,3,2,1,5,6,7<br>How many page faults will occur for LRU, FIFO, Optimal page replacement algorithms, assuming 5 free frames?</td><td><a href="#paper-b-5">Worked solution →</a></td></tr>
+<tr><td><span title="Paper C — RVCE III Sem B.E. Examinations March-2021, Computer Science and Engineering, Operating Systems, 18CS34, 100 marks (pages 9–11; pages 7–8 blank)">Paper C · Q5a · 6 marks</span></td><td>Consider the following Page reference string: 1, 2, 3, 2, 5, 6, 3, 4, 6, 3, 7, 3, 1, 5, 3, 6, 3, 4, 2, 4, 3, 4, 5, 1. How many page faults will occur for FIFO and Optimal page replacement algorithms, assuming 4 free frames?</td><td><a href="#paper-c-4">Worked solution →</a></td></tr>
+<tr><td><span title="Paper D — RVCE III Sem B.E. Examinations Nov/Dec-19, Computer Science and Engineering, Operating Systems, 18CS34, 100 marks (pages 12–15)">Paper D · Q1.8 · 2 marks</span></td><td>Applying the LRU page replacement to the reference string : 1 2 4 5 2 1 2 4. The main memory can accommodate 3 pages and it already has pages 1 and 2. Page 1 came in before page 2. Draw the page replacement pattern and determine total number of page faults.</td><td><a href="#initial-lru-3">Worked solution →</a></td></tr>
+<tr><td><span title="Paper D — RVCE III Sem B.E. Examinations Nov/Dec-19, Computer Science and Engineering, Operating Systems, 18CS34, 100 marks (pages 12–15)">Paper D · Q6a · 10 marks</span></td><td>Consider the following page reference string: 7,2,3,1,2,5,3,4,6,7,7,1,0,5,4,6,2,3,0,1 Calculate the page faults for the LRU replacement, FIFO replacement and Optimal replacement algorithms, assuming initially empty three frames.</td><td><a href="#paper-d-3">Worked solution →</a></td></tr>
+<tr><td><span title="Paper E — RVCE III Sem B.E. Fast Track Examinations Oct-2020, Computer Science and Engineering, Operating Systems, 18CS34, 100 marks (pages 16–18)">Paper E · Q6b · 8 marks</span></td><td>Consider the following page reference string: 1,2,3,4,2,1,5,6,2,1,2,3,7,6,3,2,1,2,3,6 How many page facility [sic: faults] will occur by LRU, FIFO and optimal page replacement algorithms, assuming 5 free frames.</td><td><a href="#multi-5">Worked solution →</a></td></tr>
+<tr><td><span title="Paper F — RVCE IV Sem B.E. Examinations April/May-19, Computer Science and Engineering, Operating Systems, 16CS45, 100 marks (pages 19–21 question photo; pages 22–27 handwritten &quot;Scheme and Solution&quot;)">Paper F · Q1.10 · 2 marks</span></td><td>Given the following reference string: 7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1. Determine the number of page faults using FIFO page replacement.<br><small>The printed question omits the frame count. The solution uses three.</small></td><td><a href="#standard-3">Worked solution →</a></td></tr>
+<tr><td><span title="Paper F — RVCE IV Sem B.E. Examinations April/May-19, Computer Science and Engineering, Operating Systems, 16CS45, 100 marks (pages 19–21 question photo; pages 22–27 handwritten &quot;Scheme and Solution&quot;)">Paper F · Q7b · 8 marks</span></td><td>Consider the following page reference string: 1,2,3,4,2,1,5,6,2,1,2,3,7,6,3,2,1,2,3,6 How many page faults will occur for FIFO, optimal page replacement and LRV [sic: LRU] page replacement, assuming 3 free frames?</td><td><a href="#multi-3">Worked solution →</a></td></tr>
+<tr><td><span title="CIE-III Test-1 (pages 12-13), 50 marks">CIE-III Test-1 · Q1a · 7 marks</span></td><td>Consider the following page reference string: 7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1. How many page faults would occur for the following page replacement algorithms assuming 3 frames? All frames are initially empty. i. LRU ii. FCFS iii. Optimal. Which algorithm is the most efficient?</td><td><a href="#standard-3">Worked solution →</a></td></tr>
+<tr><td><span title="SEE, III Sem B.E. Regular/Supplementary, Feb/Mar-2025 (pages 15, 14, 16)">SEE, III Sem B.E. Regular/Supplementary, Feb/Mar-2025 (pages 15, 14, 16) · Q1.10 · 1 mark</span></td><td>Consider a demand paging system with four page frame (initially empty) and LRU page replacement policy. For the following page reference string 7,2,7,3,2,5,3,4,6,7,7,1,5,6,1. The page fault rate is ______.</td><td><a href="#lru-rate-4">Worked solution →</a></td></tr>
+<tr><td><span title="SEE, III Sem B.E. Regular/Supplementary, Feb/Mar-2025 (pages 15, 14, 16)">SEE, III Sem B.E. Regular/Supplementary, Feb/Mar-2025 (pages 15, 14, 16) · Q8a · 8 marks</span></td><td>Consider the following page reference string: 1,2,3,4,2,1,5,6,2,1,2,3,7,6,3,2,1,2,3,6. How many page faults would occur for the following replacement algorithms, assuming three, four, five, six frames: i) LRU replacement ii) FIFO replacement</td><td><a href="#multi-3">3 frames</a> · <a href="#multi-4">4 frames</a> · <a href="#multi-5">5 frames</a> · <a href="#multi-6">6 frames</a></td></tr>
+</tbody></table><h2>LRU approximation and counting-based policies</h2><table class="qbank"><thead><tr><th scope="col">Paper / marks</th><th scope="col">Question</th><th scope="col">Where to review</th></tr></thead><tbody>
+<tr><td><span title="CIE-III Quiz-1 (page 12), Date: 08/01/2025, 10 marks">CIE-III Quiz-1 · Q2 · 1 mark</span></td><td>In enhanced second chance algorithm, the ordered pair of a page which is the worst choice for page replacement?</td><td><a href="#vm-approx">Read explanation →</a></td></tr>
+<tr><td><span title="CIE-III Test-1 (pages 12-13), 50 marks">CIE-III Test-1 · Q2a · 5 marks</span></td><td>Discuss the working of Clock replacement Algorithm</td><td><a href="#vm-approx">Read explanation →</a></td></tr>
+<tr><td><span title="2025–26 CIE-III, CS235AI, January 2026 (WhatsApp import 2026-11-20), source ID OS-CIE3-2025-26-B4a">2025–26 CIE-III · Q4a · 6 marks</span></td><td>Discuss situation under which the most frequently used page replacement algorithm generates fewer page faults than the least frequently used page replacement algorithm. Also discuss under which circumstances the opposite holds.<br><small>Counting-based policies are supporting material; not named in the current syllabus.</small></td><td><a href="#counting-lfu-mfu">Worked answer →</a></td></tr>
+</tbody></table><h2>Frame allocation</h2><table class="qbank"><thead><tr><th scope="col">Paper / marks</th><th scope="col">Question</th><th scope="col">Where to review</th></tr></thead><tbody>
+<tr><td><span title="Paper C — RVCE III Sem B.E. Examinations March-2021, Computer Science and Engineering, Operating Systems, 18CS34, 100 marks (pages 9–11; pages 7–8 blank)">Paper C · Q1.9 · 2 marks</span></td><td>For a certain system, total number of frames is 64. The size of 2 processes, P1 and P2 are 10 and 127 respectively. How much is the allocation for each of theses processes?</td><td><a href="#allocation-64">Worked solution →</a></td></tr>
+<tr><td><span title="Paper C — RVCE III Sem B.E. Examinations March-2021, Computer Science and Engineering, Operating Systems, 18CS34, 100 marks (pages 9–11; pages 7–8 blank)">Paper C · Q7b · 6 marks</span></td><td>Briefly explain the strategies and schemes for allocation of frames.</td><td><a href="#vm-allocation">Read explanation →</a></td></tr>
+<tr><td><span title="Paper D — RVCE III Sem B.E. Examinations Nov/Dec-19, Computer Science and Engineering, Operating Systems, 18CS34, 100 marks (pages 12–15)">Paper D · Q1.9 · 2 marks</span></td><td>If the total number of available frames is 50, and there are 2 processes one of 10 pages and the other of 5 pages then how much of memory would be proportionally allocated to each of the processes?</td><td><a href="#allocation-50">Worked solution →</a></td></tr>
+<tr><td><span title="CIE-III Quiz-1 (page 12), Date: 08/01/2025, 10 marks">CIE-III Quiz-1 · Q4 · 2 marks</span></td><td>If the total number of available frames is 50, and there are 2 processes one of 10 pages and the other of 5 pages then how much of memory would be proportionally allocated to each of these processes?</td><td><a href="#allocation-50">Worked solution →</a></td></tr>
+<tr><td><span title="CIE-III Test-1 (pages 12-13), 50 marks">CIE-III Test-1 · Q5b · 4 marks</span></td><td>Analyze equal and proportional allocation of frames among processes with suitable examples</td><td><a href="#vm-allocation">Read explanation →</a></td></tr>
+</tbody></table><h2>Thrashing</h2><table class="qbank"><thead><tr><th scope="col">Paper / marks</th><th scope="col">Question</th><th scope="col">Where to review</th></tr></thead><tbody>
+<tr><td><span title="Paper A — RVCE III Sem B.E. Apr 2023 SEE, Operating Systems, 21CS35 (2021 scheme), 100 marks, 3 h (pages 1–3)">Paper A · Q8b · 6 marks</span></td><td>What is thrashing? What are causes of thrashing? Discuss the ways to prevent it?</td><td><a href="#vm-thrashing">Read explanation →</a></td></tr>
+<tr><td><span title="Paper B — RVCE III Sem B.E. &quot;April -2023&quot; SEE, Operating Systems, 21CS35 (2021 scheme), 100 marks (pages 4–6)">Paper B · Q1.12 · 2 marks</span></td><td>Explain what is thrashing ?</td><td><a href="#vm-thrashing">Read explanation →</a></td></tr>
+<tr><td><span title="Paper E — RVCE III Sem B.E. Fast Track Examinations Oct-2020, Computer Science and Engineering, Operating Systems, 18CS34, 100 marks (pages 16–18)">Paper E · Q7a · 6 marks</span></td><td>What is thrashing? What are the causes for thrashing? Discuss the mechanism to prevent it.</td><td><a href="#vm-thrashing">Read explanation →</a></td></tr>
+<tr><td><span title="CIE-III Quiz-1 (page 12), Date: 08/01/2025, 10 marks">CIE-III Quiz-1 · Q3 · 2 marks</span></td><td>Define Thrashing. Identify the causes for process thrashing</td><td><a href="#vm-thrashing">Read explanation →</a></td></tr>
+<tr><td><span title="CIE-III Quiz-1 (page 12), Date: 08/01/2025, 10 marks">CIE-III Quiz-1 · Q6 · 2 marks</span></td><td>Define Working Set Window.</td><td><a href="#vm-thrashing">Read explanation →</a></td></tr>
+<tr><td><span title="SEE, III Sem B.E. Regular/Supplementary, Feb/Mar-2025 (pages 15, 14, 16)">SEE, III Sem B.E. Regular/Supplementary, Feb/Mar-2025 (pages 15, 14, 16) · Q8b · 4 marks</span></td><td>Suggest two strategies to prevent thrashing/limit the effects of thrashing.</td><td><a href="#vm-thrashing">Read explanation →</a></td></tr>
+<tr><td><span title="2025–26 CIE-III, CS235AI, January 2026 (WhatsApp import 2026-11-20), source ID OS-CIE3-2025-26-A1.4">2025–26 CIE-III · Q1.4 · 2 marks</span></td><td>In the working set model, for: 2 6 1 5 7 7 7 7 5 1 6 2 3 4 1 2 3 4 4 4 3 4 3 4 4 4 1 3 2 3, if Delta = 10, then the working set at time t1(...751) is what?<br><small>The time marker is unclear in the photo. The solution states the reading it assumes.</small></td><td><a href="#working-set-10">Worked solution →</a></td></tr>
+<tr><td><span title="2025–26 CIE-III page 2, handwritten margin note above Q3(c); an annotation, not a printed question">2025–26 CIE-III · margin note</span></td><td>“Discuss Thrashing, eliminate Thrashing” <small>(handwritten annotation, likely a hint about a topic)</small></td><td><a href="#vm-thrashing">Read explanation →</a></td></tr>
+</tbody></table><a class="backtotop" href="#index">↑ Back to contents</a>
+</section></main></div>
+<script>
+const sections=document.querySelectorAll('.section[id]'),navLinks=document.querySelectorAll('.navlink');
+const setActive=()=>{let cur='';const y=window.scrollY+140;
+ sections.forEach(s=>{if(s.offsetTop<=y)cur=s.id});
+ navLinks.forEach(l=>{l.style.color='';l.style.fontWeight='';l.removeAttribute('aria-current');
+  if(l.getAttribute('href')==='#'+cur){l.style.color='var(--blue)';l.style.fontWeight='600';l.setAttribute('aria-current','location')}})};
+window.addEventListener('scroll',setActive,{passive:true});setActive();
+(function(){var r=document.documentElement,b=document.getElementById('themeToggle'),i=document.getElementById('themeIco'),l=document.getElementById('themeLbl');
+ function paint(){var d=r.getAttribute('data-theme')==='dark';i.textContent=d?'☀️':'🌙';l.textContent=d?'Light':'Dark';b.setAttribute('aria-pressed',d)}
+ b.addEventListener('click',function(){r.setAttribute('data-theme',r.getAttribute('data-theme')==='dark'?'light':'dark');paint()});paint()})();
+</script>
+</body>
+</html>
