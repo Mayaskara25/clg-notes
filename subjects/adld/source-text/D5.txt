@@ -1,0 +1,277 @@
+Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Basic bistable element.
+Figure 6.1
+
+6-0Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+SR latch. (a) Logic diagrams. (b) Function table where
+Q+ denotes the output Q in response to the inputs.
+(c) Two logic symbols.
+Figure 6.2
+
+6-1Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+An application of the SR latch. (a) Effects of contact
+bounce. (b) A switch debouncer.
+Figure 6.3
+
+6-2Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+ SR latch. (a) Logic diagrams. (b) Function table where
+Q+ denotes the output Q in response to the inputs.
+(c) Two logic symbols.
+Figure 6.4
+
+6-3Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Gated SR latch. (a) Logic diagram. (b) Function table where
+Q+ denotes the output Q in response to the inputs. (c) Two
+logic symbols.
+Figure 6.5
+
+                                               (c)
+
+6-4Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Gated D latch. (a) Logic diagram. (b) Function table where Q+
+denotes the output Q in response to the inputs. (c) Two logic
+symbols.
+Figure 6.6
+
+6-5Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Propagation delays in an SR latch.
+Figure 6.7
+
+6-6Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Timing diagram for an SR latch.
+Figure 6.8
+
+6-7Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Minimum pulse width constraint.
+Figure 6.9
+
+6-8Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Timing diagram for a gated D latch.
+Figure 6.10
+
+6-9Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Illustration of an unpredictable response in a gated D latch.
+Figure 6.11
+
+6-10Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Master-slave SR flip-flop. (a) Logic diagram using gated SR
+latches. (b) Flip-flop action during the control signal.
+(c) Function table where Q+ denotes the output Q in response
+to the inputs. (c) Two logic symbols.
+Figure 6.12
+
+6-11Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Timing diagram for a master-slave SR flip-flop.
+Figure 6.13
+
+6-12Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Master-slave JK flip-flop. (a) Logic diagram using gated SR
+latches. (b) Function table where Q+ denotes the output Q in
+response to the inputs. (c) Two logic symbols.
+Figure 6.14
+
+6-13Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Timing diagram for master-slave JK flip-flop.
+Figure 6.15
+
+6-14Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Master-slave D flip-flop. (a) Logic diagram using master-slave
+SR flip-flop (b) Two logic symbols.
+Figure 6.16
+
+6-15Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Master-slave T flip-flop. (a) Logic diagram using a master-
+slave JK flip-flop. (b) Function table where Q+ denotes the
+output Q in response to the inputs. (c) Two logic symbols.
+Figure 6.17
+
+6-16Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Positive-edge-triggered D flip-flop. (a) Logic diagram.
+(b) Function table where Q+ denotes the output Q in response
+to the inputs. (c) Two logic symbols.
+Figure 6.18
+
+6-17Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Timing diagram for a positive-edge-triggered D flip-flop.
+Figure 6.19
+
+6-18Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Negative-edge-triggered D flip-flop. (a) Function table where
+Q+ denotes the output Q in response to the inputs. (b) Two
+logic symbols.
+Figure 6.20
+
+6-19Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Positive-edge-triggered D flip-flop with asynchronous inputs.
+(a) Logic diagram. (b) Function table where Q+ denotes the
+output Q in response to the inputs. (c) Two logic symbols.
+Figure 6.21
+
+6-20Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Positive-edge-triggered JK flip-flop. (a) Logic diagram.
+(b) Function table where Q+ denotes the output Q in response
+to the inputs. (c) Two logic symbols.
+Figure 6.22
+
+6-21Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Positive-edge-triggered T flip-flop. (a) Logic diagram.
+(b) Function table where Q+ denotes the output Q in response
+to the inputs. (c) Two logic symbols.
+Figure 6.23
+
+6-22Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Master-slave JK flip-flop with data lockout. (a) Logic diagram.
+(b) Two logic symbols.
+Figure 6.24
+
+6-23Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Characteristic equations. (a) Derivation of characteristic
+equation for an SR flip-flop. (b) Summary of characteristic
+equations.
+Figure 6.25
+
+6-24Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Serial-in, serial-out unidirectional shift register.
+Figure 6.26
+
+6-25Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Serial-in, parallel-out unidirectional shift register.
+Figure 6.27
+
+6-26Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Parallel-in unidirectional shift register.
+Figure 6.28
+
+6-27Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Universal shift register. (a) Logic diagram. (b) Mode control.
+(c) Symbol.
+Figure 6.29
+
+6-28Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+State diagram of a counter.
+Figure 6.30
+
+6-29Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Four-bit binary ripple counter. (a) Logic diagram. (b) Timing
+diagram. (c) Counting sequence.
+Figure 6.31
+
+6-30Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Four-bit synchronous binary counter.
+Figure 6.32
+
+6-31Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Four-bit synchronous binary counter variation.
+Figure 6.33
+
+6-32Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Four-bit synchronous binary counter with parallel load
+inputs. (a) Logic diagram. (b) Symbol.
+Figure 6.34
+
+6-33Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Synchronous mod-10 counter. (a) Connections. (b) Counting
+sequence.
+Figure 6.35
+
+6-34Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+8-bit synchronous binary counter constructed from two 4-bit
+synchronous binary counters.
+Figure 6.36
+
+6-35Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Mod-4 ring counter. (a) Logic diagram. (b) Counting
+sequence.
+Figure 6.37
+
+6-36Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Mod-8 twisted-ring counter. (a) Logic diagram. (b) Counting
+sequence.
+Figure 6.38
+
+6-37Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Mod-7 twisted-ring counter. (a) Logic diagram. (b) Counting
+sequence.
+Figure 6.39
+
+6-38Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+General structure of a synchronous mod-6 counter using
+positive-edge-triggered JK flip-flops.
+Figure 6.40
+
+6-39Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Determination of the minimal-sum expressions for a
+synchronous mod-6 counter using clocked JK flip-flops.
+Figure 6.41
+
+6-40Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Logic diagram of a synchronous mod-6 counter.
+Figure 6.42
+
+6-41Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Determination of the minimal-sum expressions for a
+synchronous mod-6 counter using clocked D flip-flops.
+Figure 6.43
+
+6-42Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Determination of the minimal-sum expressions for a
+synchronous mod-6 counter using clocked T flip-flops.
+Figure 6.44
+
+6-43Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Determination of the minimal-sum expressions for a
+synchronous mod-6 counter using clocked SR flip-flops.
+Figure 6.45
+
+6-44Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Complete state diagram for the synchronous mod-6 counter
+of Fig. 6.42.
+Figure 6.46
+
+6-45

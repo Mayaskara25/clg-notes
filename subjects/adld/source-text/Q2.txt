@@ -1,0 +1,1161 @@
+R V College of Engineering
+                        Department of Computer Science and Engineering(data science and cyber security)
+                                 ADLDCO CIE - I : Question Paper and scheme and solution
+
+   Course:                Applied digital logic design and computer           Semester :    3rd BE
+(Code)CS234                              organisation
+      AI
+Date : Oct 2024                     Duration : 120 minutes        Staff :DD/PSB/KS/KBR/KB
+Name :                             USN :                          Section :      A/B/C/D/E/CD/CY
+
+                                               PART A
+Sl.                                                                                        Mark   * L1-
+                                                                                                          *CO
+No                               Quiz questions                                             s      L6
+1.1   What are the minimum number of 2 input NAND gates required to
+      implement the function A ⊕B ⊕ C
+                                                                                            1        L2   CO2
+      8 Nand gates
+
+1.2   Draw the truth table for a system which accepts 4 inputs and gives a high
+      output when more than two inputs are high.
+         The output Y is set to 1 when there are more than two inputs that
+      are high (1).
+         Specifically, the combinations that yield a high output are:
+
+          ●       A=0, B=1, C=1, D=1 (3 high)
+          ●       A=1, B=0, C=1, D=1 (3 high)
+          ●       A=1, B=1, C=0, D=1 (3 high)
+          ●       A=1, B=1, C=1, D=0 (3 high)
+          ●       A=1, B=1, C=1, D=1 (4 high)
+
+      A B C D Y (Output)
+
+      0       0     0     0    0
+                                                                                            1        L2   CO2
+      0       0     0     1    0
+
+      0       0     1     0    0
+
+      0       0     1     1    0
+
+      0       1     0     0    0
+
+      0       1     0     1    0
+
+      0       1     1     0    0
+
+      0       1     1     1    11       0     0   0    0
+
+      1       0     0   1    0
+
+      1       0     1   0    0
+
+      1       0     1   1    1
+
+      1       1     0   0    0
+
+      1       1     0   1    1
+
+      1       1     1   0    1
+
+      1       1     1   1    1
+1.3   Subtract the following numbers using 2’s complement.
+      15 from 13
+                                                                                   1   L2   CO2
+
+1.4   Construct the Booth recording of a multiplier for the following sequence.
+                                                                                   1   L2   CO2
+       101011111 1 1 11101010110
+      Soln: -1 +1 -1 +1 0 0 0 0 0 0 0 0 0 -1 +1 -1 +1 -1 +1 0 -1 0
+1.5   Simplify the following expression and write the prime implicates and
+      essential prime implicates. F(a,b,c,d)= πM(0,1,4,5,7,8,9,11,14,15)_dc(2,3)
+
+                                                                                   2   L2   CO2
+
+      Ploting on kmap-1m and EPI-1m
+1.6   With example, specify the significance of the overflow in binary addition
+      and binary subtraction?
+
+      Overflow occurs in binary addition when the result of adding two
+      binary numbers exceeds the range that can be represented with a
+      fixed number of bits.                                                        2   L2   CO1
+
+      Example: consider an 8-bit binary system:
+
+          ●       Binary Numbers:
+                     o A = 01111111 (127 in decimal)o   B = 00000001 (1 in decimal)
+
+      Addition:
+
+         01111111
+      + 00000001
+      -----------
+        10000000          =1mark
+
+      Overflow in binary subtraction occurs when the result of subtracting
+      two numbers yields a result that is outside the representable range.
+
+      Example: Consider the same 8-bit system:
+
+          ●   Binary Numbers:
+                 o A = 00000000 (0 in decimal)
+                 o B = 00000001 (1 in decimal)
+
+      A = 00000000 (0 in decimal) B = 01111111 (127 in decimal)
+        00000000
+      - 01111111
+       -----------
+      10000001 (which is -127 in decimal)
+      If A (0) is less than B (127) and the result appears to be a large
+      positive number (10000001), it indicates that an underflow occurred
+      because the expected result (negative value) cannot be represented
+      correctly in the range. ==1mark
+1.7   Represent the number + 35.25 using 32 bit(single precision) floating point
+      representation.
+          35 in decimal = 100011 in binary. Convert the fractional part
+             (0.25) to binary: 0.25 in decimal = 0.01 in binary
+              35.25 in binary is 100011.01(2) We need to express
+                    100011.01100011.01100011.01 in normalized form:
+                    Move the binary point 5 places to the left:                     2      L2     CO1
+
+                  o   1.0001101×25 bias is 127, so 127+5=132
+                  o   132 in decimal = 100001001000010010000100
+
+                      Mantissa: 00011010000000000000000
+
+                      0 10000100 00011010000000000000000
+
+                                             PART B
+Sl.                                                                                Mark   * L1-
+                                                                                                  *CO
+No                             Answer all the questions                             s      L6
+1a    A temperature control system has four inputs: A (Temperature High), B         4      L3     CO2
+      (Temperature Low), C (Humidity High), and D (System Active). The
+      system should activate under these conditions: When the temperature is
+      high and humidity is low (A=1,B=0,C=0). When the system is active
+      regardless of temperature and humidity (D=1). When the temperature is
+      low and humidity is high (B=1,C=1). Create a truth table, fill in a K-map,and find the simplified expression for the system activation condition.
+Conditions for Activation
+
+    1. Condition 1: A = 1, B = 0, C = 0 (Temperature High,
+       Humidity Low)
+    2. Condition 2: D = 1 (System Active)
+    3. Condition 3: B = 1, C = 1 (Temperature Low, Humidity High)
+
+            Y (System
+ABCD
+             Active)
+
+0    0     0    0     0
+
+0    0     0    1     1
+
+0    0     1    0     0
+
+0    0     1    1     1
+
+0    1     0    0     0
+
+0    1     0    1     1
+
+0    1     1    0     1
+
+0    1     1    1     1
+
+1    0     0    0     1
+
+1    0     0    1     1
+
+1    0     1    0     0
+
+1    0     1    1     1
+
+1    1     0    0     0
+
+1    1     0    1     1
+
+1    1     1    0     0
+
+1    1     1    1     1
+
+         Y=D+AB′C′+A’BCb    Design a single circuit for BCD to excess 3 and excess 3 to BCD converter       6   L3   CO2
+     using 4 bit parallel adder and appropriate gates)
+
+     Truth table -2 marks, circuit with brief explanation-4 marks
+
+2a   Using Modified Booth’s multiplication algorithm, multiply +9 with -6.       4       L3   CO1
+     (Note: +9 is the multiplicand and (-6) is the multiplier)b   Illustrate the design of a single decade BCD adder(decimal adder)   6   L2   CO2
+    and show the truth table
+
+    =2m
+
+    from the Kmap
+    ADD_6 = P3P2 + P3P1Including the Carry output (K), in the expression, the Boolean
+    expression for adding the correction is
+    ADD_6 = K + P3P2 + P3P1
+    =2m
+
+    =2m
+3   Explain the process for calculating carry in a Carry Look Ahead adder,        10   L3   CO2
+    design a four bit carry look ahead adder(derive the equations) How does
+    propagation delay in a Carry Look ahead Adder compare to that of a parallel
+    adder?
+    Si = Xi .xor. Yi .xor. Ci
+    Ci+1 = Xi Yi + Xi Ci + Yi Ci
+         = Xi Yi + Ci (Xi + Yi)
+         = Xi Yi + Ci (Xi .or. Yi)
+    Let us represent, XiYi by Gi (also called as Carry generate function) &
+     Xi.or.Yi by Pi (also called carry propagate function)
+         = Gi + Ci Pi
+    C1 = G0 + P0 C0
+    C2 = G1 + P1 C1 = G1 + P1 G0 + P1 P0 C0
+    C3 = G2 + P2 C2 = G2 + P2 G1 + P2 P1 G0 + P2 P1 P0 C0
+    C4 = G3 + P3 C3 = G3 + P3 G2 + P3 P2 G1 + P3 P2 P1 G0 + P3 P2 P1
+    P0 C0 = 5 marks
+
+                 Circuit-3marks Propagation delay comparision-2 marks
+                                      Or4   A home security system has four sensors: A (Garage Door Open), B (Front          10   L4   CO2
+    Door Open), C (Back Door Open), and D (Alarm Active). The alarm
+    activates in the following cases: If any door is open (at least one of A,B, or
+    C is 1). or If the alarm is already active (D=1).
+
+    Consider for both if conditions also
+
+      Task: Develop a truth table, and using Quine Mc-cluskey method, obtain
+    the essential prime implicants for generating the alarm.
+
+    To create a truth table for the home security system based on the revised
+    conditions, we need to clarify how the alarm activates under the specified
+    conditions: Inputs:
+
+    - A: Garage Door Open (1 if open, 0 if closed)
+
+    - B: Front Door Open (1 if open, 0 if closed)
+
+    - C: Back Door Open (1 if open, 0 if closed)
+
+    - D: Alarm Active (1 if active, 0 if inactive) Conditions for Alarm
+    Activation: The alarm activates if:
+
+    1. At least one door is open: ( A or B or C) (true if any of A, B, or C is 1)
+
+    2. Or if the alarm is already active: ( D = 1)Final Logical Expression:
+
+    Thus, the new alarm state ( D= (A or B or C) or D
+
+    This means that the alarm will be active if:
+
+    - Any door (A, B, or C) is open
+
+    - The alarm is already activeTruth Table:
+
+|A|B|C|D|              Dactive
+
+|---|---|---|---|-----------------------|
+
+|0|0|0|0|              0           |
+
+|0|0|0|1|              1           |
+
+|0|0|1|0|              1           |
+
+|0|0|1|1|              1           |
+
+|0|1|0|0|              1           |
+
+|0|1|0|1|              1           |
+
+|0|1|1|0|              1           |
+
+|0|1|1|1|              1           |
+
+|1|0|0|0|              1           |
+
+|1|0|0|1|              1           |
+
+|1|0|1|0|              1           |
+
+|1|0|1|1|              1           |
+
+|1|1|0|0|              1           |
+
+|1|1|0|1|              1           |
+
+|1|1|1|0|              1           |
+
+|1|1|1|1|              1           |
+
+System activates when A+B+C+D is active
+
+For And logic=m(3,5,7,9,11,13,15) System activates when A+B+C+D is
+active
+
+ad+bd+cd
+
+| A | B | C | D | Dactive|---|---|---|---|-----------------------|
+
+    |0|0|0|0|              0           |
+
+    |0|0|0|1|              1           |
+
+    |0|0|1|0|              1           |
+
+    |0|0|1|1|              1           |
+
+    |0|1|0|0|              1           |
+
+    |0|1|0|1|              1           |
+
+    |0|1|1|0|              1           |
+
+    |0|1|1|1|              1           |
+
+    |1|0|0|0|              1           |
+
+    |1|0|0|1|              1           |
+
+    |1|0|1|0|              1           |
+
+    |1|0|1|1|              1           |
+
+    |1|1|0|0|              1           |
+
+    |1|1|0|1|              1           |
+
+    |1|1|1|0|              1           |
+
+    |1|1|1|1|              1           |
+
+5   Draw the flow chart for restoring division algorithm and perform the   10   L3   CO1
+    division operation on the following unsigned integers:Dividend:11
+    Divisor:5Flow chart 4+ solving 6 marks
+
+Course Outcomes: After completing the course, the students will be able to:-
+CO 1   Apply design requirements for digital systems and Computer organization
+CO 2   Analyze the models used for designing various Combinational and Sequential
+       circuits
+CO 3   Develop applications of synchronous sequential networks using flip flops,
+       registers and counters
+CO 4   Design optimized modern processors and memories for given specificationsCO 5         Investigate techniques of digital system design for building industry relevant
+               real-world systems using electronic components and modern tools
+
+                   Particulars    CO1   CO2    CO    CO4    CO5    L1   L2   L3   L    L    L6
+                                                3                                  4   5
+  Marks
+                  Test     Max    18     42                             16   34   10
+Distribution
+                           Mark
+                            sR V College of Engineering
+                  Department of Computer Science and Engineering(data science and cyber security)
+                                      ADLDCO CIE - II : Question Paper
+
+   Course:          Applied digital logic design and computer          Semester: 3rd BE
+(Code)CS234                        organisation
+      AI
+Date : Dec 2024               Duration : 120 minutes        Staff :DD/PSB/KS/KBR/KB
+Name :                       USN :                          Section:      A/B/C/D/E/CD/CY
+
+                                         PART A
+Sl.                                                                             Mark      * L1-
+                                                                                                  *CO
+No                               Quiz questions                                  s         L6
+1.1   Develop a logic circuit to implement the functionality of
+      an XOR gate utilizing a 2:1 multiplexer, demonstrating                      1        L3     CO2
+      the integration of combinational logic with minimal
+      hardware resources.
+1.2   Calculate the maximum achievable operating frequency                                 L3
+      of a MOD-32 ripple counter, given that the propagation
+      delay per flip-flop is 50 ns, while considering the                         1               CO3
+      cumulative effect of sequential flip-flop delays on the
+      circuit's performance.
+1.3   What techniques can be employed to mitigate the issue of                             L3
+      "0" and "1" catching in digital circuits, ensuring reliable                 1               CO3
+      signal integrity and robust operation?
+1.4   Derive the Characteristic Equation for JK Flip-Flop                         1        L2     CO3
+1.5   A D-Flip Flop can be converted into T-Flip Flop by using                             L3
+      additional logic circuit, Obtain the Boolean expression for                 1               CO3
+      additional logic circuit
+1.6   Why are asynchronous inputs referred to as overriding                                L3
+      inputs, and how do they directly affect the state of a flip-                1               CO3
+      flop irrespective of clock signals?
+1.7   Draw the circuit diagram of a 4:16 Decoder using 3:8                                 L2
+                                                                                  2               CO3
+      decoder
+1.8   Draw the Logic diagram for Master-Slave Flip-Flop with                               L2
+      Data Lockout and How can a data lock-out flip-flop be                       2               CO3
+      symbolically distinguished from a pulse-triggered flip-flop
+      in digital circuit representations?
+
+                                         PART B
+Sl.                                                                             Mark      * L1-
+                                                                                                  *CO
+No                          Answer all the questions                             s         L6
+1a    Design and implement an asynchronous Mod-6 up                              5         L3     CO3
+      counter, detailing the circuit configuration, flip-flop
+      connections, and state transitions, and provide the
+      corresponding clock timing diagram that illustrates the
+      sequential counting behavior
+b     Elucidate the operational principles of a synchronous 2N                    5        L3     CO3
+      twisted ring counter, detailing the sequential statetransitions, feedback mechanism, and the role of flip-
+     flops in generating the desired counting sequence
+2a   Design a digital logic circuit to implement the Boolean        5   L3   CO2
+     functions        F1(a,b,c)=πM(0,3,5,6,7)        and       F2
+     (a,b,c)=πM(2,3,4,5,7) using a 3-to-8 decoder, ensuring
+     minimal usage of input gates. Provide a step-by-step
+     analysis of how the decoder outputs can be utilized to
+     construct the functions efficiently, while optimizing the
+     number of gates used for combining the relevant terms.
+b    Design     and     implement    the    Boolean      function   5   L3   CO2
+     f(A,B,C,D)=∑m(0,1,2,4,6,9,12,14)      using      a    4-to-1
+     multiplexer. Provide a detailed explanation of how to map
+     the min terms to the MUX inputs, and outline the
+     necessary logic for selecting the appropriate input lines
+     based on the function's truth table.
+3a   Design a 4bit Universal shift register for the operations      5   L2   CO3
+     specified in the table
+     S1 S0 Register Operation
+     0 0 No Change
+     0 1 Shift Right
+     1 0 Shit Left
+     1 1 Load the parallel data
+b    Detail the working of 1:4 Demultiplexer and with this,         5   L3   CO2
+     Design and implement a 1:8 demultiplexer utilizing two
+     1:4 demultiplexers, ensuring correct signal routing
+     through hierarchical selection lines. Provide a detailed
+     circuit configuration that demonstrates how to cascade
+     the two 1:4 demultiplexers, managing the selection logic
+     to achieve the required output channels.
+4a   Explain the phenomenon of a race-around condition in           5   L3   CO3
+     sequential circuits, particularly in JK flip-flops, and
+     describe how this issue is mitigated using a master-slave
+     JK flip-flop configuration. Additionally, illustrate the use
+     of a gated SR latch to control the input signals, providing
+     a detailed logic diagram and timing waveforms to
+     demonstrate the elimination of the race-around condition
+     in the master-slave configuration.
+b    Propose the block diagram to realize a 4-bit Comparator,       5   L3   CO3
+     using 1 bit comparator with iterative approach, with all
+     the connections and indicating clearly the meaning of the
+     inputs and outputs. Demonstrate, the working of the
+     circuit with example data of 4 bit numbers. (No truth
+     table and derivations required)
+5a   Design a synchronous counter using positive edge               5   L2   CO3
+     triggered JK flip flops to
+     count 0→1→2→4→5→6→0→1→2....
+b    Design and implement an edge-triggered D flip-flop,            5   L2   C03
+     detailing the circuit configuration, input-outputrelationships, and the control mechanisms that ensure
+       synchronization with the clock signal.
+
+  Course Outcomes: After completing the course, the students will be able
+  to:-
+  CO 1 Apply design requirements for digital systems and Computer
+         organization
+  CO 2 Analyze the models used for designing various Combinational and
+         Sequential circuits
+  CO 3 Develop applications of synchronous sequential networks using flip
+         flops, registers and counters
+  CO 4 Design optimized modern processors and memories for given
+         specifications
+  CO 5 Investigate techniques of digital system design for building industry
+         relevant real-world systems using electronic components and modern
+         tools
+
+                Particulars    CO1   CO2   CO3   CO4   CO5   L1   L2   L3   L4 L5   L6
+  Marks
+Distribution   Test    Max           16    44                     20   40
+                       MarksCI€-if
+
+ 1.1
+
+                                                                      s
+                                                 •.•              j       =@
+                                          .5 ft~
+
+                                          I
+                                          ---
+                                                               4MH-
+                                    - - n.s Xb
+                           M    llL - 50
+
+                                                                                   ~     ~11,-
+                                                                         _~
+                                                                Cl>VI be
+                                   coJtJ.fa t,r-
+                                                          0~
+
+                 and       f,&
+                                                                     ~ f > ~i      ffipl-fu-p
+       ()'t,                                                 f l . }
+                                                      ed D -
+                                                                                        tI- lc)OY1'r
+       l~      kif     E$ 1lfl''}
+                                  .o
+                                          StY
+                                       oJ- HiJ +
+                                                 i             1                a11td
+                                                                                                 {!) MM~
+                                                                                                         .
+                    ;t t) a .. l.                                               ---
+       COY\'1'dlr +                                ~ •
+                       8 \A  b  i  r e  cWlX LL
+         M ~clf r
+                  UlP
+       cC
+
+                                                 Y)
+                             p        ~IALLJiO
+I·~            .1K. ~p 1-t'G
+                           t-
+                                         -                                         (!) Mao¥.•
+                       ~        =- 1"<!J +- K~
+
+I· 5
+                 b::. T~ +-
+                            T~                                                          (D Matj;
+                    -- T®6J._a-rt            Conne<led l;;" o. h-:'sl-a.lo/,t_
+                                                           f:rtJ~
+       l\~~dnrvnoUA
+                                                    art ovein{d..t, oftfer- ~pt>J-?.
+                                                                                      . aud
+             J ht1,1Le ~e                                                                0
+
+       ab-o ~pau- 141                          1 °' ~lf-toP. frreJpet.Ave. '!- CJ.Dtl1 ~ rllf.
+                                                                                   -- (!) M~-rt-i
+
+                   .,
+                                    3~-S
+
+              1'
+              y-
+                             G
+
+                          ...
+                        ,___. '--
+                        ..__'""                    I
+                                                   I
+                                                       I
+                                    6      _...,u;
+
+t. g
+        J               s
+
+                                                                    )2__    ij
+                          IC..
+        K_
+                         Mt1t+tY                                    .rl"'-ve.
+
+                                               3           7~
+
+                                                           7~   L-----
+
+                                        7)Ji       L-Ocf-~          ~~,evJoJ:tvip~i.:r- e,        -
+                                                                   TE~r
+                                                                         .__
+
+                          ..3
+                         ~~£,
+                                             '     -         e_ ~e._d
+                       g                               r,
+
+                     To
+
+                                                                                               CL~
+                                                                CUL...
+                            CUL
+
+                                                                                                    t            1 x\}- 1- o}
+                                                                   6     +-                                                        ®MO-~.
+                                                  l\                                                    1),l~n:\n-)
+             L        1....              ..?:,
+                                                            n:_JL.rU___,1
+                                                                                    L
+                    :
+       e1t ~+_r__,1
+       £9o           L        t: o l 1... 1D I .t \ o                                                       1,"9~ yQ   1°~ --®         tv\Cl'ri:J
+
+                              I 1... L t O O
+                                                    O
+       4'    0       0
+                                                   Q
+                                         0011..il                                                                           plAc-t •
+       c1,_ao                                                             L         clfi.. s fY'cJ
+                                         2. .3 Cf 5
+             0       .1
+
+                                                                                                                       c...
+                                                                                                                 I
+                                                                                                                                       I
+i-.h             ,
+                                                                                                                .
+                 Lt                4--             ~1                      %                De...       t                  j.,.D
+
+                          r-....
+                                                              --l
+                                                               J               "j
+                                                                                      --1:>
+                                                                                        .
+                                                                                                                     - --
+                                                                                                                       .
+                                                                                                                            6>~L
+                                    ~g,                                                         g}dlr
+                                                      0               (!J    +- Xvu' h'o.J
+                         ()         0
+        -                                   -      -          - - -
+    '
+                                   0               0              0
+0 J1.                    i                                                                                                       utM.r-
+                                                  0               a                              N fh-{~ 3"o~ND1-1 [D
+(9 J-7-                 j_          1-
+                                                                  0                           tv N = lt -'·
+® ..n                               j_            1                                                                                 u~
+                        1                                         1-                             J N ::. :)_ Cc.,) ::. g lo
+                                                   1.
+{i) S7..-                .1         i
+                                    j_             1.             1..                                   'J:e(£UJ111\ll
+                                                                                                                                      ®
+@   £L                   0
+                                                   j_             1._                                                               Ma.¥~•
+(§) F-                   a          0
+                                                                  i
+@       .:.t-7...                   0              0                                            s+-ili"" •
+                             0
+                                                   0              0          k--- ~'h'oJ
+ ® SL-              -
+                              0
+                             - - -
+                                        0                 -                 - -
+
+                                            foII.ti~~ J.,.Lti                     (M    'V!l d :a i, e ~ c lt "· .G --1w,J   ru,i
+
+                                  LUI                                                                                        '1, '!Jf
+                                                                                               ~..;...,o..1                       Cnwe~~.
+                                  ~pi,J-                      •
+                                                                                                                           4-)
+                                  Fr (o.ib,c)                     AM [q 3,         S f, +)~ ~M (1-
+                                                                                          1
+                                                                                                                   1
+                                                                                                                       ~
+
+                                                                                                   -=) ~'fY) ( OJ i 1      6)
+                                                              = flt-Ji [ ~I 3, ~, r, -;;-
+                                                                                          )-
+                                  r (a, 0, c)
+                                   J-
+                                                                                                                L-- (!)M
+                                                                                                                         a.~
+
+                                                                  1.
+                                                                                                         &I : m 1 + M ~+ w,
+                        A-                                        J.
+                                                 3~'8
+                                                                  3                                          ~-;a..:   rno.,.M1"'-""'
+                                            -AGhve.               4
+                        (__                                       s-
+                                                tYLioclu-}                                              Leg--iC.             Y?;\W\     -6)
+                                                                                                                                         ~\;\a_~g .
+
+                                                                                                       jtJE~ f=;'d1,- "'9L                r.r
+                    1 1 > c tc l! v e .. Ml rJMcJ                           wa.y- r           ~plA}-
+                                                                                                                   c~                       CAI\
+                                                                                       Jn°"" .~...., ~tt.L }L l tu
+        _N_o l_ f
+               ._ ·
+                                                                        t;,
+                        lrJV\Vt!rf- 'Po~
+                                                       ~nvJ
+                                                                                     !i                  •
+                        CVl~  '1                      -l+i8'h !)e wclox j; () "- jtL're     'I,         T)-       [3 ,....          ½- .rb
+               0 0 ..3 G) r © 1
+             8 G)
+                    ,, e        It)                          t;                    1.r
+     A
+                                                                                   0
+             A     1            A        0          1.           0        j_.
+                                                                                         ® tv\(A'Yt...t
+
+                         A              :ro
+                          1r            'I:j
+
+                          "A             12..Lr~    l
+                            O             > Mui..
+         B                                ,         so
+         -r-1',u----,f~
+                        C
+
+                                    -1.,,      ~,   s.o
+                                          .f:r- r., 't
+                                             "' •
+                                              +- ~u1..
+                                                    _
+             '-----'""'\__E _
+
+                       .,__...__..~                                  fo
+                         &13        r, 4~'                           ~y:\
+                        ~L          J). t-'-UJ\                           Ml]\
+                                      3
+                                                         <Sic,
+                                      so ~.                ?lj_       C,4)   .s,
+                          l:..).-
+
+s,~o
+                                 q"t: 4               -~L
+                                     Dl-tnU1(
+                                                       -12-
+                                 &
+                                                                        c; ~p ~n~J1.
+                                     ~j_       ~:t)
+                                                       -'Ls
+                          8
+
+                          e                                                                                  @Ma~.
+                                     ~j_    ~o                 ½y
+                                 D;" 1.'. Lt                  '11-
+                                         DtMUl.
+                                                         -'f6
+                                     E                   -'f-=1--
+
+                                                                                                     .            HIG, H Joy
+                                                                                  n;e_ c(.()d; ~be
+
+It, a      l<C\l-€..   a-rou.V\d M~V
+                                           \i
+
+                                       fy,.11\ lW
+                                                      eoiltinl-\Oll-1
+
+                                                             Pt:~ f-Nop~aJ        iOYl  4 ,      ,t;i J.         Cai.Ml!. {tu
+
+                ~r        cluircJie,vJ
+                                                                            Uott,;, "'4
+                                                                                                                 r+ :r..d~
+                                      c-+;"uou.il             ,,,HM~ ,tu ~-
+           _:z_..i- ie to8 filR
+
+           K   ---+
+                                                                          S[.o.1/fL.
+
+                                                                                                         I<
+                                                                                                                         -
+                                           _____..0--
+                                                                                        c..uc   T
+                                                                                        _fl_    0        0              q    f,lOC~
+
+    l1J;   '                                                                                    0        j__      0     .1. ~ti-
+                                                                                        Jl_
+                                                 -_L._-1---                                                       j..   0    .cu-
+                                 +---t--
+    :r     +      11- t-----t---                                                                1        0
+                                                                                                         1-
+                                                                                                                                 l..t..
+                              +--~-4                                                            i
+   " ":---r:.._---~---~-l-_---                                                            O      X           X          <f ct~
+                  ~ft~ "1c(t
+                   Iott~ I
+                                                                                                                  (J).M·-o.a-I', .
+                                                               I                              --.>~
+                                                                 .sl"w ,,fp/2'·-0 i    lt,i    CJ,wvlfltf~
+
+            -lro        ~o
+                                                             Gir f~     J..:r-
+                                      A-c        '2,o
+                                  -                              Cf)    0
+                                      (9         0           0
+                                                 L           0   0     (f)
+                                      0
+                   4t                                                  0
+           ~r-          kT·           L          0       @ 0
+                                                                 (0    O·
+                                      j__         i          0
+
+                                            qr~ A-B
+                                                        A.8+Ai
+                                                   =- (A@i)
+                                            lr          All
+
+                                                        Lr,
+                                                           .                                       @J U·p Flop ft> l64Jf-
+                                                                                                                                       wlt
+                                             (DurJ                   . '.       u,e.
+       6 -> Lt                    tW -U-l~r-
+                                          D.'1CD-
+       (W       ,Abolt& ~e~U
+
+           +-
+                        .3            K
+      0                 0            X
+()
+                        i..          7-
+ 0    1.
+                                     1.
+      0                 X
+Ji
+                         X           V
+ j_    L
+                                                                                       k 1.
+                                                                       1,., k .i.. 'I1
+
+                              0
+                                      -- - -
+                                          t)          0    1...          (J          X         0
+                                                                                               1- X
+                                                                                                    )(
+                                                                                                         X
+                                                                                                          1.. )(
+                                                                                                               1
+      0         0                                                      ()            X
+                                          0           j_       0                                         0     )(
+                              1-.                                        1. X                  X i
+                0                                              0                                               X
+                                           1-         0                                        X X.      X
+                                                                         X           'i
+       0        i.            D                        X       X                                               X
+                                                                                     ()        0 X
+                    L         .L                                         '/.                             X    1
+       0                                   1.         O 1                            0
+                                                                                               i- X
+                              0                                          'f                              0    X
+                    0                                 1- 0                                     X   1..
+          L                                    1...                      X           1-                  x     X
+                    0          L
+           1-                                  O      O o                            X         X    X
+                                                                            X
+                    L 0                                        X
+          L                                    X       X
+                        L      J..
+           L
+                                                                                                              Bo                  I\   1--o
+                                                                                                                C.0     I
+                                                                                                                        -.
+                                                                                                             01.-r--t--
+                                                                                                                                       0
+                                                                                                                    1   X
+
+                                                                                                             L .1-.         y..    ;c -o
+
+                                                           ~, N)i8t,
+                                                                                     J1 =   &n
+                                                                                                   10                   OI        II   ID
+                                                                                          I\
+                                                               ~\ e,O 01
+                                                                   0 l          )Q
+
+                                                                   j___ )' J.
+
+                                                                                                                        i:;o = I...
+  .,___ To                     IJ,                                   1 )_
+
+                            ~- f>                          - [:?
+      i-=
+            Ko
+                 ..-
+                                t:; I
+                                        ~,   --
+                                                                 ,
+
+                                                                               -
+                                                                               ~2,,
+1--                    j_
+                                                                        J,.-
+
+                                                         -__..
+
+                                             ---4--
+
+                                                        ~""C.             C?n°'-9YO.\lv1      -®   Mo.~
+
+                                                                     ~'-'--·
+                                                                                      \l\f
+                                                           JJAp#
+                                                                      D        &        cf
+                                                        (jJ(
+                                                        _f1 0                  0       1._    --© Ma?J't·
+                                                                                \_      0
+                                                        .A---L 1
+                                                                       X
+                                                                                (Q_      Q"
+                                                          0R V College of Engineering
+                    Department of Computer Science and Engineering (Data Science & Cyber Security)
+
+                              ADLD & CO Improvement Test & Quz : Question Paper
+
+    Course Code    Course Name: Applied Digital Logic Design and            Semester :   3rd BE
+     CS234AI                 Computer Organisation
+ Date : 7th Jan 2025                Duration : 120 minutes   Staff :     DD/PSB/KS/KBR/KB
+ Name :                             USN :                    Section :     A/B/C/D/E/CD/CY
+                                            Part-A
+Sl.                                                                                      L1-
+                                                                                   M              CO
+no                             Answer all the questions                                  L6
+1      Program contains 500 instructions, out of that 40% of instructions                L2       CO4
+       requires 1 clock cycles, in the remaining 60%, 50 instructions require 2     2
+       clock cycles and the remaining requires 3 clock cycles for execution.
+       Find the total time required to execute the program running on a 1 MHz
+       machine.
+
+       (40% of 500= 200 x 1 clk cycle = 200 clks
+       Among 60% of 500, i.e 300, = 50 x 2 + 250 x 3 = 850 clks
+       Total clocks = 1050 clks, Time for 1clk = 1/1MHz = 1MicroSecond,)
+
+       Answer:
+       Hence Total Time = 1050 x 1Micro second = 1050 Micro seconds
+       Note: Give Marks, for the answer represented in any units like
+       seconds,nanoseconds,microseconds.
+
+2      Draw the block diagram of the Processor/CPU design with Three Bus            2     L3      CO4
+       Datapath.
+
+       Note: Give Marks for
+       Any equivalent diagram / as given in the reference book3   Given program perform the addition of two numbers and indicate the                2   L3   CO4
+    value of the flags CY, Z, OF and N (Note: H means, number is represented
+    in Hex)
+    MOVE #99H, R0
+    MOVE #8AH, R1
+    ADD R0, R1,R2 ; R0 + R1 -> R2
+
+4   The shift register shown in the figure is initially loaded with the bit pattern   2   L4   CO5
+    1010. subsequently the shift register is clocked, and with each clock pulse
+    the pattern gets shifted by one bit position to the right. With each shift,
+    the bit at the serial input is pushed to the left most position (MSB). The
+    number of clock pulses required to have the content of the shift register
+    1010 again is___
+
+                                  7 Clock Cycles:
+                        Serial Input = Q1.EXOR.(Q2.EXOR.Q3)
+                        Clk Si/p Q0 Q1 Q2 Q3
+                                   1     0 1 0
+                         1 1       1    1 0 1
+                         2 0       0    1 1 0
+                         3 0       0    0 1 1
+                         4 0       0    0 0 1
+                         5 1       1    0 0 0
+                         6 0       0    1 0 0
+                         7 1       1    0 1 0
+
+5   Register R1 and R2 of a computer contain the decimal values 3500 and 2                L3   CO4
+    2800. Find the effective address of the memory operand in the following
+    instructions
+    ADD +(R1), R5
+    ADD     (R1)-, R5
+    ANSWER TYPE 1: (IF STUDENTS TREAT BOTH INSTRUCTIONS ARE
+    INDEPENDENT AND NOT RELATED) AND IT IS OF 32 BIT CPU/MEM WORD
+    EA for First Instruction: 3504
+    (Reason- this addressing mode is of type, pre autoincrement addressing mode,
+    here R1 is a pointer,which increments by 4 and then used for fetching the data.Hence, adds used for fetching the data is 3504 )
+    EA for Second Instruction: 3500.
+    (Reason-this addressing mode is of type,post autodecrement addressing mode,
+    here first data is fetched, and then it will be incremented. So, address used for
+    fetching is 3500.)
+    (IF IT IS 8 BIT CPU/MEMORY WORD – ANS IS 3501/3500. ALWAYS TAKE
+    DEFUALT AS 32 BIT)
+    ANSWER TYPE 2: (IF STUDENTS TREAT BOTH INSTRUCTIONS ARE
+    RELATED) AND IT IS OF 32 BIT CPU/MEM WORD
+    EA FOR first instruction: 3504
+    EA For second instruction:3504
+    Note: Give Marks for correct anserer, reason is optional.
+
+                                              Part B
+1                                                                                       10   L4   CO5
+    Analyze the following circuit and write the excitation equations, derive
+    transition equations, compute excitation table, transition table and draw
+    state diagram. Is this a mealy or a moore model and why?
+
+2   Design and implement a serial adder using the Moore-type finite state               10   L4   CO5
+    machine (FSM) model, incorporating state transitions, output logic, and
+    input-output synchronization to achieve sequential bit-wise addition of
+    binary numbers.3   a. Discuss all the addressing Modes supported by the Processor   6   L3   CO4
+        instruction set, with an example instruction.
+                                                                     4b. Compare processor instructions and assembler directives. Indicate
+       meaning of EQU, DATAWORD, ORG.
+       Answer: Refer Notes
+       In addition to providing a mechanism for representing instructions in
+       a program, assembly language allows the programmer to specify other
+       information needed to translate the source program into the object
+       program. Such statements, called assembler directives (or commands),
+       are used by the assembler while it translates a source program into an
+       object program. Some popular directives are provided below.
+
+      EQU :     used to name the constant values, like #define statements in
+      C
+                               N EQU 10
+      Wherever N is referred in the program, it will replaced by 10, before
+      assembly program is converted to object program
+      ORIGIN: which tells the assembler program, where in the memory to
+      place the instructions that follow.
+                                ORG 100
+      ;It specifies that the instructions of the object program are to be
+      loaded in the memory starting at address 100
+      DATAWORD: used to declare a variable, which can hold a word,
+      with the initial value
+                   N: DATAWORD 150
+      Value 150 is stored in the variable N, of size one word, and name of
+      the variable is N
+
+4   a. Write Assembly Language Code snippets using Three and One 6                  L4   CO4
+       address instructions to evaluate the following expression with
+       suitable comments. Y= X3 + 24X- 45
+
+       1 address instruction                                                    4
+
+       MOVE X
+       MULT X
+       MULT X
+       STORE Z
+       MOVE XMULT 24
+        ADD Z
+        SUB 45
+        STORE Y
+
+        3 adds instruction
+
+        MULT      X,X,Y
+        MULT      X,Y,Y
+        MULT      24,X,Z
+        ADD       Z,Y,Y
+        SUB       45,Y,Y
+     b. Demonstrate with Machine Language / ALP code snippet, using
+         suitable memory layouts (stack frame), the passing and returning of
+         arguments to the subroutine using the stack.
+
+    Answer: Part a – any program is ok, only thing is instructions used should
+    satisfy 3adds and 1 adds, and achieve the answer. Not required to be
+    efficient.
+    3adds: 3M
+    1adds: 3M
+    Part B: Code snipped, to push one/multiple arguments to stack using
+    Mov/Push, calling a subroutine (pushing return adds on stack),Optional-
+    [save registers,access operand/argument,pop registers,save the result]
+    Return to the main program (pop from stack).
+    Code-2M,Diagram-2M
+5   Write ALP code snippets, for the following scenarios, with clear memory 10    L3   CO4
+    layout (Assume input numbers and the results are stored in the memory,
+    Processor supports direct/indirect operands and two address formats, all
+    the arithmetic and data transfer instructions are supported)
+        a. To find Sum and Average of ‘N’ 32 bit numbers.
+        b. To find Smallest of two 32 bit numbers
+
+    Answer:
+       A. Refer Notes/Ref book for adding N numbers, then use DIV
+          instruction / successive subtraction for finding the average (let the
+          student assume the place/reg where quotient is stored). Marks-
+          6Marks
+       B. Use Subtraction/Comparison instruction to compare the two
+          numbers, and use Branch. One such program is given. 4Marks
+          MOVE NUM1,R0
+          MOVE NUM2,R1
+          COMPARE R0,R1 ; OR CMP R0,R1 ; RO-R2 is done
+          Branch > 0 GREAT:
+          MOVE R0,RESULT
+          BRANCH SKIP
+
+    GREAT: MOVE R1,RESULT
+    SKIP:
+          END
+          Note: Give marks for any flag, either Carry or SignCourse Outcomes:
+  Marks            Particulars     CO1   CO2   CO3   CO4   CO5   L1   L2   L3   L4   L5   L6
+Distribution   Test/Quiz   Marks                      38    22        2    36   22USN      I I I I\J I I I ( I pI o j                            I2
+                                  RV COLLEGE OF ENGINEERING ®
+                         (An Autonomous Institution Affiliated to VTU)
+            III Semester B. E. Regular/ Supplementary Examinations Feb/Mar -2025
+                                     Computer Science Engineering
+                              .        Common to CD I CY I CS
+          APPLIED DIGITAL LOGIC DESIGN AND COMPUTER ORGANIZATION
+    Time: 03 Hours                                                  Maximum Marks: JOO
+    Instructions to candidates:
+         1. Answer all questions from Pa rt A. Par t A . qu e stions should be
+            answered in first three p a ges of th e answ e r book only.
+        2 . Answ e r FIVE full que stions from Pa rt B . In Pa rt B questi o n number 2
+            is compulsory . Answer any one full qu es tion from 3 and 4, 5 a nd 6, 7
+             and 8, 9 a nd 10.
+
+                                                     PART-A                                                M        BT       CO
+
+            Pe rform the operat ion ( +25) + (-18) a nd repre sent th e result in
+            an 8 - bit sign ed b ina ry for m a t u s ing two's compl em ent.                                02     2        1
+     1.2    Multipl y -9 and - 7 u sing Booth' s Algorithm. Rep res                            ent    the
+            numbers in 5 - bit bin ary for mat.                                                              01     3        2
+     1.3    Repres en t - 15.375 in JEF,£        754-  Single     Precision      form   at .                 01     2        1
+     1.4    In a 2 - var iable A: - f\.1 :1-p; how many min.t erms                            can      be
+            r e pre sented?                                                                                  02     2        1
+     1.5     What 1s the s ignificance             of  1xr ap pm.g      around       th  e   ed  ges    m
+             K- M ap s?                                                                                      01      1       2
+      1.6    How doe s the Qui n e- McClu skey me th od h andle d on't-c are
+             conditions?                                                                                     02      1        1
+      1.7    Show the steps to add two                 4  -  bir.   bin ary   nu   m  b ers    u  s ing   a
+             binary        par allel a dd er . Numbers : A = l0l0 A = 1010 and
+             B = 01118 = 0111                                                                                 02     2        3
+      1.8    What 1s a bis ta ble elem           ent,    a nd     h ow    1s  it   u sed     m     digital
+             circuits ?                                                                                       01        1        1
+       1.9    Differ  e nti a te b e tween  a SR  latc h   a nd   a  D  la tch .                              01     2        4
+       1.10 How does an edge- tri          ggered   flip -flop    differ   from    a  leve  l-tri  gge red
+              flip -flop ?                                                                                    01        1        2
+       1.11   Nam    e  the   logic   comp on  ent  oft en    u s ed   self-co   rrectin   g  count     er s
+              to d e tect error s?                                                                            02        1        2
+       1.12 What is the purp ose of a n ass embl e r direc                       tive   in    asse   mbl   y
+              la ngu age pro gra mmin g?                                                                      02        2        4
+       1.1 3 Wha t is the rol e of the in stru          c tion    re gister   (/ R)   in   a  CPU,     a nd
+               how does it diffe r fro m the progra m coun te r (PC) ?                                         02       2        4
+
+                                                        PART-B
+
+2      a         Expl a in lh e Q uin e -McClu s key m c lhod fo r s implif y ing Boolean
+                 expr essi ons . Use th e fun c lio n :
+                 F(A,B,C,D ) = l:(0, l ,2,S , 8,9, 10,11) .                                                   08         3
+        b        Explain the /HEE sla nd a rcts u se d for s in gle &, doubl e prec ision
+                 floatin    oint numb er re rcsc nt a tion with exam les.                                     08
+
+        a        Des cribe the o per a tion of a D flip -flop a nd a / K flip -flop
+                 implem ented as ed ge- tri gge red flip -flops . Expl a in their working
+                   'th truth tabl es and timin dia rams .-· · . . .. I Dron~""- ··
+         b           What is priority encoder? Design
+                     necessary diagram.               a 4 : 2 priority
+                                                                          encoder With ,---.-----. - --i
+                                                                                          08      3               3
+                                                     OR
+
+4        a           With a neat diagram explain 4 _ bit
+                     accumulator . Provide the truth tabl •     hparallel adder with
+                           .      1.                     e ior t e same
+         b           What 1s a mu tiplexer? Write a logic d.             ·               08        3              5
+                     using 4 input AND and OR gates.        iagrarn for B: 1 multiplexer
+                                                                                           08      3              4
+5        a           Define counter. Design a modS counter u ·        K t1·
+                           ·          •                          smg J 1p flo             08        3                 4
+         b           Expla1? the working of a 3 - bit shift 'tegister with      p. -
+                     neat diagram.              ·                           the help of a
+                                                                                            08        2               4
+
+6        a           Desi~n and explain 3 bit _binary Up-counter using T flip-flops.        12        4               4
+         b           Mention any four apphcat10ns of shift registers .                      04        2               4
+
+7        a           With a neat diagram of connections between the processor and
+                     memory, list and explain the basic steps needed to execute the
+                     machine instruction       Move LOCA, RO 1n terms of transfers
+                     between the comp on ents of processor, memory and some
+                     control command s.                                                   06            3                 2
+             b       What are addr e s s ing m ode s? Explain any five different types of
+                     addressing nodes wi th exa mples.                                    10              2               3
+
+                                                      OR
+
+    8        a        What is a subrouti n e-·;:, _;\n a lyze the use of call and return
+                      instructions in a subr o u tine with assembly language program
+                      code.                                                              06               3               3
+             b        Describe with an example, explain the usage of stack frame in
+                       nested subroutine . Also demonstrate how the main program
+                                                                                         10                   4               4
+                       calls subroutinel and subroutinel calls subroutine2 .
+
+    9            a    List the actions needed to execute the instruction ADD (R3), Rl.
+                      Write and explain the sequence of control steps for executing
+                      the same .                                                                 06           2               2
+                 b    State the importanc e of cache memory. Describe different types
+                      of cache mapping techniques with a neat diagram .                          10           2               2
+
+                                                      OR
+        10       a
+                       ~nalyze with an example how the complet e execution of the
+                       in~truction is carried out in the computer system?           06                        3               3
+                 b
+                       With the help of a n eat diagram explain the organization of
+                        (lK X 1) memory chip in detail.                             10                        3               4

@@ -1,0 +1,931 @@
+UNIT-II
+
+      STACKS
+           BY
+     Dr. Praveena T
+   Associate Professor
+R V College of Engineering
+       Bengaluru.CONTENTS
+                                                            Learning Objectives
+
+ By the end of the unit, students should be able to…
+         1. Learning objectives and prerequisite concepts
+         2. Stack definition, LIFO and terminology
+
+✔ Explain       the   LIFO        principle
+     3. Stack ADT and fundamental operations
+     4. Array implementation and C program
+                                             and Stack ADT.
+         5. Linked-list implementation and C program
+✔ Perform
+     6.        PUSH,
+        Comparison of         POP and PEEK operations correctly.
+                      implementations
+         7. Expression notation and operator rules
+
+✔ Implement
+         8. Infix-to-postfix conversion
+                        stacks using arrays and linked lists.
+     9. Infix-to-prefix conversion
+         10. Postfix expression evaluation
+
+✔ Analyze      overflow, underflow and operation complexity.
+    11. Parenthesis balancing
+         12. Tower of Hanoi and recursion
+         13. Extended applications and explicit stacks
+✔ Apply   stacks
+    14. Complexity,     to activities
+                             expression
+                    debugging,                   conversion and evaluation.
+                                      and assessment
+
+✔ Use stacks for parenthesis balancing and understand Tower of Hanoi.Why Do CONTENTS
+                                                                   We Need Stacks?
+
+Motivation      and real-world relevance
+         1. Learning objectives and prerequisite concepts
+     2. Stack definition, LIFO and terminology
+         3. Stack ADT and fundamental operations
+         4. Array implementation and C program
+
+✔ Many    problems require access to the most recently added item first.
+         5. Linked-list implementation and C program
+    6. Comparison of implementations
+         7. Expression notation and operator rules
+
+✔ Stacks       naturally
+     8. Infix-to-postfix conversion model nested and reversible activities.
+         9. Infix-to-prefix conversion
+         10. Postfix expression evaluation
+✔ Examples:         undo/redo, browser back button, function calls, recursion, syntax checking.
+    11. Parenthesis balancing
+         12. Tower of Hanoi and recursion
+
+✔ The14.restriction          to one access end makes stack operations simple and efficient.
+         13. Extended applications and explicit stacks
+         Complexity, debugging, activities and assessmentLIFO  Principle
+                                                                       CONTENTS
+
+       Core discipline of a stack
+             1. Learning objectives and prerequisite concepts
+             2. Stack definition, LIFO and terminology
+✔   LIFO =3. Last-In,              First-Out.
+               Stack ADT and fundamental     operations
+                                                                                                 40
+✔
+            4. Array implementation and C program
+    Insertion     and implementation
+            5. Linked-list  deletionandoccur    C program only at the TOP.
+                                                                                                 30
+✔
+            6. Comparison of implementations
+    The last7. Expression
+                element             pushed is the first element popped.
+                             notation and operator rules
+
+✔   Analogy:       a pile of plates — the top plate is removed
+            8. Infix-to-postfix conversion                                                       20
+            9. Infix-to-prefix conversion
+
+    first. 10. Postfix expression evaluation                                                     10
+             11. Parenthesis balancing
+             12. Tower of Hanoi and recursion
+             13. Extended applications and explicit stacks
+             14. Complexity, debugging, activities and assessment                 POP
+                                                                                  40 is removed firstStack  ADT
+                                                              CONTENTS
+
+   What vs How
+          1. Learning objectives and prerequisite concepts
+          2. Stack definition, LIFO and terminology
+
+✔ An 4.Abstract         Data Type defines the data behaviour and supported operations, not the
+          3. Stack ADT and fundamental operations
+       Array implementation and C program
+          5. Linked-list implementation and C program
+    implementation.
+       6. Comparison of implementations
+          7. Expression notation and operator rules
+
+✔ Typical       operations: PUSH, POP, PEEK/TOP, isEmpty and isFull.
+          8. Infix-to-postfix conversion
+     9. Infix-to-prefix conversion
+          10. Postfix expression evaluation
+
+✔ The11.same      ADT
+         Parenthesis balancingcan be implemented using an array or a linked list.
+          12. Tower of Hanoi and recursion
+          13. Extended applications and explicit stacks
+✔ ADT     improves
+    14. Complexity,             modularity
+                    debugging, activities and assessment because client code depends on operations rather than
+
+    representation.StackCONTENTS
+                                                                   Terminology
+
+    Essential vocabulary
+          1. Learning objectives and prerequisite concepts
+          2. Stack definition, LIFO and terminology
+
+✔ TOP:   position/reference to the most recently inserted element.
+          3. Stack ADT and fundamental operations
+    4. Array implementation and C program
+          5. Linked-list implementation and C program
+
+✔ PUSH:    insertion
+    6. Comparison            at TOP.
+                  of implementations
+          7. Expression notation and operator rules
+          8. Infix-to-postfix conversion
+✔ POP:   deletion
+    9. Infix-to-prefix       from TOP.
+                       conversion
+          10. Postfix expression evaluation
+
+✔ Overflow:        insertion attempted when a fixed stack is full.
+          11. Parenthesis balancing
+     12. Tower of Hanoi and recursion
+          13. Extended applications and explicit stacks
+
+✔ Underflow:          deletion/access
+     14. Complexity, debugging,                       attempted when the stack is empty.
+                                activities and assessmentPUSH  Operation
+                                                                        CONTENTS
+
+     Algorithm
+              1. Learning objectives and prerequisite concepts
+
+✔ Step3. Stack
+              2. Stack definition, LIFO and terminology
+         1: Check          whether
+               ADT and fundamental operationsthe stack is full (array implementation).
+              4. Array implementation and C program
+
+✔ Step5.6. Linked-list
+           2:   Increment              TOP.
+                       implementation and C program
+           Comparison of implementations
+              7. Expression notation and operator rules
+
+✔ Step8. Infix-to-postfix
+         3: Storeconversion
+                          the new item at stack[TOP].
+              9. Infix-to-prefix conversion
+
+✔ Time
+              10. Postfix expression evaluation
+         complexity:
+     11. Parenthesis balancing O(1).
+              12. Tower of Hanoi and recursion
+              13. Extended applications and explicit stacks
+              14. Complexity, debugging, activities and assessmentPOP Operation
+                                                                  CONTENTS
+
+     Algorithm
+             1. Learning objectives and prerequisite concepts
+
+✔ Step3. Stack
+             2. Stack definition, LIFO and terminology
+         1: Check          whether
+               ADT and fundamental operationsthe stack is empty.
+             4. Array implementation and C program
+
+✔ Step5.6. Linked-list
+           2:   Read         stack[TOP].
+                       implementation and C program
+           Comparison of implementations
+             7. Expression notation and operator rules
+
+✔ Step8. Infix-to-postfix
+         3: Decrement     conversion TOP.
+             9. Infix-to-prefix conversion
+
+✔ Step11.4:
+             10. Postfix expression evaluation
+             Return
+         Parenthesis        the removed element.
+                     balancing
+             12. Tower of Hanoi and recursion
+
+✔ Time   complexity:               O(1).
+     13. Extended applications and explicit stacks
+     14. Complexity, debugging, activities and assessmentPEEK /CONTENTS
+                                                                        TOP Operation
+
+    Non-destructive access
+          1. Learning objectives and prerequisite concepts
+
+✔ PEEK
+          2. Stack definition, LIFO and terminology
+            returns
+     3. Stack             the element
+              ADT and fundamental operations currently at TOP without deleting it.
+          4. Array implementation and C program
+
+✔ Useful     when         an    algorithm
+     5. Linked-list implementation and C program
+     6. Comparison of implementations
+                                                 needs to inspect the next item to process.
+          7. Expression notation and operator rules
+
+✔ On an     emptyconversion
+     8. Infix-to-postfix stack, PEEK causes an underflow condition.
+          9. Infix-to-prefix conversion
+
+✔ Time
+          10. Postfix expression evaluation
+         complexity:
+     11. Parenthesis balancing O(1).
+          12. Tower of Hanoi and recursion
+          13. Extended applications and explicit stacks
+          14. Complexity, debugging, activities and assessmentOverflow and Underflow
+                                                                   CONTENTS
+
+   Error conditions
+         1. Learning objectives and prerequisite concepts
+
+✔ Overflow
+         2. Stack definition, LIFO and terminology
+     3. Stack ADT occurs      when
+                  and fundamental operationsPUSH is performed on a full fixed-size stack.
+         4. Array implementation and C program
+
+✔ Underflow           occurs        when
+     5. Linked-list implementation and C program
+     6. Comparison of implementations
+                                                POP or PEEK is performed on an empty stack.
+         7. Expression notation and operator rules
+
+✔ Array     stack:conversion
+     8. Infix-to-postfix full when TOP = MAX − 1.
+         9. Infix-to-prefix conversion
+
+✔ Empty
+         10. Postfix expression evaluation
+           stack:
+    11. Parenthesis     TOP = −1 (common convention).
+                    balancing
+         12. Tower of Hanoi and recursion
+         13. Extended applications and explicit stacks
+         14. Complexity, debugging, activities and assessmentArray Implementation
+                                                                                CONTENTS
+
+            Static implementation
+                   1. Learning objectives and prerequisite concepts
+                   2. Stack definition, LIFO and terminology                                               40
+✔ Use an array      stack[MAX]
+          3. Stack ADT                      and an integer TOP.
+                       and fundamental operations
+                   4. Array implementation and C program
+                                                                                                           30
+✔ Initially TOP
+                   5. Linked-list implementation and C program
+                      = −1.
+            6. Comparison of implementations
+                   7. Expression notation and operator rules                                               20
+✔ Array representation                 is
+          8. Infix-to-postfix conversion
+          9. Infix-to-prefix conversion
+                                          simple and cache-friendly.
+                   10. Postfix expression evaluation                                                       10
+✔ Main limitation:         maximum capacity is fixed at creation time.
+          11. Parenthesis balancing
+                   12. Tower of Hanoi and recursion
+                   13. Extended applications and explicit stacks
+                   14. Complexity, debugging, activities and assessment
+
+                                                                                                 TOP
+                                                                                                 top = 3Linked-List Implementation
+                                                              CONTENTS
+
+                                                                      ✔ Use a fixed-size array and a TOP
+         1. Learning objectives and prerequisite concepts
+         2. Stack definition, LIFO and terminology                       variable.
+#define    MAX 100
+     3. Stack ADT and fundamental operations
+int 4. Array
+   stack[MAX],             top
+              implementation     =program
+                             and C  -1;                               ✔ PUSH and POP both update TOP.
+         5. Linked-list implementation and C program
+         6. Comparison of implementations
+void push(int            x) {
+      7. Expression notation and operator rules                       ✔ Check boundary conditions before
+  if (top      == MAX-1)
+      8. Infix-to-postfix conversion printf("Overflow");
+
+  else9. Infix-to-prefix
+          stack[++top]   conversion
+                                    = x;
+      10. Postfix expression evaluation
+                                                                         accessing the array.
+}     11. Parenthesis balancing
+         12. Tower of Hanoi and recursion                             ✔ This implementation is suitable when
+int pop(void)         {
+         13. Extended applications and explicit stacks
+       14. Complexity, debugging, activities and assessment
+   if (top == -1) return -1;                                             maximum size is known.
+   return stack[top--];
+}Array Stack – CCONTENTS
+                                                                Implementation
+
+     Dynamic implementation
+            1. Learning objectives and prerequisite concepts
+
+✔ Each2.node       contains
+        Stack definition,             data and a link to the next node.
+                          LIFO and terminology
+            3. Stack ADT and fundamental operations
+            4. Array implementation and C program
+✔ TOP5.points        to the first
+       Linked-list implementation         node.
+                                  and C program                                    TOP →
+            6. Comparison of implementations
+
+✔ PUSH     inserts a node at the beginning.
+            7. Expression notation and operator rules
+     8. Infix-to-postfix conversion                                                  40    →   30   →   20
+            9. Infix-to-prefix conversion
+
+✔ POP 10.removes           the
+          Postfix expression      first node.
+                             evaluation
+            11. Parenthesis balancing
+
+✔ Capacity
+            12. Tower of Hanoi and recursion
+               grows
+      13. Extended            dynamically
+                   applications and explicit stacks until memory is unavailable.
+            14. Complexity, debugging, activities and assessmentArray vs Linked
+                                                                     CONTENTS
+                                                                              List
+
+Comparison
+         1. Learning objectives and prerequisite concepts
+         2. Stack definition, LIFO and terminology
+         3. Stack ADT and fundamental operations
+         4. Array implementation and C program
+ARRAY
+   5. Linked-list implementation and C program              LINKED LIST              BOTH
+         6. Comparison of implementations
+
+Fixed 7.size
+         Expression notation and operator rules
+                                                            Dynamic size             PUSH/POP O(1)
+      8. Infix-to-postfix conversion
+Contiguous        memory
+      9. Infix-to-prefix conversion
+                                                            Node + pointer           when TOP is maintained
+Low overhead
+      10. Postfix expression evaluation                     Flexible capacity
+         11. Parenthesis balancing
+         12. Tower of Hanoi and recursion
+         13. Extended applications and explicit stacks
+         14. Complexity, debugging, activities and assessmentApplications of Stacks
+                                                                 CONTENTS
+
+ Where stacks are used
+        1. Learning objectives and prerequisite concepts
+✔ 2. Stack
+  Expression             conversion
+           definition, LIFO and terminology and evaluation.
+        3. Stack ADT and fundamental operations
+
+✔ Balanced            parentheses and syntax checking.
+        4. Array implementation and C program
+   5. Linked-list implementation and C program
+        6. Comparison of implementations
+
+✔ Function         calls and recursion.
+   7. Expression notation and operator rules
+        8. Infix-to-postfix conversion
+        9. Infix-to-prefix conversion
+✔ 10. Postfix
+  Undo/redo            mechanisms.
+              expression evaluation
+        11. Parenthesis balancing
+
+✔ Depth-first          search and backtracking.
+        12. Tower of Hanoi and recursion
+   13. Extended applications and explicit stacks
+        14. Complexity, debugging, activities and assessment
+
+✔ Browser navigation and history.Expression Notations
+                                                                  CONTENTS
+
+ Arithmetic expressions
+      1. Learning objectives and prerequisite concepts
+✔ 2.
+  Infix:
+     Stack A     +B
+          definition, LIFO—    operator between operands.
+                          and terminology
+      3. Stack ADT and fundamental operations
+
+✔ Prefix:       + A B — operator before operands.
+      4. Array implementation and C program
+   5. Linked-list implementation and C program
+      6. Comparison of implementations
+
+✔ Postfix:       A B + — operator after operands.
+   7. Expression notation and operator rules
+      8. Infix-to-postfix conversion
+      9. Infix-to-prefix conversion
+✔ 10.
+  Postfix
+      Postfix and      prefix avoid the need for parentheses during evaluation.
+             expression evaluation
+      11. Parenthesis balancing
+      12. Tower of Hanoi and recursion
+      13. Extended applications and explicit stacks
+      14. Complexity, debugging, activities and assessmentOperator Precedence  & Associativity
+                                                                   CONTENTS
+
+          Rules needed for conversion
+                  1. Learning objectives and prerequisite concepts                                      HIGH
+✔ Parentheses       haveLIFOhighest
+         2. Stack definition,              control over grouping.
+                              and terminology
+                  3. Stack ADT and fundamental operations                                               ()
+✔ Exponentiation
+                  4. Array implementation and C program
+                                 generally
+        5. Linked-list implementation and C program                  has   higher   precedence   than
+                  6. Comparison of implementations
+
+      multiplication/division.
+             7. Expression notation and operator rules                                                  MEDIUM
+                  8. Infix-to-postfix conversion
+
+✔ Multiplication/division
+                  9. Infix-to-prefix conversion
+         10. Postfix expression evaluation precede addition/subtraction.
+                                                                                                        ^ then × ÷
+                  11. Parenthesis balancing
+
+✔ Associativity      determines
+        12. Tower of Hanoi and recursion
+                                              evaluation
+        13. Extended applications and explicit stacks
+                                                         order when precedence is equal.
+                  14. Complexity, debugging, activities and assessment                                  LOW
+
+                                                                                                        +−Infix → Postfix:CONTENTS
+                                                                     Basic Algorithm
+
+          Stack-based conversion
+                 1. Learning objectives and prerequisite concepts
+
+✔ Scan the   expression
+         2. Stack definition, LIFO andfrom       left to right.
+                                       terminology
+                 3. Stack ADT and fundamental operations
+
+✔ Operand
+                 4. Array implementation and C program
+             → add
+        5. Linked-list      directly
+                       implementation        to output.
+                                      and C program
+                 6. Comparison of implementations
+
+✔ Opening    parenthesis               →   PUSH.
+        7. Expression notation and operator rules
+        8. Infix-to-postfix conversion
+                 9. Infix-to-prefix conversion
+
+✔ Closing10.parenthesis             → POP until opening parenthesis is found.
+             Postfix expression evaluation
+                 11. Parenthesis balancing
+
+✔ Operator
+                 12. Tower of Hanoi and recursion
+             → POP
+        13. Extended applicationshigher/equal-precedence
+                                 and explicit stacks     operators as appropriate, then PUSH
+                 14. Complexity, debugging, activities and assessment
+      current operator.
+
+✔ After scanning, POP remaining operators.Worked Conversion
+                                                                            CONTENTS
+
+          Step-by-step example
+
+✔ Expression:
+                  1. Learning objectives and prerequisite concepts
+                   A +LIFO
+        2. Stack definition, B and
+                               * terminology
+                                   C                                                     RESULT
+                  3. Stack ADT and fundamental operations
+
+✔ Read A4.5. →     output         A
+             Array implementation and C program
+             Linked-list implementation and C program
+                                                                                         ABC*+
+
+                  6. Comparison of implementations
+
+✔ Read +7.→    PUSH
+          Expression notation +
+                              and operator rules
+                  8. Infix-to-postfix conversion
+
+✔ Read B10.→
+                  9. Infix-to-prefix conversion
+               output
+           Postfix            AB
+                   expression evaluation
+                  11. Parenthesis balancing
+                                                                                         WHY?
+✔ Read * 13.→Extended
+                PUSH           *   because
+                  12. Tower of Hanoi and recursion
+                                                     it
+                      applications and explicit stacks
+                                                        has higher precedence
+                  14. Complexity, debugging, activities and assessment                   * has higher precedence than +
+✔ Read C → output ABC
+
+✔ End → POP * then +
+
+✔ Postfix: A B C * +Postfix Evaluation
+                                                                            CONTENTS
+
+          Evaluation algorithm
+
+✔ Scan tokens
+                 1. Learning objectives and prerequisite concepts
+                    left LIFO
+         2. Stack definition, to and
+                                 right.
+                                     terminology
+                 3. Stack ADT and fundamental operations
+
+✔ Operand    →      PUSH          onto      stack.
+        4. Array implementation and C program
+        5. Linked-list implementation and C program
+                 6. Comparison of implementations
+
+✔ Operator   → POP
+        7. Expression notation right     operand,
+                               and operator rules then left operand.
+                 8. Infix-to-postfix conversion
+
+✔ Apply the
+                 9. Infix-to-prefix conversion
+               operator
+        10. Postfix               and PUSH the result.
+                    expression evaluation
+                 11. Parenthesis balancing
+
+✔ After the   final     token,        the
+         12. Tower of Hanoi and recursion
+                                               stack
+         13. Extended applications and explicit stacks
+                                                       contains the result.
+                 14. Complexity, debugging, activities and assessmentPostfix Evaluation
+                                                                        CONTENTS
+                                                                                – Trace
+
+           Worked example
+
+✔ Expression:
+                  1. Learning objectives and prerequisite concepts
+                   2 3 4LIFO*and+terminology
+        2. Stack definition,                                                                       14
+                  3. Stack ADT and fundamental operations
+
+✔ 2 → [2]4.5. Array implementation and C program
+              Linked-list implementation and C program
+                  6. Comparison of implementations
+
+✔ 3 → [2,7. 3]
+            Expression notation and operator rules
+                  8. Infix-to-postfix conversion
+
+✔ 4 → [2,10.3,
+                  9. Infix-to-prefix conversion
+               4]expression evaluation
+            Postfix
+                  11. Parenthesis balancing                                               FINAL RESULT
+✔ * → 3×4    =   12    →      [2,   12]
+        12. Tower of Hanoi and recursion
+        13. Extended applications and explicit stacks
+                                                                                          14
+                  14. Complexity, debugging, activities and assessment
+✔ + → 2+12 = 14 → [14]
+
+✔ Result = 14Parenthesis Balancing
+                                                                        CONTENTS
+
+         Balanced-symbol algorithm
+
+✔ Push every
+                1. Learning objectives and prerequisite concepts
+                  opening
+        2. Stack definition, LIFO andbracket:
+                                      terminology (, {, [.
+                3. Stack ADT and fundamental operations
+
+✔ For a closing          bracket,        the
+         4. Array implementation and C program
+                                                stack
+         5. Linked-list implementation and C program
+                                                      must not be empty.
+                6. Comparison of implementations
+
+✔ The TOP    mustnotation
+        7. Expression be and
+                          theoperator
+                                matching
+                                      rules opening bracket.
+                8. Infix-to-postfix conversion
+
+✔ Pop after
+                9. Infix-to-prefix conversion
+              a successful
+         10. Postfix                     match.
+                     expression evaluation
+                11. Parenthesis balancing
+
+✔ After scanning         the     whole
+         12. Tower of Hanoi and recursion
+                                                 expression,
+         13. Extended applications and explicit stacks
+                                                             the stack must be empty.
+                14. Complexity, debugging, activities and assessment
+✔ Time complexity: O(n).Parenthesis Examples
+                                                                          CONTENTS
+
+          Practice classification
+
+✔ Balanced:
+                  1. Learning objectives and prerequisite concepts
+        2. Stack{definition,
+                   [ ( ALIFO+andBterminology
+                                   )]}
+                  3. Stack ADT and fundamental operations
+
+✔ Balanced:    (A       +   B)   *   [C    −
+        4. Array implementation and C program
+                                               D]
+        5. Linked-list implementation and C program
+                  6. Comparison of implementations
+
+✔ Not balanced:         { [ (andAoperator
+         7. Expression notation     + Brules] ) }
+                  8. Infix-to-postfix conversion
+
+✔ Not balanced:
+                  9. Infix-to-prefix conversion
+                         (A +
+         10. Postfix expression     B
+                                evaluation
+                  11. Parenthesis balancing
+
+✔ Not balanced:         A    +   B)
+         12. Tower of Hanoi and recursion
+         13. Extended applications and explicit stacks
+                  14. Complexity, debugging, activities and assessmentTower CONTENTS
+                                                                              of Hanoi
+
+         Classic recursive application
+
+✔ Move n2. disks
+                 1. Learning objectives and prerequisite concepts
+                        from
+           Stack definition,       source
+                             LIFO and terminology peg to destination peg using an auxiliary peg.
+                 3. Stack ADT and fundamental operations
+
+✔ Move only       one      disk      at  a
+        4. Array implementation and C program
+                                             time.
+        5. Linked-list implementation and C program
+                 6. Comparison of implementations
+
+✔ Never place      a notation
+        7. Expression larger       diskruleson a smaller disk.
+                              and operator
+                 8. Infix-to-postfix conversion
+
+✔ The recursive
+                 9. Infix-to-prefix conversion
+                       solution
+         10. Postfix xpression evaluation naturally creates activation records on the call stack.
+                 11. Parenthesis balancing
+
+✔ Minimum     number           of   moves:
+       12. Tower of Hanoi and recursion
+       13. Extended applications and explicit stacks
+                                                     2ⁿ − 1.
+                 14. Complexity, debugging, activities and assessmentTower of Hanoi – Algorithm
+                                                           CONTENTS
+
+Recursive solution
+        1. Learning objectives and prerequisite concepts
+        2. Stack definition, LIFO and terminology
+                                                                             RECURRENCE
+ Hanoi(n,
+    3. Stacksource,    auxiliary,
+             ADT and fundamental      destination)
+                                 operations
+        4. Array implementation and C program                                T(n) = 2T(n−1) + 1
+        5. Linked-list implementation and C program
+        6. Comparison of implementations
+ if n ==   1:
+      7. Expression notation and operator rules
+        8. Infix-to-postfix conversion
+    move     source → destination
+     9. Infix-to-prefix conversion
+
+ else:10. Postfix expression evaluation                                      MOVES
+        11. Parenthesis balancing
+
+    Hanoi(n−1,      source,
+     12. Tower of Hanoi          destination, auxiliary)
+                        and recursion
+        13. Extended applications and explicit stacks                        2ⁿ − 1
+    move   source →
+     14. Complexity,       destination
+                     debugging, activities and assessment
+
+    Hanoi(n−1, auxiliary, source, destination)Tower of Hanoi – Example
+                                                                     CONTENTS
+
+         Understanding the recursion
+
+✔ For n =2.3:
+                 1. Learning objectives and prerequisite concepts
+           Stackminimum
+                definition, LIFO and moves
+                                     terminology = 2³ − 1 = 7.                                  n=3
+                 3. Stack ADT and fundamental operations
+
+✔ The recursion           breaks         the
+        4. Array implementation and C program
+                                                 problem
+        5. Linked-list implementation and C program
+                                                         into two smaller n−1                   2³ − 1 = 7 moves
+                 6. Comparison of implementations
+     problems.
+           7. Expression notation and operator rules
+                 8. Infix-to-postfix conversion
+
+✔ Each recursive             call
+        9. Infix-to-prefix conversion
+                                      adds an activation record to the call
+        10. Postfix expression evaluation
+                                                                                                CALL STACK
+                 11. Parenthesis balancing
+     stack. 12. Tower of Hanoi and recursion
+                 13. Extended applications and explicit stacks
+                                                                                                 Each recursive call waits
+✔ This           demonstrates                     how            stacks
+                 14. Complexity, debugging, activities and assessment
+                                                                          support   recursive   for smaller subproblem to
+                                                                                                          finish.
+     execution.Complexity Summary
+                                                                   CONTENTS
+
+  Important exam point
+          1. Learning objectives and prerequisite concepts
+          2. Stack definition, LIFO and terminology
+          3. Stack ADT and fundamental operations
+
+   PUSH:4. O(1)
+           Array implementation and C program             POP: O(1)        PEEK: O(1)       isEmpty / isFull:
+          5. Linked-list implementation and C program
+                                                                                                 O(1)
+          6. Comparison of implementations
+          7. Expression notation and operator rules
+          8. Infix-to-postfix conversion
+          9. Infix-to-prefix conversion
+          10. Postfix expression evaluation
+          11. Parenthesis balancing
+          12. Tower of Hanoi and recursion
+          13. Extended applications and explicit stacks
+Infix → Postfix:                            Postfix evaluation: O(n)       Parenthesis     Tower of Hanoi: O(2ⁿ)
+        14. Complexity, debugging, activities and assessment
+      O(n)                                                               balancing: O(n)          movesCommonCONTENTS
+                                                                          Mistakes
+
+         Debugging checklist
+
+✔ Forgetting
+               1. Learning objectives and prerequisite concepts
+         2. Stackto   check
+                 definition,        overflow
+                             LIFO and terminology before PUSH.
+               3. Stack ADT and fundamental operations
+
+✔ Forgetting     to     check        underflow
+         4. Array implementation and C program
+         5. Linked-list implementation and C program
+                                                     before POP.
+               6. Comparison of implementations
+
+✔ Popping7. Expression
+             operands            inoperator
+                       notation and  the rules
+                                            wrong order during subtraction/division.
+               8. Infix-to-postfix conversion
+
+✔ Ignoring
+               9. Infix-to-prefix conversion
+             operator
+         10. Postfix            precedence during conversion.
+                     expression evaluation
+               11. Parenthesis balancing
+
+✔ Failing 12.
+           to   verify        that    the
+              Tower of Hanoi and recursion
+                                               final
+          13. Extended applications and explicit stacks
+                                                        parenthesis stack is empty.
+               14. Complexity, debugging, activities and assessment
+✔ Confusing the TOP element with the bottom element.Classroom  Practice
+                                                                       CONTENTS
+
+    Think • Solve • Discuss
+            1. Learning objectives and prerequisite concepts
+1           2. Stack definition, LIFO and terminology                         2
+            3. Stack ADT and fundamental operations
+
+Convert: A4.+Array
+              B *implementation and C program
+                   C − D to postfix.                                          Evaluate: 2 5 3 * +.
+            5. Linked-list implementation and C program
+            6. Comparison of implementations
+            7. Expression notation and operator rules
+            8. Infix-to-postfix conversion
+            9. Infix-to-prefix conversion
+3                                                                             4
+            10. Postfix expression evaluation
+            11. Parenthesis balancing
+Determine 12.
+          whether
+              Tower of {[()]} is recursion
+                       Hanoi and  balanced.                                   Determine the minimum moves for 4 Hanoi disks.
+            13. Extended applications and explicit stacks
+            14. Complexity, debugging, activities and assessment
+
+5
+
+Write PUSH and POP algorithms for an array stack.Unit Summary
+                                                                               CONTENTS
+
+          Key takeaways
+
+✔ Stack follows
+                  1. Learning objectives and prerequisite concepts
+                         LIFO.
+         2. Stack definition, LIFO and terminology
+                  3. Stack ADT and fundamental operations
+
+✔ TOP is 4.5.the    only       end      used
+              Array implementation and C program
+                                                  for
+              Linked-list implementation and C program
+                                                       insertion and deletion.
+                  6. Comparison of implementations
+
+✔ Stacks can     be notation
+         7. Expression implemented
+                             and operator rules with arrays or linked lists.
+                  8. Infix-to-postfix conversion
+
+✔ Stacks are
+                  9. Infix-to-prefix conversion
+                central
+         10. Postfix            to expression processing and syntax checking.
+                     expression evaluation
+                  11. Parenthesis balancing
+
+✔ Recursion    relies      on     the
+        12. Tower of Hanoi and recursion
+                                         call       stack.
+        13. Extended applications and explicit stacks
+                  14. Complexity, debugging, activities and assessment
+✔ Mastering stack operations provides a foundation for queues, trees, graphs and
+      algorithms.CONTENTS
+
+1. Learning objectives and prerequisite concepts
+2. Stack definition, LIFO and terminology
+3. Stack ADT and fundamental operations
+4. Array implementation and C program
+5. Linked-list implementation and C program
+6. Comparison of implementations
+
+8. Infix-to-postfix conversion          THANK YOU
+7. Expression notation and operator rules
+
+9. Infix-to-prefix conversion
+10. Postfix expression evaluation
+11. Parenthesis balancing
+12. Tower of Hanoi and recursion
+13. Extended applications and explicit stacks
+14. Complexity, debugging, activities and assessment

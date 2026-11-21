@@ -1,0 +1,81 @@
+{
+  "_about": "Study packs for ADLD Unit 4: which faculty-source pages cover each guide section. Page numbers are PDF pages. Reviewed by hand from the page headings (2026-11-21).",
+  "drop_lines": [
+    "^R\\.?\\s*V\\.?\\s+College\\s+of\\s+Engineering(?:\\s*®|,\\s*Bengaluru)?\\s*$",
+    "^Department\\s*of\\s*Computer\\s*Science\\s*(?:and|&)\\s*Engineering(?:\\s*\\(Data\\s+Science\\s*(?:and|&)\\s*Cyber\\s+Security\\)|,\\s*RVCE(?:\\s+\\d{1,2})?)?\\s*$",
+    "^\\((?:An )?Autonomous Institution [Aa]ffiliated to VTU(?:, Belagavi)?\\)$",
+    "^CS234AI$",
+    "^USN$",
+    "^Date\\s*:\\s*.+\\s+Duration\\s*:\\s*.+\\s+Staff\\s*:",
+    "^Name\\s*:\\s*USN\\s*:\\s*Section\\s*:",
+    "^(?:Course\\s*:|Course Code\\s+Course Name\\s*:)\\s*Applied\\s+Digital\\s+Logic\\s+Design\\s+and\\s+Semester\\s*:",
+    "^(?:\\(Code\\)\\s*)?Computer\\s+Organi[sz]ation\\s*\\(CS234AI\\)\\s*$",
+    "^Course Outcomes:(?: After completing the course, the students will be able to:?-?)?$",
+    "^Signature of Scrutinizer\\s+Signature of Chairman$",
+    "^Name:\\s+Name:$",
+    "^(?:(?:Prepared )?By )?Dr\\.? K\\.?\\s*Badari Nath,\\s*(?:RV College Of Engg\\.\\s*)?\\d{0,2}\\s*$",
+    "^Page\\s+\\d+\\s*$"
+  ],
+  "sections": {
+    "functional-units": {
+      "D12": "2-3,6"
+    },
+    "operational-concepts": {
+      "D12": "4-5",
+      "Q5": "7-9",
+      "Q1": "23"
+    },
+    "performance": {
+      "D12": "7-11,44-46",
+      "Q1": "17",
+      "Q2": "29"
+    },
+    "memory-locations": {
+      "D12": "12-15,47",
+      "D6": "5"
+    },
+    "memory-operations": {
+      "D12": "16",
+      "Q5": "22,24"
+    },
+    "instructions": {
+      "D12": "17-20,48-49,53",
+      "Q5": "2-4,8-10",
+      "D6": "6,37-40,48-49",
+      "Q2": "30"
+    },
+    "addressing-modes": {
+      "D12": "21-25,52,57",
+      "Q5": "12-17,21",
+      "Q1": "14",
+      "Q2": "32"
+    },
+    "assembly": {
+      "D12": "26-29,55",
+      "Q5": "20,22-26",
+      "Q1": "14-15",
+      "Q2": "33-34"
+    },
+    "stacks": {
+      "D12": "32",
+      "Q5": "30"
+    },
+    "subroutines": {
+      "D12": "34-38,56",
+      "Q2": "39"
+    },
+    "stack-frame": {
+      "D12": "39-43",
+      "Q2": "39"
+    },
+    "arm-x86": {},
+    "ilp": {
+      "D12": "8"
+    },
+    "u4-solved": {
+      "D12": "50,53-54,56",
+      "Q1": "15-16,23-24",
+      "Q2": "33-34,39"
+    }
+  }
+}

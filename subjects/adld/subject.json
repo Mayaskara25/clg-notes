@@ -227,7 +227,8 @@
       "by": "Dr K. B. Ramesh",
       "file": "kb-ramesh-computer-arithmetic.pdf",
       "units": [
-        1
+        1,
+        4
       ]
     },
     {
@@ -293,7 +294,9 @@
       "units": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     },
     {
@@ -305,7 +308,9 @@
       "units": [
         1,
         2,
-        3
+        3,
+        4,
+        5
       ]
     },
     {
@@ -341,6 +346,48 @@
         2
       ],
       "note": "Two original faculty question-paper photographs combined into a PDF."
+    },
+    {
+      "id": "D12",
+      "kind": "deck",
+      "title": "Basic structure of computers and instruction set architecture",
+      "by": "Dr K. Badari Nath",
+      "file": "unit4-computer-structure-and-instruction-sets.pdf",
+      "units": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "D13",
+      "kind": "deck",
+      "title": "Basic processing unit and control",
+      "by": "Dr K. Badari Nath",
+      "file": "unit5a-basic-processing-unit.pdf",
+      "units": [
+        5
+      ]
+    },
+    {
+      "id": "D14",
+      "kind": "deck",
+      "title": "The memory system: memory chips, cache and performance",
+      "by": "Dr K. Badari Nath",
+      "file": "unit5b-memory-system.pdf",
+      "units": [
+        5
+      ]
+    },
+    {
+      "id": "Q5",
+      "kind": "qbank",
+      "title": "Question bank 2: instruction set architecture and basic I/O",
+      "by": "Dept. lecture material",
+      "file": "question-bank-2.pdf",
+      "units": [
+        4,
+        5
+      ]
     },
     {
       "id": "B1",

@@ -1,0 +1,269 @@
+n                                               Go, change the world
+            RV College of Engineering
+
+           V
+
+                                    Academic year 2021-2022 (ODD Sem)
+                                               DEPARTMENT OF
+                            INFORMATION SCIENCE & ENGINEERING
+           Date                            Nov 2021                             Maximum Marks            50
+    Course Code
+           Sem
+                                             18IS33
+                                          IISemester
+                                                                                  Duration
+                                                                                            Test-
+                                                                                                     90Min
+                            DATASTRUCTURES AND ITS APPLICATIONS
+Course Outcomes:
+
+SI. No.                                      Questions                                       M      BT        CO
+    la     Considering only the characters                   and ), a      sequence o f 5 +
+            parentheses is called regular if it follows the following definition:(3+2)
+                                                                                            = 10
+                  A n empty sequence is regular
+                  I f S is a regular sequence, then (S) is also regular
+                 . I fA and B represent two regular sequences, then their
+                      concatenation AB is also regular.
+
+            Therefore,the sequences () O0 and (O)O are regular, while
+            O0) and ))Oare non-regular.
+
+               Write a C function/algorithnm using stack to find if the sequence
+               is regular
+                            or not. Trace your algorithm for the input sequence (
+               0)O and (O))O
+
+       2    Design an algorithm using stack to convert a given infix                        6+4=               3
+               expression (Without parenthesis) into a postiX expression. Give               10
+               details of any supplementary functions used.
+
+               Using the same convert the following inix to postfix. Show each
+            step of the conversion:         A+B/CD-A°F*EH
+
+       3Implement a C program to solve the Tower of Hanoi
+          recursively.                                             puzzle5+5=
+                       The program should print all the moves and also
+            total    number of moves taken to solve.                   the                   10           4
+               Trace your strategy for n=4 disks. (Write the
+                                                                       moves)
+                Tdentify the limitation/s of                    oond
+                Discuss the possible         array   impiemented simple queue.2+2
+                efficient pseudo code ways  to overcome this limitation?
+                                      for the                             Write an 6-10
+                                              queue primitive
+   a
+                 Write a C
+                                                              operations.
+                             program to find the size of
+                                                           the file
+   5b           Write an algorithm using stack
+               expression.                          to   evaluate a given valid
+                                                                                 Af
+                                                                                   prefixRV Educational Institutions ®                                     Go, change the w9r/d
+            RV College of Engineering ®
+            Autonomous                       Approved by AICTE,
+            Institution Affiliated           New Delhi
+            to Vlsvesvaraya
+            Tecnnologtcar ---
+            University, Belagavi
+
+                                               Academic-year 2021-2022 (ODD Sem)
+                                      DEPARTMENT OF
+                             INFORMATION SCIENCE & ENGINEERING
+         Date                          3ra JAN 2021      Maximum Marks                         I 50+10
+      Course Code                          181S33           Duration                           I 110 Min
+         Sem                            III Semester               CIE-11
+                                DATA STRUCTURES AND ITS APPLICATIONS
+
+SI.                                                               Questions                    M    BT     CO
+No.
+                                                                  PART A
+1.1    What does the function "fun" print for a given singly linked list with contents as       2   4      2
+       (1, 3, 5, 7, 9, 11, 13, 15, 17, and 19) and with first node pointed by external
+       pointer "head"?
+       (NOTE: write only the value printed)
+                         struct node {
+                           int data;
+                           struct node •next;
+                          } ;                           .
+                          void ~ ( s t r u c t node *head) {
+                            if(head ! - NULL) { .
+                               struct node *q;
+                               q - head;
+                               vvhile(q->next->next != NULL) {
+                                q - q->next;
+                                         }
+                                         printf(" 0/4d". q->data);
+                                     }
+
+1.2    Consider, the size of int data type is 4 bytes and the linked list node is defined as    2    2      1
+       follows:
+        struct node {
+          int *num;
+          struct node *next;
+       };
+       What is the number of bytes allocated after executing the following statement:
+        p = (struct node *)malloc(sizeof(struct node *));
+       (NOTE: write only the value)
+
+       Consider the below given list and the following algorithm statements are                 2    4      3
+       executed in sequence of numbering given. what is the value printed after
+        struct node *p;                                 r·
+       p= first->next->next->next; Io -41.-0 - 'so--:> 4~
+       p->next->next->next->next= first->next->next; - 4: o _,, 'i O    ,s)uL~ :.. sO
+       first->next->next= p->next->next->next; 'lo Nil'bb
+       print( p->next->ne.xt-~ext ~>ne~t~>next~>next->nex:t->data);. .      .,                        Go, change tne wunu"'(, ,
+       RV Educational 1nstitut1o~s             •      .,                                                                '
+       RV College of Engmeermg
+        Autonomous               Approved by AICTE,
+        Institution Affiliated   New Deihl
+        to Vlsvesvaraya
+        Technological
+         University, Belagavi
+
+ 1.4   Construct an expression tree for the following expression                                2       3           4
+       (a+b*c)+(d*r+t)*(g-h)
+ 1.5   Consider the following binary tree, answer the following                                 2       2
+       i)What is the height of the node 7
+       ii) List the common ancestors of node 10 and 11
+       iii) what is the depth of a node 6
+       iv)what is the level of the node 9
+
+                                                 PARTB
+2a.    Develop C functions to perform the following operations on a singly linked list
+          "-l. Replacing all nodes which have the data 'x' by 'y'.
+            2. Create an ordered list.                 ·                                    7           4       3
+       (Note : A list of n nodes such that Ni< =N1+1 for all l<i<n-lis called an
+       ordered list                "', '"L,t-Jl,~'I #      t•
+                                                          c::. ., _ ,-,s- :1- < J <., 1
+  2b. Ex lain with syntax an two d namic memo allocation functions.                         3       2
+, 3a. Develop C functions to implement push, pop and display of a stack using
+        circular linked list.                                                               7       3       2
+            ote : Discard overflow and underflow condition
+        Write a C function to .reverse a circular sin ly linked list with header node.      3       4       3
+        Imagine that N people have decided to elect a leader by arranging themselves in
+        a circle and eliminating every K th person around the circle, till one person
+        remains, who becomes the leader. Given the values for N and K and the count
+        should begin from 1st person, Write the necessary pseudocode using circular         7       4       3
+        linked list to determine the order in which people are eliminated from the circle
+        and which erson becomes the leader. Trace the code.with an exam le.
+   4b. For the roblem stated in Question 4a, Write a recursive solution.                    3       4       2
+   Sa. Write necessary C function to                     ·
+            Cf) Perform Iterative preorder on a binary tree.                                7       4       3
+             2. Count the number of leaf nodes in a bina tree.
+   Sb. Develop a C function on a <!Qubly linked list to insert a new node at a given
+           osition.                                   ··        ·,                          3       3       3
+   6a. Construct a binary Search tree by inserting the keys 6,4,22,10,2,14,3,8,11.
+         Traverse the constructed tree in reorder, inorder and ostorder.                    7       3       4RV Educational Institutions ®                                       Go, change the world
+        RV College of Engineering ®
+        Autonomous                 \ Approved by AICTE,
+         tnst;tution Affiliated       New Delhi
+                                                                                 - ·-------------
+        Jo 'lisvesvaf\iya         _ _ ___ _ _ _ _ • _ __
+         Technological
+
+-----    u,,icersi , Bela av\
+
+--
+6b. \ Define the following terms with necessary diagrams
+    \
+    \
+          l. Height of a tree
+          2. Almost complete binary tree.
+                                                                                                    3    l   4
+
+          3. Strictly binary tree.
+
+Course Outcomes:
+COl : Understand and explore the fundamental concepts of various data structures.
+CO2 : Analyze and represent various data structures.
+C03 : Design algorithms on different data structures like Stack, Queue, List, Tree and hashing.
+C04: Implement programs with suitable data structure based on the requirements of the application.
+                                                                        I
+                                                                                      - arks
+                                            BT-Blooms Taxonomv, CO-Course.0 utcomes, MM
+                                                                         LI      L2     L3     L4       LS   L6
+                            Particulars      COl   CO2 C03 C04
+      Marks                                                                       03    19     34       -    -
+\                                             07     14     29     12       03
+    Distribution         Test \ Max
+                       \        Marks
+
+                                                            ****************RV Educational Institutions
+              RV College of Engineering
+U            Autonomous                  Approved by AICTE.
+              institution Atfiliated     New Delhi
+              to Visvesvaraya
+               Tochnological
+               Jniversity. Bela gavi
+
+                                           Academic year 2021-2022 (ODD Sem)
+                                                          DEPARTMENT ODF
+                                                                                             ENGINEERING
+                                 INFORATION SCIENCE &
+
+                                                     16th March 2022
+                                                                                               Maximum Marks                          10+50
+            Date                                                                                                                     110 Min
+         Course Code                                       18IS33                                   Duration
+                                                                                                           CIE-II
+                  Sem                                   II Semester
+                                                                                            APPLICATIONS
+                                       DATA STRUCTURES AND ITS
+
+                                                                                                                                BT         CO
+                                                                                                                 M
+         NO.                                             Questions
+                                                          PART A                                                                           cO2
+                                                  lexicographical sorting of a set of              strings?      01             L2
+                   What traversal over Trie gives ot
+                   Suppose that you insert a set
+                                                     N        into a Trie. What determines
+                                                                strings                                                                    CO2
+                  theshape o the l rie?                                                                          01                        CO2
+                  Give one ex ample for Zag-Zig rotation in a Splay tree.
+                                                                                                                                           CO2
+                  Mention any two applications of Splaytrec.                            node. What    is   the
+    1.5            B+ tree cancontain   maximuma               of 7 pointers   in   a
+                                                                                                                 01             L2         CO2
+                  minimum number of keys in leaves?                                          order 3 and of
+    1.6            What is the maximum number of keys that a B+ -tree of                                         01             L2         CO2
+                  height 3 have?                                                               list
+        .7         A left-in threaded      binary search tree is constructed for the following                                             CO2
+                                                                                           inorder
+                                                                          10, 5, 11}. Write the                   2             L3
+                  of numbers: {40, 35, 70, 30, 39, 20, 34,
+                  traversal tor the constructed tree
+                   The keys I10, 40, 20, 30, 100, 200 are inserted into the empty hash table |
+        .8
+                                                                                            is the maximum        02             L3         CO2
+                   of length 10 with hash function H (i)=ii mod 10. What
+                 probe value for the resultant hash table?
+                                                              PART B
+    .a             Compare Binary tree, Splay tree, Skew binary
+                                                                                tree and      Binary search       05             L3           CO2
+
+                   Construct Trie for keys: {betty, bought, some, butter, but, the, Was,
+    .b                                                                                                                05          3         co
+                   bitter
+                   Appraise B+ tree as a tree-based data structure.                                              05              L2         CO
+    3.b            Construct AVL tree for keys: 11, 12, 13, 14, 15, 16, 17. Each                  step of the         05          L3          co2
+                   construction must be shown.
+    4.a            Design an iterative routine for inorder traversal of
+                                                                                        a
+                                                                                            right in-threaded         05          L4          CO4
+                   binary tree
+    4.b            Construct a double threaded binary search tree for the following keyS:
+                                                                                                                       5             L3        CO2
+                    10,5, 14,4, 7,12, 15,6,9,8
+                   List the properties of a binary heap. For the given elements construct a
+
+                   min heap using top-down approach (show the steps clearly): 54, 26, 93, |                            10             L3       CO2
+                   17, 77,31. For the above constructed min heap, perform the Extractmin
+                    operation once and write the tree alter the deletion
+    .             Compare linear probing with separate chaining collision resolution
+                  technique. Construct the hash table for the keys: 54, 26, 93, 17,77, 31,|                                T0         L3        CO3
+                  that are inserted one after the other into the empty hash table of length
+                  |
+                     using linear probing with hash function (h(key) = key* % 11)_

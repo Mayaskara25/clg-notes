@@ -1,0 +1,152 @@
+Counters….
+
+Digital counters are sequential logic circuits used to count clock pulses. The modulus (or "Mod") refers to the total number of
+unique states a counter goes through before resetting to its starting value.
+
+Digital counters are fundamental building blocks in modern electronics. Their applications span from everyday consumer
+electronics to advanced industrial automation, scientific instrumentation, and microprocessors. Ex: Digital Clocks and Watches,
+Frequency Dividers & counters. Used in Microprocessors, Computers, and State Machines, used in Industrial Automation and
+Measuring Instruments, Used in Consumer Electronics and Home AppliancesMod-8 Asynchronous Counter for Down Counting Using +ve Edge Triggered T Flip-Flops and Using Qi outputsMod-8 Asynchronous Counter for UP Counting Using +VE Edge Triggered T Flip-Flops and Using Complimentary o/pMod-8 Asynchronous Counter for UP Counting Using -Ve Edge Triggered T Flip-Flops and Using Q o/pMod-8 Asynchronous Counter for Down Counting Using -VE Edge Triggered T Flip-Flops ,Using Complimentary o/pWe can easily design a counter which counts through 2,4,8,16,32 by using
+required number of flip-flop. But often counters other than module, 2,4,8,16,32
+etc are required.
+
+For example : Mod7, mod6, mod5 etc. These counters can be designed by
+nearest highest modulus counter by skipping some of the counts.Describe operation of Mod 7 or divide by 7 counter Ans.
+Mod7 counter can be designed from mod8 counter by skipping one of the state. Similarly a mod6 counter can be
+designed from mod 8 counter by skipping two of the states.Mod-6 Asynchronous Counter Using +VE Edge Triggered T Flip-FlopsRipple counters suffer from slow speeds, cumulative propagation delays (rippling effect),
+and potential counting errors (glitches) at higher frequencies because each flip-flops clock
+input depends on the previous ones output, making them less reliable than synchronous
+counter for complex tasks or high speed operations.
+
+Key Drawbacks:
+1. Propagation delay & Speed Limitation : The cumulative delay restricts the maximum
+   operating frequency, f(max), as the clock period must be longer than the total delay
+    T(clock) > n x tpd,
+     where tpd is the propagation delay of one flip-flop, n is no. of flip-flops
+    Hence, highest frequency = 1 / n x tpd
+2. Asynchronous Nature: The asynchronous clocking (each FF triggered by the previous
+output) makes them less predictable and harder to synchronize with other parts of a
+digital system compared to synchronous counters.
+3. Natural counting sequence is pure binary, circuit becomes complex and speed
+decreases for other counting sequences like BCD etc.A ring counter (also called as One-Hot Counter) is a type of digital counter made from a circular shift register where the
+output of the last flip-flop is fed back into the input of the first flip-flop. Structure: It uses n D flip-flops for an n-state
+counter, sharing a common clock signal. A single 1 (high) bit is preset into one flip-flop while the rest are set to 0 (low).
+Rotation: With each clock pulse, the 1 bit shifts sequentially from one flip-flop to the next in a continuous loop. For an
+n-bit ring counter, it cycles through n unique states.
+Common Applications : State Sequencers: Controlling step-by-step or timed operations in finite-state machines,
+Frequency Division: Dividing a clock frequency by the number of stages in the ring, Timing & Display Signals:
+Generating multi-phase square waves, quadrature signals, or driving step-sequenced displays and stepper motors.Johnson Counter (Twisted Ring Counter): The complemented (inverted) output of the last flip-flop loops back to the first flip-
+flop. It circulates a stream of ones followed by zeros and provides 2n states. A Johnson counter also called a twisted ring
+counter, switch-tail counter, or Möbius counter is a synchronous shift register circuit where the inverted output of the last flip-
+flop is fed back into the input of the first flip-flop. Number of States: An n-bit Johnson counter generates 2n unique states (a
+MOD-2n counter). For example, a 4-bit counter uses 4 flip-flops to produce 8 states. Counts twice the number of states (2n) as a
+standard ring counter (n) using the same number of flip-flops. Gray Code Output: Adjacent states differ by only a single bit
+(Hamming distance of 1), preventing glitches during asynchronous sampling. Self-Decoding: Individual states can be easily
+decoded using simple logic gates. Common Applications: Frequency Dividers: Dividing a clock frequency by 2n, Phase
+Generators: Creating multi-phase square wave generators, Finite State Machines (FSM): Used in ASIC and FPGA design for
+control and sequencingRipple counters suffer from slow speeds, cumulative propagation delays (rippling effect),
+and potential counting errors (glitches) at higher frequencies because each flip-flops clock
+input depends on the previous ones output, making them less reliable than synchronous
+counter for complex tasks or high speed operations.
+
+Key Drawbacks:
+1. Propagation delay & Speed Limitation : The cumulative delay restricts the maximum
+   operating frequency, f(max), as the clock period must be longer than the total delay
+    T(clock) > n x tpd,
+     where tpd is the propagation delay of one flip-flop, n is no. of flip-flops
+    Hence, highest frequency = 1 / n x tpd
+2. Asynchronous Nature: The asynchronous clocking (each FF triggered by the previous
+output) makes them less predictable and harder to synchronize with other parts of a
+digital system compared to synchronous counters.
+3. Natural counting sequence is pure binary, circuit becomes complex and speed
+decreases for other counting sequences like BCD etc.Design a Mod-6 counter for the given counting sequence using JK Flip-flops:
+3 JK flip-flops are used to realize the counter. Design principle is shown in the figure, The current state of the counter is
+applied to a logic network. The function of the logic network is to generate the appropriate Signals for the J and K terminals of
+the clocked flip-flops so that the specified next state in the counting sequence results upon the occurrence Of a triggering
+edge of the clock input. The design is carried out by preparing Excitation Table (Present state,Next state, JK ff inputs) and
+generating minimal sum expressions for all the JK inputs.Self Correcting Counters…
+The counting sequence of mod-6 counter did not include states 100 and 111. Once the counter is
+Designed, definite next states result if either of these states should occur.
+
+The reasons for the counter to enter invalid states:
+When power is first applied to the network, the initial states of flip-flops may be unpredictable
+Noise signals, can cause the counter to enter in to any one of the invalid states
+
+A counter in which all the states not included in the original counting sequence eventually lead to the
+Normal counting sequence after one or more clock pulses are applied, is said to be Self Correcting.
+To avoid having the counter “hang up”, (lock out), it should always be designed as self-correcting.
+
+Let us test the previous design is self correcting ?
+Not used States: 100 AND 111. Let us verify, when these states occur what will be the next state
+
+Q1 Q2 Q3          J1 K1       J2 K2          J3 K3             Q1+ Q2+ Q3+         Remarks
+                (q2.q3,*q2) (*q3,q1)       (q2,*q1)
+1 0    0           0,1        1,1           0,0                0     1      0       leads to VALID state
+1 1    1          1,0         0,1           1,0                1     0      1        leads to VALID state
+
+Hence, counter designed is a SELF CORRECTING COUNTERCounters having no unused states are always self correcting. It is the assignment to the
+don’t cares associated with the unused States, when the logic expressions are obtained that
+can cause a counter not to be self correcting.
+
+By actually specifying the next states for each of the unused states in the counting sequence
+prior to constructing the Kmaps, a self correcting counter realization can be guaranteed.Using T Flip
+FlopsDesign of a synchronous counter for the following count sequence: 0, 3, 5, 6 using T flip flop, (Avoid Lock out
+condition by forcing unused states to next counting state). CIE, 2025Explain the phenomenon of a race-around condition in sequential circuits, particularly in JK flip-flops, and describe how this issue is mitigated
+using a master-slave JK flip-flop configuration. Additionally, illustrate the use of a gated SR latch to control the input signals, providing a
+detailed logic diagram and timing waveforms to demonstrate the elimination of the race-around condition in the master-slave configuration.
+(CIE,2024)SEE, 2024
+1) Design a Mod 4 synchronous up-counter using JK flipflop. (ref prev slides)
+2) Design a synchronous 7,4,3, 1,5, 0,7, 4, 3, counter to count the following sequence ... implement the circuit
+using T-flipflops. (ref prev slides)
+3) Draw the timing diagram of a 2 bit down counter with negative edge triggered flip flops. (refer prev slides)
+4) How many JK flipflops are required to achieve the frequency division of 8? (each FF is %2, hence 4)
+CIE2,2025
+How many flip-flops are required to design a Mod-20 counter?
+Ans: 5 FF
+Given the present state = 0 and next state = 1 for a JK FF, find the required values of J and K inputs.
+Ans: J=1; K=X
+A JK flip-flop is configured as shown in the figure. The flip-flop is initially reset (Q = 0) and is then clocked for six
+consecutive pulses. Determine the output sequence at Q for the six clock pulses.
+
+Ans: 101010
+A flip‐flops has a 3 ns delay. What is the maximum delay in a 10‐bit binary ripple counter that uses these flip‐flops?
+What is the maximum frequency at which the counter can operate?
+Ans: Total Delay=10x3 ns= 30 ns
+Fmax=1/30ns=33.33MHzCIE,2025
+A binary counter has 4 outputs, Q3, Q2, Q1, Q0, with Q3 as MSB. A NAND gate output is connected to active low clear
+inputs of all Flip-flops. What is the last count one can observe if Q3 and Q2 are connected as inputs to the NAND gate?
+Ans: Last Count= 1011(Binary)
+ ( 11 in Decimal)
+
+A 4 bit shift register circuit configured for right shift operation is shown below, if the present state of the shift register is
+ABCD = 1101, then the number of clock cycles required to reach the state ABCD = 1111 is -------------
+
+Ans: 9 clock pulses
+
+Describe the working principle of a JK master–slave flip-flop with suitable waveforms. Explain why the JK master–slave flip-
+flop eliminates the race-around condition.
+Ans:
+The Master-Slave configuration eliminates race-around condition by splitting the flip-flop into two stages that respond to
+opposite phases of the clock signal. Clock Pulse High: The Master is enabled. It accepts the J and K inputs and "decides" what
+the next state should be. However, the Slave remains disabled (locked), so the final output Q does not change yet. Since Q
+hasn't changed, the feedback sent back to the Master's inputs remains constant. This prevents the "looping" toggle that
+causes the race condition. (ref slides/ref book)
+
+Derive characteristic equation for JK and D Flip-flop and show how the D flip flop can be converted to a JK flip flop.Discuss the concept of propagation delay in ripple counters and interpret how this delay affects the maximum
+   operating frequency. Design Negative (↓) Edge triggered MOD 6 Asynchronous up counter using T flip flop.
+Ans:
+Propagation Delay is the time delay between the moment a signal transition occurs at the input (like the clock edge) and
+the moment the resulting transition appears at the output. Every flip-flop has an inherent, non-zero propagation delay
+dictated by the physical switching speed of its internal transistors. In a ripple counter, the state change has to propagate
+through the entire chain of flip-flops sequentially. The accumulated delay directly dictates the speed limit of the ripple
+counter. For the counter to operate reliably, the next clock pulse must not arrive until all flip-flops have had sufficient
+time to settle to their new, correct state. Limiting Condition is the minimum time period allowed for the clock signal
+must be greater than or equal to the total accumulated propagation delay: --- 2 Marks
+
+Instead of
+this you can
+use NAND
+gates, as
+explained in
+the prev
+slides

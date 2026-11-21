@@ -1,0 +1,191 @@
+1. Using K-map simplify the expression Y (A, B, C, D) = m1+m3+m5+ m7+m8+m9+
+    m0+m2+m10+m12+m13. Indicate the prime implicants, essential and non-essential
+    prime implicants. Realize the logic circuit using AND-OR-INVERT gates and also by
+    using NAND gates.
+2. Obtain the simplified function for the Boolean function Y (A, B, C, D) = m1+m3+m5+
+    m7 +m8+m9+ m0+m2+m10+m12+m13 using Quine McClusky method. Obtain the
+    NAND and NOR implementation of the simplified expression.
+3. Obtain the minimum SOP using Quine McClusky method and verify using K-map F= m0
+    + m2+m4+m8+m9+m10+m11+m12+m13.
+4. Determine the prime implicants of the following function and verify using K-map
+    F(A,B,C,D) = Σ(3,4,5,7,9,13,14,15).
+5. Simplify using K-map to obtain a minimum POS expression for the function
+    F = (A’ + B’ + C + D) (A + B’+ C + D) (A + B + C + D’) (A + B + C’ + D’)
+    (A’+ B + C + D’)(A + B + C’ + D).
+6. Simplify the following Boolean function in SOP and POS form using K-map
+    F ( A,B,C,D) = Σm( 3,4,9,13,14,15) + Σd ( 2,5,10,12)
+7. Simplify the following function using K – map and tabular methods. Compare the
+    methods. F ( A,B,C,D) = Σm(4,5,6,7,8) + Σd (11,12,13,14,15).Implement the result using
+    NAND gates.
+8. Obtain the minimum SOP using Quine Mc Clusky’s method for the function
+    Σm(0,1,2,8,9,15,17,21,24,25,27,31)
+9. Simplify the function F(w,x,y,z) = Σm(2,3,12,13,14,15) using tabulation
+    method.Implement the simplified function using gates.
+10. Simplify the function F(w,x,y,z) = Σm(1,4,6,7,8,9,10,11,15) using tabulation
+    method. Implement the simplified function using gates.
+11. Determine the Prime Implicants and Essential Prime Implicants of the function F(w,x,y,z)
+    = Σm(1,4,6,7,8,9,10,11,15) using tabulation method.
+12. Obtain the minimum SOP using Quine MC Clusky’s method and using K-map. F = m0+
+    m2 + m4 + m8 + m9 +m10 + m11 + m12 + m13
+13. Reduce the following using tabulation method.
+    F = m2 + m3 + m4 + m6 + m7 +m9 + m11 + m13.
+14. Using Quine Mc Clusky method find all the prime implicants and the minimum SOP for
+    the function F ( a, b, c, d) = Σm(0,4,5,7,8,11,12,15)
+15. Draw and explain the working of 4 bit adder – subtractor circuit.
+16. Explain Decimal Adders with a neat block diagram.
+17. Design a two – bit magnitude Comparator .
+18. Explain the working of carry look ahead generator.
+19. Design and implement a full adder circuit using logic gates and also by using half adders.
+20. What is a decoder? How is it different from encoder?21. Implement the following function with a Multiplexer
+    f (a, b, c, d) = Σ ( 0, 1, 3, 4, 8, 9, 15)
+22. Using 8 to 1 multiplexer, realize the following Boolean function
+    T = f (w,x,y,z) = Σ (1,1,2,4,5,7,8,9,12,13)
+23. Implement full adder circuit using, a) Decoder b) Multiplexer
+24. How can you convert a decoder into a de-multiplexer?
+25. Using 8 to 1 multiplexer, realize the Boolean function
+    T = f (w, x, y, z) = Σm (0, 1, 2, 4, 5, 7, 8, 9, 12, 13)
+26. Realize the function given in (i) using Decoder and external gates.
+27. Implement the function Y (A, B, C, D) = Σm (1, 3, 5, 7, 8, 9, 0, 2, 10, 12, 13) using
+    4:1MUX.
+28. Implement the function Y (A, B, C, D) = Σm (1, 4, 6, 7, 8, 9, 10, 11, 15) using 4:1 MUX
+29. Design and explain the working of a 4 x 1 MUX.
+30. Design the following function F = Σm (0, 1, 3, 5, 6, 8, 10, 13, 14) using a multiplexer and a
+    decoder.
+31. Explain how a 4 to 16 line decoder can be built using 2 to 4 line decoder.
+
+32. Explain how NAND logic gates can be used to make an RS latch.
+
+33. Provide an example of an industrial application that uses an RS latch and explain the
+   operation of the application.
+
+34. Explain the difference between a latch and a flip-flop.
+
+35. What is race around condition, which flip-flop poses this problem and why?
+
+36. Realize a master slave flip-flop using only nand gates, explain its working and how does
+   it solve the race around condition.
+
+37. Convert SR flipflop to JK flip-flop.
+
+38. Realize a JK flipflop using 2 to 1 mux, a D flip flop and an inverter if required.
+
+39. Elucidate 0’s and 1’s catching with relevant timing diagrams.
+
+40. Explain the working of positive edge triggered D flipflop.
+
+41. Provide an example of an industrial application that uses a FIFO.42. give the state transition diagram, excitation table and characteristic tables for SR, JK, D
+    and T flipflops.
+
+43. Explain the operation of a bit shift register.
+
+44. Provide an example of an industrial application that uses a bit shift register.
+
+45. Explain the difference between a bit shift register and a word shift register.
+
+46. Provide an example of an industrial application that uses a word shift register.
+
+47. Explain the operation of a ring counter.
+
+48. Explain the operation of a Johnson counter.
+
+49. using universal shift register, realize the following operations:
+
+     S1                             S0                             OPERATION
+
+     0                              0                              COMPLEMENT
+                                                                   CONTENTS
+
+     0                              1                              CIRCULAR SHIFT
+                                                                   RIGHT
+
+     1                              0                              LEFT SHIFT
+
+     1                              1                              CLEAR
+
+50. Design a MOD – 10 synchronous counter using JK flip-flops. Write the
+    excitation table and state table.
+51. Using SR flip-flops, design a synchronous counter which counts in the sequence 000,
+    111, 101, 110, 001, 010, 000.
+52. Design a mod – 5 synchronous counter using JK flip – flops with separate logic circuitry
+    for each J and K input. Construct a timing diagram and determine the duty cycle of the
+    output of the most significant stage.
+53. Design a synchronous counter using JK flip-flop to count the following sequence 7, 4, 3,
+    1, 5, 0, 7….
+54. Design a synchronous decade counter using D flip flop.
+55. Implement T flip flop using JK flipflop
+56. Explain the working of a master – slave JK flip flop. State its advantages.57. Design a Mod-14 up-down counter using T flip-flops.
+58. Design a mod- 7 counter using JK flip-flops.
+59. Design Mod 8 Johnson Counter
+60. Design a counter with the sequence 0, 1, 3, 7, 6, 4, 0.
+61. Design a BCD Up / Down counter using S R flip-flops.
+62. Design an asynchronous decade counter using JK flip-flops.
+63. What is the difference between level and edge triggering? Explain the working of master
+    slave J-K flip flop.
+64. Design a four state down counter using type T design procedures.
+65. Explain Johnson Counters
+66. With neat timing diagram, explain the working of a 4-bit SISO register.
+67. Define: state table , state equation , state diagram , input & output equations.
+68. What is a Mealy machine? Give an example.
+69. Differentiate between Moore and Mealey type sequential circuits.
+70. Develop the state diagram and primitive flow table for a logic system that has two inputs
+    S and R and a single output Q. The device is to be an edge triggered SR flip-flop but
+    without a clock. The device changes state on the rising edges of the two inputs. Static
+    input values are not to have any effect in changing the Q output
+71. Design an asynchronous sequential circuit that has two inputs X2 and X1 and one output
+    Z. The output is to remain a 0 as long as X1 is a 0. The first change in X2 that occurs
+    while X1 is a 1 will cause a Z to be a 1. Z is to remain a 1 until X1 returns to 0. Construct
+    a state diagram and flow table. Determine the output equations.
+72. Construct the state diagram of a Mealy Pattern detector that can detect a serial string of 4
+    inputs, where each input is a four bit code. If the string of four bit codes is correctly
+    received, then an output is generated. An incorrect input code pattern is to generate
+    a second output. The second output is to be asserted only after receiving the sequence of
+    four bit codes.
+73. An asynchronous sequential circuit has two internal states and one output. The excitation
+    and output functions describing the circuit are
+    Y1=x1 +x1y2 ' +x2y1
+    Y2=x2 +x1y1' y2+x1y1
+    Z= x2+y1
+    (i) Draw the logic diagram of the circuit.
+    (ii) Derive the transition table and output map.
+    (ii) Obtain a flow table for the circuit.
+74. An asynchronous sequential circuit is described by the excitation and output
+    functions Y = x1x2' +(x1+x2' ) y and Z =y
+    (i) Draw the logic diagram of the circuit with a NOR SR latch.
+    (ii)Derive the transition table and output map
+    (iii)Obtain a two-state flow table.
+75. Describe procedure to get state table from excitation table in an
+    asynchronous sequential circuit. How does it differ from
+    synchronous sequential circuit?76. Reduce the number of states in the following state table and tabulate the
+    reduced state table.
+
+                                            Next State              Output
+                         Present            x            x          x           x
+                         state              =            =          =           =
+                                            0            1          0           1
+
+                         a                  F            b          0           0
+
+                         b                  D            c          0           0
+
+                         c                  F            e          0           0
+
+                         d                  G            a          1           0
+
+                         e                  D            c          0           0
+
+                         f                  F            b          1           1
+
+                         g                  G            h          0           1
+
+                         h                  G            a          1           0
+
+77. Starting from state a, and the input sequence 01110010011, determine the output
+    sequence for the given and reduced state stable.
+78. A sequential circuit with 2 D flip-flops A and B and input X and output Y is specified by the
+    following next state and output equations.
+    A (t + 1) = AX + BX
+    B (t + 1) = A’X
+    Y = (A + B) X’
+     i. Draw the logic diagram of the circuit
+    ii. Derive the state table
+  iii. Derive the state diagram

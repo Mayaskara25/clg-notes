@@ -1,0 +1,312 @@
+RV College of
+Engineering
+                                              QUEUES
+                 FIFO concept • Queue ADT • Operations •
+                                 Types
+                          Simple • Circular • Double-Ended • Priority Queues
+
+                                Data Structures and Applications
+                           Based on E. Horowitz, S. Sahni and S. Anderson-Freed
+                                   Fundamentals of Data Structures in C
+
+           Data Structures and ApplicationsGo, change the world
+
+Learning Objectives
+
+Define a queue and explain the First-In-First-Out (FIFO) principle.
+Describe the Queue Abstract Data Type (ADT) and its basic operations.
+Trace enqueue, dequeue, front and rear operations using an array representation.
+Explain the limitations of a simple linear queue and the need for a circular queue.
+Differentiate circular queues, double-ended queues (deque) and priority queues.
+Relate queue structures to common computing applications.
+
+                                                                                                2Go, change the world
+
+Queue: Basic Concept
+
+ A queue is an ordered list in which insertions take place at one end and
+                deletions take place at the opposite end.
+            FRONT                             REAR
+                                                            Key idea
+
+                A        B       C        D                 Only the two ends are
+                                                            used for the standard
+                                                            queue operations.
+           Deletion occurs at FRONT ← A B C D → Insertion
+                              occurs at REAR
+
+                                                                                            3Go, change the world
+
+FIFO: First-In-First-Out
+
+     The element that enters first is the element that leaves first.
+        First inserted                                        First deleted
+
+            10           20        30           40
+
+       Enqueue: add the new item at the rear.
+       Dequeue: remove the item at the front.
+       Thus, the ordering of service follows arrival order.
+
+                                                                                               4Go, change the world
+
+Queue as an Abstract Data Type (ADT)
+
+ The ADT specifies what a queue does, independent of how the queue is represented or
+                                   implemented.
+
+      CREATEQ               Create an empty queue with a specified maximum size.
+
+      ISEMPTYQ              Determine whether the queue contains no elements.
+
+      ISFULLQ               Determine whether the queue has reached its capacity.
+
+   ADDQ / ENQUEUE           Insert an item at the rear of the queue.
+
+      DELETEQ /
+                            Remove and return the item at the front.
+      DEQUEUE
+
+                  Textbook terminology: Horowitz et al. use AddQ/DeleteQ; these correspond to enqueue/dequeue.
+
+                                                                                                                                  5Go, change the world
+
+Queue Operations: Enqueue and Dequeue
+
+ ENQUEUE (ADDQ)                                DEQUEUE (DELETEQ)
+ Adds a new element at the REAR.               Removes the element at the FRONT.
+
+ 1. Check whether the queue is full.           1. Check whether the queue is empty.
+ 2. Advance rear.                              2. Advance front.
+ 3. Store the new item at queue[rear].         3. Return the removed item.
+
+ Effect: the queue grows at the rear.          Effect: the queue shrinks at the front.
+
+       Error conditions: Queue Full during insertion; Queue Empty during deletion.
+
+                                                                                                          6Go, change the world
+
+Front and Rear
+
+                     Front and rear identify the two ends of the queue.
+               FRONT                                                       REAR
+
+                 A              B      C             D               E
+
+  FRONT                             REAR                                 ACCESS
+  Points to the element that will   Marks the position where the         Standard queue access is
+  be removed next.                  next element will be inserted.       restricted to the two ends.
+
+                                                                                                               7Go, change the world
+
+Array Representation of a Simple Queue
+
+A one-dimensional array can store the queue, with front and rear maintaining its boundaries.
+           index
+
+            0             1         2           3            4              5   6
+
+            A            B          C           D
+
+          elements
+
+                     front → A                                      D ← rear
+
+         Sequential storage is simple and efficient for basic operations.
+         However, a linear array queue can waste space after deletions.
+
+                                                                                                     8Go, change the world
+
+Enqueue: Step-by-Step Trace
+
+              Suppose the queue contains A, B, C and we enqueue D.
+
+         Before                           Advance rear                       Insert D
+
+    A     B       C                   A      B     C                     A     B     C       D
+
+  The new item is always placed at the rear; existing elements keep their relative order.
+
+                                                                                                    9Go, change the world
+
+Dequeue: Step-by-Step Trace
+
+       Starting with A, B, C, D, dequeue removes A and advances the front.
+
+         Before                        Remove A                        New front
+
+   A     B        C   D                  B    C     D                    B     C       D
+
+   The removed item is the front element. The next element becomes the new front.
+
+                                                                                             10Go, change the world
+
+Simple (Linear) Queue
+
+ Definition                         Advantages                        Limitation
+ The simplest queue                 • Easy to understand and          After repeated deletions,
+ representation. Insertions occur   implement                         unused cells can appear at the
+ at the rear and deletions occur    • Direct mapping to an array      beginning of the array while
+ at the front.                      • Enqueue and dequeue can be      rear reaches the last index.
+                                    constant-time when pointers are
+ It follows FIFO ordering.          maintained
+
+                This wasted-space condition motivates the circular queue.
+
+                                                                                                         11Go, change the world
+
+Problem with the Linear Queue
+
+           Example: a queue of size 6 after several deletions and insertions.
+
+            0            1            2            3            4           5
+
+                                      C           D            E            F
+
+          unused                                  active elements                   rear at end
+
+   The cells at the beginning are free, but a simple linear implementation may still report the queue as
+   full when rear reaches the last position.
+   Shifting elements to reclaim space can make an insertion or deletion O(n).
+
+                                                                                                                  12Go, change the world
+
+Circular Queue
+
+  A circular queue treats the array as if the last position is connected back to the
+                                         first.
+                                               1
+                                  0                         2
+
+                                  5                         3
+                                               4
+
+  When rear reaches the last index, the next position can wrap to index 0 if that position is
+                                           free.
+
+                   Typical wrap-around rule: next position = (position + 1) mod
+                                      MAX_QUEUE_SIZE
+
+                                                                                                    13Go, change the world
+
+Circular Queue: Enqueue and Dequeue
+
+        Circular indexing reuses positions released by earlier dequeue operations.
+
+ ENQUEUE IN CIRCULAR QUEUE                        DEQUEUE IN CIRCULAR QUEUE
+ 1. Check whether the queue is full.              1. Check whether the queue is empty.
+ 2. Move rear to the next circular position.      2. Remove the item at front.
+ 3. Insert the new item there.                    3. Move front to the next circular position.
+ 4. Continue from index 0 after the last index.   4. Freed cells can later be reused.
+
+     Main benefit: avoids unnecessary shifting and makes better use of a fixed-size
+                                        array.
+
+                                                                                                           14Go, change the world
+
+Double-Ended Queue (Deque)
+
+         A deque allows insertion and deletion at both ends of the queue.
+                     INSERT / DELETE                                        INSERT / DELETE
+
+                              A           B             C     D
+
+  Input-Restricted Deque                                    Output-Restricted Deque
+  Insertion is permitted at only one end; deletion is       Deletion is permitted at only one end; insertion is
+  permitted at both ends.                                   permitted at both ends.
+
+                                                                                                                      15Go, change the world
+
+Priority Queue
+
+In a priority queue, removal is determined by priority rather than strictly by arrival
+                                       time.
+
+        Job A                         Job B                  Job C                           Job D
+        Priority 3                   Priority 1             Priority 2                       Priority 1
+
+    If lower numerical value means higher priority, Job B and Job D are served before Job C and
+                                               Job A.
+
+          Typical use                                 Key distinction
+          CPU/job scheduling and service              Priority can override arrival order.
+          systems.
+
+                                                                                                                 16Go, change the world
+
+Comparing Queue Types
+
+    Type            Insertion            Deletion                  Main characteristic
+
+Simple / Linear       Rear                 Front             Strict FIFO; possible wasted space
+
+   Circular           Rear                 Front             Wrap-around reuses array positions
+
+    Deque         Front or Rear        Front or Rear              Both ends are accessible
+
+                    Based on
+   Priority                        Highest/lowest priority    Service order depends on priority
+                  implementation
+
+                                                                                                             17Go, change the world
+
+Queue Applications
+
+ Job scheduling                     Printer spooling                   I/O buffering
+ Jobs wait for processor service.   Print requests are handled in an   Data waits between producers and
+                                    ordered waiting line.              consumers.
+
+ Network packets                    Simulation event lists             Breadth-First Search
+ Packets can be buffered before     Events can be maintained in        A queue supports level-by-level
+ transmission/service.              time/order-based queues.           graph traversal.
+
+                                                                                                          18Go, change the world
+
+Queue Operation Complexity
+
+With front and rear maintained appropriately, basic queue operations can be performed efficiently.
+
+         Operation         Typical array queue                          Purpose
+
+          Enqueue                  O(1)                                Insert at rear
+
+          Dequeue                  O(1)                             Remove from front
+
+         Front / Peek              O(1)                             Inspect next item
+
+            Rear                   O(1)                     Inspect most recently inserted item
+           Caution: shifting elements in a linear array queue may require O(n) movement.
+
+                                                                                                              19Go, change the world
+
+Worked Example: Trace the Queue
+
+      Perform: ENQUEUE(10), ENQUEUE(20), ENQUEUE(30), DEQUEUE(), ENQUEUE(40).
+
+ 11    enqueue 10                                        10
+
+ 22    enqueue 20                                      10 20
+
+ 33    enqueue 30                                    10 20 30
+
+ 44    dequeue → 10                                    20 30
+
+ 55    enqueue 40                                    20 30 40
+
+                      Final queue: 20, 30, 40 | Front = 20 | Rear = 40
+
+                                                                                         20Go, change the world
+
+Common Errors and Edge Conditions
+
+ QUEUE UNDERFLOW                   QUEUE OVERFLOW                      WRAP-AROUND
+ Attempting dequeue when the       Attempting enqueue when a           In a circular queue, update
+ queue is empty.                   fixed-size queue is full.           indices modulo the queue
+                                                                       capacity so that freed positions
+ Response: report Queue Empty      Response: report Queue Full /       can be reused.
+ / underflow and do not remove     overflow and do not insert the
+ an element.                       item.
+
+    Carefully define the empty and full conditions for the chosen circular-queue representation.
+
+                                                                                                           21

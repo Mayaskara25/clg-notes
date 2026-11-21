@@ -1,0 +1,383 @@
+QUEUES
+           Types and Implementation
+
+            Simple • Circular • Double-Ended • Priority
+
+   Implementation using Arrays and Linked Lists
+
+                  Data Structures and Applications
+               Based on E. Horowitz, S. Sahni and S. Anderson-Freed
+                       Fundamentals of Data Structures in C
+
+Data Structures and ApplicationsGo, change the world
+
+Scope of the Topic
+
+ Understand the four queue types: simple, circular, double-ended and priority queues.
+ Represent queues using a one-dimensional array and identify the role of front and rear.
+ Implement simple and circular queues while handling overflow and underflow conditions.
+ Represent a queue using linked nodes and front/rear pointers.
+ Compare array-based and linked-list implementations in terms of storage and operations.
+ Recognize when a particular queue type is appropriate for an application.
+
+                                                                                                  2Go, change the world
+
+Queue Types: Overview
+
+ Simple Queue                                            Circular Queue
+ FIFO; insertion at rear, deletion at front.             Rear wraps around to reuse free array positions.
+
+ Double-Ended Queue                                      Priority Queue
+ Insertion and deletion are possible at both ends.       Deletion/service is determined by priority.
+
+         The queue type changes the rule used to determine where insertion/deletion can occur.
+
+                                                                                                              3Go, change the world
+
+Simple Queue
+
+                      A simple queue follows strict FIFO ordering.
+                  FRONT                                     REAR
+
+                      A          B         C         D
+
+  Insertion                          Deletion                       Ordering
+  Add the new element at rear.       Remove the element at front.   First inserted → first
+                                                                    removed.
+
+                                                                                                         4Go, change the world
+
+Circular Queue
+
+A circular queue treats the array as a circular sequence so that freed positions can be
+                                         reused.
+                                                     1
+                                        0                          2
+
+                                        5                          3
+                                                     4
+
+      When rear reaches the last index, the next position can wrap to index 0 if it is available.
+
+                   Circular update: next = (current + 1) mod MAX_QUEUE_SIZE
+
+                                                                                                            5Go, change the world
+
+Double-Ended Queue (Deque)
+
+                  A deque permits insertion and deletion at either end.
+                  INSERT / DELETE                                       INSERT / DELETE
+
+                             A            B          C    D
+
+  Input-Restricted Deque                                 Output-Restricted Deque
+  Insertion is restricted to one end; deletion can       Deletion is restricted to one end; insertion can
+  occur at either end.                                   occur at either end.
+
+                                                                                                                 6Go, change the world
+
+Priority Queue
+
+    A priority queue serves elements according to priority rather than simply
+                            according to arrival time.
+
+           J1                        J2                            J3                       J4
+          P=3                       P=1                           P=2                      P=1
+
+           If smaller number means higher priority, J2 and J4 are served before J3 and J1.
+
+  Service rule                       Tie handling                       Applications
+  Priority determines the next       Equal priorities may be handled    Scheduling, simulations and
+  element.                           FIFO.                              service systems.
+
+                                                                                                             7Go, change the world
+
+Queue Representation Using an Array
+
+ The sequential representation uses a one-dimensional array together with front and
+        index                     rear positions.
+
+           0             1            2            3           4        5     6
+
+           A            B             C            D
+
+       queue items
+
+                 front → A                                         D ← rear
+
+        front identifies the element to be deleted.
+        rear identifies the position for the next insertion.
+
+                                                                                                   8Go, change the world
+
+Array Implementation: Simple Queue
+           The array implementation maintains two indices: front and rear.
+
+ Queue {                                                    Enqueue / Add
+     KeyType queue[MAX];
+     int front;                                             Increment rear and place the new item in
+     int rear;                                              queue[rear], after checking for full condition.
+ };
+
+ Initialize:
+     front = 0;                                             Dequeue / Delete
+     rear = -1;
+                                                            Read queue[front], then advance front, after
+                                                            checking for empty condition.
+
+                  The exact empty/full conventions depend on the chosen array representation.
+
+                                                                                                                      9Go, change the world
+
+Simple Queue: Enqueue Operation
+
+ Add(item)                                             Step 1
+ {
+     if (IsFull())                                     Check whether the queue is full.
+         QueueFull();
+     else {
+         rear++;
+         queue[rear] = item;
+     }                                                 Step 2
+ }                                                     Advance rear and store item at queue[rear].
+
+                    Insertion always occurs at the rear in a simple queue.
+
+                                                                                                           10Go, change the world
+
+Simple Queue: Dequeue Operation
+
+ Delete(item)                                         Step 1
+ {
+     if (IsEmpty())                                   Check whether the queue is empty.
+         QueueEmpty();
+     else {
+         item = queue[front];
+         front++;
+     }                                                Step 2
+ }                                                    Return the front item and advance front.
+
+                   Deletion always occurs at the front in a simple queue.
+
+                                                                                                          11Go, change the world
+
+Why a Linear Array Queue Has a Limitation
+After deletions, free positions can appear at the beginning while rear moves toward the last
+                                       array position.
+
+             0              1         2            3            4         5
+
+                                      C            D            E         F
+
+         unused positions                                           rear near end
+
+  The intuitive array implementation may require elements to move to reclaim unused space.
+  In the worst case, such shifting can take O(n) time.
+  Circular queues remove the need for this repeated shifting.
+
+                                                                                                              12Go, change the world
+
+Circular Queue: Array Implementation
+
+ Initialize:                           Wrap-around
+     front = rear = 0;
+                                       After the last array position, the next position is
+ Next position:                        the first array position.
+     next = (position + 1) % MAX;
+
+ Enqueue:
+     newRear = (rear + 1) % MAX;       Full condition
+     queue[newRear] = item;            One common convention is to reserve one
+     rear = newRear;                   position so that the full and empty states
+                                       remain distinguishable.
+
+                                       Alternative
+                                       A flag/count can also distinguish full from empty.
+
+                                                                                                13Go, change the world
+
+Circular Queue: Dequeue Operation
+
+ Delete(item)                         1. Empty check
+ {
+     if (IsEmpty())                   Do not delete when the queue has no
+         QueueEmpty();                elements.
+     else {
+         front = (front + 1) % MAX;
+         item = queue[front];
+                                      2. Circular advance
+     }
+ }                                    Move front to its next circular position.
+
+                                      3. Return item
+                                      The new front identifies the item to remove under
+                                      this convention.
+
+                                                                                              14Go, change the world
+
+Queue Representation Using a Linked List
+   A linked queue uses dynamically allocated nodes rather than a fixed-size array.
+           front                                                            rear
+
+             A      →            B     →                C       →       D          →
+
+  Node                               Front pointer                     Rear pointer
+  Contains the data item and a       Identifies the first node to be   Identifies the last node where a
+  link to the next node.             deleted.                          new node is linked.
+
+                                                                                                            15Go, change the world
+
+Linked Queue: Node Structure
+
+ typedef struct node {                                     Each node stores one queue element.
+     KeyType data;                                         link points to the next node.
+     struct node *link;
+ } Node;                                                   front points to the first node.
+                                                           rear points to the last node.
+ Node *front = NULL;
+                                                           For an empty queue, both front and rear are
+ Node *rear = NULL;
+                                                           NULL.
+
+  Unlike a fixed array, the linked representation grows and shrinks dynamically as nodes are allocated
+                                                 and freed.
+
+                                                                                                              16Go, change the world
+
+Linked Queue: Enqueue
+
+ Add(item)
+ {                             Case 1: Empty queue
+     new = allocate Node;      The first node becomes both front and rear.
+     new->data = item;
+     new->link = NULL;
+
+     if (rear == NULL)
+         front = rear = new;
+     else {
+                               Case 2: Non-empty
+         rear->link = new;     Link the new node after rear and move rear to
+         rear = new;           the new node.
+     }
+ }
+
+                               Time
+                               With a rear pointer: O(1).
+
+                                                                                    17Go, change the world
+
+Linked Queue: Dequeue
+
+ Delete(item)
+ {                              Empty queue
+     if (front == NULL)         Report underflow / QueueEmpty.
+         QueueEmpty();
+     else {
+         temp = front;
+         item = temp->data;
+         front = front->link;
+         free(temp);
+                                Normal deletion
+                                Remove the first node and advance front.
+         if (front == NULL)
+             rear = NULL;
+     }
+ }
+                                Last node
+                                If front becomes NULL, reset rear to NULL.
+
+                                                                                    18Go, change the world
+
+Array Queue vs Linked Queue
+
+    Aspect                    Array implementation                      Linked-list implementation
+
+     Storage         Fixed capacity (unless dynamic array is used)   Dynamic; grows as nodes are allocated
+
+  Memory layout                       Contiguous                     Non-contiguous nodes linked by pointers
+
+    Overflow                  When capacity is reached                  Only when memory allocation fails
+
+   Space reuse             Circular queue reuses positions           Freed nodes can be returned to memory
+
+Pointers / indices               front and rear indices                    front and rear node pointers
+
+Enqueue / Dequeue          O(1) with suitable representation             O(1) with front and rear pointers
+
+                                                                                                                    19Go, change the world
+
+Implementing a Deque
+A deque can be implemented with an array or a linked structure, depending on the required
+                                      operations.
+ Array-based deque                   Linked deque                         Choice
+ Use front and rear indices.         Use a doubly linked list so that     Array: compact contiguous
+                                     both ends can be updated             storage and predictable capacity.
+ A circular array is particularly    efficiently.
+ suitable because positions can be                                        Linked: dynamic size and flexible
+ reused at both ends.                Maintain pointers to the first and   memory usage.
+                                     last nodes.
+ Operations: insertFront,                                                 The choice depends on
+ insertRear, deleteFront,            Operations at either end can be      application constraints.
+ deleteRear.                         O(1).
+
+                                                                                                               20Go, change the world
+
+Priority Queue Implementation Choices
+  Priority queues can use different underlying representations; the representation affects
+                                      operation cost.
+ Unordered Array / List              Ordered Array / List                 Linked Representation
+ Insertion is simple because the     The elements are maintained in       Nodes can be maintained in
+ new item can be placed at the       priority order.                      sorted or unsorted order.
+ available position.
+                                     Deletion of the highest-priority     Pointers replace contiguous
+ Finding the highest-priority item   element is easy, but insertion       array storage, while the priority
+ for deletion may require a scan.    may require shifting or searching.   ordering rule remains the same.
+
+         For advanced priority-queue structures, specialized implementations can provide improved
+                                               performance.
+
+                                                                                                               21Go, change the world
+
+Choosing the Appropriate Queue
+
+ Simple Queue
+ Need strict FIFO service and straightforward operations.
+
+ Circular Queue
+ Need fixed-size array storage with efficient reuse of released positions.
+
+ Deque
+ Need insertion/deletion at both ends.
+
+ Priority Queue
+ Need service according to priority rather than pure arrival order.
+
+                                                                                              22Go, change the world
+
+Worked Comparison
+                       Suppose A, B, C and D arrive in that order.
+
+Simple Queue              Circular Queue               Deque              Priority Queue
+Removal order:            Same logical FIFO order,     Removal may be     Removal order
+A→B→C→D                   but storage positions wrap   from either end.   depends on priority.
+                          around in the array.
+Strict FIFO.                                           Order depends on   Arrival order may not
+                                                       the chosen         determine service
+                                                       operations.        order.
+
+   Key distinction: Simple/Circular queues preserve FIFO; Deques change end-access rules;
+                         Priority queues change the service-order rule.
+
+                                                                                                    23Go, change the world
+
+Applications of Queue Types
+
+ Simple Queue                                       Circular Queue
+ Printer requests, basic scheduling, waiting-line   Buffers, streaming data, producer-consumer
+ simulations.                                       systems and fixed-size storage.
+
+ Deque                                              Priority Queue
+ Sliding-window processing, task structures         CPU/job scheduling, event simulation and
+ requiring access at both ends.                     service based on urgency.
+
+                                                                                                       24

@@ -1,0 +1,1440 @@
+Rashtreeya Sikshana Samithi Trust
+       R.V. College of Engineering®
+              (Autonomous Institution affiliated to VTU, Belagavi)
+Department of Computer Science & Engineering
+             Bengaluru -560059
+
+  Applied Digital Logic Design & Computer
+   Organization (CS234AI -2025 Scheme)
+                          III Semester B.E
+
+                   LABORATORY RECORD
+                        2026 – 2027
+
+   Name of the Student:_____________________________________
+
+   USN                   :______________________________________
+
+   Semester              : III               Section :________________R.V. College of Engineering®
+      (Autonomous Institution affiliated to VTU, Belagavi)
+
+Department of Computer Science &
+          Engineering
+
+APPLIED DIGITAL LOGIC DESIGN &
+   COMPUTER ORGANIZATION
+     (CS234AI - 2025 Scheme)
+
+Laboratory Record (Autonomous Scheme 2025)R.V. College of Engineering®
+                  (Autonomous Institution affiliated to VTU, Belagavi)
+        Department of Computer Science & Engineering
+
+                          Laboratory Certificate
+
+This is to certify that Mr. / Ms. ______________________________________
+with USN ___________________________ of III semester has satisfactorily
+completed the course of experiments in Applied Logic Design and Computer
+Organization Lab (CS234AI) prescribed by the department during the year 2025
+- 2026 .
+
+Name of the Candidate: _______________________________________
+
+USN No.: ___________________ Semester:_______________________
+
+      Marks
+  Maximum Obtained
+
+Signature of the staff in-charge                     Head of the Department
+Date:Department of Computer Science and Engineering
+                         R V College of Engineering, Bengaluru
+
+                                               Vision
+
+   To achieve leadership in the field of Computer Science & Engineering by strengthening
+   fundamentals and facilitating interdisciplinary sustainable research to meet the ever-growing
+   needs of the society.
+
+                                              Mission
+
+   •   To evolve continually as a center of excellence in quality education in computers and
+       allied fields.
+   •   To develop state-of-the-art infrastructure and create environment capable for
+       interdisciplinary research and skill enhancement.
+   •   To collaborate with industries and institutions at national and international levels to
+       enhance research in emerging areas.
+   •   To develop professionals having social concern to become leaders in top-notch industries
+       and/or become entrepreneurs with good ethics.
+
+Program Educational Objectives (PEOs):
+PEO1: Develop Graduates capable of applying the principles of mathematics, science, core
+         engineering and Computer Science to solve real-world problems in interdisciplinary
+         domains.
+PEO2: To develop the ability among graduates to analyze and understand current pedagogical
+         techniques, industry accepted computing practices and state-of-art technology.
+PEO3: To develop graduates who will exhibit cultural awareness, teamwork with professional
+         ethics, effective communication skills and appropriately apply knowledge of societal
+         impacts of computing technology.
+PEO4: To prepare graduates with a capability to successfully get employed in the right role and
+         achieve higher career goals or take-up higher education in pursuit of lifelong learning.
+
+                                                                                                    1
+Department of Computer Science & Engineering, RVCEKnowledge Profile (WK1–WK9)
+
+WK1: A systematic, theory-based understanding of the natural sciences applicable to the discipline and awareness of
+relevant social sciences.
+
+WK2: Conceptually-based mathematics, numerical analysis, data analysis, statistics and formal aspects of computer
+and information science to support detailed analysis and modelling applicable to the discipline.
+
+WK3: A systematic, theory-based formulation of engineering fundamentals required in the engineering discipline.
+
+WK4: Engineering specialist knowledge that provides theoretical frameworks and bodies of knowledge for the
+accepted practice areas in the engineering discipline; much is at the forefront of the discipline.
+
+WK5: Knowledge, including efficient resource use, environmental impacts, whole-life cost, re-use of resources, net
+zero carbon, and similar concepts, that supports engineering design and operations in a practice area.
+
+WK6: Knowledge of engineering practice (technology) in the practice areas in the engineering discipline.
+
+WK7: Knowledge of the role of engineering in society and identified issues in engineering practice in the discipline,
+such as the professional responsibility of an engineer to public safety and sustainable development.
+
+WK8: Engagement with selected knowledge in the current research literature of the discipline, awareness of the power
+of critical thinking and creative approaches to evaluate emerging issues.
+
+WK9: Ethics, inclusive behavior and conduct. Knowledge of professional ethics, responsibilities, and norms of
+engineering practice. Awareness of the need for diversity by reason of ethnicity, gender, age, physical ability etc. with
+mutual understanding and respect, and of inclusive attitudes.
+
+Program Outcomes (PO1–PO11)
+PO1: Engineering Knowledge
+
+Apply the knowledge of mathematics, natural science, computing, and engineering fundamentals and an engineering
+specialization to the solution of complex engineering problems.
+
+PO2: Problem Analysis
+
+Identify, formulate, and analyze complex engineering problems, reaching substantiated conclusions with consideration
+for the holistic nature of the problem.
+
+PO3: Design/Development of Solutions
+
+Design creative solutions for complex engineering problems and design systems, components, or processes to meet
+identified needs—with consideration for public health and safety, and cultural, societal, and environmental factors.
+Sustainability is now intrinsic to design.
+
+PO4: Conduct Investigations of Complex Problems
+
+Conduct investigations of complex engineering problems using research-based knowledge and research methods,
+including design of experiments, analysis and interpretation of data, and synthesis of information to provide valid
+conclusions.
+
+                                                                                                                            2
+Department of Computer Science & Engineering, RVCEPO5: Engineering Tool Usage
+
+Create, select, and apply appropriate techniques, resources, and modern engineering and IT tools, including prediction
+and modelling—recognizing their limitations—to solve complex engineering problems.
+
+PO6: The Engineer and the World
+
+Analyze and evaluate societal and environmental aspects while solving complex engineering problems, considering
+their impact on sustainability with reference to economy, health, safety, legal frameworks, culture, and the environment.
+
+PO7: Ethics
+
+Apply ethical principles and commit to professional ethics, human values, diversity, and inclusion; and adhere to
+relevant national and international laws.
+
+PO8: Individual and Collaborative Team Work
+
+Function effectively as an individual, and as a member or leader in diverse and multi-disciplinary teams.
+
+PO9: Communication
+
+Communicate effectively and inclusively within the engineering community and with society at large—comprehending
+and writing effective reports and design documentation, and making effective presentations—considering cultural,
+language, and learning differences.
+
+PO10: Project Management and Finance
+
+Apply knowledge and understanding of engineering management principles and economic decision-making, and apply
+these to one's own work, as a member and leader in a team, to manage projects in multi-disciplinary environments.
+
+PO11: Life-Long Learning
+
+Recognize the need for, and have the preparation and ability for, independent and life-long learning, adaptability to new
+and emerging technologies, and critical thinking in the broadest context of technological change.
+
+                                                                                                                         3
+Department of Computer Science & Engineering, RVCEProgram Specific Outcomes
+
+PSO1: System Analysis and Design
+The student will:
+1. Recognize and understand the dynamic nature of developments in computer architecture,
+data organization and analytical methods.
+2. Learn the applicability of various systems software elements for solving real-world design
+problems.
+3. Identify the various analysis & design methodologies for facilitating development of high
+quality system software products with focus on performance optimization.
+4. Display good team participation, communication, project management and document
+skills.
+
+PSO2: Product Development
+The student will:
+1. Demonstrate knowledge of the ability to write programs and integrate them resulting in
+state-of –art hardware/software products in the domains of embedded systems,
+databases /data analytics, network/web systems and mobile products.
+2. Participate in teams for planning and implementing solutions to cater to business – specific
+requirements displaying good team dynamics and professional ethics.
+3. Employee state-of-art methodologies for product development and testing / validation with
+focus on optimization and quality related aspects
+
+Course Outcomes (COs):
+
+At the end of the course student will be able to
+ Course Outcomes: After completing the course, the students will be able to:-
+ CO1 Apply digital logic principles, Boolean algebra, arithmetic circuits, combinational and
+         sequential logic design, and fundamental computer organization concepts to solve
+         engineering problems.
+ CO2 Analyze digital systems and computer architectures by interpreting logic functions,
+         processor operations, instruction execution, memory organization, and system
+         performance.
+ CO3 Examine alternative digital design methodologies, processor organizations, memory
+         hierarchies, and input/output mechanisms by considering functionality, efficiency, and
+         engineering constraints.
+ CO4 Design reliable digital systems and processor-based solutions using appropriate digital
+         design methodologies, hardware description languages, simulation tools, and laboratory
+         practices
+ CO5 Develop digital system solutions through collaborative project-based learning by
+         integrating digital logic design, computer organization concepts, modern engineering
+         tools, and professional Engineering practices.
+
+                                                                                                  4
+Department of Computer Science & Engineering, RVCECO Mapping with WK and POs
+
+CO      W    W    W    W    W    W     W    W    W    PO    PO   PO   PO   PO   PO   PO   PO   PO   PO       PO
+ s      K1   K2   K3   K4   K5   K6    K7   K8   K9    1     2    3    4    5    6    7    8    9   10       11
+CO       2   3     3    3    1    3     -    -    -    3     3    3    1    3    -    -    -    -    -        -
+ 1
+CO      2    3     3    3    1    3     -   -     -   3     3    3    2    3    -     -    -    -    -       -
+ 2
+CO      2    3     3    3    1    3     -   -     -   3     3    3    2    3    1    1    1     1    1       1
+ 3
+CO      2    2     3    3    1    3     -   -     -   3     3    3    2    3    1    1    1     1    1       1
+ 4
+C0      2    2     3    3    3    3     3   3    3    3     3    3    2    3    2    2    3     3    3       3
+ 5
+
+      High-3: Medium-2 : Low-1
+
+                                      Course - PO Mapping
+
+CO      W    W    W    W    W    W     W    W    W    PO    PO   PO   PO   PO   PO   PO   PO   PO   PO       PO
+ s      K1   K2   K3   K4   K5   K6    K7   K8   K9    1     2    3    4    5    6    7    8    9   10       11
+Co       2   3     3    3    1    3     1    1    1    3     3    3    2    3    1    1    1    1    1        1
+urs
+ e
+
+                  Laboratory Rules, Safety & Equipment Handling Guidelines
+      To ensure safe operation of laboratory equipment and effective learning, all students must strictly
+      follow the rules given below.
+
+      1. Preparation Before the Lab
+          • Come prepared with the digital logic circuit diagrams, IC pin details, Truthtable for the
+             assigned experiment.
+          • Read the experiment objective, theory, and procedure in advance.
+          • Bring the lab record, data sheets, and required stationery.
+          • Follow the experiment sequence and lab schedule as prescribed by the department.
+          • Ensure that you have the required software tools or IDE familiarity before starting the
+             experiment (when you are using simulators / FPGA kits).
+
+      2. General Laboratory Rules
+          • Enter the laboratory on time and with proper preparation.
+          • Use computers, digital trainer kits, FPGA kits only for academic purposes.
+          • Follow instructions given by the faculty or lab instructor at all times.
+          • Work only on the system and hardware kits assigned to you.
+          • Maintain discipline, silence, and cooperation with other students.
+          • Do not move around unnecessarily during the lab session.
+          • Keep your workstation clean and organized.
+
+                                                                                                         5
+      Department of Computer Science & Engineering, RVCE3. Equipment Handling Guidelines
+    • Handle digital trainer kits, FPGA kits and related cables/modules carefully.
+    • Use proper cables / patch cards / jumper wires and connectors while making circuit
+       connections.
+    • Avoid applying excess force on pins, connectors, and ports.
+    • Ensure all components are properly connected before switching ON the power supply.
+    • Return all components and tools to their designated storage location after use.
+    • Report damaged components or malfunctioning equipment immediately to the lab
+       instructor.
+
+4. Electrical & Hardware Safety
+    • Do not power the circuit until the instructor verifies the connections.
+    • Avoid short circuits, reversed polarity, and incorrect power supply connections.
+    • Always switch OFF the power supply before modifying the circuit.
+    • Do not touch exposed wires or powered circuits unnecessarily.
+    • Ensure proper ground connections when interfacing sensors or modules.
+    • Use only the recommended voltage levels for conducting the experiments
+
+5. Computer & Network Usage Policy
+    • Do not install, uninstall, or modify software on laboratory computers.
+    • Do not tamper with system files, network settings, or servers.
+    • Do not use another student’s login credentials.
+    • Save program files only in the designated folder.
+    • Do not connect external storage devices (USB drives, CDs, etc.) without permission.
+6. Prohibited Activities
+Students are strictly prohibited from:
+    • Coming late to the laboratory or leaving early without permission.
+    • Changing the assigned system or hardware kit without informing the lab instructor.
+    • Removing any hardware component from the laboratory.
+    • Using laboratory equipment for non-academic activities.
+    • Completing the lab record instead of performing the experiment during lab time.
+
+7. End of the Lab Session
+Before leaving the laboratory:
+    • Save your program files and shut down the computer properly.
+    • Disconnect circuits carefully and switch OFF the power supply.
+    • Return all components and tools to the designated place.
+    • Ensure the workspace is clean and organized.
+    • Place the chairs back in their original position.
+
+Note:
+Failure to follow laboratory rules and safety instructions may result in denial of lab access or
+disciplinary action.
+
+                                                                                               6
+Department of Computer Science & Engineering, RVCERubrics for ADLD & CO Laboratory
+Each experiment (Part A) is evaluated for 10 marks.
+
+                                             Write-up and Execution rubrics (Max: 6 marks)
+                                              Excellent                           Good                                 Poor
+ a.     Knowledge /               Demonstrates thorough ability      Demonstrates considerable       Unable to demonstrate, describe and
+        Understanding             in describing and illustrating the ability in describing and       illustrate the function of the Circuit
+        (2 Marks)                 function of the circuit (2-1.5)    illustrating the function of    (0)
+                                                                     the circuit (1-0.5)
+ b.     Circuit Construction      Excellent circuit functional,      Fair circuit functional,        Poor circuit functional, construction
+        (2 Marks)                 construction (2-1.5)               construction (1-0.5)            (0)
+ c.     Circuit Data              Correct data input and             Correct data input and fair     Correct data input and poor
+        Recording                 excellent presentation (2-1.5)     presentation (1-0.5)            presentation (0)
+        (2 Marks)
+                                                      Viva rubrics (Max: 4 marks)
+                                              Excellent                          Good                                 Poor
+ a.     Circuit Data Analysis     Answers to data analysis           Answers to data analysis        Answers to data analysis questions,
+        (2 Marks)                 questions, show complete           questions, show solid           show no understanding of how the
+                                  understanding of how the circuit   understanding of how the        circuit works (0)
+                                  works (2-1.5)                      circuit works (1)
+ b.     Applications              Demonstrates a high ability        Demonstrates considerable       Demonstrates very limited ability
+        (1 Mark)                  when wiring logic gates to         ability when wiring logic       when wiring logic gates to construct
+                                  construct logical circuits (1)     gates to construct logical      logic circuits (0)
+                                                                     circuits(0.5)
+ c.     Communication of          Communicates all ideas clearly     Communicates limited ideas      Unable to communicate ideas(0)
+        Ideas                     (1)                                (0.5)
+        (1 Mark)
+
+                                                         PART B (EL)
+
+Each EL to be evaluated for 20 marks.
+
+ Sl.n    Criteria                  Measuring Method                  Excellent                      Good                         Poor
+ o
+ a.      Innovation and         Innovativeness Design and    Demonstrates thorough         Demonstrates              Unable/Partial to
+         Design                 realization                  ability in describing and     considerable ability in   demonstrate, describe and
+         (12 Marks)                                          illustrating the experiment   describing and            illustrate the experiment (0-
+         CO4,CO5                                             (10-12M)                      illustrating the          4)
+                                                                                           experiment (5-9)
+ b.      Viva Voce          Effective Communication of       Excellent understanding       Fair understanding of     Poor understanding of the
+         (4 Marks)          the design, Understanding        of the design (4)             the design                design (0-1)
+         CO4,CO5            of basics                                                       (2-3)
+ c.      Report and           Documentation and              Correct data input and        Correct data input and    Correct data input and poor
+         presentation         Presentation skills            excellent presentation (4)    fair presentation         presentation (0-1)
+         (4 Marks)                                                                          (2-3)
+         CO4,CO5
+
+                                                                                                                                     7
+Department of Computer Science & Engineering, RVCEPART-A : List of Laboratory Experiments
+[Conducted using Digital Trainer kit, Simulator and FPFA kit ] [Record-20M,Test-10M]
+
+    Sl.                                                   D Pa              Marks (10)                 Staff
+    No                                                    a ge                                         Sign
+                           Contents                                Record    Viva (04)    Total (10)
+                                                          t No.
+                                                                    (06)
+                                                          e
+                                                          PART A
+          Realization of BCD to Excess-3 Code
+    1     converter with Parallel Adder and Subtractor      14
+          using 4 bit Adder, using the IC – 7483.
+
+          Realization of Full Adder and Full Subtractor
+    2     using Multiplexers, using the IC 74153.           17
+
+    3     Design and realization One Bit and Two-Bit        22
+          Magnitude Comparator using Basic Gates.
+          a.Realization of Binary to Gray Code
+    4     Converter and vice-versa using IC 74139.          26
+
+          b.Realization of single digit Seven segment
+          display using the BCD to seven segment
+          decoders, using the IC–7447 and Realization
+          of Priority Encoder using IC -74147
+          Design and Realization of Master-Slave JK
+    5     Flip Flop using NAND Gate                         33
+
+          a.Realization of Up and Down Programmable
+    6     Counter using IC74192.                            36
+          b.Design a 4bit Universal Shift Register,
+          Verify SISO, SIPO, PISO, PIPO operations.
+          Realize the Ring Counter and Jhonson
+          Counter using the SR. Use the Simulator
+
+    7     Design of Mod-N Synchronous counters              43
+          using JK/D/T Flip-Flops Using Simulator
+
+    8     4bit CPU Design: ALU and Register File            47
+          Design
+
+    9     4bit CPU Design: Memory Interface,                47
+          Decoding & Control Unit
+
+    10    Instruction Set Preparation and ARM               47
+          Assembly Programs.
+
+    11    Realize the 4bit CLA & 4bit Comparator            48
+          using HDL/Verilog on FPGA
+
+    12    Evaluate & compare the different Memory &         48
+          I/O standards on PC Motherboard
+
+                                                                            Total Marks     120
+
+                        Reduced Part A Marks = (Total Marks*20)/ 120 =                            /20
+
+                                                                                                               8
+   Department of Computer Science & Engineering, RVCELaboratory Test: Writeup= /2M,Conduction= /6M,Viva= /2M:-                                /10M
+
+     PART-B [Experiential Learning / Project Based Learning] [20Marks]
+
+                                                   EL
+ Develop any one of the following :
+ 1. Microcontrollers based Embedded System
+ 2. Assembly Language based software application
+ 3. Digital System Design using VHDL
+       Name of the           Date     Page No               Maximum Marks (10)
+       EL Project                                                                        Staff Sign
+                                                   Design     Viva    Report     Total
+                                                    (12)       (4)     (4)       (20)
+
+                                             LAB INTERNALS
+
+                     RECORD (Part-A)                Max – 20
+
+                     TEST (Part-A)                  Max - 10
+
+                     PART B ( EL)                   Max - 20
+
+                     TOTAL                          Max – 50
+
+           Signature of the faculty
+
+                                                                                                9
+Department of Computer Science & Engineering, RVCEIntroduction to Logic gates
+
+This chapter is intended to introduce the student to some of the basic gates that will be used in the
+foundations of computer systems design laboratory experiments. The content of this chapter
+includes the Pin diagram of basic gates. Following are the basic gates that are dealt in this chapter.
+
+         1. IC 7408: 2- input AND gate
+         2. IC 7400: 2-input NAND gate
+         3. IC 7486: X-OR gate
+         4. IC 7432: 2-input OR gate
+         5. IC 7404: NOT gate
+         6. IC 7402: 2-input NOR gate
+         7. IC 7410: 3-input NAND gate
+         8. IC 7411: 3-input AND gate
+         9. IC 7420: dual 4-input NAND gate
+         10. IC 7421: dual 4-input AND gate
+
+All the above- m e n t i o n e d IC`s a r e known as small-scale integrated circuits whi ch belongs
+to a logical family known as TTL.
+
+IC7408: Two Input AND Gate
+
+Fig.1.1 (a) AND Gate Logic Symbol                            (b) Pin Diagram for the 7408 Quad AND
+
+IC7411: Three Input AND Gate
+
+Fig.1.2 (a) Logic Symbol for three input AND gate      (b) Pin Diagram for the 7411 Triple 3 input
+AND gate
+
+                                                                                                     10
+Department of Computer Science & Engineering, RVCEIC7432: Two Input OR Gate
+
+Fig.1.3 (a) OR Gate Logic Symbol                            (b) Pin Diagram for the 7432 Quad OR
+
+IC 7400: Two Input NAND Gate
+
+Fig.1.4 (a) NAND Gate Logic Symbol                          (b) Pin Diagram for the 7400 Quad
+NAND
+
+IC 7410: Three Input NAND Gate
+
+ Fig.1.5 (a) Logic Symbol Of three input NAND   (b) Pin Diagram for the 7410 Triple 3 input NAND gate
+
+IC 74283 Parallel Adder
+
+                                                                                                        11
+Department of Computer Science & Engineering, RVCEIC 7476: J K Flip-flop
+
+IC 7476 :The 74LS76 is a Dual JK flip-flop IC, which contains two individual JK type bi-
+stable within a single chip enabling single or master-slave toggle flip-flops to be made.
+This is a negative-edge triggered flip-flop, with both active low preset and clear inputs.
+.
+
+ IC 7420: Four Input NAND Gate
+
+Fig.1.6 (a) Logic Symbol Of four input NAND gate   (b) Pin Diagram of 7420 Dual 4 input NAND
+gate
+
+IC 7402: Two Input NOR Gate
+
+Fig.1.7 (a) NOR Gate Logic Symbol                            (b) Pin Diagram for the 7402 Quad
+NOR
+
+                                                                                                 12
+Department of Computer Science & Engineering, RVCEIC7486: Two Input EX-OR Gate
+
+Fig.1.8 (a) X-OR Gate Logic Symbol               (b) Pin Diagram for the 7486 Quad X-OR
+
+IC7404: Two Input NOT Gate
+
+Fig: 1.9 (a) Pin Diagram for the 7404 NOT Gate   (b) Pin Diagram for the 7404
+Inverter
+
+                                                                                          13
+Department of Computer Science & Engineering, RVCEExperiment 01
+
+1. Realization of Excess-3 Code converter with Parallel Adder and Subtractor using
+IC – 7483.
+
+Aim: To design Excess-3 Code converter using IC 74283 parallel adder and verify the
+        truth table
+Components Required:
+
+          Sl.
+                     Components                   Specification             Quantity
+          No.
+           1 Parallel Adder                       IC -7483           1 No
+           2 2 Input EX-OR                        IC -7486           1 No
+           3 Digital trainer kit & patch          –                  1 No, 20 patch cables
+              cables
+
+Procedure: -
+
+1.    Verify the gates.
+2.    Make the connections as per the circuit diagram.
+3.    Connect to VCC and apply various combinations of input according to the truth table.
+4.    Note down the output readings for different combinations of inputs.
+
+Theory:
+
+The availability of large variety of codes for the same discrete elements of information results in the
+use of different codes by different systems. A conversion circuit must be inserted between the two
+systems if each uses different codes for same information. Thus, code converter is a circuit that
+makes the two systems compatible even though each uses different binary code.
+
+Parallel adders are digital circuits that compute the addition of variable binary strings of
+equivalent or different size in parallel. The IC 7483 is 4 bit binary adder, adds two 4bit binary
+numbers. numbers being processed are A4 A3 A2 A1and B4 B3 B2 B1, while the answer is S4 S3
+S2 S1. Adder can be used as subtractor, by feeding 2s compliment of 2nd number (B). This is done
+by producing 1s compliment (using inverters- exor gates are used to selectively invert the input) and
+then adding logic 1 (by feeding logic 1 at the carry input). The circuit shown below, acts as adder /
+subtractor, based on the control input fed to one of the inputs of EX-OR gate. If control input is
+logic 0, circuit acts as adder, if control input is logic 1, circuit acts as subtractor.
+
+Note: When used as subtractor, always remember, the carry produced is opposite of what is
+expected. (compliment of the actual carry).
+
+                                                                                                      14
+Department of Computer Science & Engineering, RVCEBinary Coded Decimal:
+
+Binary Coded Decimal is a method of using binary digits to represent the decimal digits 0 through
+9. It is possible to assign weights to the binary bits according to their positions. The weights in the
+BCD code are 8, 4, 2 and 1. Ex: (137)10 - BCD equivalent (0001 0011 0111)2.
+
+Excess-3 Code:
+This is an un-weighted code. Its code assignment is obtained from the corresponding value of BCD
+after the addition of (0011)2.
+
+BCD to Excess-3 (or) Excess-3 to BCD: Since each code uses four bits to represent a decimal
+digit, there must be four inputs and four output variables. The input variable are designated as B3,
+B2, B1, B0 and the output variables are designated as E3 , E2, E1, E0 in the truth table.
+
+Circuit Diagram:
+
+                                                                                                      15
+Department of Computer Science & Engineering, RVCEA. Perform addition and subtraction for following set of numbers (observe o/ps)
+
+      Example1(add): 40 and 59
+
+      Example2(add): 79h and AFh (in hexadecimal) (0x79 and 0xAF)
+
+      Example3(sub): 67 – 48
+
+      Example4(sub): 0xA3 – 0xBC
+
+   B. Code Converter (BCD-Excess 3)
+
+Truth Table:
+i) BCD - EXCESS-3 CODE                               ii) Excess-3 – BCD CODE
+
+ BCD                 EXCESS-3                        EXCESS-3         BCD
+  0 0        0   0                                   0 0 1        1
+ 0   0       0   1                                   0 1 0        0
+ 0   0       1   0                                   0 1 0        1
+ 0   0       1   1                                   0 1 1        0
+ 0   1       0   0                                   0 1 1        1
+ 0   1       0   1                                   1 0 0        0
+ 0   1       1   0                                   1 0 0        1
+ 0   1       1   1                                   1 0 1        0
+ 1   0       0   0                                   1 0 1        1
+ 1   0       0   1                                   1 1 0        0
+
+Inference:
+
+                                                                                     16
+Department of Computer Science & Engineering, RVCEExperiment 02
+
+Realization of Full Adder and Full Subtractor using IC 74153.
+
+A. Aim: To Realize combinational circuit Full Adder using IC74153
+
+Components Required:
+
+         Sl.
+                    Components               Specification          Quantity
+         No.
+          1 Multiplexer                        IC -74153              1 No
+          2 NOT GATE                            IC -7404              1No.
+          3 Digital trainer kit & patch             –         1 No, 20 patch cables
+             cables
+
+Theory
+IC-74153 is a dual 4-to-1 multiplexer have 2 sets of 4:1 MUX name MUX A and MUX B,
+and the IC has 2 select lines S0 and S1 for each of the MUX but these selection line are
+internally shorted together as shown in the logic diagram below and hence the entire IC has
+only two selection pins. Each 4:1 MUX is associated with an active low enable pin namely
+Ea and Eb. With appropriated logic level on enable pins and on selection pins, logic levels
+on the input pin of any one or both the MUX can be transferred to the output. Za and Zb are
+the output of MUX A and MUX B respectively.
+
+   74LS153 Dual 4-Input Multiplexer                        Pin Diagram IC 74153
+            Logical Diagram
+
+                                                                                              17
+Department of Computer Science & Engineering, RVCETo realize any Boolean function with ‘ n’ input variable, MUX require n-1 or n-2 selection
+pins. We use either Tabular method or Floyd method to generate the expressions. Of these two
+methods tabular method is been used in this experiment to realize Adder and Subtractor using 4:1
+MUX.
+
+In this experiment, Sum is realized on Mux A, Carry realized on Mux B, both enable pins of the
+Mux are connecting to logic 0, Connect A,B inputs to S1, S0 lines of Mux respectively. According
+to input A and B different data inputs lines (I0 to I3) are selected. Connect the data inputs to logic
+0 or logic 1 according to the required outputs. Expression for sum and carry in terms input variable
+C, as shown below diagrams.
+
+Truth table of Full adder:
+
+                                Inputs                   Outputs
+                       A          B          C         Sum    Carry
+                       0          0          0
+                       0          0          1
+                       0          1          0
+                       0          1          1
+                       1          0          0
+                       1          0          1
+                       1          1          0
+                       1          1          1
+
+   Logic Diagram:
+
+                                                                                                     18
+Department of Computer Science & Engineering, RVCEProcedure:
+
+ 1. Verified IC Number before conducting experiment
+ 2. The IC is fixed into IC socket of the trainer kit and connects VCC and GND.
+ 3. Connections are made as shown in logic diagram.
+ 4. Connect all the inputs to switches and out to the LED’s
+ 5. The inputs are applied using the toggle switches from the trainer kit according
+    to    the truth table and the corresponding outputs are verified on the LEDs.
+ 6. Truth table is verified for different combination of input.
+
+Inference:
+
+                                                                                      19
+Department of Computer Science & Engineering, RVCEB. Aim: To Realize a Full Subtractor using IC74153
+Components Required:
+
+         Sl.
+                    Components            Specification        Quantity
+         No.
+          1 Multiplexer                    IC -74153              1 No
+          2 NOT GATE                        IC -7404              1No.
+          3 Digital trainer kit & patch         –         1 No, 20 patch cables
+             cables
+
+Full Subtractor using 74153
+Truth table of Full subtractor:
+
+            Inputs                  Outputs
+    A         B         C         Diff  Borrow
+    0         0         0
+    0         0         1
+    0         1         0
+    0         1         1
+    1         0         0
+    1         0         1
+    1         1         0
+    1         1         1
+  Logic Diagram:
+
+                                                                                  20
+Department of Computer Science & Engineering, RVCEProcedure:
+ 1. Verified IC Number before conducting experiment
+ 2. The IC is fixed into IC socket of the trainer kit and connects VCC and GND.
+ 3. Connections are made as shown in logic diagram.
+ 4. Connect all the inputs to switches and out to the LED’s
+ 5. The inputs are applied using the toggle switches from the trainer kit according
+     to the truth table and the corresponding outputs are verified on the LEDs.
+ 6. Truth table is verified for different combination of input.
+
+Inference:
+Assigment 3: Realize 8:1 Mux using 2:1 & 4:1 Mux, 16:1 using 8:1 & 4:1
+
+                                                                                      21
+Department of Computer Science & Engineering, RVCEExperiment 03
+Design and Realization of One and Two Bit Magnitude Comparator using Basic
+Gates
+
+A. Aim: To design one bit comparator, two bit comparator using logic gates
+
+Components Required:
+
+         Sl.
+                       Components                  Specification            Quantity
+         No.
+          1      AND GATE                            IC -7408                  1 No
+          2      NAND GATE                           IC-7400                   1 No.
+          3      3 Input NAND GATE                   IC-7410                   1 No.
+          4      NOT GATE                            IC -7404                  1 No.
+          5      XOR GATE                            IC-7486                   1 No.
+          6      Digital trainer kit & patch             –             1 No, 20 patch cables
+                 cables
+
+Theory
+One Bit Comparator
+A magnitude comparator is a combinational circuit that compares two numbers A and B
+and determines their relative magnitude. The outcome of the comparison is specified by
+3 binary variables that indicate whether A = B or A< B or A>B.
+
+Truth table for one bit Comparator
+
+        Inputs                    Outputs                  Boolean Expression (A<B) =
+    A            B       A<B       A=B             A>B
+    0            0                                         Boolean Expression (A=B) =
+    0            1
+    1            0
+    1            1                                         Boolean Expression (A>B) =
+
+        K Map (A<B)                        K Map (A=B)                       K Map (A>B)
+        B      0                                 0                 1         A
+                                                                               B     0         1
+   A
+          0                                    0                                 0
+
+          1                                    1                                 1
+
+                                                                                                   22
+Department of Computer Science & Engineering, RVCELogic Diagram of One Bit Comparator:
+
+Two Bit Comparator
+A magnitude comparator is a combinational circuit that compares four digital Bits A1,
+A0 and B1, B0 and determines their relative magnitude. The outcome of the comparison
+is specified by 3 binary variables that indicate whether A = B or A < B or A >B.
+
+Truth table for Two bit Comparator
+Observations:
+
+                              Inputs                             Outputs
+               A1        A0            B1     B0       A<B        A=B       A>B
+               0         0              0      0
+               0         0              0      1
+               0         0              1      0
+               0         0              1      1
+               0         1              0      0
+               0         1              0      1
+               0         1              1      0
+               0         1              1      1
+               1         0              0      0
+               1         0              0      1
+               1         0              1      0
+               1         0              1      1
+               1         1              0      0
+               1         1              0      1
+               1         1              1      0
+               1         1              1      1
+
+                                                                                        23
+Department of Computer Science & Engineering, RVCEK-Map for (A<B)                            Boolean Expression
+(A<B)
+   B1 B0
+A1 A0        00     01        11   10
+   00
+   01
+   11
+   10
+
+                                         Boolean Expression (A=B)
+
+            K-Map for (A=B)
+    B1 B0
+A1 A0        00     01        11   10
+   00
+   01
+   11
+   10
+
+                                         Boolean Expression (A>B)
+
+            K-Map for (A>B)
+ B1 B0
+ A1          00     01        11   10
+    A0
+
+   00
+   01
+   11
+   10
+
+                                                                            24
+Department of Computer Science & Engineering, RVCELogic diagram of two-bit comparator:
+
+Procedure:
+1. Verified IC Number before conducting experiment
+2. The IC is fixed into IC socket of the trainer kit and connect VCC and GND.
+3. Connections are made as shown in logic diagram.
+4. Connect all the inputs to switches and out to the LED’s
+5. The inputs are applied using the toggle switches from the trainer kit according to the
+   truth table and the corresponding outputs are verified on the LEDs.
+6. Truth table is verified for different combination of input.
+
+Inference:
+
+                                                                                            25
+Department of Computer Science & Engineering, RVCEExperiment 04
+A. Realization of Binary to Gray Code Converter and vice-versa using IC 74139
+B. Realization of Decoder using IC-7447 and Realization of Encoder using IC-74147
+
+A. Aim : Realization of Binary to Gray Code Converter and vice-versa using IC 74139
+Components Required:
+
+         Sl.
+                    Components                Specification           Quantity
+         No.
+          1 2-to-4 Line Decoder                   74139        1 No
+          2 4 Input NAND gate                      7420        1 No
+          3 Digital trainer kit & patch       –                1 No, 20 patch cables
+             cables
+
+Theory
+IC 74139: This IC is a dual 2-to-4-line decoder in the 7400 series. Each side of the chip is
+a decoder with an active low enable from a 2-bit address to four active low signals. The two
+decoders can be combined to realize a 3-8 decoder. This IC can also function as a dual 2 x 4
+DEMUX also. If it is used as DEMUX, then active low enable pin acts as i/p of mux, 2
+inputs acts as select lines of mux and 4 output lines in each decoder becomes outputs.
+
+                                                                                               26
+Department of Computer Science & Engineering, RVCEProcedure: -
+1. Verify IC Number before conducting experiment
+2. The IC is fixed into IC socket of the trainer kit and connect pin 16 to VCC and pin 8 to
+   GND.
+3. Connections are made as shown in logic diagram.
+4. Connect all the inputs to switches and out to the LED’s
+5. The inputs are applied using the toggle switches from the trainer kit according to the
+   truth table and the corresponding outputs are verified on the LEDs.
+6. Truth table is verified for different combination of input.
+
+Circuit Diagram:
+
+                                                                                         G0
+
+                                                                                         G1
+
+                                                                                         G2
+
+Truth Table: 3 Bit binary code conversion using IC74139
+
+             Inputs                          Outputs
+    B2        B1          B0         G2       G1          G0        G0 = ∑     m(             )
+     0         0           0
+     0         0           1                                        G1 = ∑     m(             )
+     0         1           0                                        G2 = ∑     m(             ) = B2
+     0         1           1
+     1         0           0
+     1         0           1
+     1         1           0
+     1         1           1
+
+Note: Students are required to realize given SOP & POS expressions using the decoder
+IC 74139 (document them in the data sheet).
+
+Inference:
+
+                                                                                                       27
+Department of Computer Science & Engineering, RVCEB . Realization of Decoder using IC-7447 and Realization of Encoder using IC-
+74147
+1. Aim: To realize a Decoder using IC-7447 and Encoder using IC-74147
+
+Components Required:
+
+          Sl.
+                      Components               Specification          Quantity
+          No.
+           1 Decoder                             IC -7447              1 No
+           2 7 Segment display LED                                     1 No.
+           3 Digital trainer kit & patch             –         1 No, 20 patch cables
+              cables
+
+Theory:
+74LS47 is a BCD to 7-segment decoder/driver IC. It accepts a binary coded decimal as
+input and converts it into a pattern to drive a seven-segment for displaying digits 0 to 9.
+Binary coded decimal (BCD) is an encoding in which each digit of a number is
+represented by its own binary sequence (usually of four bits).
+For example 239 in BCD is represented as 0010 0011 1001.
+
+74LS47 IC accepts four lines of BCD (8421) input data and generates their complements
+internally. The data is decoded with seven AND/OR gates to drive indicator LEDs of the
+seven segment directly. The outputs correspond to Common anode (CA) configuration of
+seven segment. The 74LS47 chip is used to drive 7 segment display. You must use the
+74LS47 with a common anode 7-segment display (e.g. King bright part number SA03).
+The input to the 74LS47 is a binary number DCBA where D is 8s, C is 4s, B is 2s and A
+is 1s. The inputs DCBA often come from a binary counter. The display is only sensible if
+the binary number is between DCBA=0000 (0) and DCBA=1001 (9); this is called Binary
+Coded Decimal or BCD for short.
+
+The inputs    /     ,                   and    (LAMP TEST)are usually connected to
++5v.
+
+                                                                                              28
+Department of Computer Science & Engineering, RVCEProcedure
+
+   1. Connect VCC [pin 16],                                       [pin 3], / [pin
+       4] and     [pin 5] to 5v.
+   2. Connect GND [pin 8] to 0v.
+   3. Connect DCBA [pins 1, 2, 6 and 7] to DCBA on your counter.
+   4. Connect [pins 9-15] to abcdefg on the common anode 7-segment display.
+   5. Apply BCD input on DCBA lines using toggle switches and observe the output
+      on7-segment LED display unit
+
+                                                          Pin Diagram IC 7447
+
+      Using 7447 (Decoder) and seven segment decoder Logic diagram
+
+                                             Vcc
+
+                                             Grd
+
+                                                                                    29
+Department of Computer Science & Engineering, RVCETruth Table:
+
+Procedure:
+1. Verified IC Number before conducting experiment
+2. The IC is fixed into IC socket of the trainer kit and connects VCC and GND.
+3. Connections are made as shown in logic diagram.
+4. Connect all the inputs to switches and out to the LED’s
+5. The inputs are applied using the toggle switches from the trainer kit according to
+   the truth table and the corresponding outputs are verified on the LEDs.
+6. Truth table is verified for different combination of input.
+
+Inference:
+
+                                                                                        30
+Department of Computer Science & Engineering, RVCEB. Aim: To realize an Encoder using IC 74147
+
+Components Required:
+
+        Sl.
+                    Components                Specification          Quantity
+        No.
+         1 Encoder                              IC -74147              1 No
+         2 Digital trainer kit & patch              –          1 No, 20 patch cables
+            cables
+
+Theory:
+IC 74147
+
+The 74HC/HCT147 is 9-input priority encoders, accept data from nine active LOW inputs
+A 0 to A8 and provide a binary representation on the four active LOW outputs Y 0 - Y3. A
+priority is assigned to each input so that when two or more inputs are simultaneously active,
+the input with the highest priority is represented on the output, with input line A8 having
+the highest priority. The device provide the 9 to 4-line priority encoding function by use of
+the implied decimal "zero". The "zero" is encoded when all nine data inputs are HIGH, forcing
+all four outputs HIGH.
+
+              Pin Diagram                                   Logic Diagram
+
+                                                                                            31
+Department of Computer Science & Engineering, RVCETruth Table:
+
+EDSFFDSF
+
+Procedure:
+1. Verify IC Number before conducting experiment
+2. The IC is fixed into IC socket of the trainer kit and connect VCC and GND.
+3. Connections are made as shown in logic diagram.
+4. Connect all the inputs to switches and out to the LED’s
+5. The inputs are applied using the toggle switches from the trainer kit according to the
+   truth table and the corresponding outputs are verified on the LEDs.
+6. Truth table is verified for different combination of input.
+
+Inference:
+
+                                                                                            32
+Department of Computer Science & Engineering, RVCEExperiment 05
+Realization of Master-Slave J K Flip-Flop Using NAND gates.
+
+Aim: To realize Master-Slave JK Flip-Flops using NAND Gates and IC 7476
+
+Components Required:
+      Sl.
+                    Components                     Specification           Quantity
+      No.
+       1 Flip-Lop                                    IC -7476               1 No
+       2 NAND GATE                                   IC-7400                1 No
+       3 3 INPUT NAND GATE                           IC-7410                2 No
+           Digital trainer kit & patch                                  1 No, 35 patch
+       4                                                  –
+           cables                                                          cables
+
+Theory:
+Flip-Flop
+A flip-flop circuit can maintain a binary state indefinitely (as long as power is delivered to
+the circuit) until directed by an input signal to switch states. A flip-flop has two useful states,
+when Q=1 and Q ’ = 0, it is in the set state (or 1-state). When Q = 0 and Q’ = 1, it is in the
+clear state (or 0-state). The outputs Q and Q’ are complements of each other and are referred
+to as the normal and complemented outputs, respectively. The binary state of the flip-flop
+is taken to be the value of the normal output.
+
+The NAND basic flip-flop circuit operates with both inputs normally at 1 unless the state of
+the flip-flop has to be changed. The application of a momentary 0 to the set input causes
+output Q to go to 1 and Q ’ to go to 0, thus putting the flip-flop into the set state. After the set
+input returns to 1, a momentary 0 to the reset input causes a transition to the clear state. When
+both inputs go to 0, both outputs go to 1 – a condition avoided in normal flip-flop operation.
+
+JK Flip-Flop
+A JK flip-flop is a refinement of the RS flip-lop in that the indeterminate state of the RS type
+is defined in the JK type. Inputs J and K behave like inputs S and R to set and clear the flip-flop
+(note that in a JK flip-flop, the letter J is for set and the letter K is for clear). When inputs are
+applied to both J and K simultaneously, the flip-flop switches to its complement state, that is,
+if Q=1, it switches to Q=0, and vice versa.
+
+Master – Slave Flip-flop:
+A master – slave flip-flop is constructed from two separate flip-flops. One circuit serves as a
+master and the other as a slave, and the overall circuit is referred to as a master-slave flip
+-flop. It consists of a master flip-flop and a slave flip-flop. When clock pulse CP is 0, the
+output of the inverter is 1. Since the clock input of the slave is 1, the flip-flop is enabled and
+output Q is equal to Y, while Q’ is equal to Y’. The master flip flop is disabled because CP =
+0. When the pulse becomes 1, the information then at the external R and S inputs is
+transmitted to the master flip-flop. The slave flip-flop, however, is isolated as long as the
+pulse is at its 1 level, because the output of the inverter is 0. When the pulse returns to 0, the
+                                                                                                    33
+Department of Computer Science & Engineering, RVCEmaster flip-flop is isolated, which prevents the external inputs from affecting it. The slave
+flip-flop then goes to the same state as the master flip-flop.
+
+ Procedure:
+1. Rig up the circuit as shown in the figure
+2. Keep both preset and reset/clear at logic high
+3. Verify the truth table for JK Master-Slave
+
+Logic Diagram of JK Master Slave using NAND Gate
+
+                                                                                            34
+Department of Computer Science & Engineering, RVCETruth Table:
+
+        CLK                  J                   K              Qn+1(next state)
+         H                   0                   0
+         H                   0                   1
+         H                   1                   0
+         H                   1                   1
+
+Note: Observe the output behavior with Preset and Clear inputs and prepare
+the modified truth table.
+
+Assignment: Realize D and T flip-flops using above designed MS-JK flip-flops.
+
+Inference
+
+ Department of Computer Science & Engineering, RVCE                                35Experiment 06
+a. Realization of Up and Down Programmable Counter using IC74192 Aim: To
+Realization of counter using IC74192
+           (i) Up / Down counter
+           (ii) Presettable Up counter
+           (iii) Presettable Down counter
+
+Components Required:
+       Sl.
+                    Components                   Specification          Quantity
+      No.
+        1 COUNTER                                  IC -74192              1 No
+        2 NOT GATE                                  IC-7404               1 No
+        3 4 INPUT NAND GATE                         IC-7420               1 No
+            Digital trainer kit & patch                               1 No, 20 patch
+        4                                               –
+            cables                                                       cables
+
+IC74192:
+74HC192: 74HCT192 is a 4-bit synchronous decade binary up/down counter.
+Separate up/down clocks, ClkU and ClkD respectively, simplify operation. The outputs
+change state synchronously with the LOW-to-HIGH transition of either clock input. If the CLKU
+clock is pulsed while CLKD is held HIGH, the device will count up. If the CLKD clock is
+pulsed while CLKU is held HIGH, the device will count down.
+
+Only one clock input can be held HIGH at any time to guarantee predictable behavior. The
+device can be cleared at any time by the asynchronous master reset input (Clr); it may also be
+loaded in parallel by activating the asynchronous parallel load input.
+
+The terminal count up (Carry) and terminal countdown (Borrow) outputs are normally HIGH.
+When the circuit has reached the maximum count state of 09, the next HIGH-to-LOW transition
+of CLKU will cause carry to go LOW. Carry will stay LOW until CLKU goes HIGH again,
+duplicating the count up clock. Likewise, the Borrow output will go LOW when the circuit is
+in the zero state and the CLKD goes LOW.
+
+The terminal count outputs can be used as the clock input signals to the next higher order circuit
+in a multistage counter, since they duplicate the clock waveforms. Multistage counters will not
+be fully synchronous, since there is a slight delay time difference added for each stage that is
+added.
+
+The counter may be preset by the asynchronous parallel load capability of the circuit.
+Information present on the parallel data inputs (P0 to P3) is loaded into the counter and
+appears on the outputs (Q0 to Q3) regardless of the conditions of the clock inputs when the
+parallel load input is LOW.
+
+ Department of Computer Science & Engineering, RVCE                                        36A HIGH level on the master reset input will disable the parallel load gates, override both
+clock inputs and set all outputs (Q0 to Q3) LOW. If one of the clock inputs is LOW during and
+after a reset or load operation, the next LOW-to-HIGH transition of that clock will be
+interpreted as a legitimate signal and will be counted. Inputs include clamp diodes. This
+enables the use of current limiting resistors to interface inputs to voltages in excess of VCC.
+
+Pin Diagram
+
+Pin Configuration
+
+   Truth Table
+                        Load    Clear
+                         X        1   Clk–up Clk–down          Mode
+                         1        0     X        X            Preset to zero
+                         1        0      ↑       1            Up – count
+                         0        0      1       ↑            Down count
+                         1        0     X        X            Preset
+                                         1       1            Stop count
+
+ Department of Computer Science & Engineering, RVCE                                     37Procedure Mod 10 Up & Down Counter: -
+
+For up count clear the counter.
+   1. Clk-down=logic-1
+   2. Keep clear = logic-0 to clear the output, load can be maintained at either
+      logic-0 or logic-1.
+   3. Then, first make Load=logic-1 and then Clear=logic-0, to start the counter.
+   4. Mono-pulses are applied at Clk-up.
+   5. Observe the count sequence at Q3 Q2 Q1 Q0.
+
+ For down count, clear the counter.
+1. Clk-up=logic-1
+2. Keep clear = 0, load = 0 to set the output.
+3. Keep clear = 0 change load to 1, to start the counter.
+4. Mono-pulses are applied at Clk-down.
+5. Observe the count sequence at Q3 Q2 Q1 Q0.
+
+Preset table Mod 6 Up Counter
+Circuit Diagram:
+
+Procedure: -
+To count from 2 to 7
+
+1) Preset the data input to 0010.
+2) Set Clk-down=logic-1
+3) Set Clear=logic-0
+4) Connect the load to the output of the NAND gate
+5) Mono-pulses are applied at Clk-up
+6) The o/p count should changes from 2 to 7, 2 to 7 & so on.
+
+  Department of Computer Science & Engineering, RVCE                                38Preset table Mod 4 Down Counters:
+Circuit Diagram:
+
+Procedure for down counter
+1) Preset the data input to 1000.
+2) Set Clk-up=logic-1
+3) Set Load=logic-0 and Clear=logic-0
+4) Connect the load to the output of the NAND gate
+5) Mono-pulses are applied at Clk-down
+6) The o/p count should changes from 8 to 5, 8 to 5 & so on.
+
+Assignment: Design of Multi-stage Up/Down counters using 74192 (draw ckt)
+
+Inference:
+
+ Department of Computer Science & Engineering, RVCE                         39B. Design a 4bit Universal Shift Register, Verify SISO, SIPO, PISO, PIPO
+operations. Realize the Ring Counter and Jhonson Counter using the SR. Use the
+Simulator
+Components Required:
+
+        Sl.
+                   Components                     Specification            Quantity
+        No.
+         1 D Flip-Flops                                  -                   4Nos
+         2 NOT GATE                                      -                   1 No
+         3 Simulator                                     –                     -
+
+Theory : Universal Shift Register can be realized using the D Flip-Flops and basic gates.
+Provide following inputs: Select lines to select the mode of operation (Parallel load, shift left,
+shift right, hold), Serial inputs for Left shift and Right shift, Parallel load inputs, Clock to
+shift the data, Outputs. Perform the testing for all the modes and them build following
+counters.
+
+a. Ring counter : A ring counter is a type of counter composed of a type circular shift
+register. The output of the last shift register is fed to the input of the first register. Ring
+counters are used in hardware logic design (e.g. ASIC & FPGA) to create simple finite state
+machines. A binary counter will require an adder circuit which is substantially more complex
+than a ring counter. Additionally, the worst-case propagation delay on an adder circuit will
+be proportional to the number of bits in the code (due to the carry propagation).
+The propagation delay of a ring counter will be a constant regardless of the number of bits
+in the code. The complex combinational logic of an adder can create timing errors which
+may result in erratic hardware performance. Also, ring counters with Hamming distance 2(or
+more) allow the detection of single bit upsets that can occur in hazardous environments.
+
+The disadvantage of ring counters is that they are lower density codes. A binary counter can
+represent 2^N states, where N is the number of bits in the code, whereas an Overbank counter
+can represent only N states and a Johnson counter can represent only 2N states. This may
+be an important consideration in hardware implementations where registers are more
+expensive than combinational logic.
+
+a. JOHNSON COUNTER : The Johnson Ring Counter or “Twisted Ring Counters”, is
+another shift register with feedback exactly the same as the standard Ring Counter above,
+except that this time the inverted output Q of the last flip-flop is now connected back to
+the input D of the first flip-flop as shown below.
+
+ Department of Computer Science & Engineering, RVCE                                          40The main advantage of this type of ring counter is that it only needs half the number of flip-
+flops compared to the standard ring counter then it’s modulo number is halved. So a “n-
+stage” Johnson counter will circulate a single data bit giving sequence of 2n different states
+and can therefore be considered as a “mod-2n counter”.
+Design a 4bit Universal Shift Register, Verify SISO,SIPO,PISO,PIPO operations. Realize the
+Ring Counter and Jhonson Counter using the SR. Use the Simulator
+
+Truth Table: (Ring Counter)
+
+          Mode                              Inputs                          Output
+                      Clock
+           M                      D3      D2      D1       D0      Q3      Q2       Q1       Q0
+             1           0        1        0       0       0
+             0           1
+             0           2
+             0           3
+             0           4
+             0           5
+
+Truth Table: (Jhonson Counter)
+
+      Mode                                 Inputs                              Output
+                  Clock
+       M                        D3       D2     D1          D0       Q3       Q2    Q1            Q0
+       1             0          0        0       0          0
+       0             1
+       0             2
+       0             3
+       0             4
+       0             5
+       0             6
+       0             7
+       0             8
+
+ Department of Computer Science & Engineering, RVCE                                               41Draw the Circuit Diagram of Universal Shift Register- with Mode Details
+
+Department of Computer Science & Engineering, RVCE                           42Experiment 7
+
+Design of Mod-N Synchronous counters using JK/D/T Flip-Flops (Simulator)
+
+Aim: To design and test Mod-N Synchronous counters using JK/D/T Flip Flops using
+     simulator
+
+Components Required:
+
+           Sl. No.        Components               Specification             Quantity
+              1       AND GATE                           -                      -
+              2       OR GATE                            -                      -
+              3       J K/T/D Flip Flop                  -                      -
+              4       Simulator                          –                      -
+
+   a. Design a Decade synchronous Counter
+
+A synchronous decade counter will count from zero to nine and repeat the sequence. The
+state diagram of this counter is shown in figure
+
+                     State diagram of synchronous decade counter
+
+Since there are ten states, four JK flip-flops are required. The truth tables of present and
+next state for the decade counter are shown in figure. Using the excitation table of JK flip-
+flop and the outputs of J and K are filled.
+
+ Department of Computer Science & Engineering, RVCE                                             43Truth Table:
+
+       Present State          Next State                       Output
+     Q3 Q2 Q1 Q0         Q3     Q2 Q1      Q0   J3   K3   J2   K2 J1     K1   J0      K0
+     0     0    0    0   0      0      0   1    0    X    0    X 0       X    1       X
+     0     0    0    1   0      0      1   0    0    X    0    X 1       X    X       1
+     0     0    1    0   0      0      1   1    0    X    0    X X       0    1       X
+     0     0    1    1   0      1      0   0    0    X    1    X X       1    X       1
+     0     1    0    0   0      1      0   1    0    X    X    0    0    X    1       X
+     0     1    0    1   0      1      1   0    0    X    X    0    1    X    X       1
+     0     1    1    0   0      1      1   1    0    X    X    0 X       0    1       X
+     0     1    1    1   1      0      0   0    1    X    X    1 X       1    X       1
+     1     0    0    0   1      0      0   1    X    0    0    X 0       X    1       X
+     1     0    0    1   0      0      0   0    X    1    0    X 0       X    X       1
+
+The Karnaugh maps of the output J0, K0, J1, K1, J2, K2, J3, and K3 are shown below:
+
+ Department of Computer Science & Engineering, RVCE                                        44Logic Diagram:
+
+   b. Design a synchronous counter for the following count
+   sequence: 4-6-7-3-1----4-6……. (Avoid Lock out condition)
+
+     (i) Design
+     Step1: Writing state transition diagram.
+     To avoid Lock out condition, next states of unused states are sent to used state as shown in state
+     diagram.
+
+     Here, unused states 5, 2 and 0 are forced to go into 6, 3 and 1 state respectively to avoid lockout
+                condition.
+
+ Department of Computer Science & Engineering, RVCE                                                        45Step 2: Writing present state, next state and transition table.
+
+                                Present state Next state Flip-Flop inputs
+                                Q2 Q1 Q0 Q2 Q1 Q0 J2K2 J1K1 J0K0
+                                 0   0     0  0   0    1 0X     0X    1X
+                                 0   0     1  1   0    0 1X     0X    X1
+                                 0   1     0  0   1    1 0X     X0    1X
+                                 0   1     1  0   0    1 0X     X1    X0
+                                 1   0     0  1   1    0 X0     1X    0X
+                                 1   0     1  1   1    0 X0     1X    X1
+                                 1   1     0  1   1    1 X0     X0    1X
+                                 1   1     1  0   1    1 X1     X0    X0
+
+      Step 3: Use Karnaugh maps to identify the present state logic functions for each of the inputs.
+
+     For J2,
+
+                 J2=Q1'Q0 K2=Q1Q0                 J1=Q2 K1=Q2'Q0               J0=Q2'+Q1         K0=Q1'
+
+     (ii) Implementation
+
+     Step 4: Constructing Circuit as shown in Figure
+
+Inference:
+
+ Department of Computer Science & Engineering, RVCE                                                       46Experiments 8,9 and 10
+
+Design a 4-bit CPU using the LOGISIM simulator, for the following specifications.
+
+1) Program Counter (Assume 256 locations of program/code memory)
+2) Instruction Register (Assume instruction size as 16 bit)
+3) General Purpose Registers (RISC type-R0-R7): Use Harvard & Multiple Bus Architecture
+4) ALU (to support 4-bit integer arithmetic operations & 4-bit logical operations)
+5) Memory – 1024 locations of ROM (to store instructions of size 16 bit) and 256 RAM (to store
+   4-bit data)
+6) Implement the following instructions namely: MOV, ADD, SUB, AND, XOR, NOT.
+7) Result to be displayed on 7‐segment displays / reg tab of LOGISIM
+8) Write multiple Assembly Language Programs and Machine Code the instructions and execute
+   them using the designed CPU.
+
+1     MOV #5, R0           2 MOV #3, R1            3 MOV #4, R1   4 MOV #a, RØ
+.     MOV #4, R1             MOV #2, R2              MOV #8, R2     MOV #b, R1
+      MOV #A, R2             ADD R1,R2,R4            ADD R1,R2,R3   ADD RØ,R1,R7
+      ADD R0,R1,R3           ADD R1,R2,R5            XOR R1,R2,R4   AND RØ,R1,R3
+      AND R3,R2,R4           OR R1,R2,R6             AND R1,R2,R6   XOR R0,R1,R2
+
+         Refer the following Videos to Perform the Experiments:
+
+         Logisim 4 bit CPU Design Lecture #1
+         https://youtu.be/NNRLZNNECZE?si=r6Hhud-c_2lfle6_
+         Logisim 4 bit CPU Design Lecture #2
+         https://youtu.be/WQ-PJr8y3vQ?si=RYsz2rsBAyB_zOW0
+
+    Department of Computer Science & Engineering, RVCE                                47Experiment 11
+
+Aim: To Design 4bit CLA and 4bit Comparator using iterative design technique. Use
+     Verilog HDL to build the design, simulate the design and implement on the
+     FPGA Kit
+
+Refer the FPGA Kit Lab Manual. (attach the datasheet)
+
+Experiment 12
+
+Aim: To Evaluate & Compare the different Memory and I/O standards, on the PC
+     Motherboard.
+
+Refer the Motherboard Manual and Motherboard and document the details
+      (attach data sheet).
+
+ Department of Computer Science & Engineering, RVCE                                 48PART B (Experiential Learning)
+
+                                                   EL
+ Develop any one of the following :
+ 1. Microcontrollers based Embedded System
+ 2. Assembly Language based software application
+ 3. Digital System Design using Verilog HDL and Implementation on FPGA Kit
+
+Note: The Project/Product/Program developed for EL to be presented for SEE Exam for
+external evaluation.
+
+ 1. Title:
+
+ 2. Aim:
+
+ 3. Team Members with USN:
+
+ 4. Components Used in Design and their specifications:
+
+5.   Block Diagram and Description (attach the print out)
+
+ Department of Computer Science & Engineering, RVCE                              49•    EL Instructions:
+     1. Form a batch of 3 students from same section.
+     2. Selection of Problem Statement OR assignment of Problem Statement to each batch will
+         be done by a course course-handling faculty member under the supervision of the course
+         coordinator & HoD.
+     3. The batch of students are required to analyze the problem statement, formulate the
+         objectives, identify the hardware & Software requirements, define deliverables, etc.
+•    Evaluation Methodology:
+     1. Phase 1 after CIE1:      Student team need to prepare Synopsis/ Presentation consisting of
+         Introduction, Problem statement, formulation of the objectives, identification of the hardware
+         & Software requirements, deliverables, and will be evaluated by course handling faculty
+         members. Suggestions during presentation to be noted down by the team.
+     2. Phase 2 after CIE 2: The progress of the problem statements is further monitored after the 2nd
+         CIE allowing students to refine their work before the final evaluation.
+     3. Phase 3 (final) before lab CIE: During the final phase, students are required to present a
+         demonstration of the prototype, simulation results, working model/FPGA Implementation,
+         results, etc. A consolidated report of three to four pages is to be attached to the lab manual by
+         each student. The report may consist of a problem statement, Objectives, Hardware/Software
+         requirements, national& International status, BOM, Results, outcomes (Paper publication,
+         patent, product), and Skills acquired.
+     4. Hardware and software required will be provided by the department.
+•    SEE Evaluation:
+     1. A project exhibition will be conducted for each course. In which, each batch should present a
+         working prototype/ Simulation model.
+     2. An external examiner (industry/ academia) with a course-handling faculty member will
+         evaluate each student on the following rubrics.
+         A4 size Poster/Write up                                                       :10 Marks
+         Presentation/Demonstration/Technical Depth/Innovation                         :30 Marks
+         Viva                                                                          :10 Marks
+                                                                  Total : 50 Marks
+     3. Additionally, demonstration of the outcome in terms of paper publication, patents, and
+         product may be suitably rewarded.
+
+    Department of Computer Science & Engineering, RVCE                                           50

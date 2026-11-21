@@ -188,17 +188,23 @@ def build_packs(cfg, s, u, c, out_dir, unit_url, sections, err):
             if text is None:
                 L += ["(No extracted text for this source yet; open the PDF.)", ""]
                 continue
-            skipped = []
+            skipped, blank = [], []
             for p in want:
                 if p < 1 or p > len(text):
                     err(f"{name} packs: #{sid} {src_id} has no page {p}")
                     continue
                 t = text[p - 1]
+                if len(t) < 40:   # handwritten or scanned page: no text layer
+                    blank.append(p)
+                    continue
                 if used + len(t) > budget:
                     skipped.append(p)
                     continue
                 used += len(t)
-                L += ["", f"--- {source_name(x)}, page {p} ---", t or "(this page has no text: it is mostly a picture)"]
+                L += ["", f"--- {source_name(x)}, page {p} ---", t]
+            if blank:
+                L += ["", f"(Page{'s' if len(blank) > 1 else ''} {ranges(blank)} {'are' if len(blank) > 1 else 'is'} handwritten or scanned, with no text "
+                          "to extract: open the PDF to read " + ("them" if len(blank) > 1 else "it") + ".)"]
             if skipped:
                 L += ["", f"(Pages {ranges(skipped)} are left out to keep this pack small; see the PDF.)"]
             L.append("")

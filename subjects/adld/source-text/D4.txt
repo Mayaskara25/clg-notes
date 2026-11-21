@@ -1,0 +1,403 @@
+Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+General model of a sequential network.
+Figure 7.1
+
+7-0Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Structure of a clocked synchronous sequential
+network.
+Figure 7.2
+
+7-1Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Mealy model of a clocked synchronous sequential
+network.
+Figure 7.3
+
+7-2Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+      The next state function Q+
+      O* = f(X,Q)
+      Similarly, if Z is regarded as the collective output
+      signals of the network, then under the assumption
+      that the outputs are a function of both the inputs and
+      present state, it immediately follows that
+
+      Z= g(X,Q)
+
+7-3Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Moore model of a clocked synchronous sequential
+network.
+Figure 7.4
+
+7-4Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+      The next state function Q+
+      O* = f(X,Q)
+      Similarly, if Z is regarded as the collective output
+      signals of the network, then under the assumption that
+      the output is a function of only the present state, it
+      immediately follows that
+      Z= g(Q)
+
+7-5Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+      Differences between mealy and moore models
+                          Moore Machine                                                        Mealy Machine
+
+            Output depends only upon the present state.                Output depends on the present state as well as present input.
+
+       Moore machine also places its output on the transition.               Mealy Machine places its output on the transition.
+
+                      More states are required.                                     Less number of states are required.
+
+            There is less hardware requirement for circuit                     There is more hardware requirement for circuit
+                           implementation.                                                   implementation.
+
+         They react slower to inputs(One clock cycle later).                             They react faster to inputs.
+
+             Synchronous output and state generation.                                Asynchronous output generation.
+
+                     Output is placed on states.                                       Output is placed on transitions.
+
+                           Easy to design.                                                 It is difficult to design.
+
+              If input changes, output does not change                              If input changes, output also changes.
+
+      Has more or the same states as that of the Mealy machine.         Has fewer or the same states as that of the Moore machine.
+
+7-6Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Logic diagram for Example 7.1.
+Figure 7.5
+
+7-7Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+      The excitations to the flip-flops of the previousnFig.
+      correspond to the logic values that appear at the D input
+      terminals of flip-flops FF 1 and FF2. Algebraically,
+
+      To complete the algebraic description of a sequential
+      network, it is also necessary to write algebraic expressions
+      for the network outputs. the output is given by
+
+7-8Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+      For D flip flop
+      Q+=D, the transition equations for this circuit
+      would be:
+      Q; =D1
+      Q2+=D2
+      Substituting
+
+7-9Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+       Transition table and equations
+
+7-10Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-11Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+       State table
+
+7-12Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Logic diagram for Example 7.2.
+Figure 7.6
+
+7-13Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+       The excitation equations are as follows:
+
+7-14Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+       Characteristic equation for a JK flip-flop is
+       O+=JQ’+K’Q
+
+7-15Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-16Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-17Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+       State table
+
+7-18Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+State diagram for Example 7.1.
+Figure 7.7
+
+7-19Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+State diagram for Example 7.2.
+Figure 7.8
+
+7-20Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Assume the flip-flops are both in their 0-states, which corresponds
+to state A, and the input sequence x = 0011011101 1s applied to the
+network.* From the general discussion on the operation of clocked
+synchronous sequential networks, the inputs are assumed to be
+applied prior to the triggering time of the clock signal that can
+affect a state transition, and the effects of the inputs have
+propagated through the combinational logic so that final values
+appear at the network outputs and flip-flop inputs.
+ Therefore, according to Tables it is seen that when the first x = 0
+input is applied to the network when in state A, the network
+produces a z = 0 output.
+Furthermore, upon receipt of the positive edge of the clock signal,
+the memory portion of the network goes to state C. Next, another x
+= 0 is applied. Since the network is now in state C, a current output
+of | is produced and the network remains in state C upon receipt of
+the next positive edge of the clock signal. It can readily be checked
+that the input sequence x = 0011011101 applied to the network of
+Example 7.1 when initially in state A produces the following state
+7-21
+andoutput sequences:Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+       Input sequencex = 0011011101
+       State sequence = ACCABDABDAB
+       Output sequencez =O 107001011
+
+7-22Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Timing diagram for Example 7.1.
+Figure 7.9
+
+7-23Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+The analysis procedure.
+Figure 7.10
+
+7-24Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+The serial binary adder.
+Figure 7.11
+
+7-25Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Obtaining the state diagram for a Mealy serial binary
+adder. (a) Partial state diagram. (b) Completed state
+diagram.
+Figure 7.12
+
+7-26Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+State diagram for a Moore serial binary adder.
+Figure 7.13
+
+7-27Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+A sequential circuit has three flip-flops A, B, C; one input x;
+and one output, y. The state diagram is shown in Fig.below.
+The circuit is to be designed by treating the unused states
+as don’t-care conditions. Analyze the circuit obtained from
+the design to determine the effect of the unused states.
+i) Use D flipflops ii) Use JK flipflops
+
+7-28Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-29Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-30Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+       Design the sequential circuit specified by the state
+       diagram for the figure below usingT flip-flops
+
+7-31Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+       Draw the state table
+       TA (A, B, x) = ∑ ( 2, 3, 6)
+       TB (A, B, x) = ∑ ( 0, 3, 4, 6)
+
+7-32Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+A sequence recognizer.
+Figure 7.14
+
+7-33Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+       x=0100010010010010000000011'
+       z=0000001000000100000000001
+
+7-34Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+State diagram for a sequence recognizer. (a) Detection
+of two consecutive 0’s. (b) Partial analysis of the
+three-symbol sequence. (c) Completed state diagram.
+(d) Definition of states.
+Figure 7.15
+
+7-35Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-36Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+A 0110/1001 sequence recognizer. (a) Beginning the
+detection of the sequences 0110 or 1001. (b) Definition
+of states. (c) Completing the detection of the two
+sequences 0110 or 1001. (d) Completed state diagram.
+Figure 7.16
+
+7-37Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+State diagram for the final example.
+Figure 7.17
+
+7-38Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Experiment for determining equivalent pairs of states.
+Figure 7.18
+
+7-39Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+The structure of an implication table.
+Figure 7.19
+
+7-40Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-41Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-42Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Implication table for determining the equivalent states
+of Table 7.13. (a) The initial table. (b) After the first pass.
+(c) After the second pass.
+Figure 7.20
+
+7-43Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Implication table for determining equivalent states of
+the 0110/1001 sequence recognizer. (a) Initial table.
+(b) Final table.
+Figure 7.21
+
+7-44Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+       State assignment rules/guidelines
+
+   Define two states as being adjacent if their binary
+   codes differ in exactly one bit.
+   Similarly, two input combinations are considered
+   adjacent if they differ in exactly one bit. The following
+   rules suggest which states should be made adjacent
+   in an attempt to obtain simple Boolean expressions
+   for the next-state and output functions.
+
+7-45Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Rule I: Two or more present states that have the same next
+state for a given input combination should be made adjacent.
+Rule II: For any present state and two adjacent input
+combinations, the two next states should be made adjacent.
+Rule III: Two or more present states that produce the same
+output symbol, i.e., 0 or 1, for a given input combination
+should be made adjacent. This rule need only be applied to
+one of the output symbols.
+
+7-46Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-47Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+It is noted that state B is the next state for both present
+states B and G when the input is x = 0. Rule I suggests that
+states B and G should have adjacent codes. Similarly, for the
+same input, states C and F should be coded as ad- jacent
+states since their next states are both state D, and states D
+and H should be coded as adjacent states since their next
+states are both state F. Referring to the column for x = 1, it is
+concluded that the pairs of states (A,E), (B,G), and (D,H)
+should each be coded as adjacent states.
+To summarize, Rule I proposes the following adja-cency
+conditions should be attempted:
+Rule I: (B,G)(2X), (C,F), (D,H)(2X), (A,E£)
+The (2) following the pairs (B,G) and (D,A) indicates that the
+recommended adjacency conditions appear twice and should
+be given higher priority than those that appear only once.
+
+7-48Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+       Next consider Rule II. Since x = 0 and x = | are
+       adjacent input
+       combinations, the next-state pair for each present
+       state should be made adjacent according to Rule II.
+       Thus, Rule II recommends the following state
+       adjacencies:
+
+       Rule II: (A,B), (B,C)(3X), (D,E), (F,G)(2X), (D,A)
+
+       Finally, in an attempt to group the | entries in the
+       output map, Rule III proposes the
+       following pairs of states should be adjacent:
+       Rule III: (D,F), (E,G)
+
+7-49Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-50Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-51Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-52Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+7-53Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Next-state and output Karnaugh maps for the transition
+table of Table 7.17b.
+Figure 7.22
+
+7-54Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+A state-assignment map for the state table of
+Table 7.17a.
+Figure 7.23
+
+7-55Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Next-state and output Karnaugh maps for the transition
+table of Table 7.17c.
+Figure 7.24
+
+7-56Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Two approaches to handling unused states. (a) State
+table. (b) Transition table with don’t-cares for unused
+states. (c) Next-state maps, output map, and
+expressions for table of Fig. 7.25b.
+Figure 7.25
+
+7-57Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+(d) Transition table when unused states cause the network
+to go to state A. (e) Next-state maps, output map, and
+expressions for table of Fig. 7.25d.
+Figure 7.25 cont.
+
+7-58Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Logic diagram for the excitation table of Table 7.19.
+Figure 7.26
+
+7-59Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Excitation and output maps for the excitation table of
+Table 7.20.
+Figure 7.27
+
+7-60Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Logic diagram for the excitation table of Table 7.20.
+Figure 7.28
+
+7-61Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Excitation and output maps for the Moore serial binary
+adder.
+Figure 7.29
+
+7-62Copyright © The McGraw-Hill Companies, Inc. Permission required for reproduction or display.
+
+Logic diagram for the Moore serial binary adder.
+Figure 7.30
+
+7-63

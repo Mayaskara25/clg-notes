@@ -1,0 +1,32 @@
+{
+  "_about": "Study packs for OS Unit 5: which faculty-source pages cover each guide section. Page numbers are PDF pages. Reviewed by hand from the page headings (2026-11-21).",
+  "drop_lines": [
+    "^DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING\\s+20 July 2025\\s+\\d+$",
+    "^DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINEnLEARNING$"
+  ],
+  "sections": {
+    "fs-structure": {
+      "D9": "3-4,6-7,9,13,16-17"
+    },
+    "fs-operations": {
+      "D9": "10-12,14,17"
+    },
+    "fs-directory": {
+      "D9": "8"
+    },
+    "fs-allocation": {},
+    "fs-fat": {},
+    "fs-ntfs": {
+      "D9": "16"
+    },
+    "fs-ext": {},
+    "fs-vfs": {},
+    "prot-goals": {},
+    "prot-domain": {},
+    "prot-matrix": {},
+    "prot-impl": {},
+    "prot-control": {
+      "D9": "13"
+    }
+  }
+}

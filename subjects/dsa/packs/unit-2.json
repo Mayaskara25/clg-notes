@@ -1,0 +1,75 @@
+{
+  "_about": "Study packs for DSA Unit 2: which faculty-source pages cover each guide section. Page numbers are PDF pages. Reviewed by hand from the page headings (2026-11-21).",
+  "drop_lines": [
+    "^(?:Go,\\s*change\\s*the\\s*world|Go,\\s*change|the world)[.! ]*$",
+    "^R\\s*V College of(?: Engineering[®\"\\x27•]*)?$",
+    "^RV Educational Institutions(?:\\s+®)?(?:\\s+Go, change the w9r/d)?$",
+    "^RV College of Engineering®?\\s+Go, change the world$",
+    "^RV College of Engmeermg$",
+    "^Autonomous\\s+Approved by AICTE[.,]?$",
+    "^Institution Affiliated\\s+New Delh[iI]$",
+    "^to Vlsvesvaraya$",
+    "^University, Belagavi$",
+    "^\\d+\\s+DEPARTMENT OF INFORMATION SCIENCE & ENGINEERIN\\s*G$",
+    "^Data Structure And Applications$",
+    "^Faculty: MS,RBS,ARA,DN, CRM, VP,KCG, SB,MSS$",
+    "^Mysore Road,\\s*RV Vidyan[ti]ketan Post,$",
+    "^Bengaluru\\s*-\\s*560059, Karnataka, India$",
+    "^Academic[- ]year 20(?:21-2022|24-2025)\\s*\\(ODD Sem\\)$",
+    "^DEPARTMENT OF(?: INFORMATION SCIENCE & ENGINEERIN\\s*G)?$",
+    "^INFORMATION SCIENCE & ENGINEERING$",
+    "^DATA\\s*STRUCTURES AND (?:ITS )?APPLICATIONS$",
+    "^CONTENTS$",
+    "^n\\s+Go, change the world$",
+    "^Lab programs from Unit-1$"
+  ],
+  "sections": {
+    "sec-2-1": {
+      "D7": "1",
+      "D6": "11"
+    },
+    "sec-2-2": {
+      "D7": "8-9"
+    },
+    "stack-linked": {
+      "D6": "13-14"
+    },
+    "sec-2-3": {
+      "D7": "1-3"
+    },
+    "sec-2-4": {
+      "D7": "3-4"
+    },
+    "sec-2-5": {
+      "D7": "4,9-10"
+    },
+    "stack-prefix-eval": {
+      "Q1": "1"
+    },
+    "stack-paren": {
+      "D6": "22-23"
+    },
+    "sec-2-6": {
+      "Q1": "1"
+    },
+    "sec-3-1": {
+      "D8": "2-4,47,52"
+    },
+    "sec-3-2": {
+      "D8": "5-6,15,21-22"
+    },
+    "sec-3-3": {
+      "D8": "15-21,48"
+    },
+    "sec-3-5": {
+      "D8": "30,38-40,42"
+    },
+    "sl-stack-recursion": {
+      "D7": "1",
+      "D8": "52"
+    },
+    "sl-stack-variants": {},
+    "sl-stack-problems": {},
+    "sl-hanoi-stack": {}
+  }
+}

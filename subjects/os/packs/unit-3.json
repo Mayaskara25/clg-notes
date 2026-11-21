@@ -1,0 +1,41 @@
+{
+  "_about": "Study packs for OS Unit 3: which faculty-source pages cover each guide section. Page numbers are PDF pages. Reviewed by hand from the page headings (2026-11-21).",
+  "drop_lines": [
+    "^[1-9]\\d?$",
+    "^RV College of Engineering®?$",
+    "^\\(?An Autonomous Institution affiliated to VTU\\)?$",
+    "^Signature of Scrutinizer:\\s+Signature of Chairman$",
+    "^Name:\\s+Name:$",
+    "^USN$"
+  ],
+  "sections": {
+    "memory-binding": {
+      "D4": "4,6,8-9,11-13"
+    },
+    "memory-addresses": {
+      "D4": "14-18"
+    },
+    "memory-loading": {
+      "D4": "21",
+      "Q2": "3"
+    },
+    "memory-linking": {
+      "D4": "22-24",
+      "Q2": "3"
+    },
+    "memory-swapping": {
+      "D4": "25-27,29-30,32"
+    },
+    "memory-contiguous": {
+      "D4": "33-35,38-39,47,53,57"
+    },
+    "memory-paging": {
+      "D4": "64,66,70,72,76-77,80-82,85,88,93,96",
+      "Q1": "16"
+    },
+    "memory-segmentation": {
+      "D4": "59-62",
+      "Q2": "6"
+    }
+  }
+}

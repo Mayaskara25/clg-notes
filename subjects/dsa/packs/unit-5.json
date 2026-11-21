@@ -1,0 +1,111 @@
+{
+  "_about": "Study packs for DSA Unit 5: which faculty-source pages cover each guide section. Page numbers are PDF pages. Reviewed by hand from the page headings (2026-11-21).",
+  "drop_lines": [
+    "^(?:Go,\\s*change\\s*the\\s*world|Go,\\s*change|the world)[.! ]*$",
+    "^R\\s*V College of(?: Engineering[®\"\\x27•]*)?$",
+    "^RV Educational Institutions(?:\\s+®)?(?:\\s+Go, change the w9r/d)?$",
+    "^RV College of Engineering®?\\s+Go, change the world$",
+    "^RV College of Engmeermg$",
+    "^Autonomous\\s+Approved by AICTE[.,]?$",
+    "^Institution Affiliated\\s+New Delh[iI]$",
+    "^to Vlsvesvaraya$",
+    "^University, Belagavi$",
+    "^\\d+\\s+DEPARTMENT OF INFORMATION SCIENCE & ENGINEERIN\\s*G$",
+    "^Data Structure And Applications$",
+    "^Faculty: MS,RBS,ARA,DN, CRM, VP,KCG, SB,MSS$",
+    "^Mysore Road,\\s*RV Vidyan[ti]ketan Post,$",
+    "^Bengaluru\\s*-\\s*560059, Karnataka, India$",
+    "^Academic[- ]year 20(?:21-2022|24-2025)\\s*\\(ODD Sem\\)$",
+    "^DEPARTMENT OF(?: INFORMATION SCIENCE & ENGINEERIN\\s*G)?$",
+    "^INFORMATION SCIENCE & ENGINEERING$",
+    "^DATA\\s*STRUCTURES AND (?:ITS )?APPLICATIONS$",
+    "^COURSE CODE:\\s*21AI33$",
+    "^\\(An Autonomous Institution Af\\x27filiatcd to VTlJ\\)$"
+  ],
+  "sections": {
+    "pq-intro": {
+      "D13": "2"
+    },
+    "heap-def": {
+      "D13": "3-4"
+    },
+    "array-rep": {
+      "D13": "5"
+    },
+    "heap-insert": {
+      "D13": "6-8"
+    },
+    "heap-delete": {
+      "D13": "9-11,14,17,19-20"
+    },
+    "heap-construct": {
+      "Q1": "5",
+      "Q2": "7"
+    },
+    "heap-sort": {
+      "Q2": "9"
+    },
+    "heap-sort-var": {},
+    "pq-via-heap": {
+      "D13": "2,8,20"
+    },
+    "topk": {},
+    "avl-rotations": {
+      "Q2": "7"
+    },
+    "avl-construction": {
+      "Q1": "5",
+      "Q2": "7"
+    },
+    "avl-code": {},
+    "btree": {},
+    "btree-code": {},
+    "bplus-tree": {
+      "Q1": "5",
+      "Q2": "6"
+    },
+    "btree-compare": {},
+    "splay-tree": {
+      "Q2": "7"
+    },
+    "splay-cache": {},
+    "tries": {
+      "Q1": "5",
+      "Q2": "6"
+    },
+    "trie-code": {},
+    "graph-prelim": {
+      "Q2": "7"
+    },
+    "graph-props": {
+      "Q2": "7"
+    },
+    "graph-representation": {
+      "Q2": "6"
+    },
+    "graph-matrix-code": {},
+    "graph-traversal": {},
+    "graph-algos": {},
+    "hash-intro": {
+      "D15": "2-5,10"
+    },
+    "hash-functions": {
+      "D15": "10-14"
+    },
+    "open-hashing": {
+      "D15": "12-13,18-20"
+    },
+    "closed-hashing": {
+      "D15": "21-22"
+    },
+    "double-hash": {
+      "Q2": "9"
+    },
+    "hash-numericals": {
+      "Q1": "5",
+      "Q2": "9"
+    },
+    "hash-apps": {},
+    "app-map": {}
+  }
+}

@@ -232,11 +232,12 @@
     {
       "id": "D4",
       "kind": "deck",
-      "title": "Main and virtual memory: faculty slides (main-memory portion used)",
+      "title": "Main and virtual memory: faculty slides",
       "by": "Dept. lecture material",
       "file": "main-virtual-memory.pdf",
       "units": [
-        3
+        3,
+        4
       ]
     },
     {
@@ -268,6 +269,26 @@
       "file": "synchronization-original.pdf",
       "units": [
         2
+      ]
+    },
+    {
+      "id": "D8",
+      "kind": "deck",
+      "title": "Virtual memory: older Unit 4 faculty slides",
+      "by": "Dept. lecture material",
+      "file": "virtual-memory-older-slides.pdf",
+      "units": [
+        4
+      ]
+    },
+    {
+      "id": "D9",
+      "kind": "deck",
+      "title": "File systems: older Unit 5 faculty slides",
+      "by": "Dept. lecture material",
+      "file": "file-systems-older-slides.pdf",
+      "units": [
+        5
       ]
     },
     {

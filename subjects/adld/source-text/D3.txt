@@ -1,0 +1,262 @@
+ADDERSCircuits for Binary Addition
+Half Adder
+
+                                      Ai 0      1           Ai 0
+              Ai Bi Sum Carry                                          1
+                                    Bi                    Bi
+              0 0    0   0           0 0        1          0   0       0
+              0 1    1   0
+              1 0    1   0           1    1      0                0     1
+                                                           1
+              1 1    0   1
+
+                                   Sum = Ai Bi + Ai Bi         Carry = Ai Bi
+                                         = Ai + Bi
+             Ai
+                            Sum
+             Bi
+
+                           Carry                Half-adder Schematic
+
+                                                                               2Full Adder    A   B   CI   S   CO           AB
+              0   0   0    0    0         CI 00 01 11 10
+              0   0   1    1    0            0   0   1   0   1
+              0   1   0    1    0        S
+              0   1   1    0    1            1   1   0   1   0
+              1   0   0    1    0
+              1   0   1    0    1
+              1   1   0    0    1           AB
+              1   1   1    1    1         CI 00 01 11 10
+                                             0   0   0   1   0
+                                        CO
+                                             1   0   1   1   1
+
+             S = CI xor A xor B
+
+             CO = B CI + A CI + A B = CI (A + B) + A B
+
+                                                                 3Cascaded 4 BIT
+                                    Parallel Adders / Ripple Adder
+Parallel adders are digital circuits that compute the addition of variable binary strings of equivalent or different
+size in parallel. The schematic diagram of a parallel adder is shown, to add t wo 4 bi t binary numbers. The
+circuit is laid out from right to left, similar to the way we add binary numbers. Therefore, the least significant column
+is on the right, and the most significant column is on the left. The boxes labeled FA/+ are full adders. The Carry out
+from each full adder is the Carry-in to the next higher full adder.
+
+                         A3 B3              A2 B2               A1 B1               A0 B0
+
+                               +                   +                   +                   +
+
+                                   S3       C3         S2       C2         S1      C1          S0
+                                                                                                                      44 BIT Adder / Subtractor
+The numbers being processed are A4 A3 A2 A1and B4 B3 B2 B1, while the answer is S4 S3 S2 S1. 4 bit adder is built as
+described in the previous slide, using 4 numbers of single bit full adders. Here ExOR gate is used, control the
+circuit to work as an 4 bit adder or 4 bit subtractor.
+
+                                                                                                           54 BIT Adder / Subtractor Examples:
+Perform addition of following numbers, given in binary form
+ 1000
+ 1100
+-------
+10100
+Perform addition of following numbers, given in decimal number system.
+15 - 1111
++9 - 1001
+---- -----------
+24 1 1000
+Perform addition of following numbers given in hexadecimal number system
+A         1010
+9        1001
+--     ---------
+13       1 0011
+
+Note: for subtraction, take the 2s compliment of second number and add to the first number. Note, the carry will be the
+opposite of the actual value
+                                                                                                              6Application of Adder: used for Excess-3 to BCD Converter, vice versa
+Binary Coded Decimal: Binary Coded Decimal is a method of using binary digits to represent the decimal digits 0 through
+9. It is possible to assign weights to the binary bits according to their positions. The weights in the BCD code are 8, 4, 2 and
+1. Ex: (137)10 - BCD equivalent (0001 0011 0111)2.
+Excess-3 Code: This is an un-weighted code. Its code assignment is obtained from the corresponding value of BCD after
+the addition of (0011)2.
+BCD to Excess-3 (or) Excess-3 to BCD: Since each code uses four bits to represent a decimal digit, there must be four
+inputs and four output variables. The input variable are designated as B3, B2, B1, B0 and the output variables are designated
+as E3 , E2, E1, E0 in the truth table.
+
+                                                                                                                      7Application of Adder: used for Excess-3 to BCD Converter, vice versa
+
+                                                  During the BCD to Excess 3
+                                                  conversion: 0011 is applied
+                                                  to B3 B2 B1 B0 INPUTS of 4
+                                                  bit adder (GND-0,VCC-1).
+
+                                                  During Excess 3 to BCD
+                                                  conversion, 3 (0011) is
+                                                  subtracted from the
+                                                  number, using twos
+                                                  compliment method.
+
+                                                                        8Delay Analysis of Ripple Adder
+• Carry out of a single stage can be implemented in 2 gate delays (Units of Time)
+• For a 16 bit adder, the 16th bit carry is generated after 16 * 2 = 32 gate delays.
+   Total Time Required for N bit adder using Ripple parallel adder = N * 2
+• Takes too long - need to investigate FASTER adders!
+• Carry Look Ahead Adders, CLA adders, overcomes the disadvantage of taking
+  more units of time. The principle behind design of CLA adders, can be
+  understood by looking at the equation for carry generated at the ith stage,
+  Ci+1, for full adder
+                     Ci+1 = Xi Yi + Xi Ci + Yi Ci
+                    A3 B3       A2 B2         A1 B1         A0 B0
+
+                       +             +             +             +
+
+                                                                               9
+                           S3   C3       S2   C2       S1   C1       S0Let us write S and Cout expressions for full adder, in terms of inputs X and Y and Cin, for ‘i’ th bit
+ Si = Xi .xor. Yi .xor. Ci
+
+ Ci+1 = Xi Yi + Xi Ci + Yi Ci
+
+      = Xi Yi + Ci (Xi + Yi)
+
+      = Xi Yi + Ci (Xi .or. Yi)
+
+ Let us represent, XiYi     by Gi (also called as Carry generate function) &
+                   Xi.or.Yi by Pi (also called carry propagate function)
+      = Gi + Ci Pi
+
+ Now, lets write the these expressions, for C1,C2,C3 and C4
+                 C1 = G0 + P0 C0
+
+                 C2 = G1 + P1 C1 = G1 + P1 G0 + P1 P0 C0
+
+                 C3 = G2 + P2 C2 = G2 + P2 G1 + P2 P1 G0 + P2 P1 P0 C0
+
+                 C4 = G3 + P3 C3 = G3 + P3 G2 + P3 P2 G1 + P3 P2 P1 G0 + P3 P2 P1 P0 C0
+Important: Carry input at each stage is direct function of operand bits. Thus the idea of
+having SUM and CARRY outputs of the ith stage be a function of xi,yi and ci is replaced by10
+having these outputs be a function of x0,x1,…,xi, y0,y1,…,yi and c0C1 = G0 + P0 C0
+
+ C2 = G1 + P1 C1 = G1 + P1 G0 + P1 P0 C0
+
+ C3 = G2 + P2 C2 = G2 + P2 G1 + P2 P1 G0 + P2 P1 P0 C0
+
+ C4 = G3 + P3 C3 = G3 + P3 G2 + P3 P2 G1 + P3 P2 P1 G0 + P3 P2 P1 P0 C0
+
+C0                      C0                      C0
+P0                 C1   P0                      P0
+                        P1                      P1
+G0
+                        P2                      P2
+                                                P3
+                        G0
+                        P1                      G0
+C0
+                        P2                      P1
+P0
+                                                P2
+P1
+                        G1                 C3   P3
+G0                      P2
+                   C2                           G1
+P1
+                                                P2
+                        G2                      P3
+G1                                                                  C4
+                                                G2
+                                                P3
+
+                                                G3
+                                                                          11ADDERSCarry Look Ahead Adder (following diagram for understanding)Even though CLA performs high speed addition based on the carry look ahead
+ principle, it presents a limitation in the realization of large high speed adders. The
+ carry lookahead network can get quite large in terms of gates
+  and gate inputs as the number of bits in the operands
+                        increases.
+ One approach to circumvent this problem is to divide the bits of the operands into
+blocks. Then, by using carry look ahead adders/carry look ahead generators for each
+         block, their cascade connection results in a large high speed adders.
+
+1. Cascading CLA adders
+2. Using block CLA generatorsNote: in this case ripple carries occur between the cascaded 4 bit carry look ahead addersCarry lookahead generator (Extra Info – Not in syllabus)
+
+                             It is the same as the first three stages of
+                             the carry look ahead network (of CLA
+                             adder), with two additional G and P,
+                             known as “block carry generate signal”
+                             and “block carry propagate signal”
+                                G = g3 + p3g2 + p3p2g1 + p3p2p1g0
+                                P = p3p2p1p0
+
+                             **Extra info: Not in syllabus**Using these 4 bit carry lookahead generator, the 16 bit high speed
+                        adders are realized (Extra info: not in syllabus)Decimal AdderDecimal AdderIf the sum of the two decimal digits and
+input carry is less than 10, the required
+BCD sum is same as Binary Sum, produced
+by the 4 bit binary adder,
+        K P3P2P1P0 = Cout Z3Z2Z1Z0
+
+The correction, of adding ‘6’ is required in
+two cases.
+1. Answer is invalid BCD codes, (A to F),
+   decimal sums of 10 throguh 15
+K P3P2P1P0 –>0 1010, 0 1011, 0 1100,
+              0 1101, 0 1110, 0 1111
+2. Answer produces, the Carry, decimal
+   sums 16 through 19
+K P3P2P1P0 -> 1 0000, 1 0001, 1 0010,
+              1 0011from the Kmap
+ADD_6 = P3P2 + P3P1
+
+Including the Carry output (K), in the expression, the
+Boolean expression for adding the correction is
+ADD_6 = K + P3P2 + P3P1Corrective network is realised using another
+4 bit binary adder, whenever ADD_6 is true,
+0110 (6) is applied as one of the inputs to
+second adder, to add 6 to the result
+produced by the first adder.
+Final Cout of the BCD adder is same as
+ADD_6 output.
+
+In this diagram, Whenever Cout (i.e ADD_6)
+Is 0, the output of the first adder is added
+with 0. Whenver Cout (ADD_6) is 1, the
+output of first adder is added with 6 (0110).
+
+Note: Final Cout can also be generated using “OR” of Cout
+from first adder and Cout from second adder.
+Cout = Cout_1 + Cout_2Comparators
+• Compare the magnitude of two binary numbers for the purpose of
+  establishing whether one is greater than, equal to, or less than the other.
+• A magnitude comparator is a combinational circuit that compares two
+  numbers A and B and determines their relative magnitude. The outcome of
+  the comparison is specified by 3 binary variables that indicate whether A = B
+  or A< B or A>B.
+ Design of 1bit Comparator
+                                   Inputs             Outputs
+                               A            B   A<B    A=B      A>B
+                               0            0   0       1       0
+                               0            1   1       0       0
+                               1            0   0       0       1
+                               1            1   0       1       0Designing of N bit Comparators
+• An N bit comparator makes use of a cascade connection of
+  identical subnetworks similar to the case of the parallel adder.
+• Consider two n-bit binary numbers:
+                    𝐴 = 𝐴𝑛−1 ⋯ 𝐴𝑖 𝐴𝑖−1 ⋯ 𝐴1 𝐴0
+                    𝐵 = 𝐵𝑛−1 ⋯ 𝐵𝑖 𝐵𝑖−1 ⋯ 𝐵1 𝐵0
+• Assume 𝐴𝑖 , 𝐵𝑖 are entering the subnetwork and that the binary
+  numbers are analyzed from right to left, Subnetwork is called a
+  1-bit comparator.
+• 3 conditions describing the relative magnitudes of 𝐴𝑖−1 ⋯ 𝐴1 𝐴0 ,
+  𝐵𝑖−1 ⋯ 𝐵1 𝐵0
+𝐺𝑖 = 1 denotes 𝐴𝑖−1 ⋯ 𝐴1 𝐴0 > 𝐵𝑖−1 ⋯ 𝐵1 𝐵0
+𝐸𝑖 = 1 denotes 𝐴𝑖−1 ⋯ 𝐴1 𝐴0 = 𝐵𝑖−1 ⋯ 𝐵1 𝐵0
+𝐿𝑖 = 1 denotes 𝐴𝑖−1 ⋯ 𝐴1 𝐴0 < 𝐵𝑖−1 ⋯ 𝐵1 𝐵0
+• 1-bit comparator is a 5-input 3-output network• Rules:
+   • If 𝐴𝑖 = 0, 𝐵𝑖 = 1 then 𝐿𝑖+1 = 1
+   • If 𝐴𝑖 = 1, 𝐵𝑖 = 0 then 𝐺𝑖+1 = 1
+
+   • If 𝐴𝑖 = 𝐵𝑖 and 𝐿𝑖 = 1 then 𝐿𝑖+1 = 1
+   • If 𝐴𝑖 = 𝐵𝑖 and 𝐺𝑖 = 1 then 𝐺𝑖+1 = 1
+   • If 𝐴𝑖 = 𝐵𝑖 and 𝐸𝑖 = 1 then 𝐸𝑖+1 = 1
+• Can use this to construct a truth table and derive the Boolean
+  expressionsMinimal Sum Boolean Expressions:
+ 𝐺𝑖+1 = 𝐴𝑖 𝐵𝑖 + 𝐴𝑖 𝐺𝑖 + 𝐵𝑖 𝐺𝑖
+ 𝐸𝑖+1 = 𝐴𝑖 𝐵𝑖 𝐸𝑖 + 𝐴𝑖 𝐵𝑖 𝐸𝑖
+𝐿𝑖+1 = 𝐴𝑖 𝐵𝑖 + 𝐵𝑖 𝐿𝑖 + 𝐴𝑖 𝐿𝑖

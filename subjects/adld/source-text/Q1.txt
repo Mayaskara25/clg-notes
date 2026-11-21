@@ -1,0 +1,560 @@
+R V College of Engineering
+                       Department of Computer Science and Engineering
+                               CIE - I : (Test1) Question Paper
+ Course:      APPLIED DIGITAL LOGIC DESIGN AND            Semester : 3rd BE
+ (Code)      COMPUTER ORGANIZATION (CS234AI)
+        th
+Date : 9 Jan 2024        Duration : 90 minutes    Staff :   KB/PSB/MH/DD
+Name :                         USN :                             Section :   A/B/C/D/CD/CY
+
+Sl.                                                                               M
+                                                                                       L1-
+no                           Answer all the questions                             ar         CO
+                                                                                       L6
+                                                                                  ks
+1                                                                                 10   L2    CO1
+      i) Simplify the Boolean function using QM Method.
+           F (P, Q, R, S) = ∑ m (0, 1, 2, 4, 5, 7, 8, 9,14,15)
+
+      2 Quads and 3 Pairs.
+
+      P’R’+Q’R’+P’Q’S’+PQR+QRS or P’QS
+
+      ii) Simplify the following Boolean expressions using K maps.
+            F (w,x,y,z) = ∑ m (0,1,4,5,8,9,14,15) + dc(11,12)
+
+      2 Quads and 1 Pair.    W’Y’+X’Y’+ WXY
+
+2                                                                                 10   L2    CO1
+      Represent the following numbers, as indicated below.
+         i) 40 and -32 in 8 bit signed magnitude representation
+                  40=00101000
+                  -32=10100000
+         ii) 9 and 18 in BCD representation
+                  9 - 1001
+                  18 - 0001 1000
+         iii) 0 and 4 in Excess 3 representation
+                  0 - 0011
+                  4 - 0111
+         iv) -237.5 in 32 bit (single precision) floating point number
+                  representationv) +342.64 in 32 bit (single precision floating point representation)3                                                                 10   L3   CO1
+    i)   Using booths algorithm, multiply the numbers: +14 x -7
+
+    ii) Using Restoring Division Algorithm, divide: +13 / +7M stores the divisor, Q stores the dividend
+
+4   Design 1bit Parallel Adder (write Truth Table, KMap Simplification          10   L3   CO2
+    and final expressions) and using 1bit Parallel Adders design a 4bit
+    parallel(ripple) adder/subtractor circuit, with suitable control input to
+    select addition/subtraction. Describe the working of the circuit.
+
+    Using the above design, Write the answer for the following cases of
+    addition /subtraction.
+
+       a. X=1001 Y=1101 ADD/SUB = 0
+       b. X=0011, Y=1010 ADD/SUB = 1
+
+    Justify with suitable example, the above circuit works for signed 4 bit
+    numbers, clearly indicating the meaning of Overflow.S = CI xor A xor B
+CO = B CI + A CI + A B = CI (A + B) + A B
+
+X=1001 Y=1101 ADD/SUB = 0
+Ans: cy =1 sum = 0110
+X=0011, Y=1010 ADD/SUB = 1
+
+Ans: cy=0, sum = 1001Signed Addition/Subtraction: The same circuit is used for signed
+    addition / subtraction. Example: Let us add two signed numbers (4bit)
+    +5 and -3,
+
+    +5 -> 0101
+
+    -3 -> 1101
+
+    Ans-> 0010, Overflow Flag->0
+
+    Overflow flag can be realized/designed using one ExOr gate. Overflow
+    is the ExOr of the carry coming from last bit and previous to last bit (
+    i.e ExOr of carry generated from D2 and D3 bits). Overflow flag
+    indicates, the answer generated is exceeded the capacity of
+    holding/range permitted. (For 4 bit adders, answer should be in the
+    range -> -8 to +7).
+
+5   Discuss the merits of CLA adder over normal ripple adders. Derive the          10   L3/L4   CO2
+    Carry equations, C1 to C4 for 4-bit CLA adder. Draw the circuit
+    diagram, clearly indicating the circuits and all the connections.
+
+    Suggest time calculations, for designing 16 bit adder using Ripple
+    adder, CLA adder, cascading CLA adders and any other methods
+
+    Total Time Required for N bit adder using Ripple parallel adder
+    = N * 2, Takes too long - need to investigate FASTER adders!.
+    The Carry Look Ahead Adders, CLA adders, overcomes the
+    disadvantage of taking more units of time. The principle behind
+    design of CLA adders, Carry input at each stage is direct function of
+    operand bits. Thus the idea of having SUM and CARRY outputs of the
+    ith stage be a function of Xi,Yi and Ci is replaced by having these
+                                               i
+
+    outputs be a function of Xi,Yi and C0.
+
+    Let us write S and Cout expressions for full adder, in terms of inputs
+    X and Y and Cin, for ‘i’ th bit
+    Si = Xi .xor. Yi .xor. Ci
+    Ci+1 = Xi Yi + Xi Ci + Yi Ci
+         = Xi Yi + Ci (Xi + Yi)
+         = Xi Yi + Ci (Xi .or. Yi)
+    Let us represent, XiYi      by Gi (also called as Carry generate function) &
+                      Xi.or.Yi by Pi (also called carry propagate function)
+         = Gi + Ci Pi
+    Now, lets write the these expressions, for C1,C2,C3 and C4
+    C1 = G0 + P0 C0
+    C2 = G1 + P1 C1 = G1 + P1 G0 + P1 P0 C0
+    C3 = G2 + P2 C2 = G2 + P2 G1 + P2 P1 G0 + P2 P1 P0 C0
+    C4 = G3 + P3 C3 = G3 + P3 G2 + P3 P2 G1 + P3 P2 P1 G0 + P3 P2 P1 P0 CLet us explore time requirements for 16 bit adder:
+      Using Ripple Adder - 16 x 2 = 32 Units of Time (Gate Delays)
+
+      Using CLA principle - 4 Units of Time (but circuit will be very complex,
+      increase number of gates and its inputs.
+
+      Using Cascading of 4 bit CLA adders (4 numbers): 2 + (n/2), when n is
+      the number of bits = 2 + 16/2 = 10 Units of Time
+
+  Course Outcomes: After completing the course, the students will be able to:-
+  CO 1    Apply design requirements for digital systems and Computer organization
+  CO 2    Analyze the models used for designing various Ccombinational and Sequential circuits
+  CO 3         Develop applications of synchronous sequential networks using flip flops, registers and
+               counters
+  CO 4         Design optimized modern processors and memories for given specifications
+  CO 5         Investigate techniques of digital system design for building industry relevant real-world
+               systems using electronic components and modern tools
+
+Course Outcomes:
+
+                   Particulars    CO1     CO2      CO    CO4    CO5     L1    L2    L3    L    L    L6
+                                                    3                                     4    5
+  Marks
+                  Test     Max     30      20                                 20    25    5
+Distribution
+                           Mark
+                            sR V College of Engineering
+                      Department of Computer Science and Engineering
+                              CIE - II : (Test2) Question Paper
+ Course:     APPLIED DIGITAL LOGIC DESIGN AND             Semester : 3 rd BE
+ (Code)     COMPUTER ORGANIZATION (CS234AI)
+         nd
+Date : 22 Feb 2024      Duration : 90 minutes     Staff :   KB/PSB/MH/DD
+Name :                          USN :                        Section :   A/B/C/D/CD/CY
+
+Sl.                                                                          Ma    L1-
+                                                                                         CO
+no                            Answer all the questions                       rks   L6
+1                                                                            4+    L3    CO2
+         a. Implement f (A, B, C) = ∑ m (0, 1, 4, 5, 6, 7) using             4+
+                      (i)     8:1 MUX with a, b, c as select lines.           2
+
+                       (ii)       4:1 MUX with a, b as select lines.
+
+         b. Design a digital circuit for full adder using Dual 4:1
+            Multiplexer IC (Ex.74153)with necessary gates.
+         c. Construct 5-to-32-line decoder from two 4 to 16-line decoder.2                                                                     4+   L4   CO2
+    a. Design 3 bit Asynchronous Up Counter, using positive edge       6
+       triggered T flip-flops
+    b. Design JK flip flop using a D flip-flop, a 2 to 1 mux and an
+       inverter if required and show all the steps.3      a. Design a Master Slave JK Latch/FlipFlop using only Nand         6+   L3   CO3
+           gates. Show the timing diagram and function table.              4
+       b. Explain with proper timing diagrams 0’s and 1’s catching
+    Refer Notes
+4   Design a 4 bit Universal Shift Register, Which supports following     6+   L3   CO3
+    modes of operation-                                                    4
+
+     S1                    S0                    Operations
+
+     0                     0                     Hold
+
+     0                     1                     Shift Right Data
+
+     1                     0                     Circular Shift Left
+                                                 Data
+
+     1                     1                     Parallel   Load    the
+                                                 Data
+
+    Justify how the shift registers can be used as counters (Ring and
+    Johnson). (4 M)
+    ring counter-n flipflops , n counts
+    johnson counter-n flipflops, 2n counts
+
+5   Design Synchronous Counter using JK Positive Edge Triggered Flip      8+   L4   CO3
+    Flops, which produces the following sequence: 111,110,101,011,001,     2
+    000.
+    Verify the above design as a self correcting counter or not.Course Outcomes: After completing the course, the students will be able to:-
+ CO 1    Apply design requirements for digital systems and Computer organization
+ CO 2    Analyze the models used for designing various Combinational and Sequential circuits
+ CO 3     Develop applications of synchronous sequential networks using flip flops, registers and
+          counters
+ CO 4     Design optimized modern processors and memories for given specifications
+ CO 5     Investigate techniques of digital system design for building industry relevant real-world
+          systems using electronic components and modern tools
+
+Course Outcomes:Particulars    CO1   CO2   CO   CO4   CO5   L1   L2   L3   L    L   L6
+                                            3                              4    5
+  Marks                                    30                         40   10
+               Test     Max          20
+Distribution
+                        Mark
+                         sR V College of Engineering
+                     Department of Computer Science and Engineering
+                           Improvement Test - Question Paper
+ Course:    APPLIED DIGITAL LOGIC DESIGN AND            Semester : 3rd BE
+ (Code)     COMPUTER ORGANIZATION (CS234AI)
+         nd
+Date : 20 Mar 2024     Duration : 90 minutes    Staff :   KB/PSB/MH/DD
+Name :                    USN :                     Section :   A/B/C/D/CD/CY
+
+Sl.                                                                        L1-
+                                                                      M          CO
+no                       Answer all the questions                          L6
+1     A. Define Addressing Modes and List all the Generic                  L2    CO1
+      Addressing Modes supported by the processor instruction set,     6
+      with an example instruction.
+
+                                                                       4
+
+      B. Write Assembly Language Code snippet, to add N
+      numbers, stored in the memory. Store the answer in the
+      memory. Draw the memory layout and clearly indicate with
+      comments, all the assembler directives used in the program.Asembler Directives Used: ORIGIN,RESERVE,DATAWORD,END
+
+    Note: Not required to write program in the memory layout
+
+    Note: write comments to the program and directives
+2   A. Write Assembly Language Code snippets using Three, Two              6   L3   CO5
+    and One address instructions. Assume the processor supports
+    ADD, SUM, MULT, MOV, LOAD/STORE instructions:
+               Y= X3 + 5 X- 45
+    3 Address Instructions
+                                                                           4
+    MOV X,Y
+    MULT Y,Y,Y
+    MULT X,Y,Y
+    MULT #5,X,X
+    ADD X,Y,Y
+    SUB Y,#45,Y ; assumed opnd1-opnd2= opnd3, (it can be other way also)
+
+    2 Address InstructionsMOV X,Y
+    MULT Y,Y
+    MULT X,Y
+    MULT #5,X
+    ADD X,Y
+    SUB #45,Y
+
+    One Address Instruction
+    LOAD X
+    MULT X
+    MULT X
+    ADD X
+    ADD X
+    ADD X
+    ADD X
+    ADD X
+    SUB #45
+    Note: write comments to the program
+
+    B.   Demonstrate         with   code   snippet, Machine
+    Language/Assembly        Language support to “Subroutine
+    Linkage”.
+
+    Note: Briefly explain the diagram
+3   Discuss the different Read Only Memory Types and their features.   5   L3   CO4
+
+                                                                       5Design 512x16 RAM Chip, using 256x8 RAM Chips. Show
+    the Steps.
+    Size of each chip = 256 x 8
+    Total chips = (512x16) / (256 x 8) = 4 chips
+    No. of Rows = 512/256 = 2 No. Of Cols = 2
+    Decoder size = 1 to 2
+    No. address bits for full size (512 x 16) = 9
+    No. address bits for each chip (256 x 8) = 8
+
+    Note: Draw the diagram
+
+4   A. Program contains 200 instructions, out of that 40% of        5   L4   CO4
+    instructions requires 1 clock cycles and remaining requires 2
+                                                                    5
+    clock cycles for execution. Find the total time required to
+    execute the program running on a 1 MHz machine.
+
+    T=NxS/R(80 x 1 + 120 x 2) / 1 M = 320 Micro seconds
+    Note: explain the terms of the equation
+
+    B. Draw the block diagram of the Processor with Three Bus
+    Datapath, highlighting the advantages over the Single Bus
+    Processor Design.
+
+    Minimum or Less no. of clock cycles are required to complete the
+    operation. Ex: ADD R1,R2,R7 can be completed in the single clock cycle.
+    ALU receives the data from two buses, and the result is stored in to the
+    required register in the same clock cycle. No temporary registers like Y
+    and Z required.
+
+5   Write the control sequence for Single-Bus and Three-Bus 5                  L3   CO4
+    Processor Datapath for execution of the following instruction: 5
+    ADD R0, R1, R7. Instruction is stored in the memory. Give the
+    comments for every sequence.
+
+    Control Sequence for Single Bus Instruction.
+
+    This instruction adds the contents of memory location pointed by R3 to
+    R1, and store the answer in R1, Executing this instruction requires the
+    following actions,
+        1. Fetch the instruction,
+        2. Fetch the first operand (the contents of the memory location
+           pointed to by R3),
+        3. Perform the addition,
+        4. Load the result into R1. Control sequence is indicated below1. PCout,MARin,Read,Select4,Add,Zin ( place PC contents on MAR,
+       start Read operation, use ALU to ADD 4 to PC contents)
+       2. Zout,PCin,Yin,WMFC (store the new value to PC, i.e old +4, wait
+       for Instruction arrival from memory)
+       3. MDRout,IRin (instruction read from memory is moved to IR)
+       4. R3out,MARin,Read (move R3, which contains adds, to MAR, initiate
+       memory Read operation)
+       5. R1out,Yin,WMFC (wait for the data to come from memory, at the
+       same time, move other operand in R1 to Y, as bus free)
+       6. MDRout,SelectY,Add,Zin (move memory data from MDR and add to
+       Y, and store in Z)
+       7. Zout,R1in,End (move the answer from Z to R1)
+
+Course Outcomes: After completing the course, the students will be able to:-
+CO 1        Apply design requirements for digital systems and Computer organization
+CO 2        Analyze the models used for designing various Combinational and Sequential circuits
+CO 3        Develop applications of synchronous sequential networks using flip flops, registers and counters
+CO 4         Design optimized modern processors and memories for given specifications
+CO 5         Investigate techniques of digital system design for building industry relevant real-world systems using
+             electronic components and modern tools
+Course Outcomes:
+  Marks            Particulars      CO1       CO2      CO3 CO4          CO5     L1      L2     L3 L4 L5 L6
+Distribution     Test      Marks     10                         30       10             10     35     5RV College of Engineering
+                                   Departmentof ComputerScienceand Engineering
+                                         CIE -I: (ReTest) QuestionPaper
+                                              AND                      Semester:         3rd BE
+      Course:       APPLIEDDIGITALLOGIC DESIGN
+               COMPUTERORGANIZATION (CS234AI)
+      (Code)                                                            KBPSBMH/DD
+                         Duration:90 minutes Staff:
+  Date : 27th March 2024
+                                                              Section : AB/C/D/CD/CY
+  Name :                            USN:
+
+                                                                                   Ma           L1
+  SI.                                                                                                 CO
+                                                                                   rks      L6
+  no
+                                  Answerall the questions
+                                                                                    10      L3         CO2
+  1
+         Design a digital circuitfor fulladder and full subtractorusing 4:1
+         Multiple:xers.Draw the truth table and demonstratethe circuitwith
+         all the connections.
+                                                                                   10      L2         CO1
+  2
+                                                 numbers: +8 x -5
+           i) Using booths algorithm,multiplythe        +11/+3
+         () UsingRestoringDivisionAlgorithm,divide:
+                                                             circuits for both 10          L3         CO2
+  3     Design 4 bit Paralleland 4bit CLA adders. Draw the
+        type of adders.
+                                                            (SOP) and              10     L3          CO1
+ 4      -Simplify the Boolean function into Sum of products
+        Productsof sum (POS) form.
+            AB,C, D) = m(0, 1, 2, 5, 8, 9, 10)        K maps.
+        -Simplifythe followingBooleanexpressionsusing
+                                                 dc(11,12)
+            F (W, x, y, z) =m (0,1,4,5,8,9,14,15) +
+                                                     truth table and realize10             L4         CO2
+        Design a single bit comparator,by writingthe
+        the circuits.
+                                                                    cascading
+        Indicate the circuits for designing n bit comparatorusing
+        one bit comparator
+
+                                                      the studentswill be able to:
+ Course Outcomes:After completingthe course,
+ CO 1          Apply designrequirementsfor digitalsystems and Computer organization Sequential
+ CO 2       Analyze the models used for     designing various Ccombinationaland
+             circuits
+                                                              networks using flip flops, registers
+ CO 3       Develop applicationsof synchronoussequential
+            and counters
+                                                    memoriesfor given specifications
+ CO 4        Design optimizedmodern processorsand           for building industry relevant real
+ CO 5       Investigate techniques of digital system design
+                                                      and modern tools
+             Worldsystems using electroniccomponents
+Course Outcomes:                                                              L2    L3 L4            LS L6
+                                           CO2    CO3 C04     COS      L1
+             Particulars           CO1
+  Marks                                                                       10    30     10
+                 Test     Max       30     20
+Distribution
+                          MarksCS234AI
+
+USN
+
+                   RV COLLEGE OF ENGINEERING®
+                  (An Autonomous Institution Affiliated to VTU)
+                 III Semester B. E. Examinations April/May-2024
+                     Computer Science and Engineering
+    APPLIED DIGITAL LOGIC DESIGN AND COMPUTER ORGANIZATION
+
+Time: 03 Hours                                            Maximum Marks: 100
+Instructions to candidates:
+    1. Answer all questions from Part A. Part A questions should be
+       answered in first three pages of the answer book only.
+    2. Answer FIVE full questions from Part B. In Part B question number 2
+       is compulsory. Answer any one full question from 3 and 4, 5 and 6, 7
+       and 8, 9 and 10.
+
+                                             PART-A
+
+1     1.1    Represent the number 263.3 in 32𝑏𝑖𝑡 floating point representation.           02
+      1.2    Identify the logic gate utilized in the following applications:
+                 a)    Two way switch
+                 b)    To access a bank locker
+                 c)    Duplicate key to open the door of a house
+                 d)    Detection of 1𝑏𝑖𝑡 errors in digital communication                  02
+      1.3    Represent the following expression using only 2 input 𝑁𝐴𝑁𝐷 gates:
+             (𝐴𝐵 + 𝐴′ 𝐵′ )(𝐶𝐷′ + 𝐶 ′ 𝐷)                                                   02
+      1.4    Design a 32to1 multiplexer, using lower order multiplexers.                  02
+      1.5    Realize (conversion) the following: 𝐽𝐾 flip flop using 𝑆𝑅 flip flop.         02
+      1.6    Multiply +13 with −6 using bit pair recoding.                                02
+      1.7    Registers 𝑅4 and 𝑅5 contain the decimal numbers 2000 and 3000
+             before each of the following addressing modes is used to access a
+             memory operand. What is the effective address (𝐸𝐴) in each case?
+                 a)    Add 12(𝑅4), 𝑅5
+                 b)    Move (𝑅4, 𝑅5), 𝑅0                                                  02
+      1.8    Illustrate with examples any two assembler directives.                       02
+      1.9    The outputs of the two flipflops 𝑄1, 𝑄2 in the Fig. 1.9 are initialized to
+             0,0. Give the sequence generated at 𝑄1 upon the application of clock
+             signal.
+
+                                            Fig. 1.9                                      02
+      1.10   A program contains 1000 instruction, out of that 25% of instructions
+             requires 4 clock cycles, 40% instruction required 5clock cycles and
+             remaining required 3 clock cycles for execution. Find the total time
+             required to execute the program running on a 1𝐺𝐻𝑧 machine.                   02PART-B
+
+2   a   A small company has 100shares of stock and each share entities its
+        owner to vote at a stockholders meeting. Mr. 𝐴 owns 10 shares,                 06
+        Mr. 𝐵owns 20shares, Mr. 𝐶 owns 30 shares and Mr. 𝐷 owns 40shares.
+        A two-thirds majority is required in order to pass a measure at a
+        stockholders meeting, each of the four stockholders has a switch
+        which he or she closes to vote ‘𝑦𝑒𝑠’ for all of his or her shares and
+        opens to vote ′𝑛𝑜′. A switching circuit is to be designed to turn on a
+        light if the measure passes
+            i)     Derive a truth table for the output function 𝑍
+            ii)    Write the minterm expansion for 𝑍 and simplify using K map
+            iii)   Design two level gate logic diagram using the simplified SoP.
+
+    b
+        Simplify the Boolean function using QM Method.
+            F (P, Q, R, S) = ∑ m (0, 1,2, 4, 5,7,8, 9,14,15)                           06
+    c
+
+        Using Restoring Division Algorithm, divide: +13 / +7
+
+                                                                                       04
+
+3   a   Discuss the merits of CLA adder over normal ripple adders. Derive the
+        Carry equations, C1 to C4 for 4-bit CLA adder. Draw the circuit
+        diagram, clearly indicating the circuits and all the connections.              06
+    b   Derive the characteristic equation and excitation table for 𝑆𝑅 and 𝐽𝐾
+        flip flops.                                                                    04
+    c   Explicate 0′𝑠 and 1′𝑠 catching problem present in 𝐽𝐾 flip flop. How can
+        this problem be resolved?                                                      06
+
+                                            OR
+
+4   a   A positive edge triggered 𝐷flip flop is connected to a positive edge
+        triggered 𝐽𝐾 flip flop. The 𝑄output of the 𝐷 flip flop is connected to
+        both the 𝐽 and 𝐾 inputs of the 𝐽𝐾 flip flop, while the 𝑄output of the 𝐽𝐾
+        flipflop is connected to the input of the 𝐷 flip flop. Initially, the output
+        of the 𝐷 flip flop is set to logic one and and the output of the 𝐽𝐾 flip
+        flop is cleared. What is the bit sequence generated at the 𝑄output of
+        the 𝐽𝐾 flip flop when the flip flops are connected to a free running
+        common clock? Both the flip flops have non zero propagation delays.            04
+    b   Design JK flip flop using a D flip-flop, a 2 to 1 mux and an inverter if
+        required and show all the steps.                                               06
+    c   Design a 4 − 𝑏𝑖𝑡Universal shift register using positive edge triggered 𝐷
+        flip- flops to operate as indicted in the table below.
+                             𝑀𝑜𝑑𝑒𝑆𝑒𝑙𝑒𝑐𝑡     𝑅𝑒𝑔𝑖𝑠𝑡𝑒𝑟𝑂𝑝𝑒𝑟𝑎𝑡𝑖𝑜𝑛
+                              𝐴1     𝐴0
+                               0     0     𝐶𝑜𝑚𝑝𝑙𝑒𝑚𝑒𝑛𝑡𝑐𝑜𝑛𝑡𝑒𝑛𝑡𝑠
+                               0     1         𝐶𝑖𝑟𝑐𝑢𝑙𝑎𝑟𝑆ℎ𝑖𝑓𝑡
+                               1     0             𝑆ℎ𝑖𝑓𝑡
+                               1     1             𝑙𝑜𝑎𝑑                                065   a   Analyze the following circuit in Fig. 5.a by deriving the excitation
+        equations, transition equations, excitation table, transition table and
+        state diagram.
+
+                                       Fig. 5.a                                   10
+    b   Design Synchronous Counter using JK Positive Edge Triggered Flip
+        Flops, which produces the following sequence: 111,110,101,011,001,
+        000.                                                                      06
+                                         OR
+
+6   a   Give any four differences between mealy and moore models.
+        Recognize the sequence 0110⁄1001 using mealy model.                       08
+    b   For the state table given in Table 6.b, eliminate the redundant states
+        using Row elimination implication table method. Show the reduced
+        state table and state transition diagram.
+                           𝑃𝑟𝑒𝑠𝑒𝑛𝑡𝑆𝑡𝑎𝑡𝑒    𝑁𝑒𝑥𝑡𝑆𝑡𝑎𝑡𝑒   𝑂𝑢𝑡𝑝𝑢𝑡
+                                          𝑥=0 𝑥=1
+                                𝑆0         𝑆1     𝑆2     0
+                                𝑆1         𝑆3     𝑆5     1
+                                𝑆2         𝑆5     𝑆4     0
+                                𝑆3         𝑆1     𝑆6     1
+                                𝑆4         𝑆5     𝑆2     0
+                                𝑆5         𝑆4     𝑆3      1
+                                𝑆6         𝑆5     𝑆6     0                        08
+
+7   a   List and explain the basic steps needed to execute the machine
+        instruction 𝐴𝐷𝐷𝐿𝑂𝐶𝐴, 𝑅0 in terms of transfers between the
+        components of processor, memory and some control commands.                04
+    b   List and explain any five addressing modes with examples. A
+        processor has 40 distinct instructions and 24general purpose
+        registers.A32 − 𝑏𝑖𝑡 instruction word has an opcode, two registers
+        operands and an immediate operand. Give the number of bits
+        available for the immediate operand field.                                08
+    c   Describe the factors that affect the performance of the computer?
+        Explain any two ways in which performance can be improved.                04
+
+                                         OR
+
+8   a   Write an ALP Program to add set of N numbers.
+                                                                                  05
+    b   Define subroutine linkage. Explain different mechanism of passing
+        parameters to subroutines.                                                05c       Write a sequence of instructions that will compute the value of
+              𝑦 = 𝑥 2 + 3𝑥 + 6 for a given 𝑥 using:
+                 i)      Three-address instructions
+                 ii)     Two-address instructions
+                 iii)    Zero-address instructions                                   06
+
+9     a       Identify various mapping techniques in cache memory along with
+              necessary diagrams.
+              A computer has an 8𝐺𝐵 memory with 64𝑏𝑖𝑡 word sizes.
+              (1𝑤𝑜𝑟𝑑 = 4𝑏𝑦𝑡𝑒𝑠). Each block of memory stores 16 words. The
+              computer has a direct-mapped cache of 128 blocks. The computer
+              uses word level addressing. What is the address format?                08
+      b       Write the control sequence, with comments for the execution of the
+              following instructions, using Single bus and Three bus data paths.
+              𝐴𝐷𝐷(𝑅5), 𝑅3.                                                           08
+
+                                              OR
+
+10    a       Examine all the memory types available under 𝑅𝐴𝑀 and 𝑅𝑂𝑀, which
+              are used in building embedded systems and Personal computers.
+              Design 2𝑀 × 32 memory chip using 512𝑘 × 8 memory chip along with
+              external connections.                                                  08
+      b       Illustrate with neat diagrams, the working of hardwired control unit   08
+
+Signature of Scrutinizer                   Signature of Chairman
+
+Name:                                      Name:

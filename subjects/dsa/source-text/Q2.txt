@@ -1,0 +1,466 @@
+•-· . . .     ,   ,   . .
+                                                                                           c;o, change the morla-:_,
+                         ·--RY Cohge of Engineering•
+                          . Myaont Raed. RV Vldyanlkelan Post.
+                         . lengD,tu· 560060. Karntlaka. Ilda
+
+                                                    Academic year 2024-2025 (Odd Sem)
+
+                     Date                           :?J i l0/2024                 Maximum Marks                              50+10
+              Course Code                             IS~33AI                        Duration                                90+30                  . ,!)', .
+                     Sem                                   III                                   CIE 1                                               1·•• .
+
+                    UG/PQ                                 UG           Faculty:                                                           I         ..   ~
+
+                                                                       BMS RBS ARA DN CRM VP KCG SB SMS
+                                                  Data Structure And Application s
+                               Common to AIML CSE CD CY/ ISE
+ Note:. Students need to add comments to their answers wherever required.
+
+   0. No.                                                           Qucslions                                        M       BT       CO
+          I.          lmplemt·nt fun~tions to demonstrate the following operations on stack·                         I0  2 I I
+                      Push. Pop nnd Displa~ .
+         2.           Design a R~ursive-fu11c1k,n
+                                               "- - --          - - -Binary Search. Explain the
+                                                         10 impkmcnt                                                7+ 3 3   2
+                      role of stac"- during its c'.\ccu1il):.::
+                                                            n·:___ _ _ _ _ _ __ _ __ __ -+--+--::---t--= ---t
+         3.           \Vritt- a functi on to perti.mn infi x to prefix conversio n.                                 5+5  3   2
+                     com en the given infix e'.\rrcssion 10 prefix and show the contents of the
+                      stac"- at c.ach step of execu1 ion 10 •
+                      K+L-!\l*~+(O"P) *\WU/\ '"'T+<)
+         -1. a        \\'rile a rc-cursi,e pro C?rJ m to ~oh e the f l''-'t.:r ofl·fa noi problem.                   6   2   2
+               t,    [}dine Re-cursi0n. fl . _" ' d<.'t'S rccur<,i:·ri· ,.J , !fer 1mm iteration?                    4   I   I
+         5. a        \\ rite an algorithm to e, aluatc gi\t: 11 r" ,, '. i•. ~,~-ir~c;-;,ion                          5  3   2
+                     E\.-alua1~ lhe gi,en po)tfh c,pn:,~io11 •"                  ,, ~ ;!•!. Cl)ntents of the stack-
+                     J, ... •, 2, 5, • , +
+              b      \\'ri1eaprogram1o performtnl' l:,,;,, . .' r , :•,._ r,,_l,nOrdi naryQueue-                      5  2    I
+                     Enqueue and De.queue.
+                                                    ----------
+
+                                                                  · ---:-~:-:-----;----:-:----:----;-:--~-+-...:.1\:-!l- l....BT~-4-~C~.0~
+                                                       ~t:~~~ ~s--:-;
+                     l'u,h1ng an demcnt imo a !>l~ t ~ " ith tiu: l' k111cnts, "hen its si2c lirnit is             J           l        I
+- ---+ _5~~-iJl __r_n_~kc the , tad~--- - - -~ -
+     2.              \\ hat i~ the ourpul of the fu ll u \, in~ rt'cur!> it:-:-n1-::--:-:",h:--:i:-:-
+                                                                                                   n--::n:-::--;:;2:-;-
+                                                                                                                    '?------f---:---➔-2-lf--
+                                                                                                                                           2-J
+                     int fun(int n)
+                     f
+                         ifln ""' 4)
+                           r(tu rn 11;
+                         c;I )( rctum 2•tun(n-+ I),
+
+                    J __ .. -           ..          -. -----     ----- --- ~-          -
+    .l          l_~!~ >fl11m1_1r!. min,t o(r , ,1 ~l.il ~~ ~l•di;~l 1_r2 1~111~~?1n _1_1 a lllll'u;\~-:'=:-.::--       I        2         2
+    4.         If the clcmcnh '"A", "U.., ...'-"' anJ " I)" nrc pl111.n1 in u 4utu~11;~J-llte____ ·                    1- t--:-l-+.....::l::._.,i
+   - -~----- __delete~ !!flC__ a~ a time! in ~h:tt orJ.c_r ~ll thry he rc-mov~•J','
+    ,.         Whal condition ":'/kC\ ;\ normal quC'~IC, i111pkttlC'11lcd with Utt               urray~ir    !,i,e
+---            MAX            ,11L.
+                _ ,_..,. , ..,,,.
+                                            full .
+                                  .,.,._...,. ....RV College of Engineering•                                                          Go, chante the world .
+                              My,ui" Ru.io. R\/ \/1\JyaOlkf ldll l'oSI,
+                              Bengaturu - 560059. karnataka. India
+
+                                                         Acad emic year 2024-2025 (Odd Sem )
+           6.            The result of evaluating the postfix expression 5, 4, 6, +,
+                         is? -------------------------
+                                                                                     • , 4, 9, 3, /, +,                                   •             I        2           2
+
+           7.            Consider the following operation performed on a stack of
+                                                                                      size 5.                                                           I        2        2
+                         Push( I);
+                         Pop() ;
+                         Push( 2);
+                         Push(3);
+                         Pop{) ;
+                         Push(-l);
+                         Pop() ;
+                      Po..,pO;
+                      Push( 5);
+                      A fkr the comp ktit,n of all opcralitm. the number of cleme
+                                                                                          nts present in
+                     stad1. is?
+          8.         Minimum number of move s ret1uircd to solve a tower of I
+                                                                                         lanoi problem                                              2         2          2
+                     "ith 3 disl..s is
+                     Also prO\ iJe the mow s from To" w 'A' (source) to Towe
+                                                                                         r 'C'
+                     (destinatit,n) mal..in ~ use ofTo\\ er ·s· (the tempora ry tower
+                                                                                           ).
+          9.         t \.msi,k r the folio,, ing algorithm : \\'hat is outru t for input
+                                                                                         "Bcnga luru" ?                                             1        1           I
+                     Jed.lr e a :,,I.Kl.. of character:.
+                       " hik ( t11ae are nh,re chJt Jcta.., 111 ti ,. ,, "' \; ;                    ,.
+                                                                                                         •.I )
+
+      '                   '    n:aJ a ..:haracter
+                               push the d 1::irac1 a on the ...1.1cl,.
+                          I
+                         •
+                         "hik ( the s1::icl,. is n._,t empt) )
+                          (
+                              pop a cha, a.. ter off the '> l:.tt k
+                              "rite the ch:iractcr 10 the ¼rcen
+                         I
+
+                                                                                   •••••••••••••
+                                                               Oloorm 1 axonurny, CO -Cour~t' U 111co111t•s
+
+Marl~
+V1>1nbu11,1n
+·--·---·-- - ---• --
+
+ c·our     w Oulco mn :
+ ... ·--- ·--·
+                     ,_f~
+                     I
+                                Particul.srs
+
+                                   -.
+                                        Max
+                                      .\1,trJ..,
+                                                   CO i
+
+                                                 - -
+                                                    2)
+                                                                     -
+                                                                          (..'02
+
+                                                                           )7
+                                                                                   ('OJ
+
+                                                                                    -     c r1                   LI
+                                                                                                                 08
+                                                                                                    -- ---- ---- L----- -
+                                                                                          --- --- ·-- ----- -- -- --- -
+                                                                                                                         I :!
+
+                                                                                                                         27
+                                                                                                                                    L3
+
+                                                                                                                                    :!5
+                                                                                                                                               L-1
+                                                                                                                                                .
+                                                                                                                                                            LS        L6
+
+ ( "01 :         !.-rl·'i th~ ~~.;,~,;:ire o f :;,,~11;;-;-tll~f Ill udi 11c 1111:; \~1-1111~01~11.~ , 11_1~·,,;, l., !ll~d it~l'J'l'~~ll ll'll'--
+ C.'02 :         Anal y~ ii pn,hl,-tll a11d 1dt't1lr ty tli4• '> 111t:1hk d.11.1
+                                                                                           , 1rul1111 l· h• dn
+'"·•·•·•   ·--                                                                                                   l'l1>p ~111ut 1p 11                        ·- -·-
+             j~;e·· ,,,,,·,tc
+.!.'! )l:__ --·        •
+                              A fk·,1~•1
+                                      -
+                                         1  '>•tlt 1r1011 '"   ,, )!l~C111
+                                                                  -
+                                                                          1111l1l1·tt 1 " ' '~'c" ,~•••;1r, 11· h \\tl~ :111,l 111•111~11111··1·,•,--: ,- 1,- , : - - - - -~
+ ( '04:                                                                                             - •      •
+ -----·
+ ( '0 ':
+        ·-- _''!!P'~~11!r11 \11l 11h1JJI'·, 1.., f (•,tl llffll" ap1.i1\.ll11•v,
+                 D1.·n~~, r::lr,1rc ( 111<1d ( odr l T l'r,11 ti, C'\ 1•11r,iv1 11e Ill
+                                                                                                     .                               -
+                                                                                                                                               • l \ ,l ,I ). I lit'! lll'C'
+                                                                                                                                                     • - . --
+                                                                                           lik lrn lf' k,tllll ll!_'.                            --- --- --l
+
+                                                                                                                                                                               2Go, change the world
+                            RV College of Engineering"'
+                            Mysore Road, RV Vidyantketan Post,
+                            Bengaluru - 560059, Karnataka, India
+
+                                                      Academic year 2024-2025 (Odd Sem)
+1                          DEPARTMENT OF INFORMATION SCIENCE & ENGINEERIN G
+I
+I                    Date
+                  Course Code
+                     Sem
+                                                       02/12/2024
+                                                        IS233AI
+                                                                                                 Maximum Marks
+                                                                                                    Duration
+                                                                                                           CIE II
+                                                                                                                       l
+                                                                                                                        I   50+10
+                                                                                                                            90+30
+                                                           Ill
+                                                                              Faculty: MS,RBS,ARA,DN, CRM, VP,KCG, SB,MSS
+
+'
+                    UG/PG                                 UG
+                                                      Data Structure And Applications
+                                        (Common to AIML/CSE/CD/C Y/ISEI
+I       Note: - Students need to add comments to their answers wherever required.
+I
+                                                                                                                                 co
+!f         SI.
+           No.
+                                                                           QUIZ-II                                     M    BT
+
+                                                                                                                       2    3       2
+           1.1     What will be the output of the following code snippet for the list
+                   1 ➔ 2 ➔ 3 ➔ 4➔ 5➔ 6?
+
+                   void FUN(struct node* start)
+                   {
+                   if(start = NULL)
+                   return;
+                   printf{"%d ", start->data);
+                   if{start->next != NULL )
+                   FUN(start->next->next);
+                   printf("%d ", start->data);
+                   }
+
+          1.2
+
+                                                            +                        *
+
+                                                  a                    b       C             +
+
+                                                                                         d          e,
+         1.3.     Assume tha.t reference of head of following doubly linked list is passed to
+                                                                                                                       2    3
+                  above functwn J <--> 2 <--> 3 <--> 4 <--> S <-->6.
+                   \~hat should be the modified linked list after the funttion call'!
+                  void fun(struct node **head ref)
+                  {                                          -
+                     struct node *temp =' NULL;
+                     ~truct node •current =* head ref';
+                       w hile (current! --= NULi.)                 ·
+                       {
+                     temp = currcnt-~·prcv;
+                    current-.,,.prcv -= currcnt-...- ne:'l.t;
+                    curren1 ----ncxt - temp;
+     ,....____,___ _:c. .:;·u=rr_':'.1]!.._:_t'l! r.~<?~:-~ )J"C v;
+                                                       ------------·-- - - - - ~ --                              -_J___i__j_ ____J. , ~ ; of in11neet1n(
+                                    R'l~ktllf!Potl,
+                             l90069, l<lrntllkl. tndll
+                          :::-
+                                                             ear 202'1-20215 Odd Sem
+                                            Academic
+
+                      ~tttemp J• NULL)
+                             d ref• tcmp->prev;
+                         •hea_
+                           . ht fa binary trco with 'n' nodes is
+     4
+  ~l~,~.J;.Th:e:m~ax~im;.um;h~c•~g;;jonl!~~mii~1<1;-F_ _ _ _ _ _ _ _ _ _ _ _ --
+                                                                              2-                         ---r-•--i
+ l    1.5.
+           What does the following code snippet do'!
+
+                 ListNode• fun(ListNode• h1md, int x)
+                 {
+                            ListNode• front= head;
+                            int count = 1;
+                            while(front != NULL)
+                 {
+                            printft"%d %d\n", front -> data , head -> data );
+                                     iflcount <= x) {
+                                               front = front -> next;
+                                        }
+                                        else {
+                                                     head = head-> next;
+                                                     front = front -> next;
+                                        }
+                                        count++;
+                            }
+                            return head;
+
+             What will be the value of "sum" after the fo tkr• ·· \, ,; -: :1,~1.: 1;nippet          2     3   2
+ 1.6.        terminates?
+
+                     ,.
+             void solve(ListNode• root) {
+
+                 The LinkedList is defined as:
+                 root-> val = value of the node
+                 root-> next= address of next cll:mcnt from the node
+                 .,
+                 The List is I -> 2 -> 3 -> 4 -> .5
+
+                 int sum= O;
+                 while (root != NULL)
+             {
+                      sum+= root-> val;
+                      root = root -> next;
+                 )
+                 printf("0/o<l\n",sum);
+
+                                                            CIE-11
+la.      With example explain- th~ dif'f;r~;;;; b~t~ccn ~-it;glc li;~kcd c.t°o"ubl; 1T.";kcd "1i;t   6     l
+         and circular linked list.
+         Differentiate bet~ array! and dynamic mcmcory allocation.                                   4          IRV College of Engineering®                                               Go, change the world
+               Mysore Road, RV Vidyaniketan Post,
+               Bengaluru - 560059, Karnataka, India
+
+                                       Academic year 2024-2025 (Odd Sem)
+
+  2a.   You are given two non-empty linked lists, each representing a non-negative                      10   3       4,5
+        integer. The digits of the integers are stored in reverse order, with each node
+        containing a single digit. Write a program to add the two numbers and return the
+        result as a linked list.
+        Input:( 2 ➔ 4 ➔ 5) + (5 ➔ 7 ➔ 2)
+        Output: (7 ➔ 1➔ 8)
+ 3a.    Construct the BT from the following data:                                                       6    3        1
+        Postorder: A C E D B H I G F
+        Inorder: A B C D EFG H I
+ 3b.    Construct the expression tree for the Postfix expression                                        4    2        1
+        2 3*2 1-/5 4 1-*+
+ 4a.    Write a program to search a node with value 'K ' in a single linked list, if it is              6    3        5
+        not found then insert value as a last node
+ 4b.    With example explain:                                                                           4    I        1
+         i) Degree
+         ii) Complete binary Tree
+         iii)Height of a tree
+        iv)Depth of Tree
+ 5a.    Write a program to delete a node in doubie linked list at the specified position                6    3       5
+ 56.    Write a code snippet to display the content"~ _of circular queue                                4    2       3
+
+                                           BT-Blooms Ta,-;,::mc-,riw.    CU-Course Outcomes, M-Marks
+                                                            -- . .·,:..·----
+                  Particulars              COl CO2 ())3 II C04 cos                    Ll     L2    L3   L4   LS       L6
+  Marks                                                       ----r-·
+Distribution     Test     I
+                         Max
+                        Marks
+                                            28        6   4         I 10   12      15      9      36    --       -        -
+
+Course Outcomes: After completing the course, the students will be able to: -
+
+COi       Apply the knowledge of computing to define the various data structures and its operations
+
+CO2       Analyse a problem and identify the suitable data structure to develop solution
+
+CO3      Investigate &Design solution to a given problem using modern tools and appropriate data
+         structure
+
+CO4      Implement solutions fo r real-time applications.
+                                                              ··-
+cos      Demonstrate Good Coding Practices engaging in life long learning0   0
+                                                                    USN
+                                             RV COLLEGE OF ENGINEERING®
+                                         (An Autonomous Institution Af'filiatcd to VTlJ)
+                       Ill Semtst~r B. K Rt•guliar / Sup(llt•mcntury Jo:urninations .Jan / Feb -2025
+                                 DATA STl{lJCTllRES AND APPLICATIONS
+                                                     Commun to IS / CS/ C l> / C Y
+Ti~: OJ ll011rs                                                                                            Mt1xim11m Marks: JOO
+/#$/rllction., lfl t·undi,/11/c-'!I :
+      l . AnsWt' f t\1 1 C}llt'sl1nn$ fro m P.1rt A. P11r l A ques tio n s s hould b e ,J11 1;w<:rcd in firSl t h ree
+          pngt'S o f tlw al\$\\'t•r b oo !-. o nh .
+      2 . Ans\\ t"f Fl\'J-: fu ll (1\l<'~tions fro m Pm t t L In l\ 1rl 13 qu(_•stion numbe r 2 is compu l sory.
+          Ans,H·r ,u1', OHl' fu ll qtH·~ , 1un fnm , :1 nn d 4 . 5 nn d 6, 7 a nd 8 , 9 and 10.
+
+                                                              PART-A                                                    M    BT CO
+
+  1      I. l      L1st<lfiyfo,~;--;-.,-,j,i.z.;;i;:;,s ur tlH' (.hll~ c:-~ln la s tru c.:tu rc·.                       02   l
+         1..:1     N.,,, <-' l'n t~o t tlw po-:--t fix e >. p 1l',.;si1}n ;, :l + 6 z / • 3 5 • -t to eva luate.
+                   Hdp him with tlu.· nn swa .                                                                          02   2       2
+         1.3
+                 I La"l th t· d 1ifc-r-t·fK't' S bct W('<.' ll Li1 w .1r a nd Non -Lin c.:a r <la.la
+                   SIi U C l \lfl' 'S.                                                                                  02   1       l
+         IA
+                 I Pn~du.·t the ou1pu t oft lw fn ll11\\ 1n ~~ C: c od t' ':'
+                   "11ulucl<" , .- t,Jm.lt >
+
+                 I l '\lhl (<h)(Hl l • );
+                   1·nhl m ,m1 O
+
+                 I'. =    u .. 10.
+                         fvo((S..t) + + ):
+                   }
+                   roid {oo( mr • ; •)
+
+                 I   l
+                     ,rrmtf f o/...J \ n.,,r. 11).
+                                                                                                                    02       2       2
+          I5       Writ<' tht" J ►.<>'lt frx ••1, ! ;,1d1 ~ fq1u1-. u f tl w g1vt'n t·, prcss1o n.
+
+         J6
+                 I ,I f. IJ .. ( C - IJ JI (I' - H)
+                   l.1~l ,an~ -4 d 1ffc· u·11lt.":=-> h <·t ,H·1· 11 ,t S 111gh -lin k ~·1..l Ii.._, ,11\d Do ubh
+               hok,_.d h sL
+         1.1 , A h a s h Cun<:lhm h d d1 11c-d h(ke_1') J..ey 1110d 10. \\llh li n t•11 r
+                                                                                                            02
+                                                                                                                    01
+
+                                                                                                                    I
+                                                                                                                             2       1
+
+                                                                                                                                     ~
+
+               pr •bUl>I• m u ·,crl to m ',~·l l the• l.t'~ " ·1 i. n 5, 7 .!.. 2 J l)i) \\) U? i I\IU , l
+               t tb~ 1ruh:x1.:d imm U to 'J \\ h.,t v, 111 l,t- !he" luc.1t 1tH\ (lllde , 1 n ( kr ,
+               82?                                                                                          02
+         l 8   (H'\ n In on:k r. 1, 12,lJ, 1, 7, 10. 11, ".;,:!. ti t'on:-.t ntct :1 lu 11.11 ,. M' .ii d 1
+               Tree                                                                                         02                       2
+         I q   Proo, C tJ 0\, I ,Jl ci( lb· lull,,., l l h~ C 't,ck ?
+                   #l,u: tu /, ..;: rt d w 11 >
+                   #l n I, I ~ •. !ol dlil, II
+                   vul d ,, " , " )
+                   {
+                     char· • p c.ulfo ( l 00 I )
+                       p     · wet , rrw··
+                       print/(" 11 \11",pj
+                   )                                                                                                02       2
+                                                                                                                    02       IPART-B
+ 2       a    Write the recursive call tree to explain the recursion to solve
+              Tower of Hanoi problem (number of disc= 3).                         08                            1       1
+         b    Programmers might prefer to store the data in continuous
+              memory locations to improve the efficiency of the program.
+              Identify, define, and write the syntax and the instantiation of the
+              data structure that can be used. Using the same, write a
+              program to find the second largest and second smallest element
+              of 'n' integer elements.                                            08                            2       3
+
+ 3   a       Write a C function for inserting and deleting an element in a
+             sequential Stack.                                                  08                              1       2
+     b       Develop a program     to read a sparse matrix of integer values in
+             the 2D array format convert the sparse matrix to <row, column,
+             value> format, and search for an element specified by the user.
+             Print the result of the search appropriately.                      08                          3       1
+
+                                                           OR
+
+4    a       Explain how the Stack and Queue can be used to check whether
+             a string is palindrome or not. Also, write a program tha t does the
+             same.                                                               08                         2       2
+     b       Illustrate the Circular Singly Linked Lis t. Develop a program   to
+             implement the following operation of Circula r Singly Linked List
+                 i)     addLast()   ii)   a ddAfterKey()                         08                         2       3
+
+ 5   a       Write a program to implem ent Queu e data structure using
+             linked list.                                                           08                      1       3
+     b       Write a program i.c ,mp;,.,,,,or,t thP. ;;-.ddnion o f two polynomials
+             using linked list.                                                     08                      1       4
+                                                           O R:
+
+ 6   a       Write a function lo insert ;,n d e n.:•\·~·.; ..r1 lo bl:,ary search tree.                10   1       5
+     b       Construc t a bina ry sc:--u--..r, .:rec fer tJ ,F ~equen ce of numbe rs
+             12, 15, 5, 9, 1, 3, 20, 1 7, 1 9, 2, ,1, 1 6. _ -- _ ·- - - -·--·-                        06   2       1
+f------4- -- -- - - - - - -- -- - - - -- -- --=----:--:----- -- -- +----+---- +----I
+ 7  a   Consider the Railway p assengers data base. Build a Program to
+             sort passengers' IDs using Heap Sort.                                                     10   2       1
+     b       Illustrate the following:
+             (i) Binary Tree     (ii) Binary Search Tree                      (iii) Comple te Binary
+             Tree with examples.                                                                       06   2       4
+                                                          OR
+
+8    a       Write a function to print the number of leaves in a binary tree.                          08   1       4
+     b       Write a program to Implement Threaded Binary Tree.                                        08   1       5
+
+9    a       Construct the hash table for the keys: 58, 21, 93, 17, 88, 30 that are
+             inserted one after the other into the empty hash table of length 7
+             using linear probing with hash function (h(key) = key2 %7) .           08                      2       2
+     b       Write a program to count leaf nodes in a binary tree.                  08                      1       1
+                                                          OR
+
+10 a         The keys 10, 6, 12, 4, 25, 6, 18, 20, 8 are inserted into the empty hash
+             table of length 10 using linear probing with hash function
+             H(i) = i mod 10. What is the resultant hash table and find the
+             maximum probe value?                                                     08                    2       4
+     b       Explain the following collision resolution techniques with an
+             example. (i) Linear Probing (ii) Double Hashing.                         08                    2       2

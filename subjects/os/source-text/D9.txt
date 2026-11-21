@@ -1,0 +1,268 @@
+RV College of
+Engineering
+                        Go, change the world
+
+          Operating Systems
+              (UNIT-5)RV College of
+             Engineering                                     Unit-5
+        File Systems
+        File Naming, File Structure, File Types, File Access, File Attributes, File Operations, An example program
+        using File-System calls, File-System Layout, Implementing Files
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING    20 July 2025                                           2RV College of
+             Engineering                                        File Naming
+        A file is a named collection of related information that is recorded on secondary storage.
+
+        Contiguous logical address space
+        Types:
+               Data
+                      numeric
+                      character
+                      binary
+               Program
+        Contents defined by file’s creator
+               Many types
+                      Consider text file, source file, executable file
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING               20 July 2025                3RV College of
+             Engineering                                     File Naming
+        Files are an abstract mechanism, the most important characteristic of any abstract mechanism is the way
+        that the objects being managed are named.
+
+        The rule for file naming varies from system to system, but all the current OSs allow strings as file names.
+        Therefore, myfile, file1, my_file, etc. are the three legal file names.
+
+        Digits and special characters can also be used to name a file, such as myfile, file-2-1, file_21, 32, etc.,
+        which are also legal file names.
+
+        The naming of files is supported by many file systems as long as the names contain all 255 possible
+        characters.
+
+        Almost every OS supports two-part file names. These two parts of the file names are separated by a
+        period or dot (.).
+
+        The part that comes after the period (.) is known as the file extension, and it typically provides some kind
+        of information regarding the file
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING      20 July 2025                                           4RV College of
+             Engineering                                     File Naming
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING      20 July 2025   5RV College of
+             Engineering                                        File Structure
+      There are 3 types of the File Structure                                                       File Structure 3
+      File Structure 1                     File Structure 2
+
+                                              File is defined as a sequence of
+                                                                                         The second structure of a file, where a
+                                              records of a fixed length, each of         file is defined as a sequence of records
+                                              which has some kind of internal            of a fixed length, each of which has
+The file in this instance is an                                                          some kind of internal structure.
+                                              structure.
+unstructured sequence of bytes,
+                                              The concept that a read
+as can be seen in the figure that
+                                              operation brings back a record             The concept that a read operation brings
+is located above. Because of
+                                              and that a write operation merely          back a record and that a write operation
+this, the operating system is
+                                              adds a record to the end of the
+completely oblivious to the                                                              merely adds a record to the end of the
+                                              file is fundamental to the concept
+contents of the file because all it
+                                              that a file is a sequence of
+                                                                                         file is fundamental to the concept that a
+can see are the bytes that make                                                          file is a sequence of records
+                                              records
+up the file.
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING                20 July 2025                                               6RV College of
+             Engineering                                     File Types
+      There are several types of files supported by many operating systems. For example, a Windows-based
+      operating system supports the following types of files.
+
+      And UNIX-based operating systems support the following types of files:
+      • Directories
+      • Regular files
+      • Character special files
+      • Block special files
+
+      Regular Files
+      Regular files contain user information. Generally, regular files are either ASCII files or binary files. These two
+      types of files are described below.
+      ASCII Files: ASCII files basically consist of lines of text. The big plus point or advantage of ASCII files is that
+      they can be displayed and printed as is, and they can also be edited using any text editor such as Notepad,
+      Wordpad, Notepad+, etc.
+      Binary Files: The binary files listed on the printer produce random garbage. Generally, binary files have some
+      internal structure that is only known to the programs that use them. Technically, binary files are just a
+      sequence of bytes, and the OS will only execute a file if it has the proper format
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING       20 July 2025                                               7RV College of
+             Engineering                                     File Types
+      Directories are the system files that are used to maintain the structure of the file system.
+
+      Single-Level Directory Systems
+      The simplest form of the directory system is a directory that contains all of the files, also known as the root
+      directory. This system was common in earlier PCs because there was only one user.
+
+      Having only one directory in a system with multiple users may result in different users accidentally using the same names
+      for their files.
+
+      Two-Level Directory Systems
+      Two-level directory systems are used to avoid the problems caused by the single-level directory system, as we
+      have learned in the previous section.
+
+      In two-level directory systems, give each user a private directory.
+
+      So, in this two-level directory system, the names chosen by one user don't affect the names chosen by another
+      user, and having the same name in two or more directories doesn't cause any problems
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING        20 July 2025                                                    8RV College of
+             Engineering                                     File Types
+      Character Special Files
+      Character special files are mostly about I/O and are used to model serial input/output devices like printers, networks, and
+      so on.
+
+      Block Special Files
+      Basically, block-specific files are used to model the disks
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING          20 July 2025                                                    9RV College of
+             Engineering                                     File Access
+      There are three ways to access a file into a computer system:
+      Sequential-Access,
+      Direct Access,
+      Index sequential Method.
+
+      Sequential-Access
+
+      It is the simplest access method. Information in the file is processed in order, one record after the other. This mode of
+      access is by far the most common
+
+      •   Data is accessed one record right after another record in an order.
+      •   When we use read command, it move ahead pointer by one
+      •   When we use write command, it will allocate memory and move the pointer to the end of the file
+      •   after the other. This mode of access is by far the most common
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING          20 July 2025                                                  10RV College of
+            Engineering                                         File Access
+      Direct Access –
+      Another method is direct access method also known as relative access method.
+
+      A fixed-length logical record that allows the program to read and write record rapidly. in no particular order.
+
+      The direct access is based on the disk model of a file since disk allows random access to any file block. For direct access,
+      the file is viewed as a numbered sequence of block or record. Thus, we may read block 14 then block 59, and then we can
+      write block 17.
+
+      Sequential Access
+                                                            read next
+     • after the other. This mode of access iswrite                  next
+                                                             by far the most common
+                                                            reset
+                                                            no read after last write
+                                                                  (rewrite)
+      Direct Access – file is fixed length logical records
+                                                            read n
+                                                            write n
+                                                            position to n
+                                                                  read next
+                                                                  write next
+                                                            rewrite n
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINEnLEARNING
+                                                    = relative block number 20 July 2025                                             11RV College of
+             Engineering                                     File Access
+      Index sequential method –
+      It is the other method of accessing a file that is built on the top of the sequential access method.
+
+      These methods construct an index for the file.
+
+      The index, like an index in the back of a book, contains the pointer to the various blocks
+
+     • after the other. This mode of access is by far the most common
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING          20 July 2025                             12RV College of
+             Engineering                                     File Attributes
+      A file has a name and data. Moreover, it also stores meta information like file creation date and time, current
+      size, last modified date, etc. All this information is called the attributes of a file system.
+      Here, are some important File attributes used in OS:
+      Name: It is the only information stored in a human-readable form.
+      Identifier: Every file is identified by a unique tag number within a file system known as an identifier.
+      Location: Points to file location on device.
+      Type: This attribute is required for systems that support various types of files.
+      Size. Attribute used to display the current file size.
+      Protection. This attribute assigns and controls the access rights of reading, writing, and executing the file.
+      Time, date and security: It is used for protection, security, and also used for monitoring
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING        20 July 2025                                          13RV College of
+             Engineering                                 File Operations
+      File Open Operation
+      The file open operation is used to open the file. The file can be opened to read, modify, or for any other purpose. You can
+      double-click on a file to open it.
+      File Close Operation
+      The file must be closed to free up the internal table space when all the accesses are finished and the attributes and disc
+      addresses are no longer needed.
+      File Read Operation
+      The file read operation is only used to read the data stored in the specified file.
+      File Write Operation
+      The file write operation is used to save data to a file, usually at the current position.
+      File Append Operation
+      The file append operation is similar to the file write operation, except that it only adds data to the end of the file.
+      File Seek Operation
+      A method is required for random access files to specify where to take the data. As a result, the file seek operation handles this
+      task.
+      File Get Attribute Operation
+      The file get attributes operation is performed by processes when they need to read the file attributes in order to complete their
+      tasks.
+      File Set Attribute Operation
+      The file set attribute operation is used to set some of the attributes (user settable attributes) after the file has been created.
+      File Rename Operation
+      The file rename operation is used to change the name of an existing file.
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING            20 July 2025                                                     14RV College of
+             Engineering                            Implementing Files
+         The Implementation of the files can be done in two structures
+
+         On-disk
+
+         In-memory structures
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING        20 July 2025   15RV College of
+             Engineering                            On-disk Structure
+Boot Control Block
+Boot Control Block contains all the information which is needed to boot an operating system from that
+volume. It is called boot block in UNIX file system.
+Volume Control Block
+Volume control block all the information regarding that volume such as number of blocks, size of each
+block, partition table, pointers to free blocks and free FCB blocks. In UNIX file system, it is known as
+super block. In NTFS, this information is stored inside master file table.
+Directory Structure (per file system)
+A directory structure (per file system) contains file names and pointers to corresponding FCBs. In UNIX,
+it includes inode numbers associated to file names.
+File Control Block
+File Control block contains all the details about the file such as ownership details, permission details,
+file size,etc. In UFS, this detail is stored in inode. In NTFS, this information is stored inside master file
+table as a relational database structure. A typical file control block is shown in the image below.
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING     20 July 2025                                     16RV College of
+             Engineering                            In Memory Data Structure
+
+        In-memory Mount Table
+        In-memory mount table contains the list of all the devices which are being mounted to the system. Whenever the
+        connection is maintained to a device, its entry will be done in the mount table.
+        In-memory Directory structure cache
+        This is the list of directory which is recently accessed by the CPU. The directories present in the list can also be
+        accessed in the near future so it will be better to store them temporally in cache.
+        System-wide open file table
+        This is the list of all the open files in the system at a particular time. Whenever the user open any file for reading
+        or writing, the entry will be made in this open file table.
+        Per process Open file table
+        It is the list of open files subjected to every process. Since there is already a list which is there for every open file
+        in the system therefore It only contains Pointers to the appropriate entry in the system wide table
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING             20 July 2025                                                 17RV College of
+             Engineering                            In Memory Data Structure
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING     20 July 2025    18RV College of
+             Engineering
+
+                                                End of Chapter Unit-5
+
+DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING   20 July 2025   19

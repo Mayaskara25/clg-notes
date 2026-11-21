@@ -1,0 +1,114 @@
+{
+  "_about": "Study packs for DSA Unit 4: which faculty-source pages cover each guide section. Page numbers are PDF pages. Reviewed by hand from the page headings (2026-11-21).",
+  "drop_lines": [
+    "^(?:Go,\\s*change\\s*the\\s*world|Go,\\s*change|the world)[.! ]*$",
+    "^R\\s*V College of(?: Engineering[®\"\\x27•]*)?$",
+    "^RV Educational Institutions(?:\\s+®)?(?:\\s+Go, change the w9r/d)?$",
+    "^RV College of Engineering®?\\s+Go, change the world$",
+    "^RV College of Engmeermg$",
+    "^Autonomous\\s+Approved by AICTE[.,]?$",
+    "^Institution Affiliated\\s+New Delh[iI]$",
+    "^to Vlsvesvaraya$",
+    "^University, Belagavi$",
+    "^\\d+\\s+DEPARTMENT OF INFORMATION SCIENCE & ENGINEERIN\\s*G$",
+    "^Data Structure And Applications$",
+    "^Faculty: MS,RBS,ARA,DN, CRM, VP,KCG, SB,MSS$",
+    "^Mysore Road,\\s*RV Vidyan[ti]ketan Post,$",
+    "^Bengaluru\\s*-\\s*560059, Karnataka, India$",
+    "^Academic[- ]year 20(?:21-2022|24-2025)\\s*\\(ODD Sem\\)$",
+    "^DEPARTMENT OF(?: INFORMATION SCIENCE & ENGINEERIN\\s*G)?$",
+    "^INFORMATION SCIENCE & ENGINEERING$",
+    "^DATA\\s*STRUCTURES AND (?:ITS )?APPLICATIONS$",
+    "^Engineering$",
+    "^TREES\\s*•\\s*N-ARY TREES$",
+    "^Unit 3$"
+  ],
+  "sections": {
+    "fund-terminology": {
+      "D9": "3-4",
+      "D12": "1-2"
+    },
+    "fund-types": {
+      "D9": "5-10",
+      "D12": "3"
+    },
+    "fund-properties": {
+      "D9": "11,33",
+      "D12": "2"
+    },
+    "nary-binary": {
+      "D9": "34-36"
+    },
+    "forests": {
+      "D9": "29-32,37"
+    },
+    "custom-trees": {
+      "D9": "7"
+    },
+    "bt-structure": {
+      "D9": "12,15",
+      "D12": "4-5"
+    },
+    "bt-completion": {
+      "D9": "13-14",
+      "D12": "6-7"
+    },
+    "bt-balanced": {
+      "D12": "7-8"
+    },
+    "bst": {
+      "D9": "16-19",
+      "D10": "8-10,12-14,24",
+      "D12": "8,11-13"
+    },
+    "bst-ops": {
+      "D10": "10,16,18,28-33",
+      "D12": "11-13"
+    },
+    "bst-dict": {
+      "D9": "20"
+    },
+    "traversal-algorithms": {
+      "D10": "2,18-20",
+      "D12": "8-11"
+    },
+    "traversal-examples": {
+      "D10": "3-4,25,27"
+    },
+    "level-order": {},
+    "morris": {},
+    "construct-pre-in": {
+      "D12": "14-15"
+    },
+    "construct-post-in": {
+      "D12": "16"
+    },
+    "metrics": {
+      "D9": "4,11,33",
+      "D12": "2",
+      "Q1": "3"
+    },
+    "lca": {},
+    "expr-basics": {
+      "D9": "21-22,24-28",
+      "D12": "17"
+    },
+    "expr-construct": {
+      "D12": "18-19"
+    },
+    "expr-eval": {
+      "D9": "22-23"
+    },
+    "decision-tree": {},
+    "threaded-intro": {
+      "D11": "3-8"
+    },
+    "threaded-worked": {
+      "D11": "7-10,21",
+      "Q2": "7"
+    },
+    "threaded-impl": {
+      "D11": "15-22"
+    }
+  }
+}

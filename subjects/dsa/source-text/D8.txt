@@ -1,0 +1,611 @@
+Go, change
+            the world
+
+RecursionGo, change
+                                                         the world
+ Overview
+           Recursion: a definition in terms of itself.
+
+Recursion in algorithms:
+• Natural approach to some (not all) problems
+• A recursive algorithm uses itself to solve one or more
+  smaller identical problemsGo, change
+Recursive Methods                                 the world
+
+Must Eventually Terminate
+              A recursive method must have
+          at least one base, or stopping, case.
+
+• A base case does not execute a recursive call
+   • stops the recursion
+
+• Each successive call to itself must be a "smaller
+  version of itself”
+   • an argument that describes a smaller problem
+   • a base case is eventually reachedGo, change
+Key Components of a Recursive                       the world
+
+Algorithm Design
+1. What is a smaller identical problem(s)?
+     Decomposition
+2. How are the answers to smaller problems combined to
+   form the answer to the larger problem?
+     Composition
+3. Which is the smallest problem that can be solved easily
+   (without further decomposition)?
+     Base/stopping caseGo, change
+Factorial (N!)                        the world
+
+• N! = (N-1)! * N       [for N > 1]
+• 1! = 1
+• 3!
+       = 2! * 3
+       = (1! * 2) * 3
+       =1*2*3
+• Recursive design:
+   • Decomposition: (N-1)!
+       • Composition: * N
+       • Base case: 1!Go, change
+                                           the world
+factorial Method
+
+int factorial(int n)
+{
+  int fact;
+  if (n > 1) // recursive case (decomposition)
+    fact = factorial(n – 1) * n; // composition
+  else // base case
+    fact = 1;
+
+    return fact;
+}int factorial(int 3)           Go, change
+{
+  int fact;                    the world
+  if (n > 1)
+    fact = factorial(2) * 3;
+  else
+    fact = 1;
+  return fact;
+}int factorial(int 3)                           Go, change
+{
+  int fact;                                    the world
+  if (n > 1)
+    fact = factorial(2) * 3;
+  else
+    fact = 1;
+  return fact;
+}
+
+                int factorial(int 2)
+                {
+                  int fact;
+                  if (n > 1)
+                    fact = factorial(1) * 2;
+                  else
+                    fact = 1;
+                  return fact;
+                }int factorial(int 3)                                               Go, change
+{
+  int fact;                                                        the world
+  if (n > 1)
+    fact = factorial(2) * 3;
+  else
+    fact = 1;
+  return fact;
+}
+
+                public static int factorial(int 2)
+                {
+                  int fact;
+                  if (n > 1)
+                    fact = factorial(1) * 2;
+                  else
+                    fact = 1;
+                  return fact;
+                }
+
+                                int factorial(int 1)
+                                {
+                                  int fact;
+                                  if (n > 1)
+                                    fact = factorial(n - 1) * n;
+                                  else
+                                    fact = 1;
+                                  return fact;
+                                }int factorial(int 3)                                               Go, change
+{
+  int fact;                                                        the world
+  if (n > 1)
+    fact = factorial(2) * 3;
+  else
+    fact = 1;
+  return fact;
+}
+
+                int factorial(int 2)
+                {
+                  int fact;
+                  if (n > 1)
+                    fact = factorial(1) * 2;
+                  else
+                    fact = 1;
+                  return fact;
+                }
+
+                                int factorial(int 1)
+                                {
+                                  int fact;
+                                  if (n > 1)
+                                    fact = factorial(n - 1) * n;
+                                  else
+                                    fact = 1;
+                                  return 1;
+                                }int factorial(int 3)                                               Go, change
+{
+  int fact;                                                        the world
+  if (n > 1)
+    fact = factorial(2) * 3;
+  else
+    fact = 1;
+  return fact;
+}
+
+                int factorial(int 2)
+                {
+                  int fact;
+                  if (n > 1)
+                    fact = 1 * 2;
+                  else
+                    fact = 1;
+                  return fact;
+                }
+
+                                int factorial(int 1)
+                                {
+                                  int fact;
+                                  if (n > 1)
+                                    fact = factorial(n - 1) * n;
+                                  else
+                                    fact = 1;
+                                  return 1;
+                                }int factorial(int 3)                   Go, change
+{
+  int fact;                            the world
+  if (n > 1)
+    fact = factorial(2) * 3;
+  else
+    fact = 1;
+  return fact;
+}
+
+                int factorial(int 2)
+                {
+                  int fact;
+                  if (n > 1)
+                    fact = 1 * 2;
+                  else
+                    fact = 1;
+                  return 2;
+                }int factorial(int 3)                   Go, change
+{
+  int fact;                            the world
+  if (n > 1)
+    fact = 2 * 3;
+  else
+    fact = 1;
+  return fact;
+}
+
+                int factorial(int 2)
+                {
+                  int fact;
+                  if (n > 1)
+                    fact = 1 * 2;
+                  else
+                    fact = 1;
+                  return 2;
+                }int factorial(int 3)   Go, change
+{
+  int fact;            the world
+  if (n > 1)
+    fact = 2 * 3;
+  else
+    fact = 1;
+  return 6;
+}int factorial(int n)
+                       {                              Go, change
+Execution Trace          int fact;
+                                                      the world
+                         if (n > 1) // recursive case (decomposition)
+
+(decomposition)            fact = factorial(n – 1) * n; (composition)
+                         else // base case
+                           fact = 1;
+                         return fact;
+                       }
+
+                factorial(4)
+
+        factorial(3)      4int factorial(int n)
+                           {                              Go, change
+Execution Trace              int fact;
+                                                          the world
+                             if (n > 1) // recursive case (decomposition)
+
+(decomposition)                fact = factorial(n – 1) * n; (composition)
+                             else // base case
+                               fact = 1;
+                             return fact;
+                           }
+
+                   factorial(4)
+
+        factorial(3)          4
+
+    factorial(2)       3int factorial(int n)
+                             {                              Go, change
+Execution Trace                int fact;
+                                                            the world
+                               if (n > 1) // recursive case (decomposition)
+
+(decomposition)                  fact = factorial(n – 1) * n; (composition)
+                               else // base case
+                                 fact = 1;
+                               return fact;
+                             }
+
+                    factorial(4)
+
+          factorial(3)          4
+
+     factorial(2)        3
+
+  factorial(1)      2int factorial(int n)
+                       {                              Go, change
+Execution Trace          int fact;
+                                                      the world
+                         if (n > 1) // recursive case (decomposition)
+
+(composition)              fact = factorial(n – 1) * n; (composition)
+                         else // base case
+                           fact = 1;
+                         return fact;
+                       }
+
+                  factorial(4)
+                      *
+       factorial(3)         4
+                 *
+   factorial(2)        3
+
+             *
+factorial(1)->1    2int factorial(int n)
+                      {                              Go, change
+Execution Trace         int fact;
+                                                     the world
+                        if (n > 1) // recursive case (decomposition)
+
+(composition)             fact = factorial(n – 1) * n; (composition)
+                        else // base case
+                          fact = 1;
+                        return fact;
+                      }
+
+                factorial(4)
+                    *
+       factorial(3)        4
+                 *
+   factorial(2)->2    3int factorial(int n)
+                         {                              Go, change
+Execution Trace            int fact;
+                                                        the world
+                           if (n > 1) // recursive case (decomposition)
+
+(composition)                fact = factorial(n – 1) * n; (composition)
+                           else // base case
+                             fact = 1;
+                           return fact;
+                         }
+
+                factorial(4)
+                    *
+       factorial(3)->6        4int factorial(int n)
+                   {                              Go, change
+Execution Trace      int fact;
+                                                  the world
+                     if (n > 1) // recursive case (decomposition)
+
+(composition)          fact = factorial(n – 1) * n; (composition)
+                     else // base case
+                       fact = 1;
+                     return fact;
+                   }
+
+              factorial(4)->24Go, change
+                                             the world
+Improved factorial Method
+
+public static int factorial(int n)
+{
+  int fact=1; // base case value
+
+    if (n > 1)   // recursive case (decomposition)
+      fact = factorial(n – 1) * n; // composition
+    // else do nothing; base case
+
+    return fact;
+}Go, change
+                                                         the world
+Fibonacci Numbers
+• The Nth Fibonacci number is the sum of the previous
+  two Fibonacci numbers
+• 0, 1, 1, 2, 3, 5, 8, 13, …
+• Recursive Design:
+    • Decomposition & Composition
+      • fibonacci(n) = fibonacci(n-1) + fibonacci(n-2)
+   • Base case:
+      • fibonacci(1) = 0
+      • fibonacci(2) = 1Go, change
+                                             the world
+fibonacci Method
+int fibonacci(int n)
+{
+    int fib;
+    if (n == 1)
+      return   0;
+    if (n == 2)
+      return   1;
+    fib = fibonacci(n-1) + fibonacci(n-2);
+    return fib;
+}Go, change
+                                       the world
+Execution Trace (decomposition)
+               fibonacci(4)
+
+      fibonacci(3)      fibonacci(2)Go, change
+                                              the world
+ Execution Trace (decomposition)
+                   fibonacci(4)
+
+          fibonacci(3)         fibonacci(2)
+
+fibonacci(2)    fibonacci(1)Go, change
+                                             the world
+ Execution Trace (composition)
+                     fibonacci(4)
+                         +
+
+          fibonacci(3)        fibonacci(2)
+              +
+
+fibonacci(2)->1   fibonacci(1)->0Go, change
+                                      the world
+Execution Trace (composition)
+               fibonacci(4)
+                   +
+
+      fibonacci(3)->1   fibonacci(2)->1Go, change
+                              the world
+Execution Trace (composition)
+            fibonacci(4)->2Go, change
+               Example: Towers of Hanoi puzzle         the world
+
+In this puzzle, the player begins with n disks of decreasing
+diameter placed one on top of the other on one of three pegs
+of the game board. The player must move the disks from peg
+to peg, using each of the three pegs, until the entire tower is
+moved from the starting peg to one of the others. The only
+rule governing the movement of the disks is that in each
+move a disk of larger diameter must never be placed on top
+of one of smaller diameter
+
+         1
+         2
+         3
+     A                        B                       CGo, change
+                             the world
+Towers of Hanoi Puzzle
+
+       2                 1
+       3
+   A                 B   CGo, change
+                             the world
+    Towers of Hanoi Puzzle
+
+3            2               1Go, change
+                             the world
+
+    Towers of Hanoi Puzzle
+
+            1
+3           2Go, change
+                             the world
+Towers of Hanoi Puzzle
+
+       1
+       2                 3Go, change
+                                 the world
+    Towers of Hanoi Puzzle
+
+1          2                 3Go, change
+                                 the world
+    Towers of Hanoi Puzzle
+
+                             2
+1                            3Go, change
+                             the world
+Towers of Hanoi Puzzle
+
+                         1
+                         2
+                         3Go, change
+                                                 the world
+          Towers of Hanoi Puzzle
+A solution to the problem of moving a tower of size n
+from the source peg to the destination peg using a
+spare peg is found by moving a tower of size n – 1
+from the source peg to the spare peg, moving the
+bottom disk from the source peg to the destination
+peg, and finally moving a tower of size n – 1 from the
+spare peg to the destination peg.Go, change
+                                                     the world
+                Towers of Hanoi Puzzle
+
+Source -A Destination-C Spare /Temporary-B
+Steps :
+If(n >0)
+1. Move n-1 discs from A to B using C as spare/temporary.
+    (Recursive Step)
+2. Transfer nth ring from A to C using B as spare.
+3. Move the n-1 discs from B to c using A as spare. (Recursive
+    Step)Go, change
+                                                     the world
+                  Towers of Hanoi Puzzle
+void ToH(int n, char src , char dest, char temp)
+{
+      if(n >0)
+     {
+          ToH(n-1 , src, temp, dest);
+          printf(“ \nMove disk %d from %c to %c”,n,src,dest);
+          ToH(n-1, temp, dest, src);
+     }
+
+}
+int main()
+{
+   ToH(3,'A',„C',„B');
+  return 0;
+}Go, change
+                         the world
+Towers of Hanoi PuzzleGo, change
+                          the world
+ Towers of Hanoi Puzzle
+Move disk 1 from A to C
+
+Move disk 2 from A to B
+
+Move disk 1 from C to B
+
+Move disk 3 from A to C
+
+Move disk 1 from B to A
+
+Move disk 2 from B to C
+
+Move disk 1 from A to CGo, change
+                        the world
+GCD(m,n)
+int GCD(int m, int n)
+{
+    int ans;
+    if (n == 0)
+     return    m;
+    ans = GCD(n,m%n);
+    return ans;
+}Go, change
+           the world
+GCD(m,n)Go, change
+                            the world
+Sum of Natural Numbers
+
+   int Sum(int n)
+    {
+      int s;
+      if (n == 1)
+           return 1;
+       s= Sum(n – 1) + n;
+       return s;
+   }Go, change
+                                                          the world
+     Binary Search
+int binarySearch(int arr[], int left, int right, int x)
+{
+Int mid;
+   if (right >= left)
+  {
+       mid = (left+righr)/ 2;
+       if (arr[mid] == x)
+           return mid;
+
+      if (arr[mid] > x)
+         return binarySearch(arr, left, mid - 1, x);
+
+    return binarySearch(arr, mid + 1, right, x);
+  } return -1;
+}
+Recursive Display for an array
+Sum of digits of nGo, change
+Remember:                                      the world
+Key to Successful Recursion
+• if-else statement (or some other branching
+  statement)
+• Some branches: recursive call
+  • "smaller" arguments or solve "smaller" versions of
+    the same task (decomposition)
+  • Combine the results (composition) [if necessary]
+• Other branches: no recursive calls
+  • stopping cases or base casesGo, change
+ Warning: Infinite Recursion May                  the world
+
+ Cause a Stack Overflow Error
+• Infinite Recursion
+    • Problem not getting smaller (no/bad decomposition)
+    • Base case exists, but not reachable (bad base case
+      and/or decomposition)
+    • No base case
+• Stack: keeps track of recursive calls
+    • Method begins: add data onto the stack
+    • Method ends: remove data from the stack
+• Recursion never stops; stack eventually runs out of space
+    • Stack overflow errorGo, change
+                                                     the world
+ Number of Zeros in a Number
+• Example: 2030 has 2 zeros
+• If n has two or more digits                         recursive
+     • the number of zeros is the number of zeros in n with the
+       last digit removed
+     • plus an additional 1 if the last digit is zero
+• Examples:
+     • number of zeros in 20030 is number of zeros in 2003
+       plus 1
+     • number of zeros in 20031 is number of zeros in 2003
+       plus 0Go, change
+                                                   the world
+numberOfZeros Recursive Design
+• numberOfZeros in the number N
+• K = number of digits in N
+• Decomposition:
+  • numberOfZeros in the first K - 1 digits
+  • Last digit
+• Composition:
+  • Add:
+      •   numberOfZeros in the first K - 1digits
+      •   1 if the last digit is zero
+• Base case:
+  • N has one digit (K = 1)Go, change
+                                            the world
+  numberOfZeros method
+
+int numberOfZeros(int n)                    Which is
+{                                           (are) the
+  int zeroCount;                            base
+  if (n==0)                                 case(s)?
+     zeroCount = 1;                         Why?
+  else if (n < 10) // and not 0
+     zeroCount = 0; // 0 for no zeros       Decompo
+  else if (n%10 == 0)                       stion,
+     zeroCount = numberOfZeros(n/10) + 1;   Why?
+  else // n%10 != 0
+     zeroCount = numberOfZeros(n/10);       Compositi
+  return zeroCount;                         on, why?
+}Go, change
+Recursive Versus Iterative                        the world
+
+Methods
+             All recursive algorithms/methods
+            can be rewritten without recursion.
+
+• Iterative methods use loops instead of recursion
+
+• Iterative methods generally run faster and use less
+  memory--less overhead in keeping track of method calls

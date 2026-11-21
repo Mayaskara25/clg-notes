@@ -1,0 +1,33 @@
+{
+  "_about": "Study packs for OS Unit 4: which faculty-source pages cover each guide section. Page numbers are PDF pages. Reviewed by hand from the page headings (2026-11-21).",
+  "drop_lines": [
+    "^DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING\\s+20 July 2025\\s+\\d+$",
+    "^\\d{1,3}$",
+    "^Engineering$"
+  ],
+  "sections": {
+    "vm-demand": {
+      "D4": "103,108,110,112,114,116-117,124",
+      "D8": "64,74"
+    },
+    "vm-fifo": {
+      "D8": "77-78"
+    },
+    "vm-optimal": {
+      "D8": "79"
+    },
+    "vm-lru": {
+      "D8": "80-82"
+    },
+    "vm-approx": {
+      "D8": "83-86"
+    },
+    "vm-allocation": {
+      "D8": "87-89"
+    },
+    "vm-thrashing": {
+      "D8": "66,68,70-71,73"
+    },
+    "vm-numericals": {}
+  }
+}

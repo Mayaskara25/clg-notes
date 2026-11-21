@@ -1,0 +1,214 @@
+Go, change the world
+
+Threaded Binary Trees
+
+ Speeding up traversals
+
+                                            1Go, change the world
+
+Linked list Representation of Binary Tree
+
+                                                      2Go, change the world
+
+         Threaded Binary Trees
+● Two many null pointers in current
+  representation
+  of binary trees
+     n: number of nodes
+     number of non-null links: n-1
+     total links: 2n
+     null links: 2n-(n-1)=n+1
+● Replace these null pointers with some useful
+  “threads”.                                   3Go, change the world
+
+           Threaded Binary Trees
+                (Continued)
+Threaded Binary Tree is a binary tree in which all left
+child pointers that are NULL (Left in-threaded binary
+tree) points to its in-order predecessor,
+
+ and all right child pointers that are NULL (Right
+in-threaded binary tree) points to its in-order successor.
+Such pointers are called threads.
+
+                                                                  4Go, change the world
+
+Advantages:
+∙ To make inorder traversal faster and
+  do it without stack and without
+  recursion.
+
+∙ The threads are also useful for fast
+  accessing ancestors of a node.
+                                                  5Go, change the world
+
+ Types of Threaded Binary Trees.
+Single Threaded: Where a NULL right pointers of a
+node is made to point to the inorder successor
+Similarly, Where a NULL left pointers of a node can
+be used to point to its inorder predecessor.
+Double Threaded: Where both left and right NULL
+pointers are made to point to inorder predecessor and
+inorder successor respectively.
+                                                               6Go, change the world
+
+Single Threaded:
+
+                                          7Double Threaded:
+
+                   8Go, change the world
+
+Double Threaded(conti…)
+
+                                                 9Go, change the world
+
+Double Threaded(conti…)
+Node 30 does not have an inorder
+predecessor because it is the first node to
+be traversed in inorder sequence.
+
+Similarly, node 80 does not have an
+inorder successor
+
+                                                   10Go, change the world
+
+Double Threaded with Header Node
+The right child of the header node always points to itself.
+
+                                                                      11Go, change the world
+
+Double Threaded with Header Node
+The threaded binary tree is represented as the left child of the header node.
+
+                                                                            12Go, change the world
+
+Double Threaded with Header Node
+  The left thread of node 30 and the right thread of node 80 point to the
+  header node.
+
+                                                                            13Go, change the world
+
+                   14Go, change the world
+
+C representation of a Threaded Node
+    struct node
+   {   int data;
+             struct node *left, *right;
+             int lbit;
+             int rbit;
+         }                                          15Go, change the world
+
+Routine to construct a threaded binary tree:
+
+create(int info )
+
+{ do
+   { struct node *temp;
+    temp = (struct node *)malloc(sizeof(struct node));
+     temp->data=info;
+     temp->left = temp->right = NULL;
+     temp->lbit = temp->rbit = 0;
+                                                             16Go, change the world
+
+                                     Routine to construct a threaded
+if (root==NULL)                      binary tree(contin….)
+ { root=temp;
+
+       struct node *head;
+        head = (struct node *)malloc(sizeof(struct node));
+        head->data=999;
+        head->right=head;
+        head->rbit=1;
+        head->left=root;
+        head->lbit=1;
+        root->left=head;
+        root->right=head;
+}
+else
+
+                                                                        17Go, change the world
+
+Routine to construct a threaded binary
+tree(contin….)
+ else
+     insert(root, temp);
+ printf(“ do you want to insert more nodes\n”);
+ scanf(“ %c”, ch);
+} while(ch==‘y’);
+}
+
+                                                         18Go, change the world
+                                         Routine to construct a threaded
+                                         binary tree(contin….)
+
+ insert( struct node *root, struct node* temp)
+{               if (temp->data < root->data)
+                     {    if(root->lbit==0)
+                       {
+                         temp->left=root->left;
+                              root->left=temp;
+     temp->right= root;
+                                       root->lbit=1;
+                                 }
+                               else
+                              insert(root->left, temp)
+                         }
+
+                                                                            19Go, change the world
+                                    Routine to construct a threaded binary
+                                    tree(contin….)
+
+ if (temp->data > root->data)
+  { if(root->rbit==0)
+       {      temp->left=root;
+             temp->right= root->right;
+             root->right=temp;
+             root->rbit=1;
+        }
+      else
+          insert(root->right, temp);
+  }
+}// end of insert fun
+
+                                                                         20Go, change the world
+
+ inorder( struct node *head)
+{                                     Inorder Traversal of TBT
+      struct node *ptr=head->left;
+    do
+     {
+          while(ptr->lbit!=0)
+           { ptr= ptr->left; }
+
+    printf(“%d” , ptr-data);
+
+        while(ptr->rbit==0)
+        { ptr= ptr->right;
+           if(ptr==head)
+               return;
+           printf(“%d” , ptr-data);
+        }
+        ptr=ptr->right;
+     }while(ptr!=head);
+                                                                     21
+}Go, change the world
+                                      Preorder Traversal of TBT
+ preorder( struct node *head)
+{
+      struct node *ptr=head->left;
+    do
+     {
+       while(ptr->lbit!=0)
+        { printf(“%d” , ptr-data);
+             ptr= ptr->left; }
+          printf(“%d” , ptr->data);
+
+        while(ptr->rbit==0)
+        { ptr= ptr->right;
+           if(ptr==head)
+               return;
+         }
+       ptr=ptr->right;
+     }while(ptr!=head);
+}
+                                                                  22

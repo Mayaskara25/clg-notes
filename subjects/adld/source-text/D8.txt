@@ -1,0 +1,137 @@
+A register is a group of flip-flops used to store binary information temporarily.
+An n-bit register consists of n flip-flops and can store n bits of data.
+
+Registers that are capable of moving information position wise upon the
+occurrence of a clock signal are called shift registers. A shift register is a
+sequential circuit that stores binary data and shifts it from one flip-flop to
+another for every clock pulse.
+
+These registers are normally classified by whether they can move the
+information in one or two directions, i.e Unidirectional or Bidirectional.
+
+The manner in which information is entered into and outputted from a register
+is another way in which they are categorized [SISO,SIPO,PIPO,PIPO]Major applications of Registers…
+1.   Temporary Data Storage: Stores intermediate data during arithmetic and logical operations in a CPU.
+2.   Data Transfer: Transfers binary data between different sections of a processor.
+3.   Instruction Storage: Instruction Register (IR) stores the currently executing instruction.
+4.   Address Storage: Memory Address Register (MAR) holds the address of the memory location to be accessed.
+5.   Accumulator: Stores intermediate results of arithmetic and logical operations.
+6.   Buffering: Temporarily holds data during transfer between devices operating at different speeds.
+7.   Processor Operations: General-purpose registers store operands, addresses and intermediate results.
+
+Major applications of Shift Registers…
+1. Serial-to-Parallel Conversion: Converts serial data received from communication channels into parallel data using SIPO
+registers.
+2. Parallel-to-Serial Conversion: Converts parallel data into serial form for transmission using PISO registers.
+3. Temporary Data Storage: Stores binary information temporarily during digital operations.
+4. Time Delay Circuits: Provides a digital delay by shifting data through successive flip-flops.
+5. Sequence Generation: Generates predefined binary sequences using ring counters and Johnson counters.
+6. Arithmetic Operations: Performs serial addition, multiplication and division by shifting binary data.
+7. Data Transfer: Transfers data between digital systems and communication interfaces.
+8. Digital Signal Processing: Used in digital filters, delay lines and signal-processing circuits.
+9. LED Display Control: Controls running LED patterns and sequential lighting applications.
+10. Pseudo-Random Sequence Generation: Linear Feedback Shift Registers (LFSRs) generate pseudo-random binary
+sequences used in testing and communication systems.1. Serial-In Serial-Out (SISO) : Data input: Serial, Data output: Serial
+• Data is entered into the register one bit at a time through a single input line.
+                                                                                            Based on the direction of
+• Each clock pulse shifts the data by one position.                                         data transfer and the
+• Data is obtained one bit at a time from the output of the last flip-flop.
+• It is mainly used for serial data transfer and time delay applications.                   method of data
+Used as Circular SR, by connecting serial data out line to serial data in line              input/output, shift registers
+2. Serial-In Parallel-Out (SIPO) : Data input: Serial, Data output: Parallel                operate in four basic
+•   Data is entered serially, one bit at a time.
+•   Each clock pulse shifts the incoming bit into the register.                             modes.
+•   After all bits are loaded, the entire data is available simultaneously at the outputs of all flip-flops.
+•   It is used for serial-to-parallel data conversion.
+
+3. Parallel-In Serial-Out (PISO): Data input: Parallel, Data output: Serial
+•   All data bits are loaded simultaneously into the register using parallel inputs.
+•   A control signal selects parallel loading or shifting.
+•   After loading, each clock pulse shifts one bit towards the serial output.
+•   It is used for parallel-to-serial data conversion.
+
+4. Parallel-In Parallel-Out (PIPO) : Data input: Parallel, Data output: Parallel
+•   All bits are loaded simultaneously into the register.
+•   All bits are available simultaneously at the output.
+•   No shifting of data is required during normal operation.
+•   It is mainly used for temporary data storage and transfer.Select Line of Multiplexer acts as Mode control pin:
+0 – Means, it works in Shift mode. Data shifted out (right) one bit at a time, for every clock pulse
+1 - Means, it works in Load mode. Parallel data is loaded into all the FlipFlops at a time, when clock pulse is applied.A circular shift register is a shift register in which the output of the last flip-flop is connected back to the input of the first flip-
+flop, forming a closed loop. As a result, the data stored in the register continuously circulates from one flip-flop to the next
+with every clock pulse.
+
+In a 4-bit circular shift register:
+• Four D flip-flops are connected in cascade.
+• The output of the last flip-flop is fed back to the input of the first flip-flop.
+• All flip-flops receive a common clock signal.Universal Shift Register
+A Universal Shift Register (USR) is a sequential logic circuit that can perform
+         bidirectional shifting and supports SISO,SIPO,PISO,PIPO.
+1. A 4-bit universal shift register consists of:
+•   Four D flip-flops: FF3, FF2, FF1 and FF0 (whose o/ps are Q3,Q2,Q1 and Q0)
+•   Four 4:1 multiplexers.
+•   Two mode-control inputs: S1 and S0.
+•   Four parallel data inputs: P3, P2, P1 and P0.
+•   Serial inputs for shifting in both directions.
+•   A common clock signal.
+
+2. Multiplexer connections
+Each D flip-flop is preceded by a 4:1 MUX. The MUX selects one of four possible inputs based on the mode-control
+signals S1 and S0.
+
+    S1                          S0                          Selected input            Operation
+    0                           0                           Present output Q          Hold
+    0                           1                           Adjacent higher bit       Shift right
+    1                           0                           Adjacent lower bit        Shift left
+    1                           1                           Parallel input P          Parallel load3.Operation of the Universal Shift Register
+Assume the register contains four bits: Q3,Q2,Q1,Q0
+
+A. Hold operation (S1S0 = 00)
+The output of each flip-flop is fed back to its own input through the MUX.
+On the active clock edge, the existing data remains unchanged.
+
+B. Shift-right operation (S1S0 = 01)
+Each bit shifts one position towards the right (LSB).
+The serial input SR enters the MSB position.
+The LSB is shifted out.
+
+C. Shift-left operation (S1S0 = 10)
+Each bit shifts one position towards the left (MSB).
+The serial input SL enters the LSB position.
+The MSB is shifted out.
+
+D. Parallel-load operation (S1S0 = 11)
+All four bits are loaded simultaneously.
+Each flip-flop receives its corresponding parallel input.Operation                  Control   Register content
+Initial state              –         1011
+Hold                       00        1011
+Shift right (SR = 0)       01        0101
+Shift left (SL = 0)        10        0110
+Parallel load (P = 1100)   11        1100CIE2, Year 2025
+Construct the logic diagram of a 4-bit register with four D flip-flops and 4 × 1 multiplexers
+with mode selection input m1 and m0. The register operates according to the following
+function table:
+m1        m0        Register operation
+0         0         No Change
+0         1         Complement the four Output
+1         0         Clear register to 0 (Synch)
+1         1         Load parallel data
+
+Ans:
+Hint: Connect Q* (complimented Q) to D inputs, for Mode (01) ; Connect 0 to Input 2 of
+the Multiplexers for Synchronous Clear operation.
+
+CIE2, Year 2024
+Design a 4 bit Universal Shift Register, Which supports following modes of operation-
+S1        S0        Operations
+0         0         Hold
+0         1         Shift Right Data
+1         0         Circular Shift Left Data
+1        1          Parallel Load the Data
+Ans:
+Hint: Q3 to be connected SILOnly for Reference: Universal Shift Register – Circuit given as per Givone book
+A Universal Shift Register (USR) is a sequential logic circuit that can perform bidirectional shifting and supports
+SISO,SIPO,PISO,PIPO. The following USR design four basic register operations:
+1.Hold (no change in data).
+2.Shift right.
+3.Shift left.
+4.Parallel load.

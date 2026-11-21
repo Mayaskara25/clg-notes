@@ -1,0 +1,550 @@
+Go, change the worldGo, change the world
+
+1. What is queue?
+2. Operation on queues
+      •   Queue implementation
+      •   Implementation of insert and delete operations on a queue
+3. Limitations of linear queues
+4. Circular queues
+      •   Operations on circular queues
+      •   Implementation of insert and delete operations on a circular queue
+5. ApplicationGo, change the world
+
+                       What is Queue?
+• Ordered collection of elements in which the elements are added at
+  one end, called the rear, and deleted from the other end, called the
+  front.
+• It is characterized by FIFO (First In First Out) principle.
+       Front
+               • All elements are entered into the queue from a fix
+                 end called as Rear whereas all the elements are
+                 removed from an opposite end called as Front of the
+       Rear      queue.Go, change the world
+                           Implementation of Queue
+
+Basic Structure of a Queue:
+-Data structure that hold the queue
+ -front
+-back/rear[0]         [1 ]          [2]         [3]           Go, change the world
+
+      Front                                           Rear
+
+[0]            [1]          [2 ]         [3]
+
+         Front                                 RearGo, change the world
+
+                          Linear Queue
+
+          0           1            2             3   4
+
+rear   front
+          Queue Size :5
+          Status of the queue : QUEUE IS EMPTYGo, change the world
+
+             Linear Queue- Insert(A)
+     0          1      2       3       4
+
+    A
+
+rear frontGo, change the world
+
+        Linear Queue- Insert(B)
+  0       1       2       3       4
+
+  A       B
+
+front     rearGo, change the world
+
+        Linear Queue- Insert(C)
+  0       1        2      3       4
+
+  A       B        C
+
+front             rearGo, change the world
+
+    Linear Queue- Delete()
+0       1     2      3       4
+
+       B      C
+
+     front   rearGo, change the world
+
+    Linear Queue- Delete()
+0     1            2          3   4
+
+                   C
+
+           front       rearGo, change the world
+
+    Linear Queue- Insert(D)
+0      1        2     3       4
+
+                C     D
+
+             front   rearGo, change the world
+
+    Linear Queue- Insert(E)
+0     1       2       3       4
+
+              C       D        E
+
+             front            rearGo, change the world
+
+    Linear Queue- Delete()
+0     1       2        3     4
+
+                       D      E
+
+                    front    rearGo, change the world
+
+    Linear Queue- Delete()
+0     1       2      3             4
+
+                                    E
+
+                             front rearGo, change the world
+
+           Linear Queue- Delete()
+  0              1   2      3       4
+
+                                    rear         front
+QUEUE IS EMPTYGo, change the world
+
+            Linear Queue
+    0   1        2         3   4
+
+   A    B        C
+
+front           rearGo, change the world
+
+    Linear Queue-Delete
+0     1      2     3      4
+
+      B      C
+
+    front   rearGo, change the world
+
+    Linear Queue-Delete
+0    1          2     3   4
+
+                C
+
+         front rearGo, change the world
+
+            Linear Queue-Delete
+ 0               1    2             3   4
+
+                     rear   front
+
+QUEUE IS EMPTYGo, change the world
+Different cases of Queue Empty Status of a Linear Queue
+Queue    0          1       2           3          4
+
+rear    front
+
+Queue
+
+                                                           rear       front
+
+Queue           0       1        2             3       4
+
+                                rear   frontGo, change the world
+
+        Different cases of Queue full status
+Queue     0       1        2      3        4
+
+                           C      D        E
+
+                          front
+
+              0       1       2       3       4
+
+Queue      A      B           C       D        E
+
+        front
+          0       1       2       3       4
+
+Queue
+
+                                          rear          frontGo, change the world
+
+  Queue Operations
+• Primitive Operations:
+   • Insert: add a value at the rear end of the queue(enqueue)
+   • Delete: remove a value from the front end of the queue(dequeue)
+• Other Operations:
+   • isFull: true if the queue is currently full, i.e., has no more space to hold
+     additional elements
+   • isEmpty: true if the queue currently contains no elements
+   • queueFront : returns the front element of the queueGo, change the world
+
+Linear Queue Implementation
+#define QUEUESIZE 100
+struct queue
+ {
+   int items[QUEUESIZE] ;
+                                          Definition of QUEUE
+   int front ;
+   int rear ;
+};
+struct queue lq ;                        Declaration of QUEUE
+
+lq.front = 0;
+lq.rear = -1
+                            Initialization of QUEUE, empty QUEUEGo, change the world
+
+QUEUE : Implementation of primitive operations
+Insert & Delete
+void enqueue( struct queue *q ,int x)
+{
+   if(q->rear == QUEUESIZE-1 )
+   {
+        printf(“QUEUE OVERFLOW”);
+        exit(0);
+   }
+  q->rear ++;
+  q->items[q->rear] = x;
+}
+Function Call : enqueue(&lq,y)Go, change the world
+
+Linear Queue : Implementation of primitive
+operations Insert & Delete
+int dequeue(struct queue *q)
+{
+   int x;
+   if(q->front > q->rear)
+   {
+        printf(“QUEUE UNDERFLOW”);
+        exit(0);
+   }
+   x= q->items[q->front];
+   q->front ++;
+   return x;
+}Go, change the world
+
+Stack : Implementation of operations
+isEmpty & isFull     int queueFront(struct queue *q)
+int isEmpty( struct queue *q )   {
+{
+                                     int x;
+   if(q->front > q->rear)
+        return 1;                    if(q->front > q->rear)
+   return 0;                         {
+}                                         printf(“QUEUE UNDERFLOW”);
+                                          exit(0);
+int isFull(struct queue *q )         }
+{                                    x= q->items[q->front];
+   if(q->rear == QUEUESIZE-1 )       return x;
+       return 1;                 }
+    return 0;
+}Go, change the world
+
+Display Function
+void display( struct stack *q)
+{
+   int I ;
+   if(q->front > q->rear)
+   {
+         printf(“QUEUE UNDERFLOW”);
+         return;
+   }
+   printf(“Queue elements are \n”);
+   for(i =q->front; i<=q->rear; i++)
+       printf(“ %d”,q->items[i]);
+}Go, change the world
+
+                 Disadvantages of linear queue
+
+• On deletion of an element from existing queue, front pointer is shifted to
+  next position.
+• This results into virtual deletion of an element.
+• By doing so memory space which was occupied by deleted element is
+  wasted and hence inefficient memory utilization is occur.Go, change the world
+
+              Limitation of Linear Queues
+• By the definition of a queue, when we add an element in Queue, rear
+  pointer is increased by 1 whereas, when we remove an element front
+  pointer is increased by 1. But in array implementation of queue this
+  may cause problem as follows:
+
+• Consider operations performed on a Queue (with SIZE = 5) as
+  follows:
+
+• 1. Initially empty Queue is there so,front = 0 and rear = -1Go, change the world
+
+• 2. When we add 5 elements to queue, the state of the queue
+  becomes as follows with
+•    front = 0 and rear = 4
+                               10        20   30   40   50
+
+3. Now suppose we delete 2 elements from Queue then, the state
+of the Queue becomes as follows, with front = 2 and rear = 4
+                     30   40        50Go, change the world
+
+4. Now, actually we have deleted 2 elements from queue so, there should
+be space for another 2 elements in the queue, but as rear pointer is
+pointing at last position and Queue overflow condition
+(Rear == SIZE-1) is true, we can’t insert new element in the queue even
+if it has an empty space.
+To overcome this problem there is another variation of queue
+called CIRCULAR QUEUE.Go, change the world
+                     Overcome disadvantage of linear queue:
+
+• To overcome disadvantage of linear queue, circular queue is use.
+• We can solve this problem by joining the front and rear end of a queue to make the
+  queue as a circular queue .
+• Circular queue is a linear data structure. It follows FIFO principle.
+• In circular queue the last node is connected back to the first node to make a circle.Go, change the world
+
+Circular QueueGo, change the worldGo, change the world
+   Rear = 3, Front = 0                        10. Insert 100, Rear = 0, Front = 1.
+                                                    Front
+
+                                                                            50
+
+                                                   Rear         0
+                                                                      40
+
+  8. Insert 40, Rear = 4 Front = 0.            11. Delete, Rear = 0, Front = 2
+                                                                                    Front
+
+                      10            50
+Front
+            0                        20                         0            20
+                                                  Rear
+                           40                                          40
+                        Rear
+   9. Delete, Rear = 4, Front = 1               12. Delete , Rear = 0, Front = 3.
+              Front
+
+                                    50
+                                                                0                           Front
+                                                         Rear           40
+                0                        20
+                               40
+                       Rear
+        09/10/08                                                                                      36Go, change the world
+
+Circular queue
+• There is a problem with this: Both an empty queue and a full queue would be
+  indicated by having the head and tail point to the same element.
+
+                                    End     Start             Empty queue
+
+      6        7        8           9               A   B          C
+
+                              End       Start               Full queueGo, change the world
+
+Circular Queue Implementation(with count)
+#define QUEUESIZE 100
+struct queue
+ {
+   int items[QUEUESIZE] ;
+   int front ;                            Definition of QUEUE
+   int rear ;
+   int count;
+};
+
+struct queue cq ;                        Declaration of QUEUE
+
+cq.front = QUEUESIZE-1;
+cq.rear = QUEUESIZE-1;      Initialization of QUEUE, empty QUEUEGo, change the world
+
+Circular QUEUE : Implementation of primitive
+operations Insert (with count)
+  void enqueue( struct queue *q,int x )
+  {
+     if( q->count == QUEUESIZE )
+     {
+           printf(“QUEUE OVERFLOW”);
+           exit(0);
+     }
+    q->rear = (q->rear +1)% QUEUESIZE;
+    q->items[q->rear] = x;
+    q->count++;
+  }Go, change the world
+
+Circular Queue : Implementation of primitive
+operations Delete(with count)
+  int dequeue(struct queue *q)
+  {
+      int x;
+      if(q->count==0)
+      {
+           printf(“QUEUE UNDERFLOW”);
+           exit(0);
+      }
+     q->front = (q->front +1)%QUEUESIZE;
+     x= q->items[q->front];
+      q->count--;
+      return x;
+  }Go, change the world
+
+Circular Queue : Implementation of operations
+isEmpty & isFull(with count)
+                        int queueFront(struct queue *q)
+ int isEmpty( struct queue *q )   {
+ {
+                                      int x;
+    if(q->count==0)
+         return 1;                    if(q->count == 0)
+    return 0;                         {
+ }                                         printf(“QUEUE UNDERFLOW”);
+                                           exit(0);
+ int isFull(struct queue *q )         }
+ {                                    x= q->items[q->front];
+    if(q->count == QUEUESIZE )        return x;
+        return 1;                 }
+     return 0;
+ }Circular Queue Display Function(with count)
+                                      Go, change the world
+
+void display( struct queue *q)
+{
+   int i,pos ;
+   if(q->count==0)
+   {
+         printf(“QUEUE UNDERFLOW”);
+         return;
+   }
+   printf(“Queue elements are \n”);
+   pos = (q->front +1)%QUEUESIZE;
+   for(i =1; i<=q->count; i++)
+    {
+       printf(“ %d”,q->items[pos]);
+       pos = (pos +1)%QUEUESIZE;
+    }
+}Go, change the world
+
+Curcular Queue Implementation(with out count)
+  #define QUEUESIZE 100
+  struct queue
+   {
+     int items[QUEUESIZE] ;                 Definition of QUEUE
+     int front ;
+     int rear ;
+  };
+  struct queue cq ;                        Declaration of QUEUE
+  cq.front = QUEUESIZE-1;
+  cq.rear = QUEUESIZE-1;
+                              Initialization of QUEUE, empty QUEUEGo, change the world
+
+Circular QUEUE : Implementation of primitive
+operation Insert (with out count)
+   void enqueue( struct queue *q,int x )
+   {
+      if( (q->rear +1) % QUEUESIZE == q->front )
+      {
+            printf(“QUEUE OVERFLOW”);
+            exit(0);
+      }
+     q->rear = (q->rear +1)% QUEUESIZE;
+     q->items[q->rear] = x;
+   }Go, change the world
+
+Circular Queue : Implementation of primitive
+operation Delete (with out count)
+ int dequeue(struct queue *q)
+ {
+     int x;
+     if(q-> rear== q->front )
+     {
+          printf(“QUEUE UNDERFLOW”);
+          exit(0);
+     }
+    q->front = (q->front +1)%QUEUESIZE;
+    x= q->items[q->front];
+    return x;
+ }Go, change the world
+
+  Circular Queue : Implementation of operations
+  isEmpty & isFull(with out count)
+int isEmpty( struct queue *q )             int  queueFront(struct   queue *q)
+{                                          {
+    if(q-> rear== q->front )                   int x;
+          return 1;                             if(q-> rear== q->front )
+    return 0;                                    {
+}                                                    printf(“QUEUE UNDERFLOW”);
+                                                     exit(0);
+int isFull(struct queue *q )                   }
+{                                              x= q->items[q->front];
+ if((q->rear +1) % QUEUESIZE == q->front )
+        return 1;                              return x;
+    return 0;                              }
+}Go, change the world
+
+Circular Queue Display Function(With out count)
+  void display( struct queue *q)
+  { int i ,pos;
+      if(q-> rear== q->front )
+     {
+           printf(“QUEUE UNDERFLOW”);
+           return;
+     }
+     printf(“Queue elements are \n”);
+     pos = (q->front +1)%QUEUESIZE;
+     do
+      {
+          printf(“ %d”,q->items[pos]);
+          pos = (pos +1)%QUEUESIZE;
+     }while(pos != q->rear);
+  }Go, change the worldMessage Queue Implementation                               Go, change the world
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.>
+#define QUEUESIZE 100
+struct queue
+ {                                                Definition of QUEUE
+   char items[QUEUESIZE] [200 ] ;
+   int front ;
+   int rear ;
+   int count;
+};
+struct queue mcq ;                               Declaration of QUEUE
+mcq.front = QUEUESIZE-1;
+mcq.rear = QUEUESIZE-1;         Initialization of QUEUE, empty QUEUEGo, change the world
+
+Message Queue Implementation :Insert
+ void enqueue( struct queue *q, char msg[ ] )
+ {
+    if( q->count == QUEUESIZE )
+    {
+          printf(“QUEUE OVERFLOW”);
+          exit(0);
+    }
+   q->rear = (q->rear +1)% QUEUESIZE;
+   strcpy( q->items[q->rear] , msg);
+   q->count++;
+ }Go, change the world
+
+Message Queue Implementation :Delete
+  void dequeue(struct queue *q, char msg [ ])
+  {
+    if(q->count==0)
+     {
+          printf(“QUEUE UNDERFLOW”);
+          exit(0);
+     }
+    q->front = (q->front +1)%QUEUESIZE;
+    strcpy(msg,q->items[q->front]);
+     q->count--;
+  }Message Queue Implementation: Display    Go, change the world
+
+ void display( struct queue *q)
+{ int i,pos ;
+   if(q->count==0)
+   {
+         printf(“QUEUE UNDERFLOW”);
+         return;
+   }
+   printf(“Messages in Queue are \n”);
+   pos = (q->front +1)%QUEUESIZE;
+   for(i =1; i<=q->count; i++)
+    {
+       printf(“ %s”,q->items[pos]);
+       pos = (pos +1)%QUEUESIZE;
+    }
+}Go, change the world
+
+THANK YOU

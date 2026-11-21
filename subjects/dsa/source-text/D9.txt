@@ -1,0 +1,600 @@
+Go, change the world
+
+                         Unit -4
+
+Trees: N-ary Trees, Binary Trees, Binary Search Trees,
+Expression Trees, Forests. Properties and conversion of
+N-ary tree / Forest to Binary tree
+
+                                    Presented By,
+                                      Dr. sindhu D V
+                                      Dept. of CSE,RVCEGo, change the world
+
+TREES • N-ARY TREES
+
+Why Do We Need Trees?
+          LINEAR                                                HIERARCHICAL
+
+                                                                     University
+    A→B→C
+       →D
+    Data is mainly
+     organized in a              →                 CS
+                                                    E
+                                                                     ECE               ME
+       sequence.
+
+                                              CI        CD         CY
+    Array • List • Stack •
+           Queue
+                                                Real-world data often has PARENT →
+                                                       CHILD relationships.
+                       Question: Which structure is better suited for a hierarchy?Go, change the world
+
+TREES • N-ARY TREES
+
+What Is a Tree?
+  THE BASIC IDEA                         A SIMPLE TREE
+
+  A tree organizes                            A
+  nodes in a
+  hierarchical form.
+                                B             C                 D
+  Nodes are connected by
+  edges.
+  There is a topmost node
+  called the root.          E        F
+       NON-LINEAR DATA
+         STRUCTURE
+                            The structure grows downward from the
+                                             ROOT.Go, change the world
+
+TREES • N-ARY TREES
+
+Understanding the Structure
+                      Use one tree to learn the language of trees.
+
+    A = ROOT                             A
+
+                                                                        B, C, D =
+                                                                       CHILDREN
+                            B            C             D
+
+                                                                        B, C, D =
+                                                                        SIBLINGS
+                       E         F
+                                                                     E, F = LEAVES
+    A = PARENT OF
+          B
+                       EDGE = CONNECTION BETWEEN TWO NODESGo, change the world
+
+TREES • N-ARY TREES
+
+What Makes a Tree N-ary?
+            An N-ary tree allows each node to have AT MOST N CHILDREN.
+
+        N=2                         N=3                          N=4
+         BINARY                     TERNARY                       4-ARY
+
+          A                           A                            A
+
+    B           C              B      C       D            B      C       D      E
+
+           Important: “at most N” means a node can have 0, 1, 2, …, N children.Go, change the world
+
+N-ary Tree — Definition
+The value of N determines the maximum number of children a node can have.
+
+      An N-ary tree is a tree in which each node has AT MOST N
+                               CHILDREN.
+
+            0                             1                        2…N
+       Leaf node                    Single child                 Internal node
+        No children                    One child                  Up to N children
+
+ Example: In a 3-ary tree, every node can have 0, 1, 2, or 3 children — never more
+                                      than 3.Go, change the world
+
+Applications of N-ary Trees
+Useful when a node can naturally have more than two children.
+
+        File & Folder Systems                               Menus & Navigation
+        A folder can contain many files and                 A menu item can branch into several
+        subfolders.                                         options.
+
+        DOM / HTML Structure                                AI Search & Game Trees
+        Elements form a hierarchy where a parent            A state can lead to multiple possible next
+        may have many child elements.                       states.
+
+        Organization Hierarchies                            Trie & Prefix Structures
+        One manager or unit can have many direct            A node can branch to many possible
+        subordinates.                                       symbols or characters.
+
+            KEY IDEA → N-ary trees model naturally branching relationships.Go, change the world
+
+From N-ary Tree to Binary Tree
+What happens when every node is allowed only two children?
+
+              N-ARY TREE                                           BINARY TREE
+
+                    A                                                   A
+
+      B        C         D        E                           B                     C
+
+      A can have many children                               A has at most two children
+
+               KEY TRANSITION → Restrict the maximum children
+                               from N to 2.Go, change the world
+
+What Is a Binary Tree?
+A special type of tree with a strict limit on children.
+
+    A binary tree is a tree in which each node has AT MOST TWO
+        CHILDREN, called the LEFT CHILD and RIGHT CHILD.
+                                 LEFT                     RIGHT
+
+                                                      A
+
+                                   B                       C
+
+            A node may have 0, 1, or 2 children — but never more than 2.Go, change the world
+
+Left Child ≠ Right Child
+In a binary tree, position matters.
+
+           TWO DIFFERENT POSITIONS               SWAPPING THEM CHANGES THE TREE
+
+                        A                                           A
+
+             B                        C                 C                   B
+
+       B = left child     C = right child          C = left child   B = right child
+
+                      Think: Are these two binary trees identical?Go, change the world
+
+Binary Tree: Basic Properties
+These properties will help us reason about size, height and structure.
+
+   01    Maximum children                                02    Ordered children
+         Each node has at most 2 children.                     Children are distinguished as left
+                                                               and right.
+
+   03    Possible child counts                           04    Recursive structure
+         A node can have 0, 1, or 2 children.                  Each child can itself be the root of
+                                                               another binary tree.
+
+        Next → Types of Binary Trees: Full, Complete, Perfect and SkewedGo, change the world
+
+Full Binary Tree
+Every node has either 0 children or exactly 2 children.
+
+                   FULL BINARY TREE                               RULE
+                              A
+                                                           No node has
+                                                           exactly ONE
+                  B                       C
+                                                              child.
+                                                             ✓ 0 children
+                                                             ✓ 2 children
+            D           E           F          G
+                                                          Think: Is a single-child
+                                                              node allowed?
+         Internal nodes → 2 children | Leaves → 0
+                         childrenGo, change the world
+
+Complete Binary Tree
+All levels are completely filled except possibly the last; the last level is filled from left to right.
+
+                  COMPLETE BINARY TREE                                                 KEY TEST
+                                 A
+                                                                                If the last level has
+                                                                                        gaps,
+                                                                               the gaps must occur
+                    B                         C                                 at the RIGHT side.
+
+                                                                                 Think of filling seats
+                                                                               row by row, left to right.
+              D            E           F            G
+
+                                                                                Complete ≠ Perfect
+        Last level: filled from LEFT → RIGHTGo, change the world
+
+Perfect Binary Tree
+Every internal node has 2 children, and all leaves are at the same level.
+
+                 PERFECT BINARY TREE                                        QUICK CHECK
+                              A
+                                                                        ✓ Every level is full
+                                                                       ✓ Every internal node
+                                                                          has 2 children
+                  B                      C
+                                                                       ✓ Leaves are at one
+                                                                               level
+
+             D          E           F          G                       A perfect tree is always
+                                                                              complete.
+
+         All leaves are at the SAME depth.Go, change the world
+
+Skewed Binary Tree
+A binary tree in which each node has only one child, producing a chain-like shape.
+
+              RIGHT-SKEWED                                     FOUR TYPES — QUICK
+              A                                                   COMPARISON
+                                                        Full           0 or 2 children
+
+                     B
+                                                        Complete       Last level: left → right
+                            C
+                                                        Perfect        All levels full
+                                   D
+                                                        Skewed         One child per node
+
+    Each node has only a RIGHT child.
+                                                           Next → Identify the type from a
+                                                                     given treeGo, change the world
+
+From Binary Tree to Binary Search Tree
+A binary tree gives us structure. A BST adds an ordering rule.
+
+         ORDINARY BINARY TREE                                    BINARY SEARCH TREE
+
+                        50                                                   50
+
+              80                 20                               30                    70
+
+      The left and right positions exist,                           Values follow a rule:
+                                                                   LEFT < ROOT < RIGHT
+      but the values need not follow an
+                    order.
+
+                    KEY IDEA → Ordering makes searching faster.Go, change the world
+
+What Is a Binary Search Tree?
+BST property is applied recursively to every node.
+
+    A Binary Search Tree (BST) is a binary tree in which, for every node,
+      values in the LEFT subtree are smaller and values in the RIGHT
+                            subtree are larger.
+
+                       SMALLER                                          LARGER
+                                                     50
+
+                                  30                                 70
+
+         For duplicates, a course must define a consistent policy; here we assume distinct keys.Go, change the world
+
+The BST Rule Applies Everywhere
+It is not enough for only the root's children to be ordered.
+
+                   LOOK AT THE SUBTREES                         CHECK ANY NODE
+                                 50
+                                                                   At node 30:
+                                                                   20 < 30 < 40
+
+                     30                      80                    At node 80:
+                                                                   70 < 80 < 90
+
+                                                               The same rule holds
+              20           40          70          90                 for
+                                                                 EVERY subtree.Go, change the world
+
+Searching in a BST
+At each comparison, one subtree can be eliminated.
+
+                      SEARCH FOR 70                      THE DECISION
+                             50
+                                                         Target < current
+                                                           → go LEFT
+
+                                                         Target > current
+                 30                    80                 → go RIGHT
+
+                                                         Target = current
+                                                            → FOUND
+                                  70          90
+                                                     This guided search is the
+                                                      main advantage of the
+     50 → go RIGHT → 80 → go LEFT → 70                     BST ordering.Go, change the world
+
+Applications of Binary Search Trees
+BSTs are useful when data needs to remain ordered while supporting efficient searching and
+updates.
+        Fast Searching                                      Ordered Data
+        Searching for a key by repeatedly                   Maintaining a collection where elements
+        choosing the left or right subtree.                 can be retrieved in sorted order.
+
+        Dynamic Insertions                                  Dynamic Deletions
+        New values can be inserted while                    Values can be removed while keeping the
+        preserving the BST ordering property.               remaining elements organized.
+
+        Range Queries                                       Symbol Tables
+        Finding values within a range by using              A BST can organize keys used in
+        the ordering of the tree.                           dictionaries, maps, and lookup structures.
+
+      KEY IDEA → BSTs combine hierarchical structure with sorted ordering.Go, change the world
+
+From Arithmetic Expression to Tree
+An expression can be represented as a hierarchy of operators and operands.
+
+      ARITHMETIC EXPRESSION                                    EXPRESSION TREE
+
+                                                                         ×
+          (A + B) × C
+                                                              +                      C
+     The expression has a natural
+                 hierarchy:
+      first A + B, then multiply the
+                result by C.                            A          B
+         Can we represent this
+          hierarchy as a tree?                              Operators → internal nodes
+                                                               Operands → leavesGo, change the world
+
+What Is an Expression Tree?
+A binary tree used to represent an arithmetic or logical expression.
+
+    An expression tree is a binary tree in which OPERATORS are stored
+        in internal nodes and OPERANDS are stored in leaf nodes.
+
+        OPERATOR                                                             OPERANDS
+                                                   ×
+          × and +                                                            A, B and C
+
+                                  +                                    C
+
+                           A            BGo, change the world
+
+How Does an Expression Tree Represent Evaluation?
+The tree structure shows which operation must be performed first.
+
+              EXPRESSION: (A + B) × C                                TREE = HIERARCHY
+
+      1     A+B                  Evaluate the left
+                                 subtree                              Root operator
+                                                                            ↓
+      2     Result × C           Use that result with C              Subexpressions
+                                                                            ↓
+      3     Final result         Expression is                         Operands
+                                 evaluated
+                                                                     The deepest operands
+                                                                    are combined first as the
+                                                                    expression is evaluated.Go, change the world
+
+Expression Tree and Tree Traversals
+The same expression can be written in three familiar forms.
+
+   ONE TREE → THREE FORMS
+                                                 INORDER      A+B×C             Infix form
+
+                    ×
+
+                                                 PREORDER     ×+ABC            Prefix form
+
+           +                C
+
+                                                 POSTORD      AB+C×            Postfix form
+                                                 ER
+       A        B
+
+                                                   Next → Construct an expression tree
+                                                            from POSTFIX.Go, change the world
+
+Complete Expression Tree Example
+Let us build the tree for the expression: (A + B) × (C − D)
+
+                      EXPRESSION TREE                            HOW TO READ IT
+                              ×
+                                                              1. Start at the root.
+
+                                                              2. Move through the
+                  +                        −                  left
+                                                                and right subtrees.
+                                                              3. The traversal order
+                                                                determines the
+           A            B           C            D
+                                                              expression form.
+
+     Operators → ×, +, −       Operands → A, B, C, D
+                                                               One tree can produce
+                                                              three expression forms.
+     Root = ×    Left subtree = (A+B)   Right subtree =
+                            (C−D)Go, change the world
+
+Complete Traversal of the Expression Tree
+For the same tree, each traversal gives a different expression notation.
+
+                    TREE                             INORDER               A+B × C−D
+                     ×                                                          Infix
+
+           +                   −                     PREORDER         × + A B − C D
+                                                                               Prefix
+
+       A        B          C        D
+                                                     POSTORDER        A B + C D − ×
+                                                                               Postfix
+
+                                                       Use parentheses in infix to preserve the tree
+                                                                structure: (A+B) × (C−D)Go, change the world
+
+How the Traversals Work
+The position of the operator in the traversal determines the notation.
+
+         INORDER                              PREORDER                        POSTORDER
+
+   Left → Root → Right                   Root → Left → Right              Left → Right → Root
+
+    A+B × C−D                             × +AB −CD                        AB+ CD− ×
+
+     Operator appears                       Operator appears             Operator appears AFTER
+    BETWEEN operands                      BEFORE its operands                  its operands
+
+        Infix notation                       Prefix notation                  Postfix notation
+
+  Classroom tip → Ask students to trace the tree with a finger while saying the traversal aloud.Go, change the world
+
+Your Turn — Build & Traverse
+Work out the expression tree and all three traversals.
+
+                   Expression: (P − Q) + (R × S)
+
+         DRAW THE EXPRESSION TREE                             FIND THESE
+                            ?
+                                                         ① Inorder →
+                                                         __________
+               ?                         ?
+                                                         ② Preorder →
+            Fill in the operators and operands.          _________
+
+                                                         ③ Postorder →
+                                                         _________
+              Challenge → Which traversal gives the postfix expression?Go, change the world
+
+From Trees to Forests
+A forest is what we get when we have more than one separate tree.
+
+                  ONE TREE                                            A FOREST
+
+                       A                                      A            D                G
+
+              B              C                            B       C    E        F       H       I
+
+                                                          Three separate trees = one forest
+          D        E
+
+    Connected structure with one root                   No single root connects all the trees.
+
+                KEY IDEA → A forest is a collection of disjoint trees.Go, change the world
+
+What Is a Forest?
+Think of a forest as a set of separate trees.
+
+           A forest is a collection of zero or more disjoint trees.
+
+                 IMPORTANT                       IF A FOREST HAS k TREES
+
+    • Each tree has its own root.               there are k connected
+    • Trees do not share nodes.
+                                                    components,
+    • There is no edge connecting
+    one tree to another.                             and k roots.
+                                                provided each tree is non-empty.Go, change the world
+
+Tree vs Forest
+The key difference is whether the components are connected.
+
+                   TREE                                               FOREST
+
+                      R                                       R            R               R
+                                                              1            2               3
+
+              A               B                           x       y    x        y      x       y
+
+    ONE connected component                               THREE connected component
+                                                                 THREE roots
+           ONE root
+
+                      Ask: How many trees can a forest contain?Go, change the world
+
+Properties & Applications of Forests
+Forests are useful when a single hierarchy is not enough.
+
+                PROPERTIES                                        APPLICATIONS
+
+   ✓ A forest may contain multiple                           Separate organizational
+   trees.                                                    hierarchies
+                                                             Collections of independent file
+   ✓ Each tree has its own root.                             trees
+
+   ✓ Trees are disjoint — no shared                          Multiple independent
+   nodes.                                                    hierarchy structures
+                                                             Graph algorithms — spanning
+   ✓ A forest with k trees has k                             forests
+   connected components.
+                                                            Next → Forest to Binary Tree
+                                                                    conversionGo, change the world
+
+Important Properties of Trees
+These relationships help us analyze the size and structure of a tree.
+
+  1     Edges in a tree                                  2    Unique path
+        A tree with n nodes has exactly n − 1                 There is exactly one path between any
+        edges.                                                two nodes.
+
+  3     Rooted tree                                      4    Leaf nodes
+        Every node except the root has exactly                A leaf is a node with no children.
+        one parent.
+
+  5     Height & depth                                   6    Subtree
+        Depth is distance from the root; height               The descendants of a node together
+        is the longest downward path.                         with that node form a subtree.
+
+                 Remember → A tree is connected and contains no cycles.Go, change the world
+
+Converting an N-ary Tree to a Binary Tree
+Use the Left-Child / Right-Sibling representation.
+
+                 N-ARY TREE                                     CORE IDEA
+                        A
+                                                      LEFT pointer → first child
+
+             B          C         D                  RIGHT pointer → next sibling
+
+        E         F                                  So a node no longer needs many
+                                                                child links.
+                                                        It uses at most TWO links.
+            A has children B, C, D
+             B has children E, F
+                                                         This produces a binary-tree
+                                                               representation.Go, change the world
+
+N-ary → Binary: Conversion Rules
+Remember two simple rules and apply them consistently.
+
+   STEP 1      First child becomes            Connect each node to its first child using the
+                                              left link.
+               LEFT child
+
+   STEP 2      Next sibling becomes           Connect siblings from left to right using right
+                                              links.
+               RIGHT child
+
+   STEP 3      Remove extra                   The remaining child relationships are
+                                              represented through the sibling chain.
+               parent-child links
+
+               Mnemonic → LEFT = first child | RIGHT = next siblingGo, change the world
+
+Worked Example: N-ary Tree → Binary Tree
+Apply Left-Child / Right-Sibling to the same tree.
+
+            ORIGINAL N-ARY TREE                          BINARY REPRESENTATION
+                       A                                                A
+
+             B         C           D                       B                C             D
+
+        E        F                 G                 E           F                        G
+
+                 Children:                                             A.left = B
+      A → B, C, D B → E, F        D→G                          B.right = C, C.right = D
+                                                                B.left = E, E.right = F
+                                                                       D.left = GGo, change the world
+
+Converting a Forest to a Binary Tree
+The same Left-Child / Right-Sibling idea also represents a forest.
+
+                   FOREST                                     BINARY REPRESENTATION
+        A              D                F                      A               D               F
+
+    B       C          E            G       H
+                                                        B             C        E         G          H
+
+            Three separate trees                                     Forest roots become a
+            A(B,C) D(E) F(G,H)                                       RIGHT-SIBLING chain:
+                                                                          A→D→F
+
+   Forest roots are treated as siblings.                  Each root's children use LEFT links.
+
+                                                                     Result: one binary-tree
+                                                                        representation.Go, change the world
+
+Thank you !!!!!
