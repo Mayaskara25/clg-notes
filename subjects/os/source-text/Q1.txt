@@ -1,0 +1,560 @@
+RV College of Enginee ring®         .
+                                                . Departm
+                                                                          ent of Compu ter Science and E ngmeer
+                                                                                                           .   mg
+                                                                                      CIE-1
+
+                                                     Operati ng Systems
+          Course & Code                                                                                                              Semest er: III
+                                                              (CS235A I)
+
+         Date: 23/10/2024         Duration:          Test Max. Marks: 50 Marks                                                Faculty In Charge:
+                                  120 minutes        Quiz Max Marks: 10 Marks                                              AN/JS/P H/NSKN G/RJ/SK
+        USN:                      Name:
+
+               .
+    NOTE. A nsweraII th e questions
+    SI.no.                                            Questio ns                                                                          Marks       •BT        •co
+
+                                                                        QUIZ-1
+
+    1           To access the services of operating system the interface is provide d by                                                    1          1          1              (t
+
+    2           Which of the type of OS reads and reacts in terms of actual time?
+                                                                                                                                            1          1          1             .' "'.
+    3          The output of the following C program is?
+               int mainO{                                                                                                                   1          3          2
+               forkO;                                                                                                                                                           y~
+
+               forkQ;
+               printf("code");
+               }
+                                                                                    - ·- - --
+    4          In a timeshare operating system, when the time slot assigned to a process
+                                                                                                                                            1          1                        _,'
+               is completed, the process switches from the current state to                                                                                       1
+                                                                                   state.
+5              A thread shares the same
+                                                        space with other threads in the                                                     1
+               same process.                                                                                                                           1          2
+
+6              When a process is in the "waiting" state, it is unable to continue executio n
+               until some                                                                                                                   1          1          1             :.- )
+
+7          The               model allows threads to run in parallel , utilizing multiple
+           cores in a multicore process or.                                                                                                 1          1          2             ;-    ,
+8                        swaps in and swaps out processes to improve the program -mix.
+                                                                                                                                            l          1          I
+9          Illustrate the distinction
+                                      between concurn.:ncy and pnralklism wi th the
+           help of a diagram.                                                                                                               2          2          2
+
+                                        --- -- --------·-·-·                                      ....   •-- - -~""----- ---
+                                    ..- -·-·• ~--·    ,_. __,..,~••   . _ _ .,..h
+                                                                                     - ... . ..
+                                                                                                                 ·-· - ·• ... -----~.. . . -·---- -.•~--,,___   ___   -...,..TEST-I
+
+    L        What is Process? Illustrate and explain Process Control block and Process-State         10    2          I
+             transition diagram using appropriate diagram.
+
+ •• 2.
+             Describe in detail the lifecycle of a child process from creation till te1mination.    . 10   2      I
+
+   3.        Indicate, with specific justification, whether or not the following claims are true.   10     4      2
+                 i)       Timesharing systems are identical to multiprogramming systems                                       -('
+                         when the time slice exceeds CPU burst of every program.
+                 ii)     Kernel mode is essential for isolated and protected execution of                                   T
+                         processes.
+                 iii)    Swapping of processes in and out of the memory increases OS                                      ~.. -t''"'
+
+                         Overhead and decreases CPU efficiency.
+                 iv)     If you were to write a program to do matrix multiplication for a
+                         uniprocessor environment. Out of the following options: write more
+                         efficient algorithm, use more threads, use more processes. Which
+                         one would be viable in terms of perfo1mance? Justify your choice.
+                         (Assume that you can only choose one).
+
+   4.a      Comment on the following aspects about Partition-based resource allocation              05     2      2
+            scheme and Pool-based Resource allocation scheme.
+                i)     User Convenience
+                ii)    Efficiency of Use
+
+   4.b      What are two differences between u;;~r-level threads and kernel-level threads?          05     2      I
+            Und~r what circumstances is one type ktlfT than the other?
+                                                      ·--···--- - -- -
+   5.a      Write a C program to illustrates U1. .YIX fork() system call.                           06     4      3
+
+  5.b       A task has 70% of its code that can be parallelized , and the remaining 30%
+                                                                                                    04     3      4       1,)-~
+            cannot be parallelized. If you run this task on 5 processors, what is the
+            theoretical maximum speedup according to Amdahl's Law?
+  COURSE OUTCOMES:
+COi: Demonstrate the fundamental concepts of operating system like process manageme nt, file
+         management, memory management and issues of synchronization.
+CO2:     Analyze and interpret operating system concepts to acquire a detailed understanding of the course.
+CO3: Apply the operating systems concepts to address related new problems in computer science domain.
+CO4: Design or develop solutions using modern tools to solve applicable problems in operating systems
+         domain.
+COS:     Extend the theoretical knowledge acquired through the course to demonstrate skills like investigation,
+         effective communication, working in team/Individual, following ethical practices by implementing                          •   I
+
+         operating system concepts/applications and engage in lifelong learning.
+
+                    Ll       L2        L3       L4              LS       L6   COl   CO2     C03     C04    COS
+Marks               08        32       04        16                           30     20       06     04
+
+                                             *******************RV College of Engineering®
+                                         Department of Computer Science and Engineering
+                                                  CIE - I Scheme and Solution
+
+                                          Operating Systems
+     Course & Code                                                                Semester: III
+                                                 (CS235AI)
+
+                           Duration:      Test Max. Marks: 50 Marks             Faculty In Charge:
+     Date: 22/10/2024      110 minutes    Quiz Max Marks: 10 Marks           AN/JS/PH/NSK/VG/RJ/SK
+
+USN :                      Name :
+
+Sl.no.                                     Questions                                Marks   * BT   *CO
+
+                                                 Quiz-1 Solution
+
+1.        System calls                                                                1      1     1
+
+2.        Real-Time OS                                                                1      1     1
+
+3.        code code code                                                              1      3     2
+
+4.        Ready state                                                                 1      1     1
+
+5.        Code section, data section and files                                        1      1     2
+
+6.        Event occurs/ delay system call timer expires/ I/O becomes available.       1      1     1
+
+7.        Many-to-many Multi-threading model.                                         1      1     2
+
+8.        Medium-term scheduler.                                                      1      1     1
+
+9.                                                                                   02      2     2
+
+                                         Test-1 Solution1.   Process Definition -02 M                                      10   2   1
+
+                                   -Explanation + Diagram - 04 M
+     State Transition Diagram + Explanation – 04 M
+
+2                                                                  10   2   13.   i) Timesharing systems are identical to multiprogramming systems when the          10    4   2
+     time slice exceeds CPU burst of every program.
+     False.                                                                             2.5
+     While both timesharing and multiprogramming aim to maximize CPU utilization        M
+     by allowing multiple processes to run concurrently, they are not identical.
+                                                                                        *4
+     Timesharing systems are designed for interactive use, allowing multiple users to
+     interact with the system simultaneously, while multiprogramming focuses on
+     maximizing CPU usage by keeping several processes in memory at once. Even if
+     the time slice exceeds the CPU burst of every program, the fundamental goal of
+     interactivity in timesharing still distinguishes it from multiprogramming.
+     ii) Kernel mode is essential for isolated and protected execution of processes.
+     True.
+     Kernel mode is necessary for managing hardware resources and ensuring that
+     processes are isolated from each other. When a process runs in kernel mode, it
+     has access to all hardware and can execute privileged instructions, which allows
+     the operating system to enforce protection and isolation among processes.
+     Without kernel mode, user processes could interfere with each other and the
+     system itself, leading to security and stability issues.
+     iii) True.
+     Swapping involves moving processes between memory and disk, which incurs
+     significant overhead due to the time taken to read from and write to disk. This
+     can lead to increased operating system overhead and reduce CPU efficiency, as
+     the CPU may spend time waiting for processes to be swapped in rather thanexecuting them. Frequent swapping can also lead to thrashing, where the system
+      spends more time swapping than executing processes.
+      iv) If you were to write a program to do matrix multiplication for a uniprocessor
+      environment. Out of the following options: write more efficient algorithm, use
+      more threads, use more processes. Which one would be viable in terms of
+      performance? Justify your choice.
+      Write more efficient algorithm.
+      In a uniprocessor environment, performance gains from parallelism (using more
+      threads or processes) are limited since only one thread/process can execute at a
+      time. Thus, while using multiple threads or processes could introduce some
+      concurrency, the bottleneck would still be the single CPU. On the other hand,
+      improving the algorithm (e.g., optimizing the matrix multiplication technique)
+      directly reduces the number of operations needed, leading to a better overall
+      execution time regardless of the concurrency limitations.
+
+4.a   Let’s break down the comparison of Partition-based and Pool-based resource          05   2   2
+      allocation schemes regarding user convenience and efficiency of use:
+      i) User Convenience
+      Partition-based Resource Allocation:
+             Pros:
+              Users typically have dedicated portions of resources (e.g., fixed-
+              size partitions in memory), making it easier to predict resource
+              availability. This setup allows users to have consistent
+              performance for their tasks since they know exactly what
+              resources are allocated to them.
+             Cons:
+              However, if a user's needs exceed their allocated partition, they
+              may experience resource starvation or underutilization of available
+              resources, leading to frustration. Additionally, fixed partitions can
+              lead to fragmentation, where some portions remain unused.
+      Pool-based Resource Allocation:
+             Pros:
+              This scheme allows for more flexible resource usage, where
+              resources can be dynamically allocated based on demand. Users
+              can draw from a pool of resources as needed, which can be more
+              convenient in environments with fluctuating workloads.
+             Cons:
+              The unpredictability of resource availability can be a drawback.
+              Users may find it difficult to gauge how many resources will be
+              available at any given time, potentially leading to uncertainty and
+              performance variability.
+      ii) Efficiency of Use
+      Partition-based Resource Allocation:
+             Pros:
+              Can lead to predictable performance since each process is
+              allocated a fixed amount of resources. This setup can prevent
+              resource wastage if managed correctly.
+             Cons:
+              However, it often results in poor overall efficiency due to
+              fragmentation. For instance, if partitions are not sized properly for
+              the workload, some resources may sit idle. Additionally, the fixednature can lead to situations where not all allocated resources are
+             fully utilized, creating inefficiencies.
+      Pool-based Resource Allocation:
+            Pros:
+             Generally allows for better resource utilization since resources can
+             be allocated and released as needed. This dynamic allocation can
+             adapt to varying workloads, leading to more efficient use of
+             available resources.
+            Cons:
+             However, the overhead of managing the resource pool can reduce
+             efficiency. Allocating and deallocating resources on-the-fly can
+             introduce latency, and if demand exceeds supply, it can lead to
+             contention and reduced performance.
+      To summarize:
+            User Convenience: Partition-based schemes offer more
+             predictability, while pool-based schemes provide flexibility but
+             can introduce uncertainty.
+            Efficiency of Use: Pool-based schemes generally offer better
+             resource utilization but may incur management overhead, whereas
+             partition-based schemes can suffer from fragmentation and
+             underutilization.
+
+4.b   a. User-level threads are unknown by the kernel, whereas the kernel is        05   2   1
+      aware of kernel threads.
+      b. On systems using either M:1 or M:N mapping, user threads are
+      scheduled by the thread library and the kernel schedules kernel threads.
+      c. Kernel threads need not be associated with a process whereas every user
+      thread belongs to a process. Kernel threads are generally more expensive
+      to maintain than user threads as they must be represented with a kernel
+      data structure.
+
+5.a                                                                                 06   4   35.b     P=0.7 (the portion of the task that can be parallelized),                           04      3     4
+               1−P=0.31 - P = 0.31−P=0.3 (the portion that cannot be parallelized),
+               n=5 (number of processors).
+
+                   The theoretical maximum speedup when using 5 processors is
+                   approximately 2.27 times faster than using just 1 processor.
+      COURSE OUTCOMES:
+
+CO1   Demonstrate the fundamental concepts of operating system like process management, file
+ :    management, memory management and issues of synchronization.
+CO2   Analyze and interpret operating system concepts to acquire a detailed understanding of the course.
+ :
+CO3   Apply the operating systems concepts to address related new problems in computer science
+ :    domain.
+CO4   Design or develop solutions using modern tools to solve applicable problems in operating systems
+ :    domain.
+CO5   Extend the theoretical knowledge acquired through the course to demonstrate skills like
+ :    investigation, effective communication, working in team/Individual, following ethical practices by
+      implementing operating system concepts/applications and engage in lifelong learning.
+
+                       L1       L2        L3      L4       L5      L6     CO1     CO2      CO3     CO4     CO5Marks   08   32   04   16   -   -   30   20   06   04   -RV College of Engineering®
+                                                                          Department of Computer Science and Engineering
+                                                                                            CIE-11
+
+       Coune& Code                                                  Operating Systems(CS235AI)                                                    Semester: III
+
+     Date: December 2024                                   Duration:          T~!lt Mn. Marks: SO Marks                                      Faculty In Charge:
+                                                           120 minutes        Quiz Max Maries: IO Marks                                AN/JS/PH/NSK/VG/RJ/SK
+      NOTE: Answt-r all th~ questions
+SI.no.                                                                        QUIZ- II                                                                  Marki   • BT   •co
+
+I.        . Which scheduling algorithm is most. suitable for a time-sharing system?                                                                              3     2
+2.              In a pn"'<mptive scheduling al~(lrithm. when can a currently running process be                                                                  2     2
+         l      imtrruph.-J'!.
+         ◄
+
+3.        j What is a race condition? Gi, c an c.' :\.ampk.                                                                                              2       2     3
+...      l List            I\\ O l}T'<~S of scn~.:~;,~l;~s " ith on e.xamplc for c~ch?                                                                   2       3      3
+         '                                                         --- - -                - - - - - - - - -- - -- - --1----+----1------t
+5.       I \\'hy is mutU3l e'.\dusion imrx,11,\nt in soh ing thl! critical section problem?                                                              2       2      2
+
+6.       l Define CPU utiliz.1til'll anJ it~ gt, ,11-                                                                                                    2       2      2
+
+                                                                                           'IE\ T- 11
+
+la        , ComiJc.-r tl,e mctht°\J~ uc. cJ b                            r· ,. ,,._.        1)1 111,I   P.:! for accessing their critical                 7      4      4
+         l ~clions \\ hcr,c, er nc.--c-Je,i .,.~ t- . ~ c1                1        .,,
+
+                                               Mtltlo1 used by P 1                                      Method used by P2
+
+                                                                                                          CJlllra l Steltvn
+
+                                                         s, . s,                                             s 2 • 1s,
+
+           Jl,e 1n1lliil \:Slues of 's lw.n:J Houkan va1ial,k., SI ttnJ S2 an: a,; f1.1lkms :
+         ' Ca.)C I: SI • 0 and S2 - CJ
+                Ca.~ 2· ~ I "" 0 an<l S2                       l
+                h Mutual odu.'>ion a11J pn,~:,n,. f'.t1.:.ir:i11h:cd III huth c:n,i.;,'! Ju·,til)' )tiur HI\S\\ l'r \\ ith
+         ' rcle-.ant C.\.pla.n.stiu!b
+
+lb              Gi'wcn three L.l'.~\ "1th tt1c fi,lluv,ing d1;!f;K h.:1i,1ks:                                                                             3       4     4
+                    • 1 a:.k A: Pc.:ri,,J .i , Lxccution I irnc l. l kadl in~ -l
+                    • I a'>l B: Period <•, l.xc:-1. utiurt I i111l· - :!, Jk aJl11w (1
+                    • Ta•,l C: Pew ,.J H, I ~n.ulion 11111c t I kihll inc X
+
+             r~:z:,::
+                Compute the l'r<J\.cv,or ut1li1~1t1011 ;111d •,ho,,. the , l hrJ ulin~'. ll~lllt'. I :irl it.•~t-
+
+                                                                                         ~ :i:,::,: :,::::::::., me ate
+                                                                               1
+
+2a
+                                 h~c::~:::: V~ ::::
+         j If the C l'lJ ~~h,:dulin~•.                                         ~ 1:: a                          1'            !'.• '<'tt t.·low
+                                       poli~)' "SJI                           111111 pHTt11pt1H\ l >rnw <,.111tt 4.h:111 rind           1.' 1tkul111e
+         \ the avcr~c w1ut111~ tirt1c ar,J av~t;,~'.t' turn aro1111d t ime.
+         ;.,.   .• •.t w   •   •   ~- -   ,.        ,.:
+
+                   Process Id                     Arrival time                 Burst time
+                      Pl                                     3                       1
+                      P2                                     l                       4
+                        P3                                   4                       2
+                        P4                                   0                       6
+                        PS                                   2                       3
+                                                                                                                        -
+  2b       Compare Rate fnonotonic scheduling and Earliest deadline first scheduling.                 4     3       2
+  3a       Discuss the Scheduling Criteria for scheduling algorithms.                                 5     2       3
+
+  3b       Whic~ al~orithm encounters Starvation problem. What is the solution for the same .         5     2       4
+           explain with an example.
+
+  4a       Given the following set of process:                                                        06    4       3
+            Process ID Arrival Time Burst Time
+             Pl              l              1
+             P2              l              3
+             P3              0              40
+            Ap~l~ing ~CFS algorithm draw the Gant chart and computing Average
+            Wattmg Time and Average Turn around time.
+            If the arrival time of P3 is changd to 1 and P J ,P2 to O what would be the
+            variation in the Average Waittn.e, ~;:·:·;•~:--md Average Turn around time. Does
+            convoy effect appears in the pi i:h:•.::ir. N ne t?
+                                                 - ·-· - -··--·"--
+   4b       Define Critical section proble1,, \\'!:i°' ,m example. Explain any two conditions to be   04    2       3
+            satisfied for the solution of c, itirnl i:~~ion problem
+                                                 ·--·
+   5a       Explain the Peterson's solution with algorithm for two process                            04    2       5
+            synchronizat ion problem.
+            Explain with an algorithm how test and set instruction solve all the requirements of      06    2       4
+   5b
+            critical section problem's solution.
+        COURSE OUTCOMES:
+        Demonstrate the fundamental concepts of operating system like process management, file management, memory
+cot:
+        management and issues of synchronization.
+        Analyze and interpret operating system concepts to acquire a detailed understanding of the course.
+CO2:
+        Apply the operating systems concepts to address related new problems in computer science domain.
+CO3:    Design or develop solutions using modern tools to solve applicable problems in operating systems domain.
+CO4:    Extend the theoretical knowledge acquired through the course to demonstrate skills like investigation, effective
+COS:    communication, working in team/Individual, following ethical practices by implementing operating system
+        conceots/applications and engage in lifelong learning.
+
+                                            L3            L4         LS   L6   cot       CO2   CO3    CO4   cos
+                         Lt        L2
+
+        Marks             --       3l        7             22        --   --    --       IO    25     21        4,·   ~~-- -
+
+-~   ~' . -/~>t"At a partic~lar time of computation the value of a counting
+                    semaphore 1s 7. Then 20P operations and xV operations were
+                    completed on this semaphore. If the new value of semaphore is
+                    5,x will be                                                                              02     3     2
+              1. 9  Consider a memory management system that uses a page size
+                    of 2 K B2 KB . Assume that both the physical and virtual
+                    addresses start from O. Assume that the pages 0,1,20,1,2, and
+                    33 are stored in the page frames 1,3,21,3,2, and 00, respectively.
+                    The physical address (in decimal format) corresponding to the
+                    virtual address 25002500(in decimal format) is _ _ _ _                                   01     4     3
+               1.10 Consider a demand paging system with four page
+                     frame(initially empty) and LRU page replacement policy. For the
+                     following page reference string 7,2,7,3,2,5,3,4,6,7,7,1,5,6,1
+                     The page fault rate is _ _ _ _                                                          01     3     2
+               1.11 The _ _ _ _ operation within a file need not involve any
+                     actual//0.                                                                              01     1     1
+               1.12 The MFD 1s indexed by user name or account number, and
+                      each entry points to the _ _ __ for that user.                                         01     2     1
+               1.13 What are the four main ob·ect t es defined b the Linux VFS.                              02     1     3
+
+                                                           PART-B
+
+      2        a       Demonstrate how system calls manage file handling operations
+                       in modern operating systems. Provide examples                                              08  4     1
+               b       A  uniprocessor   computer           system             has         three processes, which
+                       alternate 20ms CPU hun,t~; ,,-i.t.h 80ms I /0 bursts. All the
+                       processes wer e cr ea.ted st riedrly t J--,f! same time. The I /0 of all
+                       the processes can r; (J :..' .e!:d t,: p,-ti-.:::.lieL What will be the CPU
+                       utilization (over a l0.r:g p,:no,i 1..:! tm1e) using FCFS and Round
+                       Robin (time quan!:.trn- -] --O-r.1--~ ~! io;     tl·-,j ,., .:;·,;:;tern?                  08  3    ·3
+     1 - - - - - - - 1 - - --"--- ----------                    ___.. -- .. - -- '---~::.::..:....-- ---- ----+---=---+--- +--J
+     ,___ _ ___,_ __ _ _ _ ___ _____ - - --· ----- - - - -- - - -- - - - - - +-                                -+--!----,
+      3        a       Analyze the bene fi t s of m u lti.threading m modern operating
+                       systems.      Discuss      how        multithreading     improves
+                       responsiven e ss, resource    sharing,    and   performance m a
+                       multicore environment with th e help of    examples.              08                         3      2
+               b       With the help of diagrams, explain the different multithreading
+                       models. Also expla in the typ es of para llelism.                 08                         2      4
+                                                                , OR
+
+      4        a       Develop a program to perform m atrix multiplication using
+                       pthreads, where each thread computes on e row of the resulting
+                       matrix.                                                         08                           4      2
+               b       For the following set of processes, compute the average waiting
+                       time and turnaround time using First-Come, First-Served
+                       (FCFS) and Shortest Job First (SJ F) scheduling a lgorithms and
+                       a nalyze the results. ·
+                                     Process     Arrival Time(ms)        Burst Time(ms)
+                                         Pl                0                      10
+                                         P2                 2                     5
+                                         P3                4                      8
+                                         P4                6                      2                          08     3.     3
+
+          5        a    Explain Peterson's Solution and th e stru cture of Pi m this
+                        context. What are the disadvantages'?                           08                          2     4
+                   b    Write a program to demonstrate the use of a mutex lock to
+                        solve a critical section ?ro?lem. Explain the flow of execution
+                        and how mutual exclusion 1s maintained.                         08                          3     4..,,    ,.·;i
+
+                                              usN I I I g_l v I l.. I j I
+                                                                                    CS235Al
+
+                                                                            tJ e_v IDIo I 1 I               I
+                                                                                                            J
+                                                                                                                  '
+                                                                                                                  '
+                                                                                                                      \ .
+                                                                                                                          .
+                                                                                                                              II
+                                                                                                                              I '
+                                                                                                                                   '
+
+                             RV COLLEGE OF ENGINEERING®                                                           ·1
+                                                                                                                      '
+                          (An Autonomous Institution Affiliated to VTU)
+             Ill Semester B. E. Regular/ Supplementary Examinations Feb/Mar-2025
+                                      OPERATING SYSTEMS
+                                     Common to CS I IS I CD I CY
+    Time: 03 Hours                                             Maximum Marks: JOO
+    I11str11ctio11s to candidates:
+    1. Answer all questions from Part A. Part A questions should be answered in
+         first three p ages of the answer book only.
+    2. Answer FIVE full questions from Part B. In Part B question number 2 is
+         compulsory. Answer any one full question from 3 and 4, 5 and 6, 7 and 8, 9
+         and 10.
+
+                                              PART-A                                 M    BT       CO
+
+1   1.1      Consider the following code spinet using the fork() and wait()
+             system calls. Assume that the code compiles and runs
+             correctly, and that the system calls run successfully without
+             any errors .
+             int X = 3;
+             while(x > 0)
+             {
+                  fork();                                                                                       ' .
+                                                                                                                I '
+                  printf("hello");                                                                              :i
+                  wait(NULL);                                                                                   iii
+                  x--;
+             }
+             Calculate the total number of times the printf statement 1s
+             executed.                                                               02    4       1
+     1.2     Assume that a process executes the following code:
+             for(i = l;i <=n; i++)
+              fork();
+             How many new processes will be created?                                 O1    3       2
+     1.3     A _ _ __ is a collection of physically separate, possibly
+             heterogeneous computer systems that are networked to
+             provide users with access to the various resources that the
+             system maintains.                                                       O1    1
+                                                                                                   3
+     1.4     Suggest any four challenges in programming for multicore
+             systems.                                                                02    2
+                                                                                                   2
+     1.5     Can one have concurrent execution of threads/process es
+             without having parallelism? Support with reason .                       02
+                                                                                           3       1
+     1.6     The hardware implementation which provides mutual
+             exclusion is _ _ _ _                                                    o1    1
+                                                                                                   4
+     1. 7    Each of a set of n processes execu tes the following code using
+             two semaphores a and b initialized to 1 and 0, respectively.
+             Assume that count is a shared variable initia lized to O and not
+             used in Code Section P. What does the code achieve?
+                 I CODE SECTION p I
+             wait(a); count=count+ l ;
+             if (count==n) signaJ(b);
+             signal (a);wait(b); signal(b);                                                                                    I
+
+             i CODE SECTION Q I                                             ---U:!0~2..L__;3LJ__   su                       .\
+                                                                 - --
+      .. '
+                    _ = = = = = = ' - --
+-------.-- -~ .:;==::::;                         -   - --    -
+                                                                                                          f' \
+                                                                                                        . 'ii                   JOR
+
+        Develop a solution for the Readers-Writers problem using
+        semaphores. Explain how the program ensures fairness and
+        synchronization.                                           08                 2       1
+        Identify the key differences between mutex locks and
+        semaphores in terms of functionality, usage, and overhead.
+        Provide exam les to illustrate their a lication.           08                 1       1
+
+        Explain the process of address binding. With the help of a
+        diagram, bring out Multistep processing of a user program.    08              2       2
+    b   Consider a computer system with a 32 -bit logical address and
+        4 - KB page size. The system supports up 512 MB of physical
+        memory. How many entries are there in each of the following?
+            i)   A conventional , single-level page table
+            ii)  An inverted page table                               04              3       5
+    C   Give one method that avoids external fragmentation and the
+        need for compaction. Use a diagram to briefly explain the
+        hardware used and the technique followed.                     04              2       4
+
+                                       L-OR
+
+8   a   Consider the following page reference string:
+        1,2,3,4,2,1,S,6,2,1,2,3,7,6,3,2,1,2,3,6. How many page faults would
+        occur for the following replacement algorithms, assuming
+        three, four, five, six frames:
+            i) LRU replacement
+            ii) FIFO replacement                                                 08   3       4
+    b   Suggest two strategies to preven: ·ihrashing/limit the effects of
+                                                                                 04   2           2
+        thrashing.
+    C
+        Consider a logical address space of 64 pages of 1024 words
+        each, mapped onto a phvsical memory of 32 frames .
+            i)      How many bits ::ire there in the logical address?
+            11      How man b its :-1 · i '. i. b~•:r<~ ~n the h sical a ddress? 04       4       3
+
+                                                                                          1       1
+9   a   Explain the layered file system in detail.                 . 08
+    b   Write a program that d emonstrates the use of any three basic
+                                                                      08                  3       2
+        file system calls.
+
+                                         OR
+                                                                                 08       1           1
+10 a    Explain the VFS architecture in Linux.
+                                                                                 08       2           2
+    b   Elaborate th e con ce l of file lockin in detail.

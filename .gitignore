@@ -12,5 +12,7 @@
 !/subjects/*/videos.json
 !/subjects/*/*.html
 !/subjects/*/sources/
+!/subjects/*/source-text/
+!/subjects/*/packs/
 /public/
 __pycache__/

@@ -96,7 +96,7 @@ class AnswerTests(unittest.TestCase):
                     for a,b in zip(old.children, retained+answer.children):
                         self.assertEqual(source[a.start:a.end], result[b.start:b.end])
                     given += sum(x.has_class('q-given') for x in retained)
-        self.assertEqual((total, skipped, given), (348, 0, 10))
+        self.assertEqual((total, skipped, given), (478, 0, 10))
 
 
 if __name__ == '__main__':

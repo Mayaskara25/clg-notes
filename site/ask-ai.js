@@ -79,13 +79,13 @@
     if (host) {
       var src = host.querySelector('.qsrc');
       return {label: 'Worked question' + (src ? ' (' + src.textContent.trim() + ')' : '') + (secLabel ? ' in ' + secLabel : ''),
-        nodes: [host], anchor: host.id || (sec && sec.id) || ''};
+        nodes: [host], anchor: host.id || (sec && sec.id) || '', sec: sec && sec.id};
     }
     var h = btn.closest('h2');
     if (h) {
       var nodes = [h];
       for (var n = h.nextElementSibling; n && n.tagName !== 'H2' && !n.classList.contains('backtotop'); n = n.nextElementSibling) nodes.push(n);
-      return {label: clean(h) + (secLabel ? ' (from ' + secLabel + ')' : ''), nodes: nodes, anchor: h.id || (sec && sec.id) || ''};
+      return {label: clean(h) + (secLabel ? ' (from ' + secLabel + ')' : ''), nodes: nodes, anchor: h.id || (sec && sec.id) || '', sec: sec && sec.id};
     }
     // section heading: the intro up to the first sub-heading, plus the list of sub-headings
     var nodes2 = [], subs = [];
@@ -93,7 +93,7 @@
       if (m.tagName === 'H2') { subs.push(clean(m)); continue; }
       if (!subs.length && !m.classList.contains('backtotop')) nodes2.push(m);
     }
-    return {label: secLabel, nodes: nodes2, subs: subs, anchor: sec.id};
+    return {label: secLabel, nodes: nodes2, subs: subs, anchor: sec.id, sec: sec.id};
   }
   function clean(el) { var c = el.cloneNode(true); [].forEach.call(c.querySelectorAll('.askai-btn'), function (b) { b.remove(); }); return c.textContent.replace(/\s+/g, ' ').trim(); }
   function sectionLabel(s) {
@@ -113,6 +113,13 @@
       });
     });
     return figs;
+  }
+
+  /* A plain-text study pack exists for this section? (built by site/packs.py) */
+  function packUrl(c) {
+    if (!c.sec || !CTX.packs || CTX.packs.indexOf(c.sec) < 0) return '';
+    var base = location.protocol === 'file:' && CTX.page ? CTX.page : location.origin + location.pathname;
+    return base.replace(/[^/]*$/, '') + 'pack/' + c.sec + '.txt';
   }
 
   /* ---------- the prompt (fixed template, no AI) ---------- */
@@ -140,6 +147,8 @@
     if (figs.length) L.push('The notes include ' + (figs.length === 1 ? 'a diagram' : figs.length + ' diagrams') + ': ' +
       figs.map(function (f) { return f.name; }).join(', ') + ', described in [brackets] above. I may paste the image too.');
     L.push('Link to this part of my notes: ' + link);
+    var pack = packUrl(c);
+    if (pack) L.push('Everything my course has on this topic (my class notes, the faculty slides and handouts, and past exam questions) is in one plain-text file. If you can open links, read it first and use it: ' + pack);
     L.push('');
     L.push('I have already read the explanation above and it did not make it clear for me. Please:');
     L.push('1. Explain it in a different way from my notes: an everyday analogy, a small worked example, or a step-by-step walk-through.');
@@ -228,6 +237,8 @@
       h += '<a href="#" data-ai="' + a.id + '" target="_blank" rel="noopener">' + ICON[a.id] + a.name + (a.note ? '<span class="aa-n">' + a.note + '</span>' : '') + '</a>';
     });
     h += '<hr><button type="button" data-act="copy"><span class="aa-i">📋</span>Copy prompt</button>';
+    var pk = packUrl(current);
+    if (pk) h += '<a href="' + pk + '" data-act="pack" target="_blank" rel="noopener"><span class="aa-i">📄</span>Open the study pack<span class="aa-n">text for any AI</span></a>';
     figs.forEach(function (f, i) { h += '<button type="button" data-act="fig" data-i="' + i + '"><span class="aa-i">🖼</span>Copy ' + f.name + ' as image</button>'; });
     if (navigator.share) h += '<button type="button" data-act="share"><span class="aa-i">↗</span>Share to an app…' + (figs.length ? '<span class="aa-n">with diagram</span>' : '') + '</button>';
     h += '<p class="aa-f">Opens the chat with this part of your notes filled in. Free, uses your own account. The prompt is also copied, in case you need to paste it.</p>';

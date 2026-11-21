@@ -1,0 +1,688 @@
+21CS35
+
+                                                                                    USN
+
+                                             RV COLLEGE OF ENGINEERING
+                                          Autonomous Institution affiliated to VTU
+                                         III Semester B.E. April -2023 Examinations
+                                  DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
+                                                 OPERATING SYSTEMS
+                                                      (2021 SCHEME)
+
+Time: 03 Hours                                                                            Maximum Marks: 100
+
+Instructions to candidates:
+
+    1.       Answer all questions from Part A. Part A questions should be answered in first three pages of the answer book only.
+    2.       Answer FIVE full questions from Part B. In Part B question number 2 is compulsory. Answer any one full question from 3 and
+             4, 5 and 6, 7 and 8, and 9 and 10.
+
+                                                                 PART-A
+
+1    1.1        Differentiate zombie process and an orphan process.                                                             2
+     1.2        Define race condition. Mention techniques to avoid race condition                                               2
+     1.3        Write the output of the program below
+                int main()
+                {
+                   if (fork() || fork())
+                      fork();                                                                                                   2
+                   printf("1 ");
+                   return 0;
+                }
+
+     1.4        A counting semaphore was initialized to 8. Then 6 P (wait) operations and 4 V                                   2
+                (signal) operations were completed on this semaphore. Calculate and write the
+                resulting value of the semaphore.
+     1.5        Suppose a process requests 12KB of memory and memory manager currently has a                                    2
+                list of unallocated blocks of 6KB, 14KB, 19KB, 11KB and 13KB blocks. Identify the
+                block allocated by best fit, first fit and worst fit strategy.
+     1.6        __________ scheduling is more appropriate for a time shared or interactive systems                              2
+                and _______ scheduling is used frequently in long-term or job scheduling.
+     1.7        Write any two differences between paging and segmentation in memory management                                  2
+                schemes.
+     1.8        Consider a paging system with TLB. If it takes 20 ns to search TLB and 100 ns to                                2
+                access the memory what is the effective memory access time with 98-percent hit
+                ratio?
+     1.9        Consider three processes (process id 0, 1, 2 respectively) with compute time bursts 2,                          2
+                4 and 8 time units. All processes arrive at time zero. Consider the longest remaining
+                time first (LRTF) scheduling algorithm. In LRTF ties are broken by giving priority to
+                the process with the lowest process id. Calculate the average turnaround time.
+     1.1        Justify threads are light weight processes.                                                                     2
+     0
+                                                               PART-B
+                                                                UNIT-I
+2        a      Discuss various approaches to design operating system structure.                                                6
+         b      With example program discuss fork(), wait() and execl() APIs for processmanagement.                                                                            10
+
+                                              UNIT-II
+        Consider the following set of processes with a length of the CPU burst time given in   10
+        milliseconds
+
+                           Process     Arrival Time Burst Time Priority
+                               P1            0              7            3
+                               P2            3              2            2
+                               P3            4              3            1
+3   a                          P4            4              1            1
+                               P5            5              3            3
+        i. Draw Gantt charts illustrating the execution of these processes using SJF,
+             Preemptive priority and Round Robin(Time slice=1ms).
+        ii. Compute the waiting times in each of the three schedules and find which of them
+             provides results in the minimal average waiting time and turn around time.
+        iii. Find out the time in which there are maximum number of processes in ready
+             queue in the above scenario
+
+    b   Why a thread is called a LWP? Explain the different threading models.
+                                                                                                06
+                                                  OR
+
+        Compare process and threads as unit of execution, write a program to illustrate
+4   a
+        creation of child process and a thread.
+                                                                                                10
+        The following processes arrive for execution at times indicated.
+                    Process         Arrival Time           Burst Time
+                      P1                  0                    1.5
+                      P2                 1.5                    3
+    b                 P3                  3                     1
+                      P4                  3                    7.5
+        Draw a Gantt Chart and calculate average waiting time for:
+           (i)    FCFS scheduling
+           (ii)   Preemptive SJF scheduling.                                                    06
+
+                                             UNIT-III
+        What is meant by critical section Problem? Give its general structure. Explain the
+5   a
+        requirements that must be satisfied by a solution to the critical section problem
+                                                                                                10
+    b   Implement dining philosopher’s problem using monitors. Discuss its use.
+                                                                                                06
+                                                  OR
+        Discuss the classical readers-writers synchronization problem and write a pseudo
+6   a
+        code using semaphores
+                                                                                               10
+        Write the pseudo code for TestandSet and Swap prove that it satisfies
+    b
+        the conditions for critical section problem.
+                                                                                               06UNIT-IV
+            Discuss the concept of Dynamic linking, Dynamic loading and memory
+7       a
+            fragmentation with respect to process memory management.                               10
+            Consider the following page reference string
+                                   1,2,3,4,2,1,5,6,2,1,2,3,7,6,3,2,1,2,3,6
+        b   How many page faults will occur for LRU, FIFO, Optimal page replacement
+            algorithms, assuming 5 free frames?                                                    06
+
+                                                     OR
+
+            With the help of a neat diagram explain the basic paging scheme of memory
+8       a
+            management. Discuss the hardware support for paging.                                   10
+            What is thrashing? What are causes of thrashing? Discuss the ways to prevent it?       06
+        b
+
+                                                UNIT-V
+
+9       a   Compare the contiguous and linked file allocation methods.                             06
+
+        b   Write a C program to copy a source file to destination file.                           10
+
+                                                     OR
+
+10      a   Explain different methods of accessing files.                                          06
+            With the help of neat diagram discuss the In-memory file-system structures with an
+        b
+            example.                                                                               10
+
+Signature of Scrutinizer:                                                  Signature of Chairman
+
+Name:                                                                      Name:21CS35
+
+                                                                                  USN
+
+                                    RV COLLEGE OF ENGINEERING
+                                 Autonomous Institution affiliated to VTU
+                                III Semester B.E. April -2023 Examinations
+                         DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
+                                        OPERATING SYSTEMS
+                                             (2021 SCHEME)
+
+Time: 03 Hours                                                                          Maximum Marks: 100
+
+Instructions to candidates:
+
+      1.    Answer all questions from Part A. Part A questions should be answered in first three pages of the answer book only.
+      2.    Answer FIVE full questions from Part B. In Part B question number 2 is compulsory. Answer any one full question from 3 and
+            4, 5 and 6, 7 and 8, and 9 and 10.
+
+                                                                 PART-A
+
+  1        1.1    The ______system supports multiple interactive users.                                                        (1)
+           1.2    The disadvantage of SJF scheduling is _________ and that of priority scheduling                              (2)
+                  is _________
+           1.3    Define race condition with an example.                                                                       (2)
+
+           1.4    The memory manager places a process in the large enough block of unallocated                                 (1)
+                  memory in which it will fit. Name the allocation algorithm.
+
+           1.5    What is demand Paging?                                                                                       (1)
+           1.6    The data structure where the OS will keep all information it needs to manage the                             (1)
+                  process is______________
+           1.7    Sketch how SSTF disk scheduling occurs for a request queue of (cylinder number)                              (2)
+                  95, 180, 36, 120, 14, 65 when the head starts at 53.
+           1.8    How many Page fault would occur for the given string:                                                        (2)
+                  0,1,2,3,0,1,2,3,0,1,2,3,4,5,6,7 using LRU algorithm where page frame is FOUR
+
+           1.9  Consider a logical address space of 8 pages of 1024 words each mapped onto a                                   (2)
+                physical memory 32 frame. How many bits are there in logical and physical
+                address?
+           1.10 What is Authentication?                                                                                        (1)
+           1.11 List the three disk-space-allocation methods                                                                   (1)
+           1.12 Explain what is thrashing ?                                                                                    (2)
+
+           1.13 What are different methods for Handling deadlocks.                                                             (2)
+                                                   PART-B
+                                                    UNIT-I
+                  Write a program in C language to create a child process and synchronize with the                              4
+  2         a
+                  main programb   Bring out the comparison between long term, medium and short term schedulers.         6
+    c   Discuss the benefits of Virtual machine with an example.                              6
+
+                                           UNIT-II
+        The following processes arrive for execution at times indicated.
+
+                Proces Arrival          Burst
+                s        Time           Time
+                  P1          0             6
+                  P2          4             2
+3   a             P3          3             7
+                  P4          3             1
+        Draw a Gantt Chart and calculate average waiting time for:
+
+              FCFS scheduling
+
+              Preemptive SJF scheduling.
+                                                                                             08
+        Compare user-level threads and kernel-level threads. Further illustrate different
+    b
+        approaches to map user threads to Kernel threads.
+                                                                                             08
+                                                OR
+
+        Consider the following set of processes with a length of the CPU burst time given
+        in milliseconds
+
+               Process Arrival Time Burst Time Priority
+               P1       0               10             3
+               P2       3               5              2
+               P3       4               8              1
+4   a
+               P4       4               2              1
+               P5       5               12             2
+           i. Draw Gantt charts illustrating the execution of these processes using
+                 Preemptive SJF, priority and Round Robin(Time slice=1ms).
+
+           ii. Compute the average waiting time, average turn around time and number
+                 of context switches in each approach.
+                                                                                             10
+    b   Write a program to create a pthread to calculate sum of N (non-negative) numbers.
+                                                                                             06
+
+                                            UNIT-III
+        What is meant by critical section Problem? Give its general structure. Explain the
+5   a
+        requirements that must be satisfied by a solution to the critical section problem
+                                                                                             08
+        Discuss the classical Reader-Writer synchronization problem and write a pseudo
+    b
+        code using semaphores
+                                                                                             08
+                                                ORDiscuss the classical producer-consumer synchronization problem and write a
+  6     a
+             pseudo code using semaphores
+                                                                                                      08
+             Discuss hardware solution to critical section problem with help of the pseudo code
+        b
+             and prove that it satisfies the conditions for critical section problem.
+                                                                                                      08
+
+Signature of Scrutinizer:                                                     Signature of Chairman
+
+                                                 UNIT-IV
+            Discuss the concept of Dynamic linking, Dynamic loading and memory
+  7     a   fragmentation with respect to process memory management.                                  08
+            With help of neat diagram briefly discuss the Segmentation memory management
+        b   scheme. Mention the merits and demerits of Segmentation Scheme.                           08
+
+                                                      OR
+
+            With the help of a neat diagram explain the basic paging scheme of memory
+  8     a   management. Discuss the hardware support for paging.                      08
+            Consider the following page reference string
+
+                                    5,6,7,8,5,4,3,1,2,6,7,8,7,5,3,2,1,5,6,7
+        b
+               How many page faults will occur for LRU, FIFO, Optimal page replacement
+                                algorithms, assuming 5 free frames?                                   08
+
+                                                  UNIT-V
+
+  9     a   Compare the contiguous, linked and indexed file allocation methods.                       08
+
+        b   Discuss the In-memory file-system structures with an example.                             08
+
+                                                      OR
+
+  10    a   Explain different methods of accessing files.                                             08
+            Write a C program to move a source file to destination file. Briefly discuss the
+        b
+            system calls used to implement.                                                           08
+Name:                                                                          Name:18CS34
+
+                                      USN
+
+                       RV COLLEGE OF ENGINEERING®
+                      (An Autonomous Institution affiliated to VTU)
+                       III Semester B. E. Examinations March-2021
+                        Computer Science and Engineering
+                           OPERATING SYSTEMS
+    Time: 03 Hours                                         Maximum Marks: 100
+    Instructions to candidates:
+        1. Answer all questions from Part A. Part A questions should be
+           answered in first three pages of the answer book only.
+        2. Answer FIVE full questions from Part B. In Part B question number 2,
+           7 and 8 are compulsory. Answer any one full question from 3 and 4 &
+           one full question from 5 and 6
+
+                                           PART-A
+
+1   1.1    Each process is represented in the operating systems by a __________.     01
+    1.2    Write any two major goals of operating systems.                           01
+    1.3    List the four categories of multi-threaded programming benefits.          02
+    1.4    The time taken for the dispatcher to stop one process and start
+           another running process is known as the ______________.                   01
+    1.5    Define Race Condition. Mention techniques to avoid Race Condition.        02
+    1.6    Find the drawbacks of semaphores.                                         02
+    1.7    Consider a time-sharing system, which supports 20 terminals (users),
+           each of which run a compiler. If 50kB are required for compiler and
+           5kB for data storage, find the total amount of memory required to
+           support 20 users.                                                         02
+    1.8    Why are page sizes always a power of 2 during paging?                     02
+    1.9    For a certain system, total number of frames is 64. The size of 2
+           processes, 𝑃𝑃1 and 𝑃𝑃2 are 10 and 127 respectively. How much is the
+           allocation for each of theses processes?                                  02
+    1.10   Compare FAT and NTFS.                                                     02
+    1.11   _____________ is the additional time for the disk to rotate the desired
+           sector to the disk head.                                                  01
+    1.12   Write the methods for handling deadlocks.                                 02
+
+                                           PART-B
+
+2   a      Discuss various schedulers used in Operating Systems.                     05
+    b      Write a ‘C’ program to demonstrate the basic Pthreads API for
+           constructing a multi-threaded program that calculates the
+           summation of a non-negative integer in a separate thread.                 05
+    c      Briefly explain microkernel and modular approaches to design
+           operating system architecture.                                            063   a   Consider the following set of process, with the length of the CPU
+        burst time given in milli seconds:
+        The processes are assumed to have arrived in the order
+        𝑃𝑃1, 𝑃𝑃2, 𝑃𝑃3, 𝑃𝑃4, 𝑃𝑃5 all at time 0.
+                           Process    Burst Time    Priority
+                             P1          10            3
+                             P2           1            1
+                             P3           2            3
+                             P4           1            4
+                             P5           5            2
+        i)    Draw four Gantt charts that illustrate the execution of these
+              processes using FCFS, SJF, a non-preemptive priority and RR
+              (q=1) scheduling.
+         ii) What is the turnaround time of each process for each of the
+              scheduling algorithm in part i).
+         iii) What is the waiting time of each process for each of the
+              scheduling algorithm in part i).                                    10
+    b   Describe the Dining-Philosophers problem in detail.                       06
+
+                                         OR
+
+4   a   Suppose that the following processes arrive for execution at time
+        indicated.
+                     Process     Arrival Time      Execution Time
+                       P1             0.0                8
+                       P2             0.4                4
+                       P3             1.0                1
+        i)   What is the average TAT for these processes with FCFS
+             scheduling algorithm.
+         ii) What is the AWT and ATAT for these processes with preemptive
+             SJF algorithm?                                                       06
+    b   Explain Peterson’s solution to the critical section problem.              06
+    c   Discuss process management in Linux Operating system.                     04
+
+5   a   Consider the following Page reference string:
+        1, 2, 3, 2, 5, 6, 3, 4, 6, 3, 7, 3, 1, 5, 3, 6, 3, 4, 2, 4, 3, 4, 5, 1.
+        How many page faults will occur for FIFO and Optimal page
+        replacement algorithms, assuming 4 free frames?                           06
+    b   Describe memory mapping and protection, memory allocation, and
+        fragmentation issues in contiguous memory allocation.                     10
+
+                                         OR
+
+6   a   Distinguish logical and physical address space.                           05
+    b   With a neat sketch, explain the steps in handling a page fault.           06
+    c   What is meant by Segmentation? Discuss the hardware support for
+        Segmentation.                                                             05
+
+7   a   Suppose that the head of the moving head disk with 200 tracks,
+        numbered 0 to 199, is currently serving a request at track 143 and
+        has just finished a request at track 125. The queue of requests is
+        kept in FIFO order-
+        86, 147, 91, 177, 94, 150, 102, 175, 130.
+        What is the total number of head movements needed to satisfy these
+        requests for the following disk-scheduling algorithms-i) SSTF ii) SCAN
+        iii) LOOK iv) C-SCAN.                                                     10b   Briefly explain the strategies and schemes for allocation of frames.     06
+
+8   a   Consider a system with five processes- P0 to P4and three resources A,
+        B, C. Given that-
+        Resource type A has 10 instances; Resource type B has 5 instances.
+        Resource type C has 7 instances.
+        Suppose that at time t0, the following snapshot of the system has been
+        taken-
+                                 Allocation                MAX
+               Process
+                            R1       R2       R3    R1      R2      R3
+                  P0         0        1        0     7       5       3
+                  P1         2        0        0     3       2       2
+                  P2         3        0        2     9       0       2
+                  P3         2        1        1     2       2       2
+                  P4         0        0        2     4       3       3
+        Calculate available matrix of resources, find the need matrix and also
+        find the safe sequence.                                                  10
+    b   Identify options to recover from deadlocks and explain.                  0618CS34
+
+                                        USN
+
+                        RV COLLEGE OF ENGINEERING®
+                       (An Autonomous Institution affiliated to VTU)
+                        III Semester B. E. Examinations Nov/Dec-19
+                          Computer Science and Engineering
+                             OPERATING SYSTEMS
+    Time: 03 Hours                                             Maximum Marks: 100
+    Instructions to candidates:
+        1. Answer all questions from Part A. Part A questions should be answered
+           in first three pages of the answer book only.
+        2. Answer FIVE full questions from Part B. In Part B question number 2, 7
+           and 8 are compulsory. Answer any one full question from 3 and 4 & one
+           full question from 5 and 6
+
+                                             PART-A
+
+1    1.1   Analyze and write the output of following code:
+
+           𝑖𝑖𝑖𝑖𝑖𝑖 𝑚𝑚𝑚𝑚𝑚𝑚𝑚𝑚 ( )
+           {
+                   𝑖𝑖𝑖𝑖 �𝑓𝑓𝑓𝑓𝑓𝑓𝑓𝑓( ) && 𝑓𝑓𝑓𝑓𝑓𝑓𝑓𝑓( )�
+                   {
+                         𝑓𝑓𝑓𝑓𝑓𝑓𝑓𝑓( );
+                     }
+                   𝑝𝑝𝑝𝑝𝑝𝑝𝑝𝑝𝑝𝑝𝑝𝑝("2 ");
+                   𝑟𝑟𝑟𝑟𝑟𝑟𝑟𝑟𝑟𝑟𝑟𝑟 0;
+           }                                                                                02
+     1.2   Consider two processes 𝑃𝑃1 and 𝑃𝑃2 accessing the shared variables 𝑋𝑋
+           and 𝑌𝑌 protected by two binary semaphores 𝑆𝑆𝑆𝑆 and 𝑆𝑆𝑆𝑆 respectively,
+           both initialized to 1. Complete the entry and exit sections of the
+           following codes such that the processes can update the shared
+           variables correctly without deadlock.
+                              𝑃𝑃1: 𝑤𝑤ℎ𝑖𝑖𝑖𝑖𝑖𝑖 (𝑡𝑡𝑡𝑡𝑡𝑡𝑡𝑡)𝑑𝑑𝑑𝑑 𝑃𝑃2: 𝑤𝑤ℎ𝑖𝑖𝑖𝑖𝑖𝑖 (𝑡𝑡𝑡𝑡𝑡𝑡𝑡𝑡)𝑑𝑑𝑑𝑑
+                              {                             {
+                             ≪ 𝑒𝑒𝑒𝑒𝑒𝑒𝑒𝑒𝑒𝑒 𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠 ≫  ≪ 𝑒𝑒𝑒𝑒𝑒𝑒𝑒𝑒𝑒𝑒 𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠 ≫
+                                   𝑋𝑋 = 𝑋𝑋 + 10;                 𝑦𝑦 = 𝑦𝑦 + 20;
+                                   𝑦𝑦 = 𝑌𝑌 − 20;                 𝑋𝑋 = 𝑋𝑋 − 10
+                               ≪ 𝑒𝑒𝑒𝑒𝑒𝑒𝑒𝑒 𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠 ≫   ≪ 𝑒𝑒𝑒𝑒𝑒𝑒𝑒𝑒 𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠𝑠 ≫
+                              }                             }                               02
+     1.3   A disk drive has 100 cylinders, numbered 0 to 99. Disk requests come
+           to the disk driver for cylinders 12, 26, 24, 4, 42, 8 and 60 in that order.
+           The driver is currently serving a request at cylinder 36. A seek takes 6
+           msec per cylinder moved. How much seek time is needed for shortest
+           seek time first (𝑆𝑆𝑆𝑆𝑆𝑆𝑆𝑆) algorithm?                                            02
+     1.4   Suppose a process requests 12𝐾𝐾𝐾𝐾 of memory and memory manager
+           currently has a list of unallocated blocks of 6𝐾𝐾𝐾𝐾, 14𝐾𝐾𝐾𝐾, 19 𝐾𝐾𝐾𝐾, 11𝐾𝐾𝐾𝐾
+           and 13𝐾𝐾𝐾𝐾 blocks. Identify the block allocated by best fit, first fit and
+           worst fit strategy.                                                              021.5    Four jobs to be executed on a single processor system arrive at time 0
+           in the order 𝐴𝐴, 𝐵𝐵, 𝐶𝐶, 𝐷𝐷. Their burst 𝐶𝐶𝐶𝐶𝐶𝐶 time requirements are 4, 1, 8, 1
+           time units respectively. What is the completion time of 𝐴𝐴 under round
+           robin scheduling with time slice of one time unit?                                          02
+    1.6    Consider a paging system with 𝑇𝑇𝑇𝑇𝑇𝑇. If it takes 10 𝑛𝑛𝑛𝑛 search 𝑇𝑇𝑇𝑇𝑇𝑇 and
+           150 𝑛𝑛𝑛𝑛 to access the memory what is the effective memory access time
+           with 95-percent hit ratio?                                                                  02
+    1.7    What is starvation and aging in context of 𝐶𝐶𝐶𝐶𝐶𝐶 scheduling?                               02
+    1.8    Applying the 𝐿𝐿𝐿𝐿𝐿𝐿 page replacement to the reference string                   :
+           1 2 4 5 2 1 2 4. The main memory can accommodate 3 pages and it
+           already has pages 1 and 2. Page 1 came in before page 2. Draw the
+           page replacement pattern and determine total number of page faults.                         02
+    1.9    If the total number of available frames is 50, and there are
+           2 processes one of 10 pages and the other of 5 pages then how much
+           of memory would be proportionally allocated to each of the processes?                       02
+    1.10   There are three processes 𝑃𝑃1, 𝑃𝑃2 and 𝑃𝑃3 sharing a semaphore for
+           synchronizing a variable. Initial value of semaphore is 2. Assume that
+           negative value of semaphore tells us how many processes are waiting
+           in queue. Processes access the semaphore in following order :
+               a) 𝑃𝑃1 needs to access critical section
+               b) 𝑃𝑃2 needs to access section
+               c) 𝑃𝑃3 needs to access critical section
+               d) 𝑃𝑃2 exits critical section.
+           Determine the final value of semaphore.                                                     01
+    1.11   What are the four necessary and sufficient condition for deadlock to
+           occur.                                                                                      01
+
+                                                  PART-B
+
+2   a      Discuss the advantages of using multiple threads rather than using
+           multiple processes using an example. Write a program to create a
+           thread to compute sum of all the elements of an array.                                      06
+    b      With help of neat diagram discuss the four sequence of actions of a
+           context switch operation in process scheduling.                                             06
+    c      Differentiate user mode and kernel mode of operation in an operating
+           system.                                                                                     04
+
+3   a      Consider the following set of processes with a length of the 𝐶𝐶𝐶𝐶𝐶𝐶 burst
+           time given in milliseconds
+                         𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃 𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴 𝑇𝑇𝑇𝑇𝑇𝑇𝑇𝑇 𝐵𝐵𝐵𝐵𝐵𝐵𝐵𝐵𝐵𝐵 𝑇𝑇𝑇𝑇𝑇𝑇𝑇𝑇 𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃
+                             𝑃𝑃1                   0                    11                2
+                             𝑃𝑃2                   5                    28                0
+                             𝑃𝑃3                  12                     2                3
+                             𝑃𝑃4                   2                    10                1
+                             𝑃𝑃5                   9                    16                4
+              i) Draw Gantt charts illustrating the execution of these processes
+                 using Preemptive 𝑆𝑆𝑆𝑆𝑆𝑆, Preemptive Priority and Round Robin
+                 (Time slice = 4𝑚𝑚𝑚𝑚, considering arrival time as 0 for all
+                 processes)
+             ii) Compute the average waiting time, average turn around time
+                 for above approaches.                                                                 10b   What is the Reader-Writer problem?                                 Write        routines    to   solve
+        Reader-Writer problem using semaphore.                                                                   06
+
+                                                         OR
+
+4   a   Consider the following set of processes with a length of the 𝐶𝐶𝐶𝐶𝐶𝐶 burst
+        time given in milliseconds
+
+                      𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃 𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴 𝑇𝑇𝑇𝑇𝑇𝑇𝑇𝑇 𝐵𝐵𝐵𝐵𝐵𝐵𝐵𝐵𝐵𝐵 𝑇𝑇𝑇𝑇𝑇𝑇𝑇𝑇 𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃
+                          𝑃𝑃1                   7                     5                1
+                          𝑃𝑃2                   3                     7                2
+                          𝑃𝑃3                  10                     8                1
+                          𝑃𝑃4                   0                    15                2
+                          𝑃𝑃5                  20                     3                1
+
+        Consider that each job has a priority as given in the table above,
+        construct Gantt chart and find average turnaround time with mix of
+        Preemptive 𝑆𝑆𝑆𝑆𝑆𝑆 and Priority scheduling where Preemptive 𝑆𝑆𝑆𝑆𝑆𝑆 will
+        reign only when priority is same.                                                                        05
+    b   Write ‘𝐶𝐶’ routines to provide a deadlock free solution for Dining
+        Philosopher problem.                                                                                     05
+    c   With help of neat diagram explain Linux process scheduling.                                              06
+
+5   a   With help of neat diagram explain the working of paging memory
+        management scheme.                                                                                       06
+    b   What is virtual memory? List the advantages of using virtual memory.
+        Discuss the demand paging approach used to implement virtual
+        memory with help of a neat diagram.                                                                      10
+
+                                                         OR
+
+6   a   Consider the following page reference string:
+                            7,2,3,1,2,5,3,4,6,7,7,1,0,5,4,6,2,3,0,1
+        Calculate the page faults for the 𝐿𝐿𝐿𝐿𝐿𝐿 replacement, 𝐹𝐹𝐹𝐹𝐹𝐹𝐹𝐹 replacement
+        and Optimal replacement algorithms, assuming initially empty three
+        frames.                                                                                                  10
+    b   With help of a neat diagram discuss the Segmentation memory
+        management                                                                                               06
+
+7   a   Suppose a disk with 100 tracks and the disk request sequence (track
+        numbers) is: 45, 20, 90, 10, 50, 60, 80, 25, 70. Assume that the initial
+        position of the read write head is on track 50. Calculate the distance
+        traversed by the read-write head using Shortest Seek Time First
+        (𝑆𝑆𝑆𝑆𝑆𝑆𝑆𝑆) algorithm and 𝑆𝑆𝑆𝑆𝑆𝑆𝑆𝑆 (Elevator) algorithm (assuming that 𝑆𝑆𝑆𝑆𝑆𝑆𝑆𝑆
+        algorithm moves towards 100 when it starts execution).                                                   08
+    b   With help of neat diagram discuss how 𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈 kernel support open
+        operation on files.                                                                                      088   a   Discuss the policies to recover from deadlock in operating systems                     06
+    b   Consider the following snapshot of a system:
+
+                                         𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴   𝑀𝑀𝑀𝑀𝑀𝑀    𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴
+                        𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃
+                                           𝐴𝐴 𝐵𝐵 𝐶𝐶 𝐷𝐷        𝐴𝐴 𝐵𝐵 𝐶𝐶 𝐷𝐷 𝐴𝐴 𝐵𝐵 𝐶𝐶 𝐷𝐷
+                            𝑃𝑃0             2001               4212         3321
+                            𝑃𝑃1             3121               5252
+                            𝑃𝑃2             2103               2316
+                            𝑃𝑃3             1312               1424
+                            𝑃𝑃4             1432               3665
+
+        Answer the following questions using the banker’s algorithm:
+
+          i)   How many instances of resources are present in the system
+               under each type of a resource?
+         ii)   Compute the Need matrix for the given snapshot of a system.
+        iii)   Verify whether the snapshot of the present system is in a safe
+               state
+        iv)    If a request from process 𝑃𝑃1 arrives for (1,1,0,0), can the request
+               be granted immediately?                                                         1018CS34
+
+                                       USN
+
+                        RV COLLEGE OF ENGINEERING®
+                        (An Autonomous Institution affiliated to VTU)
+                    III Semester B. E. Fast Track Examinations Oct-2020
+                         Computer Science and Engineering
+                            OPERATING SYSTEMS
+    Time: 03 Hours                                             Maximum Marks: 100
+    Instructions to candidates:
+        1. Answer all questions from Part A. Part A questions should be answered
+           in first three pages of the answer book only.
+        2. Answer FIVE full questions from Part B. In Part B question number 2, 7
+           and 8 are compulsory. Answer any one full question from 3 and 4 & one
+           full question from 5 and 6.
+
+                                             PART-A
+
+1    1.1    List any four classes of operating system.                                02
+     1.2    List any four design principles for design of operating system            02
+     1.3    Write the ouput of the following program:
+            𝑖𝑛𝑡 𝑚𝑎𝑖𝑛 ()
+            {
+               𝑖𝑓 (𝑓𝑜𝑟𝑘 () ∶ : 𝑓𝑜𝑟𝑘 )
+                 𝑓𝑜𝑟𝑘();
+               𝑝𝑟𝑖𝑛𝑡 (“1”);
+               𝑟𝑒𝑡𝑢𝑟𝑛 0;
+            }                                                                         02
+     1.4    Justify the statement, “ thread is a light weight process”                02
+     1.5    Differentiate between fork and vfork system calls                         02
+     1.6    Consider three processes (process id 0,1 & 2 respectively) with
+            compute time burst 2, 4 and 8 times units. All processes arrive at time
+            zero. Considering longest remaining time first (𝐿𝑅𝑇𝐹), calculate the
+            average turnaround time (𝐿𝑅𝑇𝐹).                                           02
+     1.7    Illustrate with example how an improper use of semaphore leads to
+            deadlock.                                                                 02
+     1.8    Consider a paging system with 𝑇𝐿𝐵. If it takes 20 𝑛𝑠 to search 𝑇𝐿𝐵 and
+            100 𝑛𝑠 to access a memory, what is the effective memory access time
+            with 98 percent hit ratio.                                                02
+     1.9    Justify the statement: “Presence of cycle in Resource Allocation
+            Graph is not sufficient condition for dead lock”.                         02
+     1.10   Differentiate between monolithic level & microkernel                      02
+
+                                             PART-B
+
+2    a      Discuss various approaches to design operating system structure.          06
+     b      Write a program to demonstrate following 𝑈𝑁𝐼𝑋 system calls:
+               i)    Fork
+               ii)   Wait
+               iii)  Exec (any variant).                                              06c   Give a proper insight into “How evolution in computing influenced
+        different classes of operating system”.                                   04
+
+3   a   Compare process scheduling protocols- First came first serve (𝐹𝐶𝐹𝑆),
+        shortest job first, priority and round robin on basis of their
+        performance and algorithm complexity.                                     06
+    b   Give solution for the following critical section problem:
+           i)    Producer consumer problem
+           ii)   Dining philosopher problem.                                      10
+
+                                         OR
+
+4   a   Consider a following set of processes with a length of the 𝐶𝑃𝑈 burst
+        time given in milliseconds.
+
+                     𝑃𝑟𝑜𝑐𝑒𝑠𝑠 𝐴𝑟𝑟𝑖𝑣𝑎𝑙 𝑇𝑖𝑚𝑒 𝐵𝑢𝑟𝑠𝑡 𝑇𝑖𝑚𝑒 𝑃𝑟𝑖𝑜𝑟𝑖𝑡𝑦
+                       𝑃          0           7         3
+                       𝑃          3           2         2
+                       𝑃          4           3         1
+                       𝑃          4           1         1
+                       𝑃          5           3         3
+
+           i)    Draw Gantt chart illustrating the execution of these
+                 processes using shortest job first (preemptive), priority
+                 (preemptive) and round robin (time slice = 2 𝑚𝑠)
+          ii)    Compute average waiting, average turnaround and average
+                 response time.                                                   10
+    b   Describe the process scheduling in linear operating system.               06
+
+5   a   Given five memory partitions of 100 𝐾𝐵, 500 𝐾𝐵, 200 𝐾𝐵, 300 𝐾𝐵 and
+        600 𝐾𝐵 in order, how would first fit, best fit and worst fit algorithms
+        place processes of 212 𝐾𝐵, 417 𝐾𝐵, 112 𝐾𝐵 and 426 𝐾𝐵 in order? Which
+        algorithm makes the most efficient use of memory?                         08
+    b   With a neat diagram explain the basic paging scheme of memory
+        management. Also discuss the hardware support for paging.                 08
+
+                                         OR
+
+6   a   What are logical and physical address space? Justify how memory
+        management helps programmer to have larger logical address
+        compared to available physical memory.                                    08
+    b   Consider the following page reference string:
+                            1,2,3,4,2,1,5,6,2,1,2,3,7,6,3,2,1,2,3,6
+        How many page facility will occur by 𝐿𝑅𝑈, 𝐹𝐼𝐹𝑂 and optimal page
+        replacement algorithms, assuming 5 free frames.                           08
+
+7   a   What is thrashing? What are the causes for thrashing? Discuss the
+        mechanism to prevent it.                                                  06b   Suppose on a disk with 5000 cylinders, number 0 to 4999. The drive is
+        currently serving a request at cylinder 143. The queue of pending
+        requests in 𝐹𝐼𝐹𝑂 order is 𝐵6, 1470, 913, 1774, 948, 1509, 1022, 1250, 130
+        starting from the current position what is the total number of disk
+        moves for the following algorithms
+           i)      shortest seek time first (𝑆𝑆𝑇𝐹)
+           ii)    𝑆𝐶𝐴𝑀
+           iii)   𝐿𝑂𝑂𝐾.                                                             10
+
+8   a   What is deadlock? Explain. Discuss different ways of handling
+        deadlock.                                                                   08
+    b   Consider the following snapshot of a system.
+
+                                     𝐴𝑙𝑙𝑜𝑐𝑎𝑡𝑖𝑜𝑛          𝑀𝑎𝑥
+                       𝑃𝑟𝑜𝑐𝑒𝑠𝑠
+                                 𝐴     𝐵 𝐶 𝐷        𝐴   𝐵 𝐶     𝐷
+                          𝑃      0      0   1   2   0   0   1    2
+                          𝑃      1      0   0   0   1   7   5    0
+                          𝑃      1      3   5   4   2   3   5    6
+                          𝑃      0      6   3   2   0   6   5    2
+                          𝑃      0      0   1   4   0   6   5    6
+
+        The available resources are 𝐴 = 1, 𝐵 = 5, 𝐶 = 2 and 𝐷 = 0.
+          i)     What is the content of matrix 𝑁𝐸𝐸𝐷
+          ii)    Is the system in safe state? If so give the safe sequence.
+          iii)   If a request from process 𝑃1 arrives for (0 4 2 0), can the
+                 request be granted immediately.                                    08

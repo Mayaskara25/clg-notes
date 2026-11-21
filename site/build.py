@@ -25,6 +25,7 @@ from datetime import date
 from html.parser import HTMLParser
 from urllib.parse import quote
 from code_highlight import highlight_code_blocks
+from packs import build_packs
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -612,9 +613,12 @@ def main():
             check_svg_colours(name, c, base_rules)
             if not SIDEBAR_OPEN.search(c):
                 err(f"{name}: no <nav class=\"sidebar\"> found")
+            raw = c
             c = render_citations(name, c, s, cfg)
             validate_unit(name, c)
             secs = sections(c)
+            packed = build_packs(cfg, s, u, raw, os.path.join(OUT, slug, u["slug"], "pack"),
+                                 f'{cfg["url"]}/{slug}/{u["slug"]}/', secs, err)
             if not secs:
                 err(f"{name}: no sections found (expected <section class=\"section\" id=...>)")
             ids = set(re.findall(r'id="([\w-]+)"', c))
@@ -639,7 +643,7 @@ def main():
                 "UNIT_TITLE_JS": js_str(u["title"]), "DOWNLOAD_NAME": e(u["source"], quote=True),
                 "COURSE_JS": js_str(s["course"]), "COURSE_CODE_JS": js_str(s.get("course_code", "")),
                 "SITE_URL": cfg["url"], "PAGE_URL_JS": js_str(f'{cfg["url"]}/{slug}/{u["slug"]}/'),
-                "SUBJECT_SLUG": slug,
+                "SUBJECT_SLUG": slug, "PACKS_JSON": json.dumps(packed),
             }, name + " toolbar")
             # Sections/search above are extracted before answer controls are introduced.
             try:
