@@ -650,8 +650,8 @@ def main():
                 err(f"{name}: answer transform: {ex}")
                 page = c
             validate_unit(name + " with answer controls", page)
-            if slug in {"os", "dsa"}:
-                page = highlight_code_blocks(page)
+            page = highlight_code_blocks(page)
+            if "syntax-" in page:
                 page = page.replace("</head>", "<style>\n" + code_style + "</style>\n</head>", 1)
             page = page.replace("</head>", '<meta name="robots" content="noindex, nofollow">\n' + theme_head + "</head>", 1)
             # shared guide styles go where the guide links them, so the guide's own <style> still overrides

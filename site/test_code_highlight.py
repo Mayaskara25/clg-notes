@@ -4,7 +4,7 @@ import re
 import unittest
 from pathlib import Path
 
-from code_highlight import BLOCK, highlight, highlight_code_blocks
+from code_highlight import BLOCK, highlight, highlight_asm, highlight_code_blocks
 
 
 def text(markup):
@@ -41,15 +41,27 @@ class CodeHighlightTests(unittest.TestCase):
         source = '#include <stdio.h>\nThread t = new Thread();\nsize_t n = 0x20; double x = 1.25e-3;'
         result = highlight(source)
         for kind, value in [('directive', '#include'), ('type', 'Thread'),
-                            ('keyword', 'new'), ('type', 'size_t'),
+                            ('storage', 'new'), ('storage', 'double'), ('type', 'size_t'),
                             ('number', '0x20'), ('number', '1.25e-3')]:
             self.assertIn(f'<span class="syntax-{kind}">{value}</span>', result)
         self.assertEqual(text(result), source)
 
+    def test_assembly_labels_mnemonics_registers_and_comments(self):
+        source = 'LOOP:  ADD   #4, R2   ; R2 <- R2 + 4\n       Branch>0 LOOP\n       ORIGIN 200\n2000   ITEM1'
+        result = highlight_asm(source)
+        for kind, value in [('label', 'LOOP:'), ('mnemonic', 'ADD'), ('number', '#4'),
+                            ('register', 'R2'), ('comment', '; R2 &lt;- R2 + 4'),
+                            ('mnemonic', 'Branch&gt;0'), ('directive', 'ORIGIN')]:
+            self.assertIn(f'<span class="syntax-{kind}">{value}</span>', result)
+        self.assertNotIn('ITEM1</span>', result)
+        self.assertEqual(text(result), source)
+        block = '<div class="formula-block asm"><span class="cm">; sum</span>\nCLEAR R0</div>'
+        self.assertIn('syntax-mnemonic', highlight_code_blocks(block))
+
     def test_every_published_snippet_keeps_its_text(self):
         subjects = Path(__file__).resolve().parents[1] / 'subjects'
         total = 0
-        for slug in ('os', 'dsa'):
+        for slug in ('os', 'dsa', 'adld'):
             for path in (subjects / slug).glob('*.html'):
                 source = path.read_text()
                 result = highlight_code_blocks(source)
