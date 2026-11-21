@@ -136,7 +136,13 @@ def build_packs(cfg, s, u, c, out_dir, unit_url, sections, err):
     spec, drop = spec_all.get("sections", {}), spec_all.get("drop_lines", [])
     sources = {x["id"]: x for x in s.get("sources", [])}
     titles = {x["id"]: x for x in sections}
-    bank = bank_questions(c)
+    # a question may link to a worked answer inside a topic (#q-…) rather than the topic itself: count it for the topic
+    owner = {}
+    for m in re.finditer(r'<section\b[^>]*\bid="([\w-]+)"[^>]*>(.*?)</section>', c, flags=re.S):
+        owner[m.group(1)] = m.group(1)
+        for inner in re.findall(r'\bid="([\w-]+)"', m.group(2)):
+            owner.setdefault(inner, m.group(1))
+    bank = [(src, q, list(dict.fromkeys(owner.get(x, x) for x in links))) for src, q, links in bank_questions(c)]
     name = f"{s['code']} Unit {u['n']}"
     os.makedirs(out_dir, exist_ok=True)
     index, done = [], []
