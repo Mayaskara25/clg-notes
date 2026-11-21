@@ -172,7 +172,7 @@
     L.push('3. Point out the mistake students most often make here.');
     L.push('4. End with one short question I can answer to check that I understood.');
     L.push('5. If a video would help, tell me what to search for on YouTube. Do not make up video links.');
-    if (pack) L.push('6. Say which source you used: the study pack (and which part: class notes, faculty pages or past questions), the web page, or your general knowledge.');
+    if (pack) L.push('6. End with one line naming the sources you used, by title and page as the study pack writes them (e.g. "Lecture slides: Threads and CPU scheduling, page 22"), or say it is general knowledge.');
     L.push('');
     L.push('My doubt: ' + (doubt || 'I am not sure exactly what I am missing. Start with the core idea.'));
     return L.join('\n');

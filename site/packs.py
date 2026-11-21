@@ -11,6 +11,13 @@ import collections, html, json, os, re
 
 MAX_SOURCE_CHARS = 30000   # faculty text per pack; past this the pack lists the remaining pages instead
 EXCLUDE_KINDS = {"book"}   # textbooks: section pointers only, never their text
+KIND_NAMES = {"deck": "Lecture slides", "notes": "Faculty handout", "qbank": "Solved question bank",
+              "papers": "Question papers", "book": "Textbook"}
+
+
+def source_name(x):
+    """What a student calls a source: no internal ids like D2, which mean nothing outside this repo."""
+    return f"{KIND_NAMES.get(x.get('kind'), 'Source')}: {x['title']}"
 
 
 def pages_of(spec):
@@ -89,6 +96,7 @@ def to_text(fragment):
     s = re.sub(r"<br\s*/?>", "\n", s)
     s = re.sub(r"</?(p|div|section|ul|ol|table|tbody|thead|blockquote|details|summary)\b[^>]*>", "\n", s)
     s = re.sub(r"<(strong|b)\b[^>]*>(.*?)</\1>", r"**\2**", s, flags=re.S)
+    s = re.sub(r"</span>(?=<)", "</span> ", s)   # adjacent badges/labels keep a space between them
     s = re.sub(r"<[^>]+>", "", s)
     s = html.unescape(s)
     s = re.sub(r"[ \t]+\n", "\n", s)
@@ -149,7 +157,8 @@ def build_packs(cfg, s, u, c, out_dir, unit_url, sections, err):
              "Note for an AI assistant: this is the student's own course material. Explain from it rather than from",
              "general knowledge, and say so when the class notes and the faculty material differ. Part 2 is text",
              "extracted automatically from slides and handouts, so tables and diagrams there may be garbled; part 1",
-             "is the checked version. Questions in part 3 are from this college's past exams.",
+             "is the checked version. Questions in part 3 are from this college's past exams. When you cite this",
+             "material, name the source and page as written in the headings, e.g. \"Lecture slides: …, page 22\".",
              "",
              "## 1. Class notes",
              "",
@@ -167,7 +176,7 @@ def build_packs(cfg, s, u, c, out_dir, unit_url, sections, err):
             text = source_pages(s["dir"], src_id, drop)
             want = pages_of(pages)
             pdf = f"https://github.com/{cfg['repo']}/blob/main/subjects/{s['slug']}/sources/{x['file']}" if x.get("file") else ""
-            L.append(f"### {src_id} · {x['title']} — PDF pages {ranges(want)}")
+            L.append(f"### {source_name(x)} — pages {ranges(want)}")
             if pdf:
                 L.append(f"Original: {pdf}")
             if text is None:
@@ -183,7 +192,7 @@ def build_packs(cfg, s, u, c, out_dir, unit_url, sections, err):
                     skipped.append(p)
                     continue
                 used += len(t)
-                L += ["", f"--- {src_id} page {p} ---", t or "(this page has no text: it is mostly a picture)"]
+                L += ["", f"--- {source_name(x)}, page {p} ---", t or "(this page has no text: it is mostly a picture)"]
             if skipped:
                 L += ["", f"(Pages {ranges(skipped)} are left out to keep this pack small; see the PDF.)"]
             L.append("")
