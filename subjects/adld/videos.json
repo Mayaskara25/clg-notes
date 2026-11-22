@@ -2171,7 +2171,998 @@
           }
         ]
       }
+    ],
+    "4": [
+      {
+        "section": "functional-units",
+        "sub": "1.1 What each unit does",
+        "videos": [
+          {
+            "id": "bLNaKhYIwPg",
+            "title": "Computer Architecture in COA: Understanding CPU, Memory, IO Devices, and System Bus",
+            "channel": "Engineering Funda",
+            "duration": "11:25",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "functional-units",
+        "sub": "1.2 Instructions, data and the stored program",
+        "videos": [
+          {
+            "id": "j8NnE1YeSN0",
+            "title": "L-1.2: Von Neumann's Architecture | Stored Memory Concept in Computer Architecture",
+            "channel": "Gate Smashers",
+            "duration": "9:40",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "operational-concepts",
+        "sub": "2.2 Processor registers",
+        "videos": [
+          {
+            "id": "2mowjC3dCqk",
+            "title": "L-1.3:Various General Purpose Registers in Computer Organization and Architecture",
+            "channel": "Gate Smashers",
+            "duration": "15:10",
+            "kind": "topic",
+            "differs": "The chapters call the memory address and data registers AR and DR.",
+            "note": "The video uses AR and DR for the address and data registers.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "operational-concepts",
+        "sub": "2.3 Processor–memory interconnection",
+        "videos": [
+          {
+            "id": "xBYhHC8_A6o",
+            "title": "L-1.4:Types of Buses (Address, Data and Control) in Computer Organization and Architecture",
+            "channel": "Gate Smashers",
+            "duration": "7:59",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "performance",
+        "sub": "3.1 The basic performance equation",
+        "videos": [
+          {
+            "id": "5ayaVunXFUY",
+            "title": "CPU Performance Parameters in COA: Average CPI, MIPS, and Execution Time | COA",
+            "channel": "Engineering Funda",
+            "duration": "11:42",
+            "kind": "topic",
+            "differs": "Uses CPI for average cycles per instruction and includes MIPS. The guide uses S for CPI.",
+            "note": "CPI is S in your notes. The video also covers MIPS.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "performance",
+        "sub": "3.2 Clock-cycle numericals",
+        "videos": [
+          {
+            "id": "ApXOBwVFhKs",
+            "title": "Examples of CPU Performance in COA: Performance Parameters, Execution Time, and Average CPI - 1",
+            "channel": "Engineering Funda",
+            "duration": "8:24",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "performance",
+        "sub": "3.5 Parallelism",
+        "videos": [
+          {
+            "id": "6_PHIL4LZEU",
+            "title": "Classifications of Computer Architecture",
+            "channel": "Neso Academy",
+            "duration": "6:29",
+            "kind": "topic",
+            "differs": "Supplementary classification. Flynn’s taxonomy classifies instruction and data streams. The guide focuses on ways computers execute work in parallel.",
+            "note": "Flynn’s taxonomy is extra context for parallelism.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "memory-locations",
+        "sub": "4.3 Big-endian and little-endian assignments",
+        "videos": [
+          {
+            "id": "qIQNh1WGXLo",
+            "title": "Little Endian vs Big Endian | Byte Ordering | Endianness",
+            "channel": "Engineering Funda",
+            "duration": "10:21",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "mWbdaNLsbYo",
+            "title": "Little Endian vs Big Endian Computers: Examples and Byte Ordering",
+            "channel": "Engineering Funda",
+            "duration": "8:47",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "instructions",
+        "sub": "6.1 Four types of operation",
+        "videos": [
+          {
+            "id": "r6PChksvxp8",
+            "title": "L-1.7: Types of Instructions in General Purpose Computer | Computer Organization and Architecture",
+            "channel": "Gate Smashers",
+            "duration": "5:11",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "instructions",
+        "sub": "6.3 Instruction types by number of addresses",
+        "videos": [
+          {
+            "id": "Za7ozdjE8VI",
+            "title": "L-1.16: General Register CPU Organisation | Two and Three Address Instructions | COA",
+            "channel": "Gate Smashers",
+            "duration": "7:18",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "k5YMLXPy1SE",
+            "title": "L-1.15: Single Accumulator CPU Organisation | Single Address Instructions in Computer Organisation",
+            "channel": "Gate Smashers",
+            "duration": "8:02",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "u-sp4gBAJKI",
+            "title": "L-1.17: Register Stack Organisation | Zero Address Instructions | COA",
+            "channel": "Gate Smashers",
+            "duration": "11:50",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "instructions",
+        "sub": "6.4 RISC and CISC instruction styles",
+        "videos": [
+          {
+            "id": "L4Lo1sGEeQA",
+            "title": "RISC vs CISC Architectures: Chip Area and Performance Comparison",
+            "channel": "Engineering Funda",
+            "duration": "9:52",
+            "kind": "topic",
+            "differs": "The architecture comparison concentrates on chip area and performance. The guide also covers load/store operation and instruction formats.",
+            "note": "Focuses on chip area and performance in the RISC/CISC comparison.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "instructions",
+        "sub": "6.5 Instruction execution, straight-line sequencing and branching",
+        "videos": [
+          {
+            "id": "cO-H3tDqvXM",
+            "title": "Instruction Cycle in Computer Organization & Architecture: Detailed Steps | COA",
+            "channel": "Engineering Funda",
+            "duration": "9:08",
+            "kind": "topic",
+            "differs": "General instruction-cycle walkthrough. The description does not establish the branch trace used in the guide.",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "OXz7wKHr0_I",
+            "title": "L-1.12: Program Control Instructions(Types of Control Instructions) | Computer Organization",
+            "channel": "Gate Smashers",
+            "duration": "10:51",
+            "kind": "topic",
+            "differs": "The chapters focus on conditional and unconditional branches within the larger sequencing topic.",
+            "note": "Use this for the conditional and unconditional branch examples.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "instructions",
+        "sub": "6.7 Encoding machine instructions",
+        "videos": [
+          {
+            "id": "WAO_W6Hpzyk",
+            "title": "L-1.13: What is Instruction Format | Understand Computer Organisation with Simple Story",
+            "channel": "Gate Smashers",
+            "duration": "10:40",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "q71S0YELD0U",
+            "title": "Examples of Instruction Formats in COA: Examples and Solutions | COA",
+            "channel": "Engineering Funda",
+            "duration": "10:22",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "addressing-modes",
+        "sub": "7.1 The generic addressing modes",
+        "videos": [
+          {
+            "id": "bM2PyN-EIS0",
+            "title": "Addressing Modes in Computer Organization & Architecture: Types and Examples | COA",
+            "channel": "Engineering Funda",
+            "duration": "28:57",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "addressing-modes",
+        "sub": "7.2 Immediate, register and absolute modes",
+        "videos": [
+          {
+            "id": "mtr7oumkwuk",
+            "title": "L-2.3: Immediate Addressing Mode | Computer Organisation and Architecture",
+            "channel": "Gate Smashers",
+            "duration": "6:35",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "PgQIeB-d6HE",
+            "title": "L-2.4: Register Mode | Addressing Mode | Computer Organisation and Architecture",
+            "channel": "Gate Smashers",
+            "duration": "4:38",
+            "kind": "topic",
+            "differs": "Description gives 8-bit and 16-bit examples. The register-mode rule is independent of operand size.",
+            "note": "The examples use 8- and 16-bit registers.",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "5A677So9epQ",
+            "title": "L-2.7: Direct Addressing Mode || Computer Organization and Architecture",
+            "channel": "Gate Smashers",
+            "duration": "4:50",
+            "kind": "topic",
+            "differs": "Calls the mode direct addressing. The guide also calls it absolute addressing.",
+            "note": "Direct addressing is called absolute addressing in your notes.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "addressing-modes",
+        "sub": "7.3 Indirection and pointers",
+        "videos": [
+          {
+            "id": "pqwWQD9Pgjg",
+            "title": "L-2.5: Register Indirect Mode | Addressing Modes | Computer Organisation and Architecture",
+            "channel": "Gate Smashers",
+            "duration": "6:21",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "l7QV6FBTGdE",
+            "title": "L-2.8: Indirect Addressing Mode | Computer Organisation and Architecture",
+            "channel": "Gate Smashers",
+            "duration": "6:05",
+            "kind": "topic",
+            "differs": "Covers memory indirect mode. The neighboring register-indirect video covers the other form.",
+            "note": "This is the memory-indirect case.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "addressing-modes",
+        "sub": "7.4 Indexing and arrays",
+        "videos": [
+          {
+            "id": "18ZVSnz0JcY",
+            "title": "L-2.11: Indexed Addressing Mode || Computer Organisation and Architecture",
+            "channel": "Gate Smashers",
+            "duration": "4:05",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "addressing-modes",
+        "sub": "7.5 Relative mode",
+        "videos": [
+          {
+            "id": "Na7sLEioUjU",
+            "title": "`L-2.9: Relative Addressing Mode || Computer Organisation and Architecture",
+            "channel": "Gate Smashers",
+            "duration": "7:07",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "addressing-modes",
+        "sub": "7.6 Autoincrement and autodecrement",
+        "videos": [
+          {
+            "id": "7RP8SLdW0S0",
+            "title": "L-2.6: Auto Increment and Decrement Addressing Modes | Computer Organisation and Architecture",
+            "channel": "Gate Smashers",
+            "duration": "6:51",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "addressing-modes",
+        "sub": "7.7 Effective-address exercises",
+        "videos": [
+          {
+            "id": "fGnMnGyfZVs",
+            "title": "L-2.12: Question on Addressing Modes | Computer Organization",
+            "channel": "Gate Smashers",
+            "duration": "4:45",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "stacks",
+        "sub": null,
+        "videos": [
+          {
+            "id": "C1H5gurIcJk",
+            "title": "L-1.18:Memory Stack Organisation | Memory stack Vs Register stack  | COA",
+            "channel": "Gate Smashers",
+            "duration": "6:03",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "ilp",
+        "sub": null,
+        "videos": [
+          {
+            "id": "z7TOTY6uOPA",
+            "title": "Pipelining in COA: Basics and Implementation in INTEL 8086 and ARM7 | COA",
+            "channel": "Engineering Funda",
+            "duration": "8:26",
+            "kind": "topic",
+            "differs": "Uses the Intel 8086 and ARM7 to illustrate pipelining. The guide gives a generic five-stage pipeline model and a broader ARM/x86 overview.",
+            "note": "Uses 8086 and ARM7 pipeline examples. Follow your notes for the five stages.",
+            "checked": "2026-11-22",
+            "start": 32
+          }
+        ]
+      },
+      {
+        "section": "ilp",
+        "sub": "13.1 Pipeline stages and timing",
+        "videos": [
+          {
+            "id": "_pGXn-TPCgA",
+            "title": "Parameters of Pipelining in COA: Instruction Space and Timing Diagram | COA",
+            "channel": "Engineering Funda",
+            "duration": "14:07",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "R9s34-lnd9k",
+            "title": "L-4.3: Pipelining Vs Non-Pipelining | Instruction Execution | Speedup, Efficiency, Utilization | COA",
+            "channel": "Gate Smashers",
+            "duration": "13:03",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "ilp",
+        "sub": "13.2 Hazards: what stops the pipeline",
+        "videos": [
+          {
+            "id": "srlgaJgaxRE",
+            "title": "L-4.6: What is Hazard in Pipelining | various types of Hazards | computer Architecture",
+            "channel": "Gate Smashers",
+            "duration": "10:29",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "gkgqVEPi3Fk",
+            "title": "L-4.13: Operand Forwarding in Computer Organization & Architecture | Data Hazard",
+            "channel": "Gate Smashers",
+            "duration": "11:10",
+            "kind": "topic",
+            "differs": "Covers operand forwarding for RAW data hazards. The guide also introduces structural and control hazards.",
+            "note": "Focuses on forwarding for read-after-write data hazards.",
+            "checked": "2026-11-22"
+          }
+        ]
+      }
+    ],
+    "5": [
+      {
+        "section": "fundamentals",
+        "sub": null,
+        "videos": [
+          {
+            "id": "wISs7YuE_fo",
+            "title": "Micro Operations of Instruction in Computer Organization & Architecture | COA",
+            "channel": "Engineering Funda",
+            "duration": "9:08",
+            "kind": "topic",
+            "differs": "Uses its own case study to explain micro-operations. The description does not establish the guide’s datapath names or timing convention.",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "hardware",
+        "sub": "2.1 Single-bus organisation of the datapath",
+        "videos": [
+          {
+            "id": "AiohZkw0N2s",
+            "title": "Working of Computer Using Common Bus in COA: Internal Architecture & Operations",
+            "channel": "Engineering Funda",
+            "duration": "10:51",
+            "kind": "topic",
+            "differs": "Illustrates a basic computer using a common bus. The description does not establish the guide’s Hamacher register and signal naming.",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "hardware",
+        "sub": "2.2 Input and output gating of registers",
+        "videos": [
+          {
+            "id": "l4WqAvOaQVs",
+            "title": "Common Bus Access using MUX in Computer | Working inside the Computer | COA",
+            "channel": "Engineering Funda",
+            "duration": "8:29",
+            "kind": "topic",
+            "differs": "Selects the source with a MUX. The guide’s register-gating figure uses tri-state outputs to share the bus.",
+            "note": "Uses a MUX for bus selection. Your notes show tri-state register outputs.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "execution",
+        "sub": "3.4 Executing a complete instruction",
+        "videos": [
+          {
+            "id": "sVeh61b2LeU",
+            "title": "Timings and Flowchart of Instruction Cycle in Computer Organization & Architecture | COA",
+            "channel": "Engineering Funda",
+            "duration": "14:19",
+            "kind": "topic",
+            "differs": "Shows instruction-cycle timing and a flowchart. The description does not establish the guide’s exact seven-step Add (R3), R1 sequence.",
+            "note": "",
+            "checked": "2026-11-22",
+            "start": 128
+          }
+        ]
+      },
+      {
+        "section": "hardwired",
+        "sub": "5.2 Hardwired control unit",
+        "videos": [
+          {
+            "id": "BmhCxKRisQA",
+            "title": "Hardwired Control Unit in COA: State Table, Delay Element & Sequence Counter Methods",
+            "channel": "Engineering Funda",
+            "duration": "15:31",
+            "kind": "topic",
+            "differs": "Presents several hardwired-control designs. The linked chapter covers the sequence counter, which is the closest match to the notes.",
+            "note": "Starts at the sequence-counter design used for hardwired control.",
+            "checked": "2026-11-22",
+            "start": 621
+          }
+        ]
+      },
+      {
+        "section": "microprogrammed",
+        "sub": null,
+        "videos": [
+          {
+            "id": "5Sk5OpoT66E",
+            "title": "Microprogrammed Control Unit: Structure, Working, and Role in Computer Organization & Architecture",
+            "channel": "Engineering Funda",
+            "duration": "9:10",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "l1vBkZWyELk",
+            "title": "Hardwired Control Unit vs Microprogrammed Control Unit: Key Differences and Comparisons | COA",
+            "channel": "Engineering Funda",
+            "duration": "13:25",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "memory-basics",
+        "sub": "7.1 Basic concepts",
+        "videos": [
+          {
+            "id": "PujjqfUhtNo",
+            "title": "Introduction to Memory",
+            "channel": "Neso Academy",
+            "duration": "7:45",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "memory-basics",
+        "sub": "7.3 Memory hierarchy",
+        "videos": [
+          {
+            "id": "zwovvWfkuSg",
+            "title": "L-3.1: Memory Hierarchy in Computer Architecture | Access time, Speed, Size, Cost | All Imp Points",
+            "channel": "Gate Smashers",
+            "duration": "7:32",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "ram",
+        "sub": "8.4 Synchronous DRAM and DDR SDRAM",
+        "videos": [
+          {
+            "id": "SNcbZXtS6NI",
+            "title": "Primary Memory – RAM",
+            "channel": "Neso Academy",
+            "duration": "11:21",
+            "kind": "topic",
+            "differs": "Covers DRAM, SDRAM and DDR through memory modules. The guide starts with chip timing and adds SRAM separately.",
+            "note": "Covers SDRAM and DDR with memory-module examples.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "memory-design",
+        "sub": null,
+        "videos": [
+          {
+            "id": "bG9kSO85rb4",
+            "title": "Memory Interfacing – Solved PYQs",
+            "channel": "Neso Academy",
+            "duration": "5:48",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "wVtFUhqWtUs",
+            "title": "Memory Interfacing Questions in Computer Organization & Architecture: Solved Problems - 1",
+            "channel": "Engineering Funda",
+            "duration": "14:15",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "rom",
+        "sub": null,
+        "videos": [
+          {
+            "id": "MOh4kLGPpH0",
+            "title": "Primary Memory – Architecture of ROM (Part 1)",
+            "channel": "Neso Academy",
+            "duration": "15:25",
+            "kind": "topic",
+            "differs": "Uses a decoder and ROM matrix for a Boolean-function example. The guide also covers memory types, which are outside this video’s listed scope.",
+            "note": "Shows a decoder and ROM matrix. Use your notes for the ROM types.",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "KsDrKNcmHZ0",
+            "title": "Primary Memory – Architecture of ROM (Part 4)",
+            "channel": "Neso Academy",
+            "duration": "12:20",
+            "kind": "topic",
+            "differs": "Explains expanding a ROM chip by address and word width. The guide’s ROM section focuses on the cell and the memory types.",
+            "note": "Shows how to expand ROM by address range and by word width.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "cache",
+        "sub": "11.1 Locality of reference",
+        "videos": [
+          {
+            "id": "E6QATWzjWZU",
+            "title": "L-3.11: Locality of Reference in Cache Memory | Spatial Vs Temporal Locality | Computer Organization",
+            "channel": "Gate Smashers",
+            "duration": "8:47",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "cache",
+        "sub": "11.2 Cache operation: hits, misses and write policies",
+        "videos": [
+          {
+            "id": "Ez_kyBS-y5w",
+            "title": "Introduction to Cache Memory",
+            "channel": "Neso Academy",
+            "duration": "6:55",
+            "kind": "topic",
+            "differs": "Also introduces virtual memory and demand paging as background. The guide’s cache section focuses on cache operation and mapping.",
+            "note": "Also introduces virtual memory and demand paging as background.",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "1tvW8kzOpSA",
+            "title": "Cache Design - An Overview",
+            "channel": "Neso Academy",
+            "duration": "14:59",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "cache",
+        "sub": "11.3 Direct mapping",
+        "videos": [
+          {
+            "id": "V_QS1HzJ8Bc",
+            "title": "Direct Memory Mapping",
+            "channel": "Neso Academy",
+            "duration": "8:43",
+            "kind": "topic",
+            "differs": "Also discusses virtual memory mapping to introduce cache mapping.",
+            "note": "Also distinguishes cache mapping from virtual memory mapping.",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "OxaYvJquPe0",
+            "title": "Direct Memory Mapping – Solved Examples",
+            "channel": "Neso Academy",
+            "duration": "10:48",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "cache",
+        "sub": "11.4 Associative mapping",
+        "videos": [
+          {
+            "id": "uwnsMaH-iV0",
+            "title": "Associative Mapping",
+            "channel": "Neso Academy",
+            "duration": "9:51",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "mVw7HiUVYt0",
+            "title": "Associative Mapping – Solved Examples",
+            "channel": "Neso Academy",
+            "duration": "7:27",
+            "kind": "numerical",
+            "differs": "Also calculates the tag directory size, beyond the guide’s address-field split.",
+            "note": "Also calculates tag directory size.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "cache",
+        "sub": "11.5 Set-associative mapping",
+        "videos": [
+          {
+            "id": "KhAh6thw_TI",
+            "title": "Set Associative Mapping",
+            "channel": "Neso Academy",
+            "duration": "10:52",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "ejTCm7eHsM8",
+            "title": "Set Associative Mapping – Solved Examples (Part 1)",
+            "channel": "Neso Academy",
+            "duration": "12:51",
+            "kind": "numerical",
+            "differs": "Also calculates comparator counts and cache size, beyond the guide’s address-field split.",
+            "note": "Also works out comparator counts and cache size.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "cache-examples",
+        "sub": "12.1 Address-format examples",
+        "videos": [
+          {
+            "id": "e8RCnG2ibJk",
+            "title": "Cache Memory Mapping – A Comparative Study",
+            "channel": "Neso Academy",
+            "duration": "10:02",
+            "kind": "topic",
+            "differs": "Compares the physical address split for the three mappings. The guide’s worked example uses a word-addressable machine.",
+            "note": "Check whether the question gives byte addresses or word addresses.",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "F_gOWc50MtI",
+            "title": "Cache Memory Mapping – Solved PYQ",
+            "channel": "Neso Academy",
+            "duration": "9:36",
+            "kind": "numerical",
+            "differs": "Solves a GATE example on direct and 2-way set-associative mapping that also illustrates cache hardware.",
+            "note": "GATE practice with direct and 2-way set-associative mapping.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "cache-examples",
+        "sub": "12.2 A mapping example: one reference string, three caches",
+        "videos": [
+          {
+            "id": "w32d1lD0Jb0",
+            "title": "L-3.13: LRU (Least Recently Used) Cache Replacement Algorithm | Computer Organisation & Architecture",
+            "channel": "Gate Smashers",
+            "duration": "8:57",
+            "kind": "topic",
+            "differs": "Explains the LRU replacement policy used in the guide’s trace. The guide provides its own reference string and three-cache comparison.",
+            "note": "Use this to review LRU before comparing the three traces in your notes.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "cache-examples",
+        "sub": "12.3 Performance considerations",
+        "videos": [
+          {
+            "id": "_VNY-nhkMhw",
+            "title": "L-3.4: GATE 2004 Question on 3-Level Memory Organisation || Computer Organisation and Architecture",
+            "channel": "Gate Smashers",
+            "duration": "5:50",
+            "kind": "numerical",
+            "differs": "Works a three-level GATE problem. The guide also works a two-level cache example.",
+            "note": "Works a three-level memory example.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "io-devices",
+        "sub": "13.1 External devices and their interfaces",
+        "videos": [
+          {
+            "id": "PM728r4oGcE",
+            "title": "I/O Interface in Computer Organization",
+            "channel": "Gate Smashers",
+            "duration": "5:45",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "io-devices",
+        "sub": "13.2 Program-controlled I/O",
+        "videos": [
+          {
+            "id": "ZC7CedalOYE",
+            "title": "Programmed I/O: Examples, Issues, and IO Transfer Modes | COA",
+            "channel": "Engineering Funda",
+            "duration": "5:22",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "interrupts",
+        "sub": "14.2 Interrupt processing, step by step",
+        "videos": [
+          {
+            "id": "iuOjtZlix4E",
+            "title": "Interrupt Driven I/O: Structure and Data Transfer Process Explained | COA",
+            "channel": "Engineering Funda",
+            "duration": "11:35",
+            "kind": "topic",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "interrupts",
+        "sub": "14.4 Design issues when many devices can interrupt",
+        "videos": [
+          {
+            "id": "QvSmbkcmff0",
+            "title": "Daisy Chaining in Priority Interrupt | Priority Based Interrupt in I/O Organization",
+            "channel": "Gate Smashers",
+            "duration": "6:35",
+            "kind": "topic",
+            "differs": "Covers the daisy-chain method of hardware priority. The guide also covers software polling and other designs.",
+            "note": "Focuses on daisy-chain interrupt priority.",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "dXOH3Czy5aw",
+            "title": "Parallel priority interrupt | I/O organization",
+            "channel": "Gate Smashers",
+            "duration": "7:38",
+            "kind": "topic",
+            "differs": "Covers parallel priority. The guide also covers polling and daisy-chain priority.",
+            "note": "Focuses on parallel interrupt priority.",
+            "checked": "2026-11-22"
+          },
+          {
+            "id": "-IlIVW1F5dw",
+            "title": "Question on Interrupt Handling(I/O organization) | Computer Organization | UGC NTA NET June 2021",
+            "channel": "Gate Smashers",
+            "duration": "8:49",
+            "kind": "numerical",
+            "differs": "",
+            "note": "",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "dma",
+        "sub": "15.1 The DMA controller's function",
+        "videos": [
+          {
+            "id": "gTloFC8-nh8",
+            "title": "Direct Memory Access (DMA): Working, IO Transfer Modes, and Timing Explained",
+            "channel": "Engineering Funda",
+            "duration": "15:05",
+            "kind": "topic",
+            "differs": "Covers DMA operation, modes and timing. The guide includes a controller-register diagram and sequence.",
+            "note": "Covers DMA transfer modes and their timing.",
+            "checked": "2026-11-22"
+          }
+        ]
+      },
+      {
+        "section": "u5-solved",
+        "sub": "Memory design",
+        "videos": [
+          {
+            "id": "nlLxrMBzsMM",
+            "title": "Primary Memory – Solved Example",
+            "channel": "Neso Academy",
+            "duration": "9:01",
+            "kind": "numerical",
+            "differs": "Works an address-range and device identification problem. The guide’s chip-count problems give different starting data.",
+            "note": "Practises finding address ranges for memory devices.",
+            "checked": "2026-11-22"
+          }
+        ]
+      }
     ]
   },
-  "updated": "2026-11-14"
+  "updated": "2026-11-22"
 }
