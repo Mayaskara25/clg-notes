@@ -24,7 +24,13 @@ table.tt{width:auto;min-width:260px}
 .table-scroll{max-width:100%;overflow-x:auto;margin:18px 0}.table-scroll>table{margin:0}
 .diagram-scroll{max-width:100%;overflow-x:auto}
 .formula-block.asm{white-space:pre;font-size:13.4px;line-height:1.65}
-@media(max-width:760px){.cover h1{font-size:34px}.section-head h1{font-size:27px;overflow-wrap:break-word}.section-head{align-items:flex-start}.card,.qbox{padding:18px 16px}.formula-block{font-size:12.5px}.svg-wrap{padding:10px}.diagram-scroll svg{min-width:560px}.topic-toc a{flex-basis:100%}}
+.grid2>*{min-width:0}
+.grid2.wide-r{grid-template-columns:1fr 1.45fr}
+.table-scroll:focus-visible,.diagram-scroll:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.section .diagram-hint{display:none;font-size:12px;color:var(--ink-soft);text-align:left;margin:0 0 10px}
+.order-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;padding:1px 7px;border-radius:5px;background:var(--paper);border:1px solid var(--line);color:var(--ink-soft);margin-left:6px;vertical-align:middle}
+.hi{background:var(--accent-soft,var(--blue-soft));color:var(--accent,var(--blue));font-weight:700}
+@media(max-width:760px){.cover h1{font-size:34px}.section-head h1{font-size:27px;overflow-wrap:break-word}.section-head{align-items:flex-start}.card,.qbox{padding:18px 16px}.formula-block{font-size:12.5px}.svg-wrap{padding:10px}.diagram-scroll svg{min-width:560px}.topic-toc a{flex-basis:100%}.section .diagram-hint{display:block}.grid2.wide-r{grid-template-columns:1fr}}
 @media print{details.further>.detail-body{display:block!important}}
 </style>
 <meta name="color-scheme" content="light dark">
@@ -74,16 +80,16 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
   <div class="kicker">CS234AI · Unit V · 9 hours</div>
   <h1>Basic Processing Unit, Memory System &amp; Input/Output</h1>
   <p class="desc">How the processor's datapath and control unit execute an instruction step by step; how memories are built from chips and made fast with caches; and how the processor exchanges data with devices by polling, interrupts and DMA.</p>
-  <div class="meta"><span><b>15</b> topics</span><span><b>14</b> worked answers</span><span><b>17</b> diagrams</span><span><b>Sources:</b> Unit 5a and 5b decks (Dr K. Badari Nath, after Hamacher) · CIE/SEE 2023–26 papers · I/O block added from the textbook</span></div>
+  <div class="meta"><span><b>15</b> topics</span><span><b>14</b> worked answers</span><span><b>18</b> diagrams</span><span><b>Sources:</b> Unit 5a and 5b decks (Dr K. Badari Nath, after Hamacher) · CIE/SEE 2023–26 papers · I/O block added from the textbook</span></div>
   <div class="callout key"><span class="label">How to read this unit</span>
 <p>Part 1 opens the processor of Unit IV: each instruction becomes a short sequence of <em>control steps</em> on a datapath, and the control unit generates those steps either with logic gates (hardwired) or from a stored microprogram. Part 2 is the memory system: RAM and ROM chips, combining chips into a larger memory, and cache mapping. Part 3 is new in this syllabus: how I/O devices are served.</p>
-<p>Most marks come from three question types: <strong>control sequences</strong> (single- and three-bus), <strong>memory design from chips</strong>, and <strong>cache address formats</strong>. Each has a worked method and checked answers.</p></div>
+<p>Most marks come from three question types: <strong>control sequences</strong> (single- and three-bus), <strong>memory design from chips</strong>, and <strong>cache address formats</strong>. Each has a worked method and checked answers. Reading Unit V for the first time? Begin with <a href="#u5-start">Start here · Reading control signals &amp; memory sizes</a> in §1.</p></div>
   <div class="part-divider">Part 1 · Basic Processing Unit</div><div class="index-grid">
     <a class="index-card" href="#fundamentals" style="--card-color:var(--blue)"><span class="num">1</span><h3>Fundamental Concepts</h3><p>Fetch and execute phases; the four kinds of internal operation.</p></a>
     <a class="index-card" href="#hardware" style="--card-color:var(--blue)"><span class="num">2</span><h3>Hardware Components</h3><p>The single-bus datapath: registers, MUX, ALU, Y and Z, MAR and MDR, gating signals.</p></a>
     <a class="index-card" href="#execution" style="--card-color:var(--blue)"><span class="num">3</span><h3>Instruction Fetch &amp; Execution</h3><p>Control sequences for register, memory and branch instructions; memory timing.</p></a>
     <a class="index-card" href="#multibus" style="--card-color:var(--blue)"><span class="num">4</span><h3>Three-Bus Organisation</h3><p>Two operands and a result in one cycle; single-bus vs three-bus performance.</p></a>
-    <a class="index-card" href="#hardwired" style="--card-color:var(--blue)"><span class="num">5</span><h3>Hardwired Control</h3><p>Step counter, decoders and encoder; Zin and End as logic equations.</p></a>
+    <a class="index-card" href="#hardwired" style="--card-color:var(--blue)"><span class="num">5</span><h3>Hardwired Control</h3><p>Step counter, decoders and encoder; Z<sub>in</sub> and End as logic equations.</p></a>
     <a class="index-card" href="#microprogrammed" style="--card-color:var(--blue)"><span class="num">6</span><h3>Micro-programmed Control</h3><p>Control words, microroutines, the control store; advantages and comparison.</p></a>
   </div>
   <div class="part-divider">Part 2 · The Memory System</div><div class="index-grid">
@@ -108,13 +114,13 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <section class="page section" id="syllabus-map" style="--accent:var(--ink);--accent-soft:var(--line-soft);">
 <div class="section-head"><span class="tag">MAP</span><h1>Syllabus Map</h1></div>
 <p class="section-sub">Every line of the current Unit V syllabus (newSyllabus image), and where this guide covers it.</p>
-<div class="table-scroll"><table><thead><tr><th>Syllabus line (Unit V)</th><th>Covered topics</th><th>Section</th></tr></thead><tbody>
-<tr><td>Basic Processing Unit: <strong>Fundamental Concepts</strong></td><td>Fetch and execute phases, IR ← [[PC]], PC ← [PC] + 4, internal operations</td><td><a href="#fundamentals">§1</a></td></tr>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Syllabus line (Unit V)</th><th>Covered topics</th><th>Section</th></tr></thead><tbody>
+<tr><td>Basic Processing Unit: <strong>Fundamental Concepts</strong></td><td>Fetch and execute phases, <span class="eq">IR ← [[PC]]</span>, <span class="eq">PC ← [PC] + 4</span>, internal operations</td><td><a href="#fundamentals">§1</a></td></tr>
 <tr><td><strong>Instruction Execution</strong></td><td>Register transfers, ALU operation, memory read and write, complete instructions, branches</td><td><a href="#execution">§3</a>, <a href="#multibus">§4</a></td></tr>
 <tr><td><strong>Hardware Components</strong></td><td>Single-bus datapath, gating, MDR connections, ALU and MUX; three-bus datapath; textbook multi-stage datapath</td><td><a href="#hardware">§2</a>, <a href="#multibus">§4</a></td></tr>
 <tr><td><strong>Instruction Fetch and Execution Steps</strong></td><td>Control sequences (fetch, ADD, Move, branch), WMFC and memory timing</td><td><a href="#execution">§3</a></td></tr>
 <tr><td><strong>Control Signals</strong></td><td>Gating, ALU, memory and sequencing signals</td><td><a href="#hardwired">§5.1</a></td></tr>
-<tr><td><strong>Hardwired Control</strong></td><td>Step counter, step and instruction decoders, encoder, Zin and End logic</td><td><a href="#hardwired">§5</a></td></tr>
+<tr><td><strong>Hardwired Control</strong></td><td>Step counter, step and instruction decoders, encoder, Z<sub>in</sub> and End logic</td><td><a href="#hardwired">§5</a></td></tr>
 <tr><td><strong>Concept and advantages of Micro-programmed control</strong></td><td>Control word, microroutine, control store, µPC; advantages; comparison with hardwired</td><td><a href="#microprogrammed">§6</a></td></tr>
 <tr><td>The Memory System: <strong>Basic Concepts</strong></td><td>Address space, MAR/MDR, access and cycle time, latency and bandwidth</td><td><a href="#memory-basics">§7</a></td></tr>
 <tr><td><strong>Semiconductor RAM Memories</strong></td><td>Cell organisation, SRAM, DRAM, asynchronous DRAM, SDRAM, DDR; memory controller; building large memories</td><td><a href="#ram">§8</a>, <a href="#memory-design">§9</a></td></tr>
@@ -133,11 +139,18 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <li><strong>Not in your materials, added for syllabus completeness:</strong> interrupts (§14) and DMA (§15), the external-device overview, and the memory-controller and replacement-algorithm details. They follow the standard textbook (Hamacher, <em>Computer Organization and Embedded Systems</em>, the decks' reference) at the depth the syllabus wording suggests, and are labelled.</li>
 <li><strong>Added example:</strong> §12.2 traces one block-reference string through direct, 2-way and fully associative caches, because the slides give address-format examples only.</li>
 <li><strong>Source details corrected:</strong> the speed-up on deck 5b p.41 (4.34, not 4.33); pin counts on p.7 (some include power and ground); SEE 2023–24 Q9a's contradictory word size (both readings solved). Each is marked where used.</li>
-<li><strong>Verification.</strong> Every control sequence was executed on a simulated single-bus and three-bus datapath (<code>notes/u45_build/verify_u5.py</code>), the Zin and End equations and the microprogram control words were derived from those sequences by program, and every memory-design, cache-format and access-time number was computed there.</li>
+<li><strong>Verification.</strong> Every control sequence was executed on a simulated single-bus and three-bus datapath (<code>notes/u45_build/verify_u5.py</code>), the Z<sub>in</sub> and End equations and the microprogram control words were derived from those sequences by program, and every memory-design, cache-format and access-time number was computed there.</li>
 </ul></div>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 <section class="page section" id="fundamentals" style="--accent:var(--blue);--accent-soft:var(--blue-soft);"><div class="section-head"><span class="tag">1</span><h1>Fundamental Concepts</h1></div>
 <p class="section-sub">What the processing unit does with every instruction: fetch it, then execute it as a sequence of simple internal operations. <span class="pill">U5a deck pp.1–4, 6</span></p>
+<div class="callout key" id="u5-start"><span class="label">Start here · Reading Control Signals &amp; Memory Notation</span>
+<ul>
+<li><strong>Gating signals (<code>X<sub>out</sub></code> vs <code>X<sub>in</sub></code>):</strong> <code>out</code> copies register <code>X</code> <em>onto</em> the internal bus; <code>in</code> loads <em>from</em> the internal bus into <code>X</code>. For <code>MDR</code>, the extra <code>E</code> (<code>MDR<sub>inE</sub></code>, <code>MDR<sub>outE</sub></code>) means the <strong>E</strong>xternal memory bus.</li>
+<li><strong>Why <code>Y</code>, <code>Z</code>, <code>Select4</code>, <code>WMFC</code>, <code>End</code> exist:</strong> On a single bus only ONE number can travel per clock cycle, so <code>Y</code> holds the ALU's first input while the second travels on the bus, and <code>Z</code> catches the ALU output until the bus is free. <code>Select4</code> feeds constant 4 to compute <code>PC + 4</code>; <code>WMFC</code> pauses the step counter until memory asserts <code>MFC</code> ("done"); <code>End</code> resets the step counter to <code>T<sub>1</sub></code>.</li>
+<li><strong>Control step notation:</strong> Signals listed on the same step run simultaneously in one clock cycle.</li>
+<li><strong>Powers of 2 for Part 2:</strong> <span class="eq">2<sup>10</sup> = 1K</span>, <span class="eq">2<sup>20</sup> = 1M</span>, <span class="eq">2<sup>30</sup> = 1G</span> — so <span class="eq">512K = 2<sup>9</sup> × 2<sup>10</sup> = 2<sup>19</sup></span> and <span class="eq">128M = 2<sup>7</sup> × 2<sup>20</sup> = 2<sup>27</sup></span>.</li>
+</ul></div>
 <p>The processing unit executes machine-language instructions and coordinates the activities of the other units. To execute a program, the processor fetches one instruction at a time and performs the operation it specifies. Instructions are fetched from successive memory locations until a branch or jump is met. The <strong>program counter (PC)</strong> keeps track of the address of the next instruction to be fetched; after each fetch it is updated to point to the next instruction. The fetched instruction is placed in the <strong>instruction register (IR)</strong>, where the control circuitry interprets (decodes) it.</p>
 <p>Consider a 32-bit computer in which each instruction occupies one word, as in a RISC-style ISA, with byte-addressable memory. To execute an instruction the processor performs three steps:</p>
 <ol class="steps">
@@ -149,14 +162,14 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <li>Fetch the contents of a memory location and load them into a processor register.</li>
 <li>Perform an arithmetic or logic operation and place the result in a processor register.</li>
 <li>Store data from a processor register into a memory location.</li></ul>
-<p>The processor talks to memory through <strong>MAR</strong> (memory address register, k bits, so up to 2<sup>k</sup> addressable locations) and <strong>MDR</strong> (memory data register, n bits transferred per memory cycle), with control lines Read, Write and <strong>MFC</strong> (memory function completed). This processor–memory interface is drawn in Unit IV §2.3. The rest of Part 1 shows how these operations are performed by the hardware, each in one clock cycle, and how the control unit sequences them.</p>
+<p>The processor talks to memory through <strong>MAR</strong> (memory address register, <em>k</em> bits, so up to 2<sup><em>k</em></sup> addressable locations) and <strong>MDR</strong> (memory data register, <em>n</em> bits transferred per memory cycle), with control lines Read, Write and <strong>MFC</strong> (memory function completed). This processor–memory interface is drawn in Unit IV §2.3. The rest of Part 1 shows how these operations are performed by the hardware, each in one clock cycle, and how the control unit sequences them.</p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 
 <section class="page section" id="hardware" style="--accent:var(--blue);--accent-soft:var(--blue-soft);"><div class="section-head"><span class="tag">2</span><h1>Hardware Components</h1></div>
 <p class="section-sub">The single-bus datapath used in all the faculty's control sequences: its registers, ALU, multiplexer and the gating signals that connect them to the bus. <span class="pill">U5a deck pp.5, 7, 8</span></p>
 <nav class="topic-toc" aria-label="In this topic"><span>In this topic</span><a href="#u5-hw-single">2.1 Single-bus organisation</a><a href="#u5-hw-gating">2.2 Register gating</a><a href="#u5-hw-mdr">2.3 MDR connections</a><a href="#u5-hw-6e">2.4 The textbook's multi-stage datapath</a></nav>
 <h2 id="u5-hw-single">2.1 Single-bus organisation of the datapath</h2>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 720 460" width="720" role="img" aria-label="Single-bus datapath with PC, MAR, MDR, Y, MUX, ALU, Z, IR, registers and control">
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 720 460" width="720" role="img" aria-label="Single-bus datapath with PC, MAR, MDR, Y, MUX, ALU, Z, IR, registers and control">
 <defs><marker id="u5m1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5B6169"/></marker></defs>
 <rect x="370" y="24" width="14" height="420" rx="3" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.4"/>
 <text x="377" y="16" text-anchor="middle" font-size="11" font-weight="600" fill="#1D4E89">internal processor bus</text>
@@ -168,8 +181,8 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <rect x="238" y="392" width="100" height="30" rx="4" fill="#FFFFFF" stroke="#1D4E89"/><text x="288" y="412">Z</text>
 <rect x="420" y="30" width="170" height="60" rx="6" fill="#F6E9F0" stroke="#93316B"/>
 <rect x="430" y="120" width="100" height="30" rx="4" fill="#FFFFFF" stroke="#1D4E89"/><text x="480" y="140">IR</text>
-<rect x="430" y="180" width="100" height="30" rx="4" fill="#FFFFFF" stroke="#1D4E89"/><text x="480" y="200">R0</text>
-<rect x="430" y="250" width="100" height="30" rx="4" fill="#FFFFFF" stroke="#1D4E89"/><text x="480" y="270">R(n−1)</text>
+<rect x="430" y="180" width="100" height="30" rx="4" fill="#FFFFFF" stroke="#1D4E89"/><text x="480" y="199">R<tspan dy="3" font-size="9">0</tspan></text>
+<rect x="430" y="250" width="100" height="30" rx="4" fill="#FFFFFF" stroke="#1D4E89"/><text x="480" y="269">R<tspan dy="3" font-size="9">n−1</tspan></text>
 <rect x="430" y="310" width="100" height="30" rx="4" fill="#FFFFFF" stroke="#1D4E89"/><text x="480" y="330">TEMP</text>
 </g>
 <text x="505" y="56" text-anchor="middle" font-size="12" font-weight="600" fill="#1C1E21">Instruction decoder</text>
@@ -209,58 +222,58 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <ul>
 <li><strong>MAR</strong>: input from the internal bus, output to the address lines of the memory bus.</li>
 <li><strong>MDR</strong>: two inputs and two outputs. Data may be loaded from either the memory bus or the internal bus, and its contents may be placed on either bus.</li>
-<li><strong>R0 … R(n−1)</strong>: general-purpose registers for the programmer. <strong>Y, Z and TEMP</strong> are temporary registers used only by the processor during execution; the programmer cannot use them.</li>
+<li><strong>R<sub>0</sub> … R<sub>n−1</sub></strong>: general-purpose registers for the programmer. <strong>Y, Z and TEMP</strong> are temporary registers used only by the processor during execution; the programmer cannot use them.</li>
 <li><strong>MUX</strong>: selects either the output of Y or the <strong>constant 4</strong> as the ALU's A input (control signals <em>SelectY</em> / <em>Select4</em>). The constant 4 is used to increment the PC by 4. The B input comes from the bus.</li>
 <li><strong>ALU</strong>: its function is chosen by control lines (Add, Sub, XOR, …, carry-in). Its result goes to <strong>Z</strong>, which holds it until the bus is free.</li>
 <li><strong>Instruction decoder and control logic</strong>: interpret IR and generate the control signals that select the registers involved and direct the data transfers; the memory control lines connect here.</li></ul>
 <p>The registers, the ALU and the interconnecting bus are collectively called the <strong>datapath</strong>. Because there is one bus, <strong>only one data item can be transferred over it in a clock cycle</strong>; this is what forces the extra steps in the single-bus control sequences.</p>
 <h2 id="u5-hw-gating">2.2 Input and output gating of registers</h2>
-<p>For each register Ri there are two control signals: <strong>Ri<sub>in</sub></strong> loads the data on the bus into Ri, and <strong>Ri<sub>out</sub></strong> places the contents of Ri on the bus. The input and output of the register are connected to the bus through switches controlled by these signals (in practice, tri-state gates). When Ri<sub>in</sub> = 1 the data move from the bus into Ri; when Ri<sub>out</sub> = 1 they move from Ri onto the bus. Example: to copy R1 into R4, set <strong>R1<sub>out</sub> = 1</strong> and <strong>R4<sub>in</sub> = 1</strong> in the same clock cycle. Y, Z, PC, IR and TEMP are gated the same way (Y has only Y<sub>in</sub>, because Y feeds the MUX directly).</p>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 700 250" width="700" role="img" aria-label="Register gating switches and the four MDR control signals">
+<p>For each register R<sub>i</sub> there are two control signals: <strong>R<sub>i,in</sub></strong> loads the data on the bus into R<sub>i</sub>, and <strong>R<sub>i,out</sub></strong> places the contents of R<sub>i</sub> on the bus. The input and output of the register are connected to the bus through switches controlled by these signals (in practice, tri-state gates). When R<sub>i,in</sub> = 1 the data move from the bus into R<sub>i</sub>; when R<sub>i,out</sub> = 1 they move from R<sub>i</sub> onto the bus. Example: to copy R1 into R4, set <strong>R1<sub>out</sub> = 1</strong> and <strong>R4<sub>in</sub> = 1</strong> in the same clock cycle. Y, Z, PC, IR and TEMP are gated the same way (Y has only Y<sub>in</sub>, because Y feeds the MUX directly).</p>
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 700 250" width="700" role="img" aria-label="Register gating switches and the four MDR control signals">
 <defs><marker id="u5m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5B6169"/></marker></defs>
-<text x="170" y="20" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1C1E21">(a) Gating of register Ri</text>
+<text x="170" y="20" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1C1E21">(a) Gating of register R<tspan dy="3" font-size="9">i</tspan></text>
 <text x="530" y="20" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1C1E21">(b) Connections of MDR</text>
 <rect x="290" y="32" width="12" height="200" fill="#E8EFF8" stroke="#1D4E89"/><text x="296" y="246" text-anchor="middle" font-size="11" fill="#1D4E89">bus</text>
-<rect x="100" y="115" width="110" height="32" rx="4" fill="#FFFFFF" stroke="#1D4E89"/><text x="155" y="136" text-anchor="middle" font-size="13" font-weight="600" fill="#1C1E21">Ri</text>
+<rect x="100" y="115" width="110" height="32" rx="4" fill="#FFFFFF" stroke="#1D4E89"/><text x="155" y="135" text-anchor="middle" font-size="13" font-weight="600" fill="#1C1E21">R<tspan dy="3" font-size="9">i</tspan></text>
 <polyline points="290,80 252,80" fill="none" stroke="#5B6169" stroke-width="1.5"/>
 <rect x="228" y="68" width="24" height="24" fill="#E4F3F0" stroke="#12796F"/><text x="240" y="85" text-anchor="middle" font-size="13" fill="#12796F">×</text>
 <polyline points="228,80 155,80 155,112" fill="none" stroke="#5B6169" stroke-width="1.5" marker-end="url(#u5m2)"/>
-<text x="240" y="60" text-anchor="middle" font-size="11.5" fill="#12796F">Ri_in</text>
+<text x="240" y="59" text-anchor="middle" font-size="11.5" fill="#12796F">R<tspan dy="3" font-size="8.5">i,in</tspan></text>
 <polyline points="155,147 155,185 228,185" fill="none" stroke="#5B6169" stroke-width="1.5"/>
 <rect x="228" y="173" width="24" height="24" fill="#E4F3F0" stroke="#12796F"/><text x="240" y="190" text-anchor="middle" font-size="13" fill="#12796F">×</text>
 <line x1="252" y1="185" x2="288" y2="185" stroke="#5B6169" stroke-width="1.5" marker-end="url(#u5m2)"/>
-<text x="240" y="214" text-anchor="middle" font-size="11.5" fill="#12796F">Ri_out</text>
+<text x="240" y="213" text-anchor="middle" font-size="11.5" fill="#12796F">R<tspan dy="3" font-size="8.5">i,out</tspan></text>
 <rect x="392" y="32" width="12" height="200" fill="#EEECF7" stroke="#4C3F91"/><text x="398" y="246" text-anchor="middle" font-size="11" fill="#4C3F91">memory-bus data lines</text>
 <rect x="656" y="32" width="12" height="200" fill="#E8EFF8" stroke="#1D4E89"/><text x="662" y="246" text-anchor="middle" font-size="11" fill="#1D4E89">internal bus</text>
 <rect x="480" y="116" width="100" height="32" rx="4" fill="#EEECF7" stroke="#4C3F91"/><text x="530" y="137" text-anchor="middle" font-size="13" font-weight="600" fill="#1C1E21">MDR</text>
 <polyline points="500,116 500,74 456,74" fill="none" stroke="#5B6169" stroke-width="1.5"/>
 <rect x="432" y="62" width="24" height="24" fill="#E4F3F0" stroke="#12796F"/><text x="444" y="79" text-anchor="middle" font-size="13" fill="#12796F">×</text>
 <line x1="432" y1="74" x2="406" y2="74" stroke="#5B6169" stroke-width="1.5" marker-end="url(#u5m2)"/>
-<text x="444" y="54" text-anchor="middle" font-size="11.5" fill="#12796F">MDR_outE</text>
+<text x="444" y="53" text-anchor="middle" font-size="11.5" fill="#12796F">MDR<tspan dy="3" font-size="8.5">outE</tspan></text>
 <line x1="406" y1="190" x2="432" y2="190" stroke="#5B6169" stroke-width="1.5"/>
 <rect x="432" y="178" width="24" height="24" fill="#E4F3F0" stroke="#12796F"/><text x="444" y="195" text-anchor="middle" font-size="13" fill="#12796F">×</text>
 <polyline points="456,190 500,190 500,151" fill="none" stroke="#5B6169" stroke-width="1.5" marker-end="url(#u5m2)"/>
-<text x="444" y="220" text-anchor="middle" font-size="11.5" fill="#12796F">MDR_inE</text>
+<text x="444" y="219" text-anchor="middle" font-size="11.5" fill="#12796F">MDR<tspan dy="3" font-size="8.5">inE</tspan></text>
 <polyline points="560,116 560,74 604,74" fill="none" stroke="#5B6169" stroke-width="1.5"/>
 <rect x="604" y="62" width="24" height="24" fill="#E4F3F0" stroke="#12796F"/><text x="616" y="79" text-anchor="middle" font-size="13" fill="#12796F">×</text>
 <line x1="628" y1="74" x2="654" y2="74" stroke="#5B6169" stroke-width="1.5" marker-end="url(#u5m2)"/>
-<text x="616" y="54" text-anchor="middle" font-size="11.5" fill="#12796F">MDR_out</text>
+<text x="616" y="53" text-anchor="middle" font-size="11.5" fill="#12796F">MDR<tspan dy="3" font-size="8.5">out</tspan></text>
 <line x1="654" y1="190" x2="628" y2="190" stroke="#5B6169" stroke-width="1.5"/>
 <rect x="604" y="178" width="24" height="24" fill="#E4F3F0" stroke="#12796F"/><text x="616" y="195" text-anchor="middle" font-size="13" fill="#12796F">×</text>
 <polyline points="604,190 560,190 560,151" fill="none" stroke="#5B6169" stroke-width="1.5" marker-end="url(#u5m2)"/>
-<text x="616" y="220" text-anchor="middle" font-size="11.5" fill="#12796F">MDR_in</text>
-</svg></div><div class="cap">Fig 2. (a) Two switches connect a register to the bus: Ri_in loads it, Ri_out drives the bus. (b) MDR has four controls, two for each bus (deck pp.7–8).</div></div>
+<text x="616" y="219" text-anchor="middle" font-size="11.5" fill="#12796F">MDR<tspan dy="3" font-size="8.5">in</tspan></text>
+</svg></div><div class="cap">Fig 2. (a) Two switches connect a register to the bus: R<sub>i,in</sub> loads it, R<sub>i,out</sub> drives the bus. (b) MDR has four controls, two for each bus (deck pp.7–8).</div></div>
 <h2 id="u5-hw-mdr">2.3 MDR connections</h2>
 <p>MDR has four control signals: <strong>MDR<sub>in</sub></strong> and <strong>MDR<sub>out</sub></strong> control its connection to the internal bus, and <strong>MDR<sub>inE</sub></strong> and <strong>MDR<sub>outE</sub></strong> control its connection to the external memory bus. A memory read ends with MDR<sub>inE</sub> (data from memory into MDR) and then MDR<sub>out</sub> (MDR onto the internal bus); a memory write uses MDR<sub>in</sub> (from the internal bus) and then MDR<sub>outE</sub> (onto the memory data lines).</p>
 <h2 id="u5-hw-6e">2.4 The textbook's multi-stage datapath (for the syllabus heading)</h2>
 <div class="callout clarify"><span class="label">Not in your materials — added to explain the syllabus wording</span>The headings "Hardware Components" and "Instruction Fetch and Execution Steps" come from the newer edition of the reference book, which builds a RISC-style datapath instead of the single bus. Exam questions so far all use the single-bus and three-bus models of the slides; this summary lets you recognise the other model.</div>
 <p>In that model, the <strong>register file</strong> has two output ports and one input port, so two source registers can be read and one destination written in a cycle. Instruction processing is split into five steps, each with its own hardware, separated by <strong>inter-stage registers</strong> (RA, RB from the register file; RZ at the ALU output; RM holding store data; RY holding the value to write back). An <strong>instruction address generator</strong> containing the PC and an incrementer updates the PC, and IR feeds the control circuitry.</p>
-<div class="table-scroll"><table><thead><tr><th>Step</th><th>Action</th><th>Example: Add R3, R4, R5</th></tr></thead><tbody>
-<tr><td>1 Fetch</td><td>Fetch the instruction and increment the PC</td><td>IR ← [[PC]]; PC ← [PC] + 4</td></tr>
-<tr><td>2 Decode</td><td>Decode the instruction and read the source registers</td><td>RA ← [R4]; RB ← [R5]</td></tr>
-<tr><td>3 Compute</td><td>Perform the ALU operation</td><td>RZ ← [RA] + [RB]</td></tr>
-<tr><td>4 Memory</td><td>Access memory if needed (Load/Store), else pass on</td><td>RY ← [RZ]</td></tr>
-<tr><td>5 Write back</td><td>Write the result to the destination register</td><td>R3 ← [RY]</td></tr></tbody></table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Step</th><th>Action</th><th>Example: Add R3, R4, R5 <span class="order-badge">Dst ← Src</span></th></tr></thead><tbody>
+<tr><td>1 Fetch</td><td>Fetch the instruction and increment the PC</td><td><span class="eq">IR ← [[PC]]</span>; <span class="eq">PC ← [PC] + 4</span></td></tr>
+<tr><td>2 Decode</td><td>Decode the instruction and read the source registers</td><td><span class="eq">RA ← [R4]</span>; <span class="eq">RB ← [R5]</span></td></tr>
+<tr><td>3 Compute</td><td>Perform the ALU operation</td><td><span class="eq">RZ ← [RA] + [RB]</span></td></tr>
+<tr><td>4 Memory</td><td>Access memory if needed (Load/Store), else pass on</td><td><span class="eq">RY ← [RZ]</span></td></tr>
+<tr><td>5 Write back</td><td>Write the result to the destination register</td><td><span class="eq">R3 ← [RY]</span></td></tr></tbody></table></div>
 <p>Because each step uses different hardware, the steps of successive instructions can be overlapped: this is the pipeline of Unit IV §13.</p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 
@@ -268,21 +281,23 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <p class="section-sub">Control sequences on the single-bus datapath: register transfers, an ALU operation, reading and writing memory, complete instructions and branches. <span class="pill">U5a deck pp.9–15</span></p>
 <nav class="topic-toc" aria-label="In this topic"><span>In this topic</span><a href="#u5-ex-alu">3.1 An ALU operation</a><a href="#u5-ex-read">3.2 Fetching a word from memory</a><a href="#u5-ex-write">3.3 Storing a word</a><a href="#u5-ex-full">3.4 Complete instructions</a><a href="#u5-ex-branch">3.5 Branch instructions</a></nav>
 <p>A <strong>control sequence</strong> lists, for each clock cycle (control step), the control signals that are active. The signals named in a step are active for that whole clock cycle; all others are inactive. On a single bus only one item can be transferred per step.</p>
+<div class="callout"><span class="label">Why can't Add R1, R2, R3 happen in 1 step on a single bus?</span>
+<p>A single bus can carry only one operand at a time, so <code>R1</code> and <code>R2</code> cannot reach the ALU together and the sum cannot travel back while an input is on the bus. Instead, <code>R1</code> is parked in <code>Y</code> (step 1), <code>R2</code> rides the bus to the ALU while the sum is parked in <code>Z</code> (step 2), and <code>Z</code> rides the bus to <code>R3</code> (step 3).</p></div>
 <h2 id="u5-ex-alu">3.1 Performing an ALU operation: Add R1, R2, R3 (R1 + R2 → R3)</h2>
-<div class="table-scroll"><table><thead><tr><th>Step</th><th>Control signals</th><th>What happens</th></tr></thead><tbody>
-<tr><td>1</td><td><code>R1out, Yin</code></td><td>R1 is placed on the bus and loaded into Y.</td></tr>
-<tr><td>2</td><td><code>R2out, SelectY, Add, Zin</code></td><td>R2 goes to the ALU's B input; the MUX selects Y for A; the sum is loaded into Z.</td></tr>
-<tr><td>3</td><td><code>Zout, R3in</code></td><td>Z is placed on the bus and loaded into R3.</td></tr></tbody></table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Step</th><th>Control signals</th><th>What happens</th></tr></thead><tbody>
+<tr><td>1</td><td><code>R1<sub>out</sub>, Y<sub>in</sub></code></td><td>R1 is placed on the bus and loaded into Y.</td></tr>
+<tr><td>2</td><td><code>R2<sub>out</sub>, SelectY, Add, Z<sub>in</sub></code></td><td>R2 goes to the ALU's B input; the MUX selects Y for A; the sum is loaded into Z.</td></tr>
+<tr><td>3</td><td><code>Z<sub>out</sub>, R3<sub>in</sub></code></td><td>Z is placed on the bus and loaded into R3.</td></tr></tbody></table></div>
 <p>Step 3 cannot be merged into step 2: the bus already carries R2 in step 2, and only one data transfer can happen on the bus at a time.</p>
 <h2 id="u5-ex-read">3.2 Fetching a word from memory: Move (R1), R2</h2>
 <p>The processor places the address in MAR and issues Read. Memory access time varies, so the processor waits until memory asserts <strong>MFC</strong> (memory function completed). The control step that waits carries the signal <strong>WMFC</strong> (wait for MFC): the control unit stays in that step until MFC arrives. (Instruction already in IR.)</p>
-<div class="table-scroll"><table><thead><tr><th>Step</th><th>Control signals</th><th>What happens</th></tr></thead><tbody>
-<tr><td>1</td><td><code>R1out, MARin, Read</code></td><td>The address in R1 goes to MAR; a memory Read starts.</td></tr>
-<tr><td>2</td><td><code>MDRinE, WMFC</code></td><td>Wait for MFC; the word from memory is loaded into MDR.</td></tr>
-<tr><td>3</td><td><code>MDRout, R2in</code></td><td>MDR is copied to R2.</td></tr></tbody></table></div>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 470 290" width="470" role="img" aria-label="Timing of a memory read operation over three steps">
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Step</th><th>Control signals</th><th>What happens</th></tr></thead><tbody>
+<tr><td>1</td><td><code>R1<sub>out</sub>, MAR<sub>in</sub>, Read</code></td><td>The address in R1 goes to MAR; a memory Read starts.</td></tr>
+<tr><td>2</td><td><code>MDR<sub>inE</sub>, WMFC</code></td><td>Wait for MFC; the word from memory is loaded into MDR.</td></tr>
+<tr><td>3</td><td><code>MDR<sub>out</sub>, R2<sub>in</sub></code></td><td>MDR is copied to R2.</td></tr></tbody></table></div>
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 470 290" width="470" role="img" aria-label="Timing of a memory read operation over three steps">
 <g font-size="11.5" fill="#1C1E21" text-anchor="end">
-<text x="96" y="48">Clock</text><text x="96" y="86">MARin, Read</text><text x="96" y="122">MDRinE</text><text x="96" y="158">MFC</text><text x="96" y="194">Data</text><text x="96" y="230">MDRout</text></g>
+<text x="96" y="48">Clock</text><text x="96" y="85">MAR<tspan dy="3" font-size="8.5">in</tspan><tspan dy="-3">, Read</tspan></text><text x="96" y="121">MDR<tspan dy="3" font-size="8.5">inE</tspan></text><text x="96" y="158">MFC</text><text x="96" y="194">Data</text><text x="96" y="229">MDR<tspan dy="3" font-size="8.5">out</tspan></text></g>
 <g font-size="12" font-weight="600" fill="#1D4E89" text-anchor="middle"><text x="140" y="20">Step 1</text><text x="260" y="20">Step 2 (WMFC)</text><text x="380" y="20">Step 3</text></g>
 <g stroke="#E4E0D3" stroke-dasharray="4 3"><line x1="110" y1="26" x2="110" y2="250"/><line x1="170" y1="26" x2="170" y2="250"/><line x1="350" y1="26" x2="350" y2="250"/><line x1="410" y1="26" x2="410" y2="250"/></g>
 <polyline points="110,52 110,36 140,36 140,52 170,52 170,36 200,36 200,52 230,52 230,36 260,36 260,52 290,52 290,36 320,36 320,52 350,52 350,36 380,36 380,52 410,52" fill="none" stroke="#1D4E89" stroke-width="1.6"/>
@@ -295,41 +310,42 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <text x="260" y="272" text-anchor="middle" font-size="11.5" fill="#5B6169">Step 2 lasts until memory asserts MFC; the data are then latched into MDR.</text>
 </svg></div><div class="cap">Fig 3. Timing of a memory Read (Move (R1), R2), after the deck's p.10. Step 2 stretches over several clock cycles because of WMFC.</div></div>
 <h2 id="u5-ex-write">3.3 Storing a word in memory: Move R2, (R1)</h2>
-<div class="table-scroll"><table><thead><tr><th>Step</th><th>Control signals</th><th>What happens</th></tr></thead><tbody>
-<tr><td>1</td><td><code>R1out, MARin</code></td><td>The address in R1 goes to MAR (and to memory).</td></tr>
-<tr><td>2</td><td><code>R2out, MDRin, Write</code></td><td>The data in R2 are loaded into MDR; a Write command is issued.</td></tr>
-<tr><td>3</td><td><code>MDRoutE, WMFC</code></td><td>MDR drives the memory data lines; wait until memory signals that the write is done.</td></tr></tbody></table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Step</th><th>Control signals</th><th>What happens</th></tr></thead><tbody>
+<tr><td>1</td><td><code>R1<sub>out</sub>, MAR<sub>in</sub></code></td><td>The address in R1 goes to MAR (and to memory).</td></tr>
+<tr><td>2</td><td><code>R2<sub>out</sub>, MDR<sub>in</sub>, Write</code></td><td>The data in R2 are loaded into MDR; a Write command is issued.</td></tr>
+<tr><td>3</td><td><code>MDR<sub>outE</sub>, WMFC</code></td><td>MDR drives the memory data lines; wait until memory signals that the write is done.</td></tr></tbody></table></div>
 <h2 id="u5-ex-full">3.4 Executing a complete instruction</h2>
 <p>Every instruction begins with the same three fetch steps; step 1 also uses the otherwise idle ALU to compute PC + 4.</p>
-<div class="table-scroll"><table><thead><tr><th>Step</th><th>Add (R3), R1 &nbsp;(R1 ← [R1] + M[[R3]])</th><th>Add R2, R1 &nbsp;(R1 ← [R1] + [R2])</th></tr></thead><tbody>
-<tr><td>1</td><td colspan="2"><code>PCout, MARin, Read, Select4, Add, Zin</code> — PC to MAR, start the fetch, compute PC + 4 in Z</td></tr>
-<tr><td>2</td><td colspan="2"><code>Zout, PCin, Yin, WMFC</code> — updated PC into PC (and Y, for branches); wait for the instruction</td></tr>
-<tr><td>3</td><td colspan="2"><code>MDRout, IRin</code> — the instruction goes to IR</td></tr>
-<tr><td>4</td><td><code>R3out, MARin, Read</code> — operand address to MAR, start the read</td><td><code>R1out, Yin</code></td></tr>
-<tr><td>5</td><td><code>R1out, Yin, WMFC</code> — R1 into Y while waiting for memory (bus is free)</td><td><code>R2out, SelectY, Add, Zin</code></td></tr>
-<tr><td>6</td><td><code>MDRout, SelectY, Add, Zin</code> — memory operand + Y into Z</td><td><code>Zout, R1in, End</code></td></tr>
-<tr><td>7</td><td><code>Zout, R1in, End</code> — result into R1; start a new fetch</td><td>—</td></tr></tbody></table></div>
-<p>Steps 1–3 are the fetch phase; the rest is the execution phase. <strong>End</strong> resets the control step counter so the next fetch begins. In step 5 of Add (R3), R1, transferring R1 to Y during the memory wait uses an otherwise idle bus cycle and saves one step. (All sequences in this section were run on a simulated single-bus datapath: ADD R1,R2,R3 gives R3 = R1 + R2 in 6 steps; Add (R3),R1 in 7.)</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Step</th><th>Add (R3), R1 <span class="order-badge">Src → Dst</span><br><span class="eq">R1 ← [R1] + M[[R3]]</span></th><th>Add R2, R1 <span class="order-badge">Src → Dst</span><br><span class="eq">R1 ← [R1] + [R2]</span></th></tr></thead><tbody>
+<tr><td>1</td><td colspan="2"><code>PC<sub>out</sub>, MAR<sub>in</sub>, Read, Select4, Add, Z<sub>in</sub></code> — PC to MAR, start the fetch, compute PC + 4 in Z</td></tr>
+<tr><td>2</td><td colspan="2"><code>Z<sub>out</sub>, PC<sub>in</sub>, Y<sub>in</sub>, WMFC</code> — updated PC into PC (and Y, for branches); wait for the instruction</td></tr>
+<tr><td>3</td><td colspan="2"><code>MDR<sub>out</sub>, IR<sub>in</sub></code> — the instruction goes to IR</td></tr>
+<tr><td>4</td><td><code>R3<sub>out</sub>, MAR<sub>in</sub>, Read</code> — operand address to MAR, start the read</td><td><code>R1<sub>out</sub>, Y<sub>in</sub></code></td></tr>
+<tr><td>5</td><td><code>R1<sub>out</sub>, Y<sub>in</sub>, WMFC</code> — R1 into Y while waiting for memory (bus is free)</td><td><code>R2<sub>out</sub>, SelectY, Add, Z<sub>in</sub></code></td></tr>
+<tr><td>6</td><td><code>MDR<sub>out</sub>, SelectY, Add, Z<sub>in</sub></code> — memory operand + Y into Z</td><td><code>Z<sub>out</sub>, R1<sub>in</sub>, End</code></td></tr>
+<tr><td>7</td><td><code>Z<sub>out</sub>, R1<sub>in</sub>, End</code> — result into R1; start a new fetch</td><td>—</td></tr></tbody></table></div>
+<p>Steps 1–3 are the fetch phase; the rest is the execution phase. Step 2 loads <code>Y<sub>in</sub></code> alongside <code>PC<sub>in</sub></code> because every instruction shares steps 1–3 before decoding—saving <code>PC + 4</code> in <code>Y</code> costs zero extra cycles and guarantees <code>Y</code> is already loaded if step 4 turns out to be a branch. <strong>End</strong> resets the control step counter so the next fetch begins. In step 5 of Add (R3), R1, transferring R1 to Y during the memory wait uses an otherwise idle bus cycle and saves one step. (All sequences in this section were run on a simulated single-bus datapath: ADD R1,R2,R3 gives R3 = R1 + R2 in 6 steps; Add (R3),R1 in 7.)</p>
 <h2 id="u5-ex-branch">3.5 Branch instructions</h2>
 <p>A branch replaces the contents of the PC with the branch target address, usually obtained by adding an offset X, given in the instruction, to the PC. The offset is the difference between the target address and the address <em>immediately following</em> the branch, because the PC has already been incremented during the fetch (and step 2 also copied PC + 4 into Y).</p>
-<div class="grid2"><div><p><strong>Unconditional branch</strong></p><div class="formula-block asm">1. PCout, MARin, Read, Select4, Add, Zin
-2. Zout, PCin, Yin, WMFC
-3. MDRout, IRin
-4. Offset-field-of-IRout, Add, Zin  <span class="cm">; Y + offset</span>
-5. Zout, PCin, End                  <span class="cm">; new PC</span></div></div>
-<div><p><strong>Conditional branch: Branch &lt; 0</strong></p><div class="formula-block asm">1. PCout, MARin, Read, Select4, Add, Zin
-2. Zout, PCin, Yin, WMFC
-3. MDRout, IRin
-4. Offset-field-of-IRout, Add, Zin,
-   If N = 0 then End     <span class="cm">; not taken</span>
-5. Zout, PCin, End       <span class="cm">; taken</span></div></div></div>
-<p>Example (checked): a branch at 1000 with offset 40 gives PC = 1004 + 40 = <strong>1044</strong>. For Branch &lt; 0 with N = 0 the sequence ends at step 4 and the PC stays 1004.</p>
+<div class="grid2"><div><p><strong>Unconditional branch</strong></p><div class="formula-block">1. PC<sub>out</sub>, MAR<sub>in</sub>, Read, Select4, Add, Z<sub>in</sub>
+2. Z<sub>out</sub>, PC<sub>in</sub>, Y<sub>in</sub>, WMFC
+3. MDR<sub>out</sub>, IR<sub>in</sub>
+4. Offset-field-of-IR<sub>out</sub>, Add, Z<sub>in</sub>
+   <span class="cm">; Z ← [Y] + offset</span>
+5. Z<sub>out</sub>, PC<sub>in</sub>, End  <span class="cm">; new PC</span></div></div>
+<div><p><strong>Conditional branch: Branch &lt; 0</strong></p><div class="formula-block">1. PC<sub>out</sub>, MAR<sub>in</sub>, Read, Select4, Add, Z<sub>in</sub>
+2. Z<sub>out</sub>, PC<sub>in</sub>, Y<sub>in</sub>, WMFC
+3. MDR<sub>out</sub>, IR<sub>in</sub>
+4. Offset-field-of-IR<sub>out</sub>, Add, Z<sub>in</sub>,
+   If N = 0 then End  <span class="cm">; not taken</span>
+5. Z<sub>out</sub>, PC<sub>in</sub>, End  <span class="cm">; taken</span></div></div></div>
+<p>Example (checked): a branch at 1000 with offset 40 gives <span class="eq">PC = 1004 + 40 = 1044</span>. For <code>Branch &lt; 0</code> with <span class="eq">N = 0</span> the sequence ends at step 4 and the PC stays <span class="eq">1004</span>.</p>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 
 <section class="page section" id="multibus" style="--accent:var(--blue);--accent-soft:var(--blue-soft);"><div class="section-head"><span class="tag">4</span><h1>Multiple-Bus (Three-Bus) Organisation</h1></div>
 <p class="section-sub">Reading two registers and writing a third in one clock cycle; the control sequence and the comparison with a single bus. <span class="pill">U5a deck pp.16–17</span></p>
 <p>The single bus allows only one transfer per cycle, so even a register-to-register Add needs three execution steps and temporary registers Y and Z. A <strong>three-bus organisation</strong> connects the registers and the ALU through three buses: <strong>buses A and B</strong> carry source operands, <strong>bus C</strong> carries the result.</p>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 660 470" width="660" role="img" aria-label="Three-bus datapath with buses A, B and C">
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 660 470" width="660" role="img" aria-label="Three-bus datapath with buses A, B and C">
 <defs><marker id="u5m4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5B6169"/></marker></defs>
 <rect x="56" y="30" width="10" height="390" fill="#E8EFF8" stroke="#1D4E89"/><text x="61" y="22" text-anchor="middle" font-size="12" font-weight="600" fill="#1D4E89">Bus A</text>
 <rect x="106" y="30" width="10" height="390" fill="#EEECF7" stroke="#4C3F91"/><text x="111" y="22" text-anchor="middle" font-size="12" font-weight="600" fill="#4C3F91">Bus B</text>
@@ -376,14 +392,14 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <li>An <strong>incrementer unit</strong> increments the PC by 4, so the ALU is not needed for that.</li>
 <li>The ALU can simply pass one of its two inputs unmodified to bus C: control signals <strong>R = A</strong> or <strong>R = B</strong>.</li>
 <li>No temporary registers (Y, Z) are needed for arithmetic.</li></ul>
-<div class="card"><h3 style="margin-top:0">Control sequence for Add R4, R5, R6 (R4 + R5 → R6) on three buses</h3>
-<div class="table-scroll"><table><thead><tr><th>Step</th><th>Action</th><th>What happens</th></tr></thead><tbody>
-<tr><td>1</td><td><code>PCout, R=B, MARin, Read, IncPC</code></td><td>PC on bus B, passed through the ALU to bus C and MAR; start the fetch; PC + 4 by the incrementer.</td></tr>
+<div class="card"><h3 style="margin-top:0">Control sequence for Add R4, R5, R6 (<span class="eq">R4 + R5 → R6</span>) on three buses <span class="order-badge">Src → Dst</span></h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Step</th><th>Action</th><th>What happens</th></tr></thead><tbody>
+<tr><td>1</td><td><code>PC<sub>out</sub>, R=B, MAR<sub>in</sub>, Read, IncPC</code></td><td>PC on bus B, passed through the ALU to bus C and MAR; start the fetch; PC + 4 by the incrementer.</td></tr>
 <tr><td>2</td><td><code>WMFC</code></td><td>Wait for the instruction.</td></tr>
-<tr><td>3</td><td><code>MDRoutB, R=B, IRin</code></td><td>Instruction from MDR, via bus B and the ALU, into IR.</td></tr>
-<tr><td>4</td><td><code>R4outA, R5outB, SelectA, Add, R6in, End</code></td><td>Both operands read and the sum written in one step.</td></tr></tbody></table></div>
+<tr><td>3</td><td><code>MDR<sub>outB</sub>, R=B, IR<sub>in</sub></code></td><td>Instruction from MDR, via bus B and the ALU, into IR.</td></tr>
+<tr><td>4</td><td><code>R4<sub>outA</sub>, R5<sub>outB</sub>, SelectA, Add, R6<sub>in</sub>, End</code></td><td>Both operands read and the sum written in one step.</td></tr></tbody></table></div>
 <p style="margin-bottom:0">The execution phase takes <strong>one</strong> step instead of three. (Simulated: R6 = R4 + R5, PC + 4, 4 steps.)</p></div>
-<div class="table-scroll"><table><thead><tr><th>Single-bus</th><th>Three-bus</th></tr></thead><tbody>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Single-bus</th><th>Three-bus</th></tr></thead><tbody>
 <tr><td>One transfer per clock cycle</td><td>Two operands out and one result in, per cycle</td></tr>
 <tr><td>Needs temporary registers Y, Z</td><td>No temporaries for ALU operations</td></tr>
 <tr><td>ALU computes PC + 4</td><td>Separate incrementer for the PC</td></tr>
@@ -397,7 +413,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <h2 id="u5-hc-signals">5.1 Control signals</h2>
 <p>To execute instructions, the processor must generate the control signals of §3 in the proper sequence. They fall into groups: <strong>gating signals</strong> (R<sub>in</sub>, R<sub>out</sub>, MDR<sub>inE</sub> …) that route data, <strong>ALU function and MUX select</strong> signals (Add, Sub, Select4/SelectY), <strong>memory control</strong> signals (Read, Write, and WMFC to wait for MFC), and <strong>sequencing</strong> signals such as End. There are two ways to generate them: <strong>hardwired control</strong> and <strong>micro-programmed control</strong>. A hardwired system can operate at high speed, but with little flexibility.</p>
 <h2 id="u5-hc-block">5.2 Hardwired control unit</h2>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 690 330" width="690" role="img" aria-label="Hardwired control unit block diagram">
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 690 330" width="690" role="img" aria-label="Hardwired control unit block diagram">
 <defs><marker id="u5m5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5B6169"/></marker></defs>
 <g font-size="12.5" font-weight="600" fill="#1C1E21" text-anchor="middle">
 <rect x="200" y="30" width="80" height="32" rx="4" fill="#FFFFFF" stroke="#5B6169"/><text x="240" y="51">Clock</text>
@@ -412,15 +428,15 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <line x1="280" y1="46" x2="328" y2="46" stroke="#5B6169" stroke-width="1.6" marker-end="url(#u5m5)"/>
 <line x1="425" y1="62" x2="425" y2="90" stroke="#5B6169" stroke-width="1.6" marker-end="url(#u5m5)"/>
 <g stroke="#1D4E89" stroke-width="1.5"><line x1="360" y1="124" x2="360" y2="168" marker-end="url(#u5m5)"/><line x1="395" y1="124" x2="395" y2="168" marker-end="url(#u5m5)"/><line x1="490" y1="124" x2="490" y2="168" marker-end="url(#u5m5)"/></g>
-<text x="368" y="150" font-size="11" fill="#1D4E89">T1</text><text x="403" y="150" font-size="11" fill="#1D4E89">T2</text><text x="440" y="150" font-size="12" fill="#1D4E89">…</text><text x="498" y="150" font-size="11" fill="#1D4E89">Tn</text>
+<text x="368" y="149" font-size="11" fill="#1D4E89">T<tspan dy="3" font-size="8.5">1</tspan></text><text x="403" y="149" font-size="11" fill="#1D4E89">T<tspan dy="3" font-size="8.5">2</tspan></text><text x="440" y="150" font-size="12" fill="#1D4E89">…</text><text x="498" y="149" font-size="11" fill="#1D4E89">T<tspan dy="3" font-size="8.5">n</tspan></text>
 <line x1="90" y1="205" x2="128" y2="205" stroke="#5B6169" stroke-width="1.6" marker-end="url(#u5m5)"/>
 <g stroke="#4C3F91" stroke-width="1.5"><line x1="270" y1="182" x2="328" y2="182" marker-end="url(#u5m5)"/><line x1="270" y1="200" x2="328" y2="200" marker-end="url(#u5m5)"/><line x1="270" y1="228" x2="328" y2="228" marker-end="url(#u5m5)"/></g>
-<text x="290" y="178" font-size="10.5" fill="#4C3F91">INS1</text><text x="290" y="196" font-size="10.5" fill="#4C3F91">INS2</text><text x="290" y="224" font-size="10.5" fill="#4C3F91">INSm</text>
+<text x="290" y="177" font-size="10.5" fill="#4C3F91">INS<tspan dy="3" font-size="8">1</tspan></text><text x="290" y="195" font-size="10.5" fill="#4C3F91">INS<tspan dy="3" font-size="8">2</tspan></text><text x="290" y="223" font-size="10.5" fill="#4C3F91">INS<tspan dy="3" font-size="8">m</tspan></text>
 <line x1="568" y1="176" x2="522" y2="190" stroke="#5B6169" stroke-width="1.5" marker-end="url(#u5m5)"/>
 <line x1="568" y1="228" x2="522" y2="220" stroke="#5B6169" stroke-width="1.5" marker-end="url(#u5m5)"/>
 <g stroke="#93316B" stroke-width="1.5"><line x1="360" y1="240" x2="360" y2="282" marker-end="url(#u5m5)"/><line x1="395" y1="240" x2="395" y2="282" marker-end="url(#u5m5)"/><line x1="455" y1="240" x2="455" y2="282" marker-end="url(#u5m5)"/></g>
 <text x="425" y="270" text-anchor="middle" font-size="12" fill="#93316B">…</text>
-<text x="410" y="304" text-anchor="middle" font-size="12" font-weight="600" fill="#93316B">control signals (Zin, Yin, PCout, …)</text>
+<text x="410" y="303" text-anchor="middle" font-size="12" font-weight="600" fill="#93316B">control signals (Z<tspan dy="3" font-size="8.5">in</tspan><tspan dy="-3">, Y</tspan><tspan dy="3" font-size="8.5">in</tspan><tspan dy="-3">, PC</tspan><tspan dy="3" font-size="8.5">out</tspan><tspan dy="-3">, …)</tspan></text>
 <polyline points="500,240 500,256 545,256 545,14 425,14 425,28" fill="none" stroke="#A66A0D" stroke-width="1.5" marker-end="url(#u5m5)"/>
 <text x="552" y="110" font-size="11" fill="#A66A0D">End</text><text x="552" y="124" font-size="11" fill="#A66A0D">(reset)</text>
 <text x="200" y="262" text-anchor="middle" font-size="11" fill="#5B6169">one line per instruction</text>
@@ -429,20 +445,21 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <p>Each instruction is a sequence of control steps, and each step is completed in one clock cycle. The hardware has these parts:</p>
 <ul>
 <li><strong>Control step counter</strong>, driven by the clock: keeps track of the step. Each count corresponds to one control step.</li>
-<li><strong>Step decoder</strong>: gives a separate signal line T1, T2, …, Tn for each step; exactly one is active at a time.</li>
-<li><strong>Instruction decoder</strong>: decodes the opcode in IR into a separate line INS1 … INSm for each instruction; exactly one is active.</li>
+<li><strong>Step decoder</strong>: gives a separate signal line T<sub>1</sub>, T<sub>2</sub>, …, T<sub>n</sub> for each step; exactly one is active at a time.</li>
+<li><strong>Instruction decoder</strong>: decodes the opcode in IR into a separate line INS<sub>1</sub> … INS<sub>m</sub> for each instruction; exactly one is active.</li>
 <li><strong>Encoder</strong>: a combinational circuit that combines the step lines, the instruction lines, the <strong>external inputs</strong> (MFC, interrupt requests) and the <strong>condition codes</strong> (N, Z, …) to generate each individual control signal.</li>
-<li><strong>Run / End</strong>: WMFC holds the counter (Run = 0) until MFC arrives; End resets the counter to T1 so the next instruction is fetched.</li></ul>
+<li><strong>Run / End</strong>: WMFC holds the counter (Run = 0) until MFC arrives; End resets the counter to T<sub>1</sub> so the next instruction is fetched.</li></ul>
 <h2 id="u5-hc-logic">5.3 Generating individual signals</h2>
 <p>Each control signal is the OR of every (step AND instruction) combination in which it appears. From the sequences of §3 (Add (R3),R1 and the unconditional branch BR):</p>
-<div class="formula-block">Z<sub>in</sub> = <span class="c2">T1 + T6·ADD + T4·BR + …</span>
-End = <span class="c2">T7·ADD + T5·BR + (T5·N + T4·N̄)·BRN + …</span>     <span class="cm">BRN = Branch&lt;0</span></div>
-<p>Z<sub>in</sub> is asserted in T1 for all instructions (the PC + 4 calculation), in T6 for an Add, and in T4 for a branch. End is asserted in T7 for Add, T5 for an unconditional branch, and for Branch &lt; 0 in T5 if N = 1 or in T4 if N = 0. (These terms were extracted by program from the control-sequence tables.)</p>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 660 230" width="660" role="img" aria-label="AND-OR logic for Zin and End">
+<div class="callout"><span class="label">How to write any control-signal equation</span>Scan the control-step tables for every <code>(step · instruction)</code> where that signal is 1, and OR them together.</div>
+<div class="formula-block">Z<sub>in</sub> = <span class="c2">T<sub>1</sub> + T<sub>6</sub>·ADD + T<sub>4</sub>·BR + …</span>
+End = <span class="c2">T<sub>7</sub>·ADD + T<sub>5</sub>·BR + (T<sub>5</sub>·N + T<sub>4</sub>·N̄)·BRN + …</span>  <span class="cm">BRN = Branch&lt;0</span></div>
+<p>Z<sub>in</sub> is asserted in T<sub>1</sub> for all instructions (the PC + 4 calculation), in T<sub>6</sub> for an Add, and in T<sub>4</sub> for a branch. End is asserted in T<sub>7</sub> for Add, T<sub>5</sub> for an unconditional branch, and for Branch &lt; 0 in T<sub>5</sub> if N = 1 or in T<sub>4</sub> if N = 0 (i.e. N̄ = 1). (These terms were extracted by program from the control-sequence tables.)</p>
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 660 230" width="660" role="img" aria-label="AND-OR logic for Zin and End">
 <g font-size="11.5" fill="#1C1E21">
-<text x="20" y="40">T1</text>
-<text x="20" y="80">T6</text><text x="20" y="98">ADD</text>
-<text x="20" y="138">T4</text><text x="20" y="156">BR</text>
+<text x="20" y="39">T<tspan dy="3" font-size="8.5">1</tspan></text>
+<text x="20" y="79">T<tspan dy="3" font-size="8.5">6</tspan></text><text x="20" y="98">ADD</text>
+<text x="20" y="137">T<tspan dy="3" font-size="8.5">4</tspan></text><text x="20" y="156">BR</text>
 </g>
 <line x1="44" y1="36" x2="160" y2="36" stroke="#5B6169" stroke-width="1.4"/>
 <path d="M90,70 h18 a16,16 0 0 1 0,32 h-18 z" fill="#E8EFF8" stroke="#1D4E89"/>
@@ -454,16 +471,16 @@ End = <span class="c2">T7·ADD + T5·BR + (T5·N + T4·N̄)·BRN + …</span>   
 <polyline points="160,36 160,76 166,76" fill="none" stroke="#5B6169" stroke-width="1.4"/>
 <path d="M160,64 Q176,92 160,120 Q196,120 214,92 Q196,64 160,64 z" fill="#F6E9F0" stroke="#93316B"/>
 <line x1="214" y1="92" x2="250" y2="92" stroke="#93316B" stroke-width="1.6"/>
-<text x="256" y="96" font-size="13" font-weight="600" fill="#93316B">Zin</text>
+<text x="256" y="95" font-size="13" font-weight="600" fill="#93316B">Z<tspan dy="3" font-size="9">in</tspan></text>
 <g font-size="11.5" fill="#1C1E21">
-<text x="340" y="30">T7</text><text x="340" y="46">ADD</text>
-<text x="340" y="78">T5</text><text x="340" y="94">BR</text>
-<text x="340" y="124">T5, N</text><text x="340" y="140">BRN</text>
-<text x="340" y="172">T4, N̄</text><text x="340" y="188">BRN</text>
+<text x="340" y="29">T<tspan dy="3" font-size="8.5">7</tspan></text><text x="340" y="46">ADD</text>
+<text x="340" y="77">T<tspan dy="3" font-size="8.5">5</tspan></text><text x="340" y="94">BR</text>
+<text x="340" y="123">T<tspan dy="3" font-size="8.5">5</tspan><tspan dy="-3">, N</tspan></text><text x="340" y="140">BRN</text>
+<text x="340" y="171">T<tspan dy="3" font-size="8.5">4</tspan><tspan dy="-3">, N̄</tspan></text><text x="340" y="188">BRN</text>
 </g>
 <g fill="#E8EFF8" stroke="#1D4E89">
-<path d="M410,22 h18 a14,14 0 0 1 0,28 h-18 z"/><path d="M410,70 h18 a14,14 0 0 1 0,28 h-18 z"/>
-<path d="M410,116 h18 a14,14 0 0 1 0,28 h-18 z"/><path d="M410,164 h18 a14,14 0 0 1 0,28 h-18 z"/></g>
+<path d="M410,22 h18 a14,14 0 0 1 0,28 h-18 z" fill="#E8EFF8"/><path d="M410,70 h18 a14,14 0 0 1 0,28 h-18 z" fill="#E8EFF8"/>
+<path d="M410,116 h18 a14,14 0 0 1 0,28 h-18 z" fill="#E8EFF8"/><path d="M410,164 h18 a14,14 0 0 1 0,28 h-18 z" fill="#E8EFF8"/></g>
 <g stroke="#5B6169" stroke-width="1.3">
 <line x1="380" y1="28" x2="410" y2="28"/><line x1="380" y1="44" x2="410" y2="44"/><line x1="380" y1="76" x2="410" y2="76"/><line x1="380" y1="92" x2="410" y2="92"/>
 <line x1="386" y1="122" x2="410" y2="122"/><line x1="380" y1="138" x2="410" y2="138"/><line x1="386" y1="170" x2="410" y2="170"/><line x1="380" y1="186" x2="410" y2="186"/></g>
@@ -473,7 +490,7 @@ End = <span class="c2">T7·ADD + T5·BR + (T5·N + T4·N̄)·BRN + …</span>   
 <line x1="546" y1="106" x2="580" y2="106" stroke="#93316B" stroke-width="1.6"/>
 <text x="586" y="110" font-size="13" font-weight="600" fill="#93316B">End</text>
 <text x="330" y="218" text-anchor="middle" font-size="11.5" fill="#5B6169">Each signal: OR of AND terms (step · instruction · condition); more terms are added for every other instruction.</text>
-</svg></div><div class="cap">Fig 6. Generating Zin and End in the encoder (after Hamacher): AND gates for each step/instruction pair, one OR gate per control signal.</div></div>
+</svg></div><div class="cap">Fig 6. Generating Z<sub>in</sub> and End in the encoder (after Hamacher): AND gates for each step/instruction pair, one OR gate per control signal.</div></div>
 <div class="grid2"><div class="card"><h3 style="margin-top:0">Advantages</h3><ul style="margin-bottom:0"><li>Fast: signals come straight from gates.</li><li>Suits simple (RISC) instruction sets.</li><li>Efficient in hardware for a small set.</li></ul></div>
 <div class="card"><h3 style="margin-top:0">Disadvantages</h3><ul style="margin-bottom:0"><li>Inflexible: changing or adding an instruction means redesigning the logic.</li><li>Complex and error-prone for large instruction sets.</li><li>Hard to debug.</li></ul></div></div>
 <p>The six-mark answer to "explain the design and operation of a hardwired control unit" (2025–26 B2b) is in the <a href="#u5-solved">Solved problems</a>.</p>
@@ -483,16 +500,16 @@ End = <span class="c2">T7·ADD + T5·BR + (T5·N + T4·N̄)·BRN + …</span>   
 <p class="section-sub">Control signals generated by a stored program of control words, the parts of a micro-programmed control unit, and how it compares with hardwired control. <span class="pill">U5a deck p.20</span></p>
 <p>In micro-programmed control the control signals are generated by a <strong>program</strong>, similar to a machine-language program. A <strong>control word (CW)</strong> is a word whose individual bits represent the various control signals. Each control step of an instruction's control sequence defines a unique combination of 1s and 0s in the CW. The sequence of CWs for one machine instruction is its <strong>microroutine</strong>, and the individual control words in it are <strong>microinstructions</strong>. The microroutines for all instructions are stored in a special memory, the <strong>control store</strong>. To read the control words in sequence, a <strong>micro-program counter (µPC)</strong> is used.</p>
 <div class="card"><h3 style="margin-top:0">Example: the microroutine for Add (R3), R1</h3>
-<div class="table-scroll"><table class="tt"><thead><tr><th>µ-instr.</th><th>PC<sub>in</sub></th><th>PC<sub>out</sub></th><th>MAR<sub>in</sub></th><th>Read</th><th>MDR<sub>out</sub></th><th>IR<sub>in</sub></th><th>Y<sub>in</sub></th><th>Select4</th><th>Add</th><th>Z<sub>in</sub></th><th>Z<sub>out</sub></th><th>R1<sub>out</sub></th><th>R1<sub>in</sub></th><th>R3<sub>out</sub></th><th>WMFC</th><th>End</th></tr></thead><tbody>
-<tr><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-<tr><td>2</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
-<tr><td>3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-<tr><td>4</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
-<tr><td>5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
-<tr><td>6</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-<tr><td>7</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr></tbody></table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table class="tt"><thead><tr><th>µ-instr.</th><th>PC<sub>in</sub></th><th>PC<sub>out</sub></th><th>MAR<sub>in</sub></th><th>Read</th><th>MDR<sub>out</sub></th><th>IR<sub>in</sub></th><th>Y<sub>in</sub></th><th>Select4</th><th>Add</th><th>Z<sub>in</sub></th><th>Z<sub>out</sub></th><th>R1<sub>out</sub></th><th>R1<sub>in</sub></th><th>R3<sub>out</sub></th><th>WMFC</th><th>End</th></tr></thead><tbody>
+<tr><td>1</td><td>0</td><td class="hi">1</td><td class="hi">1</td><td class="hi">1</td><td>0</td><td>0</td><td>0</td><td class="hi">1</td><td class="hi">1</td><td class="hi">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>2</td><td class="hi">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="hi">1</td><td>0</td><td>0</td><td>0</td><td class="hi">1</td><td>0</td><td>0</td><td>0</td><td class="hi">1</td><td>0</td></tr>
+<tr><td>3</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="hi">1</td><td class="hi">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>4</td><td>0</td><td>0</td><td class="hi">1</td><td class="hi">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="hi">1</td><td>0</td><td>0</td></tr>
+<tr><td>5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="hi">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="hi">1</td><td>0</td><td>0</td><td class="hi">1</td><td>0</td></tr>
+<tr><td>6</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="hi">1</td><td>0</td><td>0</td><td>0</td><td class="hi">1</td><td class="hi">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>7</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="hi">1</td><td>0</td><td class="hi">1</td><td>0</td><td>0</td><td class="hi">1</td></tr></tbody></table></div>
 <p style="margin-bottom:0">Each row is one control word, read straight from the 7-step sequence in §3.4 (generated by program). Select4 = 0 means SelectY. A real control word has one bit for every signal of the processor.</p></div>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 620 320" width="620" role="img" aria-label="Micro-programmed control unit block diagram">
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 620 320" width="620" role="img" aria-label="Micro-programmed control unit block diagram">
 <defs><marker id="u5m7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5B6169"/></marker></defs>
 <g font-size="12.5" font-weight="600" fill="#1C1E21" text-anchor="middle">
 <rect x="30" y="60" width="70" height="60" rx="4" fill="#FFFFFF" stroke="#5B6169"/><text x="65" y="95">IR</text>
@@ -521,7 +538,7 @@ End = <span class="c2">T7·ADD + T5·BR + (T5·N + T4·N̄)·BRN + …</span>   
 <li><strong>Easier debugging and maintenance</strong>; the same hardware can emulate other instruction sets.</li>
 <li><strong>Lower design cost and time</strong> for complex processors.</li></ul></div>
 <p>The price is <strong>speed</strong>: every step needs a read from the control store, so it is slower than hardwired control. Microinstructions in which each bit is one control signal (as in the table) are <em>horizontal</em> (wide, fast, much parallelism); <em>vertical</em> microinstructions encode groups of signals in fewer bits and decode them, saving control-store space at the cost of speed.</p>
-<div class="table-scroll"><table><thead><tr><th>Feature</th><th>Hardwired control</th><th>Micro-programmed control</th></tr></thead><tbody>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Feature</th><th>Hardwired control</th><th>Micro-programmed control</th></tr></thead><tbody>
 <tr><td>Signal generation</td><td>Combinational logic (encoder) from step counter and decoders</td><td>Control words read from a control store</td></tr>
 <tr><td>Speed</td><td>Fast</td><td>Slower (one control-store access per step)</td></tr>
 <tr><td>Flexibility</td><td>Changes need redesign</td><td>Change the microprogram</td></tr>
@@ -531,7 +548,7 @@ End = <span class="c2">T7·ADD + T5·BR + (T5·N + T4·N̄)·BRN + …</span>   
 <section class="page section" id="memory-basics" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);"><div class="section-head"><span class="tag">7</span><h1>The Memory System: Basic Concepts and the Memory Hierarchy</h1></div>
 <p class="section-sub">Address space, the processor–memory connection, speed measures, and why memory is built as a hierarchy. <span class="pill">U5b deck pp.2–5, 16</span></p>
 <h2 id="u5-mb-concepts">7.1 Basic concepts</h2>
-<p>The maximum size of the memory that can be used in a computer is set by its addressing scheme. A machine that generates 16-bit addresses can address 2<sup>16</sup> = 64K locations; 32-bit addresses reach 2<sup>32</sup> = 4G locations; 64-bit addresses reach 2<sup>64</sup> = 16E (≈ 16 × 10<sup>18</sup>). The number of locations is the <strong>address space</strong>. Data move between the processor and main memory through <strong>MAR</strong> and <strong>MDR</strong>: a k-bit MAR addresses 2<sup>k</sup> locations, and an n-bit MDR transfers n bits per memory cycle. The connection carries address, data and control lines (Read, Write, MFC), as in Unit IV §2.3.</p>
+<p>The maximum size of the memory that can be used in a computer is set by its addressing scheme. A machine that generates 16-bit addresses can address 2<sup>16</sup> = 64K locations; 32-bit addresses reach 2<sup>32</sup> = 4G locations; 64-bit addresses reach 2<sup>64</sup> = 16E (≈ 16 × 10<sup>18</sup>). The number of locations is the <strong>address space</strong>. Data move between the processor and main memory through <strong>MAR</strong> and <strong>MDR</strong>: a <em>k</em>-bit MAR addresses 2<sup><em>k</em></sup> locations, and an <em>n</em>-bit MDR transfers <em>n</em> bits per memory cycle. The connection carries address, data and control lines (Read, Write, MFC), as in Unit IV §2.3.</p>
 <p>A design goal is a memory that is as large and as fast as possible within a given cost. Two techniques help: <strong>cache memory</strong> increases the effective <em>speed</em>, and <strong>virtual memory</strong> increases the effective <em>size</em>. Main memory is semiconductor memory: <strong>RAM</strong> (random-access, read/write, volatile) for user programs and data, and <strong>ROM</strong> (non-volatile) for permanent information.</p>
 <h2 id="u5-mb-speed">7.2 Measures of memory speed</h2>
 <ul>
@@ -540,7 +557,7 @@ End = <span class="c2">T7·ADD + T5·BR + (T5·N + T4·N̄)·BRN + …</span>   
 <li><strong>Latency:</strong> the time to transfer one word of data to or from memory. <strong>Bandwidth:</strong> the number of bits or bytes that can be transferred in one second, which shows how long a whole block takes. Bandwidth depends on both the rate of transfer and the width of the data bus.</li></ul>
 <h2 id="u5-mb-hier">7.3 Memory hierarchy</h2>
 <p>An ideal memory would be fast, large and cheap, but fast memory costs more per bit. So a computer uses several kinds of memory, organised as a <strong>hierarchy</strong>: small, fast, expensive memory close to the processor, and large, slow, cheap memory further away. Data are moved between levels in blocks, and the hierarchy works because of <strong>locality of reference</strong> (§11).</p>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 660 320" width="660" role="img" aria-label="Memory hierarchy pyramid">
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 660 320" width="660" role="img" aria-label="Memory hierarchy pyramid">
 <defs><marker id="u5m8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5B6169"/></marker></defs>
 <polygon points="330,20 380,70 280,70" fill="#F6E9F0" stroke="#93316B"/>
 <polygon points="280,74 380,74 426,120 234,120" fill="#EEECF7" stroke="#4C3F91"/>
@@ -566,43 +583,97 @@ End = <span class="c2">T7·ADD + T5·BR + (T5·N + T4·N̄)·BRN + …</span>   
 <nav class="topic-toc" aria-label="In this topic"><span>In this topic</span><a href="#u5-ram-org">8.1 Organisation of a memory chip</a><a href="#u5-ram-sram">8.2 Static RAM</a><a href="#u5-ram-dram">8.3 Dynamic RAM</a><a href="#u5-ram-sdram">8.4 SDRAM and DDR</a></nav>
 <h2 id="u5-ram-org">8.1 Internal organisation of a memory chip</h2>
 <p>Memory cells, each storing one bit, are organised as an <strong>array</strong>. Each row of cells is one memory word, and all cells of a row connect to a common <strong>word line</strong> driven by the chip's <strong>address decoder</strong>. The cells of each column connect by two <strong>bit lines</strong> to a <strong>Sense/Write circuit</strong>, which connects to the chip's data input/output lines. In a Read, the Sense/Write circuits sense the cells of the selected word and place the bits on the output lines; in a Write, they receive the input data and store them in the selected word's cells.</p>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 640 330" width="640" role="img" aria-label="Organisation of a 16 by 8 memory chip">
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 640 330" width="640" role="img" aria-label="Organisation of a 16 by 8 memory chip">
 <defs><marker id="u5m9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5B6169"/></marker></defs>
 <rect x="90" y="40" width="80" height="170" rx="4" fill="#EEECF7" stroke="#4C3F91"/>
 <text x="130" y="120" text-anchor="middle" font-size="12" font-weight="600" fill="#1C1E21">Address</text><text x="130" y="136" text-anchor="middle" font-size="12" font-weight="600" fill="#1C1E21">decoder</text>
-<g font-size="11.5" fill="#1C1E21"><text x="30" y="84">A0</text><text x="30" y="110">A1</text><text x="30" y="136">A2</text><text x="30" y="162">A3</text></g>
+<g font-size="11.5" fill="#1C1E21"><text x="30" y="84">A<tspan dy="3" font-size="8.5">0</tspan></text><text x="30" y="110">A<tspan dy="3" font-size="8.5">1</tspan></text><text x="30" y="136">A<tspan dy="3" font-size="8.5">2</tspan></text><text x="30" y="162">A<tspan dy="3" font-size="8.5">3</tspan></text></g>
 <g stroke="#5B6169" stroke-width="1.3"><line x1="50" y1="80" x2="88" y2="80"/><line x1="50" y1="106" x2="88" y2="106"/><line x1="50" y1="132" x2="88" y2="132"/><line x1="50" y1="158" x2="88" y2="158"/></g>
 <g stroke="#1D4E89" stroke-width="1.6"><line x1="170" y1="62" x2="560" y2="62"/><line x1="170" y1="102" x2="560" y2="102"/><line x1="170" y1="190" x2="560" y2="190"/></g>
-<g font-size="11" fill="#1D4E89"><text x="176" y="56">W0</text><text x="176" y="96">W1</text><text x="176" y="184">W15</text></g>
+<g font-size="11" fill="#1D4E89"><text x="176" y="56">W<tspan dy="3" font-size="8.5">0</tspan></text><text x="176" y="96">W<tspan dy="3" font-size="8.5">1</tspan></text><text x="176" y="184">W<tspan dy="3" font-size="8.5">15</tspan></text></g>
 <text x="300" y="150" font-size="16" fill="#1C1E21">⋮</text><text x="480" y="150" font-size="16" fill="#1C1E21">⋮</text>
 <g fill="#FFFFFF" stroke="#12796F">
 <rect x="250" y="70" width="24" height="24"/><rect x="250" y="110" width="24" height="24"/><rect x="250" y="198" width="24" height="24"/>
 <rect x="430" y="70" width="24" height="24"/><rect x="430" y="110" width="24" height="24"/><rect x="430" y="198" width="24" height="24"/>
 <rect x="520" y="70" width="24" height="24"/><rect x="520" y="110" width="24" height="24"/><rect x="520" y="198" width="24" height="24"/></g>
 <g stroke="#5B6169" stroke-width="1.2"><line x1="244" y1="40" x2="244" y2="250"/><line x1="280" y1="40" x2="280" y2="250"/><line x1="424" y1="40" x2="424" y2="250"/><line x1="460" y1="40" x2="460" y2="250"/><line x1="514" y1="40" x2="514" y2="250"/><line x1="550" y1="40" x2="550" y2="250"/></g>
-<g font-size="11" fill="#5B6169" text-anchor="middle"><text x="244" y="34">b7</text><text x="282" y="34">b7′</text><text x="424" y="34">b1</text><text x="462" y="34">b1′</text><text x="514" y="34">b0</text><text x="552" y="34">b0′</text></g>
+<g font-size="11" fill="#5B6169" text-anchor="middle"><text x="244" y="34">b<tspan dy="3" font-size="8.5">7</tspan></text><text x="282" y="34">b<tspan dy="3" font-size="8.5">7</tspan><tspan dy="-3">′</tspan></text><text x="424" y="34">b<tspan dy="3" font-size="8.5">1</tspan></text><text x="462" y="34">b<tspan dy="3" font-size="8.5">1</tspan><tspan dy="-3">′</tspan></text><text x="514" y="34">b<tspan dy="3" font-size="8.5">0</tspan></text><text x="552" y="34">b<tspan dy="3" font-size="8.5">0</tspan><tspan dy="-3">′</tspan></text></g>
 <text x="360" y="120" font-size="14" fill="#1C1E21">…</text>
 <g fill="#F7EEDD" stroke="#A66A0D"><rect x="232" y="250" width="60" height="30" rx="3"/><rect x="412" y="250" width="60" height="30" rx="3"/><rect x="502" y="250" width="60" height="30" rx="3"/></g>
 <g font-size="10" fill="#1C1E21" text-anchor="middle"><text x="262" y="263">Sense /</text><text x="262" y="275">Write</text><text x="442" y="263">Sense /</text><text x="442" y="275">Write</text><text x="532" y="263">Sense /</text><text x="532" y="275">Write</text></g>
 <g stroke="#5B6169" stroke-width="1.4"><line x1="262" y1="280" x2="262" y2="306" marker-start="url(#u5m9)" marker-end="url(#u5m9)"/><line x1="442" y1="280" x2="442" y2="306" marker-start="url(#u5m9)" marker-end="url(#u5m9)"/><line x1="532" y1="280" x2="532" y2="306" marker-start="url(#u5m9)" marker-end="url(#u5m9)"/></g>
 <text x="236" y="320" text-anchor="end" font-size="11" fill="#5B6169">data input/output lines:</text>
-<g font-size="11" fill="#1C1E21" text-anchor="middle"><text x="262" y="320">b7</text><text x="442" y="320">b1</text><text x="532" y="320">b0</text></g>
+<g font-size="11" fill="#1C1E21" text-anchor="middle"><text x="262" y="320">b<tspan dy="3" font-size="8.5">7</tspan></text><text x="442" y="320">b<tspan dy="3" font-size="8.5">1</tspan></text><text x="532" y="320">b<tspan dy="3" font-size="8.5">0</tspan></text></g>
 <line x1="600" y1="262" x2="564" y2="262" stroke="#5B6169" stroke-width="1.3" marker-end="url(#u5m9)"/>
 <text x="604" y="258" font-size="11" fill="#1C1E21">R/W</text><text x="604" y="274" font-size="11" fill="#1C1E21">CS</text>
 </svg></div><div class="cap">Fig 9. Organisation of bit cells in a 16 × 8 memory chip (deck 5b p.7). The decoder activates one word line; each column's Sense/Write circuit reads or writes its bit.</div></div>
 <p>This chip has 16 words of 8 bits: a <strong>16 × 8 organisation</strong>, 128 bits. Each Sense/Write circuit's input and output share one bidirectional data line. Two control lines are provided: <strong>R/W</strong> (Read/Write) specifies the operation, and <strong>CS</strong> (chip select) selects this chip in a multichip memory. External connections: 4 address + 8 data + 2 control = <strong>14</strong>, plus 2 for power and ground.</p>
 <p>A 1K (1024)-cell chip can be organised as <strong>128 × 8</strong> (7 address + 8 data + 2 control + 2 power = 19 connections) or as <strong>1K × 1</strong>. In the 1K × 1 organisation a 10-bit address is needed but only one data line: 10 + 1 + 2 + 2 power = 15 connections. The 10 address bits are split into two groups of 5: a 5-bit <strong>row address</strong> selects a row of 32 cells, all accessed in parallel, and a 5-bit <strong>column address</strong> drives a 32-to-1 output multiplexer (and input demultiplexer) that connects one of those cells to the external data line.</p>
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 640 302" width="640" role="img" aria-label="Organisation of a 1K by 1 memory chip with 32 by 32 cell array, 5-bit row decoder and 5-bit column MUX/DEMUX">
+<defs><marker id="u5m10" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5B6169"/></marker></defs>
+<g stroke="#5B6169" stroke-width="1.5">
+<line x1="18" y1="80" x2="82" y2="80" marker-end="url(#u5m10)"/>
+<line x1="44" y1="85" x2="52" y2="75"/></g>
+<text x="48" y="68" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1C1E21">A<tspan dy="3" font-size="8.5">9</tspan><tspan dy="-3">–A</tspan><tspan dy="3" font-size="8.5">5</tspan></text>
+<text x="48" y="98" text-anchor="middle" font-size="10.5" fill="#5B6169">5-bit row</text>
+<text x="48" y="111" text-anchor="middle" font-size="10.5" fill="#5B6169">address</text>
+<rect x="86" y="30" width="96" height="106" rx="5" fill="#EEECF7" stroke="#4C3F91" stroke-width="1.4"/>
+<text x="134" y="70" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1C1E21">5-bit Row</text>
+<text x="134" y="86" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1C1E21">Decoder</text>
+<text x="134" y="104" text-anchor="middle" font-size="10.5" fill="#5B6169">(5-to-32)</text>
+<text x="220" y="21" text-anchor="middle" font-size="10.5" fill="#1D4E89">32 word lines</text>
+<g stroke="#1D4E89" stroke-width="1.5">
+<line x1="182" y1="46" x2="256" y2="46"/>
+<line x1="182" y1="68" x2="256" y2="68"/>
+<line x1="182" y1="120" x2="256" y2="120"/></g>
+<g font-size="10.5" fill="#1D4E89" text-anchor="middle">
+<text x="220" y="41">W<tspan dy="3" font-size="8.5">0</tspan></text>
+<text x="220" y="63">W<tspan dy="3" font-size="8.5">1</tspan></text>
+<text x="220" y="96" font-size="14" fill="#1C1E21">⋮</text>
+<text x="220" y="115">W<tspan dy="3" font-size="8.5">31</tspan></text></g>
+<rect x="258" y="26" width="250" height="114" rx="5" fill="#E8EFF8" stroke="#1D4E89" stroke-width="1.5"/>
+<text x="383" y="68" text-anchor="middle" font-size="13" font-weight="600" fill="#1C1E21">32 × 32 Memory Cell Array</text>
+<text x="383" y="88" text-anchor="middle" font-size="11.5" fill="#5B6169">1024 bit cells (1K × 1)</text>
+<text x="383" y="108" text-anchor="middle" font-size="10.5" fill="#1D4E89">1 active word line enables a 32-cell row</text>
+<g stroke="#5B6169" stroke-width="1.4">
+<line x1="286" y1="140" x2="286" y2="168"/><line x1="326" y1="140" x2="326" y2="168"/>
+<line x1="440" y1="140" x2="440" y2="168"/><line x1="480" y1="140" x2="480" y2="168"/></g>
+<text x="383" y="158" text-anchor="middle" font-size="10.5" fill="#5B6169">32 bit-line pairs</text>
+<rect x="258" y="168" width="250" height="34" rx="4" fill="#F7EEDD" stroke="#A66A0D" stroke-width="1.4"/>
+<text x="383" y="189" text-anchor="middle" font-size="12" font-weight="600" fill="#1C1E21">Sense / Write Circuits (32 columns)</text>
+<text x="554" y="164" text-anchor="middle" font-size="10.5" fill="#5B6169">Control</text>
+<g stroke="#5B6169" stroke-width="1.4">
+<line x1="592" y1="178" x2="512" y2="178" marker-end="url(#u5m10)"/>
+<line x1="592" y1="194" x2="512" y2="194" marker-end="url(#u5m10)"/></g>
+<text x="598" y="182" font-size="11.5" font-weight="600" fill="#1C1E21">R/W</text>
+<text x="598" y="198" font-size="11.5" font-weight="600" fill="#1C1E21">CS</text>
+<g stroke="#5B6169" stroke-width="1.3">
+<line x1="286" y1="202" x2="286" y2="222"/><line x1="326" y1="202" x2="326" y2="222"/>
+<line x1="440" y1="202" x2="440" y2="222"/><line x1="480" y1="202" x2="480" y2="222"/></g>
+<text x="383" y="216" text-anchor="middle" font-size="13" fill="#5B6169">…</text>
+<rect x="258" y="222" width="250" height="38" rx="4" fill="#E4F3F0" stroke="#12796F" stroke-width="1.4"/>
+<text x="383" y="238" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1C1E21">32-to-1 Output MUX /</text>
+<text x="383" y="253" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1C1E21">1-to-32 Input DEMUX</text>
+<g stroke="#5B6169" stroke-width="1.5">
+<line x1="158" y1="241" x2="254" y2="241" marker-end="url(#u5m10)"/>
+<line x1="202" y1="246" x2="210" y2="236"/></g>
+<text x="206" y="232" text-anchor="middle" font-size="10" fill="#5B6169">5</text>
+<text x="152" y="236" text-anchor="end" font-size="11.5" font-weight="600" fill="#1C1E21">A<tspan dy="3" font-size="8.5">4</tspan><tspan dy="-3">–A</tspan><tspan dy="3" font-size="8.5">0</tspan></text>
+<text x="152" y="252" text-anchor="end" font-size="10.5" fill="#5B6169">5-bit column address</text>
+<line x1="383" y1="263" x2="383" y2="290" stroke="#5B6169" stroke-width="1.6" marker-start="url(#u5m10)" marker-end="url(#u5m10)"/>
+<text x="396" y="281" font-size="11.5" font-weight="600" fill="#1C1E21">Data I/O (D<tspan dy="3" font-size="8.5">0</tspan><tspan dy="-3">) — 1 bidirectional line</tspan></text>
+</svg></div><div class="cap">Fig 10. Organisation of a 1K × 1 memory chip (32 × 32 array): 5 row bits select one 32-cell row; 5 column bits pick 1 bit via the MUX/DEMUX (10 address + 1 data + 2 control + 2 power = 15 pins).</div></div>
 <div class="callout clarify"><span class="label">Clarifying the slide's pin counts (checked)</span>The deck (after Hamacher) gives 14 connections for 16 × 8 <em>without</em> power and ground, but 19 for 128 × 8 and 15 for 1K × 1 <em>including</em> power and ground (17 and 13 without). State which you are counting. Asked in SEE 2024–25 Q10b (1K × 1 chip).</div>
 <h2 id="u5-ram-sram">8.2 Static RAM (SRAM)</h2>
-<p>Memories whose circuits retain their state as long as power is applied are <strong>static</strong>. An SRAM cell is two <strong>cross-coupled inverters forming a latch</strong>, connected to two bit lines b and b′ by transistors <strong>T1 and T2</strong>, which act as switches controlled by the <strong>word line</strong>. When the word line is at ground, T1 and T2 are off and the latch keeps its state: for example X = 1, Y = 0 is maintained, representing a stored 1.</p>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 660 260" width="660" role="img" aria-label="SRAM cell and one-transistor DRAM cell">
+<p>Memories whose circuits retain their state as long as power is applied are <strong>static</strong>. An SRAM cell is two <strong>cross-coupled inverters forming a latch</strong>, connected to two bit lines <em>b</em> and <em>b</em>′ by transistors <strong>T<sub>1</sub> and T<sub>2</sub></strong>, which act as switches controlled by the <strong>word line</strong>. When the word line is at ground, T<sub>1</sub> and T<sub>2</sub> are off and the latch keeps its state: for example X = 1, Y = 0 is maintained, representing a stored 1.</p>
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 660 260" width="660" role="img" aria-label="SRAM cell and one-transistor DRAM cell">
 <text x="200" y="20" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1C1E21">(a) Static RAM cell</text>
 <text x="540" y="20" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1C1E21">(b) Dynamic RAM cell</text>
 <g stroke="#5B6169" stroke-width="1.6"><line x1="40" y1="34" x2="40" y2="220"/><line x1="360" y1="34" x2="360" y2="220"/></g>
 <text x="40" y="238" text-anchor="middle" font-size="12" fill="#1C1E21">b</text><text x="360" y="238" text-anchor="middle" font-size="12" fill="#1C1E21">b′</text>
 <line x1="20" y1="190" x2="380" y2="190" stroke="#1D4E89" stroke-width="1.6"/><text x="200" y="210" text-anchor="middle" font-size="11.5" fill="#1D4E89">word line</text>
-<rect x="70" y="84" width="34" height="34" fill="#FFFFFF" stroke="#4C3F91"/><text x="87" y="106" text-anchor="middle" font-size="12" fill="#1C1E21">T1</text>
-<rect x="296" y="84" width="34" height="34" fill="#FFFFFF" stroke="#4C3F91"/><text x="313" y="106" text-anchor="middle" font-size="12" fill="#1C1E21">T2</text>
+<rect x="70" y="84" width="34" height="34" fill="#FFFFFF" stroke="#4C3F91"/><text x="87" y="106" text-anchor="middle" font-size="12" fill="#1C1E21">T<tspan dy="3" font-size="8.5">1</tspan></text>
+<rect x="296" y="84" width="34" height="34" fill="#FFFFFF" stroke="#4C3F91"/><text x="313" y="106" text-anchor="middle" font-size="12" fill="#1C1E21">T<tspan dy="3" font-size="8.5">2</tspan></text>
 <line x1="40" y1="101" x2="70" y2="101" stroke="#5B6169" stroke-width="1.4"/><line x1="330" y1="101" x2="360" y2="101" stroke="#5B6169" stroke-width="1.4"/>
 <line x1="87" y1="118" x2="87" y2="190" stroke="#1D4E89" stroke-width="1.3"/><line x1="313" y1="118" x2="313" y2="190" stroke="#1D4E89" stroke-width="1.3"/>
 <polygon points="170,66 170,96 200,81" fill="#F7EEDD" stroke="#A66A0D"/><circle cx="204" cy="81" r="4" fill="#FFFFFF" stroke="#A66A0D"/>
@@ -622,16 +693,21 @@ End = <span class="c2">T7·ADD + T5·BR + (T5·N + T4·N̄)·BRN + …</span>   
 <line x1="580" y1="128" x2="580" y2="150" stroke="#5B6169" stroke-width="1.4"/>
 <line x1="568" y1="150" x2="592" y2="150" stroke="#5B6169" stroke-width="1.4"/><line x1="573" y1="155" x2="587" y2="155" stroke="#5B6169" stroke-width="1.4"/>
 <text x="604" y="128" font-size="12" fill="#12796F">C</text>
-</svg></div><div class="cap">Fig 10. (a) An SRAM cell: a latch of two cross-coupled inverters, connected to bit lines b and b′ by T1 and T2. (b) A one-transistor DRAM cell: a capacitor C reached through transistor T (deck 5b pp.9, 13).</div></div>
+</svg></div><div class="cap">Fig 11. (a) An SRAM cell: a latch of two cross-coupled inverters, connected to bit lines <em>b</em> and <em>b</em>′ by T<sub>1</sub> and T<sub>2</sub>. (b) A one-transistor DRAM cell: a capacitor C reached through transistor T (deck 5b pp.9, 13).</div></div>
 <ul>
-<li><strong>Read:</strong> the word line is activated to close T1 and T2. If the cell holds 1, b is high and b′ is low; for 0 the opposite. b and b′ are always complements. The Sense/Write circuit at the end of the bit lines monitors them and sets its output.</li>
-<li><strong>Write:</strong> the Sense/Write circuit drives b and b′ instead of sensing them: it places the value on b and its complement on b′, then activates the word line. This forces the cell into the new state, which it keeps when the word line is deactivated.</li>
-<li><strong>CMOS realisation:</strong> transistor pairs (T3, T5) and (T4, T6) form the inverters. In state 1, X is held high by T3 and T6 being on while T4 and T5 are off. Current flows only when the cell is accessed, so CMOS SRAM uses very little power.</li>
+<li><strong>Read:</strong> the word line is activated to close T<sub>1</sub> and T<sub>2</sub>. If the cell holds 1, <em>b</em> is high and <em>b</em>′ is low; for 0 the opposite. <em>b</em> and <em>b</em>′ are always complements. The Sense/Write circuit at the end of the bit lines monitors them and sets its output.</li>
+<li><strong>Write:</strong> the Sense/Write circuit drives <em>b</em> and <em>b</em>′ instead of sensing them: it places the value on <em>b</em> and its complement on <em>b</em>′, then activates the word line. This forces the cell into the new state, which it keeps when the word line is deactivated.</li>
+<li><strong>CMOS realisation:</strong> transistor pairs (T<sub>3</sub>, T<sub>5</sub>) and (T<sub>4</sub>, T<sub>6</sub>) form the inverters. In state 1, X is held high by T<sub>3</sub> and T<sub>6</sub> being on while T<sub>4</sub> and T<sub>5</sub> are off. Current flows only when the cell is accessed, so CMOS SRAM uses very little power.</li>
 <li>Continuous power is needed: if it is interrupted the contents are lost, so SRAMs are <strong>volatile</strong>. Access times are a few nanoseconds; SRAMs are used where speed matters, notably <strong>cache memories</strong>, but their cost per bit is high.</li></ul>
 <h2 id="u5-ram-dram">8.3 Dynamic RAM (DRAM)</h2>
 <p>SRAM cells need several transistors. Cheaper, denser memory uses simpler cells that do not keep their state for long unless accessed frequently: <strong>dynamic RAM</strong>. A DRAM cell is <strong>one capacitor and one transistor</strong>. To store information, T is turned on and the appropriate voltage is applied to the bit line, charging the capacitor. When T is turned off the charge remains, but not for long: the capacitor slowly discharges through the transistor's tiny leakage current (picoamperes). So the cell must be read before the charge drops below a threshold, and its contents must be <strong>refreshed</strong> periodically by restoring the full charge. Reading a cell automatically refreshes it; because the word line is common to a row, reading selects and <strong>refreshes a whole row</strong> at once.</p>
-<p><strong>Asynchronous DRAM example: a 256-Mbit chip organised as 32M × 8.</strong> The cells form a 16K × 16K array. The 16,384 cells of each row are divided into 2,048 groups of 8, i.e. 2,048 bytes. So 14 address bits select a row and another 11 bits select a group of 8 in it: a <strong>25-bit address</strong> per byte (2<sup>14</sup> × 2<sup>11</sup> = 2<sup>25</sup> = 32M). To reduce the number of pins, the row and column addresses are <strong>multiplexed on 14 pins</strong>. The row address is applied first and latched by a pulse on <strong>RAS</strong> (row address strobe); this starts a read of the whole row, which also refreshes it. Shortly after, the column address is applied and latched by <strong>CAS</strong> (column address strobe); it is decoded to select the right 8 Sense/Write circuits. On a Read their outputs go to the data lines D7–0; on a Write the data on D7–0 overwrite the selected cells. Because the processor issues all address bits at once, a <strong>memory controller</strong> between the processor and the DRAM chips does the multiplexing into row and column parts, generates RAS and CAS, and also handles refresh.</p>
-<div class="table-scroll"><table><thead><tr><th>SRAM</th><th>DRAM</th></tr></thead><tbody>
+<p><strong>Asynchronous DRAM example: a 256-Mbit chip organised as 32M × 8.</strong></p>
+<ul>
+<li><strong>Array layout:</strong> the cells form a 16K × 16K array. Each row's 16,384 cells are divided into 2,048 groups of 8 bits (2,048 bytes), so 14 row bits + 11 column bits give a <strong>25-bit address</strong> per byte (2<sup>14</sup> × 2<sup>11</sup> = 2<sup>25</sup> = 32M).</li>
+<li><strong>Why only 14 multiplexed pins:</strong> to reduce package pin count, the 14-bit row address and 11-bit column address are <strong>multiplexed on 14 shared pins</strong> instead of using 25 separate address pins.</li>
+<li><strong>RAS then CAS sequence:</strong> the row address is applied first and latched by a pulse on <strong>RAS</strong> (row address strobe), which starts reading the entire row and refreshes it at the same time. Shortly after, the column address is applied and latched by <strong>CAS</strong> (column address strobe) to select the right 8 Sense/Write circuits: on a Read their outputs drive data lines D<sub>7</sub>–D<sub>0</sub>, and on a Write the data on D<sub>7</sub>–D<sub>0</sub> overwrite the selected cells.</li>
+<li><strong>Memory controller role:</strong> because the processor issues all 25 address bits simultaneously, a <strong>memory controller</strong> sits between the processor and the DRAM chips to multiplex the address into row and column parts, generate RAS and CAS, and manage periodic refresh.</li></ul>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>SRAM</th><th>DRAM</th></tr></thead><tbody>
 <tr><td>Latch of 4–6 transistors per cell</td><td>One transistor and one capacitor per cell</td></tr>
 <tr><td>Keeps data while power is on; no refresh</td><td>Charge leaks; needs periodic refresh circuitry</td></tr>
 <tr><td>Faster (a few ns)</td><td>Slower</td></tr>
@@ -644,19 +720,21 @@ End = <span class="c2">T7·ADD + T5·BR + (T5·N + T4·N̄)·BRN + …</span>   
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 
 <section class="page section" id="memory-design" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);"><div class="section-head"><span class="tag">9</span><h1>Building a Larger Memory from Chips</h1></div>
-<p class="section-sub">One method answers every "design an M × W memory using m × w chips" question: chips, rows, columns, address bits and the decoder. <span class="pill">U5b deck pp.18–22, 42–43</span></p>
-<p>A memory module of <strong>M words × W bits</strong> built from chips of <strong>m words × w bits</strong>:</p>
-<div class="formula-block">columns  = W / w          <span class="cm">chips side by side, each supplying w of the W data bits</span>
-rows     = M / m          <span class="cm">groups of chips, one group selected at a time</span>
-chips    = rows × columns = (M × W) / (m × w)
-address bits: total = log₂ M ;  per chip = log₂ m  <span class="cm">(low-order bits, to every chip)</span>
-decoder: (log₂ M − log₂ m)-to-rows  <span class="cm">(high-order bits → chip-select of one row)</span></div>
+<p class="section-sub">One method answers every "design an <em>M</em> × <em>W</em> memory using <em>m</em> × <em>w</em> chips" question: chips, rows, columns, address bits and the decoder. <span class="pill">U5b deck pp.18–22, 42–43</span></p>
+<p>A memory module of <strong><em>M</em> words × <em>W</em> bits</strong> built from chips of <strong><em>m</em> words × <em>w</em> bits</strong>:</p>
+<div class="formula-block">columns  = <em>W</em> / <em>w</em>          <span class="cm">chips side by side, each supplying <em>w</em> of the <em>W</em> data bits</span>
+rows     = <em>M</em> / <em>m</em>          <span class="cm">groups of chips, one group selected at a time</span>
+chips    = rows × columns = (<em>M</em> × <em>W</em>) / (<em>m</em> × <em>w</em>)
+address bits: total = log<sub>2</sub> <em>M</em> ;  per chip = log<sub>2</sub> <em>m</em>  <span class="cm">(low-order bits, to every chip)</span>
+decoder: (log<sub>2</sub> <em>M</em> − log<sub>2</sub> <em>m</em>)-to-rows  <span class="cm">(high-order bits → chip-select of one row)</span></div>
+<div class="callout key"><span class="label">Visual intuition: rows vs columns</span>
+<p>Put chips <strong>side by side (columns)</strong> to widen each word (<em>w</em> → <em>W</em>); stack rows <strong>vertically (rows)</strong> to add more words (<em>m</em> → <em>M</em>), with a decoder enabling one row's <strong>CS</strong> at a time.</p></div>
 <p>All chips share the low-order address lines and the R/W line. The high-order address bits go to a decoder whose outputs drive the <strong>chip-select (CS)</strong> inputs of one row. Each column of chips supplies one slice of the data bus. A selected chip places its data on the output lines; the outputs of unselected chips are in the high-impedance state.</p>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 680 360" width="680" role="img" aria-label="2M by 32 memory built from sixteen 512K by 8 chips">
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 680 360" width="680" role="img" aria-label="2M by 32 memory built from sixteen 512K by 8 chips">
 <defs><marker id="u5m11" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5B6169"/></marker></defs>
 <rect x="40" y="110" width="80" height="120" rx="4" fill="#F6E9F0" stroke="#93316B"/>
 <text x="80" y="164" text-anchor="middle" font-size="12" font-weight="600" fill="#1C1E21">2-to-4</text><text x="80" y="180" text-anchor="middle" font-size="12" font-weight="600" fill="#1C1E21">decoder</text>
-<text x="80" y="92" text-anchor="middle" font-size="11.5" fill="#1C1E21">A20, A19</text><line x1="80" y1="96" x2="80" y2="108" stroke="#5B6169" stroke-width="1.4" marker-end="url(#u5m11)"/>
+<text x="80" y="92" text-anchor="middle" font-size="11.5" fill="#1C1E21">A<tspan dy="3" font-size="8.5">20</tspan><tspan dy="-3">, A</tspan><tspan dy="3" font-size="8.5">19</tspan></text><line x1="80" y1="96" x2="80" y2="108" stroke="#5B6169" stroke-width="1.4" marker-end="url(#u5m11)"/>
 <g font-family="JetBrains Mono, monospace" font-size="11" text-anchor="middle" fill="#1C1E21">
 <g fill="#E8EFF8" stroke="#1D4E89">
 <rect x="200" y="40" width="90" height="40" rx="3"/><rect x="310" y="40" width="90" height="40" rx="3"/><rect x="420" y="40" width="90" height="40" rx="3"/><rect x="530" y="40" width="90" height="40" rx="3"/>
@@ -671,11 +749,11 @@ decoder: (log₂ M − log₂ m)-to-rows  <span class="cm">(high-order bits → 
 <g fill="none" stroke="#93316B" stroke-width="1.4">
 <polyline points="120,122 160,122 160,86 625,86"/><polyline points="120,148 170,148 170,156 625,156"/><polyline points="120,190 170,190 170,226 625,226"/><polyline points="120,216 160,216 160,296 625,296"/></g>
 <text x="176" y="100" font-size="10.5" fill="#93316B">CS row 0</text><text x="176" y="170" font-size="10.5" fill="#93316B">row 1</text><text x="176" y="240" font-size="10.5" fill="#93316B">row 2</text><text x="170" y="310" font-size="10.5" fill="#93316B">row 3</text>
-<text x="410" y="24" text-anchor="middle" font-size="11.5" fill="#1C1E21">A18–A0 (19 bits) and R/W to every chip</text>
-<g font-size="11" fill="#1C1E21" text-anchor="middle"><text x="245" y="334">D31–24</text><text x="355" y="334">D23–16</text><text x="465" y="334">D15–8</text><text x="575" y="334">D7–0</text></g>
+<text x="410" y="24" text-anchor="middle" font-size="11.5" fill="#1C1E21">A<tspan dy="3" font-size="8.5">18</tspan><tspan dy="-3">–A</tspan><tspan dy="3" font-size="8.5">0</tspan><tspan dy="-3"> (19 bits) and R/W to every chip</tspan></text>
+<g font-size="11" fill="#1C1E21" text-anchor="middle"><text x="245" y="334">D<tspan dy="3" font-size="8.5">31–24</tspan></text><text x="355" y="334">D<tspan dy="3" font-size="8.5">23–16</tspan></text><text x="465" y="334">D<tspan dy="3" font-size="8.5">15–8</tspan></text><text x="575" y="334">D<tspan dy="3" font-size="8.5">7–0</tspan></text></g>
 <g stroke="#12796F" stroke-width="1.6"><line x1="245" y1="300" x2="245" y2="320" marker-end="url(#u5m11)"/><line x1="355" y1="300" x2="355" y2="320" marker-end="url(#u5m11)"/><line x1="465" y1="300" x2="465" y2="320" marker-end="url(#u5m11)"/><line x1="575" y1="300" x2="575" y2="320" marker-end="url(#u5m11)"/></g>
-</svg></div><div class="cap">Fig 11. A 2M × 32 memory from 512K × 8 static chips (deck 5b p.22): 4 rows × 4 columns = 16 chips. A20–A19 select a row; A18–A0 address a byte inside every chip; each column supplies one byte of the word.</div></div>
-<div class="table-scroll"><table class="tt"><thead><tr><th>Target</th><th>Chip</th><th>Rows × cols</th><th>Chips</th><th>Address bits (total / chip)</th><th>Decoder</th><th>Source</th></tr></thead><tbody>
+</svg></div><div class="cap">Fig 12. A 2M × 32 memory from 512K × 8 static chips (deck 5b p.22): 4 rows × 4 columns = 16 chips. A<sub>20</sub>–A<sub>19</sub> select a row; A<sub>18</sub>–A<sub>0</sub> address a byte inside every chip; each column supplies one byte of the word.</div></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table class="tt"><thead><tr><th>Target</th><th>Chip</th><th>Rows × cols</th><th>Chips</th><th>Address bits (total / chip)</th><th>Decoder</th><th>Source</th></tr></thead><tbody>
 <tr><td>1024 × 8</td><td>256 × 8</td><td>4 × 1</td><td>4</td><td>10 / 8</td><td>2-to-4</td><td>deck p.18</td></tr>
 <tr><td>8M × 32</td><td>512K × 8</td><td>16 × 4</td><td>64</td><td>23 / 19</td><td>4-to-16</td><td>deck p.19</td></tr>
 <tr><td>1M × 8</td><td>256K × 8</td><td>4 × 1</td><td>4</td><td>20 / 18</td><td>2-to-4</td><td>deck p.20</td></tr>
@@ -688,19 +766,22 @@ decoder: (log₂ M − log₂ m)-to-rows  <span class="cm">(high-order bits → 
 <div class="qbox"><div class="qmeta"><span class="qsrc">Deck 5b p.43</span><span class="marks">6 marks</span></div><div class="qtext">Design a 16K-by-8 memory using 2K-by-4 memory chips. Arrange the chips in an 8 by 2 array (8 rows of 2 columns) and design the decoding circuitry.</div>
 <div class="ans-label">Answer</div>
 <ol class="steps"><li><strong>Chips:</strong> (16K × 8) / (2K × 4) = 128K / 8K = <strong>16</strong>, as 8 rows × 2 columns (8 / 4 = 2 columns, 16K / 2K = 8 rows).</li>
-<li><strong>Address lines:</strong> 16K = 2<sup>14</sup>, so the memory has 14 address lines A13–A0. Each chip is 2K = 2<sup>11</sup>: A10–A0 go to every chip.</li>
-<li><strong>Decoder:</strong> the remaining 3 bits A13–A11 drive a <strong>3-to-8 decoder</strong> whose 8 outputs are the chip selects of the 8 rows (both chips of a row share one output).</li>
-<li><strong>Data:</strong> in every row, the left chip supplies D7–D4 and the right chip D3–D0, so the module's 8 data lines are D7–D0. MAR = 14 bits, MDR (MBR) = 8 bits.</li></ol></div>
+<li><strong>Address lines:</strong> 16K = 2<sup>14</sup>, so the memory has 14 address lines A<sub>13</sub>–A<sub>0</sub>. Each chip is 2K = 2<sup>11</sup>: A<sub>10</sub>–A<sub>0</sub> go to every chip.</li>
+<li><strong>Decoder:</strong> the remaining 3 bits A<sub>13</sub>–A<sub>11</sub> drive a <strong>3-to-8 decoder</strong> whose 8 outputs are the chip selects of the 8 rows (both chips of a row share one output).</li>
+<li><strong>Data:</strong> in every row, the left chip supplies D<sub>7</sub>–D<sub>4</sub> and the right chip D<sub>3</sub>–D<sub>0</sub>, so the module's 8 data lines are D<sub>7</sub>–D<sub>0</sub>. MAR = 14 bits, MDR (MBR) = 8 bits.</li></ol></div>
 <div class="qbox"><div class="qmeta"><span class="qsrc">Deck 5b p.21</span><span class="marks">6 marks</span></div><div class="qtext">Design a 256 × 16 RAM using 16 × 4 RAM chips, showing all the steps and the organisation of the chips.</div>
 <div class="ans-label">Answer</div>
-<p>Rows = 256 / 16 = <strong>16</strong>; columns = 16 / 4 = <strong>4</strong>; chips = 16 × 4 = <strong>64</strong>. Each chip needs log<sub>2</sub> 16 = 4 address lines (A3–A0, common to all chips); 4 more lines (A7–A4) drive a <strong>4-to-16 decoder</strong> that selects one row; total address lines 4 + 4 = 8 (2<sup>8</sup> = 256). The four chips of a row supply D15–12, D11–8, D7–4 and D3–0. R/W is connected to all chips.</p></div>
+<ol class="steps"><li><strong>Chips:</strong> rows = 256 / 16 = <strong>16</strong>; columns = 16 / 4 = <strong>4</strong>; total chips = 16 × 4 = <strong>64</strong>.</li>
+<li><strong>Address lines:</strong> 256 = 2<sup>8</sup>, so the module needs 8 address lines A<sub>7</sub>–A<sub>0</sub>. Each 16 × 4 chip needs log<sub>2</sub> 16 = 4 address lines: A<sub>3</sub>–A<sub>0</sub> connect in common to every chip.</li>
+<li><strong>Decoder:</strong> the remaining 4 high-order bits A<sub>7</sub>–A<sub>4</sub> drive a <strong>4-to-16 decoder</strong> whose 16 outputs enable the chip select (CS) of one row of 4 chips at a time.</li>
+<li><strong>Data &amp; control:</strong> the four chips in each row supply D<sub>15</sub>–D<sub>12</sub>, D<sub>11</sub>–D<sub>8</sub>, D<sub>7</sub>–D<sub>4</sub> and D<sub>3</sub>–D<sub>0</sub> (giving the 16-bit bus D<sub>15</sub>–D<sub>0</sub>); the R/W line connects to all chips.</li></ol></div>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 
 <section class="page section" id="rom" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);"><div class="section-head"><span class="tag">10</span><h1>Read-only Memories</h1></div>
 <p class="section-sub">Non-volatile memories and the five types: ROM, PROM, EPROM, EEPROM and flash. <span class="pill">U5b deck pp.24–28</span></p>
 <p>SRAM and SDRAM are volatile: they lose their contents when power is turned off. Many applications need memory that keeps its contents without power. For example, when a computer is switched on, the instructions that load the operating system from disk must already be in memory. Such <strong>non-volatile</strong> memory is read in the same way as volatile memory, but a separate process is needed to write information into it; since normal operation only reads it, it is called <strong>read-only memory (ROM)</strong>.</p>
 <p><strong>ROM cell.</strong> A logic value 0 is stored if the transistor of the cell is connected to ground at point P; otherwise 1 is stored. The bit line is connected through a resistor to the power supply. To read, the word line turns on the transistor: if it is connected to ground, the bit line is pulled low (0); if not, the bit line stays high (1). The connections are made when the chip is manufactured.</p>
-<div class="table-scroll"><table><thead><tr><th>Type</th><th>How data are written</th><th>Erasing</th><th>Features / use</th></tr></thead><tbody>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Type</th><th>How data are written</th><th>Erasing</th><th>Features / use</th></tr></thead><tbody>
 <tr><td><strong>ROM</strong> (mask ROM)</td><td>During manufacture</td><td>Not possible</td><td>Cheapest in large volumes; storing user-specific data is expensive.</td></tr>
 <tr><td><strong>PROM</strong> (programmable ROM)</td><td>By the user, once: fuses are burnt out with high-current pulses</td><td>Not possible (irreversible)</td><td>Flexible and cheap for small quantities.</td></tr>
 <tr><td><strong>EPROM</strong> (erasable PROM)</td><td>By the user, electrically</td><td>Whole chip, by exposing it to <strong>ultraviolet light</strong>; the chip must be removed from the circuit</td><td>Reprogrammable; useful while developing digital systems.</td></tr>
@@ -718,7 +799,7 @@ decoder: (log₂ M − log₂ m)-to-rows  <span class="cm">(high-order bits → 
 <li><strong>Spatial locality:</strong> instructions and data at addresses close to a recently used one are likely to be used soon. So bring a whole <strong>block</strong> (several adjacent words) into the cache, not one word.</li></ul>
 <h2 id="u5-c-ops">11.2 Cache operation: hits, misses and write policies</h2>
 <p>When the processor issues a Read for a word not in the cache, the block of words containing it is transferred from main memory to the cache; later references to words in that block are then found in the cache. Only some blocks of main memory are in the cache at any time; <strong>which</strong> cache location a block may use is decided by the <strong>mapping function</strong>. When the cache is full and a new block must come in, a <strong>replacement algorithm</strong> chooses the block to remove. The existence of the cache is transparent to the processor, which issues Reads and Writes as usual.</p>
-<div class="table-scroll"><table><thead><tr><th>Case</th><th>What happens</th></tr></thead><tbody>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Case</th><th>What happens</th></tr></thead><tbody>
 <tr><td><strong>Read hit</strong></td><td>The data are obtained from the cache.</td></tr>
 <tr><td><strong>Write hit</strong></td><td><strong>Write-through:</strong> the cache and main memory are updated simultaneously. <strong>Write-back (copy-back):</strong> only the cache is updated and the block is marked with a <strong>dirty (modified) bit</strong>; main memory is updated when the block is replaced.</td></tr>
 <tr><td><strong>Read miss</strong></td><td>The block containing the word is copied from main memory into the cache, then the word is sent to the processor. Or the word is forwarded as soon as it arrives, without waiting for the whole block: <strong>load-through (early restart)</strong>.</td></tr>
@@ -726,9 +807,15 @@ decoder: (log₂ M − log₂ m)-to-rows  <span class="cm">(high-order bits → 
 <p><strong>Valid bit and cache coherence.</strong> Each cache block has a <strong>valid bit</strong>: 1 if the block holds valid data, cleared to 0 at power-on and set when a block is loaded. Transfers between disk and main memory (for example by DMA, §15) bypass the cache; if such a transfer changes a memory block that also has a copy in the cache, the cached copy's valid bit is cleared. With write-back, the cache may hold newer data (dirty) than memory; if the disk then reads the stale memory copy, or overwrites memory, cache and memory disagree. This is the <strong>cache coherence problem</strong>; one solution is to force a write-back of dirty blocks before memory is transferred to or from the disk.</p>
 <p><strong>Replacement algorithms.</strong> In direct mapping there is no choice. In associative and set-associative caches, the usual choice is to replace the <strong>least recently used (LRU)</strong> block, which follows temporal locality; simpler alternatives are first-in-first-out and random replacement.</p>
 <p>The mapping functions below use the deck's (Hamacher's) example: a cache of <strong>128 blocks of 16 words</strong> (2K words), a main memory of <strong>64K words</strong> (16-bit word addresses), so main memory has 64K / 16 = <strong>4096 blocks</strong>. Consecutive addresses refer to consecutive words.</p>
+<div class="callout key"><span class="label">Bookshelf intuition for the three mappings</span>
+<ul>
+<li><strong>Direct mapping:</strong> every main-memory block has <em>exactly one</em> assigned slot (<em>j</em> mod <em>N</em>) — fast lookup, but blocks can collide even when other slots sit empty.</li>
+<li><strong>Fully associative:</strong> a block can go in <em>any</em> slot — zero conflict collisions, but every tag must be searched in parallel.</li>
+<li><strong><em>k</em>-way set-associative:</strong> a compromise — the cache is split into sets of <em>k</em> slots; a block goes to one assigned set (<em>j</em> mod sets) and can sit in any of its <em>k</em> slots.</li>
+</ul></div>
 <h2 id="u5-c-direct">11.3 Direct mapping</h2>
-<p>Block j of main memory maps onto block <strong>j modulo 128</strong> of the cache. Blocks 0, 128, 256, … go to cache block 0; blocks 1, 129, 257, … to cache block 1; and so on. The 16-bit address has three fields: a 4-bit <strong>word</strong> field (16 words per block), a 7-bit <strong>block</strong> field (which of 128 cache blocks), and a 5-bit <strong>tag</strong> (4096 / 128 = 32 memory blocks share each cache block, 2<sup>5</sup> = 32). The tag stored with the cache block says which of them is there. On an access, the block field selects the cache block and its tag is compared with the address's tag: equal means a hit; otherwise it is a miss and the block is loaded and the tag updated.</p>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 660 360" width="660" role="img" aria-label="Direct-mapped cache of 128 blocks and a main memory of 4096 blocks">
+<p>Block <em>j</em> of main memory maps onto block <strong><em>j</em> modulo 128</strong> of the cache. Blocks 0, 128, 256, … go to cache block 0; blocks 1, 129, 257, … to cache block 1; and so on. The 16-bit address has three fields: a 4-bit <strong>word</strong> field (16 words per block), a 7-bit <strong>block</strong> field (which of 128 cache blocks), and a 5-bit <strong>tag</strong> (4096 / 128 = 32 memory blocks share each cache block, 2<sup>5</sup> = 32). The tag stored with the cache block says which of them is there. On an access, the block field selects the cache block and its tag is compared with the address's tag: equal means a hit; otherwise it is a miss and the block is loaded and the tag updated.</p>
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 660 360" width="660" role="img" aria-label="Direct-mapped cache of 128 blocks and a main memory of 4096 blocks">
 <defs><marker id="u5m12" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4C3F91"/></marker></defs>
 <text x="160" y="24" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1C1E21">Cache</text>
 <text x="520" y="24" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1C1E21">Main memory</text>
@@ -755,13 +842,13 @@ decoder: (log₂ M − log₂ m)-to-rows  <span class="cm">(high-order bits → 
 <rect x="250" y="300" width="120" height="28" fill="#EEECF7" stroke="#4C3F91"/><text x="310" y="319">Block 7</text>
 <rect x="370" y="300" width="90" height="28" fill="#E4F3F0" stroke="#12796F"/><text x="415" y="319">Word 4</text></g>
 <text x="305" y="348" text-anchor="middle" font-size="11.5" fill="#5B6169">16-bit main memory address</text>
-</svg></div><div class="cap">Fig 12. Direct-mapped cache (deck 5b p.32): block j goes only to cache block j mod 128. Address format 5 | 7 | 4.</div></div>
+</svg></div><div class="cap">Fig 13. Direct-mapped cache (deck 5b p.32): block <em>j</em> goes only to cache block <em>j</em> mod 128. Address format 5 | 7 | 4.</div></div>
 <p>Direct mapping is easy to implement, but not flexible: since several memory blocks compete for one cache position, contention can arise even when the cache is not full (e.g. a loop that alternates between blocks 0 and 128 misses every time).</p>
 <h2 id="u5-c-assoc">11.4 Associative mapping</h2>
 <p>The most flexible method: a main-memory block can be placed in <strong>any</strong> cache block. The address has two fields: 4-bit word and <strong>12-bit tag</strong> (2<sup>12</sup> = 4096 identifies the memory block). The tag bits of the address are compared with the tags of <strong>all</strong> cache blocks to see if the block is present: an <strong>associative search</strong>, which must be done in parallel to avoid delay. It gives complete freedom of placement and makes efficient use of the cache: a block is ejected only when the cache is full, chosen by a replacement algorithm such as LRU. The cost is complexity: 128 tag comparisons on every access.</p>
 <h2 id="u5-c-set">11.5 Set-associative mapping</h2>
 <p>A combination of the two: the cache blocks are grouped into <strong>sets</strong>, and a memory block may reside in <strong>any block of one specific set</strong>. This eases the contention of direct mapping, and the associative search is only over one set. With two blocks per set (a <strong>2-way set-associative</strong> cache) there are 64 sets: memory blocks 0, 64, 128, …, 4032 map into set 0 and can occupy either of its two blocks. The address has a 4-bit word field, a <strong>6-bit set</strong> field (64 sets) and a <strong>6-bit tag</strong>; the tag is compared associatively with the tags of the two blocks of the selected set.</p>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 660 300" width="660" role="img" aria-label="Two-way set-associative cache with 64 sets, and the address formats">
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 660 300" width="660" role="img" aria-label="Two-way set-associative cache with 64 sets, and the address formats">
 <defs><marker id="u5m13" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#12796F"/></marker></defs>
 <text x="150" y="20" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1C1E21">2-way set-associative cache</text>
 <g font-size="11.5" fill="#1C1E21" text-anchor="middle">
@@ -794,50 +881,56 @@ decoder: (log₂ M − log₂ m)-to-rows  <span class="cm">(high-order bits → 
 <text x="40" y="286" text-anchor="start" font-family="Inter, sans-serif" font-size="11.5">associative:</text>
 <rect x="130" y="270" width="180" height="26" fill="#F7EEDD" stroke="#A66A0D"/><text x="220" y="288">Tag 12</text>
 <rect x="310" y="270" width="90" height="26" fill="#FFFFFF" stroke="#5B6169"/><text x="355" y="288">Word 4</text></g>
-</svg></div><div class="cap">Fig 13. A 2-way set-associative cache (deck 5b p.34) and the address formats for 2-way (6 | 6 | 4) and fully associative (12 | 4) mapping.</div></div>
-<p>The number of blocks per set can be chosen: 4 blocks per set → 32 sets, a 5-bit set field (tag 7); 8 per set → a 4-bit set field (tag 8). The extreme of 128 blocks per set needs no set bits and is the fully associative technique (12 tag bits); the other extreme, one block per set, is direct mapping. A cache with k blocks per set is a <strong>k-way set-associative</strong> cache.</p>
-<div class="table-scroll"><table class="tt"><thead><tr><th>Mapping (128 blocks × 16 words, 16-bit address)</th><th>Tag</th><th>Block / Set</th><th>Word</th></tr></thead><tbody>
+</svg></div><div class="cap">Fig 14. A 2-way set-associative cache (deck 5b p.34) and the address formats for 2-way (6 | 6 | 4) and fully associative (12 | 4) mapping.</div></div>
+<p>The number of blocks per set can be chosen: 4 blocks per set → 32 sets, a 5-bit set field (tag 7); 8 per set → a 4-bit set field (tag 8). The extreme of 128 blocks per set needs no set bits and is the fully associative technique (12 tag bits); the other extreme, one block per set, is direct mapping. A cache with <em>k</em> blocks per set is a <strong><em>k</em>-way set-associative</strong> cache.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table class="tt"><thead><tr><th>Mapping (128 blocks × 16 words, 16-bit address)</th><th>Tag</th><th>Block / Set</th><th>Word</th></tr></thead><tbody>
 <tr><td>Direct</td><td>5</td><td>7</td><td>4</td></tr><tr><td>2-way set-associative</td><td>6</td><td>6</td><td>4</td></tr><tr><td>4-way</td><td>7</td><td>5</td><td>4</td></tr><tr><td>8-way</td><td>8</td><td>4</td><td>4</td></tr><tr><td>Fully associative</td><td>12</td><td>—</td><td>4</td></tr></tbody></table></div>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 
 <section class="page section" id="cache-examples" style="--accent:var(--indigo);--accent-soft:var(--indigo-soft);"><div class="section-head"><span class="tag">12</span><h1>Examples of Mapping Techniques and Performance Considerations</h1></div>
 <p class="section-sub">Working out address formats, locating an address in a cache, tracing hits and misses, and calculating the effective access time. <span class="pill">U5b deck pp.38–41</span></p>
 <h2 id="u5-ce-format">12.1 Address-format examples</h2>
-<div class="formula-block">word bits = log₂(words per block)
-set bits  = log₂(number of sets),  sets = cache blocks / blocks per set   <span class="cm">(direct: sets = cache blocks)</span>
+<div class="formula-block">word bits = log<sub>2</sub>(words per block)
+set bits  = log<sub>2</sub>(number of sets),  sets = cache blocks / blocks per set   <span class="cm">(direct: sets = cache blocks)</span>
 tag bits  = address bits − set bits − word bits</div>
 <div class="qbox"><div class="qmeta"><span class="qsrc">Deck 5b p.39 · SEE 2023–24 Q9a</span><span class="marks">8 marks (with mapping theory)</span></div><div class="qtext">A computer has an 8 GB memory with 64-bit words. Each block stores 16 words. The computer has a direct-mapped cache of 128 blocks and uses word-level addressing. What is the address format? If the cache is changed to 4-way set associative, what is the new format?</div>
 <div class="ans-label">Answer</div>
-<div class="formula-block">words in memory = 8 GB / 8 bytes = 1G words = 2³⁰   → <span class="c2">30-bit word address</span>
-word field  = log₂ 16 = 4 bits
-direct:  block = log₂ 128 = 7 bits;   tag = 30 − 7 − 4 = <span class="c2">19</span>   →  19 | 7 | 4
+<div class="formula-block">words in memory = 8 GB / 8 bytes = 1G words = 2<sup>30</sup>   → <span class="c2">30-bit word address</span>
+word field  = log<sub>2</sub> 16 = 4 bits
+direct:  block = log<sub>2</sub> 128 = 7 bits;   tag = 30 − 7 − 4 = <span class="c2">19</span>   →  19 | 7 | 4
 4-way:   sets = 128 / 4 = 32 → 5 bits; tag = 30 − 5 − 4 = <span class="c2">21</span>   →  21 | 5 | 4</div>
 <div class="callout clarify"><span class="label">Source inconsistency in SEE 2023–24 Q9a</span>The SEE paper prints "64 bit word sizes (1 word = 4 bytes)", which contradicts itself. With 8-byte words the answer is the one above (as in the deck). If a word were 4 bytes, the memory would have 8G / 4 = 2G = 2<sup>31</sup> words, a 31-bit address, and the direct format would be <strong>20 | 7 | 4</strong>. Write down which reading you use.</div></div>
 <div class="qbox"><div class="qmeta"><span class="qsrc">Deck 5b p.38</span><span class="marks">4 marks</span></div><div class="qtext">A computer has 32-bit addresses; each block stores 16 words; a direct-mapped cache has 256 blocks. In which cache block would we look for each address (hex): (1) 1C2B C052 (2) AFFB 00EF?</div>
 <div class="ans-label">Answer</div>
-<p>Word field 4 bits (the last hex digit), block field log<sub>2</sub> 256 = 8 bits (the two hex digits before it), tag 32 − 8 − 4 = 20 bits (the first five hex digits).</p>
+<p>Since 1 hex digit = 4 bits, an 8-digit (32-bit) hex address splits straight along digit boundaries: <strong>5 digits (20 bits) Tag | 2 digits (8 bits) Block | 1 digit (4 bits) Word</strong>.</p>
+<p>Word field = log<sub>2</sub> 16 = 4 bits (the last hex digit), block field = log<sub>2</sub> 256 = 8 bits (the two hex digits before it), tag = 32 − 8 − 4 = 20 bits (the first five hex digits).</p>
 <div class="formula-block">1C2BC 05 2  →  tag 1C2BC,  block 05h = <span class="c2">5</span>,  word 2
 AFFB0 0E F  →  tag AFFB0,  block 0Eh = <span class="c2">14</span>, word 15</div>
 <p>(The deck calls block 14 the "15th" block, counting from 1; the block number is 14 in the range 0–255.)</p></div>
 <h2 id="u5-ce-trace">12.2 A mapping example: one reference string, three caches</h2>
 <div class="callout clarify"><span class="label">Added example (not in your slides)</span>The slides give only address-format examples. This short trace shows how the mapping function changes the hit count; it is computed by program.</div>
 <p>A cache of <strong>4 blocks</strong> receives the main-memory block references <strong>0, 8, 0, 6, 8, 1, 0</strong>. Replacement is LRU where there is a choice.</p>
-<div class="table-scroll"><table class="tt"><thead><tr><th>Reference</th><th>0</th><th>8</th><th>0</th><th>6</th><th>8</th><th>1</th><th>0</th><th>Hits</th></tr></thead><tbody>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table class="tt"><thead><tr><th>Reference</th><th>0</th><th>8</th><th>0</th><th>6</th><th>8</th><th>1</th><th>0</th><th>Hits</th></tr></thead><tbody>
 <tr><td>Direct (block mod 4)</td><td>M</td><td>M</td><td>M</td><td>M</td><td>M</td><td>M</td><td>M</td><td>0</td></tr>
-<tr><td>2-way (set = block mod 2)</td><td>M</td><td>M</td><td>H</td><td>M</td><td>M</td><td>M</td><td>M</td><td>1</td></tr>
-<tr><td>Fully associative</td><td>M</td><td>M</td><td>H</td><td>M</td><td>H</td><td>M</td><td>H</td><td>3</td></tr></tbody></table></div>
-<p>Direct: 0 and 8 both map to cache block 0 and keep evicting each other, even though blocks 1–3 are mostly empty. 2-way: 0, 8 and 6 all map to set 0, which holds only two of them, so after 0 hits once, LRU replacement keeps evicting the block needed next. Fully associative: any block can go anywhere, so 0 and 8 stay, giving 3 hits. More associativity, fewer conflict misses, but more tag comparisons.</p>
+<tr><td>2-way (set = block mod 2)</td><td>M</td><td>M</td><td class="hi">H</td><td>M</td><td>M</td><td>M</td><td>M</td><td>1</td></tr>
+<tr><td>Fully associative</td><td>M</td><td>M</td><td class="hi">H</td><td>M</td><td class="hi">H</td><td>M</td><td class="hi">H</td><td>3</td></tr></tbody></table></div>
+<ul>
+<li><strong>Direct (0 hits):</strong> blocks 0 and 8 both map to slot 0, so they keep evicting each other (<code>0 → 8 → 0 → 8 → 0</code>) while slot 3 sits unused; blocks 6 and 1 land in slots 2 and 1, ending with slots <code>[0, 1, 6, –]</code>.</li>
+<li><strong>2-way (1 hit):</strong> even blocks 0, 8 and 6 all map to set 0 (which holds only two blocks). After <code>0</code> and <code>8</code> load, the second <code>0</code> <strong>hits</strong>; then <code>6</code> evicts LRU <code>8</code>, <code>8</code> evicts LRU <code>0</code>, <code>1</code> loads into set 1, and the final <code>0</code> evicts <code>6</code> — ending with set 0: <code>{8, 0}</code>, set 1: <code>{1}</code>.</li>
+<li><strong>Fully associative (3 hits):</strong> the 4 distinct blocks <code>0, 8, 6, 1</code> fit in the 4 slots with <strong>zero evictions</strong>, so every repeat (<code>0</code>, <code>8</code>, <code>0</code>) is a hit.</li>
+</ul>
+<p>More associativity reduces conflict misses, at the cost of more parallel tag comparisons.</p>
 <h2 id="u5-ce-perf">12.3 Performance considerations</h2>
-<p>Two key factors in the success of a computer are performance and cost; the memory hierarchy aims for the speed of the fastest level at the cost of the cheapest. A cache access that succeeds is a <strong>hit</strong>; the fraction of accesses that hit is the <strong>hit rate h</strong>, and 1 − h is the <strong>miss rate</strong>. The extra time needed on a miss to bring the block into the cache is the <strong>miss penalty</strong>. High hit rates (well over 0.9) are essential. The average (effective) access time is:</p>
-<div class="formula-block">T<sub>E</sub> = h · T<sub>C</sub> + (1 − h) · T<sub>M</sub>       <span class="cm">T_C = cache access time, T_M = main-memory access time (or miss penalty)</span></div>
+<p>Two key factors in the success of a computer are performance and cost; the memory hierarchy aims for the speed of the fastest level at the cost of the cheapest. A cache access that succeeds is a <strong>hit</strong>; the fraction of accesses that hit is the <strong>hit rate <em>h</em></strong>, and 1 − <em>h</em> is the <strong>miss rate</strong>. The extra time needed on a miss to bring the block into the cache is the <strong>miss penalty</strong>. High hit rates (well over 0.9) are essential. The average (effective) access time is:</p>
+<div class="formula-block">T<sub>E</sub> = <em>h</em> · T<sub>C</sub> + (1 − <em>h</em>) · T<sub>M</sub>       <span class="cm">T<sub>C</sub> = cache access time, T<sub>M</sub> = main-memory access time (or miss penalty)</span></div>
 <div class="qbox"><div class="qmeta"><span class="qsrc">Deck 5b p.40</span><span class="marks">4 marks</span></div><div class="qtext">A memory system uses a primary memory with 100 ns access time, fronted by a cache with 8 ns access time. What is the effective access time if the hit ratio is (a) 0.7 (b) 0.9 (c) 0.95 (d) 0.99?</div>
 <div class="ans-label">Answer</div>
-<div class="formula-block">T<sub>E</sub> = h·8 + (1 − h)·100
+<div class="formula-block">T<sub>E</sub> = <em>h</em>·8 + (1 − <em>h</em>)·100
 (a) 0.7·8 + 0.3·100  = 5.6 + 30   = <span class="c2">35.6 ns</span>
 (b) 0.9·8 + 0.1·100  = 7.2 + 10   = <span class="c2">17.2 ns</span>
 (c) 0.95·8 + 0.05·100 = 7.6 + 5   = <span class="c2">12.6 ns</span>
 (d) 0.99·8 + 0.01·100 = 7.92 + 1  = <span class="c2">8.92 ns</span></div>
-<p>Each small gain in hit rate makes a large difference. Some books assume the cache is always checked first, so a miss costs T<sub>C</sub> + T<sub>M</sub>: T<sub>E</sub> = h·T<sub>C</sub> + (1 − h)(T<sub>C</sub> + T<sub>M</sub>), giving 38.0, 18.0, 13.0 and 9.0 ns. Use the deck's formula unless the question says otherwise.</p></div>
+<p>Each small gain in hit rate makes a large difference. Some books assume the cache is always checked first, so a miss costs T<sub>C</sub> + T<sub>M</sub>: T<sub>E</sub> = <em>h</em>·T<sub>C</sub> + (1 − <em>h</em>)(T<sub>C</sub> + T<sub>M</sub>), giving 38.0, 18.0, 13.0 and 9.0 ns. Use the deck's formula unless the question says otherwise.</p></div>
 <div class="qbox"><div class="qmeta"><span class="qsrc">Deck 5b p.41</span><span class="marks">4 marks</span></div><div class="qtext">A computer has a single off-chip cache with a 2 ns hit time and a 98% hit rate; main memory has a 40 ns access time. What is the effective access time? If an on-chip cache with a 0.5 ns hit time and a 94% hit rate is added, what is the effective access time, and what speed-up does it give?</div>
 <div class="ans-label">Answer</div>
 <div class="formula-block">one level:  0.98 × 2 + 0.02 × 40 = 1.96 + 0.8 = <span class="c2">2.76 ns</span>
@@ -851,13 +944,13 @@ speed-up  = 2.76 / 0.6356 = <span class="c2">4.34</span></div>
 <h2 id="u5-io-dev">13.1 External devices and their interfaces</h2>
 <p>External (peripheral) devices let the computer communicate with the outside world: keyboards, mice, displays, printers, disks, network interfaces, sensors. They differ widely in speed, data format and timing, and nearly all are far slower than the processor. Each device connects to the bus through an <strong>I/O interface</strong> (device controller) containing:</p>
 <ul><li>an <strong>address decoder</strong> that recognises the addresses assigned to the device;</li>
-<li><strong>data registers</strong> (buffers) that hold the data being transferred, e.g. DATAIN, DATAOUT;</li>
-<li><strong>status registers</strong> with flags the processor can test, e.g. SIN, SOUT;</li>
+<li><strong>data registers</strong> (buffers) that hold the data being transferred, e.g. <code>DATAIN</code>, <code>DATAOUT</code>;</li>
+<li><strong>status registers</strong> with flags the processor can test, e.g. <code>SIN</code>, <code>SOUT</code>;</li>
 <li><strong>control circuitry</strong> that coordinates transfers with the bus and the device.</li></ul>
-<p>In <strong>memory-mapped I/O</strong>, the same address space is used for memory and I/O: some addresses refer to device registers, and ordinary instructions (Move, Load, Store) access them, e.g. <code>MoveByte DATAIN, R1</code>. Alternatively, a separate I/O address space with special In/Out instructions can be used.</p>
+<p>In <strong>memory-mapped I/O</strong>, the same address space is used for memory and I/O: some addresses refer to device registers, and ordinary instructions (<code>Move</code>, <code>Load</code>, <code>Store</code>) access them, e.g. <code>MoveByte DATAIN, R1</code>. Alternatively, a separate I/O address space with special <code>In</code>/<code>Out</code> instructions can be used.</p>
 <h2 id="u5-io-prog">13.2 Program-controlled I/O</h2>
-<p>Consider reading characters from a keyboard and echoing them on a display. The processor is much faster than either device, so transfers must be synchronised. The keyboard interface has an 8-bit buffer <strong>DATAIN</strong> and a status flag <strong>SIN</strong> (bit 3 of INSTATUS): pressing a key places its ASCII code in DATAIN and sets SIN = 1; reading DATAIN clears SIN to 0. The display interface has a buffer <strong>DATAOUT</strong> and a flag <strong>SOUT</strong> (bit 3 of OUTSTATUS): SOUT = 1 when the display is ready to receive a character; writing DATAOUT clears it until the character has been displayed.</p>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 640 200" width="640" role="img" aria-label="Processor, keyboard and display interfaces on a bus">
+<p>Consider reading characters from a keyboard and echoing them on a display. The processor is much faster than either device, so transfers must be synchronised. The keyboard interface has an 8-bit buffer <code>DATAIN</code> and a status flag <code>SIN</code> (bit 3 of <code>INSTATUS</code>): pressing a key places its ASCII code in <code>DATAIN</code> and sets <span class="eq">SIN = 1</span>; reading <code>DATAIN</code> clears <code>SIN</code> to 0. The display interface has a buffer <code>DATAOUT</code> and a flag <code>SOUT</code> (bit 3 of <code>OUTSTATUS</code>): <span class="eq">SOUT = 1</span> when the display is ready to receive a character; writing <code>DATAOUT</code> clears it until the character has been displayed.</p>
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 640 200" width="640" role="img" aria-label="Processor, keyboard and display interfaces on a bus">
 <defs><marker id="u5m14" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5B6169"/></marker></defs>
 <rect x="30" y="30" width="580" height="12" rx="3" fill="#E4F3F0" stroke="#12796F"/><text x="320" y="22" text-anchor="middle" font-size="11.5" font-weight="600" fill="#12796F">bus</text>
 <rect x="50" y="90" width="120" height="50" rx="5" fill="#E8EFF8" stroke="#1D4E89"/><text x="110" y="120" text-anchor="middle" font-size="13" font-weight="600" fill="#1C1E21">Processor</text>
@@ -872,16 +965,17 @@ speed-up  = 2.76 / 0.6356 = <span class="c2">4.34</span></div>
 <line x1="110" y1="44" x2="110" y2="88" stroke="#5B6169" stroke-width="1.8" marker-start="url(#u5m14)" marker-end="url(#u5m14)"/>
 <line x1="320" y1="44" x2="320" y2="74" stroke="#5B6169" stroke-width="1.8" marker-start="url(#u5m14)" marker-end="url(#u5m14)"/>
 <line x1="520" y1="44" x2="520" y2="74" stroke="#5B6169" stroke-width="1.8" marker-start="url(#u5m14)" marker-end="url(#u5m14)"/>
-</svg></div><div class="cap">Fig 14. Bus connection for processor, keyboard and display (Unit 4 deck p.30). Each interface has a data buffer and a status flag.</div></div>
-<div class="formula-block asm">          Move      #LOC, R0        <span class="cm">; R0 points to the memory area for the characters</span>
-READ:     TestBit   #3, INSTATUS    <span class="cm">; is SIN = 1 (a character in DATAIN)?</span>
-          Branch=0  READ            <span class="cm">; no: keep waiting</span>
-          MoveByte  DATAIN, (R0)    <span class="cm">; read the character into memory (clears SIN)</span>
-ECHO:     TestBit   #3, OUTSTATUS   <span class="cm">; is SOUT = 1 (display ready)?</span>
-          Branch=0  ECHO            <span class="cm">; no: keep waiting</span>
-          MoveByte  (R0), DATAOUT   <span class="cm">; send the character to the display</span>
-          Compare   #CR, (R0)+      <span class="cm">; was it carriage return? advance the pointer</span>
-          Branch≠0  READ            <span class="cm">; no: read the next character</span></div>
+</svg></div><div class="cap">Fig 15. Bus connection for processor, keyboard and display (Unit 4 deck p.30). Each interface has a data buffer and a status flag.</div></div>
+<p><strong>Polling loop (read a line from keyboard and echo to display)</strong> <span class="order-badge">Src → Dst</span></p>
+<div class="formula-block asm">      Move     #LOC, R0       ; R0 points to memory buffer
+READ: TestBit  #3, INSTATUS   ; is SIN = 1 (char in DATAIN)?
+      Branch=0 READ           ; no: keep waiting
+      MoveByte DATAIN, (R0)   ; read char into memory (clears SIN)
+ECHO: TestBit  #3, OUTSTATUS  ; is SOUT = 1 (display ready)?
+      Branch=0 ECHO           ; no: keep waiting
+      MoveByte (R0), DATAOUT  ; send char to display (clears SOUT)
+      Compare  #CR, (R0)+     ; carriage return? advance pointer
+      Branch≠0 READ           ; no: read next character</div>
 <p>This is <strong>program-controlled (polled) I/O</strong>: the processor repeatedly tests a status flag in a <strong>wait loop</strong> until the device is ready, and then transfers the data itself.</p>
 <h2 id="u5-io-draw">13.3 Drawbacks of program-controlled I/O</h2>
 <ul>
@@ -898,7 +992,7 @@ ECHO:     TestBit   #3, OUTSTATUS   <span class="cm">; is SOUT = 1 (display read
 <nav class="topic-toc" aria-label="In this topic"><span>In this topic</span><a href="#u5-int-basic">14.1 What an interrupt is</a><a href="#u5-int-steps">14.2 Interrupt processing</a><a href="#u5-int-enable">14.3 Enabling and disabling</a><a href="#u5-int-multi">14.4 Design issues with many devices</a><a href="#u5-int-exc">14.5 Exceptions</a></nav>
 <h2 id="u5-int-basic">14.1 What an interrupt is</h2>
 <p>Instead of the processor waiting in a loop, the device can alert the processor when it is ready by sending a hardware signal, an <strong>interrupt</strong>, on an <strong>interrupt-request (INTR) line</strong>. The processor can do other useful work meanwhile. When the request arrives, the processor suspends the current program, executes an <strong>interrupt-service routine (ISR)</strong> that services the device, and then resumes the interrupted program.</p>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 600 260" width="600" role="img" aria-label="Transfer of control through an interrupt-service routine">
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 600 260" width="600" role="img" aria-label="Transfer of control through an interrupt-service routine">
 <defs><marker id="u5m15" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#93316B"/></marker></defs>
 <text x="140" y="22" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1C1E21">Program 1 (COMPUTE)</text>
 <text x="450" y="22" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1C1E21">Program 2 (ISR, e.g. DISPLAY)</text>
@@ -919,29 +1013,41 @@ ECHO:     TestBit   #3, OUTSTATUS   <span class="cm">; is SOUT = 1 (display read
 <text x="300" y="60" text-anchor="middle" font-size="11.5" fill="#93316B">here (during i)</text>
 <path d="M398,130 C330,150 270,160 204,158" fill="none" stroke="#12796F" stroke-width="1.8" marker-end="url(#u5m15)"/>
 <text x="300" y="182" text-anchor="middle" font-size="11.5" fill="#12796F">return to i + 1 (saved PC)</text>
-</svg></div><div class="cap">Fig 15. Transfer of control through an interrupt-service routine. The request arrives during instruction i; after the ISR, execution resumes at i + 1.</div></div>
+</svg></div><div class="cap">Fig 16. Transfer of control through an interrupt-service routine. The request arrives during instruction <em>i</em>; after the ISR, execution resumes at <em>i</em> + 1.</div></div>
 <p>An ISR resembles a subroutine, but with one key difference: it usually has nothing to do with the program being interrupted, which can be anywhere when the request arrives. So everything the ISR changes that could affect the interrupted program (the PC, the condition-code/status register, and any registers it uses) must be <strong>saved</strong> before, and <strong>restored</strong> after, the ISR.</p>
 <h2 id="u5-int-steps">14.2 Interrupt processing, step by step</h2>
 <ol class="steps">
 <li>The device raises an <strong>interrupt request</strong>.</li>
-<li>The processor <strong>completes the current instruction</strong> (i), then checks for pending requests.</li>
-<li>If interrupts are enabled, it <strong>saves the PC</strong> (address i + 1) and the <strong>processor status register (PS)</strong>, typically on the stack, and <strong>disables further interrupts</strong>.</li>
+<li>The processor <strong>completes the current instruction</strong> (<em>i</em>), then checks for pending requests.</li>
+<li>If interrupts are enabled, it <strong>saves the PC</strong> (address <em>i</em> + 1) and the <strong>processor status register (PS)</strong>, typically on the stack, and <strong>disables further interrupts</strong>.</li>
 <li>It informs the device that the request is recognised, by an <strong>interrupt-acknowledge (INTA)</strong> signal or by the ISR accessing the device's registers, so the device removes its request.</li>
 <li>It loads the PC with the <strong>address of the ISR</strong> and executes it; the ISR saves the registers it uses, services the device and restores them.</li>
-<li>A <strong>Return-from-interrupt</strong> instruction restores PS and PC, re-enabling interrupts, and the interrupted program continues at i + 1.</li></ol>
+<li>A <strong>Return-from-interrupt</strong> instruction restores PS and PC, re-enabling interrupts, and the interrupted program continues at <em>i</em> + 1.</li></ol>
 <p>The delay between the request and the start of the ISR is the <strong>interrupt latency</strong>. Saving many registers automatically increases it, so processors often save only the PC and PS automatically and leave the rest to the ISR.</p>
 <h2 id="u5-int-enable">14.3 Enabling and disabling interrupts</h2>
 <p>The programmer must be able to control when interrupts are accepted, for example to prevent the same request from interrupting its own ISR repeatedly, or to protect a critical section. Two levels of control are used:</p>
-<ul><li><strong>Processor level:</strong> an <strong>interrupt-enable (IE) bit</strong> in the processor status register. When IE = 0, requests are ignored (held pending). The processor clears IE automatically on accepting an interrupt; Return-from-interrupt restores it. Alternatively, the processor may accept a request only on its leading edge (edge-triggered), so one request is seen once.</li>
-<li><strong>Device level:</strong> each interface has an interrupt-enable bit in its control register (e.g. KIE for the keyboard, DIE for the display). Only when it is set may the device raise a request, so the program chooses which devices may interrupt.</li></ul>
+<ul><li><strong>Processor level:</strong> an <strong>interrupt-enable (<code>IE</code>) bit</strong> in the processor status register. When <span class="eq">IE = 0</span>, requests are ignored (held pending). The processor clears <code>IE</code> automatically on accepting an interrupt; Return-from-interrupt restores it. Alternatively, the processor may accept a request only on its leading edge (edge-triggered), so one request is seen once.</li>
+<li><strong>Device level:</strong> each interface has an interrupt-enable bit in its control register (e.g. <code>KIE</code> for the keyboard, <code>DIE</code> for the display). Only when it is set may the device raise a request, so the program chooses which devices may interrupt.</li></ul>
 <h2 id="u5-int-multi">14.4 Design issues when many devices can interrupt</h2>
-<p>With several devices, each able to interrupt at any time, the design must answer these questions:</p>
+<p>With several devices, each able to interrupt at any time, the design must answer four questions:</p>
 <ol>
-<li><strong>How does the processor identify the device that raised the request?</strong> (a) <em>Polling:</em> the ISR reads the status registers of the devices in turn and services the first whose IRQ bit is set. Simple, but time is wasted checking devices that are not requesting. (b) <em>Vectored interrupts:</em> the requesting device sends a code (an <strong>interrupt vector</strong>) identifying itself; the processor uses it to find the starting address of that device's ISR in a table of <strong>interrupt vectors</strong> in memory. Faster, and each device can have its own ISR.</li>
-<li><strong>Can an ISR itself be interrupted (nesting)?</strong> Devices are given <strong>priority levels</strong>. The processor's current priority is held in PS; while an ISR for a device runs, the processor runs at that device's priority and accepts only requests of <em>higher</em> priority. Instructions that change the priority are <em>privileged</em> (allowed only in supervisor mode).</li>
-<li><strong>What if several requests arrive at the same time?</strong> The processor must choose one: <strong>priority arbitration</strong>. Either separate request/acknowledge line pairs per priority level with a priority arbitration circuit, or a <strong>daisy chain</strong>: all devices share one INTR line; the INTA signal passes serially from device to device; the first device with a pending request blocks INTA from propagating and puts its vector on the bus. The device electrically closest to the processor has the highest priority. Priority groups combine both: daisy chains within each priority level.</li>
-<li><strong>How are requests controlled?</strong> By the enable bits at processor and device level (§14.3).</li></ol>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 640 200" width="640" role="img" aria-label="Daisy-chain interrupt priority">
+<li><strong>How does the processor identify the requesting device?</strong>
+  <ul>
+    <li><strong>Polling:</strong> the ISR reads each device's status register in turn and services the first whose <code>IRQ</code> bit is set. Simple hardware, but wastes time checking idle devices (up to <em>n</em> devices).</li>
+    <li><strong>Vectored interrupts:</strong> the requesting device sends an identification code (an <strong>interrupt vector</strong>); the processor looks up that device's ISR starting address in an <strong>interrupt-vector table</strong> in memory. Faster, and each device can have its own ISR.</li>
+  </ul>
+</li>
+<li><strong>Can an ISR itself be interrupted (interrupt nesting)?</strong> Devices are assigned <strong>priority levels</strong>. The processor's current priority is held in <code>PS</code>; while an ISR for a device runs, the processor runs at that device's priority and accepts only requests of <em>higher</em> priority. Instructions that change priority are <em>privileged</em> (allowed only in supervisor mode).</li>
+<li><strong>What if several requests arrive simultaneously (priority arbitration)?</strong>
+  <ul>
+    <li><strong>Separate request/acknowledge lines:</strong> each priority level has its own <code>INTR</code>/<code>INTA</code> pair wired to a hardware priority-arbitration circuit.</li>
+    <li><strong>Daisy chain:</strong> all <em>n</em> devices share one <code>INTR</code> line, while <code>INTA</code> passes serially from device to device (Fig 17). The first device with a pending request blocks <code>INTA</code> from propagating further and puts its vector on the bus — so the device electrically closest to the processor has the highest priority.</li>
+    <li><strong>Priority groups:</strong> combines both approaches by placing a daisy chain within each priority level.</li>
+  </ul>
+</li>
+<li><strong>How are requests controlled?</strong> By the enable bits at processor level (<code>IE</code> in <code>PS</code>) and device level (e.g. <code>KIE</code>, <code>DIE</code>), as in §14.3.</li>
+</ol>
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 640 200" width="640" role="img" aria-label="Daisy-chain interrupt priority">
 <defs><marker id="u5m16" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5B6169"/></marker></defs>
 <rect x="20" y="60" width="110" height="80" rx="6" fill="#E8EFF8" stroke="#1D4E89"/><text x="75" y="105" text-anchor="middle" font-size="13" font-weight="600" fill="#1C1E21">Processor</text>
 <g font-size="12.5" font-weight="600" fill="#1C1E21" text-anchor="middle">
@@ -957,7 +1063,7 @@ ECHO:     TestBit   #3, OUTSTATUS   <span class="cm">; is SOUT = 1 (display read
 <polyline points="508,135 518,135" fill="none" stroke="#1D4E89" stroke-width="1.8" marker-end="url(#u5m16)"/>
 <text x="170" y="120" text-anchor="middle" font-size="11.5" fill="#1D4E89">INTA</text>
 <text x="320" y="190" text-anchor="middle" font-size="11.5" fill="#5B6169">INTA passes from device to device; the first requesting device keeps it. Highest priority: Device 1.</text>
-</svg></div><div class="cap">Fig 16. Daisy-chain priority (after Hamacher). All devices share INTR; the acknowledge INTA is passed along the chain.</div></div>
+</svg></div><div class="cap">Fig 17. Daisy-chain priority (after Hamacher). All <em>n</em> devices share INTR; the acknowledge INTA is passed along the chain.</div></div>
 <h2 id="u5-int-exc">14.5 Exceptions</h2>
 <p>The interrupt mechanism is also used for events other than I/O requests. Any event that causes an interruption is called an <strong>exception</strong>:</p>
 <ul><li><strong>Recovery from errors:</strong> illegal opcode, divide by zero, arithmetic overflow, memory errors. The processor interrupts the program and runs an exception-service routine (which may terminate the program).</li>
@@ -971,10 +1077,14 @@ ECHO:     TestBit   #3, OUTSTATUS   <span class="cm">; is SOUT = 1 (display read
 <div class="callout clarify"><span class="label">Not in your materials — added for syllabus completeness</span>The decks only name DMA as an improvement on programmed I/O (Unit 4 deck p.30). This section follows the textbook's treatment of DMA at the depth the syllabus line "Direct Memory Access Function" suggests.</div>
 <p>With interrupts, the processor still executes instructions to move every word, saving and restoring state each time. For large blocks (disk, network) this overhead is too high. <strong>Direct memory access (DMA)</strong> transfers a block of data <strong>directly between an I/O device and main memory</strong>, without continuous involvement of the processor. The transfer is done by a control circuit in the device interface, the <strong>DMA controller</strong>.</p>
 <h2 id="u5-dma-func">15.1 The DMA controller's function</h2>
-<p>For each word, the DMA controller performs the functions the processor would otherwise perform: it provides the <strong>memory address</strong> and the bus signals that control the transfer, and it keeps track of the number of transfers. To start a block transfer, the processor sends the controller:</p>
-<ul><li>the <strong>starting address</strong> of the memory block,</li><li>the <strong>number of words</strong> (word count),</li><li>the <strong>direction</strong> of transfer (Read or Write).</li></ul>
-<p>The controller then performs the transfer, incrementing the address and decrementing the count for each word. Meanwhile the processor executes other programs. When the whole block has been transferred, the controller informs the processor by raising an <strong>interrupt</strong>. The OS normally puts the program that asked for the transfer in a blocked state until then.</p>
-<div class="svg-wrap"><div class="diagram-scroll"><svg viewBox="0 0 680 290" width="680" role="img" aria-label="System bus with processor, memory and DMA controllers, and the DMA controller registers">
+<p>For each word, the DMA controller performs the functions the processor would otherwise perform: it supplies the <strong>memory address</strong> and bus control signals, and keeps track of how many words remain. One complete DMA block transfer proceeds in four steps:</p>
+<ol class="steps">
+<li><strong>Setup:</strong> the processor writes the <strong>starting address</strong> of the memory block, the <strong>word count</strong> (number of words), and the <strong>direction</strong> (<code>R/W</code>: Read or Write) into the DMA controller's registers and starts the transfer. The OS normally puts the requesting program into a blocked state.</li>
+<li><strong>Direct transfer:</strong> the DMA controller requests bus mastership and moves words directly between the device and main memory, incrementing the address and decrementing the word count after each word.</li>
+<li><strong>Concurrent CPU work:</strong> while the DMA controller moves the block, the processor executes other programs without handling individual words.</li>
+<li><strong>Completion interrupt:</strong> when the word count hits 0, the DMA controller sets its <code>Done</code> flag and raises an <strong>interrupt</strong> (if <span class="eq">IE = 1</span>) to notify the processor that the block transfer is complete.</li>
+</ol>
+<div class="svg-wrap"><p class="diagram-hint">Swipe or scroll sideways to read the full diagram.</p><div class="diagram-scroll" tabindex="0" role="region" aria-label="Scrollable diagram"><svg viewBox="0 0 680 290" width="680" role="img" aria-label="System bus with processor, memory and DMA controllers, and the DMA controller registers">
 <rect x="20" y="110" width="640" height="12" rx="3" fill="#E4F3F0" stroke="#12796F"/><text x="650" y="104" text-anchor="end" font-size="11.5" font-weight="600" fill="#12796F">system bus</text>
 <g font-size="12.5" font-weight="600" fill="#1C1E21" text-anchor="middle">
 <rect x="40" y="30" width="120" height="50" rx="5" fill="#E8EFF8" stroke="#1D4E89"/><text x="100" y="60">Processor</text>
@@ -992,13 +1102,13 @@ ECHO:     TestBit   #3, OUTSTATUS   <span class="cm">; is SOUT = 1 (display read
 <rect x="530" y="180" width="120" height="26" fill="#F7EEDD" stroke="#A66A0D"/><text x="540" y="198">Word count</text>
 <rect x="530" y="206" width="120" height="26" fill="#F7EEDD" stroke="#A66A0D"/><text x="540" y="224">Status &amp; control</text></g>
 <text x="590" y="250" text-anchor="middle" font-size="10.5" fill="#5B6169">IRQ · IE · R/W · Done</text>
-</svg></div><div class="cap">Fig 17. Use of DMA controllers in a computer system (after Hamacher), and the registers of a DMA controller.</div></div>
+</svg></div><div class="cap">Fig 18. Use of DMA controllers in a computer system (after Hamacher), and the registers of a DMA controller.</div></div>
 <h2 id="u5-dma-regs">15.2 Registers and operation</h2>
-<p>A DMA controller has a <strong>starting-address register</strong>, a <strong>word-count register</strong> and a <strong>status and control register</strong>. Typical status/control bits: <strong>R/W</strong> (1 = read from memory to the device, 0 = write into memory), <strong>Done</strong> (set when the block is complete), <strong>IE</strong> (interrupt enable: raise an interrupt when Done) and <strong>IRQ</strong> (set when the controller has requested an interrupt). A disk controller may have several DMA channels, each with its own set of registers.</p>
+<p>A DMA controller has a <strong>starting-address register</strong>, a <strong>word-count register</strong> and a <strong>status and control register</strong>. Typical status/control bits: <code>R/W</code> (1 = read from memory to the device, 0 = write into memory), <code>Done</code> (set when the block is complete), <code>IE</code> (interrupt enable: raise an interrupt when <code>Done</code>) and <code>IRQ</code> (set when the controller has requested an interrupt). A disk controller may have several DMA channels, each with its own set of registers.</p>
 <ul><li><strong>Cycle stealing:</strong> memory accesses by the processor and DMA controllers are interwoven. The controller "steals" individual memory cycles from the processor, which is slowed only slightly; requests from DMA devices usually get higher priority than processor accesses.</li>
 <li><strong>Block (burst) mode:</strong> the controller is given exclusive access to memory to transfer a whole block without interruption, for fast devices.</li>
 <li><strong>Bus arbitration:</strong> the device allowed to start transfers on the bus at a given time is the <strong>bus master</strong>. When a DMA controller needs the bus it requests mastership; an <strong>arbiter</strong> (centralised, often in the processor, or distributed among the devices) grants it, and mastership returns afterwards.</li></ul>
-<div class="table-scroll"><table><thead><tr><th>Method</th><th>Who moves each word</th><th>Processor involvement</th><th>Suited to</th></tr></thead><tbody>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Method</th><th>Who moves each word</th><th>Processor involvement</th><th>Suited to</th></tr></thead><tbody>
 <tr><td>Program-controlled I/O</td><td>Processor</td><td>Busy-waits on status flags</td><td>Simple, slow devices; small systems</td></tr>
 <tr><td>Interrupt-driven I/O</td><td>Processor (in the ISR)</td><td>Only when the device is ready</td><td>Keyboards, printers, moderate rates</td></tr>
 <tr><td>DMA</td><td>DMA controller</td><td>Only to start the transfer and at the final interrupt</td><td>Disks, network interfaces, block transfers</td></tr></tbody></table></div>
@@ -1009,104 +1119,112 @@ ECHO:     TestBit   #3, OUTSTATUS   <span class="cm">; is SOUT = 1 (display read
 <h2 id="u5-s-datapath">Datapaths and control sequences</h2>
 <div class="qbox"><div class="qmeta"><span class="qsrc">ADLD-IMPROVEMENT-2025-26-B6</span><span class="marks">10 marks</span></div><div class="qtext">Design the datapath for (i) a single-bus CPU and (ii) a three-bus CPU (with neat diagrams). Analyse their operation by writing the control signals and micro-operations (control sequence) needed to execute <code>ADD R1, R2, R3 ; R1 + R2 → R3</code>. Highlight the performance difference between the two organisations.</div>
 <div class="ans-label">Answer</div>
-<p><strong>(i) Single-bus datapath:</strong> draw Fig 1 and describe it (§2.1): one internal bus; MAR, MDR to the memory bus; Y, MUX (constant 4 / Y) and ALU, result in Z; registers gated by R<sub>in</sub>/R<sub>out</sub>.</p>
-<div class="table-scroll"><table><thead><tr><th>Step</th><th>Control signals</th><th>Micro-operation</th></tr></thead><tbody>
-<tr><td>1</td><td><code>PCout, MARin, Read, Select4, Add, Zin</code></td><td>MAR ← [PC]; start read; Z ← [PC] + 4</td></tr>
-<tr><td>2</td><td><code>Zout, PCin, Yin, WMFC</code></td><td>PC ← [Z]; wait for MFC (MDR ← instruction)</td></tr>
-<tr><td>3</td><td><code>MDRout, IRin</code></td><td>IR ← [MDR]</td></tr>
-<tr><td>4</td><td><code>R1out, Yin</code></td><td>Y ← [R1]</td></tr>
-<tr><td>5</td><td><code>R2out, SelectY, Add, Zin</code></td><td>Z ← [Y] + [R2]</td></tr>
-<tr><td>6</td><td><code>Zout, R3in, End</code></td><td>R3 ← [Z]; next fetch</td></tr></tbody></table></div>
-<p><strong>(ii) Three-bus datapath:</strong> draw Fig 4 and describe it (§4): buses A and B for sources, C for the result; a register file with two read ports and one write port; PC incrementer; ALU pass-through R = A / R = B.</p>
-<div class="table-scroll"><table><thead><tr><th>Step</th><th>Control signals</th><th>Micro-operation</th></tr></thead><tbody>
-<tr><td>1</td><td><code>PCout, R=B, MARin, Read, IncPC</code></td><td>MAR ← [PC] (via B and C); start read; PC ← [PC] + 4</td></tr>
-<tr><td>2</td><td><code>WMFC</code></td><td>wait for MFC</td></tr>
-<tr><td>3</td><td><code>MDRoutB, R=B, IRin</code></td><td>IR ← [MDR]</td></tr>
-<tr><td>4</td><td><code>R1outA, R2outB, SelectA, Add, R3in, End</code></td><td>R3 ← [R1] + [R2]</td></tr></tbody></table></div>
-<p><strong>Performance difference.</strong> The single bus needs <strong>6 steps</strong> (3 fetch + 3 execute); the three-bus needs <strong>4</strong> (3 fetch + 1 execute), so register-to-register instructions run in one execute cycle instead of three: about 1.5× faster for this instruction, ignoring the memory wait common to both. The three-bus design needs no Y and Z, and its incrementer frees the ALU during fetch; the price is more hardware (three buses, a multi-port register file). (Both sequences were simulated: R3 = R1 + R2 and PC + 4 in each.)</p></div>
+<p><strong>(i) Single-bus datapath:</strong> draw Fig 1 and describe it (§2.1): one internal bus; MAR, MDR to the memory bus; Y, MUX (constant 4 / Y) and ALU, result in Z; registers gated by <code>R<sub>in</sub></code>/<code>R<sub>out</sub></code>.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Step</th><th>Control signals</th><th>Micro-operation</th></tr></thead><tbody>
+<tr><td>1</td><td><code>PC<sub>out</sub>, MAR<sub>in</sub>, Read, Select4, Add, Z<sub>in</sub></code></td><td><span class="eq">MAR ← [PC]</span>; start read; <span class="eq">Z ← [PC] + 4</span></td></tr>
+<tr><td>2</td><td><code>Z<sub>out</sub>, PC<sub>in</sub>, Y<sub>in</sub>, WMFC</code></td><td><span class="eq">PC ← [Z]</span>; wait for MFC (<span class="eq">MDR ← instruction</span>)</td></tr>
+<tr><td>3</td><td><code>MDR<sub>out</sub>, IR<sub>in</sub></code></td><td><span class="eq">IR ← [MDR]</span></td></tr>
+<tr><td>4</td><td><code>R1<sub>out</sub>, Y<sub>in</sub></code></td><td><span class="eq">Y ← [R1]</span></td></tr>
+<tr><td>5</td><td><code>R2<sub>out</sub>, SelectY, Add, Z<sub>in</sub></code></td><td><span class="eq">Z ← [Y] + [R2]</span></td></tr>
+<tr><td>6</td><td><code>Z<sub>out</sub>, R3<sub>in</sub>, End</code></td><td><span class="eq">R3 ← [Z]</span>; next fetch</td></tr></tbody></table></div>
+<p><strong>(ii) Three-bus datapath:</strong> draw Fig 4 and describe it (§4): buses A and B for sources, C for the result; a register file with two read ports and one write port; PC incrementer; ALU pass-through <span class="eq">R = A</span> / <span class="eq">R = B</span>.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Step</th><th>Control signals</th><th>Micro-operation</th></tr></thead><tbody>
+<tr><td>1</td><td><code>PC<sub>out</sub>, R=B, MAR<sub>in</sub>, Read, IncPC</code></td><td><span class="eq">MAR ← [PC]</span> (via B and C); start read; <span class="eq">PC ← [PC] + 4</span></td></tr>
+<tr><td>2</td><td><code>WMFC</code></td><td>wait for MFC (<span class="eq">MDR ← instruction</span>)</td></tr>
+<tr><td>3</td><td><code>MDR<sub>outB</sub>, R=B, IR<sub>in</sub></code></td><td><span class="eq">IR ← [MDR]</span></td></tr>
+<tr><td>4</td><td><code>R1<sub>outA</sub>, R2<sub>outB</sub>, SelectA, Add, R3<sub>in</sub>, End</code></td><td><span class="eq">R3 ← [R1] + [R2]</span></td></tr></tbody></table></div>
+<p><strong>Performance difference.</strong> The single bus needs <strong>6 steps</strong> (3 fetch + 3 execute); the three-bus needs <strong>4</strong> (3 fetch + 1 execute), so register-to-register instructions run in one execute cycle instead of three: about 1.5× faster for this instruction, ignoring the memory wait common to both. The three-bus design needs no Y and Z, and its incrementer frees the ALU during fetch; the price is more hardware (three buses, a multi-port register file). (Both sequences were simulated: <span class="eq">R3 = R1 + R2</span> and <span class="eq">PC + 4</span> in each.)</p></div>
 <div class="qbox"><div class="qmeta"><span class="qsrc">Improvement 2023–24 Q5</span><span class="marks">5 marks</span></div><div class="qtext">Write the control sequence for single-bus and three-bus processor datapaths to execute <code>ADD R0, R1, R7</code> (instruction stored in memory), with comments.</div>
 <div class="ans-label">Answer</div>
-<p>Taking R0 + R1 → R7. Single bus: the three fetch steps above, then <code>R0out, Yin</code>; <code>R1out, SelectY, Add, Zin</code>; <code>Zout, R7in, End</code> (6 steps). Three bus: the three fetch steps, then <code>R0outA, R1outB, SelectA, Add, R7in, End</code> (4 steps).</p>
-<div class="callout clarify"><span class="label">Correction to the scheme</span>The printed scheme for this question gives the 7-step sequence for <code>ADD (R3), R1</code>, a different instruction (memory operand). The answer above is for ADD R0, R1, R7 as asked; the scheme's sequence is the right answer to SEE 2024–25 Q9a (§3.4).</div></div>
+<p>Taking <span class="eq">R0 + R1 → R7</span>:</p>
+<ul>
+<li><strong>Single-bus (6 steps):</strong> the three fetch steps above, followed by <code>R0<sub>out</sub>, Y<sub>in</sub></code>; <code>R1<sub>out</sub>, SelectY, Add, Z<sub>in</sub></code>; <code>Z<sub>out</sub>, R7<sub>in</sub>, End</code>.</li>
+<li><strong>Three-bus (4 steps):</strong> the three fetch steps above, followed by <code>R0<sub>outA</sub>, R1<sub>outB</sub>, SelectA, Add, R7<sub>in</sub>, End</code>.</li>
+</ul>
+<div class="callout clarify"><span class="label">Correction to the scheme</span>The printed scheme for this question gives the 7-step sequence for <code>ADD (R3), R1</code>, a different instruction (memory operand). The answer above is for <code>ADD R0, R1, R7</code> as asked; the scheme's sequence is the right answer to SEE 2024–25 Q9a (§3.4).</div></div>
 <div class="qbox"><div class="qmeta"><span class="qsrc">SEE 2023–24 Q9b</span><span class="marks">8 marks</span></div><div class="qtext">Write the control sequence, with comments, for the execution of <code>ADD (R5), R3</code> using single-bus and three-bus datapaths.</div>
 <div class="ans-label">Answer</div>
-<div class="grid2"><div class="formula-block asm"><span class="cm">; single bus (7 steps)</span>
-1 PCout, MARin, Read, Select4, Add, Zin
-2 Zout, PCin, Yin, WMFC
-3 MDRout, IRin
-4 R5out, MARin, Read  <span class="cm">; operand address</span>
-5 R3out, Yin, WMFC    <span class="cm">; R3 → Y while waiting</span>
-6 MDRout, SelectY, Add, Zin
-7 Zout, R3in, End</div>
-<div class="formula-block asm"><span class="cm">; three bus (6 steps)</span>
-1 PCout, R=B, MARin, Read, IncPC
+<div class="grid2"><div class="formula-block"><span class="cm">; single bus (7 steps)</span>
+1 PC<sub>out</sub>, MAR<sub>in</sub>, Read, Select4, Add, Z<sub>in</sub>
+2 Z<sub>out</sub>, PC<sub>in</sub>, Y<sub>in</sub>, WMFC
+3 MDR<sub>out</sub>, IR<sub>in</sub>
+4 R5<sub>out</sub>, MAR<sub>in</sub>, Read  <span class="cm">; operand addr</span>
+5 R3<sub>out</sub>, Y<sub>in</sub>, WMFC    <span class="cm">; R3 → Y</span>
+6 MDR<sub>out</sub>, SelectY, Add, Z<sub>in</sub>
+7 Z<sub>out</sub>, R3<sub>in</sub>, End     <span class="cm">; R3 ← sum</span></div>
+<div class="formula-block"><span class="cm">; three bus (6 steps)</span>
+1 PC<sub>out</sub>, R=B, MAR<sub>in</sub>, Read, IncPC
 2 WMFC
-3 MDRoutB, R=B, IRin
-4 R5outB, R=B, MARin, Read <span class="cm">; address</span>
-5 WMFC                     <span class="cm">; operand → MDR</span>
-6 MDRoutB, R3outA, SelectA,
-  Add, R3in, End           <span class="cm">; R3 ← R3 + M[R5]</span></div></div>
-<p>(Simulated with R5 = 600, M[600] = 40, R3 = 500: R3 becomes 540 in both.)</p></div>
+3 MDR<sub>outB</sub>, R=B, IR<sub>in</sub>
+4 R5<sub>outB</sub>, R=B, MAR<sub>in</sub>, Read <span class="cm">; addr</span>
+5 WMFC                    <span class="cm">; → MDR</span>
+6 MDR<sub>outB</sub>, R3<sub>outA</sub>, SelectA,
+  Add, R3<sub>in</sub>, End          <span class="cm">; R3 ← sum</span></div></div>
+<p>(Simulated with <span class="eq">R5 = 600</span>, <span class="eq">M[600] = 40</span>, <span class="eq">R3 = 500</span>: <code>R3</code> becomes <strong>540</strong> in both.)</p></div>
 <div class="qbox"><div class="qmeta"><span class="qsrc">SEE 2024–25 Q9a · SEE 2024–25 Q10a</span><span class="marks">6 marks</span></div><div class="qtext">List the actions needed to execute <code>ADD (R3), R1</code>. Write and explain the sequence of control steps. (Q10a: analyse with an example how the complete execution of an instruction is carried out.)</div>
 <div class="ans-label">Answer</div>
-<p>Actions: (1) fetch the instruction; (2) fetch the first operand, the contents of the memory location pointed to by R3; (3) perform the addition; (4) load the result into R1. The seven control steps, with the explanation of each, are in <a href="#execution">§3.4</a>; for Q10a, use the same instruction and also describe the fetch and execute phases (§1).</p></div>
+<p>Actions: (1) fetch the instruction; (2) fetch the first operand, the contents of the memory location pointed to by <code>R3</code>; (3) perform the addition; (4) load the result into <code>R1</code>. The seven control steps, with the explanation of each, are in <a href="#execution">§3.4</a>; for Q10a, use the same instruction and also describe the fetch and execute phases (§1).</p></div>
 <div class="qbox"><div class="qmeta"><span class="qsrc">ADLD-IMPROVEMENT-2025-26-B2b · SEE 2023–24 Q10b</span><span class="marks">6–8 marks</span></div><div class="qtext">Using a suitable block diagram, explain (briefly) the design and operation of a hardwired control unit in a CPU.</div>
 <div class="ans-label">Answer</div>
 <ol class="steps"><li>Draw Fig 5. In hardwired control, the control signals are generated by combinational logic. Each instruction is a sequence of steps, one per clock cycle.</li>
-<li>The <strong>control step counter</strong>, advanced by the clock, counts the steps; the <strong>step decoder</strong> turns the count into one active line T1 … Tn.</li>
-<li>The <strong>instruction decoder</strong> turns the opcode in IR into one active line INS1 … INSm.</li>
-<li>The <strong>encoder</strong> combines T, INS, external inputs (MFC, interrupts) and condition codes (N, Z, …) to produce every control signal as a sum of products, e.g. <strong>Zin = T1 + T6·ADD + T4·BR + …</strong> (Fig 6).</li>
-<li><strong>WMFC</strong> stops the counter until MFC arrives (Run); <strong>End = T7·ADD + T5·BR + …</strong> resets the counter to T1 for the next fetch.</li>
+<li>The <strong>control step counter</strong>, advanced by the clock, counts the steps; the <strong>step decoder</strong> turns the count into one active line <code>T<sub>1</sub> … T<sub>n</sub></code>.</li>
+<li>The <strong>instruction decoder</strong> turns the opcode in <code>IR</code> into one active line <code>INS<sub>1</sub> … INS<sub>m</sub></code>.</li>
+<li>The <strong>encoder</strong> combines <code>T</code>, <code>INS</code>, external inputs (<code>MFC</code>, interrupts) and condition codes (<code>N</code>, <code>Z</code>, …) to produce every control signal as a sum of products, e.g. <span class="eq">Z<sub>in</sub> = T<sub>1</sub> + T<sub>6</sub>·ADD + T<sub>4</sub>·BR + …</span> (Fig 6).</li>
+<li><strong>WMFC</strong> stops the counter until <code>MFC</code> arrives (<code>Run</code>); <span class="eq">End = T<sub>7</sub>·ADD + T<sub>5</sub>·BR + …</span> resets the counter to <code>T<sub>1</sub></code> for the next fetch.</li>
 <li>Hardwired control is fast but inflexible (§5.3 and the comparison table in §6).</li></ol></div>
 <h2 id="u5-s-memory">Memory design</h2>
 <div class="qbox"><div class="qmeta"><span class="qsrc">Improvement 2023–24 Q3</span><span class="marks">5 + 5 marks</span></div><div class="qtext">Discuss the different read-only memory types and their features. Design a 512 × 16 RAM using 256 × 8 RAM chips, showing the steps.</div>
 <div class="ans-label">Answer</div>
 <p>ROM types: the table in <a href="#rom">§10</a>. Design:</p>
 <div class="formula-block">chips   = (512 × 16) / (256 × 8) = <span class="c2">4</span>   →  rows = 512/256 = 2,  columns = 16/8 = 2
-address = log₂ 512 = 9 bits (A8–A0);  per chip = log₂ 256 = 8 bits (A7–A0, to all chips)
-decoder = 1-to-2 on A8 (A8 = 0 selects row 0, A8 = 1 selects row 1)
-data    = left column D15–D8, right column D7–D0</div></div>
+address = log<sub>2</sub> 512 = 9 bits (A<sub>8</sub>–A<sub>0</sub>);  per chip = log<sub>2</sub> 256 = 8 bits (A<sub>7</sub>–A<sub>0</sub>, to all chips)
+decoder = 1-to-2 on A<sub>8</sub> (A<sub>8</sub> = 0 selects row 0, A<sub>8</sub> = 1 selects row 1)
+data    = left column D<sub>15</sub>–D<sub>8</sub>, right column D<sub>7</sub>–D<sub>0</sub></div></div>
 <div class="qbox"><div class="qmeta"><span class="qsrc">SEE 2023–24 Q10a · deck 5b p.22</span><span class="marks">8 marks</span></div><div class="qtext">Examine the memory types under RAM and ROM used in embedded systems and personal computers. Design a 2M × 32 memory using 512K × 8 memory chips, with external connections.</div>
 <div class="ans-label">Answer</div>
-<p>Memory types: SRAM, DRAM/SDRAM/DDR (§8) and ROM, PROM, EPROM, EEPROM, flash with their uses (§10). Design (Fig 11):</p>
+<p>Memory types: SRAM, DRAM/SDRAM/DDR (§8) and ROM, PROM, EPROM, EEPROM, flash with their uses (§10). Design (Fig 12):</p>
 <div class="formula-block">chips   = (2M × 32) / (512K × 8) = 4 × 4 = <span class="c2">16</span>  (4 rows, each 4 chips = one 32-bit word)
-address = 2M = 2²¹ → 21 bits;  chip = 512K = 2¹⁹ → A18–A0 to every chip
-decoder = 2-to-4 on A20–A19 → chip selects of rows 0–3
-data    = columns give D31–24, D23–16, D15–8, D7–0;  R/W to all chips</div></div>
+address = 2M = 2<sup>21</sup> → 21 bits;  chip = 512K = 2<sup>19</sup> → A<sub>18</sub>–A<sub>0</sub> to every chip
+decoder = 2-to-4 on A<sub>20</sub>–A<sub>19</sub> → chip selects of rows 0–3
+data    = columns give D<sub>31</sub>–D<sub>24</sub>, D<sub>23</sub>–D<sub>16</sub>, D<sub>15</sub>–D<sub>8</sub>, D<sub>7</sub>–D<sub>0</sub>;  R/W to all chips</div></div>
 <div class="qbox"><div class="qmeta"><span class="qsrc">Deck 5b p.42</span><span class="marks">3 marks</span></div><div class="qtext">You are asked to implement a 128M × 32 memory using only 16M × 8 chips. (a) What is the minimum size of the MAR? (b) What is the size of the MBR? (c) How many chips are required?</div>
 <div class="ans-label">Answer</div>
-<p>(a) 128M = 2<sup>7</sup> × 2<sup>20</sup> = 2<sup>27</sup>: MAR = <strong>27 bits</strong>. (b) Each entry is 32 bits: MBR (MDR) = <strong>32 bits</strong>. (c) (128M × 32) / (16M × 8) = 8 × 4 = <strong>32 chips</strong>, with a 3-to-8 decoder on the top 3 address bits.</p></div>
+<ul class="qparts">
+<li><strong>(a) MAR size:</strong> <span class="eq">128M = 2<sup>7</sup> × 2<sup>20</sup> = 2<sup>27</sup></span> → MAR = <strong>27 bits</strong>.</li>
+<li><strong>(b) MBR size:</strong> each entry is 32 bits → MBR (MDR) = <strong>32 bits</strong>.</li>
+<li><strong>(c) Chips required:</strong> <span class="eq">(128M × 32) / (16M × 8) = 8 × 4 = <strong>32 chips</strong></span> (8 rows × 4 columns), with a 3-to-8 decoder on the top 3 address bits (<code>A<sub>26</sub>–A<sub>24</sub></code>).</li>
+</ul></div>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 
 <section class="page section" id="quick-revision" style="--accent:var(--ink);--accent-soft:var(--line-soft);"><div class="section-head"><span class="tag">QR</span><h1>Quick Revision</h1></div>
 <p class="section-sub">A compact reference after you have worked through the lessons.</p>
-<div class="table-scroll"><table><thead><tr><th>Item</th><th>Must-know fact</th></tr></thead><tbody>
-<tr><td>Fetch</td><td>IR ← [[PC]]; PC ← [PC] + 4; then execute</td></tr>
-<tr><td>Single bus</td><td>one transfer per cycle; MAR, MDR (4 signals: in, out, inE, outE), Y, MUX (4 / Y), ALU, Z, TEMP; Ri_in / Ri_out</td></tr>
-<tr><td>Fetch steps (1 bus)</td><td>PCout, MARin, Read, Select4, Add, Zin · Zout, PCin, Yin, WMFC · MDRout, IRin</td></tr>
-<tr><td>ADD R1,R2,R3 execute</td><td>R1out, Yin · R2out, SelectY, Add, Zin · Zout, R3in, End (6 steps total)</td></tr>
-<tr><td>Add (R3),R1</td><td>7 steps: R3out, MARin, Read · R1out, Yin, WMFC · MDRout, SelectY, Add, Zin · Zout, R1in, End</td></tr>
-<tr><td>Memory read / write</td><td>R1out, MARin, Read · MDRinE, WMFC · MDRout, R2in / R1out, MARin · R2out, MDRin, Write · MDRoutE, WMFC</td></tr>
-<tr><td>Branch</td><td>Offset-field-of-IRout, Add, Zin · Zout, PCin, End; Branch&lt;0: "if N = 0 then End" in step 4</td></tr>
-<tr><td>Three bus</td><td>A, B sources, C result; incrementer; R=B pass; ADD in 4 steps (1 execute)</td></tr>
-<tr><td>Hardwired</td><td>clock → step counter → step decoder T1…Tn; IR → instruction decoder; encoder (+ MFC, interrupts, flags); Zin = T1 + T6·ADD + T4·BR; End = T7·ADD + T5·BR + (T5·N + T4·N̄)·BRN</td></tr>
-<tr><td>Micro-programmed</td><td>control word = one bit per signal; microroutine; control store; µPC; address generator; flexible but slower</td></tr>
-<tr><td>Memory speed</td><td>access time (Read→MFC) &lt; cycle time; latency (one word), bandwidth (bytes/s)</td></tr>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Item</th><th>Must-know fact</th></tr></thead><tbody>
+<tr><td>Fetch</td><td><span class="eq">IR ← [[PC]]</span>; <span class="eq">PC ← [PC] + 4</span>; then execute</td></tr>
+<tr><td>Single bus</td><td>one transfer per cycle; <code>MAR</code>, <code>MDR</code> (4 signals: <code>in</code>, <code>out</code>, <code>inE</code>, <code>outE</code>), <code>Y</code>, MUX (4 / <code>Y</code>), ALU, <code>Z</code>, <code>TEMP</code>; <code>R<sub>i,in</sub></code> / <code>R<sub>i,out</sub></code></td></tr>
+<tr><td>Fetch steps (1 bus)</td><td><code>PC<sub>out</sub>, MAR<sub>in</sub>, Read, Select4, Add, Z<sub>in</sub></code> · <code>Z<sub>out</sub>, PC<sub>in</sub>, Y<sub>in</sub>, WMFC</code> · <code>MDR<sub>out</sub>, IR<sub>in</sub></code></td></tr>
+<tr><td><code>ADD R1, R2, R3</code> execute</td><td><code>R1<sub>out</sub>, Y<sub>in</sub></code> · <code>R2<sub>out</sub>, SelectY, Add, Z<sub>in</sub></code> · <code>Z<sub>out</sub>, R3<sub>in</sub>, End</code> (6 steps total)</td></tr>
+<tr><td><code>ADD (R3), R1</code></td><td>7 steps: <code>R3<sub>out</sub>, MAR<sub>in</sub>, Read</code> · <code>R1<sub>out</sub>, Y<sub>in</sub>, WMFC</code> · <code>MDR<sub>out</sub>, SelectY, Add, Z<sub>in</sub></code> · <code>Z<sub>out</sub>, R1<sub>in</sub>, End</code></td></tr>
+<tr><td>Memory read / write</td><td>Read: <code>R1<sub>out</sub>, MAR<sub>in</sub>, Read</code> · <code>MDR<sub>inE</sub>, WMFC</code> · <code>MDR<sub>out</sub>, R2<sub>in</sub></code><br>Write: <code>R1<sub>out</sub>, MAR<sub>in</sub></code> · <code>R2<sub>out</sub>, MDR<sub>in</sub>, Write</code> · <code>MDR<sub>outE</sub>, WMFC</code></td></tr>
+<tr><td>Branch</td><td><code>Offset-field-of-IR<sub>out</sub>, Add, Z<sub>in</sub></code> · <code>Z<sub>out</sub>, PC<sub>in</sub>, End</code>; <code>Branch&lt;0</code>: "if <span class="eq">N = 0</span> then <code>End</code>" in step 4</td></tr>
+<tr><td>Three bus</td><td>buses A, B (sources), C (result); PC incrementer; <span class="eq">R = B</span> pass-through; <code>ADD</code> in 4 steps (1 execute)</td></tr>
+<tr><td>Hardwired</td><td>clock → step counter → step decoder <code>T<sub>1</sub>…T<sub>n</sub></code>; <code>IR</code> → instruction decoder; encoder (+ <code>MFC</code>, interrupts, flags); <span class="eq">Z<sub>in</sub> = T<sub>1</sub> + T<sub>6</sub>·ADD + T<sub>4</sub>·BR</span>; <span class="eq">End = T<sub>7</sub>·ADD + T<sub>5</sub>·BR + (T<sub>5</sub>·N + T<sub>4</sub>·N̄)·BRN</span></td></tr>
+<tr><td>Micro-programmed</td><td>control word = one bit per signal; microroutine; control store; <code>µPC</code>; address generator; flexible but slower</td></tr>
+<tr><td>Memory speed</td><td>access time (<code>Read</code> → <code>MFC</code>) &lt; cycle time; latency (one word), bandwidth (bytes/s)</td></tr>
 <tr><td>Hierarchy</td><td>registers → L1 → L2 → main (DRAM) → disk; faster/costlier up, larger/cheaper down</td></tr>
-<tr><td>Chip organisation</td><td>16 × 8: 14 pins (+2 power); 1K × 1: 5-bit row + 5-bit column, 15 with power</td></tr>
-<tr><td>SRAM vs DRAM</td><td>latch (T1, T2 + 2 inverters), fast, cache / 1 transistor + capacitor, refresh, dense, main memory</td></tr>
-<tr><td>32M × 8 DRAM</td><td>16K × 16K cells; 14 row + 11 column bits = 25; RAS, CAS multiplexed on 14 pins</td></tr>
+<tr><td>Chip organisation</td><td>16 × 8: 14 pins (+2 power); 1K × 1: 5-bit row + 5-bit column, 15 pins with power</td></tr>
+<tr><td>SRAM vs DRAM</td><td>latch (<code>T<sub>1</sub></code>, <code>T<sub>2</sub></code> + 2 inverters), fast, cache / 1 transistor + capacitor, refresh, dense, main memory</td></tr>
+<tr><td>32M × 8 DRAM</td><td>16K × 16K cells; 14 row + 11 column bits = 25; <code>RAS</code>, <code>CAS</code> multiplexed on 14 pins</td></tr>
 <tr><td>SDRAM / DDR</td><td>clocked, internal refresh, mode register, bursts / both clock edges: DDR2 400 → 800, DDR3 800 → 1600 MHz effective</td></tr>
-<tr><td>Memory design</td><td>chips = (M·W)/(m·w); rows = M/m, cols = W/w; log₂M address bits; decoder on the top log₂(rows) bits</td></tr>
+<tr><td>Memory design</td><td><span class="eq">chips = (<em>M</em>·<em>W</em>)/(<em>m</em>·<em>w</em>)</span>; <span class="eq">rows = <em>M</em>/<em>m</em></span>, <span class="eq">cols = <em>W</em>/<em>w</em></span>; <span class="eq">log<sub>2</sub> <em>M</em></span> address bits; decoder on the top <span class="eq">log<sub>2</sub>(rows)</span> bits</td></tr>
 <tr><td>ROM family</td><td>ROM (mask), PROM (once, fuses), EPROM (UV erase), EEPROM (electrical, per cell), flash (per block, dense, low power)</td></tr>
 <tr><td>Locality</td><td>temporal (reuse soon) and spatial (neighbours soon) → blocks in a cache</td></tr>
 <tr><td>Write policies</td><td>write-through vs write-back (dirty bit); load-through; valid bit; coherence</td></tr>
-<tr><td>Mapping (128 × 16-word cache, 16-bit address)</td><td>direct 5|7|4 (block j → j mod 128); associative 12|4; 2-way 6|6|4; k-way: set bits = log₂(128/k)</td></tr>
-<tr><td>Formats</td><td>8 GB, 64-bit words, 16-word blocks, 128 blocks: 19|7|4; 4-way 21|5|4</td></tr>
-<tr><td>Access time</td><td>T_E = h·T_C + (1 − h)·T_M; 8/100 ns: 35.6, 17.2, 12.6, 8.92 ns; two-level 2.76 → 0.6356 ns (×4.34)</td></tr>
-<tr><td>Programmed I/O</td><td>DATAIN/SIN, DATAOUT/SOUT; TestBit + Branch wait loop; drawback: busy waiting</td></tr>
-<tr><td>Interrupts</td><td>INTR, ISR, INTA; save PC + PS; latency; IE bit (processor) + device enable; polling vs vectored; priority; daisy chain; exceptions</td></tr>
-<tr><td>DMA</td><td>controller: starting address, word count, status/control (R/W, Done, IE, IRQ); interrupt at end; cycle stealing vs burst; bus master and arbiter</td></tr>
+<tr><td>Mapping (128 × 16-word cache, 16-bit address)</td><td>direct <code>5|7|4</code> (block <em>j</em> → <span class="eq"><em>j</em> mod 128</span>); associative <code>12|4</code>; 2-way <code>6|6|4</code>; <em>k</em>-way: <span class="eq">set bits = log<sub>2</sub>(128/<em>k</em>)</span></td></tr>
+<tr><td>Formats</td><td>8 GB, 64-bit words, 16-word blocks, 128 blocks: direct <code>19|7|4</code>; 4-way <code>21|5|4</code></td></tr>
+<tr><td>Access time</td><td><span class="eq">T<sub>E</sub> = <em>h</em>·T<sub>C</sub> + (1 − <em>h</em>)·T<sub>M</sub></span>; 8/100 ns: 35.6, 17.2, 12.6, 8.92 ns; two-level 2.76 → 0.6356 ns (×4.34)</td></tr>
+<tr><td>Programmed I/O</td><td><code>DATAIN</code>/<code>SIN</code>, <code>DATAOUT</code>/<code>SOUT</code>; <code>TestBit</code> + <code>Branch</code> wait loop; drawback: busy waiting</td></tr>
+<tr><td>Interrupts</td><td><code>INTR</code>, ISR, <code>INTA</code>; save <code>PC</code> + <code>PS</code>; latency; <code>IE</code> bit (processor) + device enable; polling vs vectored; priority; daisy chain; exceptions</td></tr>
+<tr><td>DMA</td><td>controller: starting address, word count, status/control (<code>R/W</code>, <code>Done</code>, <code>IE</code>, <code>IRQ</code>); interrupt at end; cycle stealing vs burst; bus master and arbiter</td></tr>
 </tbody></table></div>
 <a class="backtotop" href="#index">↑ Back to index</a></section>
 
@@ -1114,35 +1232,35 @@ data    = columns give D31–24, D23–16, D15–8, D7–0;  R/W to all chips</d
 <p class="section-sub">Every Unit V question in your papers, linked to where it is answered.</p>
 <div class="callout clarify"><span class="label">Scope of this index</span><p>Built from the 2025–26 improvement test (WhatsApp import, IDs <code>ADLD-IMPROVEMENT-2025-26-*</code>), the March 2024 and January 2025 improvement tests, SEE April/May 2024 and Feb/Mar 2025, the solved questions on decks 5a and 5b, and question bank 2's I/O questions. ISA, addressing and assembly questions from the same papers are in the Unit IV guide. No paper so far asks about interrupts or DMA; those sections answer the syllabus, not a past question.</p></div>
 <h2 id="u5-qb-papers">Test and SEE papers</h2>
-<div class="table-scroll"><table><thead><tr><th>Source</th><th>Question</th><th>Answered in</th></tr></thead><tbody>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Source</th><th>Question</th><th>Answered in</th></tr></thead><tbody>
 <tr><td>ADLD-IMPROVEMENT-2025-26-B2b · 6M</td><td>Using a suitable block diagram, explain (briefly) the design and operation of a hardwired control unit in a CPU.</td><td><a href="#hardwired">§5</a>, <a href="#u5-solved">Solved</a></td></tr>
-<tr><td>ADLD-IMPROVEMENT-2025-26-B6 · 10M</td><td>Datapath for single-bus and three-bus CPU; control signals and micro-operations for ADD R1, R2, R3; performance difference.</td><td><a href="#u5-solved">Solved</a> <span class="pill">worked</span></td></tr>
+<tr><td>ADLD-IMPROVEMENT-2025-26-B6 · 10M</td><td>Datapath for single-bus and three-bus CPU; control signals and micro-operations for <code>ADD R1, R2, R3</code>; performance difference.</td><td><a href="#u5-solved">Solved</a> <span class="pill">worked</span></td></tr>
 <tr><td>Improvement Mar 2024 Q3 · 10M</td><td>Read-only memory types and features; design 512 × 16 RAM using 256 × 8 chips.</td><td><a href="#rom">§10</a>, <a href="#u5-solved">Solved</a> <span class="pill">worked</span></td></tr>
 <tr><td>Improvement Mar 2024 Q4B · 5M</td><td>Block diagram of a processor with three-bus datapath; advantages over single bus.</td><td><a href="#multibus">§4</a></td></tr>
-<tr><td>Improvement Mar 2024 Q5 · 10M</td><td>Control sequence for single-bus and three-bus datapaths for ADD R0, R1, R7.</td><td><a href="#u5-solved">Solved</a> <span class="pill">worked; scheme corrected</span></td></tr>
+<tr><td>Improvement Mar 2024 Q5 · 10M</td><td>Control sequence for single-bus and three-bus datapaths for <code>ADD R0, R1, R7</code>.</td><td><a href="#u5-solved">Solved</a> <span class="pill">worked; scheme corrected</span></td></tr>
 <tr><td>SEE 2023–24 Q9a · 8M</td><td>Cache mapping techniques with diagrams; 8 GB memory, 64-bit words, 16-word blocks, 128-block direct cache: address format.</td><td><a href="#cache">§11</a>, <a href="#cache-examples">§12.1</a> <span class="pill">worked; paper inconsistency flagged</span></td></tr>
-<tr><td>SEE 2023–24 Q9b · 8M</td><td>Control sequence for ADD (R5), R3 with single-bus and three-bus datapaths.</td><td><a href="#u5-solved">Solved</a> <span class="pill">worked</span></td></tr>
+<tr><td>SEE 2023–24 Q9b · 8M</td><td>Control sequence for <code>ADD (R5), R3</code> with single-bus and three-bus datapaths.</td><td><a href="#u5-solved">Solved</a> <span class="pill">worked</span></td></tr>
 <tr><td>SEE 2023–24 Q10a · 8M</td><td>RAM and ROM types in embedded systems and PCs; design 2M × 32 memory using 512K × 8 chips.</td><td><a href="#u5-solved">Solved</a> <span class="pill">worked</span></td></tr>
 <tr><td>SEE 2023–24 Q10b · 8M</td><td>Illustrate with neat diagrams the working of a hardwired control unit.</td><td><a href="#hardwired">§5</a></td></tr>
 <tr><td>Improvement Jan 2025 Q2 · 2M</td><td>Draw the block diagram of the processor with three-bus datapath.</td><td><a href="#multibus">§4 (Fig 4)</a></td></tr>
-<tr><td>SEE Feb/Mar 2025 Q9a · 6M</td><td>Actions to execute ADD (R3), R1; sequence of control steps.</td><td><a href="#execution">§3.4</a></td></tr>
+<tr><td>SEE Feb/Mar 2025 Q9a · 6M</td><td>Actions to execute <code>ADD (R3), R1</code>; sequence of control steps.</td><td><a href="#execution">§3.4</a></td></tr>
 <tr><td>SEE Feb/Mar 2025 Q9b · 10M</td><td>Importance of cache memory; types of cache mapping with a neat diagram.</td><td><a href="#cache">§11</a></td></tr>
 <tr><td>SEE Feb/Mar 2025 Q10a · 6M</td><td>Analyse with an example how the complete execution of an instruction is carried out.</td><td><a href="#fundamentals">§1</a>, <a href="#execution">§3.4</a></td></tr>
 <tr><td>SEE Feb/Mar 2025 Q10b · 10M</td><td>With a neat diagram, explain the organisation of a 1K × 1 memory chip.</td><td><a href="#ram">§8.1</a></td></tr>
 </tbody></table></div>
 <h2 id="u5-qb-deck">Deck questions and question bank 2</h2>
-<div class="table-scroll"><table><thead><tr><th>Source</th><th>Question</th><th>Answered in</th></tr></thead><tbody>
-<tr><td>Deck 5a pp.9–15</td><td>Control sequences: ADD R1,R2,R3; Move (R1),R2; Move R2,(R1); ADD (R3),R1; ADD R2,R1; branch; Branch&lt;0.</td><td><a href="#execution">§3</a></td></tr>
-<tr><td>Deck 5a p.17</td><td>Control sequence for Add R4, R5, R6 in the three-bus organisation.</td><td><a href="#multibus">§4</a></td></tr>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table><thead><tr><th>Source</th><th>Question</th><th>Answered in</th></tr></thead><tbody>
+<tr><td>Deck 5a pp.9–15</td><td>Control sequences: <code>ADD R1,R2,R3</code>; <code>Move (R1),R2</code>; <code>Move R2,(R1)</code>; <code>ADD (R3),R1</code>; <code>ADD R2,R1</code>; branch; <code>Branch&lt;0</code>.</td><td><a href="#execution">§3</a></td></tr>
+<tr><td>Deck 5a p.17</td><td>Control sequence for <code>Add R4, R5, R6</code> in the three-bus organisation.</td><td><a href="#multibus">§4</a></td></tr>
 <tr><td>Deck 5b p.18</td><td>Design a 1024 × 8 RAM using 256 × 8 chips.</td><td><a href="#memory-design">§9</a></td></tr>
 <tr><td>Deck 5b p.19</td><td>Block diagram for 8M × 32 memory using 512K × 8 chips.</td><td><a href="#memory-design">§9</a></td></tr>
 <tr><td>Deck 5b p.20</td><td>1M × 8 from 256K × 8: chips and address bits; 8086 address lines for 1 MB.</td><td><a href="#memory-design">§9</a></td></tr>
 <tr><td>Deck 5b p.21</td><td>Design 256 × 16 RAM using 16 × 4 chips.</td><td><a href="#memory-design">§9</a> <span class="pill">worked</span></td></tr>
-<tr><td>Deck 5b p.38</td><td>32-bit address, 16-word blocks, 256-block direct cache: block for 1C2BC052 and AFFB00EF.</td><td><a href="#cache-examples">§12.1</a> <span class="pill">worked</span></td></tr>
+<tr><td>Deck 5b p.38</td><td>32-bit address, 16-word blocks, 256-block direct cache: block for <code>1C2BC052</code> and <code>AFFB00EF</code>.</td><td><a href="#cache-examples">§12.1</a> <span class="pill">worked</span></td></tr>
 <tr><td>Deck 5b p.39</td><td>8 GB, 64-bit words: direct and 4-way address formats.</td><td><a href="#cache-examples">§12.1</a> <span class="pill">worked</span></td></tr>
-<tr><td>Deck 5b p.40</td><td>Cache 8 ns, memory 100 ns: effective access time for h = 0.7, 0.9, 0.95, 0.99.</td><td><a href="#cache-examples">§12.3</a> <span class="pill">worked</span></td></tr>
+<tr><td>Deck 5b p.40</td><td>Cache 8 ns, memory 100 ns: effective access time for <span class="eq"><em>h</em> = 0.7, 0.9, 0.95, 0.99</span>.</td><td><a href="#cache-examples">§12.3</a> <span class="pill">worked</span></td></tr>
 <tr><td>Deck 5b p.41</td><td>Off-chip and on-chip caches: effective access time and speed-up.</td><td><a href="#cache-examples">§12.3</a> <span class="pill">worked; rounding noted</span></td></tr>
-<tr><td>Deck 5b p.42</td><td>128M × 32 from 16M × 8: MAR, MBR, number of chips.</td><td><a href="#u5-solved">Solved</a></td></tr>
+<tr><td>Deck 5b p.42</td><td>128M × 32 from 16M × 8: <code>MAR</code>, <code>MBR</code>, number of chips.</td><td><a href="#u5-solved">Solved</a></td></tr>
 <tr><td>Deck 5b p.43</td><td>16K × 8 from 2K × 4 in an 8 × 2 array, with decoding circuitry.</td><td><a href="#memory-design">§9</a> <span class="pill">worked</span></td></tr>
 <tr><td>QB2 Q13–Q16 (and their answers Q17)</td><td>Basic input/output operations; means of transferring data between memory and the outside world; I/O operations.</td><td><a href="#io-devices">§13</a>, <a href="#interrupts">§14</a>, <a href="#dma">§15</a></td></tr>
 </tbody></table></div>
