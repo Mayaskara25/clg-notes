@@ -47,6 +47,7 @@ table.tt{width:auto;min-width:260px}
 <meta name="color-scheme" content="light dark">
 <script>(function(){var m=false;try{m=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}
 document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</script>
+<script>(function(){var h=location.hash;if(/^#lab-(overview|exp[1-4])$/.test(h))location.replace(../unit-lab/+location.search+h)})();</script>
 </head>
 <body>
 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode"><span class="ico" id="themeIco">🌙</span><span id="themeLbl">Dark</span></button>
@@ -55,7 +56,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
   <div class="brand">
     <span class="eyebrow">CS234AI · Sem III</span>
     <span class="title">Applied Digital Logic Design &amp; Computer Organisation</span>
-    <span class="sub">Unit II complete &mdash; combinational, sequential &amp; lab Exp 1&ndash;4</span>
+    <span class="sub">Unit II complete &mdash; combinational &amp; sequential</span>
   </div>
 
   <a href="#index" class="navlink top-of-part"><span class="dot"></span>Cover &amp; Index</a>
@@ -93,15 +94,6 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
     <a href="#mux-fn" class="navlink"><span class="dot"></span>Functions with MUX &amp; Decoder</a>
   </div>
 
-  <div class="navgroup">
-    <div class="part-label">Part 4 · Lab Experiments 1–4</div>
-    <a href="#lab-overview" class="navlink"><span class="dot"></span>Lab Overview &amp; ICs</a>
-    <a href="#lab-exp1" class="navlink"><span class="dot"></span>Exp 1 · Excess-3 / 7483</a>
-    <a href="#lab-exp2" class="navlink"><span class="dot"></span>Exp 2 · FA/FS with 74153</a>
-    <a href="#lab-exp3" class="navlink"><span class="dot"></span>Exp 3 · Comparators</a>
-    <a href="#lab-exp4" class="navlink"><span class="dot"></span>Exp 4 · 74139, 7447, 74147</a>
-  </div>
-
     <div class="navgroup">
     <div class="part-label">Part 5 · Latches &amp; Timing</div>
     <a href="#bistable" class="navlink"><span class="dot"></span>Basic Bistable Element</a>
@@ -133,12 +125,12 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 <section class="cover" id="index">
   <span class="kicker">CS234AI · Applied Digital Logic Design &amp; Computer Organisation</span>
   <h1>Unit II &mdash; Complete: Combinational &amp; Sequential Logic Design</h1>
-  <p class="desc">The whole of Unit II in one guide: the combinational half &mdash; adders and subtractors, carry look-ahead and decimal adders, comparators, decoders, encoders, multiplexers and the four lab experiments &mdash; followed by the sequential half in the order of the new syllabus: bistable element, latches, timing, master-slave, pulse-triggered and edge-triggered flip-flops, characteristic equations and shift registers.</p>
+  <p class="desc">The whole of Unit II in one guide: the combinational half &mdash; adders and subtractors, carry look-ahead and decimal adders, comparators, decoders, encoders and multiplexers &mdash; followed by the sequential half in the order of the new syllabus: bistable element, latches, timing, master-slave, pulse-triggered and edge-triggered flip-flops, characteristic equations and shift registers.</p>
   <div class="meta">
-    <span>📘 <b>34</b> topics</span>
-    <span>🖩 <b>70</b> worked-answer boxes (plus completed lab tables)</span>
-    <span>🖼 <b>75</b> diagrams</span>
-    <span>⏱ Unit II: combinational + sequential + lab Exp 1&ndash;4</span>
+    <span>📘 <b>29</b> topics</span>
+    <span>🖩 <b>70</b> worked-answer boxes</span>
+    <span>🖼 <b>69</b> diagrams</span>
+    <span>⏱ Unit II: combinational + sequential</span>
   </div>
 
   <div class="part-divider">Part 1 — Adders</div>
@@ -233,30 +225,6 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
     </a>
   </div>
 
-  <div class="part-divider">Part 4 — Lab Experiments 1–4</div>
-  <div class="index-grid">
-    <a href="#lab-overview" class="index-card" style="--card-color:var(--plum)">
-      <span class="num">4.1</span><h3>Lab Overview &amp; ICs</h3>
-      <p>The four experiments, IC list and common procedure.</p>
-    </a>
-    <a href="#lab-exp1" class="index-card" style="--card-color:var(--plum)">
-      <span class="num">4.2</span><h3>Exp 1 — Excess-3 &amp; 7483</h3>
-      <p>BCD⇄Excess-3 converter and 8-bit add/subtract exercises.</p>
-    </a>
-    <a href="#lab-exp2" class="index-card" style="--card-color:var(--plum)">
-      <span class="num">4.3</span><h3>Exp 2 — FA &amp; FS with 74153</h3>
-      <p>Full adder and subtractor on a dual 4:1 multiplexer.</p>
-    </a>
-    <a href="#lab-exp3" class="index-card" style="--card-color:var(--plum)">
-      <span class="num">4.4</span><h3>Exp 3 — Comparators</h3>
-      <p>1-bit and 2-bit comparators from gates, tables and K-maps completed.</p>
-    </a>
-    <a href="#lab-exp4" class="index-card" style="--card-color:var(--plum)">
-      <span class="num">4.5</span><h3>Exp 4 — 74139, 7447, 74147</h3>
-      <p>Binary⇄Gray, BCD-to-7-segment, and the priority encoder.</p>
-    </a>
-  </div>
-
     <div class="part-divider">Part 5 &mdash; Latches &amp; Timing</div>
   <div class="index-grid">
     <a href="#bistable" class="index-card" style="--card-color:var(--amber)"><span class="num">5.1</span><h3>Basic Bistable Element</h3>
@@ -328,7 +296,7 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
     <tr><td style="color:var(--ink-faint)"><em>(also examined, not in official heading text)</em> Full adder via MUX/Decoder</td><td><a href="#alt-realizations">Full Adder via MUX/Decoder</a></td></tr>
     <tr><td style="color:var(--ink-faint)"><em>(application of adders, not in official heading text)</em> BCD ⇄ Excess-3 converter</td><td><a href="#excess3-bcd">Application: BCD ⇄ Excess-3</a></td></tr>
     <tr><td colspan="2" style="color:var(--ink-faint)"><em>(binary subtractors, from the handwritten notes)</em> Half/full subtractor, NAND adders, IC 7483</td><td><a href="#subtractors">Half &amp; Full Subtractor</a>, <a href="#nand-ic7483">NAND Adders &amp; IC 7483</a></td></tr>
-    <tr><td colspan="2" style="color:var(--ink-faint)"><strong>Lab Experiments 1–4</strong> (CS234AI lab manual<cite class="src" data-src="L1"></cite>)</td><td><a href="#lab-overview">Part 4</a>: <a href="#lab-exp1">Exp 1</a>, <a href="#lab-exp2">Exp 2</a>, <a href="#lab-exp3">Exp 3</a>, <a href="#lab-exp4">Exp 4</a></td></tr>
+    <tr><td colspan="2" style="color:var(--ink-faint)"><strong>Lab Experiments 1–12</strong> (CS234AI lab manual<cite class="src" data-src="L1"></cite>)</td><td>Moved to the dedicated <a href="../unit-lab/">Lab Experiments guide</a> (<a href="../unit-lab/#lab-exp1">Exp 1</a>–<a href="../unit-lab/#lab-exp12">Exp 12</a>)</td></tr>
 
     <tr><td rowspan="8"><strong>Logic Design Using Sequential Circuits &mdash; Flip-Flops and Applications</strong></td><td>The Basic Bistable Element</td><td><a href="#bistable">5.1 Basic Bistable Element</a></td></tr>
     <tr><td>Latches</td><td><a href="#latches">5.2 Latches</a></td></tr>
@@ -343,11 +311,11 @@ document.documentElement.setAttribute('data-theme',m?'dark':'light')})();</scrip
 
   <div class="callout clarify">
     <span class="label">Scope of this combined note</span>
-    This file merges the two earlier Unit-II notes into <strong>one complete Unit-II guide</strong>: Parts 1&ndash;4 are the combinational half (binary parallel adder, carry look-ahead adders, decimal adder, magnitude comparator, decoders, encoders, multiplexers) plus Lab Experiments 1&ndash;4, unchanged; Parts 5&ndash;7 are the sequential half (&ldquo;Logic Design Using Sequential Circuits&rdquo;: latches, flip-flops, characteristic equations, registers), written in the order of the new syllabus. Counters and synchronous sequential networks belong to Unit III and are not included. Material from the handwritten Unit-1 notes that belongs to Unit 1 was deliberately left out. Figures 1&ndash;29 belong to Parts 1&ndash;4 and Figures 30 onwards to Parts 5&ndash;7; section numbers such as &sect;3.2 refer to Parts 1&ndash;4 and &sect;5.1&ndash;&sect;7.2 to the sequential half.
+    This file merges the two earlier Unit-II notes into <strong>one complete Unit-II guide</strong>: Parts 1&ndash;3 are the combinational half (binary parallel adder, carry look-ahead adders, decimal adder, magnitude comparator, decoders, encoders, multiplexers; Lab Experiments 1&ndash;4 now live in the dedicated <a href="../unit-lab/">Lab Experiments guide</a>); Parts 5&ndash;7 are the sequential half (&ldquo;Logic Design Using Sequential Circuits&rdquo;: latches, flip-flops, characteristic equations, registers), written in the order of the new syllabus. Counters and synchronous sequential networks belong to Unit III and are not included. Material from the handwritten Unit-1 notes that belongs to Unit 1 was deliberately left out. Figures 1&ndash;23c belong to Parts 1&ndash;3 and Figures 30 onwards to Parts 5&ndash;7; section numbers such as &sect;3.2 refer to Parts 1&ndash;4 and &sect;5.1&ndash;&sect;7.2 to the sequential half.
   </div>
   <div class="callout key">
     <span class="label">How the sources combine / where this guide fills gaps</span>
-    Adders, CLA, decimal adder and comparators trace to <code>unit 2a.pdf</code><cite class="src" data-src="D3"></cite> and <code>unit 1b.pdf</code><cite class="src" data-src="D2"></cite> (2-bit comparator). The handwritten notes (<code>KBRamesh Adders/Dec/Mux</code><cite class="src" data-src="D7"></cite>) contribute the <strong>half/full subtractor, NAND-gate adders, IC 7483, multiplexer, demultiplexer, decoder and encoder</strong> pages. The <strong>lab manual<cite class="src" data-src="L1"></cite></strong> supplies Experiments 1–4; its blank truth tables, K-maps and inferences are filled in and verified. Gap-fills, flagged where they occur: the full adder via MUX/decoder (§1.4), the priority encoder and decoder/MUX expansion and function-realisation methods (§3.2, §3.1, §3.5) and the Gray→binary half of Exp 4A. Corrections to the sources: decoder equations without E (§3.1) and the "A⊙B⊙C" parity convention (§3.5).
+    Adders, CLA, decimal adder and comparators trace to <code>unit 2a.pdf</code><cite class="src" data-src="D3"></cite> and <code>unit 1b.pdf</code><cite class="src" data-src="D2"></cite> (2-bit comparator). The handwritten notes (<code>KBRamesh Adders/Dec/Mux</code><cite class="src" data-src="D7"></cite>) contribute the <strong>half/full subtractor, NAND-gate adders, IC 7483, multiplexer, demultiplexer, decoder and encoder</strong> pages. Lab Experiments 1–12 from the <strong>lab manual<cite class="src" data-src="L1"></cite></strong> now have their own <a href="../unit-lab/">Lab Experiments guide</a>. Gap-fills, flagged where they occur: the full adder via MUX/decoder (§1.4), the priority encoder and decoder/MUX expansion and function-realisation methods (§3.2, §3.1, §3.5) and the Gray→binary half of <a href="../unit-lab/#lab-exp4">Exp 4A</a>. Corrections to the sources: decoder equations without E (§3.1) and the "A⊙B⊙C" parity convention (§3.5).
   </div>
 
   <div class="callout key">
@@ -2369,7 +2337,7 @@ Y<sub>3</sub> = E·A′BC    Y<sub>2</sub> = E·A′BC′    Y<sub>1</sub> = E·
   <ul>
     <li><strong>Implementing Boolean functions:</strong> since the outputs are the minterms, any function = OR of the minterm lines it contains (§3.5). Active-low outputs + NAND gives SOP directly; active-low outputs + AND gives POS.</li>
     <li><strong>As a demultiplexer:</strong> use the enable as the data input — see §3.4.</li>
-    <li><strong>Address decoding, memory chip-select, code converters</strong> (e.g. BCD-to-7-segment, binary-to-Gray in Exp 4).</li>
+    <li><strong>Address decoding, memory chip-select, code converters</strong> (e.g. BCD-to-7-segment, binary-to-Gray in <a href="../unit-lab/#lab-exp4">Exp 4</a>).</li>
   </ul>
   <div class="callout key">
     <span class="label">Exam tip — decoder vs encoder (qb1<cite class="src" data-src="Q3"></cite> Q20)</span>
@@ -2661,7 +2629,7 @@ Y<sub>3</sub> = E·A′BC    Y<sub>2</sub> = E·A′BC′    Y<sub>1</sub> = E·
 
   <h2>8-to-1 multiplexer</h2>
   <div class="formula-block">Y = D<sub>0</sub>S<sub>2</sub>′S<sub>1</sub>′S<sub>0</sub>′ + D<sub>1</sub>S<sub>2</sub>′S<sub>1</sub>′S<sub>0</sub> + D<sub>2</sub>S<sub>2</sub>′S<sub>1</sub>S<sub>0</sub>′ + D<sub>3</sub>S<sub>2</sub>′S<sub>1</sub>S<sub>0</sub> + D<sub>4</sub>S<sub>2</sub>S<sub>1</sub>′S<sub>0</sub>′ + D<sub>5</sub>S<sub>2</sub>S<sub>1</sub>′S<sub>0</sub> + D<sub>6</sub>S<sub>2</sub>S<sub>1</sub>S<sub>0</sub>′ + D<sub>7</sub>S<sub>2</sub>S<sub>1</sub>S<sub>0</sub></div>
-  <p>Gate-level: eight 4-input AND gates (a data line plus three select literals) feeding an 8-input OR gate — the answer to the SEE question "Write a logic diagram for an 8:1 multiplexer using 4-input AND and OR gates". Common ICs: <strong>74151</strong> (8:1) and <strong>74153</strong> (dual 4:1, with two active-low enables and select lines shared between the two halves — used in Exp 2).</p>
+  <p>Gate-level: eight 4-input AND gates (a data line plus three select literals) feeding an 8-input OR gate — the answer to the SEE question "Write a logic diagram for an 8:1 multiplexer using 4-input AND and OR gates". Common ICs: <strong>74151</strong> (8:1) and <strong>74153</strong> (dual 4:1, with two active-low enables and select lines shared between the two halves — used in <a href="../unit-lab/#lab-exp2">Exp 2</a>).</p>
 
   <h2>Building large multiplexers from small ones</h2>
   <p>Use a <strong>tree</strong>: the first rank of MUXes takes the data inputs and is driven by the <em>low-order</em> select bits; the next rank chooses among the first rank's outputs using the <em>higher</em> select bits.</p>
@@ -3356,866 +3324,10 @@ Y<sub>2</sub> = Σm(7)       = <span class="c2">D<sub>7</sub></span>            
     <p>Each decoder output is used at most once, and D<sub>0</sub> (no sensor active) is left unconnected. The whole design needs one 3:8 decoder and two 3-input OR gates. Verified for all 8 codes in code.</p>
   </div>
 
-  <p><strong>Also in this guide:</strong> full adder with MUX/decoder (<a href="#alt-realizations">§1.4</a>), full adder/subtractor on a 74153 (<a href="#lab-exp2">Exp 2</a>), binary-to-Gray with a decoder (<a href="#lab-exp4">Exp 4A</a>).</p>
+  <p><strong>Related:</strong> full adder with MUX/decoder (<a href="#alt-realizations">§1.4</a>), and in the <a href="../unit-lab/">Lab guide</a>: full adder/subtractor on a 74153 (<a href="../unit-lab/#lab-exp2">Exp 2</a>) and binary-to-Gray with a decoder (<a href="../unit-lab/#lab-exp4">Exp 4A</a>).</p>
 
   <a class="backtotop" href="#index">↑ Back to index</a>
 </section>
-
-<section class="page section" id="lab-overview" style="--accent:var(--plum);--accent-soft:var(--plum-soft);">
-  <div class="section-head"><span class="tag">4.1</span><h1>Lab Overview &amp; ICs</h1></div>
-  <p class="section-sub">What the four experiments are, the ICs they use, and the common procedure.</p>
-
-
-  <p>This part covers <strong>Lab Experiments 1–4</strong> of the CS234AI ADLDCO Lab Manual<cite class="src" data-src="L1"></cite> 2025-26 (Part A, evaluated for 10 marks each: 6 for write-up/record/execution and 4 for viva; the lab test is 2 write-up + 6 conduction + 2 viva). The manual leaves every truth table, minterm list, K-map and "Inference" blank for the student to fill in, so all of them are <strong>completed here and verified in code</strong>. Each experiment follows the same skeleton the record expects: <em>Aim → Components → Theory → Circuit/connections → Truth table → Procedure → Inference</em>.</p>
-  <table>
-    <tr><th>Exp</th><th>Title</th><th>Key ICs</th><th>Theory in this guide</th></tr>
-    <tr><td>1</td><td>Excess-3 code converter with parallel adder/subtractor</td><td>7483, 7486</td><td><a href="#adder-subtractor">§1.3</a>, <a href="#excess3-bcd">§1.5</a>, <a href="#nand-ic7483">§1.10</a></td></tr>
-    <tr><td>2</td><td>Full adder and full subtractor using IC 74153</td><td>74153, 7404</td><td><a href="#alt-realizations">§1.4</a>, <a href="#subtractors">§1.9</a>, <a href="#multiplexers">§3.3</a>, <a href="#mux-fn">§3.5</a></td></tr>
-    <tr><td>3</td><td>1-bit and 2-bit magnitude comparator using gates</td><td>7408, 7400, 7410, 7404, 7486</td><td><a href="#one-bit-comparator">§2.1</a>, <a href="#two-bit-comparator">§2.3</a></td></tr>
-    <tr><td>4</td><td>(A) Binary⇄Gray with 74139; (B) BCD-to-7-segment 7447 and priority encoder 74147</td><td>74139, 7420, 7447, 74147</td><td><a href="#decoders">§3.1</a>, <a href="#encoders">§3.2</a></td></tr>
-  </table>
-  <h2>Gate and function ICs used</h2>
-  <table>
-    <tr><th>IC</th><th>Function</th><th>IC</th><th>Function</th></tr>
-    <tr><td>7400</td><td>quad 2-input NAND</td><td>7432</td><td>quad 2-input OR</td></tr>
-    <tr><td>7404</td><td>hex inverter (NOT)</td><td>7486</td><td>quad 2-input XOR</td></tr>
-    <tr><td>7408</td><td>quad 2-input AND</td><td>7410</td><td>triple 3-input NAND</td></tr>
-    <tr><td>7420</td><td>dual 4-input NAND</td><td>7483</td><td>4-bit binary full adder</td></tr>
-    <tr><td>74153</td><td>dual 4:1 multiplexer</td><td>74139</td><td>dual 2:4 decoder (active-low)</td></tr>
-    <tr><td>7447</td><td>BCD to 7-segment decoder/driver</td><td>74147</td><td>10:4 decimal-to-BCD priority encoder</td></tr>
-  </table>
-  <div class="callout key">
-    <span class="label">General procedure (identical for every experiment — added for revision, summarised from the manual's per-experiment steps)</span>
-    ① Verify the IC number and test the gates. ② Fix the IC in the trainer-kit socket and connect V<sub>cc</sub> (+5 V) and GND to the correct pins. ③ Wire the circuit exactly as in the logic diagram. ④ Connect inputs to the toggle switches and outputs to the LEDs. ⑤ Apply every input combination of the truth table and note the LED outputs. ⑥ Compare with the theoretical truth table and write the inference. Never connect or change wires with the kit powered on, and use +5 V only on TTL ICs.
-  </div>
-
-  <a class="backtotop" href="#index">↑ Back to index</a>
-</section>
-
-<section class="page section" id="lab-exp1" style="--accent:var(--plum);--accent-soft:var(--plum-soft);">
-  <div class="section-head"><span class="tag">4.2</span><h1>Experiment 1 — Excess-3 Converter &amp; Adder/Subtractor (IC 7483)</h1></div>
-  <p class="section-sub">BCD ⇄ Excess-3 with one 4-bit adder and XOR gates, plus the add/subtract exercises.</p>
-
-
-  <h2>Aim, components, theory</h2>
-  <p><strong>Aim:</strong> to design an Excess-3 ⇄ BCD code converter using the 4-bit parallel adder IC 7483 (and XOR gates 7486) and to use the same adder as an adder/subtractor. <strong>Components:</strong> IC 7483 ×1, IC 7486 (quad XOR) ×1, digital trainer kit and ~20 patch cords.</p>
-  <p><strong>Theory.</strong> A <em>code converter</em> makes two systems that use different binary codes for the same information compatible. <strong>BCD</strong> is the weighted 8-4-2-1 code for the decimal digits 0–9 (137<sub>10</sub> = 0001 0011 0111). <strong>Excess-3</strong> is an <em>unweighted</em> code obtained by adding 0011 to the BCD of each digit. Both use four bits, so the converter has inputs B<sub>3</sub>B<sub>2</sub>B<sub>1</sub>B<sub>0</sub> and outputs E<sub>3</sub>E<sub>2</sub>E<sub>1</sub>E<sub>0</sub>. A <strong>parallel adder</strong> adds two 4-bit numbers at once; it becomes a subtractor by feeding it the 2's complement of the second operand (XOR gates give the 1's complement, and C<sub>in</sub> = 1 adds the 1).</p>
-  <h2>Circuit and connections</h2>
-  <p>This is exactly the converter of <a href="#excess3-bcd">§1.5 / Fig 6</a>: the BCD (or Excess-3) digit goes to A<sub>4</sub>A<sub>3</sub>A<sub>2</sub>A<sub>1</sub>; the second operand lines are the constant <strong>0011</strong> — the two upper XOR inputs tied to GND (0) and the two lower ones to V<sub>cc</sub> (1) — each XORed with the control line, which also drives C<sub>in</sub>:</p>
-  <ul>
-    <li><strong>Control = 0:</strong> second operand = 0011, C<sub>in</sub> = 0 → output = input + 3 → <strong>BCD → Excess-3</strong>.</li>
-    <li><strong>Control = 1:</strong> second operand = 1100 (inverted), C<sub>in</sub> = 1 → input + 1100 + 1 = input − 3 → <strong>Excess-3 → BCD</strong>.</li>
-  </ul>
-  <table>
-    <tr><th>7483 pin</th><th>Connection</th><th>7483 pin</th><th>Connection</th></tr>
-    <tr><td>5 (V<sub>cc</sub>) / 12 (GND)</td><td>+5 V / 0 V</td><td>1, 3, 8, 10 (A4, A3, A2, A1)</td><td>input digit (switches)</td></tr>
-    <tr><td>16, 4, 7, 11 (B4, B3, B2, B1)</td><td>outputs of the four XOR gates</td><td>13 (C<sub>in</sub>)</td><td>control line</td></tr>
-    <tr><td>15, 2, 6, 9 (S4, S3, S2, S1)</td><td>output code (LEDs)</td><td>14 (C<sub>out</sub>)</td><td>LED (carry; ignore for conversion)</td></tr>
-  </table>
-  <h2>Truth tables (completed)</h2>
-  <div class="grid2">
-    <div>  <table>
-    <tr><th>Decimal</th><th>BCD (B<sub>3</sub>B<sub>2</sub>B<sub>1</sub>B<sub>0</sub>)</th><th>Excess-3 (E<sub>3</sub>E<sub>2</sub>E<sub>1</sub>E<sub>0</sub>)</th></tr>
-    <tr><td>0</td><td>0000</td><td>0011</td></tr>
-    <tr><td>1</td><td>0001</td><td>0100</td></tr>
-    <tr><td>2</td><td>0010</td><td>0101</td></tr>
-    <tr><td>3</td><td>0011</td><td>0110</td></tr>
-    <tr><td>4</td><td>0100</td><td>0111</td></tr>
-    <tr><td>5</td><td>0101</td><td>1000</td></tr>
-    <tr><td>6</td><td>0110</td><td>1001</td></tr>
-    <tr><td>7</td><td>0111</td><td>1010</td></tr>
-    <tr><td>8</td><td>1000</td><td>1011</td></tr>
-    <tr><td>9</td><td>1001</td><td>1100</td></tr>
-    </table>
-</div>
-    <div>  <table>
-    <tr><th>Decimal</th><th>Excess-3 (input)</th><th>BCD (output)</th></tr>
-    <tr><td>0</td><td>0011</td><td>0000</td></tr>
-    <tr><td>1</td><td>0100</td><td>0001</td></tr>
-    <tr><td>2</td><td>0101</td><td>0010</td></tr>
-    <tr><td>3</td><td>0110</td><td>0011</td></tr>
-    <tr><td>4</td><td>0111</td><td>0100</td></tr>
-    <tr><td>5</td><td>1000</td><td>0101</td></tr>
-    <tr><td>6</td><td>1001</td><td>0110</td></tr>
-    <tr><td>7</td><td>1010</td><td>0111</td></tr>
-    <tr><td>8</td><td>1011</td><td>1000</td></tr>
-    <tr><td>9</td><td>1100</td><td>1001</td></tr>
-    </table>
-</div>
-  </div>
-  <p>Each row was reproduced by simulating the adder (input + 0011 with C<sub>in</sub> = 0; input + 1100 + 1 with C<sub>in</sub> = 1) — no mismatches for digits 0–9. <strong>Inference:</strong> one 4-bit adder with XOR-controlled operand realises both conversions; the circuit is a combinational code converter with no memory.</p>
-  <h2>Part A — add/subtract exercises (observe outputs)</h2>
-  <p>The four exercises exceed 4 bits (e.g. 59 needs 6 bits), so they are done on an <strong>8-bit adder/subtractor made from two cascaded 7483s</strong>: C<sub>out</sub> of the lower IC feeds C<sub>in</sub> of the upper IC, and for subtraction all eight B bits go through XORs driven by the mode line, which is also C<sub>in</sub> of the lower IC.</p>
-  <div class="svg-wrap">
-    <svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" role="img">
-<g fill="none" stroke-linecap="round" stroke-linejoin="round">
-<line x1="420.0" y1="70.0" x2="280.0" y2="70.0" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="680.0" y1="70.0" x2="590.0" y2="70.0" stroke="#A66A0D" stroke-width="1.6"/>
-<line x1="110.0" y1="70.0" x2="60.0" y2="70.0" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="195.0" y1="110.0" x2="195.0" y2="160.0" stroke="#93316B" stroke-width="1.6"/>
-<line x1="505.0" y1="110.0" x2="505.0" y2="160.0" stroke="#93316B" stroke-width="1.6"/>
-</g>
-<rect x="110.0" y="30.0" width="170.0" height="80.0" rx="5" fill="#fff" stroke="#93316B" stroke-width="1.7"/>
-<text x="195.0" y="67.0" font-size="12" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">IC 7483 #2</text>
-<text x="195.0" y="82.0" font-size="9.5" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">A8..A5, B8..B5 (upper)</text>
-<rect x="420.0" y="30.0" width="170.0" height="80.0" rx="5" fill="#fff" stroke="#93316B" stroke-width="1.7"/>
-<text x="505.0" y="67.0" font-size="12" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">IC 7483 #1</text>
-<text x="505.0" y="82.0" font-size="9.5" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">A4..A1, B4..B1 (lower)</text>
-<polygon points="271,70 280,65.5 280,74.5" fill="#1C1E21"/>
-<text x="350.0" y="60.0" font-size="9.5" text-anchor="middle" fill="#A66A0D" font-weight="600" font-family="JetBrains Mono, monospace">Cout#1 → Cin#2</text>
-<polygon points="581,70 590,65.5 590,74.5" fill="#A66A0D"/>
-<text x="684.0" y="74.0" font-size="10" text-anchor="start" fill="#A66A0D" font-weight="600" font-family="JetBrains Mono, monospace">Cin#1</text>
-<polygon points="51,70 60,65.5 60,74.5" fill="#1C1E21"/>
-<text x="34.0" y="74.0" font-size="10" text-anchor="middle" fill="#A66A0D" font-weight="600" font-family="JetBrains Mono, monospace">Cout</text>
-<polygon points="195,169 190.5,160 199.5,160" fill="#93316B"/>
-<text x="195.0" y="178.0" font-size="10" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">S8..S5</text>
-<polygon points="505,169 500.5,160 509.5,160" fill="#93316B"/>
-<text x="505.0" y="178.0" font-size="10" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">S4..S1</text>
-<text x="380.0" y="212.0" font-size="10" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Add: Cin#1 = 0.   Subtract: pass all 8 B bits through XORs driven by M and set Cin#1 = M = 1.</text>
-<text x="380.0" y="232.0" font-size="10" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Cout of the final stage = 1 for a subtraction means NO borrow (A ≥ B).</text>
-</svg>
-    <div class="cap">Fig 24. Two 7483s cascaded for 8-bit operands (Exp 1 Part A). The lower IC handles bits 1–4, the upper IC bits 5–8; the final C<sub>out</sub> is the 8-bit carry.</div>
-  </div>
-
-  <table>
-    <tr><th>#</th><th>Operation</th><th>A (8-bit)</th><th>B or B′</th><th>C<sub>in</sub></th><th>S</th><th>C<sub>out</sub></th><th>Result</th></tr>
-    <tr><td>1</td><td>40 + 59</td><td>00101000</td><td>00111011</td><td>0</td><td>01100011</td><td>0</td><td>99 = 99 ✓</td></tr>
-    <tr><td>2</td><td>79h + AFh</td><td>01111001</td><td>10101111</td><td>0</td><td>00101000</td><td>1</td><td>C<sub>out</sub>:S = 1 0010 1000 = 128h = 296 ✓</td></tr>
-    <tr><td>3</td><td>67 − 48</td><td>01000011</td><td>11001111</td><td>1</td><td>00010011</td><td>1</td><td>19 = 19 ✓, C<sub>out</sub> = 1 → no borrow</td></tr>
-    <tr><td>4</td><td>A3h − BCh</td><td>10100011</td><td>01000011</td><td>1</td><td>11100111</td><td>0</td><td>C<sub>out</sub> = 0 → borrow; 163 − 188 = −25, S = E7h = 2's comp. of 19h (25)</td></tr>
-    </table>
-
-  <div class="callout key">
-    <span class="label">How to read the results</span>
-    Examples 1 and 3: C<sub>out</sub> = 0 (add: no overflow beyond 8 bits) and C<sub>out</sub> = 1 (subtract: <em>no borrow</em>). Example 2: with C<sub>out</sub> = 1 the true sum is 9 bits (296); as signed 8-bit numbers 79h = +121 and AFh = −81, so the 8-bit result 28h = +40 is the correct signed answer — carry-out and signed overflow are different things. Example 4: C<sub>out</sub> = 0 in a subtraction means the answer is negative; E7h is its 8-bit 2's complement, and negating again gives 19h = 25, so the result is −25. Every case matches the manual's remark that "the carry produced is the complement of what is expected" when subtracting.
-  </div>
-  <div class="callout clarify">
-    <span class="label">Clarifying an ambiguous point in the source</span>
-    The manual does not say how the 6-/8-bit numbers 40, 59, 79h, AFh, 67, 48, A3h, BCh are to be entered on a 4-bit IC. Splitting each into two nibbles and using two cascaded 7483s (above) is the natural reading; with a single IC you would perform the low nibble first, save C<sub>out</sub>, then the high nibble with that carry as C<sub>in</sub>. Also see §1.10 for the 7483 / 74283 naming mismatch in the manual's aim.
-  </div>
-  <h2>Viva questions <span class="pill">added for revision — not in the manual</span></h2>
-  <ol>
-    <li><em>Why add 3 to get Excess-3?</em> It makes the code self-complementing (9's complement of a digit = bitwise complement of its code) and avoids the all-zero code.</li>
-    <li><em>What does C<sub>in</sub> = 1 do in subtract mode?</em> Adds the "+1" that turns the 1's complement of B into its 2's complement.</li>
-    <li><em>How do you detect a negative result?</em> C<sub>out</sub> = 0 after A − B (borrow); the sum is then in 2's complement.</li>
-    <li><em>What is the difference between a half and full adder?</em> The full adder has a carry-in, which is what allows cascading.</li>
-  </ol>
-
-  <p class="source-note">Sources: <cite class="src" data-src="L1"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
-</section>
-
-<section class="page section" id="lab-exp2" style="--accent:var(--plum);--accent-soft:var(--plum-soft);">
-  <div class="section-head"><span class="tag">4.3</span><h1>Experiment 2 — Full Adder &amp; Full Subtractor using IC 74153</h1></div>
-  <p class="section-sub">Realising both 3-input arithmetic functions on a dual 4:1 multiplexer with a single inverter.</p>
-
-
-  <h2>Aim, components, theory</h2>
-  <p><strong>Aim:</strong> to realise a full adder (A) and a full subtractor (B) using the dual 4:1 multiplexer IC 74153. <strong>Components:</strong> IC 74153 ×1, IC 7404 (NOT) ×1, trainer kit, patch cords.</p>
-  <p><strong>Theory.</strong> The <strong>74153</strong> contains two 4:1 multiplexers, MUX A and MUX B. Each has four data inputs (I0–I3), an <strong>active-low enable</strong> (E<sub>a</sub>′, E<sub>b</sub>′) and an output (Y<sub>a</sub>/Z<sub>a</sub>, Y<sub>b</sub>/Z<sub>b</sub>). The two select lines S1, S0 are <strong>internally shorted</strong>, so the whole IC has only two select pins that steer both halves together. With the enable low the selected data input appears at the output; with enable high the output is held low. In this experiment both enables are grounded.</p>
-  <p>Any n-variable function needs a MUX with n−1 (or n−2) select lines. The manual uses the <strong>tabular method</strong> (the variable-entered method of <a href="#mux-fn">§3.5</a>): connect <strong>A → S1</strong> and <strong>B → S0</strong>, and apply the third variable C, its complement, 0 or 1 to the data inputs. <strong>Sum</strong> is realised on MUX A and <strong>Carry</strong> on MUX B.</p>
-  <h2>Implementation (tabular) method</h2>
-  <table>
-    <tr><th>Select A B</th><th>Data input</th><th>Sum / Diff (MUX A)</th><th>Carry (MUX B)</th><th>Borrow (MUX B)</th></tr>
-    <tr><td>0 0</td><td>I0</td><td>C</td><td>0</td><td>C</td></tr>
-    <tr><td>0 1</td><td>I1</td><td>C′</td><td>C</td><td>1</td></tr>
-    <tr><td>1 0</td><td>I2</td><td>C′</td><td>C</td><td>0</td></tr>
-    <tr><td>1 1</td><td>I3</td><td>C</td><td>1</td><td>C</td></tr>
-  </table>
-  <p>Reading the full-adder truth table pair by pair: for AB = 00 the Sum is C (0→0, 1→1) and the Carry is 0; for AB = 01 or 10 the Sum is C′ and the Carry is C; for AB = 11 the Sum is C and the Carry is 1. For the subtractor with C = B<sub>in</sub>: Diff = same as Sum; Borrow = A′B + A′C + BC gives C, 1, 0, C for AB = 00, 01, 10, 11 (e.g. AB = 01 means 0 − 1, which always borrows; AB = 10 means 1 − 0, which never borrows).</p>
-  <h2>Connections</h2>
-  <div class="svg-wrap">
-    <svg viewBox="0 0 780 330" xmlns="http://www.w3.org/2000/svg" role="img">
-<g fill="none" stroke-linecap="round" stroke-linejoin="round">
-<line x1="74.0" y1="62.0" x2="90.0" y2="62.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="74.0" y1="84.0" x2="90.0" y2="84.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="74.0" y1="106.0" x2="90.0" y2="106.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="74.0" y1="128.0" x2="90.0" y2="128.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="74.0" y1="150.0" x2="90.0" y2="150.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="74.0" y1="172.0" x2="90.0" y2="172.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="74.0" y1="194.0" x2="90.0" y2="194.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="74.0" y1="216.0" x2="90.0" y2="216.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="210.0" y1="62.0" x2="226.0" y2="62.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="210.0" y1="84.0" x2="226.0" y2="84.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="210.0" y1="106.0" x2="226.0" y2="106.0" stroke="#12796F" stroke-width="1.5"/>
-<line x1="210.0" y1="128.0" x2="226.0" y2="128.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="210.0" y1="150.0" x2="226.0" y2="150.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="210.0" y1="172.0" x2="226.0" y2="172.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="210.0" y1="194.0" x2="226.0" y2="194.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="210.0" y1="216.0" x2="226.0" y2="216.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="474.0" y1="62.0" x2="490.0" y2="62.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="474.0" y1="84.0" x2="490.0" y2="84.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="474.0" y1="106.0" x2="490.0" y2="106.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="474.0" y1="128.0" x2="490.0" y2="128.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="474.0" y1="150.0" x2="490.0" y2="150.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="474.0" y1="172.0" x2="490.0" y2="172.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="474.0" y1="194.0" x2="490.0" y2="194.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="474.0" y1="216.0" x2="490.0" y2="216.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="610.0" y1="62.0" x2="626.0" y2="62.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="610.0" y1="84.0" x2="626.0" y2="84.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="610.0" y1="106.0" x2="626.0" y2="106.0" stroke="#12796F" stroke-width="1.5"/>
-<line x1="610.0" y1="128.0" x2="626.0" y2="128.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="610.0" y1="150.0" x2="626.0" y2="150.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="610.0" y1="172.0" x2="626.0" y2="172.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="610.0" y1="194.0" x2="626.0" y2="194.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="610.0" y1="216.0" x2="626.0" y2="216.0" stroke="#93316B" stroke-width="1.5"/>
-</g>
-<rect x="90.0" y="40.0" width="120.0" height="198.0" rx="4" fill="#fff" stroke="#1C1E21" stroke-width="1.8"/>
-<path d="M142.0,40 A8,8 0 0 0 158.0,40" fill="none" stroke="#1C1E21" stroke-width="1.5"/>
-<text x="150.0" y="254.0" font-size="13" text-anchor="middle" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">74153</text>
-<text x="95.0" y="66.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1E′</text>
-<text x="70.0" y="59.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1</text>
-<text x="95.0" y="88.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">S1</text>
-<text x="70.0" y="81.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2</text>
-<text x="95.0" y="110.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1I3</text>
-<text x="70.0" y="103.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">3</text>
-<text x="95.0" y="132.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1I2</text>
-<text x="70.0" y="125.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">4</text>
-<text x="95.0" y="154.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1I1</text>
-<text x="70.0" y="147.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">5</text>
-<text x="95.0" y="176.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1I0</text>
-<text x="70.0" y="169.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">6</text>
-<text x="95.0" y="198.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1Y</text>
-<text x="70.0" y="191.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">7</text>
-<text x="95.0" y="220.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">GND</text>
-<text x="70.0" y="213.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">8</text>
-<text x="205.0" y="66.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Vcc</text>
-<text x="230.0" y="59.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">16</text>
-<text x="205.0" y="88.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2E′</text>
-<text x="230.0" y="81.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">15</text>
-<text x="205.0" y="110.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">S0</text>
-<text x="230.0" y="103.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">14</text>
-<text x="205.0" y="132.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2I3</text>
-<text x="230.0" y="125.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">13</text>
-<text x="205.0" y="154.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2I2</text>
-<text x="230.0" y="147.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">12</text>
-<text x="205.0" y="176.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2I1</text>
-<text x="230.0" y="169.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">11</text>
-<text x="205.0" y="198.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2I0</text>
-<text x="230.0" y="191.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">10</text>
-<text x="205.0" y="220.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2Y</text>
-<text x="230.0" y="213.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">9</text>
-<text x="150.0" y="26.0" font-size="11" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">Full adder</text>
-<text x="48.0" y="110.0" font-size="10" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">C</text>
-<text x="48.0" y="132.0" font-size="10" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">C′</text>
-<text x="48.0" y="154.0" font-size="10" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">C′</text>
-<text x="48.0" y="176.0" font-size="10" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">C</text>
-<text x="252.0" y="132.0" font-size="10" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">1</text>
-<text x="252.0" y="154.0" font-size="10" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">C</text>
-<text x="252.0" y="176.0" font-size="10" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">C</text>
-<text x="252.0" y="198.0" font-size="10" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">0</text>
-<text x="46.0" y="198.0" font-size="11" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">Sum</text>
-<text x="254.0" y="220.0" font-size="11" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">Carry</text>
-<text x="48.0" y="88.0" font-size="11" text-anchor="end" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">A</text>
-<text x="252.0" y="110.0" font-size="11" text-anchor="start" fill="#12796F" font-weight="600" font-family="JetBrains Mono, monospace">B</text>
-<text x="48.0" y="66.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">0 V</text>
-<text x="252.0" y="88.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">0 V</text>
-<rect x="490.0" y="40.0" width="120.0" height="198.0" rx="4" fill="#fff" stroke="#1C1E21" stroke-width="1.8"/>
-<path d="M542.0,40 A8,8 0 0 0 558.0,40" fill="none" stroke="#1C1E21" stroke-width="1.5"/>
-<text x="550.0" y="254.0" font-size="13" text-anchor="middle" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">74153</text>
-<text x="495.0" y="66.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1E′</text>
-<text x="470.0" y="59.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1</text>
-<text x="495.0" y="88.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">S1</text>
-<text x="470.0" y="81.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2</text>
-<text x="495.0" y="110.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1I3</text>
-<text x="470.0" y="103.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">3</text>
-<text x="495.0" y="132.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1I2</text>
-<text x="470.0" y="125.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">4</text>
-<text x="495.0" y="154.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1I1</text>
-<text x="470.0" y="147.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">5</text>
-<text x="495.0" y="176.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1I0</text>
-<text x="470.0" y="169.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">6</text>
-<text x="495.0" y="198.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1Y</text>
-<text x="470.0" y="191.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">7</text>
-<text x="495.0" y="220.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">GND</text>
-<text x="470.0" y="213.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">8</text>
-<text x="605.0" y="66.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Vcc</text>
-<text x="630.0" y="59.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">16</text>
-<text x="605.0" y="88.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2E′</text>
-<text x="630.0" y="81.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">15</text>
-<text x="605.0" y="110.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">S0</text>
-<text x="630.0" y="103.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">14</text>
-<text x="605.0" y="132.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2I3</text>
-<text x="630.0" y="125.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">13</text>
-<text x="605.0" y="154.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2I2</text>
-<text x="630.0" y="147.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">12</text>
-<text x="605.0" y="176.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2I1</text>
-<text x="630.0" y="169.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">11</text>
-<text x="605.0" y="198.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2I0</text>
-<text x="630.0" y="191.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">10</text>
-<text x="605.0" y="220.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2Y</text>
-<text x="630.0" y="213.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">9</text>
-<text x="550.0" y="26.0" font-size="11" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">Full subtractor</text>
-<text x="448.0" y="110.0" font-size="10" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">C</text>
-<text x="448.0" y="132.0" font-size="10" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">C′</text>
-<text x="448.0" y="154.0" font-size="10" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">C′</text>
-<text x="448.0" y="176.0" font-size="10" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">C</text>
-<text x="652.0" y="132.0" font-size="10" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">C</text>
-<text x="652.0" y="154.0" font-size="10" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">0</text>
-<text x="652.0" y="176.0" font-size="10" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">1</text>
-<text x="652.0" y="198.0" font-size="10" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">C</text>
-<text x="446.0" y="198.0" font-size="11" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">Diff</text>
-<text x="654.0" y="220.0" font-size="11" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">Borrow</text>
-<text x="448.0" y="88.0" font-size="11" text-anchor="end" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">A</text>
-<text x="652.0" y="110.0" font-size="11" text-anchor="start" fill="#12796F" font-weight="600" font-family="JetBrains Mono, monospace">B</text>
-<text x="448.0" y="66.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">0 V</text>
-<text x="652.0" y="88.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">0 V</text>
-<text x="390.0" y="316.0" font-size="10" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Select lines: A → S1 (pin 2), B → S0 (pin 14).  C′ is produced with one gate of IC 7404.</text>
-</svg>
-    <div class="cap">Fig 25. Exp 2 wiring. Left: full adder — MUX A inputs (pins 6, 5, 4, 3 = I0a…I3a) = C, C′, C′, C; MUX B inputs (pins 10, 11, 12, 13 = I0b…I3b) = 0, C, C, 1. Right: full subtractor — same for Diff; Borrow inputs C, 1, 0, C. Enables (pins 1, 15) are grounded; V<sub>cc</sub> = pin 16, GND = pin 8.</div>
-  </div>
-
-  <table>
-    <tr><th>Signal</th><th>74153 pin(s)</th><th>Connect to</th></tr>
-    <tr><td>A, B</td><td>2 (S1), 14 (S0)</td><td>input switches</td></tr>
-    <tr><td>C</td><td>6 (I0a), 3 (I3a)</td><td>switch C (direct)</td></tr>
-    <tr><td>C′</td><td>5 (I1a), 4 (I2a)</td><td>output of a 7404 inverter fed by C</td></tr>
-    <tr><td>Sum / Diff</td><td>7 (Y<sub>a</sub>)</td><td>LED</td></tr>
-    <tr><td>Carry (adder)</td><td>10 (I0b) = 0; 11, 12 (I1b, I2b) = C; 13 (I3b) = 1; output 9 (Y<sub>b</sub>)</td><td>logic 0 / C / logic 1; LED</td></tr>
-    <tr><td>Borrow (subtractor)</td><td>10 (I0b) = C; 11 (I1b) = 1; 12 (I2b) = 0; 13 (I3b) = C; output 9</td><td>C / logic 1 / logic 0 / C; LED</td></tr>
-    <tr><td>Enables</td><td>1 (E<sub>a</sub>′), 15 (E<sub>b</sub>′)</td><td>GND (active)</td></tr>
-  </table>
-  <h2>Truth table (completed; wiring simulated in code and checked against the arithmetic definition)</h2>
-  <table>
-    <tr><th>A</th><th>B</th><th>C</th><th>Sum</th><th>Carry</th><th>Diff</th><th>Borrow</th></tr>
-    <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-    <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
-    <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
-    <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
-    <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
-    <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
-    <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
-    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
-    </table>
-
-  <p><strong>Procedure:</strong> verify the IC numbers; fix the IC in the socket and connect V<sub>cc</sub> and GND; wire as in Fig 25; connect A, B, C to switches and the outputs to LEDs; apply all eight combinations and compare the LEDs with the table. <strong>Inference:</strong> one 74153 plus a single inverter realises a full adder or a full subtractor; the Sum/Difference wiring is identical for both, only the carry/borrow MUX differs.</p>
-  <div class="callout key">
-    <span class="label">Assignment 3 (end of Exp 2 in the manual)</span>
-    "Realise an 8:1 MUX using 2:1 and 4:1 MUXes, and a 16:1 using 8:1 and 4:1." Answer in <a href="#multiplexers">§3.3</a> (Fig 19 and the table of MUX trees).
-  </div>
-  <h2>Viva questions <span class="pill">added for revision — not in the manual</span></h2>
-  <ol>
-    <li><em>Why are S1 and S0 common in the 74153?</em> The two MUXes share the select pins to save pins, so both halves always look at the same data-input number.</li>
-    <li><em>How many selects does an n-variable function need?</em> n, or n−1 with the last variable entered on the data lines (as here).</li>
-    <li><em>Why is a NOT gate needed?</em> To obtain C′ for the data inputs I1 and I2 of the Sum/Diff MUX.</li>
-    <li><em>Difference between the two Borrow and Carry data patterns?</em> Carry = 0, C, C, 1; Borrow = C, 1, 0, C.</li>
-  </ol>
-
-  <p class="source-note">Sources: <cite class="src" data-src="L1"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
-</section>
-
-<section class="page section" id="lab-exp3" style="--accent:var(--plum);--accent-soft:var(--plum-soft);">
-  <div class="section-head"><span class="tag">4.4</span><h1>Experiment 3 — 1-bit &amp; 2-bit Magnitude Comparator</h1></div>
-  <p class="section-sub">Designing the comparators from gates, completing the manual's blank tables and K-maps.</p>
-
-
-  <h2>Aim, components, theory</h2>
-  <p><strong>Aim:</strong> to design and realise a 1-bit and a 2-bit magnitude comparator using logic gates. <strong>Components:</strong> 7408 (AND), 7400 (NAND), 7410 (3-input NAND), 7404 (NOT), 7486 (XOR), trainer kit, patch cords.</p>
-  <p><strong>Theory.</strong> A <strong>magnitude comparator</strong> is a combinational circuit that compares two numbers A and B and reports their relative magnitude with three outputs: A&lt;B, A=B, A&gt;B — exactly one of which is 1. Design theory is in <a href="#one-bit-comparator">§2.1</a> and <a href="#two-bit-comparator">§2.3</a>.</p>
-  <h2>1-bit comparator</h2>
-  <table>
-    <tr><th>A</th><th>B</th><th>A&lt;B</th><th>A=B</th><th>A&gt;B</th></tr>
-    <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
-    <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
-    <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
-    <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
-    </table>
-
-  <div class="formula-block">A&lt;B = A′B        A=B = A⊙B = AB + A′B′ (XNOR)        A&gt;B = AB′</div>
-  <p>Each K-map has a single 1 (or two diagonal 1s for A=B), so the expressions above are already minimal. Circuit: one NOT per input, two AND gates for A&lt;B and A&gt;B, and an XOR followed by a NOT (or an XNOR) for A=B.</p>
-  <h2>2-bit comparator — truth table (completed)</h2>
-  <table>
-    <tr><th>A<sub>1</sub></th><th>A<sub>0</sub></th><th>B<sub>1</sub></th><th>B<sub>0</sub></th><th>A&lt;B</th><th>A=B</th><th>A&gt;B</th></tr>
-    <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
-    <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
-    <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
-    <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
-    <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
-    <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
-    <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
-    <tr><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
-    <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
-    <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
-    <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
-    <tr><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
-    <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
-    <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
-    <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
-    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
-    </table>
-
-  <p>K-map minterm lists (index = 8A<sub>1</sub> + 4A<sub>0</sub> + 2B<sub>1</sub> + B<sub>0</sub>): <strong>A&gt;B = Σm(4, 8, 9, 12, 13, 14)</strong>; <strong>A=B = Σm(0, 5, 10, 15)</strong>; <strong>A&lt;B = Σm(1, 2, 3, 6, 7, 11)</strong>. Grouping on the 4-variable K-maps gives the minimal SOP of §2.3:</p>
-  <div class="formula-block">A&gt;B = A<sub>1</sub>B<sub>1</sub>′ + A<sub>0</sub>B<sub>1</sub>′B<sub>0</sub>′ + A<sub>1</sub>A<sub>0</sub>B<sub>0</sub>′
-A=B = (A<sub>1</sub>⊙B<sub>1</sub>)(A<sub>0</sub>⊙B<sub>0</sub>)
-A&lt;B = A<sub>1</sub>′B<sub>1</sub> + A<sub>0</sub>′B<sub>1</sub>B<sub>0</sub> + A<sub>1</sub>′A<sub>0</sub>′B<sub>0</sub></div>
-  <h2>The manual's logic diagram (NAND + XNOR form)</h2>
-  <p>The circuit printed in the manual is not the flat SOP; it uses the "first different bit decides" idea with x<sub>1</sub> = A<sub>1</sub>⊙B<sub>1</sub> (XOR + NOT, i.e. an XNOR):</p>
-  <div class="formula-block"><span class="c1">A&gt;B</span> = NAND[ NAND(A<sub>1</sub>, B<sub>1</sub>′) , NAND(A<sub>0</sub>, B<sub>0</sub>′, x<sub>1</sub>) ] = A<sub>1</sub>B<sub>1</sub>′ + x<sub>1</sub>·A<sub>0</sub>B<sub>0</sub>′
-<span class="c1">A=B</span> = x<sub>1</sub> · x<sub>0</sub>         where x<sub>0</sub> = A<sub>0</sub>⊙B<sub>0</sub>
-<span class="c1">A&lt;B</span> = NAND[ NAND(A<sub>1</sub>′, B<sub>1</sub>) , NAND(A<sub>0</sub>′, B<sub>0</sub>, x<sub>1</sub>) ] = A<sub>1</sub>′B<sub>1</sub> + x<sub>1</sub>·A<sub>0</sub>′B<sub>0</sub></div>
-  <div class="svg-wrap">
-    <svg viewBox="0 0 760 440" xmlns="http://www.w3.org/2000/svg" role="img">
-<g fill="none" stroke-linecap="round" stroke-linejoin="round">
-<line x1="40.0" y1="40.0" x2="40.0" y2="420.0" stroke="#1D4E89" stroke-width="1.4"/>
-<line x1="76.0" y1="40.0" x2="76.0" y2="420.0" stroke="#1D4E89" stroke-width="1.4"/>
-<line x1="112.0" y1="40.0" x2="112.0" y2="420.0" stroke="#12796F" stroke-width="1.4"/>
-<line x1="148.0" y1="40.0" x2="148.0" y2="420.0" stroke="#12796F" stroke-width="1.4"/>
-<line x1="184.0" y1="40.0" x2="184.0" y2="420.0" stroke="#1D4E89" stroke-width="1.4"/>
-<line x1="220.0" y1="40.0" x2="220.0" y2="420.0" stroke="#1D4E89" stroke-width="1.4"/>
-<line x1="256.0" y1="40.0" x2="256.0" y2="420.0" stroke="#12796F" stroke-width="1.4"/>
-<line x1="292.0" y1="40.0" x2="292.0" y2="420.0" stroke="#12796F" stroke-width="1.4"/>
-<line x1="40.0" y1="50.0" x2="76.0" y2="50.0" stroke="#1D4E89" stroke-width="1.1"/>
-<line x1="112.0" y1="50.0" x2="148.0" y2="50.0" stroke="#12796F" stroke-width="1.1"/>
-<line x1="184.0" y1="50.0" x2="220.0" y2="50.0" stroke="#1D4E89" stroke-width="1.1"/>
-<line x1="256.0" y1="50.0" x2="292.0" y2="50.0" stroke="#12796F" stroke-width="1.1"/>
-<line x1="40.0" y1="81.3" x2="340.0" y2="81.3" stroke="#1D4E89" stroke-width="1.6"/>
-<line x1="148.0" y1="92.7" x2="340.0" y2="92.7" stroke="#12796F" stroke-width="1.6"/>
-<line x1="184.0" y1="131.0" x2="340.0" y2="131.0" stroke="#1D4E89" stroke-width="1.6"/>
-<line x1="292.0" y1="142.0" x2="340.0" y2="142.0" stroke="#12796F" stroke-width="1.6"/>
-<line x1="314.0" y1="153.0" x2="340.0" y2="153.0" stroke="#1C1E21" stroke-width="1.6"/>
-<path d="M382.0,87.0 L470.0,87.0 L470.0,108.3 L500.0,108.3" stroke="#1C1E21" stroke-width="1.6"/>
-<path d="M382.0,142.0 L470.0,142.0 L470.0,121.7 L500.0,121.7" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="542.0" y1="115.0" x2="640.0" y2="115.0" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="40.0" y1="211.3" x2="339.3" y2="211.3" stroke="#1D4E89" stroke-width="1.6"/>
-<line x1="112.0" y1="222.7" x2="339.3" y2="222.7" stroke="#12796F" stroke-width="1.6"/>
-<line x1="184.0" y1="261.3" x2="339.3" y2="261.3" stroke="#1D4E89" stroke-width="1.6"/>
-<line x1="256.0" y1="272.7" x2="339.3" y2="272.7" stroke="#12796F" stroke-width="1.6"/>
-<line x1="388.0" y1="217.0" x2="412.0" y2="217.0" stroke="#1C1E21" stroke-width="1.6"/>
-<path d="M388.0,217.0 L470.0,217.0 L470.0,228.3 L500.0,228.3" stroke="#1C1E21" stroke-width="1.6"/>
-<path d="M388.0,267.0 L470.0,267.0 L470.0,241.7 L500.0,241.7" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="534.0" y1="235.0" x2="640.0" y2="235.0" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="76.0" y1="321.3" x2="340.0" y2="321.3" stroke="#1D4E89" stroke-width="1.6"/>
-<line x1="112.0" y1="332.7" x2="340.0" y2="332.7" stroke="#12796F" stroke-width="1.6"/>
-<line x1="220.0" y1="371.0" x2="340.0" y2="371.0" stroke="#1D4E89" stroke-width="1.6"/>
-<line x1="256.0" y1="382.0" x2="340.0" y2="382.0" stroke="#12796F" stroke-width="1.6"/>
-<line x1="314.0" y1="393.0" x2="340.0" y2="393.0" stroke="#1C1E21" stroke-width="1.6"/>
-<path d="M382.0,327.0 L470.0,327.0 L470.0,348.3 L500.0,348.3" stroke="#1C1E21" stroke-width="1.6"/>
-<path d="M382.0,382.0 L470.0,382.0 L470.0,361.7 L500.0,361.7" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="542.0" y1="355.0" x2="640.0" y2="355.0" stroke="#1C1E21" stroke-width="1.6"/>
-</g>
-<text x="40.0" y="32.0" font-size="10.5" text-anchor="middle" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">A<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan></text>
-<text x="76.0" y="32.0" font-size="10.5" text-anchor="middle" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">A<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan>′</text>
-<text x="112.0" y="32.0" font-size="10.5" text-anchor="middle" fill="#12796F" font-weight="600" font-family="JetBrains Mono, monospace">B<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan></text>
-<text x="148.0" y="32.0" font-size="10.5" text-anchor="middle" fill="#12796F" font-weight="600" font-family="JetBrains Mono, monospace">B<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan>′</text>
-<text x="184.0" y="32.0" font-size="10.5" text-anchor="middle" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">A<tspan dy="3" font-size="0.72em">0</tspan><tspan dy="-3">​</tspan></text>
-<text x="220.0" y="32.0" font-size="10.5" text-anchor="middle" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">A<tspan dy="3" font-size="0.72em">0</tspan><tspan dy="-3">​</tspan>′</text>
-<text x="256.0" y="32.0" font-size="10.5" text-anchor="middle" fill="#12796F" font-weight="600" font-family="JetBrains Mono, monospace">B<tspan dy="3" font-size="0.72em">0</tspan><tspan dy="-3">​</tspan></text>
-<text x="292.0" y="32.0" font-size="10.5" text-anchor="middle" fill="#12796F" font-weight="600" font-family="JetBrains Mono, monospace">B<tspan dy="3" font-size="0.72em">0</tspan><tspan dy="-3">​</tspan>′</text>
-<circle cx="58.0" cy="50" r="3.4" fill="#fff" stroke="#1C1E21" stroke-width="1.2"/>
-<circle cx="130.0" cy="50" r="3.4" fill="#fff" stroke="#1C1E21" stroke-width="1.2"/>
-<circle cx="202.0" cy="50" r="3.4" fill="#fff" stroke="#1C1E21" stroke-width="1.2"/>
-<circle cx="274.0" cy="50" r="3.4" fill="#fff" stroke="#1C1E21" stroke-width="1.2"/>
-<path d="M340,70 L357.0,70 A17.0,17.0 0 0 1 357.0,104 L340,104 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
-<circle cx="378" cy="87.0" r="4" fill="#fff" stroke="#1C1E21" stroke-width="1.6"/>
-<circle cx="40.0" cy="81.3" r="3.2" fill="#1D4E89"/>
-<circle cx="148.0" cy="92.7" r="3.2" fill="#12796F"/>
-<path d="M340,120 L352.0,120 A22.0,22.0 0 0 1 352.0,164 L340,164 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
-<circle cx="378" cy="142.0" r="4" fill="#fff" stroke="#1C1E21" stroke-width="1.6"/>
-<circle cx="184.0" cy="131.0" r="3.2" fill="#1D4E89"/>
-<circle cx="292.0" cy="142.0" r="3.2" fill="#12796F"/>
-<text x="310.0" y="157.0" font-size="9.5" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">x<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan></text>
-<path d="M500,95 L514.0,95 A20.0,20.0 0 0 1 514.0,135 L500,135 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
-<circle cx="538" cy="115.0" r="4" fill="#fff" stroke="#1C1E21" stroke-width="1.6"/>
-<polygon points="649,115.0 640,110.5 640,119.5" fill="#1C1E21"/>
-<text x="652.0" y="119.0" font-size="13" text-anchor="start" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">A &gt; B</text>
-<path d="M340,200 Q362.0,200 380,217.0 Q362.0,234 340,234 Q352.0,217.0 340,200 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
-<path d="M334,200 Q349.6,217.0 334,234" fill="none" stroke="#1C1E21" stroke-width="1.7"/>
-<circle cx="384" cy="217.0" r="4" fill="#fff" stroke="#1C1E21" stroke-width="1.6"/>
-<circle cx="40.0" cy="211.3" r="3.2" fill="#1D4E89"/>
-<circle cx="112.0" cy="222.7" r="3.2" fill="#12796F"/>
-<path d="M340,250 Q362.0,250 380,267.0 Q362.0,284 340,284 Q352.0,267.0 340,250 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
-<path d="M334,250 Q349.6,267.0 334,284" fill="none" stroke="#1C1E21" stroke-width="1.7"/>
-<circle cx="384" cy="267.0" r="4" fill="#fff" stroke="#1C1E21" stroke-width="1.6"/>
-<circle cx="184.0" cy="261.3" r="3.2" fill="#1D4E89"/>
-<circle cx="256.0" cy="272.7" r="3.2" fill="#12796F"/>
-<text x="416.0" y="213.0" font-size="10" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">x<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan></text>
-<path d="M500,215 L514.0,215 A20.0,20.0 0 0 1 514.0,255 L500,255 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
-<polygon points="649,235.0 640,230.5 640,239.5" fill="#1C1E21"/>
-<text x="652.0" y="239.0" font-size="13" text-anchor="start" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">A = B</text>
-<path d="M340,310 L357.0,310 A17.0,17.0 0 0 1 357.0,344 L340,344 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
-<circle cx="378" cy="327.0" r="4" fill="#fff" stroke="#1C1E21" stroke-width="1.6"/>
-<circle cx="76.0" cy="321.3" r="3.2" fill="#1D4E89"/>
-<circle cx="112.0" cy="332.7" r="3.2" fill="#12796F"/>
-<path d="M340,360 L352.0,360 A22.0,22.0 0 0 1 352.0,404 L340,404 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
-<circle cx="378" cy="382.0" r="4" fill="#fff" stroke="#1C1E21" stroke-width="1.6"/>
-<circle cx="220.0" cy="371.0" r="3.2" fill="#1D4E89"/>
-<circle cx="256.0" cy="382.0" r="3.2" fill="#12796F"/>
-<text x="310.0" y="397.0" font-size="9.5" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">x<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan></text>
-<path d="M500,335 L514.0,335 A20.0,20.0 0 0 1 514.0,375 L500,375 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
-<circle cx="538" cy="355.0" r="4" fill="#fff" stroke="#1C1E21" stroke-width="1.6"/>
-<polygon points="649,355.0 640,350.5 640,359.5" fill="#1C1E21"/>
-<text x="652.0" y="359.0" font-size="13" text-anchor="start" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">A &lt; B</text>
-<text x="600.0" y="290.0" font-size="9.5" text-anchor="middle" fill="#93316B" font-weight="500" font-family="JetBrains Mono, monospace">x<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan> = XNOR(A<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan>, B<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan>) (net label)</text>
-</svg>
-    <div class="cap">Fig 26. 2-bit comparator, lab form (NAND + XNOR). x<sub>1</sub> = A<sub>1</sub>⊙B<sub>1</sub> is shown as a net label; it enables the lower-bit gates only when the MSBs are equal. Inputs and their complements run down the vertical rails.</div>
-  </div>
-
-  <div class="callout key">
-    <span class="label">The two forms are the same function</span>
-    The lab circuit and the minimal SOP of §2.3 were compared over all 16 input combinations and against the arithmetic comparison — identical in every row. Algebraically, x<sub>1</sub>·A<sub>0</sub>B<sub>0</sub>′ = A<sub>1</sub>B<sub>1</sub>A<sub>0</sub>B<sub>0</sub>′ + A<sub>1</sub>′B<sub>1</sub>′A<sub>0</sub>B<sub>0</sub>′; the first product is absorbed by A<sub>1</sub>A<sub>0</sub>B<sub>0</sub>′ and the second by A<sub>0</sub>B<sub>1</sub>′B<sub>0</sub>′, which gives the SOP form. The lab form is cheaper on ICs (it re-uses x<sub>1</sub>); the SOP form is what a K-map gives directly — quote the one the question asks for.
-  </div>
-  <p><strong>Procedure and inference:</strong> as in the general procedure (§4.1); apply all 16 combinations of A<sub>1</sub>A<sub>0</sub>B<sub>1</sub>B<sub>0</sub> and check that exactly one LED is lit each time and that it agrees with the table. Inference: the three outputs are mutually exclusive and exhaustive, and the circuit correctly orders any two 2-bit numbers.</p>
-  <h2>Viva questions <span class="pill">added for revision — not in the manual</span></h2>
-  <ol>
-    <li><em>How many rows and K-maps for a 2-bit comparator?</em> 16 rows; three 4-variable K-maps (one per output).</li>
-    <li><em>Which gate gives equality of two bits?</em> XNOR.</li>
-    <li><em>How would you extend to 4 bits?</em> Cascade 1-bit comparators (§2.2) or compare MS pair first and use equality to enable the next pair.</li>
-    <li><em>Which IC gives a 4-bit comparator?</em> 7485.</li>
-  </ol>
-
-  <p class="source-note">Sources: <cite class="src" data-src="L1"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
-</section>
-
-<section class="page section" id="lab-exp4" style="--accent:var(--plum);--accent-soft:var(--plum-soft);">
-  <div class="section-head"><span class="tag">4.5</span><h1>Experiment 4 — Gray Code (74139), BCD-to-7-Segment (7447), Priority Encoder (74147)</h1></div>
-  <p class="section-sub">Decoder- and encoder-IC experiments with all truth tables completed and checked.</p>
-
-
-  <h2>Part A — Binary ⇄ Gray code converter using IC 74139</h2>
-  <p><strong>Aim:</strong> realise a 3-bit binary-to-Gray code converter (and the reverse) using the dual 2-to-4 decoder 74139 and 4-input NAND gates 7420. <strong>Components:</strong> 74139 ×1, 7420 ×1, 7404 ×1, trainer kit.</p>
-  <p><strong>Theory.</strong> The <strong>74139</strong> is a dual 2-to-4 line decoder; each half has an <em>active-low enable</em> and two address inputs and gives four <em>active-low</em> outputs. The two halves can be combined to a 3-to-8 decoder (§3.1) and, with the enable acting as data, each half can act as a 1:4 demultiplexer. In the <strong>Gray code</strong> successive numbers differ in one bit: G<sub>2</sub> = B<sub>2</sub>, G<sub>1</sub> = B<sub>2</sub>⊕B<sub>1</sub>, G<sub>0</sub> = B<sub>1</sub>⊕B<sub>0</sub>.</p>
-  <h3>Truth table and minterm lists (completed)</h3>
-  <table>
-    <tr><th>B<sub>2</sub></th><th>B<sub>1</sub></th><th>B<sub>0</sub></th><th>G<sub>2</sub></th><th>G<sub>1</sub></th><th>G<sub>0</sub></th></tr>
-    <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-    <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
-    <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
-    <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
-    <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
-    <tr><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
-    <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
-    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
-    </table>
-
-  <div class="formula-block"><span class="c1">G<sub>0</sub></span> = Σm(1, 2, 5, 6)        <span class="c1">G<sub>1</sub></span> = Σm(2, 3, 4, 5)        <span class="c1">G<sub>2</sub></span> = Σm(4, 5, 6, 7) = B<sub>2</sub></div>
-  <p><strong>Why a NAND gate?</strong> The 74139 outputs are active-low: output Y<sub>k</sub>′ = m<sub>k</sub>′. A function G = Σm(i, j, …) = m<sub>i</sub> + m<sub>j</sub> + … = (m<sub>i</sub>′ · m<sub>j</sub>′ · …)′, i.e. the <strong>NAND of the decoder's active-low lines</strong>. So G<sub>0</sub> = NAND(Y<sub>1</sub>′, Y<sub>2</sub>′, Y<sub>5</sub>′, Y<sub>6</sub>′) and G<sub>1</sub> = NAND(Y<sub>2</sub>′, Y<sub>3</sub>′, Y<sub>4</sub>′, Y<sub>5</sub>′) — one 7420 gate each; G<sub>2</sub> needs no gate at all.</p>
-  <div class="svg-wrap">
-    <svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg" role="img">
-<g fill="none" stroke-linecap="round" stroke-linejoin="round">
-<line x1="284.0" y1="62.0" x2="300.0" y2="62.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="284.0" y1="84.0" x2="300.0" y2="84.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="284.0" y1="106.0" x2="300.0" y2="106.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="284.0" y1="128.0" x2="300.0" y2="128.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="284.0" y1="150.0" x2="300.0" y2="150.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="284.0" y1="172.0" x2="300.0" y2="172.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="284.0" y1="194.0" x2="300.0" y2="194.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="284.0" y1="216.0" x2="300.0" y2="216.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="430.0" y1="62.0" x2="446.0" y2="62.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="430.0" y1="84.0" x2="446.0" y2="84.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="430.0" y1="106.0" x2="446.0" y2="106.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="430.0" y1="128.0" x2="446.0" y2="128.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="430.0" y1="150.0" x2="446.0" y2="150.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="430.0" y1="172.0" x2="446.0" y2="172.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="430.0" y1="194.0" x2="446.0" y2="194.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="430.0" y1="216.0" x2="446.0" y2="216.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="566.0" y1="72.8" x2="590.0" y2="72.8" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="566.0" y1="85.6" x2="590.0" y2="85.6" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="566.0" y1="98.4" x2="590.0" y2="98.4" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="566.0" y1="111.2" x2="590.0" y2="111.2" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="632.0" y1="92.0" x2="700.0" y2="92.0" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="566.0" y1="172.8" x2="590.0" y2="172.8" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="566.0" y1="185.6" x2="590.0" y2="185.6" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="566.0" y1="198.4" x2="590.0" y2="198.4" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="566.0" y1="211.2" x2="590.0" y2="211.2" stroke="#1C1E21" stroke-width="1.6"/>
-<line x1="632.0" y1="192.0" x2="700.0" y2="192.0" stroke="#1C1E21" stroke-width="1.6"/>
-</g>
-<rect x="300.0" y="40.0" width="130.0" height="198.0" rx="4" fill="#fff" stroke="#1C1E21" stroke-width="1.8"/>
-<path d="M357.0,40 A8,8 0 0 0 373.0,40" fill="none" stroke="#1C1E21" stroke-width="1.5"/>
-<text x="365.0" y="254.0" font-size="13" text-anchor="middle" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">74139</text>
-<text x="305.0" y="66.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Ea′</text>
-<text x="280.0" y="59.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1</text>
-<text x="305.0" y="88.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">A0a</text>
-<text x="280.0" y="81.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2</text>
-<text x="305.0" y="110.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">A1a</text>
-<text x="280.0" y="103.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">3</text>
-<text x="305.0" y="132.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Y0a′</text>
-<text x="280.0" y="125.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">4</text>
-<text x="305.0" y="154.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Y1a′</text>
-<text x="280.0" y="147.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">5</text>
-<text x="305.0" y="176.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Y2a′</text>
-<text x="280.0" y="169.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">6</text>
-<text x="305.0" y="198.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Y3a′</text>
-<text x="280.0" y="191.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">7</text>
-<text x="305.0" y="220.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">GND</text>
-<text x="280.0" y="213.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">8</text>
-<text x="425.0" y="66.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Vcc</text>
-<text x="450.0" y="59.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">16</text>
-<text x="425.0" y="88.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Eb′</text>
-<text x="450.0" y="81.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">15</text>
-<text x="425.0" y="110.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">A0b</text>
-<text x="450.0" y="103.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">14</text>
-<text x="425.0" y="132.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">A1b</text>
-<text x="450.0" y="125.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">13</text>
-<text x="425.0" y="154.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Y0b′</text>
-<text x="450.0" y="147.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">12</text>
-<text x="425.0" y="176.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Y1b′</text>
-<text x="450.0" y="169.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">11</text>
-<text x="425.0" y="198.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Y2b′</text>
-<text x="450.0" y="191.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">10</text>
-<text x="425.0" y="220.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Y3b′</text>
-<text x="450.0" y="213.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">9</text>
-<text x="365.0" y="26.0" font-size="10" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">dual 2:4 decoder, outputs active-LOW</text>
-<text x="258.0" y="88.0" font-size="10" text-anchor="end" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">B<tspan dy="3" font-size="0.72em">0</tspan><tspan dy="-3">​</tspan></text>
-<text x="258.0" y="110.0" font-size="10" text-anchor="end" fill="#12796F" font-weight="600" font-family="JetBrains Mono, monospace">B<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan></text>
-<text x="258.0" y="66.0" font-size="10" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">B<tspan dy="3" font-size="0.72em">2</tspan><tspan dy="-3">​</tspan>′  (via 7404)</text>
-<text x="472.0" y="110.0" font-size="10" text-anchor="start" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">B<tspan dy="3" font-size="0.72em">0</tspan><tspan dy="-3">​</tspan></text>
-<text x="472.0" y="132.0" font-size="10" text-anchor="start" fill="#12796F" font-weight="600" font-family="JetBrains Mono, monospace">B<tspan dy="3" font-size="0.72em">1</tspan><tspan dy="-3">​</tspan></text>
-<text x="472.0" y="88.0" font-size="10" text-anchor="start" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">B<tspan dy="3" font-size="0.72em">2</tspan><tspan dy="-3">​</tspan></text>
-<path d="M590,60 L592.0,60 A32.0,32.0 0 0 1 592.0,124 L590,124 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
-<circle cx="628" cy="92.0" r="4" fill="#fff" stroke="#1C1E21" stroke-width="1.6"/>
-<text x="562.0" y="76.8" font-size="9.5" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">m1</text>
-<text x="562.0" y="89.6" font-size="9.5" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">m2</text>
-<text x="562.0" y="102.4" font-size="9.5" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">m5</text>
-<text x="562.0" y="115.2" font-size="9.5" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">m6</text>
-<polygon points="709,92.0 700,87.5 700,96.5" fill="#1C1E21"/>
-<text x="710.0" y="96.0" font-size="13" text-anchor="start" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">G0</text>
-<path d="M590,160 L592.0,160 A32.0,32.0 0 0 1 592.0,224 L590,224 Z" fill="#fff" stroke="#1C1E21" stroke-width="1.7"/>
-<circle cx="628" cy="192.0" r="4" fill="#fff" stroke="#1C1E21" stroke-width="1.6"/>
-<text x="562.0" y="176.8" font-size="9.5" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">m2</text>
-<text x="562.0" y="189.6" font-size="9.5" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">m3</text>
-<text x="562.0" y="202.4" font-size="9.5" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">m4</text>
-<text x="562.0" y="215.2" font-size="9.5" text-anchor="end" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">m5</text>
-<polygon points="709,192.0 700,187.5 700,196.5" fill="#1C1E21"/>
-<text x="710.0" y="196.0" font-size="13" text-anchor="start" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">G1</text>
-<text x="632.0" y="52.0" font-size="9.5" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">7420 (4-input NAND)</text>
-<text x="380.0" y="290.0" font-size="10" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Decoder b (pins 9–15) is enabled when B<tspan dy="3" font-size="0.72em">2</tspan><tspan dy="-3">​</tspan> = 0 → m0..m3 on pins 12, 11, 10, 9.</text>
-<text x="380.0" y="308.0" font-size="10" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Decoder a (pins 1–7) is enabled when B<tspan dy="3" font-size="0.72em">2</tspan><tspan dy="-3">​</tspan>′ = 0, i.e. B<tspan dy="3" font-size="0.72em">2</tspan><tspan dy="-3">​</tspan> = 1 → m4..m7 on pins 4, 5, 6, 7.</text>
-<text x="380.0" y="330.0" font-size="10" text-anchor="middle" fill="#1C1E21" font-weight="500" font-family="JetBrains Mono, monospace">G0 = m1+m2+m5+m6  ← pins 11, 10, 5, 6</text>
-<text x="380.0" y="348.0" font-size="10" text-anchor="middle" fill="#1C1E21" font-weight="500" font-family="JetBrains Mono, monospace">G1 = m2+m3+m4+m5  ← pins 10, 9, 4, 5</text>
-<text x="380.0" y="366.0" font-size="10" text-anchor="middle" fill="#1C1E21" font-weight="500" font-family="JetBrains Mono, monospace">G2 = B<tspan dy="3" font-size="0.72em">2</tspan><tspan dy="-3">​</tspan> (straight wire, no gate)</text>
-</svg>
-    <div class="cap">Fig 27. Exp 4A — binary to Gray with a 74139 used as a 3:8 decoder. B<sub>2</sub> drives one active-low enable and, through a 7404, the other; B<sub>1</sub>B<sub>0</sub> drive both address pairs; two 7420 NANDs collect the minterm lines.</div>
-  </div>
-
-  <p>Wiring in words: pins 2 &amp; 14 (A0a, A0b) ← B<sub>0</sub>; pins 3 &amp; 13 (A1a, A1b) ← B<sub>1</sub>; pin 15 (E<sub>b</sub>′) ← B<sub>2</sub> so that decoder b is enabled for B<sub>2</sub> = 0 (minterms 0–3 on pins 12, 11, 10, 9); pin 1 (E<sub>a</sub>′) ← B<sub>2</sub>′ (7404) so that decoder a is enabled for B<sub>2</sub> = 1 (minterms 4–7 on pins 4, 5, 6, 7); pin 16 ← V<sub>cc</sub>, pin 8 ← GND. The wiring was simulated for all eight inputs and gives exactly the table above.</p>
-  <div class="callout key">
-    <span class="label">SOP and POS with a decoder (the manual's note)</span>
-    "Realise the given SOP and POS expressions using the decoder." With <em>active-low</em> outputs: <strong>SOP → NAND</strong> of the lines of the minterms present (as above); <strong>POS → AND</strong> of the lines of the maxterms present, because the active-low line Y<sub>k</sub>′ is itself the maxterm M<sub>k</sub> = m<sub>k</sub>′. Example: G<sub>0</sub> = ΠM(0, 3, 4, 7) = Y<sub>0</sub>′·Y<sub>3</sub>′·Y<sub>4</sub>′·Y<sub>7</sub>′ (a 4-input AND, e.g. 7421); G<sub>1</sub> = ΠM(0, 1, 6, 7).
-  </div>
-  <div class="callout clarify">
-    <span class="label">Not in your materials — added for syllabus completeness</span>
-    The aim says "and vice-versa" (Gray → binary) but the manual shows no circuit or table for it. With inputs G<sub>2</sub>G<sub>1</sub>G<sub>0</sub> in place of B<sub>2</sub>B<sub>1</sub>B<sub>0</sub> the same hardware works with different NAND wiring: <strong>B<sub>2</sub> = G<sub>2</sub>, B<sub>1</sub> = G<sub>2</sub>⊕G<sub>1</sub> = Σm(2, 3, 4, 5), B<sub>0</sub> = G<sub>2</sub>⊕G<sub>1</sub>⊕G<sub>0</sub> = Σm(1, 2, 4, 7)</strong> (verified):
-  </div>
-  <table>
-    <tr><th>G<sub>2</sub></th><th>G<sub>1</sub></th><th>G<sub>0</sub></th><th>B<sub>2</sub></th><th>B<sub>1</sub></th><th>B<sub>0</sub></th></tr>
-    <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-    <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
-    <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
-    <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
-    <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
-    <tr><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
-    <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
-    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
-    </table>
-
-  <h2>Part B — Decoder IC 7447 (BCD to seven-segment)</h2>
-  <p><strong>Aim:</strong> realise a BCD-to-seven-segment decoder with the 7447 and verify the display. <strong>Components:</strong> 7447, common-anode 7-segment display, trainer kit, patch cords.</p>
-  <p><strong>Theory.</strong> The <strong>7447</strong> (74LS47) takes a 4-bit BCD input DCBA (D = 8s, C = 4s, B = 2s, A = 1s) and drives the seven segments a–g of a <strong>common-anode</strong> display. Its outputs are <strong>active-low (open-collector)</strong>: a segment lights when its output is 0, because the display anodes are tied to +5 V. The input is meaningful only for 0000–1001 (0–9). Three control inputs: <strong>LT′</strong> (lamp test: LOW lights all segments), <strong>BI′/RBO′</strong> (blanking input / ripple-blanking output: LOW blanks the display) and <strong>RBI′</strong> (ripple-blanking input, used to suppress leading zeros). For normal operation all three are tied HIGH (+5 V).</p>
-  <div class="svg-wrap">
-    <svg viewBox="0 0 780 300" xmlns="http://www.w3.org/2000/svg" role="img">
-<g fill="none" stroke-linecap="round" stroke-linejoin="round">
-<line x1="174.0" y1="52.0" x2="190.0" y2="52.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="174.0" y1="74.0" x2="190.0" y2="74.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="174.0" y1="96.0" x2="190.0" y2="96.0" stroke="#A66A0D" stroke-width="1.5"/>
-<line x1="174.0" y1="118.0" x2="190.0" y2="118.0" stroke="#A66A0D" stroke-width="1.5"/>
-<line x1="174.0" y1="140.0" x2="190.0" y2="140.0" stroke="#A66A0D" stroke-width="1.5"/>
-<line x1="174.0" y1="162.0" x2="190.0" y2="162.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="174.0" y1="184.0" x2="190.0" y2="184.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="174.0" y1="206.0" x2="190.0" y2="206.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="320.0" y1="52.0" x2="336.0" y2="52.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="320.0" y1="74.0" x2="336.0" y2="74.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="320.0" y1="96.0" x2="336.0" y2="96.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="320.0" y1="118.0" x2="336.0" y2="118.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="320.0" y1="140.0" x2="336.0" y2="140.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="320.0" y1="162.0" x2="336.0" y2="162.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="320.0" y1="184.0" x2="336.0" y2="184.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="320.0" y1="206.0" x2="336.0" y2="206.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="336.0" y1="118.0" x2="470.0" y2="118.0" stroke="#93316B" stroke-width="1.6"/>
-<line x1="336.0" y1="140.0" x2="470.0" y2="140.0" stroke="#93316B" stroke-width="1.6"/>
-<line x1="336.0" y1="162.0" x2="470.0" y2="162.0" stroke="#93316B" stroke-width="1.6"/>
-<line x1="336.0" y1="184.0" x2="470.0" y2="184.0" stroke="#93316B" stroke-width="1.6"/>
-<line x1="336.0" y1="206.0" x2="470.0" y2="206.0" stroke="#93316B" stroke-width="1.6"/>
-<line x1="336.0" y1="74.0" x2="470.0" y2="74.0" stroke="#93316B" stroke-width="1.6"/>
-<line x1="336.0" y1="96.0" x2="470.0" y2="96.0" stroke="#93316B" stroke-width="1.6"/>
-</g>
-<rect x="190.0" y="30.0" width="130.0" height="198.0" rx="4" fill="#fff" stroke="#1C1E21" stroke-width="1.8"/>
-<path d="M247.0,30 A8,8 0 0 0 263.0,30" fill="none" stroke="#1C1E21" stroke-width="1.5"/>
-<text x="255.0" y="244.0" font-size="13" text-anchor="middle" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">7447</text>
-<text x="195.0" y="56.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">B</text>
-<text x="170.0" y="49.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1</text>
-<text x="195.0" y="78.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">C</text>
-<text x="170.0" y="71.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2</text>
-<text x="195.0" y="100.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">LT′</text>
-<text x="170.0" y="93.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">3</text>
-<text x="195.0" y="122.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">BI′/RBO′</text>
-<text x="170.0" y="115.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">4</text>
-<text x="195.0" y="144.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">RBI′</text>
-<text x="170.0" y="137.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">5</text>
-<text x="195.0" y="166.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D</text>
-<text x="170.0" y="159.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">6</text>
-<text x="195.0" y="188.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">A</text>
-<text x="170.0" y="181.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">7</text>
-<text x="195.0" y="210.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">GND</text>
-<text x="170.0" y="203.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">8</text>
-<text x="315.0" y="56.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Vcc</text>
-<text x="340.0" y="49.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">16</text>
-<text x="315.0" y="78.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">f</text>
-<text x="340.0" y="71.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">15</text>
-<text x="315.0" y="100.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">g</text>
-<text x="340.0" y="93.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">14</text>
-<text x="315.0" y="122.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">a</text>
-<text x="340.0" y="115.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">13</text>
-<text x="315.0" y="144.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">b</text>
-<text x="340.0" y="137.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">12</text>
-<text x="315.0" y="166.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">c</text>
-<text x="340.0" y="159.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">11</text>
-<text x="315.0" y="188.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">d</text>
-<text x="340.0" y="181.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">10</text>
-<text x="315.0" y="210.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">e</text>
-<text x="340.0" y="203.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">9</text>
-<text x="255.0" y="20.0" font-size="10" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">BCD → 7-segment (open-collector, active-LOW outputs)</text>
-<text x="148.0" y="56.0" font-size="10" text-anchor="end" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">B (2s)</text>
-<text x="148.0" y="78.0" font-size="10" text-anchor="end" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">C (4s)</text>
-<text x="148.0" y="100.0" font-size="10" text-anchor="end" fill="#A66A0D" font-weight="600" font-family="JetBrains Mono, monospace">+5 V</text>
-<text x="148.0" y="122.0" font-size="10" text-anchor="end" fill="#A66A0D" font-weight="600" font-family="JetBrains Mono, monospace">+5 V</text>
-<text x="148.0" y="144.0" font-size="10" text-anchor="end" fill="#A66A0D" font-weight="600" font-family="JetBrains Mono, monospace">+5 V</text>
-<text x="148.0" y="166.0" font-size="10" text-anchor="end" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">D (8s)</text>
-<text x="148.0" y="188.0" font-size="10" text-anchor="end" fill="#1D4E89" font-weight="600" font-family="JetBrains Mono, monospace">A (1s)</text>
-<rect x="600" y="50" width="50" height="8" rx="3" fill="#F7E3EC" stroke="#93316B" stroke-width="1.2"/>
-<text x="625.0" y="57.5" font-size="8.5" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">a</text>
-<rect x="650" y="60" width="8" height="50" rx="3" fill="#F7E3EC" stroke="#93316B" stroke-width="1.2"/>
-<text x="654.0" y="88.5" font-size="8.5" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">b</text>
-<rect x="650" y="120" width="8" height="50" rx="3" fill="#F7E3EC" stroke="#93316B" stroke-width="1.2"/>
-<text x="654.0" y="148.5" font-size="8.5" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">c</text>
-<rect x="600" y="172" width="50" height="8" rx="3" fill="#F7E3EC" stroke="#93316B" stroke-width="1.2"/>
-<text x="625.0" y="179.5" font-size="8.5" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">d</text>
-<rect x="592" y="120" width="8" height="50" rx="3" fill="#F7E3EC" stroke="#93316B" stroke-width="1.2"/>
-<text x="596.0" y="148.5" font-size="8.5" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">e</text>
-<rect x="592" y="60" width="8" height="50" rx="3" fill="#F7E3EC" stroke="#93316B" stroke-width="1.2"/>
-<text x="596.0" y="88.5" font-size="8.5" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">f</text>
-<rect x="600" y="111" width="50" height="8" rx="3" fill="#F7E3EC" stroke="#93316B" stroke-width="1.2"/>
-<text x="625.0" y="118.5" font-size="8.5" text-anchor="middle" fill="#93316B" font-weight="600" font-family="JetBrains Mono, monospace">g</text>
-<text x="625.0" y="206.0" font-size="10" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">common-anode display</text>
-<text x="625.0" y="222.0" font-size="9.5" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">(anode → +5 V via 220 Ω)</text>
-<text x="478.0" y="121.0" font-size="9.5" text-anchor="start" fill="#93316B" font-weight="500" font-family="JetBrains Mono, monospace">a (pin 13)</text>
-<text x="478.0" y="143.0" font-size="9.5" text-anchor="start" fill="#93316B" font-weight="500" font-family="JetBrains Mono, monospace">b (pin 12)</text>
-<text x="478.0" y="165.0" font-size="9.5" text-anchor="start" fill="#93316B" font-weight="500" font-family="JetBrains Mono, monospace">c (pin 11)</text>
-<text x="478.0" y="187.0" font-size="9.5" text-anchor="start" fill="#93316B" font-weight="500" font-family="JetBrains Mono, monospace">d (pin 10)</text>
-<text x="478.0" y="209.0" font-size="9.5" text-anchor="start" fill="#93316B" font-weight="500" font-family="JetBrains Mono, monospace">e (pin 9)</text>
-<text x="478.0" y="77.0" font-size="9.5" text-anchor="start" fill="#93316B" font-weight="500" font-family="JetBrains Mono, monospace">f (pin 15)</text>
-<text x="478.0" y="99.0" font-size="9.5" text-anchor="start" fill="#93316B" font-weight="500" font-family="JetBrains Mono, monospace">g (pin 14)</text>
-</svg>
-    <div class="cap">Fig 28. Exp 4B — 7447 pin diagram and wiring: DCBA on pins 6, 2, 1, 7; LT′, BI′/RBO′, RBI′ (pins 3, 4, 5) and V<sub>cc</sub> (16) to +5 V; GND (8) to 0 V; outputs a–g on pins 13, 12, 11, 10, 9, 15, 14 to the display (anode to +5 V through a resistor).</div>
-  </div>
-
-  <h3>Truth table (verified against the segment patterns)</h3>
-  <table>
-    <tr><th>In D</th><th>In C</th><th>In B</th><th>In A</th><th>seg a</th><th>seg b</th><th>seg c</th><th>seg d</th><th>seg e</th><th>seg f</th><th>seg g</th><th>Digit</th><th>Segments ON</th></tr>
-    <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>abcdef</td></tr>
-    <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>bc</td></tr>
-    <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>2</td><td>abdeg</td></tr>
-    <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>3</td><td>abcdg</td></tr>
-    <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>4</td><td>bcfg</td></tr>
-    <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>5</td><td>acdfg</td></tr>
-    <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>6</td><td>acdefg</td></tr>
-    <tr><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>7</td><td>abc</td></tr>
-    <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>8</td><td>abcdefg</td></tr>
-    <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>9</td><td>abcdfg</td></tr>
-    </table>
-
-  <p>Each 7-bit row is the printed table of the manual, and was cross-checked against the set of segments that form each digit (a segment ON ⇒ output 0 on a common-anode display): all ten rows agree (digit 6 lights segment a, as the manual's table shows). Inference: for BCD inputs 0–9 the display shows the corresponding decimal digit; codes 1010–1111 are invalid for BCD and give meaningless patterns.</p>
-  <h2>Part B — Encoder IC 74147 (decimal to BCD priority encoder)</h2>
-  <p><strong>Aim:</strong> realise an encoder using the 74147. <strong>Theory.</strong> The 74HC/HCT147 is a <strong>9-input priority encoder</strong> (10-line-to-4-line): nine <strong>active-LOW</strong> inputs I1′–I9′ and four <strong>active-LOW</strong> outputs D′C′B′A′ giving the BCD code of the highest-priority active input (I9′ highest). When several inputs are active simultaneously the highest-numbered one wins. The decimal "0" is implied: when <em>all nine inputs are HIGH</em> all four outputs are HIGH (the complement of 0000). Because the outputs are active-low, the displayed code is the <strong>complement</strong> of the BCD digit — e.g. input I5′ low gives D′C′B′A′ = 1010, the complement of 0101.</p>
-  <div class="svg-wrap">
-    <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img">
-<g fill="none" stroke-linecap="round" stroke-linejoin="round">
-<line x1="224.0" y1="52.0" x2="240.0" y2="52.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="224.0" y1="74.0" x2="240.0" y2="74.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="224.0" y1="96.0" x2="240.0" y2="96.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="224.0" y1="118.0" x2="240.0" y2="118.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="224.0" y1="140.0" x2="240.0" y2="140.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="224.0" y1="162.0" x2="240.0" y2="162.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="224.0" y1="184.0" x2="240.0" y2="184.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="224.0" y1="206.0" x2="240.0" y2="206.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="370.0" y1="52.0" x2="386.0" y2="52.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="370.0" y1="74.0" x2="386.0" y2="74.0" stroke="#1C1E21" stroke-width="1.5"/>
-<line x1="370.0" y1="96.0" x2="386.0" y2="96.0" stroke="#93316B" stroke-width="1.5"/>
-<line x1="370.0" y1="118.0" x2="386.0" y2="118.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="370.0" y1="140.0" x2="386.0" y2="140.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="370.0" y1="162.0" x2="386.0" y2="162.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="370.0" y1="184.0" x2="386.0" y2="184.0" stroke="#1D4E89" stroke-width="1.5"/>
-<line x1="370.0" y1="206.0" x2="386.0" y2="206.0" stroke="#93316B" stroke-width="1.5"/>
-</g>
-<rect x="240.0" y="30.0" width="130.0" height="198.0" rx="4" fill="#fff" stroke="#1C1E21" stroke-width="1.8"/>
-<path d="M297.0,30 A8,8 0 0 0 313.0,30" fill="none" stroke="#1C1E21" stroke-width="1.5"/>
-<text x="305.0" y="244.0" font-size="13" text-anchor="middle" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">74147</text>
-<text x="245.0" y="56.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">I4′</text>
-<text x="220.0" y="49.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">1</text>
-<text x="245.0" y="78.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">I5′</text>
-<text x="220.0" y="71.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">2</text>
-<text x="245.0" y="100.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">I6′</text>
-<text x="220.0" y="93.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">3</text>
-<text x="245.0" y="122.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">I7′</text>
-<text x="220.0" y="115.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">4</text>
-<text x="245.0" y="144.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">I8′</text>
-<text x="220.0" y="137.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">5</text>
-<text x="245.0" y="166.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">C′</text>
-<text x="220.0" y="159.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">6</text>
-<text x="245.0" y="188.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">B′</text>
-<text x="220.0" y="181.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">7</text>
-<text x="245.0" y="210.0" font-size="9.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">GND</text>
-<text x="220.0" y="203.0" font-size="8.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">8</text>
-<text x="365.0" y="56.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">Vcc</text>
-<text x="390.0" y="49.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">16</text>
-<text x="365.0" y="78.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">NC</text>
-<text x="390.0" y="71.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">15</text>
-<text x="365.0" y="100.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">D′</text>
-<text x="390.0" y="93.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">14</text>
-<text x="365.0" y="122.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">I3′</text>
-<text x="390.0" y="115.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">13</text>
-<text x="365.0" y="144.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">I2′</text>
-<text x="390.0" y="137.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">12</text>
-<text x="365.0" y="166.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">I1′</text>
-<text x="390.0" y="159.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">11</text>
-<text x="365.0" y="188.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">I9′</text>
-<text x="390.0" y="181.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">10</text>
-<text x="365.0" y="210.0" font-size="9.5" text-anchor="end" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">A′</text>
-<text x="390.0" y="203.0" font-size="8.5" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">9</text>
-<text x="305.0" y="20.0" font-size="10" text-anchor="middle" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">10-line to 4-line (decimal→BCD) priority encoder, all pins active-LOW</text>
-<text x="500.0" y="80.0" font-size="10" text-anchor="start" fill="#1C1E21" font-weight="600" font-family="JetBrains Mono, monospace">Highest-numbered LOW input wins</text>
-<text x="500.0" y="100.0" font-size="10" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">I9′ has the highest priority</text>
-<text x="500.0" y="120.0" font-size="10" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">(D′C′B′A′) = complement of BCD</text>
-<text x="500.0" y="140.0" font-size="10" text-anchor="start" fill="#5B6169" font-weight="500" font-family="JetBrains Mono, monospace">No input LOW → 1111 (decimal 0)</text>
-</svg>
-    <div class="cap">Fig 29. Exp 4B — 74147 pin diagram (all pins active-LOW): inputs as printed in the manual: I4′–I8′ on pins 1–5, I1′, I2′, I3′ on pins 11, 12, 13 and I9′ on pin 10; outputs A′, B′, C′, D′ on pins 9, 7, 6, 14; V<sub>cc</sub> 16, GND 8, pin 15 NC. (Both of the manual's panels agree; check the datasheet of the IC in your kit if pin 10–13 behave differently.)</div>
-  </div>
-
-  <table>
-    <tr><th>I9′</th><th>I8′</th><th>I7′</th><th>I6′</th><th>I5′</th><th>I4′</th><th>I3′</th><th>I2′</th><th>I1′</th><th>D′</th><th>C′</th><th>B′</th><th>A′</th><th>Decimal</th></tr>
-    <tr><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
-    <tr><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>L</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
-    <tr><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>L</td><td>×</td><td>1</td><td>1</td><td>0</td><td>1</td><td>2</td></tr>
-    <tr><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>L</td><td>×</td><td>×</td><td>1</td><td>1</td><td>0</td><td>0</td><td>3</td></tr>
-    <tr><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>L</td><td>×</td><td>×</td><td>×</td><td>1</td><td>0</td><td>1</td><td>1</td><td>4</td></tr>
-    <tr><td>H</td><td>H</td><td>H</td><td>H</td><td>L</td><td>×</td><td>×</td><td>×</td><td>×</td><td>1</td><td>0</td><td>1</td><td>0</td><td>5</td></tr>
-    <tr><td>H</td><td>H</td><td>H</td><td>L</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>1</td><td>0</td><td>0</td><td>1</td><td>6</td></tr>
-    <tr><td>H</td><td>H</td><td>L</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>1</td><td>0</td><td>0</td><td>0</td><td>7</td></tr>
-    <tr><td>H</td><td>L</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>0</td><td>1</td><td>1</td><td>1</td><td>8</td></tr>
-    <tr><td>L</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>0</td><td>1</td><td>1</td><td>0</td><td>9</td></tr>
-    </table>
-
-  <p>"×" = don't care (lower-priority inputs, any level); H/L = HIGH/LOW logic level. Generated from the definition "output = complement of the BCD code of the highest LOW input". Simultaneous inputs (I9′ and I3′ both LOW) give the code of I9, 0110. The general ideas — priority, valid/none-active case — are explained in <a href="#encoders">§3.2</a>.</p>
-  <h2>Viva questions <span class="pill">added for revision — not in the manual</span></h2>
-  <ol>
-    <li><em>Why NAND gates after the 74139?</em> Its outputs are active-low, so a NAND of selected lines is an OR of minterms (De Morgan).</li>
-    <li><em>How is the Gray code different from binary?</em> Only one bit changes between successive numbers; G<sub>n</sub> = B<sub>n</sub>, G<sub>i</sub> = B<sub>i+1</sub>⊕B<sub>i</sub>.</li>
-    <li><em>What happens to a 7447 if the input is 1010–1111?</em> The code is not BCD; the display shows an unrecognised pattern.</li>
-    <li><em>What is the function of LT′ and RBI′?</em> Lamp test (all segments on) and leading-zero suppression.</li>
-    <li><em>Why does the 74147 output look "inverted"?</em> Both its inputs and outputs are active-low, so the output is the complement of the BCD digit.</li>
-  </ol>
-
-  <p class="source-note">Sources: <cite class="src" data-src="L1"></cite></p><a class="backtotop" href="#index">↑ Back to index</a>
-</section>
-
 
 <section class="page section" id="bistable" style="--accent:var(--amber);--accent-soft:var(--amber-soft);"><div class="section-head"><span class="tag">5.1</span><h1>The Basic Bistable Element</h1></div><p class="section-sub">Memory from feedback: two cross-coupled NOT gates, stable and metastable states.</p>
 <p>All the logic studied so far was <strong>combinational</strong>: each output depends only on the inputs present at that instant, so a single Boolean expression describes it. A <strong>sequential network</strong> is different &mdash; its outputs depend on the present inputs <em>and on the past history of inputs</em>. That history has to be remembered inside the network, and the remembered information is called its <strong>internal state</strong> (or simply the <em>state</em>). Sequential networks therefore have <strong>memory</strong>, and every one of them needs <strong>feedback</strong>.</p>
@@ -4704,14 +3816,6 @@ T :  Q⁺ = Q ⊕ T          T = Q ⊕ Q⁺</div>
       <strong>Function on decoder:</strong> OR (NAND if active-low) of minterm lines; AND of active-low lines for POS<br>
       <strong>1:4 DEMUX:</strong> Yi = E·I·mi(S)</p>
     </div>
-    <div class="card">
-      <h3 style="margin-top:0;font-size:15px;color:var(--plum)">Lab Exp 1–4</h3>
-      <p style="margin:0"><strong>Exp 1:</strong> 7483 + XOR; Cin=0 BCD→XS3 (+0011), Cin=1 XS3→BCD (+1100+1)<br>
-      <strong>Exp 2:</strong> 74153, A→S1, B→S0; Sum I0..I3 = C,C′,C′,C; Carry = 0,C,C,1; Borrow = C,1,0,C<br>
-      <strong>Exp 3:</strong> A&gt;B=A1B1′+(A1⊙B1)A0B0′, A=B=(A1⊙B1)(A0⊙B0)<br>
-      <strong>Exp 4A:</strong> G0=Σm(1,2,5,6), G1=Σm(2,3,4,5), G2=B2 via 74139 + 7420 NAND<br>
-      <strong>Exp 4B:</strong> 7447 active-LOW outputs, common-anode; 74147 active-LOW priority encoder, I9 highest</p>
-    </div>
   </div>
 <h2 style="margin-top:34px">Sequential half of Unit II (Parts 5&ndash;7)</h2>
 <p>One-page revision sheet. All equations below were verified in code.</p><table><thead><tr><th>Topic</th><th>Remember</th></tr></thead><tbody><tr><td>Bistable element</td><td>Two cross-coupled NOT gates; Q = NOT Q&#772;; two stable states + metastable (unpredictable duration).</td></tr><tr><td>SR latch (NOR)</td><td>S = 1 set, R = 1 reset, 00 hold, <strong>11 forbidden</strong> (both outputs 0). Last input to leave 1 decides.</td></tr><tr><td>SR&#772;R&#772; latch (NAND)</td><td>Active-low: 0 on S&#772; sets, 0 on R&#772; resets, 11 hold, 00 forbidden.</td></tr><tr><td>Gated SR / D latch</td><td>Enable C. D latch: S = D, R = D&#772;; Q<sup>+</sup> = D while C = 1 (transparent).</td></tr><tr><td>Timing</td><td>t<sub>PLH</sub>, t<sub>PHL</sub>, t<sub>w</sub>(min), t<sub>su</sub> before and t<sub>h</sub> after the latching edge; violation &rArr; metastability.</td></tr><tr><td>Master-slave</td><td>Master (C = 1) + slave (C = 0); output changes at the <strong>falling edge</strong>; postponed-output symbol. JK: J K = 11 toggles.</td></tr><tr><td>Race-around</td><td>Level JK with J = K = 1 and t<sub>w</sub> &gt; t<sub>d</sub>: output toggles repeatedly. Cure: master-slave / edge-triggered.</td></tr><tr><td>0&rsquo;s / 1&rsquo;s catching</td><td>Master latch sees glitch on K (Q = 1) / J (Q = 0) while C = 1. Cure: hold J, K, edge-triggered, data lockout.</td></tr><tr><td>Data lockout</td><td>+edge JK master + SR slave: inputs read at rising edge, output at falling edge; symbol = triangle + postponed output.</td></tr><tr><td>Edge-triggered D</td><td>6 NAND gates; samples D at the active edge only; symbol triangle (bubble for &minus;edge). PR/CLR are active-low, asynchronous, override the clock.</td></tr><tr><td>Characteristic equations</td><td>SR: Q<sup>+</sup> = S + R&#772;Q (SR = 0) &nbsp;|&nbsp; JK: Q<sup>+</sup> = JQ&#772; + K&#772;Q &nbsp;|&nbsp; D: Q<sup>+</sup> = D &nbsp;|&nbsp; T: Q<sup>+</sup> = T&oplus;Q</td></tr><tr><td>Excitation (Q &rarr; Q<sup>+</sup>)</td><td>SR: 0&rarr;0 = 0&times;, 0&rarr;1 = 10, 1&rarr;0 = 01, 1&rarr;1 = &times;0 &nbsp;|&nbsp; JK: 0&times;, 1&times;, &times;1, &times;0 &nbsp;|&nbsp; D = Q<sup>+</sup> &nbsp;|&nbsp; T = Q &oplus; Q<sup>+</sup></td></tr><tr><td>Conversions</td><td>SR&rarr;JK: S = JQ&#772;, R = KQ &nbsp;|&nbsp; JK&rarr;T: J = K = T &nbsp;|&nbsp; D&rarr;T: D = T&oplus;Q &nbsp;|&nbsp; D&rarr;JK: D = JQ&#772; + K&#772;Q (2:1 MUX, select = Q) &nbsp;|&nbsp; SR&rarr;D: S = D, R = D&#772;</td></tr><tr><td>Shift registers</td><td>SISO: bit appears at output after n clocks. SIPO: serial &rarr; parallel. PISO/PIPO: 2:1 MUX per FF, Load/Shift = 0 shifts, 1 loads (faculty convention). Register = n FFs storing n bits; uses: S&harr;P conversion, delay, sequence generation, LFSR. Use edge/pulse-triggered FFs, <strong>not latches</strong>. Circular: last FF output (Q<sub>0</sub>) &rarr; first FF input; content returns after n clocks.</td></tr><tr><td>Universal shift register</td><td>D FF + 4:1 MUX per bit; S1 S0 = 00 hold / 01 shift right / 10 shift left / 11 load; CLEAR asynchronous.</td></tr></tbody></table>
@@ -4727,11 +3831,11 @@ T :  Q⁺ = Q ⊕ T          T = Q ⊕ Q⁺</div>
 </section>
 <section class="page section" id="question-bank" style="--accent:var(--ink);--accent-soft:var(--line-soft);">
   <div class="section-head"><span class="tag">REF</span><h1>Question Bank Index</h1></div>
-  <p class="section-sub">Every adder, comparator, decoder, encoder, MUX/DEMUX, lab, latch, flip-flop and shift-register question from the question bank and past CIE/SEE papers, linked to where it's answered.</p>
+  <p class="section-sub">Every adder, comparator, decoder, encoder, MUX/DEMUX, latch, flip-flop and shift-register question from the question bank and past CIE/SEE papers, linked to where it's answered.</p>
 
   <div class="callout clarify">
     <span class="label">Scope of this index</span>
-    Now includes the decoder / encoder / multiplexer / demultiplexer questions from qb1.pdf<cite class="src" data-src="Q3"></cite> (Q20–31) and the CIE/SEE papers. Excludes: qb1.pdf<cite class="src" data-src="Q3"></cite> Q1–14 (Unit 1, in the Unit-1 notes) and the counter / synchronous-sequential-network questions of Unit III (qb1<cite class="src" data-src="Q3"></cite> Q47–48, 50–54, 57–62, 64–65, 67–78); the latch, flip-flop and shift-register questions (Q32–46, 49, 55, 56, 63, 66) are indexed in the sequential half further down; CIE-paper rows on counters, memory and processor architecture; the CIE improvement-test "serial adder using Moore FSM" question (sequential design). Lab experiments 5–11 and the experiential-learning part are not covered.
+    Now includes the decoder / encoder / multiplexer / demultiplexer questions from qb1.pdf<cite class="src" data-src="Q3"></cite> (Q20–31) and the CIE/SEE papers. Excludes: qb1.pdf<cite class="src" data-src="Q3"></cite> Q1–14 (Unit 1, in the Unit-1 notes) and the counter / synchronous-sequential-network questions of Unit III (qb1<cite class="src" data-src="Q3"></cite> Q47–48, 50–54, 57–62, 64–65, 67–78); the latch, flip-flop and shift-register questions (Q32–46, 49, 55, 56, 63, 66) are indexed in the sequential half further down; CIE-paper rows on counters, memory and processor architecture; the CIE improvement-test "serial adder using Moore FSM" question (sequential design). All 12 lab experiments and their linked CIE/SEE questions are now in the <a href="../unit-lab/#question-bank">Lab Experiments guide</a>.
   </div>
 
   <h3>Adders</h3>
@@ -4794,20 +3898,16 @@ T :  Q⁺ = Q ⊕ T          T = Q ⊕ Q⁺</div>
     <tr><td class="mono">SEE Feb/Mar 25 — Part B</td><td>What is a multiplexer? Write the logic diagram of an 8:1 multiplexer using 4-input AND and OR gates.</td><td>→ <a href="#multiplexers">Multiplexers — 8:1</a></td></tr>
     <tr><td class="mono">CIE-I 2026 (12-10-2026) — Q3(a)<cite class="src" data-src="Q4"></cite></td><td>Realise f(a,b,c,d) = Σm(1,3,4,6,10,12,13,14) using a 4:1 multiplexer; show the selection lines, the MUX inputs and the logic diagram.</td><td>→ <a href="#cie26-q3a">CIE-I 2026 Q3a</a> <span class="pill">solved example added</span><cite class="src" data-src="Q4"></cite></td></tr>
     <tr><td class="mono">CIE-I 2026 (12-10-2026) — Q3(b)<cite class="src" data-src="Q4"></cite></td><td>4:1 MUX with I<sub>0</sub> = 0, I<sub>1</sub> = 1, I<sub>2</sub> = C, I<sub>3</sub> = C̄, S<sub>1</sub>S<sub>0</sub> = AB: derive F, its truth table and SOP.</td><td>→ <a href="#cie26-q3b">CIE-I 2026 Q3b</a> <span class="pill">solved example added</span><cite class="src" data-src="Q4"></cite></td></tr>
-    <tr><td class="mono">qb1.pdf Q23 / CIE 2023-24 Test-2 Q1(b)<cite class="src" data-src="Q1"></cite><cite class="src" data-src="Q3"></cite></td><td>Full adder using a decoder / multiplexer (74153).</td><td>→ <a href="#alt-realizations">Full Adder via MUX/Decoder</a>, <a href="#lab-exp2">Exp 2</a></td></tr>
+    <tr><td class="mono">qb1.pdf Q23 / CIE 2023-24 Test-2 Q1(b)<cite class="src" data-src="Q1"></cite><cite class="src" data-src="Q3"></cite></td><td>Full adder using a decoder / multiplexer (74153).</td><td>→ <a href="#alt-realizations">Full Adder via MUX/Decoder</a>, <a href="../unit-lab/#lab-exp2">Exp 2</a></td></tr>
   </table>
 
-  <h3>Subtractors &amp; Lab Experiments</h3>
+  <h3>Subtractors</h3>
   <table>
     <tr><th>Source</th><th>Question / task</th><th>Answered in</th></tr>
     <tr><td class="mono">Handwritten notes</td><td>Half / full subtractor; half and full adder with NAND gates; IC 7483 adder/subtractor.</td><td>→ <a href="#subtractors">Half &amp; Full Subtractor</a>, <a href="#nand-ic7483">NAND Adders &amp; IC 7483</a></td></tr>
-    <tr><td class="mono">Lab Exp 1</td><td>Excess-3 converter with 7483; add/subtract 40+59, 79h+AFh, 67−48, A3h−BCh.</td><td>→ <a href="#lab-exp1">Exp 1</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Lab Exp 2</td><td>Full adder and full subtractor using IC 74153; Assignment 3 (MUX trees).</td><td>→ <a href="#lab-exp2">Exp 2</a>, <a href="#multiplexers">§3.3</a></td></tr>
-    <tr><td class="mono">Lab Exp 3</td><td>1-bit and 2-bit magnitude comparator using gates (truth tables, K-maps, circuit).</td><td>→ <a href="#lab-exp3">Exp 3</a> <span class="pill">solved example added</span></td></tr>
-    <tr><td class="mono">Lab Exp 4A / 4B</td><td>Binary ⇄ Gray with 74139 (SOP and POS); 7447 BCD-to-7-segment; 74147 priority encoder.</td><td>→ <a href="#lab-exp4">Exp 4</a> <span class="pill">solved example added</span></td></tr>
   </table>
 <h2 style="margin-top:40px">Sequential half of Unit II (Parts 5&ndash;7)</h2>
-<div class="callout"><span class="label">Scope of this question bank</span><p>Indexes the <em>sequential</em> questions of the Unit II half only. <strong>Excluded as Unit III</strong> (counters, synchronous sequential networks): qb Q47&ndash;48, 50&ndash;54, 57&ndash;62, 64&ndash;65, 67&ndash;78; CIE-II Q1a and Q5a (counter designs); the counter parts of the SEE and the 24-25 questions on self-correcting counters. Combinational and lab questions (adders, comparators, decoders, encoders, multiplexers) are indexed in the part of this index above. &ldquo;Linked&rdquo; = already answered in the section shown.<cite class="src" data-src="Q2"></cite></p></div>
+<div class="callout"><span class="label">Scope of this question bank</span><p>Indexes the <em>sequential</em> questions of the Unit II half only. <strong>Excluded as Unit III</strong> (counters, synchronous sequential networks): qb Q47&ndash;48, 50&ndash;54, 57&ndash;62, 64&ndash;65, 67&ndash;78; CIE-II Q1a and Q5a (counter designs); the counter parts of the SEE and the 24-25 questions on self-correcting counters. Combinational questions (adders, comparators, decoders, encoders, multiplexers) are indexed in the part of this index above. &ldquo;Linked&rdquo; = already answered in the section shown.<cite class="src" data-src="Q2"></cite></p></div>
 <h2>Basic bistable element and latches</h2><table><thead><tr><th>Source</th><th>Question</th><th>Answer</th></tr></thead><tbody><tr><td>SEE 24-25 · short<cite class="src" data-src="Q2"></cite></td><td>What is a bistable element, and how is it used in digital circuits?</td><td><a href="#bistable">&sect;5.1 &mdash; model answer</a></td></tr><tr><td>SEE 24-25 · short<cite class="src" data-src="Q2"></cite></td><td>Differentiate between an SR latch and a D latch.</td><td><a href="#latches">&sect;5.2.6 &mdash; model answer</a></td></tr><tr><td>qb Q32 · 5m</td><td>Explain how NAND logic gates can be used to make an RS latch.</td><td><a href="#latches">&sect;5.2.3 &mdash; model answer</a></td></tr><tr><td>qb Q33 · 5m</td><td>Industrial application of an RS latch.</td><td><a href="#latches">&sect;5.2.6 &mdash; model answer</a> <span class="pill">standard knowledge</span></td></tr><tr><td>qb Q34 · 3m</td><td>Difference between a latch and a flip-flop.</td><td><a href="#latches">&sect;5.2.6 &mdash; model answer</a></td></tr><tr><td>Givone<cite class="src" data-src="B1"></cite> P6.1</td><td>Design a switch debouncer using an SR latch.</td><td><a href="#latches">&sect;5.2.2</a></td></tr></tbody></table>
 <h2>Timing considerations</h2><table><thead><tr><th>Source</th><th>Question</th><th>Answer</th></tr></thead><tbody><tr><td>Givone<cite class="src" data-src="B1" data-p="§6.3"></cite></td><td>Propagation delay, minimum pulse width, setup and hold times.</td><td><a href="#timing">&sect;5.3</a> <span class="pill">numeric example added</span></td></tr></tbody></table>
 <h2>Master-slave, pulse-triggered, race-around</h2><table><thead><tr><th>Source</th><th>Question</th><th>Answer</th></tr></thead><tbody><tr><td>CIE-II 24-25 · Q4a · 5m<cite class="src" data-src="Q2"></cite></td><td>Race-around condition, master-slave JK, gated SR latch, logic diagram and timing waveforms.</td><td><a href="#master-slave">&sect;6.1.4 &mdash; full answer</a> <span class="pill">solved example added</span></td></tr><tr><td>qb Q35 · 3m</td><td>What is race-around condition, which flip-flop and why?</td><td><a href="#master-slave">&sect;6.1.4 &mdash; model answer</a></td></tr><tr><td>qb Q36 · 5m</td><td>Master-slave flip-flop using only NAND gates; how it solves race-around.</td><td><a href="#master-slave">&sect;6.1.4 &mdash; netlist + working</a> <span class="pill">solved example added</span></td></tr><tr><td>qb Q56 · 5m</td><td>Working of a master-slave JK flip-flop; advantages.</td><td><a href="#master-slave">&sect;6.1.4 &mdash; model answer</a></td></tr><tr><td>CIE-II 24-25 · Q1.3<cite class="src" data-src="Q2"></cite></td><td>Techniques to mitigate 0's and 1's catching.</td><td><a href="#pulse-triggered">&sect;6.2.2</a></td></tr><tr><td>qb Q39 · 5m</td><td>Elucidate 0's and 1's catching with timing diagrams.</td><td><a href="#pulse-triggered">&sect;6.2.1</a></td></tr><tr><td>CIE-II 24-25 · Q1.8 · 2m<cite class="src" data-src="Q2"></cite></td><td>Master-slave flip-flop with data lockout; symbol vs pulse-triggered.</td><td><a href="#pulse-triggered">&sect;6.2.3</a></td></tr><tr><td>Givone<cite class="src" data-src="B1"></cite> P6.6&ndash;6.9, 6.14</td><td>Output waveforms of master-slave SR/JK/D/T and data lockout.</td><td><a href="#seq-solved">&sect;7.2.3 (P6.7, 6.8, 6.14 solved)</a></td></tr><tr><td>Givone<cite class="src" data-src="B1"></cite> P6.10</td><td>Gated JK latch problems and constraints.</td><td><a href="#seq-solved">&sect;7.2.3</a></td></tr></tbody></table>

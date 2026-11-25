@@ -21,8 +21,7 @@
       "source": "Applied Digital Logic Design - Unit 2 Complete - Exam Notes.html",
       "title": "Combinational & Sequential Logic Design",
       "topics": "parallel adder, carry lookahead, magnitude comparator, decoders, encoders, multiplexers, latches, timing, master-slave, pulse-triggered and edge-triggered flip-flops, characteristic equations, shift registers, universal shift register, flip-flop conversion, race-around condition, frequency divider, binary to Gray converter",
-      "lab": "lab-overview",
-      "updated": "2026-11-14"
+      "updated": "2026-11-25"
     },
     {
       "n": 3,
@@ -31,21 +30,78 @@
       "topics": "ripple counters, synchronous counters, ring and Johnson counters, counter design, self-correcting counters, Mealy and Moore models, analysis, state diagrams, sequence detectors, state table reduction, implication table, frequency division, mod-N by clear, lock-out, Mealy to Moore conversion",
       "updated": "2026-11-14"
     },
-    {"n": 4, "source": "Applied Digital Logic Design - Unit 4 - Exam Notes.html", "title": "Computer Structure & Instruction Sets", "topics": "functional units, processor registers, performance, memory locations and addressing, RTN, instruction formats, addressing modes, assembly language, stacks and subroutines, ARM and x86", "updated": "2026-11-24"},
-    {"n": 5, "source": "Applied Digital Logic Design - Unit 5 - Exam Notes.html", "title": "Processing Unit, Memory & I/O", "topics": "datapath and control signals, hardwired and microprogrammed control, pipelining, memory hierarchy, RAM chips, cache mapping, virtual memory, interrupts, DMA", "updated": "2026-11-24"}
+    {
+      "n": 4,
+      "source": "Applied Digital Logic Design - Unit 4 - Exam Notes.html",
+      "title": "Computer Structure & Instruction Sets",
+      "topics": "functional units, processor registers, performance, memory locations and addressing, RTN, instruction formats, addressing modes, assembly language, stacks and subroutines, ARM and x86",
+      "updated": "2026-11-24"
+    },
+    {
+      "n": 5,
+      "source": "Applied Digital Logic Design - Unit 5 - Exam Notes.html",
+      "title": "Processing Unit, Memory & I/O",
+      "topics": "datapath and control signals, hardwired and microprogrammed control, pipelining, memory hierarchy, RAM chips, cache mapping, virtual memory, interrupts, DMA",
+      "updated": "2026-11-24"
+    },
+    {
+      "n": "Lab",
+      "source": "Applied Digital Logic Design - Lab Experiments - Exam Notes.html",
+      "title": "Lab Experiments (Exp 1–12)",
+      "topics": "IC 7483 Excess-3 & adder/subtractor, IC 74153 full adder/subtractor, 1-bit & 2-bit magnitude comparator, IC 74139 Binary-Gray, IC 7447 7-segment, IC 74147 priority encoder, Master-Slave JK flip-flop (7476/NAND), IC 74192 up/down counter, Universal Shift Register, Ring & Johnson counters, Mod-N synchronous counters, Logisim 4-bit CPU, Verilog 4-bit CLA & comparator on FPGA, PC motherboard memory & I/O standards",
+      "lab": "lab-overview",
+      "updated": "2026-11-25"
+    }
   ],
   "changelog": [
-    {"date": "2026-11-24", "units": [4, 5], "text": "Readability & formatting upgrade for first-time readers across Units 4 and 5: notation & operand-order refreshers, proper subscripts/superscripts on registers, control signals (PCout/MARin/MDRinE/Zin), bus lines and formulas, operand-order badges, unhid core Unit 4 definitions (ISA, N/Z/V/C, Add-N), five new diagrams (32-bit word layout, PC-relative branch, LISTADD stack levels, data-hazard forwarding, 1K × 1 memory chip), highlighted microprogram control words & cache hits, fixed semicolon-chained assembly highlighting, and eliminated horizontal scrollbars on desktop code blocks."},
-    {"date": "2026-11-22", "units": [4, 5], "text": "Added 69 checked YouTube videos beside matching topics, 34 in Unit 4 and 35 in Unit 5. Includes addressing modes, pipeline timing, CPU control, cache mapping, interrupts and DMA, with worked examples and notes on relevant differences."},
-    {"date": "2026-11-21", "units": [4, 5], "text": "Units 4 and 5 published: instruction set architecture and assembly language (Unit 4), and CPU control, memory, cache and I/O (Unit 5), with every 2025–26 improvement-test question answered. Interrupts, DMA and ARM/x86 come from Hamacher and are labelled; they will be revised when the faculty's latest notes arrive."},
+    {
+      "date": "2026-11-25",
+      "units": [
+        2,
+        "Lab"
+      ],
+      "text": "Moved Lab Experiments 1–4 out of Unit 2 into a dedicated Lab Experiments guide covering all 12 CS234AI experiments (combinational & sequential trainer-kit ICs, 74192 counters, USR/Ring/Johnson, Mod-N synchronous counters, Logisim 4-bit CPU & ALP traces, Verilog 4-bit CLA & comparator on FPGA, and PC motherboard memory/I/O standards), with direct links to the extracted 2025–26 CIE-I, CIE-II and Improvement exam questions."
+    },
+    {
+      "date": "2026-11-24",
+      "units": [
+        4,
+        5
+      ],
+      "text": "Readability & formatting upgrade for first-time readers across Units 4 and 5: notation & operand-order refreshers, proper subscripts/superscripts on registers, control signals (PCout/MARin/MDRinE/Zin), bus lines and formulas, operand-order badges, unhid core Unit 4 definitions (ISA, N/Z/V/C, Add-N), five new diagrams (32-bit word layout, PC-relative branch, LISTADD stack levels, data-hazard forwarding, 1K × 1 memory chip), highlighted microprogram control words & cache hits, fixed semicolon-chained assembly highlighting, and eliminated horizontal scrollbars on desktop code blocks."
+    },
+    {
+      "date": "2026-11-22",
+      "units": [
+        4,
+        5
+      ],
+      "text": "Added 69 checked YouTube videos beside matching topics, 34 in Unit 4 and 35 in Unit 5. Includes addressing modes, pipeline timing, CPU control, cache mapping, interrupts and DMA, with worked examples and notes on relevant differences."
+    },
     {
       "date": "2026-11-21",
-      "units": [1, 2, 3],
+      "units": [
+        4,
+        5
+      ],
+      "text": "Units 4 and 5 published: instruction set architecture and assembly language (Unit 4), and CPU control, memory, cache and I/O (Unit 5), with every 2025–26 improvement-test question answered. Interrupts, DMA and ARM/x86 come from Hamacher and are labelled; they will be revised when the faculty's latest notes arrive."
+    },
+    {
+      "date": "2026-11-21",
+      "units": [
+        1,
+        2,
+        3
+      ],
       "text": "Shared look across all guides: the sidebar has a ← All units back link and a Hide button, and phones get a ☰ Contents drawer. Dark-mode colours in Units 1–2 now match the other subjects."
     },
     {
       "date": "2026-11-14",
-      "units": [1, 2, 3],
+      "units": [
+        1,
+        2,
+        3
+      ],
       "text": "Added 61 checked Engineering Funda videos beside matching topics: 13 in Unit 1, 39 in Unit 2 and 9 in Unit 3. Includes double-precision IEEE 754, decoder basics and counter-design examples, with notes on relevant notation and circuit differences."
     },
     {
@@ -330,11 +386,11 @@
     {
       "id": "L1",
       "kind": "lab",
-      "title": "ADLDCO lab manual, 2025–2026 (Experiments 1–4 used)",
+      "title": "ADLDCO lab manual, 2025–2026 (Experiments 1–12)",
       "by": "Dept. lecture material",
       "file": "lab-manual-2025-2026.pdf",
       "units": [
-        2
+        "Lab"
       ]
     },
     {

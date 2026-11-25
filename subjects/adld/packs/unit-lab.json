@@ -1,0 +1,47 @@
+{
+  "drop_lines": [
+    "^Department of Computer Science",
+    "^\\d+$"
+  ],
+  "sections": {
+    "lab-overview": {
+      "L1": "10-16"
+    },
+    "lab-exp1": {
+      "L1": "17-19"
+    },
+    "lab-exp2": {
+      "L1": "20-24"
+    },
+    "lab-exp3": {
+      "L1": "25-28"
+    },
+    "lab-exp4": {
+      "L1": "29-35"
+    },
+    "lab-exp5": {
+      "L1": "15,36-38"
+    },
+    "lab-exp6a": {
+      "L1": "39-42"
+    },
+    "lab-exp6b": {
+      "L1": "43-45"
+    },
+    "lab-exp7": {
+      "L1": "46-49"
+    },
+    "lab-exp8-9": {
+      "L1": "50"
+    },
+    "lab-exp10": {
+      "L1": "50"
+    },
+    "lab-exp11": {
+      "L1": "51"
+    },
+    "lab-exp12": {
+      "L1": "51"
+    }
+  }
+}

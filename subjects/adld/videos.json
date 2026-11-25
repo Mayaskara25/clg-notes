@@ -1149,21 +1149,6 @@
         ]
       },
       {
-        "section": "lab-exp4",
-        "sub": "Part B — Decoder IC 7447 (BCD to seven-segment)",
-        "videos": [
-          {
-            "id": "smeUN1Bxj3M",
-            "title": "Seven Segment Display Decoder",
-            "channel": "Neso Academy",
-            "duration": "6:58",
-            "kind": "topic",
-            "differs": "Conceptual display and truth-table explanation only. Description does not establish 7447 pin wiring or polarity; the notes’ 7447 drives common-anode segments active-low.",
-            "note": "Covers display logic; use your notes for IC 7447 wiring."
-          }
-        ]
-      },
-      {
         "section": "bistable",
         "sub": "From bistable element to flip-flop",
         "videos": [
@@ -3159,6 +3144,23 @@
             "differs": "Works an address-range and device identification problem. The guide’s chip-count problems give different starting data.",
             "note": "Practises finding address ranges for memory devices.",
             "checked": "2026-11-22"
+          }
+        ]
+      }
+    ],
+    "Lab": [
+      {
+        "section": "lab-exp4",
+        "sub": "Part B — Decoder IC 7447 (BCD to seven-segment)",
+        "videos": [
+          {
+            "id": "smeUN1Bxj3M",
+            "title": "Seven Segment Display Decoder",
+            "channel": "Neso Academy",
+            "duration": "6:58",
+            "kind": "topic",
+            "differs": "Conceptual display and truth-table explanation only. Description does not establish 7447 pin wiring or polarity; the notes’ 7447 drives common-anode segments active-low.",
+            "note": "Covers display logic; use your notes for IC 7447 wiring."
           }
         ]
       }
